@@ -6,7 +6,6 @@
 - If you do not know what Git LFS is, ask the team
 
 .
-
 ## Used stuff
 
 - Unity 
@@ -17,7 +16,6 @@
 - Git/ Github
 
 .
-
 ## Team
 
 - Richard Puhr
@@ -25,7 +23,6 @@
 
 
 .
-
 # Design Document
 https://connect-prd-cdn.unity.com/20201215/83f3733d-3146-42de-8a69-f461d6662eb1/Game-Design-Document-Template.pdf
 
@@ -33,8 +30,9 @@ https://connect-prd-cdn.unity.com/20201215/83f3733d-3146-42de-8a69-f461d6662eb1/
 - Genre:
 - Game Elements:
 - Player: 
-.
 
+
+.
 ## Technical Specs:
 
 - Engine: 
@@ -44,7 +42,6 @@ https://connect-prd-cdn.unity.com/20201215/83f3733d-3146-42de-8a69-f461d6662eb1/
 - Code Language: C#
 
 .
-
 ## Gameplay
 
 Use the game play section to create a descriptive paragraph about how the game is played. You want the use tor imagine
@@ -69,9 +66,8 @@ This outline will vary depending on the type of game.
 
 ### Key Features
 Key features are a list of game elements that are attractive to the player.
+
 .
-
-
 ## Design Guidelines
 
 This is an important statement about any creative restrictions that need to be considered and includes brief statements
@@ -91,9 +87,8 @@ to where they exist within the game mechanics document.
 - Game Play
 - Player Control
 - Game Over (Winning and Losing)
+
 .
-
-
 ## Player Definition
 
 - Use this section for quick descriptions that define the player
@@ -115,9 +110,8 @@ Each property should mention a feedback as a result of the property changing.
 ### Player Rewards (power-ups and pick-ups)
 
 Make a list of all objects that affect the player in a positive way (e.g., health replenished)
+
 .
-
-
 ## User Interface (UI)
 This is where you’ll include a description of the user’s control of the game. Think about which buttons on a device would be
 best suited for the game. Consider what the worst layout is, then ask yourself if your UI is it still playable. A visual
