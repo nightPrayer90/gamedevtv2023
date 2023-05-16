@@ -1,11 +1,11 @@
-Repo for the GameDev.tv Game Jam 2023
-
 # GameDev.tv Game Jam 2023
 
 - Unity folder is GameDevTv-gamejam-2023
 - Unity version is 2021.3.14f1 
 - Use Git LFS for assets
 - If you do not know what Git LFS is, ask the team
+
+
 
 ## Used stuff
 
@@ -16,10 +16,14 @@ Repo for the GameDev.tv Game Jam 2023
 - Miro
 - Git/ Github
 
+
+
 ## Team
 
 - Richard Puhr
 - Martin Steguweit
+
+
 
 # Design Document
 https://connect-prd-cdn.unity.com/20201215/83f3733d-3146-42de-8a69-f461d6662eb1/Game-Design-Document-Template.pdf
@@ -37,6 +41,8 @@ https://connect-prd-cdn.unity.com/20201215/83f3733d-3146-42de-8a69-f461d6662eb1/
 - View: Camera view from which the player will experience the game
 - Platform: PC/ Web
 - Code Language: C#
+
+
 
 ## Gameplay
 
@@ -63,12 +69,14 @@ This outline will vary depending on the type of game.
 ### Key Features
 Key features are a list of game elements that are attractive to the player.
 
+
+
 ## Design Guidelines
 
 This is an important statement about any creative restrictions that need to be considered and includes brief statements
 about the general (i.e., overall) goal of the design.
 
-## Game Design Definitions
+### Game Design Definitions
 
 This section established the definition of the game play. Definitions should include how a player wins, loses, transitions
 between levels, and the main focus of the gameplay.
@@ -82,6 +90,8 @@ to where they exist within the game mechanics document.
 - Game Play
 - Player Control
 - Game Over (Winning and Losing)
+
+
 
 ## Player Definition
 
@@ -104,6 +114,8 @@ Each property should mention a feedback as a result of the property changing.
 ### Player Rewards (power-ups and pick-ups)
 
 Make a list of all objects that affect the player in a positive way (e.g., health replenished)
+
+
 
 ## User Interface (UI)
 This is where you’ll include a description of the user’s control of the game. Think about which buttons on a device would be
