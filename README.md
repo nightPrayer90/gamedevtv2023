@@ -28,14 +28,14 @@ https://connect-prd-cdn.unity.com/20201215/83f3733d-3146-42de-8a69-f461d6662eb1/
 
 - Game Name:
 - Genre:
-- Game Elements:
-- Player: 
+- Game Elements: Game elements are the basic activities the player will be doing for fun
+- Player: Single Player
 
 
 .
 ## Technical Specs:
 
-- Engine: 
+- Engine: Unity 2021.3.11f1
 - Technical Form: (Basically there are 2D graphics (flat) and 3D graphics (form)
 - View: Camera view from which the player will experience the game
 - Platform: PC/ Web
