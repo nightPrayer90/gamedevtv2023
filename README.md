@@ -14,3 +14,6 @@ Repo for the GameDev.tv Game Jam 2023
 - Photoshop
 - Gimp
 - Miro
+- Git/ Github
+
+# Game Design Dokument
