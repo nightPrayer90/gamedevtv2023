@@ -5,7 +5,7 @@
 - Use Git LFS for assets
 - If you do not know what Git LFS is, ask the team
 
-
+.
 
 ## Used stuff
 
@@ -16,13 +16,13 @@
 - Miro
 - Git/ Github
 
-
+.
 
 ## Team
 
 - Richard Puhr
 - Martin Steguweit
-
+.
 
 
 # Design Document
@@ -32,7 +32,7 @@ https://connect-prd-cdn.unity.com/20201215/83f3733d-3146-42de-8a69-f461d6662eb1/
 - Genre:
 - Game Elements:
 - Player: 
-
+.
 
 ## Technical Specs:
 
@@ -42,7 +42,7 @@ https://connect-prd-cdn.unity.com/20201215/83f3733d-3146-42de-8a69-f461d6662eb1/
 - Platform: PC/ Web
 - Code Language: C#
 
-
+.
 
 ## Gameplay
 
@@ -68,7 +68,7 @@ This outline will vary depending on the type of game.
 
 ### Key Features
 Key features are a list of game elements that are attractive to the player.
-
+.
 
 
 ## Design Guidelines
@@ -90,7 +90,7 @@ to where they exist within the game mechanics document.
 - Game Play
 - Player Control
 - Game Over (Winning and Losing)
-
+.
 
 
 ## Player Definition
@@ -114,7 +114,7 @@ Each property should mention a feedback as a result of the property changing.
 ### Player Rewards (power-ups and pick-ups)
 
 Make a list of all objects that affect the player in a positive way (e.g., health replenished)
-
+.
 
 
 ## User Interface (UI)
