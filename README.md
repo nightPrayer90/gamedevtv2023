@@ -23,7 +23,7 @@
 - Richard Puhr
 - Martin Steguweit
 .
-
+.
 
 # Design Document
 https://connect-prd-cdn.unity.com/20201215/83f3733d-3146-42de-8a69-f461d6662eb1/Game-Design-Document-Template.pdf
