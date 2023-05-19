@@ -118,4 +118,47 @@ best suited for the game. Consider what the worst layout is, then ask yourself i
 representation can be added where you relate the physical controls to the actions in the game. When designing the UI, it may
 be valuable to research quality control and user interface (UI) design information.
 
+### Notes
+
+life in 2 dimensions
+- - - - - - - - - - - - - - - - - -
+
+ikaruga - flip plane white and black
+
+- 2 ebenen, raumschiffe abschießen, und türme abschießen
+- arena wird größer wenn bestimmte türme (bullet-hell-türme) abgeschossen werden
+- zerstörte gebäude bestimmen wie sich umgebung verändert
+- stadt besteht aus 5x5m blöcken
+- sollten gleichmäßige areale sein
+- spielerhöhe y = 6, stadtgebäude alle darunter, auch türme
+
+- kamera: topdown, perspektivisch, nicht isometrisch
+- bewegung geradeaus vom raumschiff aus
+- raumschiff hat schilde die man drehen kann
+
+fähigkeiten:
+
+- dash
+- rundumschuss
+- sprung
+- defensive projektile nach links und rechts
+- upgrade-system für bullets
+
+- teilen: 3 fähigkeiten, bulletanzahl/waffenupgrades
+
+unity:
+
+RLP
+-
+gameszenen
+3d-modelle in fbx reinschieben
+
+volumetrischer nebel (pinker untergrund) in unity
+
+tag 1: 3d gebäude machen
+
+Prayer90
+-
+testszenen
+
 
