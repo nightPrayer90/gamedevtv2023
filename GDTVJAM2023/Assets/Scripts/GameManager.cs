@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     public bool gameIsPlayed = true;
+    private PlayerController player;
+    public TextMeshProUGUI healthText;
+    
     void Start()
     {
-        
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        UpdatePlayerHealth();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdatePlayerHealth()
     {
-        
+        healthText.text = "Health: " + player.playerCurrentHealth + "/" + player.playerMaxHealth;
     }
 }
