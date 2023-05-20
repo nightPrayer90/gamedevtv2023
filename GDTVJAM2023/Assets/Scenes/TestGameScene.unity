@@ -7061,6 +7061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameIsPlayed: 1
+  gameOver: 0
   healthText: {fileID: 1580234589}
 --- !u!4 &1408532070
 Transform:
@@ -9230,7 +9231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91aea00d360c98f43a31978d685d235b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.2
+  speed: 1.4
   rotateSpeed: 0.4
   playerMaxHealth: 10
   playerCurrentHealth: 0

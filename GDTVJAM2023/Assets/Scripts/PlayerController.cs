@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     void playerMovement()
     {
-        if (gameManager.gameIsPlayed)
+        if (gameManager.gameIsPlayed && !gameManager.gameOver)
         {
             float forwardInput = Input.GetAxis("Vertical");
             float horizontalInput = Input.GetAxis("Horizontal");

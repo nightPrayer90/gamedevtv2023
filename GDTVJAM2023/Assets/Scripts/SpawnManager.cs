@@ -10,20 +10,21 @@ public class SpawnManager : MonoBehaviour
 
     private Camera mainCamera;
     private Transform playerTransform;
-
+    private GameManager gameManager;
     
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = Camera.main;
         playerTransform = GameObject.Find("Player").transform;
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         StartCoroutine(SpawnObjects());
     }
 
     private IEnumerator SpawnObjects()
     {
-        while (true)
+        while (!gameManager.gameOver && gameManager.gameIsPlayed)
         {
             Vector3 cameraPosition = mainCamera.transform.position;
             Vector3 playerPosition = playerTransform.position;
@@ -34,7 +35,6 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
         }
     }
-
 
 
     private Vector3 GetRandomPosition(Vector3 cameraPostion, Vector3 playerPosition)

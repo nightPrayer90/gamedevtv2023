@@ -33,7 +33,7 @@ public class SimpleEnemy : MonoBehaviour
 
     void EnemyMovement()
     {
-        if (gameManager.gameIsPlayed)
+        if (gameManager.gameIsPlayed && !gameManager.gameOver)
         {
 
             Vector3 playerPosition = playerRb.transform.position;

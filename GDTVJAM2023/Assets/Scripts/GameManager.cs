@@ -7,9 +7,11 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public bool gameIsPlayed = true;
+    public bool gameOver = false;
     private PlayerController player;
     public TextMeshProUGUI healthText;
     
+
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -19,5 +21,11 @@ public class GameManager : MonoBehaviour
     public void UpdatePlayerHealth()
     {
         healthText.text = "Health: " + player.playerCurrentHealth + "/" + player.playerMaxHealth;
+        if (player.playerCurrentHealth <= 0)
+        {
+            gameOver = true;
+            gameIsPlayed = false;
+        }
     }
+
 }
