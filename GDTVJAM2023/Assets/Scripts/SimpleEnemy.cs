@@ -4,12 +4,10 @@ public class SimpleEnemy : MonoBehaviour
 {
     public float speed;
     public float rotationSpeed;
-    public int explosionDamage = 1;
-    public float explosionForce = 5.0f;
-   
+       
 
-    public GameObject explosionObject;
-    public GameObject dieExplosionObject;
+    //public GameObject explosionObject;
+    
     private Rigidbody playerRb;
     private PlayerController playerController;
     private GameManager gameManager;
@@ -48,22 +46,5 @@ public class SimpleEnemy : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-
-            Vector3 explosionDirection = collision.transform.position - transform.position;
-            explosionDirection.Normalize();
-            playerRb.AddForce(explosionDirection * explosionForce, ForceMode.Impulse);
-            playerController.UpdatePlayerHealth(explosionDamage);
-
-            Instantiate(dieExplosionObject, transform.position, transform.rotation);
-
-            Destroy(gameObject);
-        }
-    }
-
     
 }

@@ -10,7 +10,10 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     public int playerMaxHealth = 10;
     public int playerCurrentHealth= 10;
-    public float playerCurrentExperience;
+    public int playerCurrentExperience;
+    public int playerExperienceToLevelUp = 15;
+    public int playerLevel = 1;
+    public float playerLevelUpFactor = 1.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -38,8 +41,27 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Exp"))
         {
             Destroy(other.gameObject);
-            playerCurrentExperience += 1f;
+            playerCurrentExperience += 1;
             gameManager.UpdatePlayerExperience();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+
+            EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+
+            Vector3 explosionDirection = collision.transform.position - transform.position;
+            explosionDirection.Normalize();
+
+            playerRb.AddForce(explosionDirection * -1f * enemyHealth.explosionForce, ForceMode.Impulse);
+            UpdatePlayerHealth(enemyHealth.explosionDamage);
+
+            Instantiate(enemyHealth.dieExplosionObject, transform.position, transform.rotation);
+
+            Destroy(collision.gameObject);
         }
     }
 

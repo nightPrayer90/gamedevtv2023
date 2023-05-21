@@ -9,6 +9,7 @@ public class EnemyExp : MonoBehaviour
 
     private PlayerController playercontroller;
     private Rigidbody playerRb;
+    private bool ifcollect = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,9 @@ public class EnemyExp : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, playerRb.transform.position);
 
         if (distanceToPlayer < detectionRange)
+            ifcollect = true;
+
+        if (ifcollect == true)
         {
             Vector3 directionToPlayer = (playerRb.transform.position - transform.position).normalized;
             Vector3 newPosition = transform.position + directionToPlayer * moveSpeed * Time.deltaTime;

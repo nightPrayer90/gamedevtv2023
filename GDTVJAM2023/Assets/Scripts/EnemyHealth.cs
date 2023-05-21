@@ -6,6 +6,10 @@ public class EnemyHealth : MonoBehaviour
 {
     public GameObject explosionObject;
     public float enemyHealth = 2.0f;
+    public int explosionDamage = 1;
+    public float explosionForce = 5.0f;
+
+    public GameObject dieExplosionObject;
 
     public void TakeDamage(float damage)
     {

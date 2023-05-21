@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6041745420926864551}
   - component: {fileID: -3805921470688242146}
   m_Layer: 0
-  m_Name: ExposionFollowEnemy
+  m_Name: Exposion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

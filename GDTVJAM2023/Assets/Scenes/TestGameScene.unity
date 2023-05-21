@@ -34354,6 +34354,9 @@ MonoBehaviour:
   playerMaxHealth: 10
   playerCurrentHealth: 10
   playerCurrentExperience: 0
+  playerExperienceToLevelUp: 5
+  playerLevel: 1
+  playerLevelUpFactor: 1.2
 --- !u!54 &1752392229
 Rigidbody:
   m_ObjectHideFlags: 0

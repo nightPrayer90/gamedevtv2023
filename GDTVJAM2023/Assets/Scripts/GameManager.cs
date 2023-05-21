@@ -13,11 +13,18 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI expText;
     public GameObject gameOverUI;
 
+
+
     void Start()
     {
+       
+
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         UpdatePlayerHealth();
+        UpdatePlayerExperience();
     }
+
+    
 
     public void UpdatePlayerHealth()
     {
@@ -32,7 +39,18 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePlayerExperience()
     {
-        expText.text = "Exp: " + player.playerCurrentExperience;
+               
+        // Levelup
+        if (player.playerCurrentExperience == player.playerExperienceToLevelUp)
+        {
+            player.playerLevel += 1;
+            player.playerExperienceToLevelUp = Mathf.RoundToInt(player.playerExperienceToLevelUp * player.playerLevelUpFactor);
+            player.playerCurrentExperience = 0;
+        }
+
+        //Text
+        expText.text = "Level: " + player.playerLevel + " Exp: " + player.playerCurrentExperience + "/" + player.playerExperienceToLevelUp;
+
     }
 
 }
