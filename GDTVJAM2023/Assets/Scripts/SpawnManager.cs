@@ -30,6 +30,7 @@ public class SpawnManager : MonoBehaviour
             Vector3 playerPosition = playerTransform.position;
 
             Vector3 spawnPosition = GetRandomPosition(cameraPosition, playerPosition);
+            spawnPosition.y = 6f;
             SpawnObject(spawnPosition);
 
             yield return new WaitForSeconds(spawnInterval);

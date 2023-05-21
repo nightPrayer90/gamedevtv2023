@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public bool gameOver = false;
     private PlayerController player;
     public TextMeshProUGUI healthText;
-    
+    public GameObject gameOverUI;
 
     void Start()
     {
@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
         {
             gameOver = true;
             gameIsPlayed = false;
+            gameOverUI.SetActive(true);
         }
     }
 

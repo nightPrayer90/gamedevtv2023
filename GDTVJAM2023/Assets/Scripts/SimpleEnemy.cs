@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SimpleEnemy : MonoBehaviour
@@ -10,18 +8,19 @@ public class SimpleEnemy : MonoBehaviour
     public float explosionForce = 5.0f;
 
     public GameObject explosionObject;
-    private Rigidbody enemyRb;
     private Rigidbody playerRb;
     private PlayerController playerController;
     private GameManager gameManager;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyRb = GetComponent<Rigidbody>();
+        //enemyRb = GetComponent<Rigidbody>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         playerRb = GameObject.Find("Player").GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
     }
 
     // Update is called once per frame
@@ -63,4 +62,6 @@ public class SimpleEnemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    
 }

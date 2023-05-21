@@ -9,15 +9,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRb;
     private GameManager gameManager;
     public int playerMaxHealth = 10;
-    public int playerCurrentHealth;
+    public int playerCurrentHealth= 10;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        
-        playerCurrentHealth = playerMaxHealth;
         
     }
 
@@ -49,6 +47,12 @@ public class PlayerController : MonoBehaviour
     {
         playerCurrentHealth -= decHealth;
         gameManager.UpdatePlayerHealth();
+
+        // player die
+        if (playerCurrentHealth <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     // Aktualisiere die Y-Position des Spielers auf 6
