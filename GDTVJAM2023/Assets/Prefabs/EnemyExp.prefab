@@ -9730,8 +9730,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142d169ff7f13584dbb00f7513f8b626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
-  detectionRange: 1
+  moveSpeed: 4
+  detectionRange: 1.5
 --- !u!65 &3357360663921680255
 BoxCollider:
   m_ObjectHideFlags: 0

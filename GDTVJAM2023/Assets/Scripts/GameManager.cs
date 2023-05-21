@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -19,11 +17,10 @@ public class GameManager : MonoBehaviour
     public float totalTime = 1800f;
     private float currentTime;
 
+    public int[] selectedNumbers_ = new int[3];
+    public int maxAbillitis = 20;
     void Start()
     {
-        /*panelUI = GameObject.Find("LevelUpHud");
-        playerUI = GameObject.Find("PlayerHud");
-        gameOverUI = GameObject.Find("GameOverHud");*/
 
         currentTime = 0f;
         UpdateTimerText();
@@ -69,18 +66,56 @@ public class GameManager : MonoBehaviour
             player.playerExperienceToLevelUp = Mathf.RoundToInt(player.playerExperienceToLevelUp * player.playerLevelUpFactor);
             player.playerCurrentExperience = 0;
             Time.timeScale = 0;
-            
-            
+
+            CreateRandomNumbers();
+
             gameIsPlayed = false;
 
             panelUI.SetActive(true);
             playerUI.SetActive(false);
         }
-        else
+        
+        //Text
+        expText.text = "Level: " + player.playerLevel + " Exp: " + player.playerCurrentExperience + "/" + player.playerExperienceToLevelUp;
+        
+    }
+
+
+    private void CreateRandomNumbers()
+    {
+        // Array zum Speichern der ausgewählten Zahlen
+        int[] selectedNumbers = new int[3];
+
+        // Array zum Speichern aller verfügbaren Zahlen
+        int[] availableNumbers = new int[maxAbillitis];
+        for (int i = 0; i < availableNumbers.Length; i++)
         {
-            //Text
-            expText.text = "Level: " + player.playerLevel + " Exp: " + player.playerCurrentExperience + "/" + player.playerExperienceToLevelUp;
+            availableNumbers[i] = i;
         }
+
+        // Zufällige Auswahl von 3 Zahlen
+        for (int i = 0; i < 3; i++)
+        {
+            int randomIndex = Random.Range(0, availableNumbers.Length);
+
+            // Ausgewählte Zahl zum ausgewählten Zahlen-Array hinzufügen
+            selectedNumbers[i] = availableNumbers[randomIndex];
+
+            // Ausgewählte Zahl aus dem verfügbaren Zahlen-Array entfernen
+            availableNumbers[randomIndex] = availableNumbers[availableNumbers.Length - 1];
+            System.Array.Resize(ref availableNumbers, availableNumbers.Length - 1);
+        }
+
+        // Ausgabe der ausgewählten Zahlen
+        int a = 0;
+        foreach (int number in selectedNumbers)
+        {
+            //Debug.Log("Ausgewählte Zahl: " + number);
+            selectedNumbers_[a] = number;
+            a++;
+        }
+
+        //Debug.Log("Ausgewählte Zahl: " + selectedNumbers_[0] + selectedNumbers_[1] + selectedNumbers_[2]);
     }
 
 }
