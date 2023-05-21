@@ -31,4 +31,9 @@ public class MenuButtonController : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void SetTimesclae()
+    {
+        Time.timeScale = 1;
+    }
 }
