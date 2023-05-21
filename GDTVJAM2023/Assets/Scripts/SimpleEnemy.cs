@@ -6,8 +6,10 @@ public class SimpleEnemy : MonoBehaviour
     public float rotationSpeed;
     public int explosionDamage = 1;
     public float explosionForce = 5.0f;
+   
 
     public GameObject explosionObject;
+    public GameObject dieExplosionObject;
     private Rigidbody playerRb;
     private PlayerController playerController;
     private GameManager gameManager;
@@ -57,7 +59,7 @@ public class SimpleEnemy : MonoBehaviour
             playerRb.AddForce(explosionDirection * explosionForce, ForceMode.Impulse);
             playerController.UpdatePlayerHealth(explosionDamage);
 
-            Instantiate(explosionObject, transform.position, transform.rotation);
+            Instantiate(dieExplosionObject, transform.position, transform.rotation);
 
             Destroy(gameObject);
         }

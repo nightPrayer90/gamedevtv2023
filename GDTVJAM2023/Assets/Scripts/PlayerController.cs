@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     public int playerMaxHealth = 10;
     public int playerCurrentHealth= 10;
+    public float playerCurrentExperience;
 
     // Start is called before the first frame update
     void Start()
@@ -23,10 +24,26 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         playerMovement();
-       
+    }
+    // Aktualisiere die Y-Position des Spielers auf 6
+    private void FixedUpdate()
+    {
+        Vector3 newPosition = playerRb.position;
+        newPosition.y = 6f;
+        playerRb.position = newPosition;
     }
 
-    void playerMovement()
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Exp"))
+        {
+            Destroy(other.gameObject);
+            playerCurrentExperience += 1f;
+            gameManager.UpdatePlayerExperience();
+        }
+    }
+
+    private void playerMovement()
     {
         if (gameManager.gameIsPlayed && !gameManager.gameOver)
         {
@@ -53,13 +70,5 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-    }
-
-    // Aktualisiere die Y-Position des Spielers auf 6
-    private void FixedUpdate()
-    {
-        Vector3 newPosition = playerRb.position;
-        newPosition.y = 6f;
-        playerRb.position = newPosition;
     }
 }

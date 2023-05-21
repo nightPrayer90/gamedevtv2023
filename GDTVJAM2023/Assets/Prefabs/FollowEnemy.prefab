@@ -557,8 +557,8 @@ MonoBehaviour:
   rotationSpeed: 10
   explosionDamage: 1
   explosionForce: 2
-  enemyHealth: 2
-  explosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
+  explosionObject: {fileID: 6897260717734435252, guid: a6eb1630c758b1d42925cf558f8606f9, type: 3}
+  dieExplosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
 --- !u!114 &3958546974285713878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,5 +571,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4debb9d2c1aef3d4d979265fa726bd4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionObject: {fileID: 6897260717734435252, guid: a6eb1630c758b1d42925cf558f8606f9, type: 3}
   enemyHealth: 2
-  explosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public bool gameOver = false;
     private PlayerController player;
     public TextMeshProUGUI healthText;
+    public TextMeshProUGUI expText;
     public GameObject gameOverUI;
 
     void Start()
@@ -27,6 +28,11 @@ public class GameManager : MonoBehaviour
             gameIsPlayed = false;
             gameOverUI.SetActive(true);
         }
+    }
+
+    public void UpdatePlayerExperience()
+    {
+        expText.text = "Exp: " + player.playerCurrentExperience;
     }
 
 }
