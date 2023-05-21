@@ -16,6 +16,8 @@ public class EnemyExp : MonoBehaviour
     {
         playercontroller = GameObject.Find("Player").GetComponent<PlayerController>();
         playerRb = GameObject.Find("Player").GetComponent<Rigidbody>();
+
+        detectionRange = playercontroller.pickupRange;
     }
 
     // Update is called once per frame

@@ -11,7 +11,7 @@ public class EnemyHealth : MonoBehaviour
 
     public GameObject dieExplosionObject;
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         enemyHealth -= damage;
 

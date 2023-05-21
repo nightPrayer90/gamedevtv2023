@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class ParticleBullet : MonoBehaviour
 {
-    public float bulletDamage = 1.0f;
+    public int bulletDamage = 1;
     //private GameManager gameManager;
-    //public ParticleSystem particleSystem;
+    public ParticleSystem particleSystem;
 
     //List<ParticleCollisionEvent> colEvents = new List<ParticleCollisionEvent>();
 
@@ -25,6 +25,29 @@ public class ParticleBullet : MonoBehaviour
                 particleSystem.Play();
         }*/
     }
+
+    public void BulletStart(int bulletDamage_, float fireRate)
+    {
+        //Set Damage
+        bulletDamage = bulletDamage_;
+        
+        //Set FireRate
+        var main = particleSystem.main;
+        main.duration = fireRate;
+
+        particleSystem.Play();
+    }
+
+    public void BulletStop()
+    {
+        particleSystem.Stop();
+    }
+
+    public void BulletSetDamage(int bulletDamage_)
+    {
+        bulletDamage = bulletDamage_;
+    }
+
 
     private void OnParticleCollision(GameObject other)
     {

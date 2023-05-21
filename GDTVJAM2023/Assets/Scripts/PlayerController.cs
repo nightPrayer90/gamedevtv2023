@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Player Stats")]
     public float speed;
     public float rotateSpeed = 0.25f;
+    public int playerMaxHealth = 10;
+    public int playerBulletBaseDamage = 2;
+    public float playerFireRate = 0.5f;
+    public float pickupRange = 2f;
+
+
     private Rigidbody playerRb;
     private GameManager gameManager;
-    public int playerMaxHealth = 10;
+
+    [Header("Properties")]
+    public List <ParticleBullet> particleBullets;
     public int playerCurrentHealth= 10;
     public int playerCurrentExperience;
     public int playerExperienceToLevelUp = 15;
@@ -20,17 +29,20 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        
+
+        int b = 0;
+        foreach (ParticleBullet particle in particleBullets)
+        {
+            particleBullets[b].BulletStart(playerBulletBaseDamage, playerFireRate);
+            b++;
+        }
+       
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        playerMovement();
-    }
     // Aktualisiere die Y-Position des Spielers auf 6
     private void FixedUpdate()
     {
+        playerMovement();
         Vector3 newPosition = playerRb.position;
         newPosition.y = 6f;
         playerRb.position = newPosition;
@@ -77,7 +89,7 @@ public class PlayerController : MonoBehaviour
                 forwardInput *= 0.2f;
             }
 
-            playerRb.AddForce(gameObject.transform.forward * -speed * forwardInput, ForceMode.Force);
+            playerRb.AddForce(gameObject.transform.forward * -speed * forwardInput * Time.deltaTime, ForceMode.Force);
             gameObject.transform.Rotate(0f, horizontalInput * rotateSpeed,  0f);
         }
     }
