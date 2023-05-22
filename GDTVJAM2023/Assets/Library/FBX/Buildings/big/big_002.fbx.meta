@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7158b30d2879f8e419f8a5b2186307e9
+guid: 8098c7f266c7d6f4bb5ad6909bf82ef3
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,7 +7,12 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: buildings
+      name: emissive_city_lights
+    second: {fileID: 2100000, guid: f0459b728238f3c40a469e373574cdbf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: main
     second: {fileID: 2100000, guid: 79850a606d718c2409405aff6ffe6887, type: 2}
   materials:
     materialImportMode: 2
