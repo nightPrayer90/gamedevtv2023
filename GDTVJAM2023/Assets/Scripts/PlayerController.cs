@@ -58,6 +58,11 @@ public class PlayerController : MonoBehaviour
             playerCurrentExperience += 1;
             gameManager.UpdatePlayerExperience();
         }
+        if (other.gameObject.CompareTag("DimensionPickUp"))
+        {
+            Destroy(other.gameObject);
+            gameManager.DimensionShift();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

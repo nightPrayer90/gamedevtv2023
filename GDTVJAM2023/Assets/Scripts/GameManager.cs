@@ -49,12 +49,6 @@ public class GameManager : MonoBehaviour
             currentTime += Time.deltaTime;
             UpdateTimerText();
         }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            DimensionShift();
-        }
-
     }
     private void UpdateTimerText()
     {
@@ -112,9 +106,9 @@ public class GameManager : MonoBehaviour
 
     public void DimensionShift()
     {
-        if (dimensionShift == false)
+        if (dimensionShift == true)
         {
-            dimensionShift = true;
+            dimensionShift = false;
 
             buildingMaterial.SetTexture("_MainTex", firstDimensionTexture1);
             emissionMaterial.SetTexture("_MainTex", firstDimensionTexture1);
@@ -124,7 +118,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            dimensionShift = false;
+            dimensionShift = true;
 
             buildingMaterial.SetTexture("_MainTex", secondDimenionTexture2);
             emissionMaterial.SetTexture("_MainTex", secondDimenionTexture2);
