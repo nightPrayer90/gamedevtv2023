@@ -65,6 +65,12 @@ public class GameManager : MonoBehaviour
             player.playerLevel += 1;
             player.playerExperienceToLevelUp = Mathf.RoundToInt(player.playerExperienceToLevelUp * player.playerLevelUpFactor);
             player.playerCurrentExperience = 0;
+
+            int temphealth = Mathf.RoundToInt(player.playerMaxHealth * 0.25f);
+
+            player.UpdatePlayerHealth(-temphealth);
+
+            player.StopShooting();
             Time.timeScale = 0;
 
             CreateRandomNumbers();

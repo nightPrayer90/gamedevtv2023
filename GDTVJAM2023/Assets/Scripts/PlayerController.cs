@@ -23,20 +23,16 @@ public class PlayerController : MonoBehaviour
     public int playerExperienceToLevelUp = 15;
     public int playerLevel = 1;
     public float playerLevelUpFactor = 1.2f;
-
+    private bool isShooting = false;
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
-        int b = 0;
-        foreach (ParticleBullet particle in particleBullets)
-        {
-            particleBullets[b].BulletStart(playerBulletBaseDamage, playerFireRate);
-            b++;
-        }
-       
+        StartShooting();
+
+
     }
 
     // Aktualisiere die Y-Position des Spielers auf 6
@@ -46,6 +42,11 @@ public class PlayerController : MonoBehaviour
         Vector3 newPosition = playerRb.position;
         newPosition.y = 6f;
         playerRb.position = newPosition;
+
+        if (gameManager.gameIsPlayed && !isShooting)
+        {
+            StartShooting();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -69,8 +70,8 @@ public class PlayerController : MonoBehaviour
             explosionDirection.Normalize();
 
             playerRb.AddForce(explosionDirection * -1f * enemyHealth.explosionForce, ForceMode.Impulse);
-            UpdatePlayerHealth(enemyHealth.explosionDamage);
-
+            UpdatePlayerHealth(enemyHealth.collisonDamage);
+            
             Instantiate(enemyHealth.dieExplosionObject, transform.position, transform.rotation);
 
             Destroy(collision.gameObject);
@@ -96,7 +97,9 @@ public class PlayerController : MonoBehaviour
 
     public void UpdatePlayerHealth(int decHealth)
     {
-        playerCurrentHealth -= decHealth;
+        
+        playerCurrentHealth = Mathf.Min(Mathf.Max(0, playerCurrentHealth - decHealth), playerMaxHealth);
+        
         gameManager.UpdatePlayerHealth();
 
         // player die
@@ -105,4 +108,29 @@ public class PlayerController : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    public void StopShooting()
+    {
+        isShooting = false;
+
+        int b = 0;
+        foreach (ParticleBullet particle in particleBullets)
+        {
+            particleBullets[b].HardBulletStop();
+            b++;
+        }
+    }
+
+    public void StartShooting()
+    {
+        isShooting = true;
+
+        int b = 0;
+        foreach (ParticleBullet particle in particleBullets)
+        {
+            particleBullets[b].BulletStart(playerBulletBaseDamage, playerFireRate);
+            b++;
+        }
+    }
+
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ParticleBullet : MonoBehaviour
+public class EnemyParticleBullet : MonoBehaviour
 {
     public int bulletDamage = 1;
     //private GameManager gameManager;
@@ -39,9 +39,9 @@ public class ParticleBullet : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        if (other.TryGetComponent(out EnemyHealth en))
+        if (other.TryGetComponent(out PlayerController en))
         {
-            en.TakeDamage(bulletDamage);
+            en.UpdatePlayerHealth(bulletDamage);
         }
     }
 

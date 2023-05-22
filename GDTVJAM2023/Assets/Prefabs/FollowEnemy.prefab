@@ -567,8 +567,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4debb9d2c1aef3d4d979265fa726bd4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionObject: {fileID: 6897260717734435252, guid: a6eb1630c758b1d42925cf558f8606f9, type: 3}
-  enemyHealth: 2
-  explosionDamage: 1
-  explosionForce: 5
+  explosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   dieExplosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
+  expOrb: {fileID: 5693635298845190373, guid: 5ca91630af6a61c4f99d7279b939e976, type: 3}
+  enemyHealth: 2
+  collisonDamage: 1
+  explosionForce: 5
+  expOrbSpawn: 1
