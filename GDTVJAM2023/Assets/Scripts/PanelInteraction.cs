@@ -167,13 +167,13 @@ public class PanelInteraction : MonoBehaviour
                 break;
             case 3:
                 headerStr = "Speed";
-                upgradeValue = Mathf.RoundToInt(Random.Range(2, 6)*5);
+                upgradeValue = Mathf.RoundToInt(Random.Range(2, 4)*5);
                 descriptionTextStr = "Increase your movement speed by " + (upgradeValue/100);
                 break;
             case 4:
                 headerStr = "Agility";
                 upgradeValue = Mathf.RoundToInt(Random.Range(1, 3))/10f;
-                descriptionTextStr = "Increse your agility by " + upgradeValue;
+                descriptionTextStr = "Increase your agility by " + upgradeValue;
                 break;
             case 5:
                 headerStr = "Pickup range";
