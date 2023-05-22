@@ -1,13 +1,14 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class SimpleEnemy : MonoBehaviour
 {
     public float speed;
     public float rotationSpeed;
-       
+    
 
     //public GameObject explosionObject;
-    
+
     private Rigidbody playerRb;
     private PlayerController playerController;
     private GameManager gameManager;
@@ -32,7 +33,7 @@ public class SimpleEnemy : MonoBehaviour
 
     void EnemyMovement()
     {
-        if (gameManager.gameIsPlayed && !gameManager.gameOver)
+        if (gameManager.gameIsPlayed && !gameManager.gameOver && !gameManager.dimensionShift)
         {
 
             Vector3 playerPosition = playerRb.transform.position;
@@ -46,5 +47,5 @@ public class SimpleEnemy : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
-    
+  
 }

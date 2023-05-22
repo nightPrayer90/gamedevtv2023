@@ -10339,6 +10339,8 @@ MonoBehaviour:
   collisonDamage: 1
   explosionForce: 5
   expOrbSpawn: 1
+  enemyWeapons:
+  - {fileID: 6568500339046026327}
 --- !u!1 &5047808053468307657
 GameObject:
   m_ObjectHideFlags: 0

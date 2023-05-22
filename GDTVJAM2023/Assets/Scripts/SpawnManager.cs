@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +23,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager.gameIsPlayed && !gameManager.gameOver)
+        if (gameManager.gameIsPlayed && !gameManager.gameOver && !gameManager.dimensionShift)
         {
             if (Time.time >= nextSpawnTime)
             {

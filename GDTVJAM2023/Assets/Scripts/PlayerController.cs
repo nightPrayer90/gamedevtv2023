@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public int playerLevel = 1;
     public float playerLevelUpFactor = 1.2f;
     private bool isShooting = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +33,6 @@ public class PlayerController : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         StartShooting();
-
-
     }
 
     // Aktualisiere die Y-Position des Spielers auf 6

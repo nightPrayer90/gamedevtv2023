@@ -29,6 +29,12 @@ public class EnemyParticleBullet : MonoBehaviour
         particleSystem.Play();
     }
 
+    public void BulletStart_()
+    {
+        if (particleSystem.isStopped)
+            particleSystem.Play();
+    }
+
     public void BulletStop()
     {
         particleSystem.Stop();
