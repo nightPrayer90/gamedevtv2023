@@ -12,18 +12,25 @@ public class SpawnManager : MonoBehaviour
     private Camera mainCamera;
     private float nextSpawnTime = 0f;
 
+    private GameManager gameManager;
+
     private void Start()
     {
         mainCamera = Camera.main;
         nextSpawnTime = Time.time + spawnInterval;
+
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     private void Update()
     {
-        if (Time.time >= nextSpawnTime)
+        if (gameManager.gameIsPlayed && !gameManager.gameOver)
         {
-            SpawnObject();
-            nextSpawnTime = Time.time + spawnInterval;
+            if (Time.time >= nextSpawnTime)
+            {
+                SpawnObject();
+                nextSpawnTime = Time.time + spawnInterval;
+            }
         }
     }
 
@@ -38,6 +45,8 @@ public class SpawnManager : MonoBehaviour
 
         // Spawn the object at the generated position
         Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
+
+        gameManager.UpdateEnemyCounter(1);
     }
 
     private int GetRandomWeightedIndex(List<float> probabilities)

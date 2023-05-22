@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Properties")]
     public List <ParticleBullet> particleBullets;
+    public CameraController cameraController;
     public int playerCurrentHealth= 10;
     public int playerCurrentExperience;
     public int playerExperienceToLevelUp = 15;
@@ -74,6 +75,8 @@ public class PlayerController : MonoBehaviour
             
             Instantiate(enemyHealth.dieExplosionObject, transform.position, transform.rotation);
 
+            gameManager.UpdateEnemyCounter(-1);
+
             Destroy(collision.gameObject);
         }
     }
@@ -97,7 +100,10 @@ public class PlayerController : MonoBehaviour
 
     public void UpdatePlayerHealth(int decHealth)
     {
-        
+        if (decHealth > 0) // man verliert leben
+        {
+            cameraController.ShakeScreen();
+        }
         playerCurrentHealth = Mathf.Min(Mathf.Max(0, playerCurrentHealth - decHealth), playerMaxHealth);
         
         gameManager.UpdatePlayerHealth();

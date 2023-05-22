@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
 
     public int[] selectedNumbers_ = new int[3];
     public int maxAbillitis = 20;
+
+    public float curretEnemyCounter;
+    public TextMeshProUGUI enemyCounterText;
+
     void Start()
     {
 
@@ -28,6 +32,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         UpdatePlayerHealth();
         UpdatePlayerExperience();
+        UpdateEnemyCounter(0);
     }
 
     private void Update()
@@ -54,6 +59,12 @@ public class GameManager : MonoBehaviour
             gameIsPlayed = false;
             gameOverUI.SetActive(true);
         }
+    }
+
+    public void UpdateEnemyCounter(float curretEnemyCounter_)
+    {
+        curretEnemyCounter = curretEnemyCounter + curretEnemyCounter_;
+        enemyCounterText.text = "Enemys: " + curretEnemyCounter;
     }
 
     public void UpdatePlayerExperience()
