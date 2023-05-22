@@ -157,7 +157,7 @@ public class PanelInteraction : MonoBehaviour
             case 1:
                 headerStr = "Damage ";
                 upgradeValue = 1;
-                descriptionTextStr = "Increase your main weapon damange by " + upgradeValue;
+                descriptionTextStr = "Increase your main weapon damage by " + upgradeValue;
                 break;
             case 2:
                 headerStr = "Fire rate";
@@ -168,17 +168,17 @@ public class PanelInteraction : MonoBehaviour
             case 3:
                 headerStr = "Speed";
                 upgradeValue = Mathf.RoundToInt(Random.Range(2, 6)*5);
-                descriptionTextStr = "Increase your movmentspeed by " + (upgradeValue/100);
+                descriptionTextStr = "Increase your movement speed by " + (upgradeValue/100);
                 break;
             case 4:
                 headerStr = "Agility";
                 upgradeValue = Mathf.RoundToInt(Random.Range(1, 3))/10f;
-                descriptionTextStr = "Increse your agiligy by " + upgradeValue;
+                descriptionTextStr = "Increse your agility by " + upgradeValue;
                 break;
             case 5:
                 headerStr = "Pickup range";
                 upgradeValue = Mathf.RoundToInt(Random.Range(5, 10))/10f;
-                descriptionTextStr = "Increase your picup range by " + upgradeValue;
+                descriptionTextStr = "Increase your pickup range by " + upgradeValue;
                 break;
 
         }

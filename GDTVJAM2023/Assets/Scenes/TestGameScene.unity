@@ -150,7 +150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5987906}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.108, y: 0, z: -0.25000003}
+  m_LocalPosition: {x: -0.108, y: 0, z: -0.289}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10333,7 +10333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624842036}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.106, y: 0, z: -0.286}
+  m_LocalPosition: {x: 0.106, y: 0, z: -0.325}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -44392,7 +44392,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: choose a ability
+  m_text: choose an ability
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b3e18640b4634104db2bfb31ccb30685, type: 2}
   m_sharedMaterial: {fileID: -7727933453907935054, guid: b3e18640b4634104db2bfb31ccb30685, type: 2}
