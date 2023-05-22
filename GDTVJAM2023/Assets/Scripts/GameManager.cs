@@ -23,6 +23,13 @@ public class GameManager : MonoBehaviour
     public float curretEnemyCounter;
     public TextMeshProUGUI enemyCounterText;
 
+    [Header("Dimension Shift")]
+    public bool dimensionShift = false;
+    public Texture firstDimensionTexture1;
+    public Texture secondDimenionTexture2;
+    public Material buildingMaterial;
+    public Material emissionMaterial;
+
     void Start()
     {
 
@@ -42,6 +49,12 @@ public class GameManager : MonoBehaviour
             currentTime += Time.deltaTime;
             UpdateTimerText();
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            DimensionShift();
+        }
+
     }
     private void UpdateTimerText()
     {
@@ -95,6 +108,28 @@ public class GameManager : MonoBehaviour
         //Text
         expText.text = "Level: " + player.playerLevel + " Exp: " + player.playerCurrentExperience + "/" + player.playerExperienceToLevelUp;
         
+    }
+
+    public void DimensionShift()
+    {
+        if (dimensionShift == false)
+        {
+            dimensionShift = true;
+
+            buildingMaterial.SetTexture("_MainTex", firstDimensionTexture1);
+            emissionMaterial.SetTexture("_MainTex", firstDimensionTexture1);
+            emissionMaterial.SetTexture("_EmissionMap", firstDimensionTexture1);
+
+
+        }
+        else
+        {
+            dimensionShift = false;
+
+            buildingMaterial.SetTexture("_MainTex", secondDimenionTexture2);
+            emissionMaterial.SetTexture("_MainTex", secondDimenionTexture2);
+            emissionMaterial.SetTexture("_EmissionMap", secondDimenionTexture2);
+        }
     }
 
 
