@@ -8,11 +8,6 @@ public class PeriodEmitter : MonoBehaviour
     public float spawnInterval = 2f;
     private float nextSpawnTime = 0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //particleSystem = GetComponent<ParticleSystem>();
-    }
 
     // Update is called once per frame
     void Update()

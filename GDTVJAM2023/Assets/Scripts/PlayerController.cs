@@ -25,6 +25,12 @@ public class PlayerController : MonoBehaviour
     public int playerLevel = 1;
     public float playerLevelUpFactor = 1.2f;
     private bool isShooting = false;
+    
+    [Header("Outside Border")]
+    public float damageInterval = 1f;
+    public int damageTaken = 2;
+    private float nextDamageTime = 0f;
+    private bool isOutsideBorder = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,10 +44,8 @@ public class PlayerController : MonoBehaviour
     // Aktualisiere die Y-Position des Spielers auf 6
     private void FixedUpdate()
     {
-        playerMovement();
-        Vector3 newPosition = playerRb.position;
-        newPosition.y = 6f;
-        playerRb.position = newPosition;
+        PlayerMovement();
+        PlayerIsOutsideBorder();
 
         if (gameManager.gameIsPlayed && !isShooting)
         {
@@ -61,6 +65,21 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
             gameManager.DimensionShift();
+        }
+        
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("BorderCollider"))
+        {
+            isOutsideBorder = false;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("BorderCollider"))
+        {
+            isOutsideBorder = true;
         }
     }
 
@@ -85,7 +104,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void playerMovement()
+    private void PlayerMovement()
     {
         if (gameManager.gameIsPlayed && !gameManager.gameOver)
         {
@@ -99,6 +118,11 @@ public class PlayerController : MonoBehaviour
 
             playerRb.AddForce(gameObject.transform.forward * -speed * forwardInput * Time.deltaTime, ForceMode.Force);
             gameObject.transform.Rotate(0f, horizontalInput * rotateSpeed,  0f);
+            
+            //Korrektur der y-Achse
+            Vector3 newPosition = playerRb.position;
+            newPosition.y = 6f;
+            playerRb.position = newPosition;
         }
     }
 
@@ -140,6 +164,16 @@ public class PlayerController : MonoBehaviour
         {
             particleBullets[b].BulletStart(playerBulletBaseDamage, playerFireRate);
             b++;
+        }
+    }
+
+    private void PlayerIsOutsideBorder()
+    {
+        if (isOutsideBorder)
+        if (Time.time >= nextDamageTime)
+        {
+                UpdatePlayerHealth(damageTaken);
+                nextDamageTime = Time.time + damageInterval;
         }
     }
 

@@ -8,6 +8,7 @@ TagManager:
   - Exp
   - DimensionPickUp
   - Rocket
+  - BorderCollider
   layers:
   - Default
   - TransparentFX
