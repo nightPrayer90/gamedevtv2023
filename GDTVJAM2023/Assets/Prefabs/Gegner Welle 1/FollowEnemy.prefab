@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3161139216344142811}
   - component: {fileID: 3161139216344142812}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 3161139216598759945}
   - component: {fileID: 3161139216598759946}
   - component: {fileID: 3958546974285713878}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FollowEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -238,6 +238,7 @@ MonoBehaviour:
   collisonDamage: 1
   explosionForce: 5
   expOrbSpawn: 1
+  enemyWeapons: []
 --- !u!1001 &1553339959949973856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -304,6 +305,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fc0e7225839d0a040a146583b7770943, type: 3}
       propertyPath: m_Name
       value: spaceship_enemy_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fc0e7225839d0a040a146583b7770943, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc0e7225839d0a040a146583b7770943, type: 3}

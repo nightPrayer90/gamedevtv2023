@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2491393429837709957}
   - component: {fileID: 2598949508143719771}
   - component: {fileID: 6568500339046026327}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ParticleBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4905,7 +4905,7 @@ GameObject:
   - component: {fileID: 1831681843156502507}
   - component: {fileID: 7828118463515310712}
   - component: {fileID: 3976493919301049911}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ParticleMuzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9775,7 +9775,7 @@ GameObject:
   - component: {fileID: 3161139215152906443}
   - component: {fileID: 3161139215152906446}
   - component: {fileID: 3161139215152906445}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9858,7 +9858,7 @@ GameObject:
   - component: {fileID: 3161139215285790836}
   - component: {fileID: 3161139215285790838}
   - component: {fileID: 3161139215285790837}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9945,7 +9945,7 @@ GameObject:
   - component: {fileID: 3161139215646757719}
   - component: {fileID: 3161139215646757722}
   - component: {fileID: 3161139215646757721}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10028,7 +10028,7 @@ GameObject:
   - component: {fileID: 3161139216246419975}
   - component: {fileID: 3161139216246419978}
   - component: {fileID: 3161139216246419977}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10110,7 +10110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3161139216344142811}
   - component: {fileID: 3161139216344142812}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10253,7 +10253,7 @@ GameObject:
   - component: {fileID: 3161139216598759945}
   - component: {fileID: 3161139216598759946}
   - component: {fileID: 3958546974285713878}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShotEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -10352,7 +10352,7 @@ GameObject:
   - component: {fileID: 8811698642872249047}
   - component: {fileID: 1820719671739668204}
   - component: {fileID: 2624109586737546252}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ParticleHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}

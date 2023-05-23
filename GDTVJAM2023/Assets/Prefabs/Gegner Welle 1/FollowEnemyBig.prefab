@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5082843925711043024}
   - component: {fileID: 8562531544774268876}
   - component: {fileID: 7585272655449289995}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3161139215152906443}
   - component: {fileID: 3161139215152906446}
   - component: {fileID: 3161139215152906445}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 3161139215285790836}
   - component: {fileID: 3161139215285790838}
   - component: {fileID: 3161139215285790837}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 3161139215646757719}
   - component: {fileID: 3161139215646757722}
   - component: {fileID: 3161139215646757721}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 3161139216246419975}
   - component: {fileID: 3161139216246419978}
   - component: {fileID: 3161139216246419977}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3161139216344142811}
   - component: {fileID: 3161139216344142812}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,7 +573,7 @@ GameObject:
   - component: {fileID: 3161139216598759945}
   - component: {fileID: 3161139216598759946}
   - component: {fileID: 3958546974285713878}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FollowEnemyBig
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -658,3 +658,4 @@ MonoBehaviour:
   collisonDamage: 3
   explosionForce: 5
   expOrbSpawn: 1
+  enemyWeapons: []
