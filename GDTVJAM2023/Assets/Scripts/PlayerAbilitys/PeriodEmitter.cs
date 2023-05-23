@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PeriodEmitter : MonoBehaviour
 {
-    public ParticleSystem particleSystem;
+    public List<ParticleSystem> particleSystems;
     public float spawnInterval = 2f;
     private float nextSpawnTime = 0f;
 
@@ -19,7 +19,13 @@ public class PeriodEmitter : MonoBehaviour
     {
         if (Time.time >= nextSpawnTime)
         {
-            particleSystem.Play();
+            foreach (ParticleSystem particleSystem in particleSystems)
+            {
+                particleSystem.Play();
+            }
+
+            
+
             nextSpawnTime = Time.time + spawnInterval;
         }
     }
