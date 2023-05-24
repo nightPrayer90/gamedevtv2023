@@ -32,6 +32,10 @@ public class PlayerController : MonoBehaviour
     private float nextDamageTime = 0f;
     private bool isOutsideBorder = false;
 
+    public bool isFrondshield = false;
+    public bool isBackshield = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,7 +81,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("BorderCollider"))
+        if (other.CompareTag("BorderCollider"))
         {
             isOutsideBorder = true;
         }

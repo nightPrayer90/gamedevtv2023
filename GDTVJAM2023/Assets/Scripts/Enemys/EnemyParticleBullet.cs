@@ -53,9 +53,23 @@ public class EnemyParticleBullet : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        if (other.TryGetComponent(out PlayerController en))
+        
+        
+        if (other.CompareTag("Shield"))
         {
-            en.UpdatePlayerHealth(bulletDamage);
+    
+            if (other.TryGetComponent(out ShieldController en))
+            {
+                en.UpdateShieldHealth(bulletDamage);
+            }
+
+        }
+        else
+        {
+            if (other.TryGetComponent(out PlayerController en))
+            {
+                en.UpdatePlayerHealth(bulletDamage);
+            }
         }
     }
 
