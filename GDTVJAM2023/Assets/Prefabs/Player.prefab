@@ -29839,7 +29839,7 @@ MonoBehaviour:
   playerMaxHealth: 10
   playerBulletBaseDamage: 1
   playerFireRate: 0.3
-  pickupRange: 2
+  pickupRange: 0.8
   particleBullets:
   - {fileID: 551558890849338516}
   - {fileID: 551558892217598441}
@@ -29850,7 +29850,7 @@ MonoBehaviour:
   playerLevel: 1
   playerLevelUpFactor: 1.2
   damageInterval: 1
-  damageTaken: 2
+  damageTaken: 1
   isFrontShield: 0
   isBackShieldLeft: 0
   isBackShieldRight: 0
@@ -29868,7 +29868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHeadCannon: 0
   isRocketLauncher: 0
-  isFireFlys: 1
+  isFireFlies: 0
   isBulletWings: 0
   isLifeModul: 0
   isSpreadGun: 0
@@ -34883,8 +34883,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rockedToLaunch: {fileID: 667735904795272308, guid: a6d86ef9fcb3b084fae049be9d2a24b8, type: 3}
-  spawnInterval: 5
-  detectionRange: 2
+  spawnInterval: 6
+  detectionRange: 1.5
   spawnPoint: {fileID: 551558890905112990}
   spawnPoint2: {fileID: 551558891580470990}
 --- !u!1 &551558891580470990
@@ -69240,7 +69240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &551558892322432512
 Transform:
   m_ObjectHideFlags: 0

@@ -6,6 +6,9 @@ using TMPro;
 public class PanelInteraction : MonoBehaviour
 {
     private Image panelImage;
+    private GameManager gameManager;
+    private PlayerController playerController;
+    private PlayerWeaponController playerWeaponController;
 
     [Header("Main Panel")]
     public Color defaultColor;
@@ -13,13 +16,11 @@ public class PanelInteraction : MonoBehaviour
     public int panelIndex;
     public GameObject panelUI;
     public GameObject playerUI;
-    private string headerStr;
-    private string descriptionTextStr;
-    private GameManager gameManager;
-    private PlayerController playerController;
     public TextMeshProUGUI headerText;
     public TextMeshProUGUI descriptionText;
     private float upgradeValue;
+    private string headerStr;
+    private string descriptionTextStr;
 
     [Header("Value Panel")]
     public TextMeshProUGUI lifeText;
@@ -28,13 +29,25 @@ public class PanelInteraction : MonoBehaviour
     public TextMeshProUGUI speedText;
     public TextMeshProUGUI agilityText;
     public TextMeshProUGUI pickupText;
+    public Image imFrontShield;
+    public Image imBackShield;
+    public Image imLifeModul;
+    public Image imSpreadGun;
+    public Image imHeadCannon;
+    public Image imBulletWings;
+    public Image imRocketLauncher;
+    public Image imFireflies;
+    public Color imPanelBaseColor;
+    public Color imPanelUpgradeColor;
+
 
 
     void Start()
     {
         panelImage = GetComponent<Image>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerWeaponController = GameObject.Find("Player").GetComponent<PlayerWeaponController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        
     }
 
     public void OnMouseEnter()
@@ -42,7 +55,6 @@ public class PanelInteraction : MonoBehaviour
         // Farbe des Panels ändern, wenn die Maus über das Panel fährt
         UpdateValuePanelOnMouseEnter(gameManager.selectedNumbers_[panelIndex]);
         panelImage.color = hoverColor;
-        
     }
 
     public void OnMouseExit()
@@ -69,6 +81,7 @@ public class PanelInteraction : MonoBehaviour
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerWeaponController = GameObject.Find("Player").GetComponent<PlayerWeaponController>();
 
         StringLibrary(gameManager.selectedNumbers_[panelIndex]);
 
@@ -89,6 +102,30 @@ public class PanelInteraction : MonoBehaviour
             speedText.text = (playerController.speed/100).ToString();
             agilityText.text = playerController.rotateSpeed.ToString();
             pickupText.text =playerController.pickupRange.ToString();
+
+            if (!playerWeaponController.isHeadCannon) imHeadCannon.color = imPanelBaseColor; 
+            else imHeadCannon.color = imPanelUpgradeColor;
+
+            if (!playerWeaponController.isRocketLauncher) imRocketLauncher.color = imPanelBaseColor;
+            else imRocketLauncher.color = imPanelUpgradeColor;
+
+            if (!playerWeaponController.isFireFlies) imFireflies.color = imPanelBaseColor;
+            else imFireflies.color = imPanelUpgradeColor;
+
+            if (!playerWeaponController.isBulletWings) imBulletWings.color = imPanelBaseColor;
+            else imBulletWings.color = imPanelUpgradeColor;
+
+            if (!playerWeaponController.isLifeModul) imLifeModul.color = imPanelBaseColor;
+            else imLifeModul.color = imPanelUpgradeColor;
+
+            if (!playerWeaponController.isSpreadGun) imSpreadGun.color = imPanelBaseColor;
+            else imSpreadGun.color = imPanelUpgradeColor;
+
+            if (!playerWeaponController.isFrontShield) imFrontShield.color = imPanelBaseColor;
+            else imFrontShield.color = imPanelUpgradeColor;
+
+            if (!playerWeaponController.isBackShield) imBackShield.color = imPanelBaseColor;
+            else imBackShield.color = imPanelUpgradeColor;
         }       
     }
     
@@ -96,25 +133,65 @@ public class PanelInteraction : MonoBehaviour
     {
         switch (number)
         {
-            case 0:
+            case 0: //upgrade: health
                 playerController.playerMaxHealth = playerController.playerMaxHealth + Mathf.RoundToInt(upgradeValue);
                 playerController.playerCurrentHealth = Mathf.Min(playerController.playerCurrentHealth + Mathf.RoundToInt(upgradeValue), playerController.playerMaxHealth);
                 gameManager.UpdatePlayerHealth();
                 break;
-            case 1:
+            case 1: //upgrade: main Weapon
                 playerController.playerBulletBaseDamage = playerController.playerBulletBaseDamage + Mathf.RoundToInt(upgradeValue);
                 break;
-            case 2:
+            case 2: //upgrade: fire Rate
                 playerController.playerFireRate = Mathf.Max(0.05f ,playerController.playerFireRate - upgradeValue);
                 break;
-            case 3:
+            case 3: //upgrade: speed
                 playerController.speed = playerController.speed + upgradeValue;
                 break;
-            case 4:
+            case 4: //upgrade: rotate speed
                 playerController.rotateSpeed = playerController.rotateSpeed + upgradeValue;
                 break;
-            case 5:
+            case 5: //upgrade: pickup Range
                 playerController.pickupRange = playerController.pickupRange + upgradeValue;
+                break;
+            case 6: //weapon: headgun
+                playerWeaponController.isHeadCannon = true;
+                playerWeaponController.WeaponChoose();
+                gameManager.RemoveValueWeaponList(number);
+                break;
+            case 7: //weapon: Rocket Launcher
+                playerWeaponController.isRocketLauncher = true;
+                playerWeaponController.WeaponChoose();
+                gameManager.RemoveValueWeaponList(number);
+                break;
+            case 8: //weapon: Fire Flys
+                playerWeaponController.isFireFlies = true;
+                playerWeaponController.WeaponChoose();
+                gameManager.RemoveValueWeaponList(number);
+                break;
+            case 9: //weapon: Bullet Wings
+                playerWeaponController.isBulletWings = true;
+                playerWeaponController.WeaponChoose();
+                gameManager.RemoveValueWeaponList(number);
+                break;
+            case 10: //weapon: Life Modul
+                playerWeaponController.isLifeModul = true;
+                playerWeaponController.WeaponChoose();
+                gameManager.RemoveValueWeaponList(number);
+                break;
+            case 11: //weapon: Spread Gun
+                playerWeaponController.isSpreadGun = true;
+                playerWeaponController.WeaponChoose();
+                gameManager.RemoveValueWeaponList(number);
+                break;
+            case 12: //weapon: front Shield
+                playerWeaponController.isFrontShield = true;
+                playerWeaponController.WeaponChoose();
+                gameManager.RemoveValueWeaponList(number);
+                break;
+            case 13: //weapon: back shield
+                playerWeaponController.isBackShield = true;
+                playerWeaponController.WeaponChoose();
+                gameManager.RemoveValueWeaponList(number);
                 break;
         }
     }
@@ -140,6 +217,30 @@ public class PanelInteraction : MonoBehaviour
                 break;
             case 5:
                 pickupText.text = (playerController.pickupRange + upgradeValue).ToString();
+                break;
+            case 6: //weapon: headgun
+                if (playerWeaponController.isHeadCannon == false) {  imHeadCannon.color = imPanelUpgradeColor; }
+                break;
+            case 7: //weapon: Rocket Launcher
+                if (playerWeaponController.isRocketLauncher == false) {  imRocketLauncher.color = imPanelUpgradeColor; }
+                break;
+            case 8: //weapon: Fire Flys
+                if (playerWeaponController.isFireFlies == false) {  imFireflies.color = imPanelUpgradeColor; }
+                break;
+            case 9: //weapon: Bullet Wings
+                if (playerWeaponController.isBulletWings == false) {  imBulletWings.color = imPanelUpgradeColor; }
+                break;
+            case 10: //weapon: Life Modul
+                if (playerWeaponController.isLifeModul == false) {  imLifeModul.color = imPanelUpgradeColor; }
+                break;
+            case 11: //weapon: Spread Gun
+                if (playerWeaponController.isSpreadGun == false) {  imSpreadGun.color = imPanelUpgradeColor; }
+                break;
+            case 12: //weapon: front Shield
+                if (playerWeaponController.isFrontShield == false) {  imFrontShield.color = imPanelUpgradeColor; }
+                break;
+            case 13: //weapon: back shield
+                if (playerWeaponController.isBackShield == false) {  imBackShield.color = imPanelUpgradeColor; }
                 break;
         }
     }
@@ -180,7 +281,38 @@ public class PanelInteraction : MonoBehaviour
                 upgradeValue = Mathf.RoundToInt(Random.Range(5, 10))/10f;
                 descriptionTextStr = "Increase your pickup range by " + upgradeValue;
                 break;
-
+            case 6:
+                headerStr = "Head Cannon";
+                descriptionTextStr = "Fires a targeted volley of shots at nearby enemies.";
+                break;
+            case 7:
+                headerStr = "Rocket Launcher";
+                descriptionTextStr = "Fires homing missiles at nearby enemies.";
+                break;
+            case 8:
+                headerStr = "Fireflies";
+                descriptionTextStr = "Releases a swarm of slowly spreading projectiles.";
+                break;
+            case 9:
+                headerStr = "Bullet Wings";
+                descriptionTextStr = "Fires a volley of spreading projectiles from the wings.";
+                break;
+            case 10:
+                headerStr = "Life Modul";
+                descriptionTextStr = "The life module regenerates life over time.";
+                break;
+            case 11:
+                headerStr = "Spread gun";
+                descriptionTextStr = "Fires periodic bursts of short-range bullets from the center.";
+                break;
+            case 12:
+                headerStr = "Front Shield";
+                descriptionTextStr = "Regenerating shield on the front of the ship.";
+                break;
+            case 13:
+                headerStr = "Back Shield";
+                descriptionTextStr = "Regenerating shield on the back of the ship.";
+                break;
         }
 
     }

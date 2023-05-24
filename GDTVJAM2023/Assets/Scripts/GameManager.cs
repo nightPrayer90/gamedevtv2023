@@ -1,12 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Game Status Controll")]
     public bool gameIsPlayed = true;
     public bool gameOver = false;
     private PlayerController player;
+
+    [Header("UI Controll")]
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI expText;
     public TextMeshProUGUI timerText;
@@ -14,14 +18,11 @@ public class GameManager : MonoBehaviour
     public GameObject panelUI;
     public GameObject playerUI;
 
+    [Header("Time for one Round")]
     public float totalTime = 1800f;
-    private float currentTime;
-
-    public int[] selectedNumbers_ = new int[3];
-    public int maxAbillitis = 20;
-
-    public float curretEnemyCounter;
+    private float currentTime = 0f;
     public TextMeshProUGUI enemyCounterText;
+    [HideInInspector] public float curretEnemyCounter;
 
     [Header("Dimension Shift")]
     public bool dimensionShift = false;
@@ -30,13 +31,23 @@ public class GameManager : MonoBehaviour
     public Material buildingMaterial;
     public Material emissionMaterial;
 
+    //Listen für Abilitys und UpgradeSystem
+    [Header("Upgrade Lists")]
+    public WeaponChooseList weaponChooseList;
+    public UpgradeChooseList upgradeChooseList;
+    [HideInInspector] public List<int> valueList;
+    [HideInInspector] public int[] selectedNumbers_ = new int[3];
+
     void Start()
     {
+        //weaponChooseList = FindObjectOfType<WeaponChooseList>();
+        //upgradeChooseList = FindObjectOfType<UpgradeChooseList>();
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
 
-        currentTime = 0f;
+        
         UpdateTimerText();
 
-        player = GameObject.Find("Player").GetComponent<PlayerController>();
+       
         UpdatePlayerHealth();
         UpdatePlayerExperience();
         UpdateEnemyCounter(0);
@@ -114,7 +125,6 @@ public class GameManager : MonoBehaviour
             emissionMaterial.SetTexture("_MainTex", firstDimensionTexture1);
             emissionMaterial.SetTexture("_EmissionMap", firstDimensionTexture1);
 
-
         }
         else
         {
@@ -127,41 +137,53 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void CreateRandomNumbers()
+    public void CreateRandomNumbers()
     {
-        // Array zum Speichern der ausgewählten Zahlen
-        int[] selectedNumbers = new int[3];
+        //Auswahl der richtigen Liste
+        if (player.playerLevel % 2 == 0)
+         {
+            Debug.Log("test1");
+            valueList.AddRange(weaponChooseList.weaponIndex); // Greife auf die weaponIndex aus dem weaponChooseList zu
+         }
+         else
+         {
+            Debug.Log("test2");
+            valueList.AddRange(upgradeChooseList.upgradeIndex); // Greife auf die upgradeIndex aus dem upgradeChooseList zu
+         }
+       
+        List<int> selectedNumbers = new List<int>();
 
-        // Array zum Speichern aller verfügbaren Zahlen
-        int[] availableNumbers = new int[maxAbillitis];
-        for (int i = 0; i < availableNumbers.Length; i++)
-        {
-            availableNumbers[i] = i;
-        }
-
-        // Zufällige Auswahl von 3 Zahlen
         for (int i = 0; i < 3; i++)
         {
-            int randomIndex = Random.Range(0, availableNumbers.Length);
+            // Generiere eine zufällige Indexposition
+            int randomIndex = Random.Range(0, valueList.Count);
 
-            // Ausgewählte Zahl zum ausgewählten Zahlen-Array hinzufügen
-            selectedNumbers[i] = availableNumbers[randomIndex];
-
-            // Ausgewählte Zahl aus dem verfügbaren Zahlen-Array entfernen
-            availableNumbers[randomIndex] = availableNumbers[availableNumbers.Length - 1];
-            System.Array.Resize(ref availableNumbers, availableNumbers.Length - 1);
+            // Übertrage den Wert an der zufälligen Position in die ausgewählten Zahlen
+            selectedNumbers.Add(valueList[randomIndex]);
+            
+            // Entferne den ausgewählten Wert aus der Liste, um ihn nicht erneut auszuwählen
+            valueList.RemoveAt(randomIndex);
         }
+        
+        // *Hinweis: Es werden wirklich nur Werte übergeben und keine Positionen
+        selectedNumbers_ = selectedNumbers.ToArray();
+        //Debug.Log("Ausgewählte Zahl: " + selectedNumbers_[0] + " " + selectedNumbers_[1] + " " + selectedNumbers_[2]);
 
-        // Ausgabe der ausgewählten Zahlen
-        int a = 0;
-        foreach (int number in selectedNumbers)
-        {
-            //Debug.Log("Ausgewählte Zahl: " + number);
-            selectedNumbers_[a] = number;
-            a++;
-        }
-
-        //Debug.Log("Ausgewählte Zahl: " + selectedNumbers_[0] + selectedNumbers_[1] + selectedNumbers_[2]);
+        //reset 
+        valueList.Clear();
     }
+
+
+    public void RemoveValueWeaponList(int removeIndex)
+    {
+        if (weaponChooseList != null)
+        {
+            int removePos = weaponChooseList.weaponIndex.IndexOf(removeIndex);
+
+            weaponChooseList.weaponIndex.RemoveAt(removePos);
+        }
+    }
+
+
 
 }

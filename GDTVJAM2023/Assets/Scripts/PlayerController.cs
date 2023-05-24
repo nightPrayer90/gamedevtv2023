@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
 
             if (forwardInput < 0)
             {
-                forwardInput *= 0.2f;
+                forwardInput *= 0.25f;
             }
 
             playerRb.AddForce(gameObject.transform.forward * -speed * forwardInput * Time.deltaTime, ForceMode.Force);
