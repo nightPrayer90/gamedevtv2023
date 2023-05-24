@@ -68,7 +68,8 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("DimensionPickUp"))
         {
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
             gameManager.DimensionShift();
         }
         
@@ -104,6 +105,7 @@ public class PlayerController : MonoBehaviour
             Instantiate(enemyHealth.dieExplosionObject, transform.position, transform.rotation);
 
             gameManager.UpdateEnemyCounter(-1);
+            gameManager.UpdateEnemyToKill(1);
 
             Destroy(collision.gameObject);
         }

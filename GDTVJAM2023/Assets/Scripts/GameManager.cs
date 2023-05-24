@@ -8,13 +8,19 @@ public class GameManager : MonoBehaviour
     [Header("Game Status Controll")]
     public bool gameIsPlayed = true;
     public bool gameOver = false;
+    public int districtNumber = 1;
+    private int enemysToKill;
+    private int killCounter;
     private PlayerController player;
+    [HideInInspector] public float curretEnemyCounter;
 
     [Header("UI Controll")]
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI expText;
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI districtText;
+    public TextMeshProUGUI enemyToKillText;
+    public TextMeshProUGUI enemyCounterText;
     public GameObject gameOverUI;
     public GameObject panelUI;
     public GameObject playerUI;
@@ -24,36 +30,36 @@ public class GameManager : MonoBehaviour
     [Header("Time for one Round")]
     public float totalTime = 1800f;
     private float currentTime = 0f;
-    public TextMeshProUGUI enemyCounterText;
-    [HideInInspector] public float curretEnemyCounter;
 
     [Header("Dimension Shift")]
     public bool dimensionShift = false;
+    private CameraController mainCamera;
     public Texture firstDimensionTexture1;
     public Texture secondDimenionTexture2;
     public Material buildingMaterial;
     public Material emissionMaterial;
+    public NavigationController navigationController;
 
     //Listen für Abilitys und UpgradeSystem
     [Header("Upgrade Lists")]
     public WeaponChooseList weaponChooseList;
     public UpgradeChooseList upgradeChooseList;
+    public SpawnDistrictList spawnDistrictList;
     [HideInInspector] public List<int> valueList;
     [HideInInspector] public int[] selectedNumbers_ = new int[3];
 
     void Start()
     {
-        //weaponChooseList = FindObjectOfType<WeaponChooseList>();
-        //upgradeChooseList = FindObjectOfType<UpgradeChooseList>();
+        mainCamera = GameObject.Find("Main Camera").GetComponent<CameraController>();
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+        //navigationController = GameObject.Find("Navigator Controller").GetComponent<NavigationController>();
 
         UpdateTimerText();
         UpdatePlayerHealth();
         UpdatePlayerExperience();
         UpdateEnemyCounter(0);
-        UpdateDistrictText(1);
-
-        
+        UpdateDistrictText(districtNumber);
+        UpdateEnemyToKill(0);
     }
 
     private void Update()
@@ -95,7 +101,33 @@ public class GameManager : MonoBehaviour
 
     public void UpdateDistrictText(int curretDistrict)
     {
-        enemyCounterText.text = "District: " + curretDistrict + "/9";
+        enemyCounterText.text = "District" + curretDistrict + "/9";
+
+        //wird bei jedem districtwechsel ausgelöst
+        killCounter = 0;
+        enemysToKill = spawnDistrictList.waveKillList[curretDistrict-1];
+    }
+
+    //Spawn des Dimensionsitems
+    public void UpdateEnemyToKill(int amount)
+    {
+        killCounter = killCounter + amount;
+
+        int enemyToDefeat = Mathf.Max(0, enemysToKill - killCounter);
+        enemyToKillText.text = "Enemys to defeat: " + enemyToDefeat;
+
+        //Spawn des Dimensionsitems
+        if (enemyToDefeat == 0)
+        {
+            if (spawnDistrictList.goToDimensionPickup[districtNumber - 1].activeSelf == false)
+            {
+                spawnDistrictList.goToDimensionPickup[districtNumber - 1].SetActive(true);
+
+                navigationController.SetTargetPosition();
+
+                mainCamera.BigShakeScreen();
+            }
+        }
     }
 
     public void UpdatePlayerExperience()
@@ -148,6 +180,8 @@ public class GameManager : MonoBehaviour
             buildingMaterial.SetTexture("_MainTex", secondDimenionTexture2);
             emissionMaterial.SetTexture("_MainTex", secondDimenionTexture2);
             emissionMaterial.SetTexture("_EmissionMap", secondDimenionTexture2);
+
+            navigationController.DeactivateNavigatorMesh();
         }
     }
 

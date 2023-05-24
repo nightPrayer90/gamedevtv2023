@@ -4121,6 +4121,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DimensionPickUp
       objectReference: {fileID: 0}
+    - target: {fileID: 5693635298845190373, guid: 2bd9a9ba28e3c44489a7fba58dc5fece, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bd9a9ba28e3c44489a7fba58dc5fece, type: 3}
 --- !u!1001 &391493849
@@ -6236,6 +6240,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cee0a2fd16928304198bb7ef1008549c, type: 3}
+--- !u!1 &548837748 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693635298845190373, guid: 2bd9a9ba28e3c44489a7fba58dc5fece, type: 3}
+  m_PrefabInstance: {fileID: 1374126751}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &549299711
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14830,6 +14839,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5636032803253534779, guid: b383c5517831aa04b9015b2e9fc46808, type: 3}
+      propertyPath: rotationStep
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5636032803253534779, guid: b383c5517831aa04b9015b2e9fc46808, type: 3}
+      propertyPath: rotationSpeed
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b383c5517831aa04b9015b2e9fc46808, type: 3}
 --- !u!1001 &1275762067
@@ -16342,6 +16359,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c1503bf342b0f041b4a3dc1479d7a8d, type: 3}
+--- !u!114 &1403702033 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 848324240833006560, guid: bad9bd4aba6548f41b8c54483179ba61, type: 3}
+  m_PrefabInstance: {fileID: 6249226896441673838}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1408284331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16623,6 +16651,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6dbc57cb16984c4faddd5673768a5ac, type: 3}
+--- !u!114 &1455321440 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2877662477614724915, guid: b383c5517831aa04b9015b2e9fc46808, type: 3}
+  m_PrefabInstance: {fileID: 1264615845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf617256465516b488a4aa5ad899202e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1456604176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17867,6 +17906,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47d228b14a6994743b94efcf15c6a998, type: 3}
+--- !u!1 &1576710175 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693635298845190373, guid: 2bd9a9ba28e3c44489a7fba58dc5fece, type: 3}
+  m_PrefabInstance: {fileID: 379619127}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1582190845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25532,6 +25576,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 904126870923933655, guid: b79de0f351d8b9a4db8f78ba8b0a8465, type: 3}
+      propertyPath: districtList.Array.data[0]
+      value: 
+      objectReference: {fileID: 527821802}
+    - target: {fileID: 904126870923933655, guid: b79de0f351d8b9a4db8f78ba8b0a8465, type: 3}
+      propertyPath: districtList.Array.data[1]
+      value: 
+      objectReference: {fileID: 527821802}
+    - target: {fileID: 904126870923933655, guid: b79de0f351d8b9a4db8f78ba8b0a8465, type: 3}
+      propertyPath: spawnManagerList.Array.data[0]
+      value: 
+      objectReference: {fileID: 2126161108}
+    - target: {fileID: 904126870923933655, guid: b79de0f351d8b9a4db8f78ba8b0a8465, type: 3}
+      propertyPath: goToDimensionPickup.Array.data[0]
+      value: 
+      objectReference: {fileID: 1576710175}
+    - target: {fileID: 904126870923933655, guid: b79de0f351d8b9a4db8f78ba8b0a8465, type: 3}
+      propertyPath: goToDimensionPickup.Array.data[1]
+      value: 
+      objectReference: {fileID: 548837748}
     - target: {fileID: 4112829420943899877, guid: b79de0f351d8b9a4db8f78ba8b0a8465, type: 3}
       propertyPath: m_Name
       value: Game Manager
@@ -25569,6 +25633,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 717183057}
     - target: {fileID: 4112829420943899898, guid: b79de0f351d8b9a4db8f78ba8b0a8465, type: 3}
+      propertyPath: enemyToKillText
+      value: 
+      objectReference: {fileID: 1403702033}
+    - target: {fileID: 4112829420943899898, guid: b79de0f351d8b9a4db8f78ba8b0a8465, type: 3}
       propertyPath: enemyCounterText
       value: 
       objectReference: {fileID: 1731738399}
@@ -25576,6 +25644,10 @@ PrefabInstance:
       propertyPath: experienceSlider
       value: 
       objectReference: {fileID: 850385744}
+    - target: {fileID: 4112829420943899898, guid: b79de0f351d8b9a4db8f78ba8b0a8465, type: 3}
+      propertyPath: navigationController
+      value: 
+      objectReference: {fileID: 1455321440}
     - target: {fileID: 4112829420943899899, guid: b79de0f351d8b9a4db8f78ba8b0a8465, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -25716,6 +25788,10 @@ PrefabInstance:
     - target: {fileID: 6249226896618589489, guid: bad9bd4aba6548f41b8c54483179ba61, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6249226896618589491, guid: bad9bd4aba6548f41b8c54483179ba61, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6249226896618589492, guid: bad9bd4aba6548f41b8c54483179ba61, type: 3}
       propertyPath: m_Name

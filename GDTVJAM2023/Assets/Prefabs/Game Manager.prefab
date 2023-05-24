@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4112829420943899899}
   - component: {fileID: 4112829420943899898}
+  - component: {fileID: 904126870923933655}
   - component: {fileID: 4112829420943899896}
   - component: {fileID: 4112829420943899897}
   m_Layer: 0
@@ -48,15 +49,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameIsPlayed: 1
   gameOver: 0
+  districtNumber: 1
+  curretEnemyCounter: 0
   healthText: {fileID: 0}
   expText: {fileID: 0}
   timerText: {fileID: 0}
+  districtText: {fileID: 0}
+  enemyToKillText: {fileID: 0}
+  enemyCounterText: {fileID: 0}
   gameOverUI: {fileID: 0}
   panelUI: {fileID: 0}
   playerUI: {fileID: 0}
+  healthBar: {fileID: 0}
+  experienceSlider: {fileID: 0}
   totalTime: 1800
-  enemyCounterText: {fileID: 0}
-  curretEnemyCounter: 0
   dimensionShift: 0
   firstDimensionTexture1: {fileID: 2800000, guid: be79e60dd524c474687d15fd6f717937, type: 3}
   secondDimenionTexture2: {fileID: 2800000, guid: 549d44c9f0cd81a4a8c407c3cdb97d4c, type: 3}
@@ -64,8 +70,31 @@ MonoBehaviour:
   emissionMaterial: {fileID: 2100000, guid: f0459b728238f3c40a469e373574cdbf, type: 2}
   weaponChooseList: {fileID: 4112829420943899896}
   upgradeChooseList: {fileID: 4112829420943899897}
+  spawnDistrictList: {fileID: 904126870923933655}
   valueList: 
   selectedNumbers_: 000000000000000000000000
+--- !u!114 &904126870923933655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112829420943899877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c0bd05667e72c3458dd08a762eb21a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnManagerList:
+  - {fileID: 0}
+  - {fileID: 0}
+  waveKillList: 140000001e000000
+  districtList:
+  - {fileID: 0}
+  - {fileID: 0}
+  goToDimensionPickup:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &4112829420943899896
 MonoBehaviour:
   m_ObjectHideFlags: 0

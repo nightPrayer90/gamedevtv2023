@@ -24252,7 +24252,7 @@ GameObject:
   - component: {fileID: 4477590178855136814}
   - component: {fileID: 1064082465373840044}
   m_Layer: 0
-  m_Name: DimensionPickUp
+  m_Name: GoBackDimensionSwap 1
   m_TagString: DimensionPickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

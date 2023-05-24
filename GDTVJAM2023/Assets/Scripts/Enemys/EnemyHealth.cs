@@ -47,6 +47,7 @@ public class EnemyHealth : MonoBehaviour
             Instantiate(explosionObject, transform.position, transform.rotation);
 
             gameManager.UpdateEnemyCounter(-1);
+            gameManager.UpdateEnemyToKill(1);
 
             Destroy(gameObject);
         }

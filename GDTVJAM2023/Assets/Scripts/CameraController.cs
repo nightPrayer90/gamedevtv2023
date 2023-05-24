@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour
 
     public float shakeDuration = 0.5f;
     public float shakeIntensity = 0.1f;
+    private float shakeIntensity_;
 
     public GameManager gameManager;
     private float shakeTimer = 0f;
@@ -20,11 +21,14 @@ public class CameraController : MonoBehaviour
     {
         player = GameObject.Find("Player");
         cameraOffset = transform.position - cameraOffset_;
+
+        shakeIntensity_ = shakeIntensity;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Blockt alle Screenshakes
         if (!gameManager.gameIsPlayed || gameManager.gameOver)
             shakeTimer = 0f;
         
@@ -41,10 +45,19 @@ public class CameraController : MonoBehaviour
             transform.position = player.transform.position + cameraOffset;
         }
     }
+
         
     public void ShakeScreen()
     {
         // Starte den Screen Shake
         shakeTimer = shakeDuration;
+        shakeIntensity = shakeIntensity_;
+    }
+
+    public void BigShakeScreen()
+    {
+        // Starte den Screen Shake
+        shakeTimer = shakeDuration*10;
+        shakeIntensity = shakeIntensity_*3;
     }
 }
