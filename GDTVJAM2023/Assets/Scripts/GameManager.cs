@@ -14,9 +14,12 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI expText;
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI districtText;
     public GameObject gameOverUI;
     public GameObject panelUI;
     public GameObject playerUI;
+    public Slider healthBar;
+    public Slider experienceSlider;
 
     [Header("Time for one Round")]
     public float totalTime = 1800f;
@@ -44,13 +47,13 @@ public class GameManager : MonoBehaviour
         //upgradeChooseList = FindObjectOfType<UpgradeChooseList>();
         player = GameObject.Find("Player").GetComponent<PlayerController>();
 
-        
         UpdateTimerText();
-
-       
         UpdatePlayerHealth();
         UpdatePlayerExperience();
         UpdateEnemyCounter(0);
+        UpdateDistrictText(1);
+
+        
     }
 
     private void Update()
@@ -70,7 +73,12 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePlayerHealth()
     {
-        healthText.text = "Health: " + player.playerCurrentHealth + "/" + player.playerMaxHealth;
+        healthText.text = player.playerCurrentHealth + "/" + player.playerMaxHealth;
+
+        healthBar.maxValue = player.playerMaxHealth;
+        healthBar.value = player.playerCurrentHealth;
+
+
         if (player.playerCurrentHealth <= 0)
         {
             gameOver = true;
@@ -83,6 +91,11 @@ public class GameManager : MonoBehaviour
     {
         curretEnemyCounter = curretEnemyCounter + curretEnemyCounter_;
         enemyCounterText.text = "Enemys: " + curretEnemyCounter;
+    }
+
+    public void UpdateDistrictText(int curretDistrict)
+    {
+        enemyCounterText.text = "District: " + curretDistrict + "/9";
     }
 
     public void UpdatePlayerExperience()
@@ -109,9 +122,11 @@ public class GameManager : MonoBehaviour
             panelUI.SetActive(true);
             playerUI.SetActive(false);
         }
-        
+
+        experienceSlider.maxValue = player.playerExperienceToLevelUp;
+        experienceSlider.value = player.playerCurrentExperience;
         //Text
-        expText.text = "Level: " + player.playerLevel + " Exp: " + player.playerCurrentExperience + "/" + player.playerExperienceToLevelUp;
+        expText.text = player.playerLevel.ToString();
         
     }
 
@@ -135,7 +150,6 @@ public class GameManager : MonoBehaviour
             emissionMaterial.SetTexture("_EmissionMap", secondDimenionTexture2);
         }
     }
-
 
     public void CreateRandomNumbers()
     {
@@ -172,7 +186,6 @@ public class GameManager : MonoBehaviour
         //reset 
         valueList.Clear();
     }
-
 
     public void RemoveValueWeaponList(int removeIndex)
     {

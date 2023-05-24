@@ -18,6 +18,9 @@ public class HeadCanon : MonoBehaviour
     
     public float reloadInterval = 2f;
     private float nextShootTime = 0f;
+    public float detectionRange = 10f;
+
+    private bool enemyDetected = false;
 
     private void Update()
     {
@@ -44,6 +47,7 @@ public class HeadCanon : MonoBehaviour
 
     private void FindNearestEnemyObject()
     {
+        enemyDetected = false;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag); // Alle Objekte mit dem gegebenen Tag finden
         float closestDistance = Mathf.Infinity; // Startwert für die kürzeste Distanz
         nearestEnemy = null; // Reset
@@ -57,7 +61,16 @@ public class HeadCanon : MonoBehaviour
                 closestDistance = distance;
                 nearestEnemy = enemy;
             }
+
+            // Wenn das Enemy-Objekt innerhalb der Reichweite ist
+            if (distance <= detectionRange)
+            {
+                enemyDetected = true;
+            }
+
         }
+
+        
 
         // Hier hast du nun das nächstgelegene Objekt als nearestEnemy
         if (nearestEnemy != null)
@@ -92,7 +105,7 @@ public class HeadCanon : MonoBehaviour
 
     private void RotationCompleted()
     {
-        if (fireSalveCount < fireSalveMax)
+        if (fireSalveCount < fireSalveMax && enemyDetected == true)
         {
             particleSystem.Play();
             fireSalveCount ++;

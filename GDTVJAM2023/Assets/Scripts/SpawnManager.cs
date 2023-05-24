@@ -13,6 +13,8 @@ public class SpawnManager : MonoBehaviour
 
     private GameManager gameManager;
 
+    public int maxWaveEnemys; 
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -23,7 +25,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager.gameIsPlayed && !gameManager.gameOver && !gameManager.dimensionShift)
+        if (gameManager.gameIsPlayed && !gameManager.gameOver && !gameManager.dimensionShift && gameManager.curretEnemyCounter < maxWaveEnemys)
         {
             if (Time.time >= nextSpawnTime)
             {

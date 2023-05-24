@@ -69240,7 +69240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &551558892322432512
 Transform:
   m_ObjectHideFlags: 0
@@ -79278,6 +79278,7 @@ MonoBehaviour:
   fireSalveMax: 5
   rotationSpeed: 20
   reloadInterval: 2
+  detectionRange: 4
 --- !u!1 &551558892632615458
 GameObject:
   m_ObjectHideFlags: 0
