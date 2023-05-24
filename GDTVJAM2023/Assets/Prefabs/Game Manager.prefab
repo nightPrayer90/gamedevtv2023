@@ -89,8 +89,16 @@ MonoBehaviour:
   spawnManagerList:
   - {fileID: 0}
   - {fileID: 0}
-  waveKillList: 140000001e000000
+  - {fileID: 0}
+  waveKillList: 140000001e00000028000000
   districtList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   goToDimensionPickup:

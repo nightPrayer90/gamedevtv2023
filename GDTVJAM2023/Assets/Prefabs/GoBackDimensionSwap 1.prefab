@@ -24250,10 +24250,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2838224130425440340}
   - component: {fileID: 4477590178855136814}
-  - component: {fileID: 1064082465373840044}
   m_Layer: 0
   m_Name: GoBackDimensionSwap 1
-  m_TagString: DimensionPickUp
+  m_TagString: DimensionPickUpGoBack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24287,20 +24286,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.28, y: 0.28, z: 0.28}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1064082465373840044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5693635298845190373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 142d169ff7f13584dbb00f7513f8b626, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0
-  detectionRange: 0
 --- !u!1 &7803357915516100142
 GameObject:
   m_ObjectHideFlags: 0

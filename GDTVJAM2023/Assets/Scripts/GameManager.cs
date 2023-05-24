@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
 
         //wird bei jedem districtwechsel ausgelöst
         killCounter = 0;
-        enemysToKill = spawnDistrictList.waveKillList[curretDistrict-1];
+        enemysToKill = spawnDistrictList.waveKillList[curretDistrict - 1];
     }
 
     //Spawn des Dimensionsitems
@@ -159,31 +159,35 @@ public class GameManager : MonoBehaviour
         experienceSlider.value = player.playerCurrentExperience;
         //Text
         expText.text = player.playerLevel.ToString();
-        
+
     }
 
-    public void DimensionShift()
+    public void GoBackDimension()
     {
-        if (dimensionShift == true)
-        {
-            dimensionShift = false;
+        dimensionShift = false;
 
-            buildingMaterial.SetTexture("_MainTex", firstDimensionTexture1);
-            emissionMaterial.SetTexture("_MainTex", firstDimensionTexture1);
-            emissionMaterial.SetTexture("_EmissionMap", firstDimensionTexture1);
+        buildingMaterial.SetTexture("_MainTex", firstDimensionTexture1);
+        emissionMaterial.SetTexture("_MainTex", firstDimensionTexture1);
+        emissionMaterial.SetTexture("_EmissionMap", firstDimensionTexture1);
 
-        }
-        else
-        {
-            dimensionShift = true;
+        // next Level
+        districtNumber++;
+        UpdateDistrictText(districtNumber - 1);
+        mainCamera.LongShakeScreen();
 
-            buildingMaterial.SetTexture("_MainTex", secondDimenionTexture2);
-            emissionMaterial.SetTexture("_MainTex", secondDimenionTexture2);
-            emissionMaterial.SetTexture("_EmissionMap", secondDimenionTexture2);
-
-            navigationController.DeactivateNavigatorMesh();
-        }
+        spawnDistrictList.districtList[districtNumber - 1].GetComponent<GroundBaseUp>().GrowUP();
     }
+    public void GoToDimension()
+    {
+        dimensionShift = true;
+
+        buildingMaterial.SetTexture("_MainTex", secondDimenionTexture2);
+        emissionMaterial.SetTexture("_MainTex", secondDimenionTexture2);
+        emissionMaterial.SetTexture("_EmissionMap", secondDimenionTexture2);
+
+        navigationController.DeactivateNavigatorMesh();
+    }
+
 
     public void CreateRandomNumbers()
     {

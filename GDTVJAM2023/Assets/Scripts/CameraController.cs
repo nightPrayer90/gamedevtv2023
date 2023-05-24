@@ -60,4 +60,11 @@ public class CameraController : MonoBehaviour
         shakeTimer = shakeDuration*10;
         shakeIntensity = shakeIntensity_*3;
     }
+
+    public void LongShakeScreen()
+    {
+        // Starte den Screen Shake
+        shakeTimer = shakeDuration * 70;
+        shakeIntensity = shakeIntensity_ * 0.2f;
+    }
 }

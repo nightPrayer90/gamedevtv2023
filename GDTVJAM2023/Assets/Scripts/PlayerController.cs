@@ -70,9 +70,18 @@ public class PlayerController : MonoBehaviour
         {
             //Destroy(other.gameObject);
             other.gameObject.SetActive(false);
-            gameManager.DimensionShift();
+            gameManager.GoToDimension();
+        }
+        if (other.gameObject.CompareTag("DimensionPickUpGoBack"))
+        {
+            //Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
+            gameManager.GoBackDimension();
+
         }
         
+
+
     }
     private void OnTriggerStay(Collider other)
     {
@@ -104,9 +113,11 @@ public class PlayerController : MonoBehaviour
             
             Instantiate(enemyHealth.dieExplosionObject, transform.position, transform.rotation);
 
-            gameManager.UpdateEnemyCounter(-1);
-            gameManager.UpdateEnemyToKill(1);
-
+            if (enemyHealth.secondDimensionEnemy == false)
+            {
+                gameManager.UpdateEnemyCounter(-1);
+                gameManager.UpdateEnemyToKill(1);
+            }
             Destroy(collision.gameObject);
         }
     }
