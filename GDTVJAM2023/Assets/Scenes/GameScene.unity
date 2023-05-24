@@ -16738,6 +16738,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7697339556839302871, guid: bad9bd4aba6548f41b8c54483179ba61, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 30.300049
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bad9bd4aba6548f41b8c54483179ba61, type: 3}
 --- !u!1 &415080383 stripped
@@ -84244,6 +84248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GoToDimensionSwap
       objectReference: {fileID: 0}
+    - target: {fileID: 5693635298845190373, guid: 2bd9a9ba28e3c44489a7fba58dc5fece, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bd9a9ba28e3c44489a7fba58dc5fece, type: 3}
 --- !u!1001 &2049279509
@@ -87155,7 +87163,7 @@ MonoBehaviour:
   - 10
   maxSpawnDistance: 5
   spawnInterval: 2
-  maxWaveEnemys: 0
+  maxWaveEnemys: 20
 --- !u!4 &2126161110
 Transform:
   m_ObjectHideFlags: 0
