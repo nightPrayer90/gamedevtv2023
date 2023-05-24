@@ -4,31 +4,44 @@ public class ShieldController : MonoBehaviour
 {
     private Transform playerTr;
     private PlayerController playerController;
-    public Vector3 rotationOffset;
     private GameManager gameManager;
     private Rigidbody playerRb;
+    private ShieldSpawner shieldSpawner;
 
     public Material targetMaterial;
+    private Color albedoColor;
 
     public int shieldLife = 10;
-    private Color albedoColor;
+    public bool isBackShield = false;
+    public bool isBackShieldLeft = false;
+    public bool isBackShieldRight = false;
+
+    
 
     //private Vector3 initialOffset;
     private void Start()
     {
         playerTr = GameObject.Find("Player").GetComponent<Transform>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        playerController.isFrondshield = true;
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerRb = playerController.GetComponent<Rigidbody>();
 
-        if (playerTr != null)
+        if (isBackShield == false)
         {
-            //initialOffset = transform.position - playerTr.position;
+            playerController.isFrontShield = true;
+            shieldSpawner = GameObject.Find("front Shield").GetComponent<ShieldSpawner>();
+        }
+        else
+        {
+            if (isBackShieldLeft == true)
+                playerController.isBackShieldLeft = isBackShieldLeft;
+            else
+                playerController.isBackShieldRight = isBackShieldRight;
+            shieldSpawner = GameObject.Find("back Shield").GetComponent<ShieldSpawner>();
         }
 
-        albedoColor = targetMaterial.GetColor("_Color");
-        
+
+        Color albedoColor = targetMaterial.GetColor("_Color");
         float newAlpha = 0.5f; 
         albedoColor.a = newAlpha;
         targetMaterial.SetColor("_Color", albedoColor);
@@ -38,10 +51,8 @@ public class ShieldController : MonoBehaviour
     {
         if (playerTr != null)
         {
-            transform.position = playerTr.position;// + initialOffset;
-
-            Quaternion targetRotation = Quaternion.Euler(rotationOffset);
-            transform.rotation = playerTr.rotation * targetRotation;
+            transform.position = playerTr.position;
+            transform.rotation = playerTr.rotation;
         }
     }
 
@@ -51,14 +62,25 @@ public class ShieldController : MonoBehaviour
         {
 
             EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+            Transform eneymTransform = collision.gameObject.GetComponent<Transform>();
 
             Vector3 explosionDirection = collision.transform.position - transform.position;
             explosionDirection.Normalize();
 
             playerRb.AddForce(explosionDirection * -1f * (enemyHealth.explosionForce/4), ForceMode.Impulse);
-            playerController.isFrondshield = false;
 
-            Instantiate(enemyHealth.dieExplosionObject, transform.position, transform.rotation);
+            if (isBackShield == false)
+                playerController.isFrontShield = false;
+            else
+            {
+                if (isBackShieldLeft == true)
+                    playerController.isBackShieldLeft = false;
+                else
+                    playerController.isBackShieldRight = false;
+            }
+            shieldSpawner.nextSpawnTime = Time.time + shieldSpawner.spawnInterval;
+
+            Instantiate(enemyHealth.dieExplosionObject, eneymTransform.position, eneymTransform.rotation);
 
             gameManager.UpdateEnemyCounter(-1);
 
@@ -71,7 +93,8 @@ public class ShieldController : MonoBehaviour
     {
         shieldLife = Mathf.Max(0, shieldLife - decHealth);
 
-        float newAlpha = 0.5f - (0.5f/ shieldLife);
+        Color albedoColor = targetMaterial.GetColor("_Color");
+        float newAlpha = 0.5f - (0.5f/shieldLife);
         albedoColor.a = newAlpha;
         targetMaterial.SetColor("_Color", albedoColor);
 
@@ -80,5 +103,17 @@ public class ShieldController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (isBackShield == false)
+            playerController.isFrontShield = false;
+        else
+        {
+            if (isBackShieldLeft == true)
+                playerController.isBackShieldLeft = false;
+            else
+                playerController.isBackShieldRight = false;
+        }
+        shieldSpawner.nextSpawnTime = Time.time + shieldSpawner.spawnInterval;
+
     }
 }

@@ -18434,12 +18434,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 333597126579148254, guid: b383c5517831aa04b9015b2e9fc46808, type: 3}
-      propertyPath: spawnPoint
-      value: 
-      objectReference: {fileID: 1635700998}
-    - target: {fileID: 551558890908627992, guid: b383c5517831aa04b9015b2e9fc46808, type: 3}
-      propertyPath: bulletDamage
-      value: 2
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 333597126579148254, guid: b383c5517831aa04b9015b2e9fc46808, type: 3}
+      propertyPath: spawnInterval
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 551558891167549048, guid: b383c5517831aa04b9015b2e9fc46808, type: 3}
       propertyPath: cameraController
@@ -18493,8 +18493,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7398910342114484615, guid: b383c5517831aa04b9015b2e9fc46808, type: 3}
+    - target: {fileID: 6793648321388620473, guid: b383c5517831aa04b9015b2e9fc46808, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b383c5517831aa04b9015b2e9fc46808, type: 3}
 --- !u!1001 &1275762067
 PrefabInstance:
@@ -22539,11 +22542,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6dbc57cb16984c4faddd5673768a5ac, type: 3}
---- !u!1 &1635700998 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7534365714480221671, guid: b383c5517831aa04b9015b2e9fc46808, type: 3}
-  m_PrefabInstance: {fileID: 1264615845}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1637222551
 PrefabInstance:
   m_ObjectHideFlags: 0

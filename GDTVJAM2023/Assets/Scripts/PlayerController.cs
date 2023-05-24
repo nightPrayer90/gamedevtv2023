@@ -32,9 +32,10 @@ public class PlayerController : MonoBehaviour
     private float nextDamageTime = 0f;
     private bool isOutsideBorder = false;
 
-    public bool isFrondshield = false;
-    public bool isBackshield = false;
-
+    [Header("Shield Controll")]
+    public bool isFrontShield = false;
+    public bool isBackShieldLeft = false;
+    public bool isBackShieldRight = false;
 
     // Start is called before the first frame update
     void Start()
