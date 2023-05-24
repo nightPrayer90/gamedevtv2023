@@ -8,6 +8,10 @@ public class PeriodEmitter : MonoBehaviour
     public float spawnInterval = 2f;
     private float nextSpawnTime = 0f;
 
+    private void Start()
+    {
+        nextSpawnTime = Time.time + spawnInterval;
+    }
 
     // Update is called once per frame
     void Update()

@@ -29751,7 +29751,6 @@ Transform:
   - {fileID: 551558892475337936}
   - {fileID: 6196374423645674781}
   - {fileID: 6223327898766705118}
-  - {fileID: 551558892188756078}
   m_Father: {fileID: 551558891167549053}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29869,11 +29868,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHeadCannon: 0
   isRocketLauncher: 0
-  isFireFlys: 0
+  isFireFlys: 1
   isBulletWings: 0
   isLifeModul: 0
-  isMineModul: 0
   isSpreadGun: 0
+  isFrontShield: 0
+  isBackShield: 0
+  headCannon: {fileID: 551558892611921647}
+  rocketLauncher: {fileID: 551558891402124341}
+  fireFlys: {fileID: 551558892496614422}
+  bulletWings: {fileID: 551558892322432513}
+  lifeModul: {fileID: 551558891614178949}
+  spreadGun: {fileID: 551558892475337937}
+  frontShield: {fileID: 7534365714480221671}
+  backShield: {fileID: 3828959266121513729}
 --- !u!1 &551558891256219526
 GameObject:
   m_ObjectHideFlags: 0
@@ -49716,7 +49724,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -59430,37 +59438,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 2
   particleSystem: {fileID: 551558892117798968}
---- !u!1 &551558892188756079
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 551558892188756078}
-  m_Layer: 7
-  m_Name: Mine Modul
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &551558892188756078
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551558892188756079}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.227, y: 0.13670015, z: -0.0246}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 551558890930529994}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &551558892212810389
 GameObject:
   m_ObjectHideFlags: 0
@@ -79148,7 +79125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d716017f498db43b97dc8d158888b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleSystems: []
+  particleSystems:
+  - {fileID: 551558892632615462}
   spawnInterval: 5
 --- !u!1 &551558892593353441
 GameObject:
@@ -79352,7 +79330,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 0
   startDelay:
@@ -83176,7 +83154,7 @@ ParticleSystem:
     enabled: 1
     subEmitters:
     - serializedVersion: 3
-      emitter: {fileID: 0}
+      emitter: {fileID: 551558892016426192}
       type: 1
       properties: 0
       emitProbability: 1
@@ -84309,7 +84287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6223327898766705118
 Transform:
   m_ObjectHideFlags: 0
@@ -84340,7 +84318,7 @@ MonoBehaviour:
   shieldObjects:
   - {fileID: 135186969060692196, guid: b51a06e5f67d7c24d9224dd6af59c250, type: 3}
   - {fileID: 135186969060692196, guid: b98c9e8ad142c4b4fabd7748c8a8d88b, type: 3}
-  spawnInterval: 10
+  spawnInterval: 12
   nextSpawnTime: 0
   isBackShield: 1
 --- !u!1 &6141679750870507839
@@ -84393,7 +84371,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 1
   autoRandomSeed: 1
   startDelay:
@@ -98997,7 +98975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6196374423645674781
 Transform:
   m_ObjectHideFlags: 0

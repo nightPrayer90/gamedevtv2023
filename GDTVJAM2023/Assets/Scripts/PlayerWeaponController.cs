@@ -10,29 +10,46 @@ public class PlayerWeaponController : MonoBehaviour
     public bool isFireFlys = false;
     public bool isBulletWings = false;
     public bool isLifeModul = false;
-    public bool isMineModul = false;
     public bool isSpreadGun = false;
+    public bool isFrontShield = false;
+    public bool isBackShield = false;
 
-    private GameObject headCannon;
-    private GameObject rocketLauncher;
-    private GameObject fireFlys;
-    private GameObject bulletWings;
-    private GameObject lifeModul;
-    private GameObject mineModul;
-    private GameObject spreadGun;
+    [Header("Objects")]
+    public GameObject headCannon;
+    public GameObject rocketLauncher;
+    public GameObject fireFlys;
+    public GameObject bulletWings;
+    public GameObject lifeModul;
+    public GameObject spreadGun;
+    public GameObject frontShield;
+    public GameObject backShield;
 
     // Start is called before the first frame update
     void Start()
     {
-        headCannon = GameObject.Find("Head Cannon");
+        /*headCannon = GameObject.Find("Head Cannon");
         rocketLauncher = GameObject.Find("Rocket Launcher");
         fireFlys = GameObject.Find("Fire Flys");
         bulletWings = GameObject.Find("Bullet Wings");
         lifeModul = GameObject.Find("Life Modul");
-        mineModul = GameObject.Find("Mine Modul");
-        mineModul = GameObject.Find("Spread Gun");
+        spreadGun = GameObject.Find("Spread Gun");
+        frontShield = GameObject.Find("front Shield");
+        backShield = GameObject.Find("back Shield");*/
+
+        //optional
+        WeaponChoose();
     }
 
-
+    public void WeaponChoose()
+    {
+        headCannon.SetActive(isHeadCannon);
+        rocketLauncher.SetActive(isRocketLauncher);
+        fireFlys.SetActive(isFireFlys);
+        bulletWings.SetActive(isBulletWings);
+        lifeModul.SetActive(isLifeModul);
+        spreadGun.SetActive(isSpreadGun);
+        frontShield.SetActive(isFrontShield);
+        backShield.SetActive(isBackShield);
+    }
 
 }
