@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
     public void UpdateEnemyCounter(float curretEnemyCounter_)
     {
         curretEnemyCounter = curretEnemyCounter + curretEnemyCounter_;
-        enemyCounterText.text = "Enemys: " + curretEnemyCounter;
+        enemyCounterText.text = "Enemys left: " + curretEnemyCounter;
     }
 
     public void UpdateDistrictText(int curretDistrict)
