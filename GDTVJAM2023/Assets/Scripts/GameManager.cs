@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private int killCounter;
     private PlayerController player;
     [HideInInspector] public float curretEnemyCounter;
+    private GameObject currentSpawnManager;
 
     [Header("UI Controll")]
     public TextMeshProUGUI healthText;
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject panelUI;
     public GameObject playerUI;
+    public GameObject bossUI;
     public Slider healthBar;
     public Slider experienceSlider;
 
@@ -59,6 +61,8 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         //navigationController = GameObject.Find("Navigator Controller").GetComponent<NavigationController>();
 
+        currentTime = totalTime;
+
         UpdateTimerText();
         UpdatePlayerHealth();
         UpdatePlayerExperience();
@@ -75,14 +79,16 @@ public class GameManager : MonoBehaviour
         emissionMaterial.SetTexture("_EmissionMap", firstDimensionTexture1);
 
         directionalLight.color = firstDimensionColor;
+
+        currentSpawnManager = Instantiate(spawnDistrictList.spawnManagerList[districtNumber - 1], transform.position, transform.rotation);
     }
 
 
     private void Update()
     {
-        if (currentTime < totalTime)
+        if (currentTime > 0)
         {
-            currentTime += Time.deltaTime;
+            currentTime -= Time.deltaTime;
             UpdateTimerText();
         }
     }
@@ -90,7 +96,15 @@ public class GameManager : MonoBehaviour
     {
         int minutes = (int)(currentTime / 60f);
         int seconds = (int)(currentTime % 60f);
+
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
+        if (currentTime <= 0)
+        {
+            gameOver = true;
+            gameIsPlayed = false;
+            gameOverUI.SetActive(true);
+        }
     }
 
     public void UpdatePlayerHealth()
@@ -117,7 +131,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateDistrictText(int curretDistrict)
     {
-        enemyCounterText.text = "District" + curretDistrict + "/9";
+        districtText.text = "District " + curretDistrict.ToString() + "/9";
 
         //wird bei jedem districtwechsel ausgelöst
         killCounter = 0;
@@ -156,7 +170,7 @@ public class GameManager : MonoBehaviour
             player.playerExperienceToLevelUp = Mathf.RoundToInt(player.playerExperienceToLevelUp * player.playerLevelUpFactor);
             player.playerCurrentExperience = 0;
 
-            int temphealth = Mathf.RoundToInt(player.playerMaxHealth * 0.25f);
+            int temphealth = Mathf.RoundToInt(player.playerMaxHealth * 0.1f);
 
             player.UpdatePlayerHealth(-temphealth);
 
@@ -187,13 +201,18 @@ public class GameManager : MonoBehaviour
         emissionMaterial.SetTexture("_MainTex", firstDimensionTexture1);
         emissionMaterial.SetTexture("_EmissionMap", firstDimensionTexture1);
 
+        //boss UI
+        bossUI.SetActive(false);
+
         // next Level
         districtNumber++;
-        UpdateDistrictText(districtNumber);
+        UpdateDistrictText(districtNumber-1);
         mainCamera.LongShakeScreen();
         directionalLight.color = firstDimensionColor;
 
         spawnDistrictList.districtList[districtNumber - 1].GetComponent<GroundBaseUp>().GrowUP();
+
+        Instantiate(spawnDistrictList.spawnManagerList[districtNumber - 1], transform.position, transform.rotation);
     }
     public void GoToDimension()
     {
@@ -206,13 +225,15 @@ public class GameManager : MonoBehaviour
         mainCamera.BigShortShakeScreen();
         navigationController.DeactivateNavigatorMesh();
         directionalLight.color = secondDimenioncolor;
+
+        Destroy(currentSpawnManager);
     }
 
 
     public void CreateRandomNumbers()
     {
         //Auswahl der richtigen Liste
-        if (player.playerLevel % 2 == 0)
+        if (player.playerLevel % 5 == 0 || player.playerLevel == 2)
          {
             Debug.Log("test1");
             valueList.AddRange(weaponChooseList.weaponIndex); // Greife auf die weaponIndex aus dem weaponChooseList zu

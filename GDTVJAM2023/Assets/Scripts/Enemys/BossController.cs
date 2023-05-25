@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossController : MonoBehaviour
 {
@@ -12,8 +13,11 @@ public class BossController : MonoBehaviour
     public float targetYPosition = 6f;
     public MonoBehaviour battleScriptPlaceholder;
     private CameraController cameraController;
+    public GameObject bossHud;
+    public Slider bossHealthSlider;
 
     private bool isActivated = false;
+    private bool isHealthUpdated = false;
 
     private void Start()
     {
@@ -36,6 +40,12 @@ public class BossController : MonoBehaviour
             {
                 ActivateBoss();
             }
+
+            
+        }
+        if (isActivated &&  isHealthUpdated == true)
+        {
+            bossHealthSlider.value = enemyHealth.enemyHealth;
         }
     }
 
@@ -71,5 +81,9 @@ public class BossController : MonoBehaviour
         {
             battleScriptPlaceholder.enabled = true; 
         }
+        bossHud.SetActive(true);
+        bossHealthSlider.maxValue = enemyHealth.enemyHealth;
+        bossHealthSlider.value = enemyHealth.enemyHealth;
+        isHealthUpdated = true;
     }
 }
