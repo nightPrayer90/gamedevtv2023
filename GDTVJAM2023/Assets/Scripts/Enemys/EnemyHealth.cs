@@ -14,6 +14,7 @@ public class EnemyHealth : MonoBehaviour
     public float explosionForce = 5.0f;
     public bool expOrbSpawn = false;
     public bool secondDimensionEnemy = false;
+    [HideInInspector] public bool canTakeDamage = true;
 
     public List<EnemyParticleBullet> enemyWeapons;
 
@@ -58,20 +59,23 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        enemyHealth -= damage;
-
-        if (enemyHealth <= 0)
+        if (canTakeDamage)
         {
-            if (expOrbSpawn)
-                Instantiate(expOrb, transform.position, transform.rotation);
-            Instantiate(explosionObject, transform.position, transform.rotation);
+            enemyHealth -= damage;
 
-            if (secondDimensionEnemy == false)
+            if (enemyHealth <= 0)
             {
-                gameManager.UpdateEnemyCounter(-1);
-                gameManager.UpdateEnemyToKill(1);
+                if (expOrbSpawn)
+                    Instantiate(expOrb, transform.position, transform.rotation);
+                Instantiate(explosionObject, transform.position, transform.rotation);
+
+                if (secondDimensionEnemy == false)
+                {
+                    gameManager.UpdateEnemyCounter(-1);
+                    gameManager.UpdateEnemyToKill(1);
+                }
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
         }
     }
 

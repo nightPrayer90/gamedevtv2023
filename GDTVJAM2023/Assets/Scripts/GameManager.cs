@@ -185,6 +185,7 @@ public class GameManager : MonoBehaviour
         emissionMaterial.SetTexture("_MainTex", secondDimenionTexture2);
         emissionMaterial.SetTexture("_EmissionMap", secondDimenionTexture2);
 
+        mainCamera.BigShortShakeScreen();
         navigationController.DeactivateNavigatorMesh();
     }
 
