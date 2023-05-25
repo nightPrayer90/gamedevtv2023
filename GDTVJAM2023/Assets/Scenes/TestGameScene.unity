@@ -89351,14 +89351,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 787326265830227862, guid: 22cae8cfc0410d846a35948f5cc9198f, type: 3}
-      propertyPath: rotationSpeed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 787326265830227862, guid: 22cae8cfc0410d846a35948f5cc9198f, type: 3}
-      propertyPath: detectionRange
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1238716703606193738, guid: 22cae8cfc0410d846a35948f5cc9198f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -89406,10 +89398,6 @@ PrefabInstance:
     - target: {fileID: 1238716703606193750, guid: 22cae8cfc0410d846a35948f5cc9198f, type: 3}
       propertyPath: m_Name
       value: Boss 01
-      objectReference: {fileID: 0}
-    - target: {fileID: 8978284937335824689, guid: 22cae8cfc0410d846a35948f5cc9198f, type: 3}
-      propertyPath: enemyHealth
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22cae8cfc0410d846a35948f5cc9198f, type: 3}

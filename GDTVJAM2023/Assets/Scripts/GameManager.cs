@@ -189,7 +189,7 @@ public class GameManager : MonoBehaviour
 
         // next Level
         districtNumber++;
-        UpdateDistrictText(districtNumber - 1);
+        UpdateDistrictText(districtNumber);
         mainCamera.LongShakeScreen();
         directionalLight.color = firstDimensionColor;
 

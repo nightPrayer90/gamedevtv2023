@@ -30,7 +30,6 @@ public class Boss01 : MonoBehaviour
         }
         BattleStarts();
 
-
     }
 
     private void BattleStarts()
