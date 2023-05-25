@@ -11,6 +11,7 @@ TagManager:
   - BorderCollider
   - Shield
   - DimensionPickUpGoBack
+  - VictoryPickup
   layers:
   - Default
   - TransparentFX

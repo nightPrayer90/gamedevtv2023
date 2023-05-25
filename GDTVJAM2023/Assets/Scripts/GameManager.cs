@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
     public Material buildingMaterial;
     public Material emissionMaterial;
     public NavigationController navigationController;
+    public Color firstDimensionColor;
+    public Color secondDimenioncolor;
+    private Light directionalLight;
 
     //Listen für Abilitys und UpgradeSystem
     [Header("Upgrade Lists")]
@@ -50,7 +53,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+
         mainCamera = GameObject.Find("Main Camera").GetComponent<CameraController>();
+        directionalLight = GameObject.Find("Directional Light").GetComponent<Light>();
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         //navigationController = GameObject.Find("Navigator Controller").GetComponent<NavigationController>();
 
@@ -60,7 +65,18 @@ public class GameManager : MonoBehaviour
         UpdateEnemyCounter(0);
         UpdateDistrictText(districtNumber);
         UpdateEnemyToKill(0);
+        StartDimentionSettings();
     }
+
+    public void StartDimentionSettings()
+    {
+        buildingMaterial.SetTexture("_MainTex", firstDimensionTexture1);
+        emissionMaterial.SetTexture("_MainTex", firstDimensionTexture1);
+        emissionMaterial.SetTexture("_EmissionMap", firstDimensionTexture1);
+
+        directionalLight.color = firstDimensionColor;
+    }
+
 
     private void Update()
     {
@@ -162,6 +178,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    
     public void GoBackDimension()
     {
         dimensionShift = false;
@@ -174,6 +191,7 @@ public class GameManager : MonoBehaviour
         districtNumber++;
         UpdateDistrictText(districtNumber - 1);
         mainCamera.LongShakeScreen();
+        directionalLight.color = firstDimensionColor;
 
         spawnDistrictList.districtList[districtNumber - 1].GetComponent<GroundBaseUp>().GrowUP();
     }
@@ -187,6 +205,7 @@ public class GameManager : MonoBehaviour
 
         mainCamera.BigShortShakeScreen();
         navigationController.DeactivateNavigatorMesh();
+        directionalLight.color = secondDimenioncolor;
     }
 
 
@@ -234,6 +253,12 @@ public class GameManager : MonoBehaviour
 
             weaponChooseList.weaponIndex.RemoveAt(removePos);
         }
+    }
+
+    public void Victory()
+    {
+        //Game is over
+
     }
 
 

@@ -77,9 +77,15 @@ public class PlayerController : MonoBehaviour
             //Destroy(other.gameObject);
             other.gameObject.SetActive(false);
             gameManager.GoBackDimension();
+        }
+        if (other.gameObject.CompareTag("VictoryPickup"))
+        {
+            //Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
+            gameManager.GoBackDimension();
 
         }
-        
+
 
 
     }
