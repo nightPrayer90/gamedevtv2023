@@ -82,6 +82,7 @@ MonoBehaviour:
   enemyTag: Enemy
   exposionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   damage: 5
+  maxLifeTime: 4
 --- !u!1 &4328560397251660117
 GameObject:
   m_ObjectHideFlags: 0

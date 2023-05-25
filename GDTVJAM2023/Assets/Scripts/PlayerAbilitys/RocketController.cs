@@ -7,18 +7,26 @@ public class RocketController : MonoBehaviour
     public float speed = 10f; // Geschwindigkeit der Rakete
     public float rotationSpeed = 5f; // Rotationsgeschwindigkeit der Rakete
     public string enemyTag = "Enemy"; // Tag des Enemy-Objekts
-
+    
     public GameObject exposionObject;
 
     private GameObject target; // aktuelles Zielobjekt
     private Rigidbody rbRocket;
+    private GameManager gameManager;
 
     public int damage = 5;
 
+    public float maxLifeTime;
+
+
     private void Start()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         FindNextTarget(); // Erstes Zielobjekt suchen
         rbRocket = GetComponent<Rigidbody>();
+        Invoke("DestroyObject", maxLifeTime);
+
+        maxLifeTime = Random.Range(maxLifeTime-0.25f, maxLifeTime+0.25f);
     }
 
     private void FixedUpdate()
@@ -42,6 +50,12 @@ public class RocketController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
+    private void DestroyObject()
+    {
+        Destroy(gameObject);
+        Instantiate(exposionObject, transform.position, transform.rotation);
+    }
+
     private void FindNextTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
@@ -51,10 +65,27 @@ public class RocketController : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
+
             if (distance < closestDistance)
             {
-                closestDistance = distance;
-                closestEnemy = enemy;
+                if (gameManager.dimensionShift == false)
+                {
+                    if (enemy.layer == LayerMask.NameToLayer("Enemy"))
+                    {
+                        closestDistance = distance;
+                        closestEnemy = enemy;
+                    }
+                }
+                else
+                {
+                    if (enemy.layer == LayerMask.NameToLayer( "secondDimensionEnemy"))
+                    {
+                        closestDistance = distance;
+                        closestEnemy = enemy;
+                    }
+                }
+
+            
             }
         }
 

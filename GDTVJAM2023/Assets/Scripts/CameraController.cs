@@ -65,6 +65,6 @@ public class CameraController : MonoBehaviour
     {
         // Starte den Screen Shake
         shakeTimer = shakeDuration * 70;
-        shakeIntensity = shakeIntensity_ * 0.2f;
+        shakeIntensity = shakeIntensity_ * 0.3f;
     }
 }

@@ -7,9 +7,10 @@ public class HeadCanon : MonoBehaviour
     public GameObject player; // Referenz auf das Spielerobjekt
     public string enemyTag = "Enemy"; // Der Tag der zu suchenden Objekte
     private GameObject nearestEnemy = null; // Referenz auf das nächstgelegene Objekt
+    private GameManager gameManager;
 
     public ParticleSystem particleSystem;
-    public int fireSalveCount;
+    private int fireSalveCount;
     public int fireSalveMax;
 
     public float rotationSpeed = 5f; // Geschwindigkeit der Drehung
@@ -21,6 +22,11 @@ public class HeadCanon : MonoBehaviour
     public float detectionRange = 10f;
 
     private bool enemyDetected = false;
+
+    private void Start()
+    {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+    }
 
     private void Update()
     {
@@ -56,10 +62,25 @@ public class HeadCanon : MonoBehaviour
         {
             float distance = Vector3.Distance(player.transform.position, enemy.transform.position); // Distanz zum Spielerobjekt berechnen
 
+
             if (distance < closestDistance)
             {
-                closestDistance = distance;
-                nearestEnemy = enemy;
+                if (gameManager.dimensionShift == false)
+                {
+                    if (enemy.layer == LayerMask.NameToLayer("Enemy"))
+                    {
+                        closestDistance = distance;
+                        nearestEnemy = enemy;
+                    }
+                }
+                else
+                {
+                    if (enemy.layer == LayerMask.NameToLayer("secondDimensionEnemy"))
+                    {
+                        closestDistance = distance;
+                        nearestEnemy = enemy;
+                    }
+                }
             }
 
             // Wenn das Enemy-Objekt innerhalb der Reichweite ist
