@@ -6,19 +6,26 @@ public class BossController : MonoBehaviour
 {
     private GameObject player;
     private GameManager gameManager;
-    private EnemyHealth enemyHealth;
+    public EnemyHealth enemyHealth;
     public float activationRange = 10f;
     public float moveSpeed = 5f;
     public float targetYPosition = 6f;
     public MonoBehaviour battleScriptPlaceholder;
+    private CameraController cameraController;
 
     private bool isActivated = false;
 
     private void Start()
     {
-        enemyHealth = gameObject.GetComponent<EnemyHealth>();
+        cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
+        //enemyHealth = gameObject.GetComponent<EnemyHealth>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         player = GameObject.Find("Player");
+
+        if (battleScriptPlaceholder != null)
+        {
+            battleScriptPlaceholder.enabled = false;
+        }
     }
     private void Update()
     {
@@ -35,6 +42,7 @@ public class BossController : MonoBehaviour
     private void ActivateBoss()
     {
         isActivated = true;
+        cameraController.ShakeScreen();
 
         // Bewege den Boss zur Zielposition
         StartCoroutine(MoveToTargetPosition());
