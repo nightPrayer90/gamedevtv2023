@@ -38,11 +38,13 @@ public class MineController : MonoBehaviour
             {
                 materialList[1] = emissivMaterial;
                 GetComponent<MeshRenderer>().materials = materialList;
+                enemyHealth.StartShooting();
             }
             else
             {
                 materialList[1] = buildingMaterial;
                 GetComponent<MeshRenderer>().materials = materialList;
+                enemyHealth.StopShooting();
             }
         }
     }

@@ -14,7 +14,7 @@ public class EnemyHealth : MonoBehaviour
     public float explosionForce = 5.0f;
     public bool expOrbSpawn = false;
     public bool secondDimensionEnemy = false;
-    [HideInInspector] public bool canTakeDamage = true;
+    public bool canTakeDamage = true;
 
     public List<EnemyParticleBullet> enemyWeapons;
 
