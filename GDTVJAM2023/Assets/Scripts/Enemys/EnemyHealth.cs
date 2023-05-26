@@ -43,7 +43,7 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            //gegner in der phase
+            //Gegner in der Phase
             if (gameManager.dimensionShift == false)
             {
                 collider.enabled = false;

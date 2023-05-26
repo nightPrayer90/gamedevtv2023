@@ -40,10 +40,13 @@ public class GameManager : MonoBehaviour
     public Texture secondDimenionTexture2;
     public Material buildingMaterial;
     public Material emissionMaterial;
+    public Material buildingMaterialReverse;
+    public Material emissionMaterialReverse;
     public NavigationController navigationController;
     public Color firstDimensionColor;
     public Color secondDimenioncolor;
     private Light directionalLight;
+    public GameObject ExpOrbDestroy;
 
     //Listen für Abilitys und UpgradeSystem
     [Header("Upgrade Lists")]
@@ -70,6 +73,7 @@ public class GameManager : MonoBehaviour
         UpdateDistrictText(districtNumber);
         UpdateEnemyToKill(0);
         StartDimentionSettings();
+        Time.timeScale = 1;
     }
 
     public void StartDimentionSettings()
@@ -78,7 +82,12 @@ public class GameManager : MonoBehaviour
         emissionMaterial.SetTexture("_MainTex", firstDimensionTexture1);
         emissionMaterial.SetTexture("_EmissionMap", firstDimensionTexture1);
 
-        directionalLight.color = firstDimensionColor;
+        buildingMaterialReverse.SetTexture("_MainTex", secondDimenionTexture2);
+        emissionMaterialReverse.SetTexture("_MainTex", secondDimenionTexture2);
+        emissionMaterialReverse.SetTexture("_EmissionMap", secondDimenionTexture2);
+
+
+    directionalLight.color = firstDimensionColor;
 
         currentSpawnManager = Instantiate(spawnDistrictList.spawnManagerList[districtNumber - 1], transform.position, transform.rotation);
     }
@@ -101,10 +110,18 @@ public class GameManager : MonoBehaviour
 
         if (currentTime <= 0)
         {
-            gameOver = true;
-            gameIsPlayed = false;
-            gameOverUI.SetActive(true);
+            GameIsOver();
         }
+    }
+
+    public void GameIsOver()
+    {
+        gameOver = true;
+        gameIsPlayed = false;
+        gameOverUI.SetActive(true);
+        playerUI.SetActive(false);
+        bossUI.SetActive(false);
+        Time.timeScale = 0;
     }
 
     public void UpdatePlayerHealth()
@@ -117,9 +134,7 @@ public class GameManager : MonoBehaviour
 
         if (player.playerCurrentHealth <= 0)
         {
-            gameOver = true;
-            gameIsPlayed = false;
-            gameOverUI.SetActive(true);
+            GameIsOver();
         }
     }
 
@@ -201,6 +216,10 @@ public class GameManager : MonoBehaviour
         emissionMaterial.SetTexture("_MainTex", firstDimensionTexture1);
         emissionMaterial.SetTexture("_EmissionMap", firstDimensionTexture1);
 
+        buildingMaterialReverse.SetTexture("_MainTex", secondDimenionTexture2);
+        emissionMaterialReverse.SetTexture("_MainTex", secondDimenionTexture2);
+        emissionMaterialReverse.SetTexture("_EmissionMap", secondDimenionTexture2);
+
         //boss UI
         bossUI.SetActive(false);
 
@@ -222,11 +241,16 @@ public class GameManager : MonoBehaviour
         emissionMaterial.SetTexture("_MainTex", secondDimenionTexture2);
         emissionMaterial.SetTexture("_EmissionMap", secondDimenionTexture2);
 
+        buildingMaterialReverse.SetTexture("_MainTex", firstDimensionTexture1);
+        emissionMaterialReverse.SetTexture("_MainTex", firstDimensionTexture1);
+        emissionMaterialReverse.SetTexture("_EmissionMap", firstDimensionTexture1);
+
         mainCamera.BigShortShakeScreen();
         navigationController.DeactivateNavigatorMesh();
         directionalLight.color = secondDimenioncolor;
 
         Destroy(currentSpawnManager);
+        DestroyAllEXPOrbs();
     }
 
 
@@ -273,6 +297,16 @@ public class GameManager : MonoBehaviour
             int removePos = weaponChooseList.weaponIndex.IndexOf(removeIndex);
 
             weaponChooseList.weaponIndex.RemoveAt(removePos);
+        }
+    }
+
+    public void DestroyAllEXPOrbs()
+    {
+        GameObject[] prefabs = GameObject.FindGameObjectsWithTag(ExpOrbDestroy.tag);
+
+        foreach (GameObject prefab in prefabs)
+        {
+            Destroy(prefab);
         }
     }
 

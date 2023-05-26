@@ -36,7 +36,8 @@ public class Boss01 : MonoBehaviour
     {
         foreach (GameObject weapon in weapons)
         {
-            weapon.SetActive(true);
+            if (weapon != null)
+                weapon.SetActive(true);
         }
     }
  }

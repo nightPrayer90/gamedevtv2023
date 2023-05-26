@@ -132,6 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: -5
   detectionRange: 5
+  buildingMaterial: {fileID: 2100000, guid: a43fb6755e8669e4d82cb390c4b53847, type: 2}
+  emissivMaterial: {fileID: 2100000, guid: 71d4cba053fd51349a3913828654dbdf, type: 2}
 --- !u!114 &9164335622968218934
 MonoBehaviour:
   m_ObjectHideFlags: 0

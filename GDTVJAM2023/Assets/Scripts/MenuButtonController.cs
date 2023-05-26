@@ -1,10 +1,12 @@
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuButtonController : MonoBehaviour
 {
     public string gameScene = "GameScene";
+    public Slider _musicSlider, _sfxSlider;
 
     //Main Menu
     public void GameStart()
@@ -35,5 +37,22 @@ public class MenuButtonController : MonoBehaviour
     public void SetTimesclae()
     {
         Time.timeScale = 1;
+    }
+
+    public void ToggleMusic()
+    {
+        AudioManager.Instance.ToggleMusic();
+    }
+    public void ToggleSfx()
+    {
+        AudioManager.Instance.ToggleSFX();
+    }
+    public void MusicVolume()
+    {
+        AudioManager.Instance.MusicVolume(_musicSlider.value);
+    }
+    public void SFXVolume()
+    {
+        AudioManager.Instance.SFXVolume(_sfxSlider.value);
     }
 }

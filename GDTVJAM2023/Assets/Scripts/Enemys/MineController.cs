@@ -6,8 +6,8 @@ public class MineController : MonoBehaviour
     public float detectionRange = 10f;
 
     private Material[] materialList;
-    private Material buildingMaterial;
-    private Material emissivMaterial;
+    public Material buildingMaterial;
+    public Material emissivMaterial;
     private GameObject player;
 
     private EnemyHealth enemyHealth;
@@ -20,9 +20,7 @@ public class MineController : MonoBehaviour
         player = GameObject.Find("Player");
 
         materialList = GetComponent<MeshRenderer>().materials;
-        buildingMaterial = materialList[0];
-        emissivMaterial = materialList[1];
-
+        materialList[0] = buildingMaterial;
         materialList[1] = buildingMaterial;
         GetComponent<MeshRenderer>().materials = materialList;
     }

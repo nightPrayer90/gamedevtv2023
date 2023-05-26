@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4112829420943899877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4112829420943899899}
+  - component: {fileID: 4112829420943899898}
+  - component: {fileID: 904126870923933655}
+  - component: {fileID: 4112829420943899896}
+  - component: {fileID: 4112829420943899897}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4112829420943899899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112829420943899877}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4112829420943899898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112829420943899877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e563e3f0b6fa99408b260e913d06fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameIsPlayed: 1
+  gameOver: 0
+  districtNumber: 1
+  curretEnemyCounter: 0
+  healthText: {fileID: 0}
+  expText: {fileID: 0}
+  timerText: {fileID: 0}
+  districtText: {fileID: 0}
+  enemyToKillText: {fileID: 0}
+  enemyCounterText: {fileID: 0}
+  gameOverUI: {fileID: 0}
+  panelUI: {fileID: 0}
+  playerUI: {fileID: 0}
+  bossUI: {fileID: 0}
+  healthBar: {fileID: 0}
+  experienceSlider: {fileID: 0}
+  totalTime: 1800
+  dimensionShift: 0
+  firstDimensionTexture1: {fileID: 2800000, guid: be79e60dd524c474687d15fd6f717937, type: 3}
+  secondDimenionTexture2: {fileID: 2800000, guid: 549d44c9f0cd81a4a8c407c3cdb97d4c, type: 3}
+  buildingMaterial: {fileID: 2100000, guid: 79850a606d718c2409405aff6ffe6887, type: 2}
+  emissionMaterial: {fileID: 2100000, guid: f0459b728238f3c40a469e373574cdbf, type: 2}
+  buildingMaterialReverse: {fileID: 2100000, guid: a43fb6755e8669e4d82cb390c4b53847, type: 2}
+  emissionMaterialReverse: {fileID: 2100000, guid: 71d4cba053fd51349a3913828654dbdf, type: 2}
+  navigationController: {fileID: 0}
+  firstDimensionColor: {r: 0.972549, g: 0.5372549, b: 0.8627451, a: 1}
+  secondDimenioncolor: {r: 0.71733713, g: 0.9811321, b: 0.71733713, a: 1}
+  weaponChooseList: {fileID: 4112829420943899896}
+  upgradeChooseList: {fileID: 4112829420943899897}
+  spawnDistrictList: {fileID: 904126870923933655}
+  valueList: 
+  selectedNumbers_: 000000000000000000000000
+--- !u!114 &904126870923933655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112829420943899877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c0bd05667e72c3458dd08a762eb21a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnManagerList:
+  - {fileID: 4663641790574016719, guid: 30b4edfa15f85de4b89ab2659e1827a1, type: 3}
+  - {fileID: 4663641790574016719, guid: 3f19dfcf41edd4c4bb993b1b5a3b2c10, type: 3}
+  - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
+  - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
+  - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
+  - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
+  - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
+  - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
+  - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
+  waveKillList: 010000000f0000000f0000000f0000000f0000000f0000000f0000000f0000000f000000
+  districtList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  goToDimensionPickup:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &4112829420943899896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112829420943899877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc5a952761f4caa4cb55afad878ec433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponIndex: 
+--- !u!114 &4112829420943899897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112829420943899877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7f007a7583b9aa46a7c879be0078cda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeIndex: 

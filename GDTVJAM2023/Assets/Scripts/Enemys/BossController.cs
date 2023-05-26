@@ -19,6 +19,8 @@ public class BossController : MonoBehaviour
     private bool isActivated = false;
     private bool isHealthUpdated = false;
 
+
+
     private void Start()
     {
         cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
@@ -86,4 +88,6 @@ public class BossController : MonoBehaviour
         bossHealthSlider.value = enemyHealth.enemyHealth;
         isHealthUpdated = true;
     }
+
+
 }
