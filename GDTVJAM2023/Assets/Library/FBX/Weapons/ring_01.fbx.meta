@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5651dc98b76877046915917d9e8ad15e
+guid: 83c3e2a0d9044b848ae402d1e80a563c
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -9,11 +9,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: buildings
     second: {fileID: 2100000, guid: 79850a606d718c2409405aff6ffe6887, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: emissive
-    second: {fileID: 2100000, guid: f0459b728238f3c40a469e373574cdbf, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
