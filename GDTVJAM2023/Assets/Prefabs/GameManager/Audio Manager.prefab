@@ -49,7 +49,21 @@ MonoBehaviour:
   musicSounds:
   - name: MenuMusic
     clip: {fileID: 8300000, guid: bcd21abab9041a94fb0ec4df316d14da, type: 3}
-  sfxSounds: []
+  sfxSounds:
+  - name: MouseHover
+    clip: {fileID: 8300000, guid: cd054736a6d18c14e999e86139a35e57, type: 3}
+  - name: MouseKlick
+    clip: {fileID: 8300000, guid: 78c2513470cf8a840b14516b57dd28b2, type: 3}
+  - name: MouseNo
+    clip: {fileID: 8300000, guid: 0e5f3c87cd59d864081a615463d64ca9, type: 3}
+  - name: WindowOpen
+    clip: {fileID: 8300000, guid: 1d5a9af2f4e97da42a9bdb59e9a4a5e7, type: 3}
+  - name: DimensionSwap
+    clip: {fileID: 8300000, guid: bf443bbffab2c6f4ab0687368da02d52, type: 3}
+  - name: ExperienceOrb
+    clip: {fileID: 8300000, guid: 4644da636780f9d4ead15a611a14d9b6, type: 3}
+  - name: LevelUp
+    clip: {fileID: 8300000, guid: 2d181c8f97436ea478dd450562b3bd9e, type: 3}
   musicSource: {fileID: 5360521062723552136}
   sfxSource: {fileID: 6929376283259157201}
 --- !u!1 &5013503996951810301
@@ -96,7 +110,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.212
   m_Pitch: 1
   Loop: 0
   Mute: 0
