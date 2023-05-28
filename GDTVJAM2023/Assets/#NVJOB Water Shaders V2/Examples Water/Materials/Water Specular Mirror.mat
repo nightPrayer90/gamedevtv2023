@@ -13,7 +13,6 @@ Material:
   - EFFECT_ALBEDO2
   - EFFECT_FOAM
   - EFFECT_MICROWAVE
-  - EFFECT_MIRROR
   - EFFECT_NORMALMAP2
   - EFFECT_PARALLAX
   - EFFECT_REFLECTION
@@ -182,10 +181,10 @@ Material:
     - _FPOW: 10
     - _Factor: 202
     - _FadeLimit: 0.1
-    - _FoamAmplitude: 16
-    - _FoamFlow: 11
+    - _FoamAmplitude: 1
+    - _FoamFlow: 2
     - _FoamFrequency: 3
-    - _FoamGain: 0.6
+    - _FoamGain: 4
     - _FoamLacunarity: 6
     - _FoamScale: 0.1
     - _GlossAmount: 0.03
@@ -201,7 +200,7 @@ Material:
     - _MainDetailFlow: 0
     - _MainDetailScale: 3
     - _Metallic: 0
-    - _MicrowaveScale: 1
+    - _MicrowaveScale: 0.5
     - _MicrowaveStrength: 0.01
     - _MinuteDetailIntensity: 1.455
     - _MinuteDetailScrollSpeed: 0.089
@@ -216,9 +215,9 @@ Material:
     - _Mitigation: 22.4
     - _Mode: 0
     - _NormalDetailFlow: 1
-    - _NormalMap1Strength: 1.73
+    - _NormalMap1Strength: 1.24
     - _NormalMap2Flow: 0.5
-    - _NormalMap2Strength: 1.06
+    - _NormalMap2Strength: 0.001
     - _NormalMap2Tiling: -0.9
     - _NormalStrength: 0.85
     - _NormalmapDetailScale: 0.7
@@ -227,12 +226,12 @@ Material:
     - _NormalmapDetailSpeed: 0.3
     - _OcclusionStrength: 1
     - _Parallax: -0.2
-    - _ParallaxAmount: 0.3
-    - _ParallaxFlow: -100
+    - _ParallaxAmount: 0.9
+    - _ParallaxFlow: 0.1
     - _ParallaxMapTiling: 1
-    - _ParallaxNoiseAmplitude: 1.97
-    - _ParallaxNoiseFrequency: 6
-    - _ParallaxNoiseGain: 0.098
+    - _ParallaxNoiseAmplitude: 0.09
+    - _ParallaxNoiseFrequency: 5.85
+    - _ParallaxNoiseGain: 0.722
     - _ParallaxNoiseLacunarity: 6
     - _ParallaxNoiseScale: 1.5
     - _ParallaxNormal2Offset: -1
@@ -273,7 +272,7 @@ Material:
     - _DiffuseColor: {r: 0.32352936, g: 0.32352936, b: 0.32352936, a: 1}
     - _EdgeColor: {r: 0.5588235, g: 0.5588235, b: 0.5588235, a: 1}
     - _EmissionColor: {r: 0.5441177, g: 0.5441177, b: 0.5441177, a: 1}
-    - _FoamColor: {r: 0.38177344, g: 0.83619535, b: 1.58698, a: 1}
+    - _FoamColor: {r: 0.058462817, g: 0, b: 1.3192173, a: 1}
     - _FoamSoft: {r: 0.16, g: 0.3, b: 2, a: 0}
     - _MirrorColor: {r: 2.3947096, g: 1.0731009, b: 1.9518666, a: 0.5}
     - _MirrorDepthColor: {r: 0.37896776, g: 0.2249911, b: 0.6037736, a: 1}
