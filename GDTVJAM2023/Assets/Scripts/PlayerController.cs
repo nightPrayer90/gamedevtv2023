@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
         {
             //Destroy(other.gameObject);
             other.gameObject.SetActive(false);
-            gameManager.GoBackDimension();
+            gameManager.Victory();
             AudioManager.Instance.PlaySFX("DimensionSwap");
         }
 

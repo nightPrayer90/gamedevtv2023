@@ -19,7 +19,7 @@ public class NavigationController : MonoBehaviour
         // Position des GoToDimensionPickups
         targetPosition = spawnDoistrictList.goToDimensionPickup[gameManager.districtNumber - 1].transform.position;
         navigatorMesh.SetActive(true);
-        AudioManager.Instance.PlaySFX("MouseHover");
+        AudioManager.Instance.PlaySFX("ShortAlert");
     }
 
     public void DeactivateNavigatorMesh()

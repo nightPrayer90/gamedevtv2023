@@ -61,6 +61,7 @@ MonoBehaviour:
   panelUI: {fileID: 0}
   playerUI: {fileID: 0}
   bossUI: {fileID: 0}
+  victoryUI: {fileID: 0}
   healthBar: {fileID: 0}
   experienceSlider: {fileID: 0}
   totalTime: 1800
@@ -73,7 +74,8 @@ MonoBehaviour:
   emissionMaterialReverse: {fileID: 2100000, guid: 71d4cba053fd51349a3913828654dbdf, type: 2}
   navigationController: {fileID: 0}
   firstDimensionColor: {r: 0.972549, g: 0.5372549, b: 0.8627451, a: 1}
-  secondDimenioncolor: {r: 0.71733713, g: 0.9811321, b: 0.71733713, a: 1}
+  secondDimenioncolor: {r: 0, g: 0.4338007, b: 1, a: 1}
+  ExpOrbDestroy: {fileID: 5693635298845190373, guid: 5ca91630af6a61c4f99d7279b939e976, type: 3}
   weaponChooseList: {fileID: 4112829420943899896}
   upgradeChooseList: {fileID: 4112829420943899897}
   spawnDistrictList: {fileID: 904126870923933655}
@@ -101,7 +103,7 @@ MonoBehaviour:
   - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
   - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
   - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
-  waveKillList: 010000000f0000000f0000000f0000000f0000000f0000000f0000000f0000000f000000
+  waveKillList: 0f00000028000000320000003c00000046000000500000005a000000640000006e000000
   districtList:
   - {fileID: 0}
   - {fileID: 0}

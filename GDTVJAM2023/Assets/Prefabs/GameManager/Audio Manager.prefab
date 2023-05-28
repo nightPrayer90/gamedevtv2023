@@ -82,6 +82,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 63506713d2653204b8d983d159d09fda, type: 3}
   - name: WarningBoss
     clip: {fileID: 8300000, guid: 3cb07e5596b8bc549aa02bd52c7cbcae, type: 3}
+  - name: ShortAlert
+    clip: {fileID: 8300000, guid: 5a2c6f5c975dc764989ac8ad59f916cc, type: 3}
   musicSource: {fileID: 5360521062723552136}
   sfxSource: {fileID: 6929376283259157201}
   musicVolume: 0.2

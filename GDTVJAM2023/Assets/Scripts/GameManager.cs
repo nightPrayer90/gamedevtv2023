@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public GameObject panelUI;
     public GameObject playerUI;
     public GameObject bossUI;
+    public GameObject victoryUI;
     public Slider healthBar;
     public Slider experienceSlider;
 
@@ -81,6 +82,7 @@ public class GameManager : MonoBehaviour
         playerUI.SetActive(true);
         bossUI.SetActive(false);
         panelUI.SetActive(false);
+        victoryUI.SetActive(false);
     }
 
     public void StartDimentionSettings()
@@ -128,6 +130,7 @@ public class GameManager : MonoBehaviour
         gameOverUI.SetActive(true);
         playerUI.SetActive(false);
         bossUI.SetActive(false);
+        victoryUI.SetActive(false);
         Time.timeScale = 0;
     }
 
@@ -327,7 +330,13 @@ public class GameManager : MonoBehaviour
     public void Victory()
     {
         //Game is over
-
+        gameOver = true;
+        gameIsPlayed = false;
+        gameOverUI.SetActive(false);
+        playerUI.SetActive(false);
+        bossUI.SetActive(false);
+        victoryUI.SetActive(true);
+        Time.timeScale = 0;
     }
 
 
