@@ -12,6 +12,12 @@ public class PeriodSpawner : MonoBehaviour
     public GameObject spawnPoint2;
     private bool enemyDetected = false;
     // Update is called once per frame
+
+    private void Start()
+    {
+        nextSpawnTime = Time.time + spawnInterval;
+    }
+
     void Update()
     {
         if (enemyDetected == false)

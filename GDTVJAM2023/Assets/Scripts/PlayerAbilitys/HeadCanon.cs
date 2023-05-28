@@ -26,6 +26,7 @@ public class HeadCanon : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        nextShootTime = Time.time + reloadInterval;
     }
 
     private void Update()

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using System.Collections.Generic;
 
 public class PanelInteraction : MonoBehaviour
 {
@@ -18,9 +18,11 @@ public class PanelInteraction : MonoBehaviour
     public GameObject playerUI;
     public TextMeshProUGUI headerText;
     public TextMeshProUGUI descriptionText;
+    public Image iconPanel;
     private float upgradeValue;
     private string headerStr;
     private string descriptionTextStr;
+    public List<Sprite> abilityPanelList;
 
     [Header("Value Panel")]
     public TextMeshProUGUI lifeText;
@@ -42,6 +44,7 @@ public class PanelInteraction : MonoBehaviour
     public Sprite spPanelDeselcet;
     public Sprite spPanelSelect;
 
+   
 
     void Start()
     {
@@ -58,7 +61,7 @@ public class PanelInteraction : MonoBehaviour
         //panelImage.color = hoverColor;
         panelImage.sprite = spPanelSelect;
 
-}
+    }
 
     public void OnMouseExit()
     {
@@ -129,6 +132,9 @@ public class PanelInteraction : MonoBehaviour
 
             if (!playerWeaponController.isBackShield) imBackShield.color = imPanelBaseColor;
             else imBackShield.color = imPanelUpgradeColor;
+
+            iconPanel.sprite = abilityPanelList[gameManager.selectedNumbers_[panelIndex]];
+                
         }       
     }
     
@@ -269,7 +275,7 @@ public class PanelInteraction : MonoBehaviour
                 break;
             case 2:
                 headerStr = "Fire rate";
-                upgradeValue = Mathf.RoundToInt(Random.Range(1, 2))/100f;
+                upgradeValue = Mathf.RoundToInt(Random.Range(2, 3))/100f;
                 Debug.Log(upgradeValue);
                 descriptionTextStr = "Increase your main weapon fire rate by  " + upgradeValue;
                 break;

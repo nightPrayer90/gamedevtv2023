@@ -20205,7 +20205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 551558890849338518}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.106, y: 0, z: -0.412}
+  m_LocalPosition: {x: 0.127, y: 0, z: -0.525}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24034,13 +24034,14 @@ ParticleSystem:
   TriggerModule:
     enabled: 0
     serializedVersion: 2
-    inside: 1
+    inside: 0
     outside: 0
-    enter: 0
+    enter: 2
     exit: 0
     colliderQueryMode: 0
-    radiusScale: 1
-    primitives: []
+    radiusScale: 0.0001
+    primitives:
+    - {fileID: 0}
   SubModule:
     serializedVersion: 2
     enabled: 1
@@ -25071,6 +25072,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 0
   particleSystem: {fileID: 551558890849338506}
+  interval: 0.3
+  isEmittingSound: 1
+  shootSound: PlayerShot
 --- !u!1 &551558890905112990
 GameObject:
   m_ObjectHideFlags: 0
@@ -29995,6 +29999,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 2
   particleSystem: {fileID: 551558890908627998}
+  interval: 1
+  isEmittingSound: 0
+  shootSound: 
 --- !u!1 &551558890930529995
 GameObject:
   m_ObjectHideFlags: 0
@@ -35246,7 +35253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystems:
   - {fileID: 7389470104231755615}
-  tickInterval: 15
+  tickInterval: 16
   PercentHealthPerTick: 0.1
 --- !u!1 &551558891711612176
 GameObject:
@@ -39198,9 +39205,9 @@ ParticleSystem:
   TriggerModule:
     enabled: 0
     serializedVersion: 2
-    inside: 1
+    inside: 0
     outside: 0
-    enter: 0
+    enter: 2
     exit: 0
     colliderQueryMode: 0
     radiusScale: 1
@@ -59719,6 +59726,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 2
   particleSystem: {fileID: 551558892117798968}
+  interval: 1
+  isEmittingSound: 0
+  shootSound: 
 --- !u!1 &551558892212810389
 GameObject:
   m_ObjectHideFlags: 0
@@ -64612,6 +64622,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 2
   particleSystem: {fileID: 551558892212810376}
+  interval: 1
+  isEmittingSound: 0
+  shootSound: 
 --- !u!1 &551558892217598443
 GameObject:
   m_ObjectHideFlags: 0
@@ -64639,7 +64652,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 551558892217598443}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.108, y: 0, z: -0.412}
+  m_LocalPosition: {x: -0.128, y: 0, z: -0.525}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -69505,6 +69518,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 0
   particleSystem: {fileID: 551558892217598447}
+  interval: 0.3
+  isEmittingSound: 0
+  shootSound: PlayerShoot
 --- !u!1 &551558892322432513
 GameObject:
   m_ObjectHideFlags: 0
@@ -79345,7 +79361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystems:
   - {fileID: 2735462831119209522}
-  spawnInterval: 2
+  spawnInterval: 3
 --- !u!1 &551558892496614422
 GameObject:
   m_ObjectHideFlags: 0
@@ -84455,6 +84471,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 1
   particleSystem: {fileID: 551558892632615462}
+  interval: 1
+  isEmittingSound: 0
+  shootSound: 
 --- !u!1 &551558892636554806
 GameObject:
   m_ObjectHideFlags: 0
@@ -84617,7 +84636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &127066405857008397
 Transform:
   m_ObjectHideFlags: 0
@@ -99272,6 +99291,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 1
   particleSystem: {fileID: 2735462831119209522}
+  interval: 1
+  isEmittingSound: 0
+  shootSound: 
 --- !u!1 &7534365714480221671
 GameObject:
   m_ObjectHideFlags: 0
