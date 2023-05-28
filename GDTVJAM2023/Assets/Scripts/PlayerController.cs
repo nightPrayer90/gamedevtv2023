@@ -65,25 +65,28 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             playerCurrentExperience += 1;
             gameManager.UpdatePlayerExperience();
+            AudioManager.Instance.PlaySFX("ExperienceOrb");
         }
         if (other.gameObject.CompareTag("DimensionPickUp"))
         {
             //Destroy(other.gameObject);
             other.gameObject.SetActive(false);
             gameManager.GoToDimension();
+            AudioManager.Instance.PlaySFX("DimensionSwap");
         }
         if (other.gameObject.CompareTag("DimensionPickUpGoBack"))
         {
             //Destroy(other.gameObject);
             other.gameObject.SetActive(false);
             gameManager.GoBackDimension();
+            AudioManager.Instance.PlaySFX("DimensionSwap");
         }
         if (other.gameObject.CompareTag("VictoryPickup"))
         {
             //Destroy(other.gameObject);
             other.gameObject.SetActive(false);
             gameManager.GoBackDimension();
-
+            AudioManager.Instance.PlaySFX("DimensionSwap");
         }
 
 

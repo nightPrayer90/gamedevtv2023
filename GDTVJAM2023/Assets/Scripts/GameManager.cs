@@ -73,7 +73,9 @@ public class GameManager : MonoBehaviour
         UpdateDistrictText(districtNumber);
         UpdateEnemyToKill(0);
         StartDimentionSettings();
+
         Time.timeScale = 1;
+        AudioManager.Instance.PlayMusic("InGameMusic");
     }
 
     public void StartDimentionSettings()
@@ -181,6 +183,8 @@ public class GameManager : MonoBehaviour
         // Levelup
         if (player.playerCurrentExperience == player.playerExperienceToLevelUp)
         {
+            AudioManager.Instance.PlaySFX("LevelUp");
+
             player.playerLevel += 1;
             player.playerExperienceToLevelUp = Mathf.RoundToInt(player.playerExperienceToLevelUp * player.playerLevelUpFactor);
             player.playerCurrentExperience = 0;
@@ -198,6 +202,7 @@ public class GameManager : MonoBehaviour
 
             panelUI.SetActive(true);
             playerUI.SetActive(false);
+            bossUI.SetActive(false);
         }
 
         experienceSlider.maxValue = player.playerExperienceToLevelUp;
@@ -232,6 +237,8 @@ public class GameManager : MonoBehaviour
         spawnDistrictList.districtList[districtNumber - 1].GetComponent<GroundBaseUp>().GrowUP();
 
         Instantiate(spawnDistrictList.spawnManagerList[districtNumber - 1], transform.position, transform.rotation);
+
+        AudioManager.Instance.PlayMusic("InGameMusic");
     }
     public void GoToDimension()
     {
@@ -251,6 +258,8 @@ public class GameManager : MonoBehaviour
 
         Destroy(currentSpawnManager);
         DestroyAllEXPOrbs();
+
+        AudioManager.Instance.PlayMusic("BossMusic");
     }
 
 

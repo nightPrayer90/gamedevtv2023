@@ -8,12 +8,21 @@ public class MenuButtonController : MonoBehaviour
     public string gameScene = "GameScene";
     public Slider _musicSlider, _sfxSlider;
 
+    private float _musicVolume;
+    private float _sfxVolume;
+
+
     public void Start()
     {
         if (_musicSlider != null)
         {
-            MusicVolume();
-            SFXVolume();
+            _musicVolume = AudioManager.Instance.musicVolume;
+            _sfxVolume = AudioManager.Instance.sfxVolume;
+
+            AudioManager.Instance.MusicVolume(_musicVolume);
+            AudioManager.Instance.SFXVolume(_sfxVolume);
+
+            SetSlider();
         }
     }
 
@@ -70,9 +79,18 @@ public class MenuButtonController : MonoBehaviour
     public void MusicVolume()
     {
         AudioManager.Instance.MusicVolume(_musicSlider.value);
+        AudioManager.Instance.musicVolume = _musicSlider.value ;
+        
     }
     public void SFXVolume()
     {
         AudioManager.Instance.SFXVolume(_sfxSlider.value);
+        AudioManager.Instance.sfxVolume = _sfxSlider.value;
+    }
+
+    public void SetSlider()
+    {
+        _musicSlider.value = _musicVolume;
+        _sfxSlider.value = _sfxVolume;
     }
 }

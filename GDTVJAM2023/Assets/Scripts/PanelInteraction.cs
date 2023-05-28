@@ -39,7 +39,8 @@ public class PanelInteraction : MonoBehaviour
     public Image imFireflies;
     public Color imPanelBaseColor;
     public Color imPanelUpgradeColor;
-
+    public Sprite spPanelDeselcet;
+    public Sprite spPanelSelect;
 
 
     void Start()
@@ -54,13 +55,15 @@ public class PanelInteraction : MonoBehaviour
     {
         // Farbe des Panels ändern, wenn die Maus über das Panel fährt
         UpdateValuePanelOnMouseEnter(gameManager.selectedNumbers_[panelIndex]);
-        panelImage.color = hoverColor;
-    }
+        //panelImage.color = hoverColor;
+        panelImage.sprite = spPanelSelect;
+
+}
 
     public void OnMouseExit()
     {
         // Zurück zur Standardfarbe wechseln, wenn die Maus das Panel verlässt
-        panelImage.color = defaultColor;
+        panelImage.sprite = spPanelDeselcet;
         UpdateValuePanel();
     }
 
@@ -131,6 +134,8 @@ public class PanelInteraction : MonoBehaviour
     
     void ChooseAValue(int number)
     {
+        AudioManager.Instance.PlaySFX("WindowOpen");
+
         switch (number)
         {
             case 0: //upgrade: health
@@ -198,6 +203,8 @@ public class PanelInteraction : MonoBehaviour
 
     void UpdateValuePanelOnMouseEnter(int number)
     {
+        AudioManager.Instance.PlaySFX("MouseHover");
+
         switch (number)
         {
             case 0:

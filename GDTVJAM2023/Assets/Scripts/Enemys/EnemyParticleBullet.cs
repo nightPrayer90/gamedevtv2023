@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 public class EnemyParticleBullet : MonoBehaviour
 {
     public int bulletDamage = 1;
@@ -7,6 +7,10 @@ public class EnemyParticleBullet : MonoBehaviour
     //private GameManager gameManager;
     public ParticleSystem particleSystem;
     public bool fireOnBirth = false;
+    public float interval = 1f;
+    private bool isEmitting = false;
+    public bool isEmittingSound = true;
+    public string shootSound;
 
     //List<ParticleCollisionEvent> colEvents = new List<ParticleCollisionEvent>();
     public void Start()
@@ -14,6 +18,25 @@ public class EnemyParticleBullet : MonoBehaviour
         if (fireOnBirth)
         {
             BulletStart(bulletDamage, baseFireRate);
+        }
+        if (isEmittingSound == true)
+        {
+            StartCoroutine(TriggerParticleSound());
+            isEmitting = true;
+        }
+    }
+
+    private IEnumerator TriggerParticleSound()
+    {
+        while (true)
+        {
+            if (isEmitting)
+            {
+                // Emitiere ein Partikel
+                AudioManager.Instance.PlaySFX(shootSound);
+            }
+
+            yield return new WaitForSeconds(interval);
         }
     }
 
@@ -27,6 +50,9 @@ public class EnemyParticleBullet : MonoBehaviour
         main.duration = fireRate;
 
         particleSystem.Play();
+
+        interval = fireRate;
+        isEmitting = true;
     }
 
     public void BulletStart_()
