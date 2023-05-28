@@ -56,6 +56,7 @@ public class BossController : MonoBehaviour
         isActivated = true;
         cameraController.ShakeScreen();
 
+        AudioManager.Instance.PlaySFX("LiftUPBoss");
         // Bewege den Boss zur Zielposition
         StartCoroutine(MoveToTargetPosition());
     }
@@ -78,7 +79,7 @@ public class BossController : MonoBehaviour
     private void StartBossBattle()
     {
         enemyHealth.canTakeDamage = true;
-     
+        AudioManager.Instance.PlaySFX("WarningBoss");
         if (battleScriptPlaceholder != null)
         {
             battleScriptPlaceholder.enabled = true; 

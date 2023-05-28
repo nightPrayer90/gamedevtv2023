@@ -1522,26 +1522,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8729333854598001049, guid: 41f9176063e40cb4e9c11fcb62faf618, type: 3}
-      propertyPath: musicSounds.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8729333854598001049, guid: 41f9176063e40cb4e9c11fcb62faf618, type: 3}
-      propertyPath: musicSounds.Array.data[1].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: bcd21abab9041a94fb0ec4df316d14da, type: 3}
-    - target: {fileID: 8729333854598001049, guid: 41f9176063e40cb4e9c11fcb62faf618, type: 3}
-      propertyPath: musicSounds.Array.data[1].name
-      value: MenuMusic
-      objectReference: {fileID: 0}
-    - target: {fileID: 8729333854598001049, guid: 41f9176063e40cb4e9c11fcb62faf618, type: 3}
-      propertyPath: musicSounds.Array.data[2].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: bcd21abab9041a94fb0ec4df316d14da, type: 3}
-    - target: {fileID: 8729333854598001049, guid: 41f9176063e40cb4e9c11fcb62faf618, type: 3}
-      propertyPath: musicSounds.Array.data[2].name
-      value: MenuMusic
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41f9176063e40cb4e9c11fcb62faf618, type: 3}
 --- !u!1 &1976239206

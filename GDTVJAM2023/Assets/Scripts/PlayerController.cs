@@ -158,6 +158,7 @@ public class PlayerController : MonoBehaviour
         if (decHealth > 0) // man verliert leben
         {
             cameraController.ShakeScreen();
+            AudioManager.Instance.PlaySFX("PlayerGetDamage");
         }
         playerCurrentHealth = Mathf.Min(Mathf.Max(0, playerCurrentHealth - decHealth), playerMaxHealth);
         

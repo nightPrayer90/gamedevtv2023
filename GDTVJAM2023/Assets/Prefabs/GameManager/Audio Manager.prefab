@@ -68,8 +68,20 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 4644da636780f9d4ead15a611a14d9b6, type: 3}
   - name: LevelUp
     clip: {fileID: 8300000, guid: 2d181c8f97436ea478dd450562b3bd9e, type: 3}
-  - name: PlayerShoot
-    clip: {fileID: 8300000, guid: 0714794d203e4c548adcaf376b7b8a00, type: 3}
+  - name: PlayerShot
+    clip: {fileID: 8300000, guid: 790370ff575fde448be9b52912b262ec, type: 3}
+  - name: ImpactShot
+    clip: {fileID: 8300000, guid: 43c3fc29c21eb564dba7a3b252467252, type: 3}
+  - name: Explosion
+    clip: {fileID: 8300000, guid: 7635c223dc9701c4597ff4b31918aa25, type: 3}
+  - name: LiftUP
+    clip: {fileID: 8300000, guid: 0cb5b776371ddc1438886b99fecc16c5, type: 3}
+  - name: LiftUPBoss
+    clip: {fileID: 8300000, guid: da82a21ca6b16704087cbde71f20fd66, type: 3}
+  - name: PlayerGetDamage
+    clip: {fileID: 8300000, guid: 63506713d2653204b8d983d159d09fda, type: 3}
+  - name: WarningBoss
+    clip: {fileID: 8300000, guid: 3cb07e5596b8bc549aa02bd52c7cbcae, type: 3}
   musicSource: {fileID: 5360521062723552136}
   sfxSource: {fileID: 6929376283259157201}
   musicVolume: 0.2
@@ -127,7 +139,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 25.071291
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -255,7 +267,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 80.80451
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

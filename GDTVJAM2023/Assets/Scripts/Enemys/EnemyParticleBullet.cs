@@ -10,7 +10,9 @@ public class EnemyParticleBullet : MonoBehaviour
     public float interval = 1f;
     private bool isEmitting = false;
     public bool isEmittingSound = true;
-    public string shootSound;
+    //public string shootSound;
+
+    public AudioSource audioSource;
 
     //List<ParticleCollisionEvent> colEvents = new List<ParticleCollisionEvent>();
     public void Start()
@@ -32,8 +34,12 @@ public class EnemyParticleBullet : MonoBehaviour
         {
             if (isEmitting)
             {
-                // Emitiere ein Partikel
-                AudioManager.Instance.PlaySFX(shootSound);
+                if (audioSource != null)
+                {
+                    // Emitiere ein Partikel
+                    audioSource.volume = AudioManager.Instance.sfxVolume;
+                    audioSource.Play();
+                }
             }
 
             yield return new WaitForSeconds(interval);
@@ -59,16 +65,19 @@ public class EnemyParticleBullet : MonoBehaviour
     {
         if (particleSystem.isStopped)
             particleSystem.Play();
+        isEmitting = true;
     }
 
     public void BulletStop()
     {
         particleSystem.Stop();
+        isEmitting = false;
     }
 
     public void HardBulletStop()
     {
         particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        isEmitting = false;
     }
 
     public void BulletSetDamage(int bulletDamage_)

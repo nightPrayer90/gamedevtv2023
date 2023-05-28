@@ -76,6 +76,11 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 1;
         AudioManager.Instance.PlayMusic("InGameMusic");
+
+        gameOverUI.SetActive(false);
+        playerUI.SetActive(true);
+        bossUI.SetActive(false);
+        panelUI.SetActive(false);
     }
 
     public void StartDimentionSettings()
@@ -132,7 +137,7 @@ public class GameManager : MonoBehaviour
 
         healthBar.maxValue = player.playerMaxHealth;
         healthBar.value = player.playerCurrentHealth;
-
+        
 
         if (player.playerCurrentHealth <= 0)
         {
@@ -239,6 +244,7 @@ public class GameManager : MonoBehaviour
         Instantiate(spawnDistrictList.spawnManagerList[districtNumber - 1], transform.position, transform.rotation);
 
         AudioManager.Instance.PlayMusic("InGameMusic");
+        AudioManager.Instance.PlaySFX("LiftUP");
     }
     public void GoToDimension()
     {
@@ -268,12 +274,11 @@ public class GameManager : MonoBehaviour
         //Auswahl der richtigen Liste
         if (player.playerLevel % 5 == 0 || player.playerLevel == 2)
          {
-            Debug.Log("test1");
+   
             valueList.AddRange(weaponChooseList.weaponIndex); // Greife auf die weaponIndex aus dem weaponChooseList zu
          }
          else
          {
-            Debug.Log("test2");
             valueList.AddRange(upgradeChooseList.upgradeIndex); // Greife auf die upgradeIndex aus dem upgradeChooseList zu
          }
        
