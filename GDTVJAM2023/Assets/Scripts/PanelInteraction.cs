@@ -94,6 +94,7 @@ public class PanelInteraction : MonoBehaviour
         headerText.text = headerStr;
         descriptionText.text = descriptionTextStr;
 
+        panelImage.sprite = spPanelDeselcet;
         UpdateValuePanel();
 
     }
