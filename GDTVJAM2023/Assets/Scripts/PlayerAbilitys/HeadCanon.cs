@@ -130,6 +130,7 @@ public class HeadCanon : MonoBehaviour
         if (fireSalveCount < fireSalveMax && enemyDetected == true)
         {
             particleSystem.Play();
+            AudioManager.Instance.PlaySFX("PlayerHeadCannon");
             fireSalveCount ++;
         }
     }

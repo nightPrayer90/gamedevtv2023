@@ -29,6 +29,7 @@ public class PeriodSpawner : MonoBehaviour
         {
             Instantiate(rockedToLaunch, spawnPoint.transform.position, Quaternion.Euler(0f, 180f, 0f) *  gameObject.transform.rotation);
             Instantiate(rockedToLaunch, spawnPoint2.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation);
+            AudioManager.Instance.PlaySFX("PlayerRocketStart");
             nextSpawnTime = Time.time + spawnInterval;
         }
     }
@@ -49,6 +50,7 @@ public class PeriodSpawner : MonoBehaviour
             {
                 enemyDetected = true;
             }
+            
         }
     }
 }

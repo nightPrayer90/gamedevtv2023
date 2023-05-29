@@ -88,6 +88,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e0bf2e27d0c31714bb44cd16f9ddd79d, type: 3}
   - name: DestrictIsDone
     clip: {fileID: 8300000, guid: ab0ec0b194ef93549ba2c15d22026500, type: 3}
+  - name: PlayerHeadCannon
+    clip: {fileID: 8300000, guid: e5de4309042e23b45acbc0dbb4db09a5, type: 3}
   musicSource: {fileID: 5360521062723552136}
   sfxSource: {fileID: 6929376283259157201}
   musicVolume: 0.2

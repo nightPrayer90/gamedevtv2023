@@ -9,6 +9,7 @@ public class LifeModul : MonoBehaviour
     private float nextHealthTick = 12f;
     public float PercentHealthPerTick = 0.1f;
     private PlayerController playerController;
+    public string audioClip = "";
 
     // Update is called once per frame
     private void Start()
@@ -26,6 +27,7 @@ public class LifeModul : MonoBehaviour
                 {
                     particleSystem.Play();
                 }
+                AudioManager.Instance.PlaySFX(audioClip);
                 playerController.UpdatePlayerHealth(-Mathf.Max(1, Mathf.RoundToInt(playerController.playerMaxHealth * PercentHealthPerTick)));
                 nextHealthTick = Time.time + tickInterval;
             }
