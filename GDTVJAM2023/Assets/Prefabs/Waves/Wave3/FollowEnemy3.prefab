@@ -235,7 +235,7 @@ MonoBehaviour:
   dieExplosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   expOrb: {fileID: 5693635298845190373, guid: 5ca91630af6a61c4f99d7279b939e976, type: 3}
   enemyHealth: 3
-  collisonDamage: 1
+  collisonDamage: 2
   explosionForce: 5
   expOrbSpawn: 1
   secondDimensionEnemy: 0

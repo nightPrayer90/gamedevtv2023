@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour
             player.playerExperienceToLevelUp = Mathf.RoundToInt(player.playerExperienceToLevelUp * player.playerLevelUpFactor);
             player.playerCurrentExperience = 0;
 
-            int temphealth = Mathf.RoundToInt(player.playerMaxHealth * 0.1f);
+            int temphealth = Mathf.RoundToInt(player.playerMaxHealth * 0.25f);
 
             player.UpdatePlayerHealth(-temphealth);
 
