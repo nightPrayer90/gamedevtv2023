@@ -48,10 +48,12 @@ MonoBehaviour:
   - {fileID: 3161139216598759944, guid: 166874856ff8582498fd270ed0cebca5, type: 3}
   - {fileID: 3161139216598759944, guid: f0140ca9e3581494c8eddfbb20625e1f, type: 3}
   - {fileID: 3161139216598759944, guid: 7a54748170aab2043bb55936fbd253e5, type: 3}
+  - {fileID: 3161139216598759944, guid: 2eb9fdb0a0f3f3f4eb75631c21895113, type: 3}
   spawnProbabilities:
-  - 60
+  - 55
   - 10
   - 20
+  - 5
   maxSpawnDistance: 10
   spawnInterval: 1.5
   maxWaveEnemys: 20

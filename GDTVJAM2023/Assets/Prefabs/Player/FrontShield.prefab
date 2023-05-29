@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetMaterial: {fileID: 2100000, guid: e9faa18243b0ad44d976b0eff6dfd348, type: 2}
-  shieldLife: 4
+  shieldLife: 6
   isBackShield: 0
   isBackShieldLeft: 0
   isBackShieldRight: 0
@@ -185,7 +185,7 @@ Transform:
   m_GameObject: {fileID: 6061755543470534798}
   m_LocalRotation: {x: -0.49999708, y: 0.5000029, z: -0.5000029, w: -0.49999708}
   m_LocalPosition: {x: 0, y: 0, z: -0.0216}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6211020399160301671}

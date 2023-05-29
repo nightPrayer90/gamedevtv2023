@@ -30114,6 +30114,7 @@ MonoBehaviour:
   playerLevelUpFactor: 1.2
   damageInterval: 1
   damageTaken: 1
+  isOutsideBorder: 0
   isFrontShield: 0
   isBackShieldLeft: 0
   isBackShieldRight: 0
@@ -35242,7 +35243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rockedToLaunch: {fileID: 667735904795272308, guid: a6d86ef9fcb3b084fae049be9d2a24b8, type: 3}
-  spawnInterval: 6
+  spawnInterval: 5
   detectionRange: 1.5
   spawnPoint: {fileID: 551558890905112990}
   spawnPoint2: {fileID: 551558891580470990}
@@ -35324,7 +35325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystems:
   - {fileID: 7389470104231755615}
-  tickInterval: 16
+  tickInterval: 15
   PercentHealthPerTick: 0.1
 --- !u!1 &551558891711612176
 GameObject:
@@ -69629,7 +69630,7 @@ MonoBehaviour:
   particleSystems:
   - {fileID: 551558892117798968}
   - {fileID: 551558892212810376}
-  spawnInterval: 5
+  spawnInterval: 4
 --- !u!1 &551558892342975464
 GameObject:
   m_ObjectHideFlags: 0
@@ -84498,7 +84499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b81600d1444ad4e84b5ba5f68a1b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 1
+  bulletDamage: 3
   particleSystem: {fileID: 551558892632615462}
   interval: 1
   isEmittingSound: 0
@@ -84633,7 +84634,7 @@ MonoBehaviour:
   shieldObjects:
   - {fileID: 135186969060692196, guid: b51a06e5f67d7c24d9224dd6af59c250, type: 3}
   - {fileID: 135186969060692196, guid: b98c9e8ad142c4b4fabd7748c8a8d88b, type: 3}
-  spawnInterval: 12
+  spawnInterval: 10
   nextSpawnTime: 0
   isBackShield: 1
 --- !u!1 &5160361286413119156
@@ -99355,7 +99356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shieldObjects:
   - {fileID: 135186969060692196, guid: 4aa7a4d23bea64242a5a08a0d690f362, type: 3}
-  spawnInterval: 15
+  spawnInterval: 12
   nextSpawnTime: 0
   isBackShield: 0
 --- !u!1 &7852356569432262377
