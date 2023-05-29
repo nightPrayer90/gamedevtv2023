@@ -45,6 +45,12 @@ public class MenuButtonController : MonoBehaviour
         Application.Quit();
     }
 
+    public void Encarta()
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        SceneManager.LoadScene("Encarta");
+    }
+
     //Cedit Scene
     public void BacktoMainMenueCredit()
     {
