@@ -12,73 +12,43 @@ public class Boss03 : MonoBehaviour
     public MineController mineController;
     public GameObject explosionObject;
 
-    public ParticleSystem particleSystem1;
-    public float particleSystem1Duration = 5f;
-
-    public ParticleSystem particleSystem2;
-    public float particleSystem2Duration = 3f;
-
-    private float particleSystem1Timer;
-    private float particleSystem2Timer;
-
+    public GameObject shootRotation;
+    public float shootInterval = 1f;
+    public float setRotationAngle = 45f;
+    private float rotationAngle = 0f;
 
     private void Start()
     {
-        //StartCoroutine(ActivateObjectsWithDelay());
+        StartCoroutine(ActivateObjectsWithDelay());
+        
         mineController.detectionRange = 100;
-        mineController.rotationSpeed = 35;
+        mineController.rotationSpeed = 10;
 
-        particleSystem1.Stop();
-        particleSystem2.Stop();
-        particleSystem1Timer = particleSystem1Duration;
-        particleSystem2Timer = particleSystem2Duration;
+        
+
     }
-
-    private void Update()
+    private IEnumerator ShootRotation()
     {
-        if (particleSystem1Timer > 0f)
+        while (true)
         {
-            particleSystem1Timer -= Time.deltaTime;
+            shootRotation.transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
+            rotationAngle = rotationAngle + setRotationAngle;
+            Debug.Log("setRotation " + rotationAngle);
 
-            if (!particleSystem1.isPlaying)
-            {
-                particleSystem1.Play();
-            }
-         
-        }
-        else
-        {
-            particleSystem1Timer = particleSystem1Duration;
-            particleSystem1.Stop();
+            yield return new WaitForSeconds(shootInterval);
         }
 
-        if (particleSystem2Timer > 0f)
-        {
-            particleSystem2Timer -= Time.deltaTime;
-
-            if (!particleSystem2.isPlaying)
-            {
-                particleSystem2.Play();
-            }
-           
-        }
-        else
-        {
-            particleSystem2Timer = particleSystem2Duration;
-            particleSystem2.Stop();
-        }
     }
 
 
-
-    private IEnumerator ActivateObjectsWithDelay()
+        private IEnumerator ActivateObjectsWithDelay()
     {
         foreach (GameObject obj in objectsToActivate)
         {
             obj.SetActive(true);
             Instantiate(explosionObject, obj.transform.position, obj.transform.rotation);
             yield return new WaitForSeconds(activationDelay);
-            
+
         }
         BattleStarts();
 
@@ -86,19 +56,18 @@ public class Boss03 : MonoBehaviour
 
     private void BattleStarts()
     {
+
         foreach (GameObject weapon in weapons)
         {
             if (weapon != null)
                 weapon.SetActive(true);
         }
+
+        StartCoroutine(ShootRotation());
     }
 
     private void OnDestroy()
     {
-        foreach (GameObject objects in objectsToActivate)
-        {
-            if (objects != null)
-                objects.SetActive(true);
-        }
+        StopAllCoroutines();
     }
 }
