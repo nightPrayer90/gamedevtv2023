@@ -17,6 +17,7 @@ public class Boss08 : MonoBehaviour
         //StartCoroutine(ActivateObjectsWithDelay());
         mineController.detectionRange = 100;
         mineController.rotationSpeed = 35;
+        BattleStarts();
     }
 
     private IEnumerator ActivateObjectsWithDelay()
@@ -46,7 +47,11 @@ public class Boss08 : MonoBehaviour
         foreach (GameObject objects in objectsToActivateOnDeath)
         {
             if (objects != null)
+            {
+                Instantiate(explosionObject, objects.transform.position, objects.transform.rotation);
                 objects.SetActive(true);
+
+            }
         }
     }
 }

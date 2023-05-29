@@ -214,6 +214,7 @@ public class GameManager : MonoBehaviour
             player.playerExperienceToLevelUp = Mathf.RoundToInt(player.playerExperienceToLevelUp * player.playerLevelUpFactor);
             player.playerCurrentExperience = 0;
 
+            player.playerMaxHealth = player.playerMaxHealth + 1;
             int temphealth = Mathf.RoundToInt(player.playerMaxHealth * 0.25f);
 
             player.UpdatePlayerHealth(-temphealth);
@@ -293,7 +294,7 @@ public class GameManager : MonoBehaviour
     public void CreateRandomNumbers()
     {
         //Auswahl der richtigen Liste
-        if (((player.playerLevel % 5 + 3) == 0 || player.playerLevel == 3) && player.playerLevel <= 28)
+        if (((player.playerLevel % 5) == 3) && player.playerLevel <= 30)
          {
    
             valueList.AddRange(weaponChooseList.weaponIndex); // Greife auf die weaponIndex aus dem weaponChooseList zu

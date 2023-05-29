@@ -31,10 +31,17 @@ public class Boss03 : MonoBehaviour
     {
         while (true)
         {
-            shootRotation.transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
-            rotationAngle = rotationAngle + setRotationAngle;
-            Debug.Log("setRotation " + rotationAngle);
-
+            if (shootRotation.activeSelf)
+            {
+                shootRotation.transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
+                rotationAngle = rotationAngle + setRotationAngle;
+                Debug.Log("setRotation " + rotationAngle);
+            }
+            else
+            {
+                Destroy(gameObject);
+                StopAllCoroutines();
+            }
             yield return new WaitForSeconds(shootInterval);
         }
 
