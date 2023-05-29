@@ -162,7 +162,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 602.5, y: -19}
-  m_SizeDelta: {x: 36, y: 31}
+  m_SizeDelta: {x: 47, y: 31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &13458760
 MonoBehaviour:
@@ -581,7 +581,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 402.5, y: -19}
-  m_SizeDelta: {x: 36, y: 31}
+  m_SizeDelta: {x: 47, y: 31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &270007496
 MonoBehaviour:
@@ -741,7 +741,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 1102.5, y: -19}
-  m_SizeDelta: {x: 36, y: 31}
+  m_SizeDelta: {x: 50, y: 31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &278928980
 MonoBehaviour:
@@ -900,8 +900,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 492.5, y: -19}
-  m_SizeDelta: {x: 36, y: 31}
+  m_AnchoredPosition: {x: 502.5, y: -19}
+  m_SizeDelta: {x: 47, y: 31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &528218874
 MonoBehaviour:
@@ -1061,7 +1061,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 702.5, y: -19}
-  m_SizeDelta: {x: 36, y: 31}
+  m_SizeDelta: {x: 49, y: 31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &693376347
 MonoBehaviour:
@@ -1313,6 +1313,202 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   districtIndex: 0
+  districtImage: {fileID: 1136413675}
+  districtSprite:
+  - {fileID: 21300000, guid: 8db3a41b153d1b24e93db7aa31464a93, type: 3}
+  - {fileID: 21300000, guid: 5f492b0b739c9904fa9208ab9ebc482a, type: 3}
+  - {fileID: 21300000, guid: 10216347d3b35254da5e8fcc8735eef0, type: 3}
+  - {fileID: 21300000, guid: d051ea3cc17141c48b7b3187dc32f849, type: 3}
+  - {fileID: 21300000, guid: b62b882b5e56a6c4ea63e56eb1d2e237, type: 3}
+  - {fileID: 21300000, guid: 5dfd81cb51c664f418cb23e0cdb1ba12, type: 3}
+  - {fileID: 21300000, guid: 71e780c776eefe14e993385227531d67, type: 3}
+  - {fileID: 21300000, guid: f9c079f7cb996864ba761464bdabcde5, type: 3}
+  - {fileID: 21300000, guid: 1a44cf58c70edc44b84e90e16696ff38, type: 3}
+  districtTitleText: {fileID: 1072589711}
+  districtTitleString:
+  - District 1 - Residential district
+  - 'District 2 - Office district:'
+  - 'District 3 - Junkyard:'
+  - 'District 4 - Residential district 2:'
+  - 'District 5 - Industrial district:'
+  - 'District 6 - Banking district:'
+  - 'District 7 - Market district:'
+  - 'District 8 - Academic district:'
+  - 'District 9 - The Capitol:'
+  districtText: {fileID: 855192820}
+  districtString:
+  - 'Welcome to the residential district of Luminopolis, the futuristic metropolis
+    set in the year 2214! Luminopolis, affectionately referred to as the "Radiant
+    Enclave," is a place where streets gleam with luminous pathways, houses embrace
+    simplicity, and a watchful totalitarian government ensures that everything is
+    not just tidy, but immaculate.
+
+    
+
+    As you step into Luminopolis, prepare
+    to be mesmerized by the enchanting glow that emanates from the streets. A sophisticated
+    combination of bioluminescent technology and photovoltaic panels embedded in
+    the pavement creates a breathtaking light show, guiding your way with ethereal
+    hues. It''s as if you''re walking on a path paved with stardust, illuminating
+    your every step under the ever-watchful eye of the "Ministry of Illuminated Order."'
+  - 'As you enter the office district, prepare to be greeted by an ethereal glow
+    emanating from the streets. The pavements are embedded with advanced luminescent
+    technology, creating a captivating light display that guides the way for dedicated
+    workers. It''s as if you''re stepping into a realm where productivity itself
+    is illuminated, all under the watchful eye of the "Ministry of Illuminated Efficiency."
+
+    
+
+    The
+    office buildings showcase sleek and minimalist designs, perfectly reflecting
+    the city''s dedication to simplicity and productivity. These structures rise
+    with pristine efficiency, their exteriors polished to a brilliant shine. Inside,
+    the spaces are optimized for workflow, with ergonomic furniture, noise-canceling
+    walls, and intelligent lighting systems ensuring a seamless work experience.'
+  - 'Welcome to LuminoScrap, the enigmatic junkyard of this futuristic metropolis,
+    set in the year 2214! LuminoScrap, lovingly referred to as the "Sparkling Salvage
+    Haven," is a place where the streets emit a radiant glow, junk is a thing of
+    the past, and a meticulous totalitarian government ensures that cleanliness prevails
+    in every nook and cranny.
+
+    
+
+    As you venture into LuminoScrap, prepare
+    to be dazzled by the surreal sight of illuminated streets leading the way through
+    an immaculate landscape. These streets, infused with advanced bioluminescent
+    technology, create a mesmerizing light display, casting a vibrant aura over the
+    entire junkyard. The "Ministry of Illuminated Reclamation" oversees the constant
+    illumination, transforming what was once considered a wasteland into a dazzling
+    spectacle.
+
+    
+
+    Contrary to its name, LuminoScrap boasts a surprising
+    absence of actual junk. The totalitarian government, with its meticulous eye
+    for order and efficiency, has implemented a rigorous waste management system,
+    ensuring that every piece of discarded material is promptly sorted, recycled,
+    or repurposed. The "Bureau of Pristine Reutilization" operates with precision,
+    transforming what would be considered waste into valuable resources.'
+  - 'The houses of Luminopolis embody the concept of minimalist elegance. These dwellings,
+    though simple in appearance, are a testament to efficiency and cleanliness. The
+    architectural marvels are constructed using self-cleaning materials, allowing
+    them to maintain an impeccable shine. Thanks to the ever-vigilant "Bureau of
+    Impeccable Hygiene," even a speck of dust is promptly dealt with to preserve
+    the district''s pristine aesthetic.
+
+    
+
+    In Luminopolis, the totalitarian
+    government takes cleanliness seriously. Public cleanliness inspections occur
+    regularly, ensuring that every resident upholds the highest standards of tidiness.
+    A misplaced sock or an unpolished surface is met with swift action from the "Supreme
+    Sanitation Squad," whose presence is as efficient as it is unsettlingly thorough.'
+  - 'As you step foot into the industrial district, prepare to be engulfed in a symphony
+    of shimmering lights. The factories here are not just places of production but
+    also mesmerizing sources of illumination. Cutting-edge technologies, such as
+    bioluminescent materials and energy-efficient plasma discharge systems, transform
+    the industrial complex into a breathtaking display of luminescence. It''s as
+    if the very machinery of progress is pulsating with vibrant energy, all under
+    the watchful eye of the "Ministry of Illuminated Industry."
+
+    
+
+    As you
+    interact with the resilient residents of this city you''ll witness a community
+    bonded by their dedication to progress. From skillful craftsmen to tireless engineers,
+    the denizens are the lifeblood of the industrial machine. Their relentless pursuit
+    of excellence reflects the government''s vision of an orderly and productive
+    society.'
+  - "Welcome to Bankopolis, the awe-inspiring banking district of the futuristic
+    metropolis, Luminopolis set in the year 2214! Bankopolis, known as the \"Sanctum
+    of Digital Capital,\" is a place where banks and the blockchain reign as the
+    new deities, giant mining farms hum with computational power, and a dominant
+    government exerts total control over the financial realm.\r\n\r\nAs you enter
+    Bankopolis, prepare to be immersed in a world where the relentless pursuit of
+    wealth and technological marvels intertwine. Towering skyscrapers dominate the
+    horizon, their sleek exteriors reflecting the power and influence held within.
+    The glow of holographic displays and LED panels permeates the air, showcasing
+    the constantly evolving value of cryptocurrencies and the monumental transactions
+    taking place. Bankopolis is the epicenter of financial worship, overseen by the
+    \"Ministry of Monetary Supremacy.\"\r\n\r\nThe banking institutions in Bankopolis
+    have ascended to an unprecedented level, their grandeur rivaling ancient temples.
+    These colossal edifices house massive data centers, humming with the collective
+    computational might of giant mining farms. Towering racks of servers and arrays
+    of supercomputers form the backbone of the financial infrastructure, processing
+    transactions with lightning speed. The \"Bureau of Unassailable Transactions\"
+    safeguards the integrity of every digital exchange, leaving no room for error
+    or corruption. \r\n"
+  - 'As you step into the market district Mercantilia, prepare to be enveloped in
+    a world where the pursuit of profit and the art of negotiation shape every interaction.
+    Towering skyscrapers adorned with dazzling billboards and holographic advertisements
+    dominate the skyline, showcasing an array of products and services. The air is
+    filled with the hum of trade, and the streets are bustling with merchants, entrepreneurs,
+    and eager customers, all under the watchful eye of the "Ministry of Economic
+    Oversight."
+
+    
+
+    In Mercantilia, capitalism reigns supreme, driving the
+    relentless pursuit of wealth and prosperity. The marketplace is a sprawling labyrinth
+    of shops, boutiques, and trading floors, each offering a diverse range of goods
+    and services. From advanced technologies to exquisite artisanal creations, every
+    imaginable desire can be fulfilled within the expansive bazaar. The "Bureau of
+    Trade Facilitation" ensures that fair practices and regulations govern the dynamic
+    transactions that take place.'
+  - 'As you enter the academic district, prepare to be immersed in a world where
+    the pursuit of knowledge and intellectual growth are paramount. Towering academic
+    institutions with sleek, modern architecture dominate the landscape, signifying
+    the importance placed on education. The air is charged with intellectual curiosity,
+    and the streets are filled with students, scholars, and researchers, all under
+    the watchful eye of the "Ministry of Educational Authority."
+
+    
+
+    In
+    Intellectia, the pursuit of knowledge is revered, and academic institutions are
+    the epicenters of intellectual enlightenment. Cutting-edge research laboratories,
+    extensive libraries, and interactive learning spaces foster an environment of
+    innovation and discovery. The "Bureau of Scholarly Advancement" ensures that
+    rigorous academic standards and the government-approved curriculum are adhered
+    to, guiding the minds of the future generation.
+
+    
+
+    Within Intellectia,
+    the government exercises total control over education, aiming to mold young minds
+    and maintain ideological harmony. The "Ministry of Intellectual Compliance" oversees
+    the curriculum, ensuring that it aligns with the government''s vision and values.
+    Thought-provoking subjects are explored, but always within the boundaries set
+    by the governing authority.'
+  - 'Welcome to Imperia, the majestic capitol district of this visionary metropolis,
+    set in the year 2214! Imperia, known as the "Seat of Supreme Authority," is a
+    place where the grand emperor, a figure of immense power, reigns over the city
+    with unwavering control and authority.
+
+    
+
+    Within Imperia, the government''s
+    control extends to every aspect of daily life. The "Ministry of Civic Obedience"
+    diligently enforces the grand emperor''s decrees, ensuring obedience and loyalty
+    from the citizens. Surveillance systems monitor the activities of the populace,
+    and the "Imperial Guard" stands as a visible symbol of authority and protection.
+
+    
+
+    Despite
+    the pervasive control, moments of grandeur and celebration abound in Imperia.
+    The "Ministry of Imperial Festivities" organizes grand processions, magnificent
+    ceremonies, and breathtaking spectacles, showcasing the grand emperor''s benevolence
+    and might. The citizens gather to witness these splendid events, filling the
+    air with admiration and devotion.
+
+    
+
+    In Imperia, the commitment to
+    order and control extends beyond the grand palace. The capitol district boasts
+    immaculate streets, pristine public spaces, and meticulously landscaped artificial
+    gardens. The "Department of Imperial Splendor" ensures that every corner of Imperia
+    reflects the grand emperor''s magnificence and authority.'
 --- !u!1 &855192818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1348,7 +1544,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 213, y: 0}
+  m_AnchoredPosition: {x: 144, y: -19}
   m_SizeDelta: {x: -530, y: 356}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &855192820
@@ -1426,8 +1622,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1462,7 +1658,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -69.82031, w: -126.24219}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1641,7 +1837,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 802.5, y: -19}
-  m_SizeDelta: {x: 36, y: 31}
+  m_SizeDelta: {x: 50, y: 31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &966188729
 MonoBehaviour:
@@ -2033,7 +2229,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 264.7, y: 24}
+  m_AnchoredPosition: {x: 264.7, y: 10}
   m_SizeDelta: {x: 400, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1072589711
@@ -2099,7 +2295,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -2249,7 +2445,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 242, y: -178}
+  m_AnchoredPosition: {x: 205, y: -178}
   m_SizeDelta: {x: 356, y: 356}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1136413675
@@ -2620,7 +2816,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 1002.5, y: -19}
-  m_SizeDelta: {x: 36, y: 31}
+  m_SizeDelta: {x: 50, y: 31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1549712842
 MonoBehaviour:
@@ -2784,7 +2980,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -82}
+  m_AnchoredPosition: {x: 0, y: -63}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1703858262
@@ -2822,9 +3018,9 @@ RectTransform:
   m_Father: {fileID: 1113002674}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -502, y: 110.9}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 111, y: 110.9}
   m_SizeDelta: {x: 190, y: 47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1703858264
@@ -2969,7 +3165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -26}
+  m_AnchoredPosition: {x: 0, y: 40}
   m_SizeDelta: {x: 0, y: 356}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1851511281
@@ -3246,7 +3442,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 902.5, y: -19}
-  m_SizeDelta: {x: 36, y: 31}
+  m_SizeDelta: {x: 43, y: 31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2107393707
 MonoBehaviour:

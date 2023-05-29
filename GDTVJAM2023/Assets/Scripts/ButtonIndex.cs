@@ -16,7 +16,7 @@ public class ButtonIndex : MonoBehaviour
     public void OnButtonClick()
     {
         AudioManager.Instance.PlaySFX("MouseClick");
-        encartaController.districtIndex = buttonIndex;
+        encartaController.districtIndex = (buttonIndex-1);
         encartaController.UpdateDistrict();
     }
 }
