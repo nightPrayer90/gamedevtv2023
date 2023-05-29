@@ -5,6 +5,7 @@ using TMPro;
 
 public class EncartaController : MonoBehaviour
 {
+    public Button button1;
     public int districtIndex = 0;
 
     public Image districtImage;
@@ -15,6 +16,12 @@ public class EncartaController : MonoBehaviour
 
     public TextMeshProUGUI districtText;
     [TextArea(10, 30)]  public List<string> districtString;
+
+    private void Start()
+    {
+        UpdateDistrict();
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(button1.gameObject);
+    }
 
     public void UpdateDistrict()
     {
