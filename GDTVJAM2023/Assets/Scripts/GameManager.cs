@@ -8,12 +8,14 @@ public class GameManager : MonoBehaviour
     [Header("Game Status Controll")]
     public bool gameIsPlayed = true;
     public bool gameOver = false;
+    public bool isPause = false;
     public int districtNumber = 1;
     private int enemysToKill;
     private int killCounter;
     private PlayerController player;
     [HideInInspector] public float curretEnemyCounter;
     private GameObject currentSpawnManager;
+    private bool isGameOverUI_, isPlayerUI_, isBossUI_, isVictoryUI;
 
     [Header("UI Controll")]
     public TextMeshProUGUI healthText;
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
     public GameObject panelUI;
     public GameObject playerUI;
     public GameObject bossUI;
+    public GameObject pauseUI;
     public GameObject victoryUI;
     public Slider healthBar;
     public Slider experienceSlider;
@@ -83,6 +86,7 @@ public class GameManager : MonoBehaviour
         bossUI.SetActive(false);
         panelUI.SetActive(false);
         victoryUI.SetActive(false);
+        pauseUI.SetActive(false);
     }
 
     public void StartDimentionSettings()
@@ -109,6 +113,11 @@ public class GameManager : MonoBehaviour
             currentTime -= Time.deltaTime;
             UpdateTimerText();
         }
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameOver && gameIsPlayed)
+        {
+            PauseMenue();
+        }
+
     }
     private void UpdateTimerText()
     {
@@ -202,6 +211,7 @@ public class GameManager : MonoBehaviour
             player.UpdatePlayerHealth(-temphealth);
 
             player.StopShooting();
+            player.engineAudioSource.Stop();
             Time.timeScale = 0;
 
             CreateRandomNumbers();
@@ -275,7 +285,7 @@ public class GameManager : MonoBehaviour
     public void CreateRandomNumbers()
     {
         //Auswahl der richtigen Liste
-        if (player.playerLevel % 5 == 0 || player.playerLevel == 2)
+        if (((player.playerLevel % 5 + 3) == 0 || player.playerLevel == 3) && player.playerLevel <= 28)
          {
    
             valueList.AddRange(weaponChooseList.weaponIndex); // Greife auf die weaponIndex aus dem weaponChooseList zu
@@ -339,6 +349,38 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
+    public void PauseMenue()
+    {
+        Debug.Log("Pause");
 
+        if (isPause == false)
+        {
+            //status zwischenspeichern
+            isGameOverUI_ = gameOverUI.activeSelf;
+            isPlayerUI_ = playerUI.activeSelf;
+            isBossUI_ = bossUI.activeSelf;
+            isVictoryUI = victoryUI.activeSelf;
+            pauseUI.SetActive(true);
+
+            Time.timeScale = 0;
+            isPause = true;
+            AudioManager.Instance.PlaySFX("WindowOpen");
+        }
+        else
+        {
+            Time.timeScale = 1;
+            isPause = false;
+
+            //huds zurücksetzen
+            gameOverUI.SetActive(isGameOverUI_);
+            playerUI.SetActive(isPlayerUI_);
+            bossUI.SetActive(isBossUI_);
+            victoryUI.SetActive(isVictoryUI);
+
+            pauseUI.SetActive(false);
+            AudioManager.Instance.PlaySFX("MouseNo");
+        }
+
+    }
 
 }

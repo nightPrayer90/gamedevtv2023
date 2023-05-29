@@ -11,6 +11,7 @@ public class EnemyParticleBullet : MonoBehaviour
     private bool isEmitting = false;
     public bool isEmittingSound = true;
     //public string shootSound;
+    private Coroutine shootSoundCoroutine;
 
     public AudioSource audioSource;
 
@@ -21,11 +22,7 @@ public class EnemyParticleBullet : MonoBehaviour
         {
             BulletStart(bulletDamage, baseFireRate);
         }
-        if (isEmittingSound == true)
-        {
-            StartCoroutine(TriggerParticleSound());
-            isEmitting = true;
-        }
+        
     }
 
     private IEnumerator TriggerParticleSound()
@@ -48,6 +45,12 @@ public class EnemyParticleBullet : MonoBehaviour
 
     public void BulletStart(int bulletDamage_, float fireRate)
     {
+        if (isEmittingSound == true)
+        {
+            shootSoundCoroutine = StartCoroutine(TriggerParticleSound());
+            isEmitting = true;
+        }
+
         //Set Damage
         bulletDamage = bulletDamage_;
         
@@ -108,6 +111,10 @@ public class EnemyParticleBullet : MonoBehaviour
         }
     }
 
-
+    void OnDestroy()
+    {
+        StopAllCoroutines();
+        //StopCoroutine(shootSoundCoroutine);
+    }
 
 }

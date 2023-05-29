@@ -12,19 +12,11 @@ public class ParticleBullet : MonoBehaviour
 
     public bool isEmittingSound = false;
     public string shootSound;
-
-    private void Start()
-    {
-        if (isEmittingSound == true)
-        {
-            StartCoroutine(TriggerParticleSound());
-            isEmitting = true;
-        }
-    }
+    private Coroutine shootingSound;
 
     void OnEnable()
     {
-        particleSystem = GetComponent<ParticleSystem>();
+        //particleSystem = GetComponent<ParticleSystem>();
     }
 
     private IEnumerator TriggerParticleSound()
@@ -43,6 +35,12 @@ public class ParticleBullet : MonoBehaviour
 
     public void BulletStart(int bulletDamage_, float fireRate)
     {
+        if (isEmittingSound == true)
+        {
+            shootingSound = StartCoroutine(TriggerParticleSound());
+            isEmitting = true;
+        }
+
         //Set Damage
         bulletDamage = bulletDamage_;
 
@@ -53,19 +51,29 @@ public class ParticleBullet : MonoBehaviour
         particleSystem.Play();
         
         interval = fireRate;
-        isEmitting = true;
+        
     }
 
     public void BulletStop()
     {
         particleSystem.Stop();
         isEmitting = false;
+        if (shootingSound != null)
+        {
+            StopCoroutine(shootingSound);
+            shootingSound = null;
+        }
     }
 
     public void HardBulletStop()
     {
         particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         isEmitting = false;
+        if (shootingSound != null)
+        {
+            StopCoroutine(shootingSound);
+            shootingSound = null;
+        }
     }
 
     public void BulletSetDamage(int bulletDamage_)

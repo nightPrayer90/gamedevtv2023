@@ -1082,7 +1082,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 748691828}
         m_TargetAssemblyTypeName: MenuButtonController, Assembly-CSharp
-        m_MethodName: BacktoMainMenue
+        m_MethodName: BacktoMainMenueCredit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

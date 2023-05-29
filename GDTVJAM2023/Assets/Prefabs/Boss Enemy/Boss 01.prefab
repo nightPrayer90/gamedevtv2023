@@ -10081,7 +10081,7 @@ Transform:
   m_GameObject: {fileID: 1238716703606193750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3453679120459267937}
@@ -10128,7 +10128,7 @@ MonoBehaviour:
   - {fileID: 6215335752713404459}
   - {fileID: 9123254630457986456}
   - {fileID: 3274739077440012054}
-  activationDelay: 0.8
+  activationDelay: 0.4
   mineController: {fileID: 787326265830227862}
   explosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
 --- !u!1 &1395352370279284998

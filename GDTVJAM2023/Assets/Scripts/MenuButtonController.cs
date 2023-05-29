@@ -46,10 +46,23 @@ public class MenuButtonController : MonoBehaviour
     }
 
     //Cedit Scene
+    public void BacktoMainMenueCredit()
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        SceneManager.LoadScene("MenueScene");
+    }
     public void BacktoMainMenue()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
         SceneManager.LoadScene("MenueScene");
+        AudioManager.Instance.PlayMusic("MenuMusic");
+    }
+
+    public void BacktoMainMenueVictory()
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        SceneManager.LoadScene("OutroScene");
+        AudioManager.Instance.PlayMusic("MenuMusic");
     }
 
     public void LevelRestart()
@@ -58,10 +71,13 @@ public class MenuButtonController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    /*public void SetTimesclae()
+    public void LevelPauseStop()
     {
-        Time.timeScale = 1;
-    }*/
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        GameObject.Find("Game Manager").GetComponent<GameManager>().PauseMenue();
+       
+    }
+
     void OnMouseEnter()
     {
         AudioManager.Instance.PlaySFX("MouseHover");

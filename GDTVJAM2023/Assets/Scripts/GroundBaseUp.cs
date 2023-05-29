@@ -26,7 +26,11 @@ public class GroundBaseUp : MonoBehaviour
                 Vector3 newPosition = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * movementSpeed / distanceToTarget);
                 transform.position = newPosition;
             }
-            else isGrowing = false;
+            else
+            {
+                isGrowing = false;
+                AudioManager.Instance.PlaySFX("DestrictIsDone");
+            }
 
         }
     }

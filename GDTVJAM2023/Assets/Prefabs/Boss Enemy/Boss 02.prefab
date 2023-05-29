@@ -4897,7 +4897,7 @@ Transform:
   m_GameObject: {fileID: 1238716703606193750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.01, y: 0.009999997, z: 0.009999997}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3453679120459267937}
@@ -4935,7 +4935,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1265f586206ecd34585f51301984088e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToActivate: []
+  objectsToActivate:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   weapons:
   - {fileID: 6215335752713404459}
   - {fileID: 9123254630457986456}
@@ -14823,7 +14827,7 @@ MonoBehaviour:
   explosionObject: {fileID: 3618260324052109233, guid: c3a52b50cdd3f3e4291bda36ca9cab53, type: 3}
   dieExplosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   expOrb: {fileID: 5693635298845190373, guid: 87420680f3e103346af89e12538dc82b, type: 3}
-  enemyHealth: 120
+  enemyHealth: 200
   collisonDamage: 20
   explosionForce: 15
   expOrbSpawn: 1
@@ -14865,7 +14869,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4867273214047388356
 Transform:
   m_ObjectHideFlags: 0
@@ -19739,11 +19743,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 2
-  baseFireRate: 0.2
+  baseFireRate: 0.3
   particleSystem: {fileID: 6860551081744734972}
   fireOnBirth: 1
-  interval: 0.2
-  isEmittingSound: 1
+  interval: 0.3
+  isEmittingSound: 0
   audioSource: {fileID: 0}
 --- !u!1 &3557645148892195107
 GameObject:
@@ -34374,7 +34378,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9060980638349510131
 Transform:
   m_ObjectHideFlags: 0
@@ -39248,10 +39252,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 2
-  baseFireRate: 0.2
+  baseFireRate: 0.3
   particleSystem: {fileID: 5921540658055073011}
   fireOnBirth: 1
-  interval: 1
+  interval: 0.3
   isEmittingSound: 1
   audioSource: {fileID: 5785181476878728963}
 --- !u!82 &5785181476878728963
@@ -39368,7 +39372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8886434495561594341
 Transform:
   m_ObjectHideFlags: 0
@@ -44242,11 +44246,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 2
-  baseFireRate: 0.2
+  baseFireRate: 0.3
   particleSystem: {fileID: 1254473334834374463}
   fireOnBirth: 1
-  interval: 0.2
-  isEmittingSound: 1
+  interval: 0.3
+  isEmittingSound: 0
   audioSource: {fileID: 0}
 --- !u!1 &6387260782605548037
 GameObject:
@@ -54006,7 +54010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5043175859275142953
 Transform:
   m_ObjectHideFlags: 0
@@ -58880,9 +58884,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 2
-  baseFireRate: 0.2
+  baseFireRate: 0.3
   particleSystem: {fileID: 7265013308764642956}
   fireOnBirth: 1
-  interval: 0.2
-  isEmittingSound: 1
+  interval: 0.3
+  isEmittingSound: 0
   audioSource: {fileID: 0}

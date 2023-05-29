@@ -22,6 +22,7 @@ public class Intro : MonoBehaviour
         displayText.text = "";
         StartCoroutine(TypeText());
         AudioManager.Instance.PlaySFX("WindowOpen");
+        Time.timeScale = 1;
     }
 
     private void Update()

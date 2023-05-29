@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class PanelInteraction : MonoBehaviour
 {
-    private Image panelImage;
+    public Image panelImage;
     private GameManager gameManager;
     private PlayerController playerController;
     private PlayerWeaponController playerWeaponController;
@@ -48,7 +48,7 @@ public class PanelInteraction : MonoBehaviour
 
     void Start()
     {
-        panelImage = GetComponent<Image>();
+        //panelImage = GetComponent<Image>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         playerWeaponController = GameObject.Find("Player").GetComponent<PlayerWeaponController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();

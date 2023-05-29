@@ -15,6 +15,12 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody playerRb;
     private GameManager gameManager;
+    private float introTargetY = 6f;
+    private bool isIntro = true;
+    private bool isStartSound = false;
+    [Header("Player Intro")]
+    public float startImpulse = 100;
+    public AudioSource engineAudioSource;
 
     [Header("Properties")]
     public List <ParticleBullet> particleBullets;
@@ -43,18 +49,42 @@ public class PlayerController : MonoBehaviour
         playerRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
-        StartShooting();
+        //StartShooting();
+        AudioManager.Instance.PlaySFX("LiftUPBoss");
+        engineAudioSource = GetComponent<AudioSource>();
     }
 
     // Aktualisiere die Y-Position des Spielers auf 6
     private void FixedUpdate()
     {
-        PlayerMovement();
-        PlayerIsOutsideBorder();
 
-        if (gameManager.gameIsPlayed && !isShooting)
+        if (isIntro = true && transform.position.y < introTargetY)
         {
-            StartShooting();
+            // Intro
+            Vector3 movement = new Vector3(0f, 2f, 0f) * Time.deltaTime;
+            transform.Translate(movement);
+            isIntro = true;
+        }
+        else
+        {   if (isStartSound == false)
+            {
+                AudioManager.Instance.PlaySFX("ShortAlert");
+                isStartSound = true;
+                playerRb.AddForce(gameObject.transform.forward * -speed * startImpulse * Time.deltaTime, ForceMode.Force);
+            }
+            isIntro = false;
+        }
+
+        // Game Control
+        if (isIntro == false)
+        {
+            PlayerMovement();
+            PlayerIsOutsideBorder();
+
+            if (gameManager.gameIsPlayed && !isShooting)
+            {
+                StartShooting();
+            }
         }
     }
 
@@ -86,7 +116,7 @@ public class PlayerController : MonoBehaviour
             //Destroy(other.gameObject);
             other.gameObject.SetActive(false);
             gameManager.Victory();
-            AudioManager.Instance.PlaySFX("DimensionSwap");
+            AudioManager.Instance.PlaySFX("VictorySound");
         }
 
 
@@ -138,6 +168,15 @@ public class PlayerController : MonoBehaviour
             float forwardInput = Input.GetAxis("Vertical");
             float horizontalInput = Input.GetAxis("Horizontal");
 
+            if (forwardInput > 0)
+            {
+                engineAudioSource.Play();
+            }
+            else
+            {
+                engineAudioSource.Stop();
+            }
+
             if (forwardInput < 0)
             {
                 forwardInput *= 0.25f;
@@ -151,6 +190,7 @@ public class PlayerController : MonoBehaviour
             newPosition.y = 6f;
             playerRb.position = newPosition;
         }
+        
     }
 
     public void UpdatePlayerHealth(int decHealth)

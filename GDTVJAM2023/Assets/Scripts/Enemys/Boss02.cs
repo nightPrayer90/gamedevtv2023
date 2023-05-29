@@ -40,4 +40,13 @@ public class Boss02 : MonoBehaviour
                 weapon.SetActive(true);
         }
     }
- }
+
+    private void OnDestroy()
+    {
+        foreach (GameObject objects in objectsToActivate)
+        {
+            if (objects != null)
+                objects.SetActive(true);
+        }
+    }
+}
