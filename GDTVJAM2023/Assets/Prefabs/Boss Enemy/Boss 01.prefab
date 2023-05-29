@@ -39816,7 +39816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608602960c0a855439e117ccf92b87ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 2
+  bulletDamage: 1
   baseFireRate: 1
   particleSystem: {fileID: 6860551081744734972}
   fireOnBirth: 1
@@ -64413,7 +64413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608602960c0a855439e117ccf92b87ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 2
+  bulletDamage: 1
   baseFireRate: 1
   particleSystem: {fileID: 5921540658055073011}
   fireOnBirth: 1
@@ -84078,7 +84078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608602960c0a855439e117ccf92b87ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 2
+  bulletDamage: 1
   baseFireRate: 1
   particleSystem: {fileID: 7265013308764642956}
   fireOnBirth: 1

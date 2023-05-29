@@ -23,8 +23,6 @@ public class PeriodEmitter : MonoBehaviour
                 particleSystem.Play();
             }
 
-            
-
             nextSpawnTime = Time.time + spawnInterval;
         }
     }

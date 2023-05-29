@@ -19743,10 +19743,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 2
-  baseFireRate: 0.3
+  baseFireRate: 0.4
   particleSystem: {fileID: 6860551081744734972}
   fireOnBirth: 1
-  interval: 0.3
+  interval: 0.4
   isEmittingSound: 0
   audioSource: {fileID: 0}
 --- !u!1 &3557645148892195107
@@ -39252,10 +39252,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 2
-  baseFireRate: 0.3
+  baseFireRate: 0.4
   particleSystem: {fileID: 5921540658055073011}
   fireOnBirth: 1
-  interval: 0.3
+  interval: 0.4
   isEmittingSound: 1
   audioSource: {fileID: 5785181476878728963}
 --- !u!82 &5785181476878728963
@@ -44246,10 +44246,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 2
-  baseFireRate: 0.3
+  baseFireRate: 0.4
   particleSystem: {fileID: 1254473334834374463}
   fireOnBirth: 1
-  interval: 0.3
+  interval: 0.4
   isEmittingSound: 0
   audioSource: {fileID: 0}
 --- !u!1 &6387260782605548037
@@ -58884,9 +58884,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 2
-  baseFireRate: 0.3
+  baseFireRate: 0.4
   particleSystem: {fileID: 7265013308764642956}
   fireOnBirth: 1
-  interval: 0.3
+  interval: 0.4
   isEmittingSound: 0
   audioSource: {fileID: 0}

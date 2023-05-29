@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Boss02 : MonoBehaviour
 {
-    public GameObject[] objectsToActivate; // Array für die zu aktivierenden Gameobjekte
+    public GameObject[] objectsToActivateOnDeath; // Array für die zu aktivierenden Gameobjekte
     public GameObject[] weapons;
 
     public float activationDelay = 0.5f; // Zeitverzögerung zwischen den Aktivierungen
@@ -14,14 +14,14 @@ public class Boss02 : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(ActivateObjectsWithDelay());
+        //StartCoroutine(ActivateObjectsWithDelay());
         mineController.detectionRange = 100;
         mineController.rotationSpeed = 35;
     }
 
     private IEnumerator ActivateObjectsWithDelay()
     {
-        foreach (GameObject obj in objectsToActivate)
+        foreach (GameObject obj in objectsToActivateOnDeath)
         {
             obj.SetActive(true);
             Instantiate(explosionObject, obj.transform.position, obj.transform.rotation);
@@ -43,7 +43,7 @@ public class Boss02 : MonoBehaviour
 
     private void OnDestroy()
     {
-        foreach (GameObject objects in objectsToActivate)
+        foreach (GameObject objects in objectsToActivateOnDeath)
         {
             if (objects != null)
                 objects.SetActive(true);
