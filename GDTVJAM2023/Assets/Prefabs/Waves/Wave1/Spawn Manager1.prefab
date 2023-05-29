@@ -50,6 +50,6 @@ MonoBehaviour:
   spawnProbabilities:
   - 80
   - 20
-  maxSpawnDistance: 10
+  maxSpawnDistance: 7
   spawnInterval: 2
   maxWaveEnemys: 8

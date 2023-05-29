@@ -168,7 +168,7 @@ public class GameManager : MonoBehaviour
     public void UpdateEnemyCounter(float curretEnemyCounter_)
     {
         curretEnemyCounter = curretEnemyCounter + curretEnemyCounter_;
-        enemyCounterText.text = "Enemys left: " + curretEnemyCounter;
+        enemyCounterText.text = curretEnemyCounter.ToString();
     }
 
     public void UpdateDistrictText(int curretDistrict)
@@ -294,7 +294,7 @@ public class GameManager : MonoBehaviour
     public void CreateRandomNumbers()
     {
         //Auswahl der richtigen Liste
-        if (((player.playerLevel % 5) == 3) && player.playerLevel <= 30)
+        if (((player.playerLevel % 4) == 3) && player.playerLevel <= 26)
          {
    
             valueList.AddRange(weaponChooseList.weaponIndex); // Greife auf die weaponIndex aus dem weaponChooseList zu

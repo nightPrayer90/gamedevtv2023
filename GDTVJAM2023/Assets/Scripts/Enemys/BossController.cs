@@ -55,7 +55,7 @@ public class BossController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (enemyHealth.enemyHealth == 0)
+        if (enemyHealth.enemyHealth <= 0)
             Destroy(gameObject);
     }
 
