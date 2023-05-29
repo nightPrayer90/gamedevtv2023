@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     public float damageInterval = 1f;
     public int damageTaken = 2;
     private float nextDamageTime = 0f;
-    private bool isOutsideBorder = false;
+    public bool isOutsideBorder = false;
 
     [Header("Shield Controll")]
     public bool isFrontShield = false;

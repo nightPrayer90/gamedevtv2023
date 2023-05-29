@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI districtText;
     public TextMeshProUGUI enemyToKillText;
     public TextMeshProUGUI enemyCounterText;
+    public TextMeshProUGUI outsideBorderText;
     public GameObject gameOverUI;
     public GameObject panelUI;
     public GameObject playerUI;
@@ -117,7 +118,14 @@ public class GameManager : MonoBehaviour
         {
             PauseMenue();
         }
-
+        if( player.isOutsideBorder == true && playerUI.activeSelf )
+        {
+            outsideBorderText.text = "outside border!";
+        }
+        else
+        {
+            outsideBorderText.text = "";
+        }
     }
     private void UpdateTimerText()
     {
@@ -248,7 +256,7 @@ public class GameManager : MonoBehaviour
 
         // next Level
         districtNumber++;
-        UpdateDistrictText(districtNumber-1);
+        UpdateDistrictText(districtNumber);
         mainCamera.LongShakeScreen();
         directionalLight.color = firstDimensionColor;
 
