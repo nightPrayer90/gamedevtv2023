@@ -17,11 +17,12 @@ public class Boss02 : MonoBehaviour
         //StartCoroutine(ActivateObjectsWithDelay());
         mineController.detectionRange = 100;
         mineController.rotationSpeed = 35;
+        BattleStarts();
     }
 
     private IEnumerator ActivateObjectsWithDelay()
     {
-        foreach (GameObject obj in objectsToActivateOnDeath)
+        foreach (GameObject obj in weapons)
         {
             obj.SetActive(true);
             Instantiate(explosionObject, obj.transform.position, obj.transform.rotation);
@@ -46,7 +47,11 @@ public class Boss02 : MonoBehaviour
         foreach (GameObject objects in objectsToActivateOnDeath)
         {
             if (objects != null)
+            {
                 objects.SetActive(true);
+                Debug.Log("activate_");
+            }
         }
+        Debug.Log("OnDestroy");
     }
 }

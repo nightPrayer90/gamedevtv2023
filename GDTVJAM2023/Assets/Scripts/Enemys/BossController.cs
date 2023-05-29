@@ -48,7 +48,15 @@ public class BossController : MonoBehaviour
         if (isActivated &&  isHealthUpdated == true)
         {
             bossHealthSlider.value = enemyHealth.enemyHealth;
+       
+            Debug.Log("enemyHealth = " +  enemyHealth.enemyHealth + "/ " + bossHealthSlider.value);
         }
+    }
+
+    private void LateUpdate()
+    {
+        if (enemyHealth.enemyHealth == 0)
+            Destroy(gameObject);
     }
 
     private void ActivateBoss()
@@ -84,6 +92,7 @@ public class BossController : MonoBehaviour
         {
             battleScriptPlaceholder.enabled = true; 
         }
+
         bossHud.SetActive(true);
         bossHealthSlider.maxValue = enemyHealth.enemyHealth;
         bossHealthSlider.value = enemyHealth.enemyHealth;
