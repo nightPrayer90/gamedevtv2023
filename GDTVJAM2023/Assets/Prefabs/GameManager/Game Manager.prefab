@@ -58,6 +58,7 @@ MonoBehaviour:
   districtText: {fileID: 0}
   enemyToKillText: {fileID: 0}
   enemyCounterText: {fileID: 0}
+  outsideBorderText: {fileID: 0}
   gameOverUI: {fileID: 0}
   panelUI: {fileID: 0}
   playerUI: {fileID: 0}
@@ -98,14 +99,14 @@ MonoBehaviour:
   spawnManagerList:
   - {fileID: 4663641790574016719, guid: 30b4edfa15f85de4b89ab2659e1827a1, type: 3}
   - {fileID: 4663641790574016719, guid: 3f19dfcf41edd4c4bb993b1b5a3b2c10, type: 3}
-  - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
-  - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
-  - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
-  - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
-  - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
-  - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
-  - {fileID: 4663641790574016719, guid: 36c0ecaca6e7ba6468f57a427ed3ffd0, type: 3}
-  waveKillList: 0f00000028000000320000003c00000046000000500000005a000000640000006e000000
+  - {fileID: 4663641790574016719, guid: 7a56900ec18c4204db5933b0a8c09e41, type: 3}
+  - {fileID: 4663641790574016719, guid: bdcfeb8927e9fa042afc7050bb279431, type: 3}
+  - {fileID: 4663641790574016719, guid: 95dff51113d4422468b1a363dce1afb9, type: 3}
+  - {fileID: 4663641790574016719, guid: 67f403a0bb7e70841800601a9d4d943f, type: 3}
+  - {fileID: 4663641790574016719, guid: 6c1af1b59dd21b648a13db5c038caacc, type: 3}
+  - {fileID: 4663641790574016719, guid: 30f53379405faca4192bf790ae14d55e, type: 3}
+  - {fileID: 4663641790574016719, guid: c12916ab9dd410848a03ec160e285d74, type: 3}
+  waveKillList: 0f00000023000000320000003c00000046000000500000005a0000007800000096000000
   districtList:
   - {fileID: 0}
   - {fileID: 0}
