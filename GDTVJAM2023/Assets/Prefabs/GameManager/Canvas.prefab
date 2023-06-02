@@ -466,7 +466,7 @@ RectTransform:
   m_Children:
   - {fileID: 816520811021589284}
   m_Father: {fileID: 6249226896618589489}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -811,7 +811,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Outside border!
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3fdd72a181942bb4fb04ebfc88484f3b, type: 2}
   m_sharedMaterial: {fileID: 3584385154073877098, guid: 3fdd72a181942bb4fb04ebfc88484f3b, type: 2}
@@ -838,8 +838,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -854,7 +854,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -917,7 +917,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 232.4, y: -45}
+  m_AnchoredPosition: {x: 232.4, y: -53.99999}
   m_SizeDelta: {x: 220, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8792595173750021643
@@ -959,7 +959,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 245103937090553597}
   m_HandleRect: {fileID: 0}
@@ -1132,7 +1132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 12.1, y: -12}
+  m_AnchoredPosition: {x: 12.1, y: -21}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &3531995565576558107
@@ -1886,7 +1886,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 67.79995, y: -62}
+  m_AnchoredPosition: {x: 67.79995, y: -70.999985}
   m_SizeDelta: {x: 50, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1085555777602816479
@@ -1928,7 +1928,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 6909710092489191254}
   m_HandleRect: {fileID: 0}
@@ -2432,8 +2432,8 @@ GameObject:
   - component: {fileID: 6249226895932777590}
   - component: {fileID: 6249226895932777586}
   - component: {fileID: 6249226895932777589}
-  - component: {fileID: 6249226895932777588}
   - component: {fileID: 6249226895932777591}
+  - component: {fileID: 5600376906429219495}
   m_Layer: 5
   m_Name: Panel 1
   m_TagString: Untagged
@@ -2502,60 +2502,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6249226895932777588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6249226895932777593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b5542b69d60a934fa76df2ec8750b6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelImage: {fileID: 6249226895932777589}
-  defaultColor: {r: 0.4039216, g: 0.3019608, b: 0.854902, a: 1}
-  hoverColor: {r: 0.73333335, g: 0.23137257, b: 0.82745105, a: 1}
-  panelIndex: 0
-  panelUI: {fileID: 6249226896855122977}
-  playerUI: {fileID: 6249226897801047772}
-  headerText: {fileID: 6249226895894957746}
-  descriptionText: {fileID: 6249226897377165460}
-  iconPanel: {fileID: 6249226897442268253}
-  abilityPanelList:
-  - {fileID: 21300000, guid: 1a9c2c2a4a64e944eb9944340feb3595, type: 3}
-  - {fileID: 21300000, guid: d717766fd39692e47bc9e10ac04ab6dc, type: 3}
-  - {fileID: 21300000, guid: d23e632d3fae25248ace3d83ddc9902e, type: 3}
-  - {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
-  - {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
-  - {fileID: 21300000, guid: ca41a70726d6ed84da8ea7d1000633f3, type: 3}
-  - {fileID: 21300000, guid: eddf778d779dd2e46a84c198e40ecab5, type: 3}
-  - {fileID: 21300000, guid: 1cdaf286f8e1ff047879fc7c76debb9a, type: 3}
-  - {fileID: 21300000, guid: b248b2b0686619a4cae68905c3e43676, type: 3}
-  - {fileID: 21300000, guid: dff2809d972cbaf448e7a1888f1d01ea, type: 3}
-  - {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
-  - {fileID: 21300000, guid: cfa1d4ae5cbde234c855a1d8c18577e9, type: 3}
-  - {fileID: 21300000, guid: a7a01ead83f63fa44a6141650e1add89, type: 3}
-  - {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
-  lifeText: {fileID: 6249226895952794281}
-  damageText: {fileID: 6249226896910395304}
-  rateText: {fileID: 6249226896512850467}
-  speedText: {fileID: 6249226895926047588}
-  agilityText: {fileID: 6249226896024806952}
-  pickupText: {fileID: 6249226897232965572}
-  imFrontShield: {fileID: 6249226896675386031}
-  imBackShield: {fileID: 6249226897444326233}
-  imLifeModul: {fileID: 6249226896938239771}
-  imSpreadGun: {fileID: 6249226897961583473}
-  imHeadCannon: {fileID: 6249226895976778147}
-  imBulletWings: {fileID: 6249226897557209977}
-  imRocketLauncher: {fileID: 6249226896863086592}
-  imFireflies: {fileID: 6249226896242951767}
-  imPanelBaseColor: {r: 0.36862746, g: 0.36862746, b: 0.36862746, a: 0.8627451}
-  imPanelUpgradeColor: {r: 1, g: 1, b: 1, a: 1}
-  spPanelDeselcet: {fileID: 21300000, guid: ed0d09c8680ed474788b88729d069d53, type: 3}
-  spPanelSelect: {fileID: 21300000, guid: 26410bf7d9b5d6f4589c1e399f706932, type: 3}
 --- !u!114 &6249226895932777591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2573,9 +2519,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6249226895932777588}
-          m_TargetAssemblyTypeName: PanelInteraction, Assembly-CSharp
-          m_MethodName: OnMouseEnter
+        - m_Target: {fileID: 5600376906429219495}
+          m_TargetAssemblyTypeName: UpgradPanelIndex, Assembly-CSharp
+          m_MethodName: OnMouseEnter_
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2589,9 +2535,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6249226895932777588}
-          m_TargetAssemblyTypeName: PanelInteraction, Assembly-CSharp
-          m_MethodName: OnMouseExit
+        - m_Target: {fileID: 5600376906429219495}
+          m_TargetAssemblyTypeName: UpgradPanelIndex, Assembly-CSharp
+          m_MethodName: OnMouseExit_
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2605,9 +2551,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6249226895932777588}
-          m_TargetAssemblyTypeName: PanelInteraction, Assembly-CSharp
-          m_MethodName: OnMouseDown
+        - m_Target: {fileID: 5600376906429219495}
+          m_TargetAssemblyTypeName: UpgradPanelIndex, Assembly-CSharp
+          m_MethodName: OnMouseDown_
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2617,6 +2563,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &5600376906429219495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6249226895932777593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79bf2f3aab152ff4689d6a43e84021b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  panelImage: {fileID: 6249226895932777589}
+  upgradePanelController: {fileID: 4253810090386971732}
+  spPanelSelect: {fileID: 21300000, guid: 26410bf7d9b5d6f4589c1e399f706932, type: 3}
+  spPanelDeselcet: {fileID: 21300000, guid: ed0d09c8680ed474788b88729d069d53, type: 3}
+  headerText: {fileID: 6249226895894957746}
+  descriptionText: {fileID: 6249226897377165460}
+  iconPanel: {fileID: 6249226897442268253}
 --- !u!1 &6249226895941442770
 GameObject:
   m_ObjectHideFlags: 0
@@ -4307,9 +4273,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6249226897801047773}
-  - {fileID: 6249226897835062582}
-  - {fileID: 6249226896855123006}
   - {fileID: 1977817232494384152}
+  - {fileID: 6249226896855123006}
+  - {fileID: 6249226897835062582}
   - {fileID: 4734946093532077443}
   - {fileID: 3266025761918223842}
   m_Father: {fileID: 0}
@@ -4900,6 +4866,7 @@ GameObject:
   - component: {fileID: 6249226896855123006}
   - component: {fileID: 6249226896855123004}
   - component: {fileID: 6249226896855123007}
+  - component: {fileID: 4253810090386971732}
   m_Layer: 5
   m_Name: LevelUpHud
   m_TagString: Untagged
@@ -4970,6 +4937,57 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4253810090386971732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6249226896855122977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa519d1a91cb7fc4f955c952c36755d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityPanelList:
+  - {fileID: 21300000, guid: 1a9c2c2a4a64e944eb9944340feb3595, type: 3}
+  - {fileID: 21300000, guid: d717766fd39692e47bc9e10ac04ab6dc, type: 3}
+  - {fileID: 21300000, guid: d23e632d3fae25248ace3d83ddc9902e, type: 3}
+  - {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
+  - {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
+  - {fileID: 21300000, guid: ca41a70726d6ed84da8ea7d1000633f3, type: 3}
+  - {fileID: 21300000, guid: eddf778d779dd2e46a84c198e40ecab5, type: 3}
+  - {fileID: 21300000, guid: 1cdaf286f8e1ff047879fc7c76debb9a, type: 3}
+  - {fileID: 21300000, guid: b248b2b0686619a4cae68905c3e43676, type: 3}
+  - {fileID: 21300000, guid: dff2809d972cbaf448e7a1888f1d01ea, type: 3}
+  - {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+  - {fileID: 21300000, guid: cfa1d4ae5cbde234c855a1d8c18577e9, type: 3}
+  - {fileID: 21300000, guid: a7a01ead83f63fa44a6141650e1add89, type: 3}
+  - {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
+  panelList:
+  - {fileID: 5600376906429219495}
+  - {fileID: 2313738799206915577}
+  - {fileID: 2845793643762768895}
+  upgradeValue: []
+  headerStr: []
+  descriptionTextStr: []
+  iconPanel: []
+  lifeText: {fileID: 6249226895952794281}
+  damageText: {fileID: 6249226896910395304}
+  rateText: {fileID: 6249226896512850467}
+  speedText: {fileID: 6249226895926047588}
+  agilityText: {fileID: 6249226896024806952}
+  pickupText: {fileID: 6249226897232965572}
+  imFrontShield: {fileID: 6249226896675386031}
+  imBackShield: {fileID: 6249226897444326233}
+  imLifeModul: {fileID: 6249226896938239771}
+  imSpreadGun: {fileID: 6249226897961583473}
+  imHeadCannon: {fileID: 6249226895976778147}
+  imBulletWings: {fileID: 6249226897557209977}
+  imRocketLauncher: {fileID: 6249226896863086592}
+  imFireflies: {fileID: 6249226896242951767}
+  imPanelBaseColor: {r: 0.36862746, g: 0.36862746, b: 0.36862746, a: 0.8627451}
+  imPanelUpgradeColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &6249226896863086594
 GameObject:
   m_ObjectHideFlags: 0
@@ -5290,9 +5308,9 @@ RectTransform:
   m_Father: {fileID: 6249226897801047773}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 254.5, y: -4.8}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -227, y: 50}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &6249226896991662926
@@ -5332,8 +5350,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 465024951
+  m_fontColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0.105882354}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5350,8 +5368,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6469,8 +6487,8 @@ GameObject:
   - component: {fileID: 6249226897452325238}
   - component: {fileID: 6249226897452325234}
   - component: {fileID: 6249226897452325237}
-  - component: {fileID: 6249226897452325236}
   - component: {fileID: 6249226897452325239}
+  - component: {fileID: 2313738799206915577}
   m_Layer: 5
   m_Name: Panel 2
   m_TagString: Untagged
@@ -6539,60 +6557,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6249226897452325236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6249226897452325241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b5542b69d60a934fa76df2ec8750b6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelImage: {fileID: 6249226897452325237}
-  defaultColor: {r: 0.4039216, g: 0.3019608, b: 0.854902, a: 1}
-  hoverColor: {r: 0.73333335, g: 0.23137257, b: 0.82745105, a: 1}
-  panelIndex: 1
-  panelUI: {fileID: 6249226896855122977}
-  playerUI: {fileID: 6249226897801047772}
-  headerText: {fileID: 6249226896842788668}
-  descriptionText: {fileID: 6249226897096738500}
-  iconPanel: {fileID: 6249226896171567317}
-  abilityPanelList:
-  - {fileID: 21300000, guid: 1a9c2c2a4a64e944eb9944340feb3595, type: 3}
-  - {fileID: 21300000, guid: d717766fd39692e47bc9e10ac04ab6dc, type: 3}
-  - {fileID: 21300000, guid: d23e632d3fae25248ace3d83ddc9902e, type: 3}
-  - {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
-  - {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
-  - {fileID: 21300000, guid: ca41a70726d6ed84da8ea7d1000633f3, type: 3}
-  - {fileID: 21300000, guid: eddf778d779dd2e46a84c198e40ecab5, type: 3}
-  - {fileID: 21300000, guid: 1cdaf286f8e1ff047879fc7c76debb9a, type: 3}
-  - {fileID: 21300000, guid: b248b2b0686619a4cae68905c3e43676, type: 3}
-  - {fileID: 21300000, guid: dff2809d972cbaf448e7a1888f1d01ea, type: 3}
-  - {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
-  - {fileID: 21300000, guid: cfa1d4ae5cbde234c855a1d8c18577e9, type: 3}
-  - {fileID: 21300000, guid: a7a01ead83f63fa44a6141650e1add89, type: 3}
-  - {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
-  lifeText: {fileID: 6249226895952794281}
-  damageText: {fileID: 6249226896910395304}
-  rateText: {fileID: 6249226896512850467}
-  speedText: {fileID: 6249226895926047588}
-  agilityText: {fileID: 6249226896024806952}
-  pickupText: {fileID: 6249226897232965572}
-  imFrontShield: {fileID: 6249226896675386031}
-  imBackShield: {fileID: 6249226897444326233}
-  imLifeModul: {fileID: 6249226896938239771}
-  imSpreadGun: {fileID: 6249226897961583473}
-  imHeadCannon: {fileID: 6249226895976778147}
-  imBulletWings: {fileID: 6249226897557209977}
-  imRocketLauncher: {fileID: 6249226896863086592}
-  imFireflies: {fileID: 6249226896242951767}
-  imPanelBaseColor: {r: 0.36862746, g: 0.36862746, b: 0.36862746, a: 0.8627451}
-  imPanelUpgradeColor: {r: 1, g: 1, b: 1, a: 1}
-  spPanelDeselcet: {fileID: 21300000, guid: ed0d09c8680ed474788b88729d069d53, type: 3}
-  spPanelSelect: {fileID: 21300000, guid: 26410bf7d9b5d6f4589c1e399f706932, type: 3}
 --- !u!114 &6249226897452325239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6610,9 +6574,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6249226897452325236}
-          m_TargetAssemblyTypeName: PanelInteraction, Assembly-CSharp
-          m_MethodName: OnMouseEnter
+        - m_Target: {fileID: 2313738799206915577}
+          m_TargetAssemblyTypeName: UpgradPanelIndex, Assembly-CSharp
+          m_MethodName: OnMouseEnter_
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6626,9 +6590,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6249226897452325236}
-          m_TargetAssemblyTypeName: PanelInteraction, Assembly-CSharp
-          m_MethodName: OnMouseExit
+        - m_Target: {fileID: 2313738799206915577}
+          m_TargetAssemblyTypeName: UpgradPanelIndex, Assembly-CSharp
+          m_MethodName: OnMouseExit_
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6642,9 +6606,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6249226897452325236}
-          m_TargetAssemblyTypeName: PanelInteraction, Assembly-CSharp
-          m_MethodName: OnMouseDown
+        - m_Target: {fileID: 2313738799206915577}
+          m_TargetAssemblyTypeName: UpgradPanelIndex, Assembly-CSharp
+          m_MethodName: OnMouseDown_
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6654,6 +6618,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &2313738799206915577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6249226897452325241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79bf2f3aab152ff4689d6a43e84021b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1
+  panelImage: {fileID: 6249226897452325237}
+  upgradePanelController: {fileID: 4253810090386971732}
+  spPanelSelect: {fileID: 21300000, guid: 26410bf7d9b5d6f4589c1e399f706932, type: 3}
+  spPanelDeselcet: {fileID: 21300000, guid: ed0d09c8680ed474788b88729d069d53, type: 3}
+  headerText: {fileID: 6249226896842788668}
+  descriptionText: {fileID: 6249226897096738500}
+  iconPanel: {fileID: 6249226896171567317}
 --- !u!1 &6249226897487843092
 GameObject:
   m_ObjectHideFlags: 0
@@ -6665,8 +6649,8 @@ GameObject:
   - component: {fileID: 6249226897487843093}
   - component: {fileID: 6249226897487843089}
   - component: {fileID: 6249226897487843088}
-  - component: {fileID: 6249226897487843091}
   - component: {fileID: 6249226897487843090}
+  - component: {fileID: 2845793643762768895}
   m_Layer: 5
   m_Name: Panel 3
   m_TagString: Untagged
@@ -6735,60 +6719,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6249226897487843091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6249226897487843092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b5542b69d60a934fa76df2ec8750b6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelImage: {fileID: 6249226897487843088}
-  defaultColor: {r: 0.4039216, g: 0.3019608, b: 0.854902, a: 1}
-  hoverColor: {r: 0.73333335, g: 0.23137257, b: 0.82745105, a: 1}
-  panelIndex: 2
-  panelUI: {fileID: 6249226896855122977}
-  playerUI: {fileID: 6249226897801047772}
-  headerText: {fileID: 6249226896487412015}
-  descriptionText: {fileID: 6249226896399917042}
-  iconPanel: {fileID: 6249226897579198257}
-  abilityPanelList:
-  - {fileID: 21300000, guid: 1a9c2c2a4a64e944eb9944340feb3595, type: 3}
-  - {fileID: 21300000, guid: d717766fd39692e47bc9e10ac04ab6dc, type: 3}
-  - {fileID: 21300000, guid: d23e632d3fae25248ace3d83ddc9902e, type: 3}
-  - {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
-  - {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
-  - {fileID: 21300000, guid: ca41a70726d6ed84da8ea7d1000633f3, type: 3}
-  - {fileID: 21300000, guid: eddf778d779dd2e46a84c198e40ecab5, type: 3}
-  - {fileID: 21300000, guid: 1cdaf286f8e1ff047879fc7c76debb9a, type: 3}
-  - {fileID: 21300000, guid: b248b2b0686619a4cae68905c3e43676, type: 3}
-  - {fileID: 21300000, guid: dff2809d972cbaf448e7a1888f1d01ea, type: 3}
-  - {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
-  - {fileID: 21300000, guid: cfa1d4ae5cbde234c855a1d8c18577e9, type: 3}
-  - {fileID: 21300000, guid: a7a01ead83f63fa44a6141650e1add89, type: 3}
-  - {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
-  lifeText: {fileID: 6249226895952794281}
-  damageText: {fileID: 6249226896910395304}
-  rateText: {fileID: 6249226896512850467}
-  speedText: {fileID: 6249226895926047588}
-  agilityText: {fileID: 6249226896024806952}
-  pickupText: {fileID: 6249226897232965572}
-  imFrontShield: {fileID: 6249226896675386031}
-  imBackShield: {fileID: 6249226897444326233}
-  imLifeModul: {fileID: 6249226896938239771}
-  imSpreadGun: {fileID: 6249226897961583473}
-  imHeadCannon: {fileID: 6249226895976778147}
-  imBulletWings: {fileID: 6249226897557209977}
-  imRocketLauncher: {fileID: 6249226896863086592}
-  imFireflies: {fileID: 6249226896242951767}
-  imPanelBaseColor: {r: 0.36862746, g: 0.36862746, b: 0.36862746, a: 0.8627451}
-  imPanelUpgradeColor: {r: 1, g: 1, b: 1, a: 1}
-  spPanelDeselcet: {fileID: 21300000, guid: ed0d09c8680ed474788b88729d069d53, type: 3}
-  spPanelSelect: {fileID: 21300000, guid: 26410bf7d9b5d6f4589c1e399f706932, type: 3}
 --- !u!114 &6249226897487843090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6806,9 +6736,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6249226897487843091}
-          m_TargetAssemblyTypeName: PanelInteraction, Assembly-CSharp
-          m_MethodName: OnMouseEnter
+        - m_Target: {fileID: 2845793643762768895}
+          m_TargetAssemblyTypeName: UpgradPanelIndex, Assembly-CSharp
+          m_MethodName: OnMouseEnter_
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6822,9 +6752,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6249226897487843091}
-          m_TargetAssemblyTypeName: PanelInteraction, Assembly-CSharp
-          m_MethodName: OnMouseExit
+        - m_Target: {fileID: 2845793643762768895}
+          m_TargetAssemblyTypeName: UpgradPanelIndex, Assembly-CSharp
+          m_MethodName: OnMouseExit_
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6838,9 +6768,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6249226897487843091}
-          m_TargetAssemblyTypeName: PanelInteraction, Assembly-CSharp
-          m_MethodName: OnMouseDown
+        - m_Target: {fileID: 2845793643762768895}
+          m_TargetAssemblyTypeName: UpgradPanelIndex, Assembly-CSharp
+          m_MethodName: OnMouseDown_
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6850,6 +6780,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &2845793643762768895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6249226897487843092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79bf2f3aab152ff4689d6a43e84021b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 2
+  panelImage: {fileID: 6249226897487843088}
+  upgradePanelController: {fileID: 4253810090386971732}
+  spPanelSelect: {fileID: 21300000, guid: 26410bf7d9b5d6f4589c1e399f706932, type: 3}
+  spPanelDeselcet: {fileID: 21300000, guid: ed0d09c8680ed474788b88729d069d53, type: 3}
+  headerText: {fileID: 6249226896487412015}
+  descriptionText: {fileID: 6249226896399917042}
+  iconPanel: {fileID: 6249226897579198257}
 --- !u!1 &6249226897557209979
 GameObject:
   m_ObjectHideFlags: 0
@@ -7424,7 +7374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6249226897801047773
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7481,7 +7431,7 @@ RectTransform:
   m_Children:
   - {fileID: 7634586958042360578}
   m_Father: {fileID: 6249226896618589489}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8074,7 +8024,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1749026831133837839
 RectTransform:
   m_ObjectHideFlags: 0

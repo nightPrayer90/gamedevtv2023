@@ -48,7 +48,7 @@ public class Boss02 : MonoBehaviour
         {
             if (objects != null)
             {
-                Instantiate(explosionObject, objects.transform.position, objects.transform.rotation);
+                //Instantiate(explosionObject, objects.transform.position, objects.transform.rotation);
                 objects.SetActive(true);
         
             }
