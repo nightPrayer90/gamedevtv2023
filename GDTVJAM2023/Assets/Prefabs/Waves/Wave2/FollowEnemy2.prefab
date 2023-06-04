@@ -238,7 +238,10 @@ MonoBehaviour:
   collisonDamage: 1
   explosionForce: 5
   expOrbSpawn: 1
+  secondDimensionEnemy: 0
+  canTakeDamage: 1
   enemyWeapons: []
+  hitColor: {r: 1, g: 0.5998216, b: 0, a: 1}
 --- !u!1001 &1553339959949973856
 PrefabInstance:
   m_ObjectHideFlags: 0

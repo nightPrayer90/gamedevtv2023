@@ -13,9 +13,11 @@ public class GameManager : MonoBehaviour
     private int enemysToKill;
     private int killCounter;
 
+
     [Header("Time for one Round")]
     public float totalTime = 1800f;
     private float currentTime = 0f;
+
 
     [Header("UI Controll")]
     public GameObject gameOverUI;
@@ -36,6 +38,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI outsideBorderText;
     [HideInInspector] public float curretEnemyCounter;
 
+
     [Header("Dimension Shift")]
     public Texture firstDimensionTexture1;
     public Texture secondDimenionTexture2;
@@ -47,6 +50,7 @@ public class GameManager : MonoBehaviour
     public Color secondDimenionColor;
     [HideInInspector] public bool dimensionShift = false;
 
+
     //Listen für Abilitys und UpgradeSystem
     [Header("Upgrade Lists")]
     [HideInInspector] public WeaponChooseList weaponChooseList;
@@ -54,14 +58,19 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public SpawnDistrictList spawnDistrictList;
     [HideInInspector] public List<int> valueList;
     [HideInInspector] public int[] selectedNumbers_ = new int[3];
-    
+
+
+    [Header("Floating Damage")]
+    public GameObject textPrefab;
+
+
     // Objects
     private CameraController mainCamera;
     private PlayerController player;
     private Light directionalLight;
     private GameObject currentSpawnManager;
 
-    public NavigationController navigationController;
+
 
 
     /* **************************************************************************** */
@@ -78,8 +87,8 @@ public class GameManager : MonoBehaviour
         spawnDistrictList = GetComponent<SpawnDistrictList>();
 
         // Initialize timer
-        currentTime = totalTime;
-        InvokeRepeating("UpdateTimerText", 1f, 1f);
+        currentTime = totalTime+1;
+        InvokeRepeating("UpdateTimerText", 3f, 1f);
 
         // Initialize Bgm
         AudioManager.Instance.PlayMusic("InGameMusic");
@@ -90,10 +99,10 @@ public class GameManager : MonoBehaviour
         // Initialze HUD Values
         UpdateUIPlayerHealth(10,10);
         UpdateUIPlayerExperience(false, 1, 10, 0);
-        UpdateEnemyCounter(0);
+        UpdateTimerText();
         UpdateDistrictText(districtNumber);
         UpdateEnemyToKill(0);
-
+        UpdateEnemyCounter(0);
     }
 
     // sets start values that must be the same for every run
@@ -212,6 +221,8 @@ public class GameManager : MonoBehaviour
     }
 
 
+
+
     /* **************************************************************************** */
     /* Update PlayerUI------------------------------------------------------------- */
     /* **************************************************************************** */
@@ -278,10 +289,10 @@ public class GameManager : MonoBehaviour
                 spawnDistrictList.goToDimensionPickup[districtNumber - 1].SetActive(true);
 
                 // activate the navigation controler
-                navigationController.SetTargetPosition();
+                player.SetNavigationController();
 
                 // activate a camera shake
-                mainCamera.BigShakeScreen();
+                ScreenShake(2);
             }
         }
     }
@@ -373,10 +384,7 @@ public class GameManager : MonoBehaviour
         directionalLight.color = secondDimenionColor;
 
         // screen shake
-        mainCamera.BigShortShakeScreen();
-
-        // deactivate player navigation controller (Control only over the player object)?
-        navigationController.DeactivateNavigatorMesh();
+        ScreenShake(3);
 
         // destroy stuff
         Destroy(currentSpawnManager);
@@ -413,7 +421,7 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlaySFX("LiftUP");
 
         // screen shake
-        mainCamera.LongShakeScreen();
+        ScreenShake(4);
 
         // spawn a new SpawnManager
         Instantiate(spawnDistrictList.spawnManagerList[districtNumber - 1], transform.position, transform.rotation);
@@ -432,4 +440,44 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+
+
+    /* **************************************************************************** */
+    /* MISC---------- ------------------------------------------------------------- */
+    /* **************************************************************************** */
+    // camera screenshake control
+    public void ScreenShake(int shakeIndex)
+    {
+        switch(shakeIndex)
+        {
+            case 1:
+                mainCamera.ShakeScreen();
+                break;
+
+            case 2:
+                mainCamera.BigShakeScreen();
+                break;
+
+            case 3:
+                mainCamera.BigShortShakeScreen();
+                break;
+
+            case 4:
+                mainCamera.LongShakeScreen();
+                break;
+        }
+    }
+
+    // create a floating text after calculation damage or health
+    public void DoFloatingText(Vector3 position, string text, Color c)
+    {
+        //EffectsManager effectsManager = FindObjectOfType<EffectsManager>();
+        GameObject floatingText = Instantiate(textPrefab, position, Quaternion.LookRotation(Camera.main.transform.forward));
+        floatingText.GetComponent<TMP_Text>().color = c;
+        floatingText.GetComponent<DamagePopup>().displayText = text;
+    }
+    // You can call this from anywhere by calling gamemanager.DoFloatingText(position, text, c);
 }
+
+

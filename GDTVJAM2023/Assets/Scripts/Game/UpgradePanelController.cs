@@ -296,5 +296,6 @@ public class UpgradePanelController : MonoBehaviour
         }
 
         gameManager.UpgradeGet();
+     
     }
 }

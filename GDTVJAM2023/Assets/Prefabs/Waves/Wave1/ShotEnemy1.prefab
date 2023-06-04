@@ -4898,7 +4898,6 @@ MonoBehaviour:
   fireOnBirth: 1
   interval: 1
   isEmittingSound: 1
-  shootSound: PlayerShot
   audioSource: {fileID: 8282490657798844597}
 --- !u!82 &8282490657798844597
 AudioSource:
@@ -10109,6 +10108,7 @@ MonoBehaviour:
   canTakeDamage: 1
   enemyWeapons:
   - {fileID: 6568500339046026327}
+  hitColor: {r: 1, g: 0.6, b: 0, a: 1}
 --- !u!1 &5047808053468307657
 GameObject:
   m_ObjectHideFlags: 0
