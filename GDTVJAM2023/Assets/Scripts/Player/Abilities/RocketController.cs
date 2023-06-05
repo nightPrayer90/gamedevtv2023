@@ -22,11 +22,15 @@ public class RocketController : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        FindNextTarget(); // Erstes Zielobjekt suchen
         rbRocket = GetComponent<Rigidbody>();
-        Invoke("DestroyObject", maxLifeTime);
+    }
 
-        maxLifeTime = Random.Range(maxLifeTime-0.25f, maxLifeTime+0.25f);
+    private void OnEnable()
+    {
+        target = null;
+        FindNextTarget(); // Erstes Zielobjekt suchen
+        Invoke("DestroyObject", maxLifeTime);
+        maxLifeTime = Random.Range(maxLifeTime - 0.25f, maxLifeTime + 0.25f); 
     }
 
     private void FixedUpdate()
@@ -52,8 +56,9 @@ public class RocketController : MonoBehaviour
 
     private void DestroyObject()
     {
-        Destroy(gameObject);
-        Instantiate(exposionObject, transform.position, transform.rotation);
+        ObjectPoolManager.ReturnObjectToPool(gameObject);
+
+        ObjectPoolManager.SpawnObject(exposionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
     }
 
     private void FindNextTarget()
@@ -98,8 +103,9 @@ public class RocketController : MonoBehaviour
         {
             other.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
 
-            Destroy(gameObject);
-            Instantiate(exposionObject, transform.position, transform.rotation);
+            ObjectPoolManager.ReturnObjectToPool(gameObject);
+
+            ObjectPoolManager.SpawnObject(exposionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
         }
     }
 }

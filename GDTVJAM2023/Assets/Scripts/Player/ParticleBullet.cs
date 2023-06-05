@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ParticleBullet : MonoBehaviour
 {
-    public int bulletDamage = 1;
+    public int bulletDamage = 0;
  
     public void BulletSetDamage(int bulletDamage_)
     {

@@ -15,6 +15,24 @@ public class SpawnManager : MonoBehaviour
 
     public int maxWaveEnemys; 
 
+    public enum Wave
+    {
+        Wave1,
+        Wave2,
+        Wave3,
+        Wave4,
+        Wave5,
+        Wave6,
+        Wave7,
+        Wave8,
+        Wave9
+    }
+
+    [SerializeField]
+    private Wave wave;
+    
+
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -45,7 +63,39 @@ public class SpawnManager : MonoBehaviour
         Vector3 spawnPosition = GetRandomSpawnPosition();
 
         // Spawn the object at the generated position
-        Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
+        switch (wave)
+        {
+            case Wave.Wave1:
+                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave1);
+                break;
+            case Wave.Wave2:
+                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave2);
+                break;
+            case Wave.Wave3:
+                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave3);
+                break;
+            case Wave.Wave4:
+                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave4);
+                break;
+            case Wave.Wave5:
+                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave5);
+                break;
+            case Wave.Wave6:
+                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave6);
+                break;
+            case Wave.Wave7:
+                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave7);
+                break;
+            case Wave.Wave8:
+                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave8);
+                break;
+            case Wave.Wave9:
+                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave9);
+                break;
+        }
+        
+
+        //Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
 
         gameManager.UpdateEnemyCounter(1);
     }

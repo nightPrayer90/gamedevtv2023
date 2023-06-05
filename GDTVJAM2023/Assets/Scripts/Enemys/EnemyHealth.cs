@@ -62,7 +62,8 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        AudioManager.Instance.PlaySFX("ImpactShot");
+        
+        
         if (canTakeDamage)
         {
             enemyHealth -= damage;
@@ -70,15 +71,16 @@ public class EnemyHealth : MonoBehaviour
             if (enemyHealth <= 0)
             {
                 if (expOrbSpawn)
-                    Instantiate(expOrb, transform.position, transform.rotation);
-                Instantiate(explosionObject, transform.position, transform.rotation);
+                    ObjectPoolManager.SpawnObject(expOrb, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
 
+                ObjectPoolManager.SpawnObject(explosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
+                
                 if (secondDimensionEnemy == false)
                 {
                     gameManager.UpdateEnemyCounter(-1);
                     gameManager.UpdateEnemyToKill(1);
                 }
-                Destroy(gameObject);
+                ObjectPoolManager.ReturnObjectToPool(gameObject);
             }
         }
     }
@@ -108,6 +110,7 @@ public class EnemyHealth : MonoBehaviour
         ParticleSystem part = other.GetComponent<ParticleSystem>(); // *** important! Making a variable to acess the particle system of the emmiting object, in this case, the lasers from my player ship.
         int damage = other.GetComponent<ParticleBullet>().bulletDamage;
 
+        AudioManager.Instance.PlaySFX("ImpactShot");
         TakeDamage(damage);
         
 
@@ -116,9 +119,9 @@ public class EnemyHealth : MonoBehaviour
         foreach (ParticleCollisionEvent collisionEvent in collisionEvents) //  for each collision, do the following:
         {
             Vector3 pos = collisionEvent.intersection; // the point of intersection between the particle and the enemy
-
             gameManager.DoFloatingText(pos, "+" + damage.ToString(), hitColor);
-            //vfx.transform.parent = parentGameobject.transform; // this makes the new gameobjects children to my "VFX Parent" gameObject in my Hierarchy, for organizarion purposes
+            
+   
         }
     }
 }

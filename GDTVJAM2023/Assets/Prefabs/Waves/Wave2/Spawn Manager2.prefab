@@ -55,3 +55,4 @@ MonoBehaviour:
   maxSpawnDistance: 10
   spawnInterval: 2
   maxWaveEnemys: 10
+  wave: 1

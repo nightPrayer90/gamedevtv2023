@@ -125,6 +125,7 @@ public class GameManager : MonoBehaviour
 
         // instantiate the right Spawner
         currentSpawnManager = Instantiate(spawnDistrictList.spawnManagerList[districtNumber - 1], transform.position, transform.rotation);
+        currentSpawnManager.transform.SetParent(gameObject.transform);
 
         // set UI sights
         gameOverUI.SetActive(false);
@@ -472,12 +473,11 @@ public class GameManager : MonoBehaviour
     // create a floating text after calculation damage or health
     public void DoFloatingText(Vector3 position, string text, Color c)
     {
-        //EffectsManager effectsManager = FindObjectOfType<EffectsManager>();
-        GameObject floatingText = Instantiate(textPrefab, position, Quaternion.LookRotation(Camera.main.transform.forward));
+        GameObject floatingText = ObjectPoolManager.SpawnObject(textPrefab, position, Quaternion.LookRotation(Camera.main.transform.forward), ObjectPoolManager.PoolType.FloatingText);
         floatingText.GetComponent<TMP_Text>().color = c;
-        floatingText.GetComponent<DamagePopup>().displayText = text;
+        floatingText.GetComponent<DamagePopup>().SetText(text);
     }
-    // You can call this from anywhere by calling gamemanager.DoFloatingText(position, text, c);
+    // You can call this from anywhere by calling gameManager.DoFloatingText(position, text, c);
 }
 
 

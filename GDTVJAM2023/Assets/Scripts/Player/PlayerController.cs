@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
         switch (tag)
         {
             case "Exp":
-                Destroy(other.gameObject);
+                ObjectPoolManager.ReturnObjectToPool(other.gameObject); 
                 UpdatePlayerExperience();
                 break;
 
@@ -138,9 +138,9 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case "BorderCollider":
-                gameManager.outsideBorderText.text = "";
                 if (isOutsideBorder == true)
                 {
+                    gameManager.outsideBorderText.text = "";
                     CancelInvoke("PlayerIsOutsideBorder");
                     isOutsideBorder = false;
                 }
@@ -156,6 +156,7 @@ public class PlayerController : MonoBehaviour
             if (isOutsideBorder == true)
             {
                 CancelInvoke("PlayerIsOutsideBorder");
+                gameManager.outsideBorderText.text = "";
                 isOutsideBorder = false;
             }
         }
@@ -195,7 +196,7 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(explosionDirection * -1f * enemyHealth.explosionForce, ForceMode.Impulse);
 
             // trigger a Explosion on the Enemy
-            Instantiate(enemyHealth.dieExplosionObject, transform.position, transform.rotation);
+            ObjectPoolManager.SpawnObject(enemyHealth.dieExplosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
 
             // calculate player health
             UpdatePlayerHealth(enemyHealth.collisonDamage);
@@ -311,9 +312,10 @@ public class PlayerController : MonoBehaviour
         }
 
         // player die
-        if (playerCurrentHealth == 0)
+        if (playerCurrentHealth <= 0)
         {
             gameObject.SetActive(false);
+            gameManager.GameIsOver();
         }
     }
 
@@ -326,11 +328,8 @@ public class PlayerController : MonoBehaviour
     // the main weapon start to fire
     public void StartShooting()
     {
-        // set the particle damage
-        foreach (ParticleBullet particle in particleBullets)
-        {
-            particle.BulletSetDamage(playerBulletBaseDamage);
-        }
+        // set the main weapon particle damage
+        SetBulletDamage();
 
         // start invoke for main weapons
         InvokeRepeating("ShotEmit", 0.5f, playerFireRate);
@@ -356,7 +355,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    // set the main weapon particle damage
+    public void SetBulletDamage()
+    {
+        foreach (ParticleBullet particle in particleBullets)
+        {
+            particle.BulletSetDamage(playerBulletBaseDamage);
+        }
+    }
 
 
 

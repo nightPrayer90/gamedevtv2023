@@ -238,8 +238,9 @@ public class UpgradePanelController : MonoBehaviour
                 playerController.playerCurrentHealth = Mathf.Min(playerController.playerCurrentHealth + Mathf.RoundToInt(upgradeValue[index]), playerController.playerMaxHealth);
                 gameManager.UpdateUIPlayerHealth(playerController.playerCurrentHealth, playerController.playerMaxHealth);
                 break;
-            case 1: //upgrade: main Weapon
+            case 1: //upgrade: main Weapon damage
                 playerController.playerBulletBaseDamage = playerController.playerBulletBaseDamage + Mathf.RoundToInt(upgradeValue[index]);
+                playerController.SetBulletDamage();
                 break;
             case 2: //upgrade: fire Rate
                 playerController.playerFireRate = Mathf.Max(0.05f, playerController.playerFireRate - upgradeValue[index]);

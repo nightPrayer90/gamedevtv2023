@@ -27,8 +27,10 @@ public class PeriodSpawner : MonoBehaviour
         }
         if (Time.time >= nextSpawnTime && enemyDetected == true)
         {
-            Instantiate(rockedToLaunch, spawnPoint.transform.position, Quaternion.Euler(0f, 180f, 0f) *  gameObject.transform.rotation);
-            Instantiate(rockedToLaunch, spawnPoint2.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation);
+            ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
+            ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint2.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
+
+
             AudioManager.Instance.PlaySFX("PlayerRocketStart");
             nextSpawnTime = Time.time + spawnInterval;
         }

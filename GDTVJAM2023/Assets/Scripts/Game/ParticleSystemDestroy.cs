@@ -9,8 +9,9 @@ public class ParticleSystemDestroy : MonoBehaviour
     //public string shootSound;
 
     public AudioSource audioSource;
-    // Update is called once per frame
-    private void Start()
+
+
+    private void OnEnable()
     {
         //AudioManager.Instance.PlaySFX("Explosion");
         if (isEmittingSound == true && audioSource != null)
@@ -19,11 +20,9 @@ public class ParticleSystemDestroy : MonoBehaviour
             audioSource.Play();
         }
     }
-    void Update()
+
+    private void OnParticleSystemStopped()
     {
-        if (!particleSystemToCheck.isPlaying)
-        {
-            Destroy(gameObject);
-        }
+         ObjectPoolManager.ReturnObjectToPool(gameObject);
     }
 }

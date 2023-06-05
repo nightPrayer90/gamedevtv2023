@@ -3,19 +3,21 @@ using UnityEngine;
 public class EnemyExp : MonoBehaviour
 {
     public float moveSpeed = 1f;
-    public float detectionRange = 5f;
+    public float detectionRange = 0.5f;
 
     private PlayerController playercontroller;
     private Rigidbody playerRb;
     private bool ifcollect = false;
 
     // Start is called before the first frame update
-    void Start()
+   
+    void OnEnable()
     {
         playercontroller = GameObject.Find("Player").GetComponent<PlayerController>();
         playerRb = GameObject.Find("Player").GetComponent<Rigidbody>();
-
         detectionRange = playercontroller.pickupRange;
+
+        ifcollect = false;
     }
 
     // Update is called once per frame

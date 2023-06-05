@@ -9730,7 +9730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
-  detectionRange: 1.5
+  detectionRange: 1
 --- !u!65 &4477590178855136814
 BoxCollider:
   m_ObjectHideFlags: 0

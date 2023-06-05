@@ -17,9 +17,18 @@ public class SimpleEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //enemyRb = GetComponent<Rigidbody>();
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        playerRb = GameObject.Find("Player").GetComponent<Rigidbody>();
+        GameObject playerObjekt = GameObject.Find("Player");
+        if (playerObjekt != null) // nur vorrübergehend
+        {
+            //enemyRb = GetComponent<Rigidbody>();
+            playerController = playerObjekt.GetComponent<PlayerController>();
+            playerRb = playerObjekt.GetComponent<Rigidbody>();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+       
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
     }
