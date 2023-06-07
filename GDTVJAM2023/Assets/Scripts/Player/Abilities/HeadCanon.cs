@@ -4,134 +4,163 @@ using UnityEngine;
 
 public class HeadCanon : MonoBehaviour
 {
-    public GameObject player; // Referenz auf das Spielerobjekt
-    public string enemyTag = "Enemy"; // Der Tag der zu suchenden Objekte
-    private GameObject nearestEnemy = null; // Referenz auf das nächstgelegene Objekt
-    private GameManager gameManager;
-
-    public ParticleSystem particleSystem;
-    private int fireSalveCount;
+    [Header("Rocked Settings")]
+    public int bulletDamage = 2;
     public int fireSalveMax;
-
-    public float rotationSpeed = 5f; // Geschwindigkeit der Drehung
-    private Quaternion targetRotation; // Zielrotation
-    private bool isRotating; // Flag, ob sich das Objekt gerade dreht
-    
-    public float reloadInterval = 2f;
-    private float nextShootTime = 0f;
+    public float reloadShotInterval = 0.1f;
+    public float reloadSalveInterval = 2f;
+    public float rotationSpeed = 5f; 
     public float detectionRange = 10f;
 
-    private bool enemyDetected = false;
 
+    [Header("Game Objects")]
+    public ParticleSystem particleSystem;
+    private GameObject nearestEnemy = null;
+    private GameManager gameManager;
+    private GameObject player;
+    
+
+    // other stuff
+    private Quaternion targetRotation;
+    private bool isRotating;
+    private int fireSalveCount;
+    private float nextSalveTime = 0f;
+    private float nextShotTime = 0f;
+    private bool canFire = false;
+
+
+
+
+    /* **************************************************************************** */
+    /* LIFECYCLE METHODEN---------------------------------------------------------- */
+    /* **************************************************************************** */
     private void Start()
     {
+        // find Objects
+        player = GameObject.Find("Player");
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        nextShootTime = Time.time + reloadInterval;
+        particleSystem.GetComponent<ParticleBullet>().bulletDamage = bulletDamage;
+
+        //set first reload time
+        nextSalveTime = Time.time + reloadSalveInterval;
     }
 
     private void Update()
     {
         if (isRotating)
         {
+            // rotate the canon in the target direction and fire
             RotateTowardsTarget();
+        }
+
+        else
+        {
+            // find a new target
+            FindNextTarget();
+        }
+
+        // fire salve control
+        if (fireSalveCount >= fireSalveMax)
+        {
+            //reaload the head cannon after fire a salve
+            if (Time.time >= nextSalveTime)
+            {
+                fireSalveCount = 0;
+                nextSalveTime = Time.time + reloadSalveInterval;
+            }
         }
         else
         {
-            FindNearestEnemyObject();
-        }
-
-
-        if (fireSalveCount >= fireSalveMax)
-        {
-            if (Time.time >= nextShootTime)
+            //reload after one shot
+            if (Time.time >= nextShotTime)
             {
-                fireSalveCount = 0;
-                nextShootTime = Time.time + reloadInterval;
+                canFire = true;
             }
         }
 
     }
 
-    private void FindNearestEnemyObject()
+
+
+
+    /* **************************************************************************** */
+    /* FUNCTIONS TO RUN------------------------------------------------------------ */
+    /* **************************************************************************** */
+    // find the nearst target
+    private void FindNextTarget()
     {
-        enemyDetected = false;
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag); // Alle Objekte mit dem gegebenen Tag finden
-        float closestDistance = Mathf.Infinity; // Startwert für die kürzeste Distanz
-        nearestEnemy = null; // Reset
+        // enemy target tag set
+        string tagStr = "Enemy";
+        if (gameManager.dimensionShift == true)
+        {
+            tagStr = "secondDimensionEnemy";
+        }
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(tagStr);
+       
+        float closestDistance = Mathf.Infinity;
+        nearestEnemy = null;
 
         foreach (GameObject enemy in enemies)
         {
             float distance = Vector3.Distance(player.transform.position, enemy.transform.position); // Distanz zum Spielerobjekt berechnen
 
-
-            if (distance < closestDistance)
-            {
-                if (gameManager.dimensionShift == false)
-                {
-                    if (enemy.layer == LayerMask.NameToLayer("Enemy"))
-                    {
-                        closestDistance = distance;
-                        nearestEnemy = enemy;
-                    }
-                }
-                else
-                {
-                    if (enemy.layer == LayerMask.NameToLayer("secondDimensionEnemy"))
-                    {
-                        closestDistance = distance;
-                        nearestEnemy = enemy;
-                    }
-                }
-            }
-
-            // Wenn das Enemy-Objekt innerhalb der Reichweite ist
+            // save the nearstEnemy
             if (distance <= detectionRange)
             {
-                enemyDetected = true;
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    nearestEnemy = enemy;
+                }
             }
-
         }
 
-        
-
-        // Hier hast du nun das nächstgelegene Objekt als nearestEnemy
         if (nearestEnemy != null)
         {
-            Debug.Log("Nächstes Feindobjekt: " + nearestEnemy.name);
-            StartRotation();
+            CalculateTargetRotation();
         }
     }
 
-    private void StartRotation()
+    // set the rotation angle to target
+    private void CalculateTargetRotation()
     {
-        // Berechnung der Zielrotation
         Vector3 targetDirection = nearestEnemy.transform.position - transform.position;
         targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
 
-        // Setze das Drehungs-Flag auf true, um die Drehung zu starten
         isRotating = true;
     }
 
+    // rotate the headcannon to target and fire after rotate is complete
     private void RotateTowardsTarget()
     {
-        // Drehe das Objekt in Richtung des Ziels
+        // rotation to target
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-        // Überprüfe, ob die Drehung abgeschlossen ist
+        // rotation is complete, fire
         if (Quaternion.Angle(transform.rotation, targetRotation) < 0.1f)
         {
-            isRotating = false;
-            RotationCompleted(); // Funktion, die ausgelöst wird, wenn die Drehung vollendet ist
+            ShotAferRotation();
+
+            isRotating = false;   
         }
     }
 
-    private void RotationCompleted()
+    // trigger a bullet
+    private void ShotAferRotation()
     {
-        if (fireSalveCount < fireSalveMax && enemyDetected == true)
+        if (fireSalveCount < fireSalveMax && nearestEnemy != null && canFire == true)
         {
-            particleSystem.Play();
+            // trigger the head cannon audio
             AudioManager.Instance.PlaySFX("PlayerHeadCannon");
+
+            // trigger 1 particle shot
+            particleSystem.Emit(1);
             fireSalveCount ++;
+
+            // reset timer
+            nextSalveTime = Time.time + reloadSalveInterval;
+            nextShotTime = Time.time + reloadShotInterval;
+            canFire = false;
         }
     }
 }

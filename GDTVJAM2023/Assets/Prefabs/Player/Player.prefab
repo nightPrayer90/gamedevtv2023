@@ -20201,7 +20201,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -25043,10 +25043,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 0
-  particleSystem: {fileID: 551558890849338506}
-  interval: 0.3
-  isEmittingSound: 1
-  shootSound: PlayerShot
 --- !u!1 &551558890905112990
 GameObject:
   m_ObjectHideFlags: 0
@@ -29970,10 +29966,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 2
-  particleSystem: {fileID: 551558890908627998}
-  interval: 1
-  isEmittingSound: 0
-  shootSound: 
 --- !u!1 &551558890930529995
 GameObject:
   m_ObjectHideFlags: 0
@@ -30027,6 +30019,7 @@ GameObject:
   - component: {fileID: 551558891167549048}
   - component: {fileID: 8486280163639983511}
   - component: {fileID: 1928957018}
+  - component: {fileID: 1639578840}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -30064,7 +30057,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 2
   m_Drag: 1.5
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1.5
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -30095,29 +30088,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91aea00d360c98f43a31978d685d235b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startImpulse: 100
   speed: 500
   rotateSpeed: 3
   playerMaxHealth: 10
   playerBulletBaseDamage: 1
   playerFireRate: 0.3
   pickupRange: 0.8
-  startImpulse: 100
-  engineAudioSource: {fileID: 0}
+  mainWeapons:
+  - {fileID: 551558890849338506}
+  - {fileID: 551558892217598447}
   particleBullets:
   - {fileID: 551558890849338516}
   - {fileID: 551558892217598441}
-  cameraController: {fileID: 0}
   playerCurrentHealth: 10
-  playerCurrentExperience: 0
-  playerExperienceToLevelUp: 5
-  playerLevel: 1
-  playerLevelUpFactor: 1.2
+  shootSound: 
   damageInterval: 1
   damageTaken: 1
   isOutsideBorder: 0
   isFrontShield: 0
   isBackShieldLeft: 0
   isBackShieldRight: 0
+  hitColor: {r: 1, g: 0, b: 0, a: 1}
+  navigationController: {fileID: 2877662477614724915}
+  mainWeaponSound: {fileID: 1639578840}
+  engineAudioSource: {fileID: 1928957018}
 --- !u!114 &8486280163639983511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30130,7 +30125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c6d230817f4654dbf0dea641464992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHeadCannon: 0
+  isHeadCannon: 1
   isRocketLauncher: 0
   isFireFlies: 0
   isBulletWings: 0
@@ -30158,9 +30153,105 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3e49c4bf36b41964db4cfe47eaf84551, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.516
   m_Pitch: 1
   Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 1
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &1639578840
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551558891167549049}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 790370ff575fde448be9b52912b262ec, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.206
+  m_Pitch: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -35242,11 +35333,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca243ace604240449ad82e3d008795f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rocketDamage: 5
+  lifeTime: 4
   rockedToLaunch: {fileID: 667735904795272308, guid: a6d86ef9fcb3b084fae049be9d2a24b8, type: 3}
   spawnInterval: 5
-  detectionRange: 1.5
+  detectionRange: 8
   spawnPoint: {fileID: 551558890905112990}
   spawnPoint2: {fileID: 551558891580470990}
+  hitColor: {r: 1, g: 0.6, b: 0, a: 1}
 --- !u!1 &551558891580470990
 GameObject:
   m_ObjectHideFlags: 0
@@ -35325,8 +35419,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystems:
   - {fileID: 7389470104231755615}
-  tickInterval: 15
+  tickInterval: 12
   PercentHealthPerTick: 0.1
+  audioClip: MouseKlick
+  healColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &551558891711612176
 GameObject:
   m_ObjectHideFlags: 0
@@ -59783,10 +59879,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 2
-  particleSystem: {fileID: 551558892117798968}
-  interval: 1
-  isEmittingSound: 0
-  shootSound: 
 --- !u!1 &551558892212810389
 GameObject:
   m_ObjectHideFlags: 0
@@ -64679,10 +64771,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 2
-  particleSystem: {fileID: 551558892212810376}
-  interval: 1
-  isEmittingSound: 0
-  shootSound: 
 --- !u!1 &551558892217598443
 GameObject:
   m_ObjectHideFlags: 0
@@ -64734,7 +64822,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -69575,10 +69663,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 0
-  particleSystem: {fileID: 551558892217598447}
-  interval: 0.3
-  isEmittingSound: 0
-  shootSound: 
 --- !u!1 &551558892322432513
 GameObject:
   m_ObjectHideFlags: 0
@@ -69631,6 +69715,10 @@ MonoBehaviour:
   - {fileID: 551558892117798968}
   - {fileID: 551558892212810376}
   spawnInterval: 4
+  isAudioEmitter: 1
+  audioClip: PlayerBulletWings
+  audioClipPlayDuration: 0.7
+  audioClipDuration: 0.125
 --- !u!1 &551558892342975464
 GameObject:
   m_ObjectHideFlags: 0
@@ -79420,6 +79508,10 @@ MonoBehaviour:
   particleSystems:
   - {fileID: 2735462831119209522}
   spawnInterval: 3
+  isAudioEmitter: 1
+  audioClip: PlayerFireFlies
+  audioClipPlayDuration: 0.5
+  audioClipDuration: 0.09
 --- !u!1 &551558892496614422
 GameObject:
   m_ObjectHideFlags: 0
@@ -79468,7 +79560,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleSystems:
   - {fileID: 551558892632615462}
-  spawnInterval: 5
+  spawnInterval: 5.5
+  isAudioEmitter: 1
+  audioClip: PlayerFireFlies
+  audioClipPlayDuration: 0.8
+  audioClipDuration: 0.05
 --- !u!1 &551558892593353441
 GameObject:
   m_ObjectHideFlags: 0
@@ -79598,13 +79694,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520cbc7ec75bf174f8046060fff72e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 551558892611921647}
-  enemyTag: Enemy
+  bulletDamage: 1
+  fireSalveMax: 6
+  reloadShotInterval: 0.1
+  reloadSalveInterval: 2
+  rotationSpeed: 50
+  detectionRange: 5
   particleSystem: {fileID: 551558890908627998}
-  fireSalveMax: 5
-  rotationSpeed: 20
-  reloadInterval: 2
-  detectionRange: 4
 --- !u!1 &551558892632615458
 GameObject:
   m_ObjectHideFlags: 0
@@ -79723,7 +79819,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 8
+      scalar: 5
       minScalar: 8
       maxCurve:
         serializedVersion: 2
@@ -80208,7 +80304,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 25
+    maxNumParticles: 27
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -80474,7 +80570,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 25
+      scalar: 27
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -84500,10 +84596,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 3
-  particleSystem: {fileID: 551558892632615462}
-  interval: 1
-  isEmittingSound: 0
-  shootSound: 
 --- !u!1 &551558892636554806
 GameObject:
   m_ObjectHideFlags: 0
@@ -99306,10 +99398,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 1
-  particleSystem: {fileID: 2735462831119209522}
-  interval: 1
-  isEmittingSound: 0
-  shootSound: 
 --- !u!1 &7534365714480221671
 GameObject:
   m_ObjectHideFlags: 0

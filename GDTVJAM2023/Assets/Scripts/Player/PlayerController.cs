@@ -246,7 +246,7 @@ public class PlayerController : MonoBehaviour
             }
             
             // calculate movement
-            playerRb.AddForce(gameObject.transform.forward * -speed * forwardInput * Time.deltaTime, ForceMode.Force);
+            playerRb.AddForce(forwardInput * (-speed) * Time.deltaTime* gameObject.transform.forward, ForceMode.Force);
             gameObject.transform.Rotate(0f, horizontalInput * rotateSpeed,  0f);
         }
         

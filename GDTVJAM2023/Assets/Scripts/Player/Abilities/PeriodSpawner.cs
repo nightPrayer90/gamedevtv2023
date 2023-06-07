@@ -4,55 +4,91 @@ using UnityEngine;
 
 public class PeriodSpawner : MonoBehaviour
 {
+    [Header("Rocked Settings")]
+    public int rocketDamage = 5;
+    public int lifeTime = 10;
     public GameObject rockedToLaunch;
     public float spawnInterval = 4f;
-    private float nextSpawnTime = 0f;
     public float detectionRange = 10f;
     public GameObject spawnPoint;
     public GameObject spawnPoint2;
     private bool enemyDetected = false;
-    // Update is called once per frame
+    private GameManager gameManager;
+    public Color hitColor = new Color(1f, 0.6f, 0.0f, 1f);
 
+
+
+
+    /* **************************************************************************** */
+    /* LIFECYCLE METHODEN---------------------------------------------------------- */
+    /* **************************************************************************** */
     private void Start()
     {
-        nextSpawnTime = Time.time + spawnInterval;
+        InvokeRepeating("SpawnRocked", spawnInterval, spawnInterval);
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
-    void Update()
-    {
-        if (enemyDetected == false)
-        {
-            DetectEnemy();
-
-        }
-        if (Time.time >= nextSpawnTime && enemyDetected == true)
-        {
-            ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
-            ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint2.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
+  
 
 
-            AudioManager.Instance.PlaySFX("PlayerRocketStart");
-            nextSpawnTime = Time.time + spawnInterval;
-        }
-    }
-
-   
+    /* **************************************************************************** */
+    /* FUNCTIONS TO RUN------------------------------------------------------------ */
+    /* **************************************************************************** */
+    // in an enemy in range;
     private void DetectEnemy()
     {
-        // Finde alle Objekte mit dem Tag "Enemy"
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        // enemy target tag set
+        string tagStr = "Enemy";
+        if (gameManager.dimensionShift == true)
+        {
+            tagStr = "secondDimensionEnemy";
+        }
 
-        // Überprüfe für jedes gefundene Enemy-Objekt die Distanz
+        // list all enemys with tag
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(tagStr);
+
+        // is any enemy in range?
         foreach (GameObject enemy in enemies)
         {
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
 
-            // Wenn das Enemy-Objekt innerhalb der Reichweite ist
             if (distance <= detectionRange)
             {
                 enemyDetected = true;
+                break;
             }
-            
         }
     }
+
+    // Invoke, spawns a rocked after spawnInterval sec
+    private void SpawnRocked()
+    {
+        
+        // in an enemy in range;
+        DetectEnemy();
+
+        // if an anemy detected
+        if (enemyDetected == true)
+        {
+            // spawn rocket one
+            GameObject go = ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
+            RocketController rocket = go.GetComponent<RocketController>();
+            rocket.damage = rocketDamage;
+            rocket.hitColor = hitColor;
+            rocket.maxLifeTime = lifeTime;
+
+            // spwan rocket two
+            go = ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint2.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
+            rocket = go.GetComponent<RocketController>();
+            rocket.damage = rocketDamage;
+            rocket.hitColor = hitColor;
+            rocket.maxLifeTime = lifeTime;
+
+            AudioManager.Instance.PlaySFX("PlayerRocketStart");
+
+            enemyDetected = false;
+        }
+    }
+
+
 }

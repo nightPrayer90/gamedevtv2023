@@ -12,6 +12,7 @@ TagManager:
   - Shield
   - DimensionPickUpGoBack
   - VictoryPickup
+  - secondDimensionEnemy
   layers:
   - Default
   - TransparentFX

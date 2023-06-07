@@ -77,12 +77,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a4107fca21e9d046a2c736a49afac4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
   speed: 2
   rotationSpeed: 10
-  enemyTag: Enemy
   exposionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
-  damage: 5
   maxLifeTime: 4
+  hitColor: {r: 1, g: 0.6, b: 0, a: 1}
 --- !u!1 &4328560397251660117
 GameObject:
   m_ObjectHideFlags: 0
