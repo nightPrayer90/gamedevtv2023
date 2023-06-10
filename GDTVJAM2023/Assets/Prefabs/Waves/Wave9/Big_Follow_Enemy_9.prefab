@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 3161139216598759946}
   - component: {fileID: 3958546974285713878}
   m_Layer: 6
-  m_Name: FollowEnemyBig9
+  m_Name: Big_Follow_Enemy_9
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,7 +191,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &3161139216598759945
 BoxCollider:

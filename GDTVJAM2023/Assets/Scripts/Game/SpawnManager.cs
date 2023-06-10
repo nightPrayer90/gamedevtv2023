@@ -46,7 +46,7 @@ public class SpawnManager : MonoBehaviour
         mainCamera = Camera.main;
 
         // start spawning
-        InvokeRepeating("SpawnObject", 0f, spawnInterval);
+        InvokeRepeating("SpawnObject", 2f, spawnInterval);
     }
 
     private void OnDestroy()

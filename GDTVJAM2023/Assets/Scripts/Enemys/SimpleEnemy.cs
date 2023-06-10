@@ -161,7 +161,7 @@ public class SimpleEnemy : MonoBehaviour
         transform.position += movement;
     }
 
-    // movment - with dash  - Mass2 - Drag 2 - force - 6.5 distance 2.7
+    // movment - with dash  - Mass 2 - Drag 2 - force - 6.5 distance 2.7
     void EnemyMovementWithDash()
     {
         Vector3 playerPosition = playerRb.transform.position;
