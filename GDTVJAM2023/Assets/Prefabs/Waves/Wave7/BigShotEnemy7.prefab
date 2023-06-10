@@ -10122,6 +10122,7 @@ MonoBehaviour:
   canPoolObject: 1
   enemyWeapons:
   - {fileID: 6568500339046026327}
+  - {fileID: 8093461885592205405}
   bulletDamage: 0
   hitColor: {r: 1, g: 0.5998216, b: 0, a: 1}
 --- !u!1 &5047808053468307657

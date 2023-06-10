@@ -15073,7 +15073,8 @@ MonoBehaviour:
   secondDimensionEnemy: 0
   canTakeDamage: 1
   canPoolObject: 1
-  enemyWeapons: []
+  enemyWeapons:
+  - {fileID: 6719128948750945254}
   bulletDamage: 0
   hitColor: {r: 1, g: 0.5998216, b: 0, a: 1}
 --- !u!1001 &6453698853902950035
