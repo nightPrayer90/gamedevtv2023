@@ -4,66 +4,101 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [Header("Objects")]
     public GameObject explosionObject;
     public GameObject dieExplosionObject;
     public GameObject expOrb;
-    private GameManager gameManager;
-    private Collider collider;
+    public GameObject miniMapIcon;
+
+    [Header("Enemy Settings")]
     public float enemyHealth = 2.0f;
-    public int collisonDamage = 1; //wird alles über den Spieler abgefragt
+    public int collisonDamage = 1; 
     public float explosionForce = 5.0f;
     public bool expOrbSpawn = false;
     public bool secondDimensionEnemy = false;
     public bool canTakeDamage = true;
+    public bool canPoolObject = true;
 
+    [Header("Enemy Weapons")]
     public List<EnemyParticleBullet> enemyWeapons;
+    public int bulletDamage;
+    private bool isShooting = false;
 
-    public List<ParticleCollisionEvent> collisionEvents; // creating a list to store the collision events
+    [Header("Collision Control")]
+    public List<ParticleCollisionEvent> collisionEvents;
     public Color hitColor = new Color(1f, 0.6f, 0.0f, 1f);
 
+    // gameObjects to find
+    private GameManager gameManager;
+    private Collider collider;
+
+
+
+
+    /* **************************************************************************** */
+    /* LIFECYCLE METHODEN---------------------------------------------------------- */
+    /* **************************************************************************** */
     private void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         collider = GetComponent<Collider>();
+    }
+
+    private void OnEnable()
+    {
         collisionEvents = new List<ParticleCollisionEvent>();
+        isShooting = false;
     }
 
     private void Update()
     {
-        if (!secondDimensionEnemy)
+        if (gameManager.dimensionShift == !secondDimensionEnemy)
         {
-            //normaler Gegner
-            if (gameManager.dimensionShift == true)
-            {
-                collider.enabled = false;
-                StopShooting();
-            }
-            else
-            {
-                collider.enabled = true;
-                StartShooting();
-            }
+            collider.enabled = false;
+            if (miniMapIcon != null) miniMapIcon.SetActive(false);
+            StopShooting();
         }
         else
         {
-            //Gegner in der Phase
-            if (gameManager.dimensionShift == false)
-            {
-                collider.enabled = false;
-                StopShooting();
-            }
-            else
+            if (isShooting == false)
             {
                 collider.enabled = true;
-                StartShooting();
+                if (miniMapIcon != null) miniMapIcon.SetActive(true);
+                //StartShooting();
             }
         }
     }
 
+    private void OnParticleCollision(GameObject other)
+    {
+        if (canTakeDamage == true)
+        {
+            ParticleSystem part = other.GetComponent<ParticleSystem>(); // *** important! Making a variable to acess the particle system of the emmiting object, in this case, the lasers from my player ship.
+            int damage = other.GetComponent<ParticleBullet>().bulletDamage;
+
+            AudioManager.Instance.PlaySFX("ImpactShot");
+            TakeDamage(damage);
+
+
+            int numCollisionEvents = part.GetCollisionEvents(this.gameObject, collisionEvents);
+
+            foreach (ParticleCollisionEvent collisionEvent in collisionEvents) //  for each collision, do the following:
+            {
+                Vector3 pos = collisionEvent.intersection; // the point of intersection between the particle and the enemy
+                gameManager.DoFloatingText(pos, "+" + damage.ToString(), hitColor);
+            }
+        }
+    }
+
+
+
+
+    /* **************************************************************************** */
+    /* TAKE DAMAGE CONTROLL-------------------------------------------------------- */
+    /* **************************************************************************** */
+    // damage calculation
     public void TakeDamage(int damage)
     {
-        
-        
         if (canTakeDamage)
         {
             enemyHealth -= damage;
@@ -80,48 +115,40 @@ public class EnemyHealth : MonoBehaviour
                     gameManager.UpdateEnemyCounter(-1);
                     gameManager.UpdateEnemyToKill(1);
                 }
-                ObjectPoolManager.ReturnObjectToPool(gameObject);
+
+                if (canPoolObject == true)
+                    ObjectPoolManager.ReturnObjectToPool(gameObject);
+                else
+                    Destroy(gameObject);
+
             }
         }
     }
 
-    public void StopShooting()
-    {
-        int b = 0;
-        foreach (EnemyParticleBullet particle in enemyWeapons)
-        {
-            enemyWeapons[b].HardBulletStop();
-            b++;
-        }
-    }
 
+
+
+    /* **************************************************************************** */
+    /* Shooting contoll------------------------------------------------------------ */
+    /* **************************************************************************** */
+    //start shooting
     public void StartShooting()
     {
-        int b = 0;
         foreach (EnemyParticleBullet particle in enemyWeapons)
         {
-            enemyWeapons[b].BulletStart_();
-            b++;
+            particle.BulletStart_();
+            particle.GetComponent<EnemyParticleBullet>().bulletDamage = bulletDamage;
         }
+        isShooting = true;
     }
 
-    private void OnParticleCollision(GameObject other)
+    //stop shooting
+    public void StopShooting()
     {
-        ParticleSystem part = other.GetComponent<ParticleSystem>(); // *** important! Making a variable to acess the particle system of the emmiting object, in this case, the lasers from my player ship.
-        int damage = other.GetComponent<ParticleBullet>().bulletDamage;
-
-        AudioManager.Instance.PlaySFX("ImpactShot");
-        TakeDamage(damage);
-        
-
-        int numCollisionEvents = part.GetCollisionEvents(this.gameObject, collisionEvents);
-
-        foreach (ParticleCollisionEvent collisionEvent in collisionEvents) //  for each collision, do the following:
+        foreach (EnemyParticleBullet particle in enemyWeapons)
         {
-            Vector3 pos = collisionEvent.intersection; // the point of intersection between the particle and the enemy
-            gameManager.DoFloatingText(pos, "+" + damage.ToString(), hitColor);
-            
-   
+            particle.HardBulletStop();
         }
+        isShooting = false;
     }
 }

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 9164335622968218934}
   m_Layer: 9
   m_Name: DiDamageMineWave
-  m_TagString: Enemy
+  m_TagString: secondDimensionEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,8 +155,11 @@ MonoBehaviour:
   expOrbSpawn: 1
   secondDimensionEnemy: 1
   canTakeDamage: 1
+  canPoolObject: 0
   enemyWeapons:
   - {fileID: 19829536297991706}
+  bulletDamage: 0
+  hitColor: {r: 1, g: 0.6, b: 0, a: 1}
 --- !u!1 &4133928706926207379
 GameObject:
   m_ObjectHideFlags: 0

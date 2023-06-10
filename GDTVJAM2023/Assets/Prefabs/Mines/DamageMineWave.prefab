@@ -155,8 +155,11 @@ MonoBehaviour:
   expOrbSpawn: 1
   secondDimensionEnemy: 0
   canTakeDamage: 1
+  canPoolObject: 0
   enemyWeapons:
   - {fileID: 19829536297991706}
+  bulletDamage: 0
+  hitColor: {r: 1, g: 0.6, b: 0, a: 1}
 --- !u!1 &4133928706926207379
 GameObject:
   m_ObjectHideFlags: 0

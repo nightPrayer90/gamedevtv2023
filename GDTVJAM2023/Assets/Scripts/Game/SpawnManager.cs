@@ -3,18 +3,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public List<GameObject> objectsToSpawn;
-    public List<float> spawnProbabilities;
-    public float maxSpawnDistance = 10f;
-    public float spawnInterval = 2f;
-
-    private Camera mainCamera;
-    private float nextSpawnTime = 0f;
-
-    private GameManager gameManager;
-
-    public int maxWaveEnemys; 
-
+    
     public enum Wave
     {
         Wave1,
@@ -28,76 +17,96 @@ public class SpawnManager : MonoBehaviour
         Wave9
     }
 
-    [SerializeField]
-    private Wave wave;
-    
+    [Header("Choose Wave")]
+    public Wave wave;
+
+    [Header("Spawn Elements")]
+    public List<GameObject> objectsToSpawn;
+    public List<float> spawnProbabilities;
+
+    [Header("Spawn Settings")]
+    public int maxWaveEnemys;
+    public float maxSpawnDistance = 10f;
+    public float spawnInterval = 2f;
 
 
+    private Camera mainCamera;
+    private GameManager gameManager;
+
+
+
+
+    /* **************************************************************************** */
+    /* LIFECYCLE METHODEN---------------------------------------------------------- */
+    /* **************************************************************************** */
     private void Start()
     {
-        mainCamera = Camera.main;
-        nextSpawnTime = Time.time + spawnInterval;
-
+        // find gameobjects
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        mainCamera = Camera.main;
+
+        // start spawning
+        InvokeRepeating("SpawnObject", 0f, spawnInterval);
     }
 
-    private void Update()
+    private void OnDestroy()
     {
-        if (gameManager.gameIsPlayed && !gameManager.gameOver && !gameManager.dimensionShift && gameManager.curretEnemyCounter < maxWaveEnemys)
-        {
-            if (Time.time >= nextSpawnTime)
-            {
-                SpawnObject();
-                nextSpawnTime = Time.time + spawnInterval;
-            }
-        }
+        // stop spawning
+        CancelInvoke("SpawnObject");
     }
+
+
+
+
+    /* **************************************************************************** */
+    /* Runtime Funcions------------------------------------------------------------ */
+    /* **************************************************************************** */
 
     private void SpawnObject()
     {
-        // Randomly select an object to spawn based on probabilities
-        int randomIndex = GetRandomWeightedIndex(spawnProbabilities);
-        GameObject objectToSpawn = objectsToSpawn[randomIndex];
-
-        // Generate a random position outside the camera's view
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-
-        // Spawn the object at the generated position
-        switch (wave)
+        if (!gameManager.dimensionShift && gameManager.curretEnemyCounter < maxWaveEnemys)
         {
-            case Wave.Wave1:
-                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave1);
-                break;
-            case Wave.Wave2:
-                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave2);
-                break;
-            case Wave.Wave3:
-                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave3);
-                break;
-            case Wave.Wave4:
-                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave4);
-                break;
-            case Wave.Wave5:
-                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave5);
-                break;
-            case Wave.Wave6:
-                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave6);
-                break;
-            case Wave.Wave7:
-                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave7);
-                break;
-            case Wave.Wave8:
-                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave8);
-                break;
-            case Wave.Wave9:
-                ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave9);
-                break;
+            // Randomly select an object to spawn based on probabilities
+            int randomIndex = GetRandomWeightedIndex(spawnProbabilities);
+            GameObject objectToSpawn = objectsToSpawn[randomIndex];
+
+            // Generate a random position outside the camera's view
+            Vector3 spawnPosition = GetRandomSpawnPosition();
+
+            // Spawn the object at the generated position
+            switch (wave)
+            {
+                case Wave.Wave1:
+                    ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave1);
+                    break;
+                case Wave.Wave2:
+                    ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave2);
+                    break;
+                case Wave.Wave3:
+                    ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave3);
+                    break;
+                case Wave.Wave4:
+                    ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave4);
+                    break;
+                case Wave.Wave5:
+                    ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave5);
+                    break;
+                case Wave.Wave6:
+                    ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave6);
+                    break;
+                case Wave.Wave7:
+                    ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave7);
+                    break;
+                case Wave.Wave8:
+                    ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave8);
+                    break;
+                case Wave.Wave9:
+                    ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave9);
+                    break;
+            }
+
+            gameManager.UpdateEnemyCounter(1);
         }
-        
-
-        //Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
-
-        gameManager.UpdateEnemyCounter(1);
     }
 
     private int GetRandomWeightedIndex(List<float> probabilities)

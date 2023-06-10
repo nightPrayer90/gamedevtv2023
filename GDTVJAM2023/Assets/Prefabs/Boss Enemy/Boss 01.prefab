@@ -4887,7 +4887,7 @@ GameObject:
   - component: {fileID: 6607966429601285132}
   m_Layer: 9
   m_Name: DiDamageMineWave
-  m_TagString: Enemy
+  m_TagString: secondDimensionEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5006,14 +5006,18 @@ MonoBehaviour:
   explosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   dieExplosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   expOrb: {fileID: 5693635298845190373, guid: 5ca91630af6a61c4f99d7279b939e976, type: 3}
-  enemyHealth: 30
+  miniMapIcon: {fileID: 0}
+  enemyHealth: 150
   collisonDamage: 20
   explosionForce: 15
   expOrbSpawn: 1
   secondDimensionEnemy: 1
   canTakeDamage: 1
+  canPoolObject: 1
   enemyWeapons:
   - {fileID: 3291002793830874045}
+  bulletDamage: 0
+  hitColor: {r: 1, g: 0.6, b: 0, a: 1}
 --- !u!135 &6607966429601285132
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9914,7 +9918,7 @@ GameObject:
   - component: {fileID: 4129544118369605749}
   m_Layer: 9
   m_Name: DiDamageMineWave (2)
-  m_TagString: Enemy
+  m_TagString: secondDimensionEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10033,14 +10037,18 @@ MonoBehaviour:
   explosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   dieExplosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   expOrb: {fileID: 5693635298845190373, guid: 5ca91630af6a61c4f99d7279b939e976, type: 3}
-  enemyHealth: 30
+  miniMapIcon: {fileID: 0}
+  enemyHealth: 150
   collisonDamage: 20
   explosionForce: 15
   expOrbSpawn: 1
   secondDimensionEnemy: 1
   canTakeDamage: 1
+  canPoolObject: 1
   enemyWeapons:
   - {fileID: 8852117405559533232}
+  bulletDamage: 0
+  hitColor: {r: 1, g: 0.6, b: 0, a: 1}
 --- !u!135 &4129544118369605749
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10067,7 +10075,7 @@ GameObject:
   - component: {fileID: 5857533915051693709}
   m_Layer: 9
   m_Name: Boss 01
-  m_TagString: Enemy
+  m_TagString: secondDimensionEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10085,6 +10093,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3453679120459267937}
+  - {fileID: 8869187741884931195}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -34620,7 +34629,7 @@ GameObject:
   - component: {fileID: 3346452212386397618}
   m_Layer: 9
   m_Name: DiDamageMine3Shoots
-  m_TagString: Enemy
+  m_TagString: secondDimensionEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34745,16 +34754,20 @@ MonoBehaviour:
   explosionObject: {fileID: 3618260324052109233, guid: c3a52b50cdd3f3e4291bda36ca9cab53, type: 3}
   dieExplosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   expOrb: {fileID: 5693635298845190373, guid: 87420680f3e103346af89e12538dc82b, type: 3}
-  enemyHealth: 150
+  miniMapIcon: {fileID: 6411777579483363464}
+  enemyHealth: 750
   collisonDamage: 20
   explosionForce: 15
   expOrbSpawn: 1
   secondDimensionEnemy: 1
-  canTakeDamage: 1
+  canTakeDamage: 0
+  canPoolObject: 0
   enemyWeapons:
   - {fileID: 3381066436724946407}
   - {fileID: 8106849073993064698}
   - {fileID: 4802953054275547798}
+  bulletDamage: 0
+  hitColor: {r: 1, g: 0.6, b: 0, a: 1}
 --- !u!135 &3346452212386397618
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -34785,7 +34798,7 @@ GameObject:
   - component: {fileID: 2443815698930140054}
   m_Layer: 9
   m_Name: DiDamageMineWave (3)
-  m_TagString: Enemy
+  m_TagString: secondDimensionEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34904,14 +34917,18 @@ MonoBehaviour:
   explosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   dieExplosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   expOrb: {fileID: 5693635298845190373, guid: 5ca91630af6a61c4f99d7279b939e976, type: 3}
-  enemyHealth: 30
+  miniMapIcon: {fileID: 0}
+  enemyHealth: 150
   collisonDamage: 20
   explosionForce: 15
   expOrbSpawn: 1
   secondDimensionEnemy: 1
   canTakeDamage: 1
+  canPoolObject: 1
   enemyWeapons:
   - {fileID: 1494561047716732096}
+  bulletDamage: 0
+  hitColor: {r: 1, g: 0.6, b: 0, a: 1}
 --- !u!135 &2443815698930140054
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -34939,7 +34956,7 @@ GameObject:
   - component: {fileID: 4802953054275547798}
   m_Layer: 9
   m_Name: 'ParticleBullet '
-  m_TagString: Untagged
+  m_TagString: secondDimensionEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49641,7 +49658,7 @@ GameObject:
   - component: {fileID: 7369676991442445511}
   m_Layer: 9
   m_Name: DiDamageMineWave (1)
-  m_TagString: Enemy
+  m_TagString: secondDimensionEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49760,14 +49777,18 @@ MonoBehaviour:
   explosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   dieExplosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   expOrb: {fileID: 5693635298845190373, guid: 5ca91630af6a61c4f99d7279b939e976, type: 3}
-  enemyHealth: 30
+  miniMapIcon: {fileID: 0}
+  enemyHealth: 150
   collisonDamage: 20
   explosionForce: 15
   expOrbSpawn: 1
   secondDimensionEnemy: 1
   canTakeDamage: 1
+  canPoolObject: 1
   enemyWeapons:
   - {fileID: 6360611743593835812}
+  bulletDamage: 0
+  hitColor: {r: 1, g: 0.6, b: 0, a: 1}
 --- !u!135 &7369676991442445511
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -59536,7 +59557,7 @@ GameObject:
   - component: {fileID: 5785181476878728963}
   m_Layer: 9
   m_Name: ParticleBullet
-  m_TagString: Untagged
+  m_TagString: secondDimensionEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64516,6 +64537,90 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &6411777579483363464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8869187741884931195}
+  - component: {fileID: 2313525551176108168}
+  m_Layer: 11
+  m_Name: MiniMapIcon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8869187741884931195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6411777579483363464}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 817, y: 600, z: -775}
+  m_LocalScale: {x: 600, y: 600.00006, z: 600.00006}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1238716703606193738}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
+--- !u!212 &2313525551176108168
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6411777579483363464}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 1, g: 0, b: 0.7579355, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.16, y: 0.16}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &6420400710540819085
 GameObject:
   m_ObjectHideFlags: 0
@@ -79201,7 +79306,7 @@ GameObject:
   - component: {fileID: 8106849073993064698}
   m_Layer: 9
   m_Name: 'ParticleBullet '
-  m_TagString: Untagged
+  m_TagString: secondDimensionEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

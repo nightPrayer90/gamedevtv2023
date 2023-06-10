@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     public bool isBackShieldLeft = false;
     public bool isBackShieldRight = false;
 
+
     [Header("Floating Text")]
     public List<ParticleCollisionEvent> collisionEvents; // creating a list to store the collision events
     public Color hitColor = new Color(1f, 0.0f, 0.0f, 1f);
@@ -363,6 +364,7 @@ public class PlayerController : MonoBehaviour
             particle.BulletSetDamage(playerBulletBaseDamage);
         }
     }
+
 
 
 

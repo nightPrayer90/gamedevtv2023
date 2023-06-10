@@ -154,4 +154,7 @@ MonoBehaviour:
   expOrbSpawn: 1
   secondDimensionEnemy: 0
   canTakeDamage: 1
+  canPoolObject: 0
   enemyWeapons: []
+  bulletDamage: 0
+  hitColor: {r: 1, g: 0.6, b: 0, a: 1}

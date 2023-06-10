@@ -14627,7 +14627,7 @@ GameObject:
   - component: {fileID: 5458470433412803464}
   m_Layer: 9
   m_Name: DiDamageMine3Shoots
-  m_TagString: Enemy
+  m_TagString: secondDimensionEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14754,10 +14754,13 @@ MonoBehaviour:
   expOrbSpawn: 1
   secondDimensionEnemy: 1
   canTakeDamage: 1
+  canPoolObject: 0
   enemyWeapons:
   - {fileID: 3268753681794892256}
   - {fileID: 8301915747153695997}
   - {fileID: 4688388491009476241}
+  bulletDamage: 0
+  hitColor: {r: 1, g: 0.6, b: 0, a: 1}
 --- !u!65 &5458470433412803464
 BoxCollider:
   m_ObjectHideFlags: 0
