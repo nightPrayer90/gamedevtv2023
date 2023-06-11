@@ -6,10 +6,10 @@ public class PeriodSpawner : MonoBehaviour
 {
     [Header("Rocked Settings")]
     public int rocketDamage = 5;
-    public int lifeTime = 10;
-    public GameObject rockedToLaunch;
+    public float lifeTime = 10f;
     public float spawnInterval = 4f;
     public float detectionRange = 10f;
+    public GameObject rockedToLaunch;
     public GameObject spawnPoint;
     public GameObject spawnPoint2;
     private bool enemyDetected = false;
@@ -24,16 +24,26 @@ public class PeriodSpawner : MonoBehaviour
     /* **************************************************************************** */
     private void Start()
     {
+        StartValues();
         InvokeRepeating("SpawnRocked", spawnInterval, spawnInterval);
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
-  
+
 
 
     /* **************************************************************************** */
     /* FUNCTIONS TO RUN------------------------------------------------------------ */
     /* **************************************************************************** */
+    // set start values fom the weaponController
+    private void StartValues()
+    {
+        PlayerWeaponController weaponController = GameObject.Find("Player").GetComponent<PlayerWeaponController>();
+        rocketDamage = weaponController.rlDamage;
+        lifeTime = weaponController.rlLifeTime;
+        spawnInterval = weaponController.rlReloadTime;
+    }
+
     // in an enemy in range;
     private void DetectEnemy()
     {

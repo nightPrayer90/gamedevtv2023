@@ -21,14 +21,11 @@ public class PlayerController : MonoBehaviour
 
    
     [Header("Properties")]
-    public List <ParticleSystem> mainWeapons = new List<ParticleSystem>();
-    public List <ParticleBullet> particleBullets;
     public int playerCurrentHealth= 10;
     private int playerCurrentExperience;
     private int playerExperienceToLevelUp = 6;
     private int playerLevel = 1;
     private float playerLevelUpFactor = 1.2f;
-    public string shootSound;
 
 
     [Header("Outside Border")]
@@ -50,11 +47,10 @@ public class PlayerController : MonoBehaviour
 
     [Header("Game Objects")]
     public NavigationController navigationController;
-    public AudioSource mainWeaponSound;
     public AudioSource engineAudioSource;
     private Rigidbody playerRb;
     private GameManager gameManager;
-
+    private PlayerWeaponController playerWeaponController;
 
 
 
@@ -65,6 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         // set game objects
         playerRb = GetComponent<Rigidbody>();
+        playerWeaponController = GetComponent<PlayerWeaponController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         // intro starting sound
@@ -90,7 +87,7 @@ public class PlayerController : MonoBehaviour
                 // set .y to 6f
                 playerRb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
                 // start Shooting
-                StartShooting();
+                playerWeaponController.StartShooting();
             }
             isIntro = false;
         }
@@ -173,7 +170,6 @@ public class PlayerController : MonoBehaviour
                 InvokeRepeating("PlayerIsOutsideBorder", 1f, damageInterval);
                 gameManager.outsideBorderText.text = "outside border!";
                 isOutsideBorder = true;
-                Debug.Log(isOutsideBorder);
             }
         }
     }
@@ -326,43 +322,10 @@ public class PlayerController : MonoBehaviour
     /* **************************************************************************** */
     /* Main weapon----------------------------------------------------------------- */
     /* **************************************************************************** */
-    // the main weapon start to fire
-    public void StartShooting()
-    {
-        // set the main weapon particle damage
-        SetBulletDamage();
-
-        // start invoke for main weapons
-        InvokeRepeating("ShotEmit", 0.5f, playerFireRate);
-    }
-
-    // stop the main waepon fire
-    public void StopShooting()
-    {
-        CancelInvoke("ShotEmit");
-    }
-
-    // invoke function - make the main weapon fire
-    void ShotEmit()
-    {
-        // shooting sound
-        mainWeaponSound.Play();
- 
-        // emit 1 particle of each mainweapon
-        foreach (ParticleSystem mainWeapon in mainWeapons)
-        {
-            if (mainWeapon != null)
-                mainWeapon.Emit(1);
-        }
-    }
-
     // set the main weapon particle damage
     public void SetBulletDamage()
     {
-        foreach (ParticleBullet particle in particleBullets)
-        {
-            particle.BulletSetDamage(playerBulletBaseDamage);
-        }
+        playerWeaponController.UpdateBulletValues();
     }
 
 

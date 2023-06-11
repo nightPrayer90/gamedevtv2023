@@ -5,8 +5,8 @@ public class HeadCannon : MonoBehaviour
     [Header("Rocked Settings")]
     public int bulletDamage = 2;
     public int fireSalveMax;
-    public float reloadShotInterval = 0.1f;
     public float reloadSalveInterval = 2f;
+    public float reloadShotInterval = 0.1f;
     public float rotationSpeed = 5f; 
     public float detectionRange = 10f;
 
@@ -38,6 +38,9 @@ public class HeadCannon : MonoBehaviour
         player = GameObject.Find("Player");
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         particleSystem.GetComponent<ParticleBullet>().bulletDamage = bulletDamage;
+
+        // set start values from the weapon Controller
+        StartValues();
 
         //set first reload time
         nextSalveTime = Time.time + reloadSalveInterval;
@@ -84,6 +87,15 @@ public class HeadCannon : MonoBehaviour
     /* **************************************************************************** */
     /* FUNCTIONS TO RUN------------------------------------------------------------ */
     /* **************************************************************************** */
+    // set start values fom the weaponController
+    private void StartValues()
+    {
+        PlayerWeaponController weaponController = player.GetComponent<PlayerWeaponController>();
+        bulletDamage = weaponController.hcBulletDamage;
+        fireSalveMax = weaponController.hcSalveCount;
+        reloadSalveInterval = weaponController.hcReloadTime;
+    }
+        
     // find the nearst target
     private void FindNextTarget()
     {

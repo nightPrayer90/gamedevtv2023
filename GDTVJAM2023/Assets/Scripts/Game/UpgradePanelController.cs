@@ -244,6 +244,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 2: //upgrade: fire Rate
                 playerController.playerFireRate = Mathf.Max(0.05f, playerController.playerFireRate - upgradeValue[index]);
+                playerController.SetBulletDamage();
                 break;
             case 3: //upgrade: speed
                 playerController.speed = playerController.speed + upgradeValue[index];
