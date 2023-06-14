@@ -8,5 +8,7 @@ public class ParticleBullet : MonoBehaviour
     {
         bulletDamage = bulletDamage_;
     } 
+    
+    
 
 }

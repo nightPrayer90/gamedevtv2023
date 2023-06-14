@@ -10,6 +10,7 @@ public class EnemyHealth : MonoBehaviour
     public GameObject expOrb;
     public GameObject miniMapIcon;
 
+
     [Header("Enemy Settings")]
     public float enemyHealth = 2.0f;
     public int collisonDamage = 1; 
@@ -19,14 +20,22 @@ public class EnemyHealth : MonoBehaviour
     public bool canTakeDamage = true;
     public bool canPoolObject = true;
 
+
     [Header("Enemy Weapons")]
     public List<EnemyParticleBullet> enemyWeapons;
     public int bulletDamage;
     private bool isShooting = false;
 
+
     [Header("Collision Control")]
     public List<ParticleCollisionEvent> collisionEvents;
     public Color hitColor = new Color(1f, 0.6f, 0.0f, 1f);
+
+
+    [Header("AOE Damage Control")]
+    public GameObject _replacement;
+    private float startCollisionMultiplier = 64;
+    private float collisionMultiplier = 64;
 
     // gameObjects to find
     private GameManager gameManager;
@@ -42,6 +51,7 @@ public class EnemyHealth : MonoBehaviour
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         collider = GetComponent<Collider>();
+        collisionMultiplier += startCollisionMultiplier + Random.Range(-16, 128);
     }
 
     private void OnEnable()
@@ -105,17 +115,22 @@ public class EnemyHealth : MonoBehaviour
 
             if (enemyHealth <= 0)
             {
+                // drop an Item
                 if (expOrbSpawn)
                     ObjectPoolManager.SpawnObject(expOrb, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
 
+                // instanstiate explosion
                 ObjectPoolManager.SpawnObject(explosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
                 
+                // update player UI
                 if (secondDimensionEnemy == false)
                 {
                     gameManager.UpdateEnemyCounter(-1);
                     gameManager.UpdateEnemyToKill(1);
                 }
 
+         
+                // pool (destroy) enemy object
                 if (canPoolObject == true)
                     ObjectPoolManager.ReturnObjectToPool(gameObject);
                 else
@@ -125,7 +140,52 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    // explosion damage calculation
+    public void TakeExplosionDamage(int damage)
+    {
+        if (canTakeDamage)
+        {
+            enemyHealth -= damage;
 
+            if (enemyHealth <= 0)
+            {
+                // drop an Item
+                if (expOrbSpawn)
+                    ObjectPoolManager.SpawnObject(expOrb, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
+
+                // instanstiate explosion
+                //ObjectPoolManager.SpawnObject(explosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
+
+
+                // create object to die effect
+                if (_replacement != null)
+                {
+                    var replacement = Instantiate(_replacement, transform.position, transform.rotation);
+
+                    // make the die effect object explode
+                    var rbs = replacement.GetComponentsInChildren<Rigidbody>();
+                    foreach (var rb in rbs)
+                    {
+                        rb.AddExplosionForce(collisionMultiplier, transform.position, 1);  //collision.contacts[0].point;
+                    }
+                }
+
+                // update player UI
+                if (secondDimensionEnemy == false)
+                {
+                    gameManager.UpdateEnemyCounter(-1);
+                    gameManager.UpdateEnemyToKill(1);
+                }
+
+                // pool (destroy) enemy object
+                if (canPoolObject == true)
+                    ObjectPoolManager.ReturnObjectToPool(gameObject);
+                else
+                    Destroy(gameObject);
+
+            }
+        }
+    }
 
 
     /* **************************************************************************** */

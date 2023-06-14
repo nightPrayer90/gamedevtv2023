@@ -19,10 +19,12 @@ public class ParticleSystemDestroy : MonoBehaviour
             audioSource.volume = AudioManager.Instance.sfxVolume;
             audioSource.Play();
         }
+        Invoke("DeactivateSystem", 2f);
     }
 
-    private void OnParticleSystemStopped()
+    private void DeactivateSystem()
     {
+        Debug.Log("explosion");
          ObjectPoolManager.ReturnObjectToPool(gameObject);
     }
 }

@@ -10,6 +10,14 @@ public class RocketController : MonoBehaviour
     [HideInInspector] public float maxLifeTime;   // time before the rocked get destroyed
     [HideInInspector] public Color hitColor;
 
+
+    [Header("Explosion Controll")]
+    public float explosionRadius = 5f;
+    public float explosionForce = 500f;
+    private Rigidbody rb;
+    private LayerMask layerMask;
+
+
     [Header("Game Objects")]
     private GameObject target;
     private Rigidbody rbRocket;
@@ -17,7 +25,6 @@ public class RocketController : MonoBehaviour
 
     
 
-    
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
     /* **************************************************************************** */
@@ -33,6 +40,10 @@ public class RocketController : MonoBehaviour
         // destroytime
         maxLifeTime = Random.Range(maxLifeTime - 0.25f, maxLifeTime + 0.25f);
         Invoke("DestroyObject", maxLifeTime);
+
+
+        // Layermask
+        layerMask = (1 << 6);
     }
 
     private void FixedUpdate()
@@ -69,30 +80,66 @@ public class RocketController : MonoBehaviour
         string tagStr = "Enemy";
         if (gameManager.dimensionShift == true)
         {
+            layerMask = (1 << 9);
             tagStr = "secondDimensionEnemy";
         }
 
-        // enemy target tag compare
+        // postion of explosion Object
+        Vector3 pos = transform.position;
+        // enemy target tag compare only than destroy the rocked
         if (other.gameObject.CompareTag(tagStr))
         {
             // cancle invoke
             CancelInvoke("DestroyObject");
 
-            // calculate damage
-            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
 
-            // show floating text
-            gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
+            // array of all Objects in the explosionRadius
+            var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius, layerMask);
+
+            foreach (var obj in surroundingObjects)
+            {
+                // get rigidbodys from all objects in range
+                var rb = obj.GetComponent<Rigidbody>();
+                if (rb == null) continue;
+
+                // calculate distance between explosioncenter and objects in Range
+                float distance = Vector3.Distance(pos, rb.transform.position);
+                //Debug.Log(distance);
+
+                if (distance < explosionRadius)
+                {
+                    float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius), 1f);
+                    int adjustedDamage = Mathf.CeilToInt(damage * scaleFactor);
+
+                    // get EnemyHealthscript
+                    EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
+                    Debug.Log("SF + " + scaleFactor + " | distance " + distance);
+
+                    // calculate enemy damage
+                    eHC.TakeExplosionDamage(adjustedDamage);
+
+                    // show floating text
+                    gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), hitColor);
+                }
+
+                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+            }
+
+           
+            // spawn the explosion object
+            ObjectPoolManager.SpawnObject(exposionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
 
             // object goes back to the pool
             ObjectPoolManager.ReturnObjectToPool(gameObject);
-
-            // spawn the explosion object
-            ObjectPoolManager.SpawnObject(exposionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
         }
     }
 
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+    }
 
 
     /* **************************************************************************** */
