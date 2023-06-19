@@ -6,7 +6,8 @@ public class RocketController : MonoBehaviour
     [HideInInspector] public int damage; // rocked damage
     public float speed = 10f; // rocked Speed
     public float rotationSpeed = 5f; // rotation speed
-    public GameObject exposionObject;
+    public GameObject exposionHitObject;
+    public GameObject exposionDieObject;
     [HideInInspector] public float maxLifeTime;   // time before the rocked get destroyed
     [HideInInspector] public Color hitColor;
 
@@ -127,7 +128,7 @@ public class RocketController : MonoBehaviour
 
            
             // spawn the explosion object
-            ObjectPoolManager.SpawnObject(exposionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
+            ObjectPoolManager.SpawnObject(exposionHitObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
 
             // object goes back to the pool
             ObjectPoolManager.ReturnObjectToPool(gameObject);
@@ -198,6 +199,6 @@ public class RocketController : MonoBehaviour
         ObjectPoolManager.ReturnObjectToPool(gameObject);
 
         // spawn the explosion object
-        ObjectPoolManager.SpawnObject(exposionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
+        ObjectPoolManager.SpawnObject(exposionDieObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
     }
 }

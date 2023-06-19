@@ -256,6 +256,7 @@ MonoBehaviour:
   enemyWeapons: []
   bulletDamage: 0
   hitColor: {r: 1, g: 0.5998216, b: 0, a: 1}
+  _replacement: {fileID: 1380446238132243176, guid: 1889541fec859cb41bcfbf836cdd7fd4, type: 3}
 --- !u!1 &8575139960501481974
 GameObject:
   m_ObjectHideFlags: 0

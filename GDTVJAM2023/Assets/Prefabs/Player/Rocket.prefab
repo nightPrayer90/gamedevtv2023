@@ -80,11 +80,12 @@ MonoBehaviour:
   damage: 0
   speed: 2.5
   rotationSpeed: 10
-  exposionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
+  exposionHitObject: {fileID: 4303235208557751318, guid: eb9d00288658133488952b36c49aca32, type: 3}
+  exposionDieObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   maxLifeTime: 4
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
   explosionRadius: 1
-  explosionForce: 300
+  explosionForce: 400
 --- !u!1 &4328560397251660117
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ TagManager:
   - DimensionPickUpGoBack
   - VictoryPickup
   - secondDimensionEnemy
+  - scrap
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - postProcessing
   - Minimap
   - Ground
-  - 
+  - Scrap
   - 
   - 
   - 
