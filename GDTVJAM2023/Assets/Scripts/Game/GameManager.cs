@@ -425,7 +425,8 @@ public class GameManager : MonoBehaviour
         ScreenShake(4);
 
         // spawn a new SpawnManager
-        Instantiate(spawnDistrictList.spawnManagerList[districtNumber - 1], transform.position, transform.rotation);
+        currentSpawnManager = Instantiate(spawnDistrictList.spawnManagerList[districtNumber - 1], transform.position, transform.rotation);
+        currentSpawnManager.transform.SetParent(gameObject.transform);
 
         dimensionShift = false;
     }

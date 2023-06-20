@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1812172448869818353}
   - component: {fileID: 8513459360729262338}
   - component: {fileID: 1360815899580035423}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_02_broken_cell.010
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,9 +128,9 @@ GameObject:
   - component: {fileID: 4576855271516833407}
   - component: {fileID: 7953504845558852984}
   - component: {fileID: 6988645965637573945}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_02_broken_cell.004
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,9 +243,9 @@ GameObject:
   - component: {fileID: 9113685505878646565}
   - component: {fileID: 181115868014838932}
   - component: {fileID: 1784288413319810064}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_02_broken_cell.002
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -359,9 +359,9 @@ GameObject:
   - component: {fileID: 2707779856299755566}
   - component: {fileID: 2565351102822582151}
   - component: {fileID: 4326364038984972670}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_02_broken_cell.003
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -474,9 +474,9 @@ GameObject:
   - component: {fileID: 3211410413703281719}
   - component: {fileID: 6222257764206614831}
   - component: {fileID: 8254954119663199213}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_02_broken_cell.009
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -589,9 +589,9 @@ GameObject:
   - component: {fileID: 79679926241429092}
   - component: {fileID: 3710892339115353726}
   - component: {fileID: 6939539238530129215}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_02_broken_cell.008
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -704,9 +704,9 @@ GameObject:
   - component: {fileID: 3981739749619210008}
   - component: {fileID: 4046309954269281798}
   - component: {fileID: 2793587890134287568}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_02_broken_cell.001
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -819,9 +819,9 @@ GameObject:
   - component: {fileID: 4325969343825177545}
   - component: {fileID: 1350525241658205154}
   - component: {fileID: 2019579960907089265}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_02_broken_cell.005
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -935,9 +935,9 @@ GameObject:
   - component: {fileID: 404726539571776034}
   - component: {fileID: 3787158825947168188}
   - component: {fileID: 4811456312386013944}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_02_broken_cell.011
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1051,9 +1051,9 @@ GameObject:
   - component: {fileID: 7351541088461406362}
   - component: {fileID: 1612540747080642648}
   - component: {fileID: 4442436573770747310}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_02_broken_cell
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1166,9 +1166,9 @@ GameObject:
   - component: {fileID: 3389707603660400316}
   - component: {fileID: 3315806478057425213}
   - component: {fileID: 3686785628613356071}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_02_broken_cell.007
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1281,9 +1281,9 @@ GameObject:
   - component: {fileID: 6148341626634043183}
   - component: {fileID: 5295486673042934982}
   - component: {fileID: 2793995923346422003}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_02_broken_cell.012
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1393,9 +1393,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8666652391037943662}
   - component: {fileID: 1116456543593814095}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: broken_ship_02
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1454,9 +1454,9 @@ GameObject:
   - component: {fileID: 5652775470103685944}
   - component: {fileID: 2558775659633895426}
   - component: {fileID: 3523931297106703720}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_02_broken_cell.006
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

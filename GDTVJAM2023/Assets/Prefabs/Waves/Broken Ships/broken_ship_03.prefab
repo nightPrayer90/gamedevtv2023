@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8308609160078162472}
   - component: {fileID: 1824663267568370423}
   - component: {fileID: 8174890294512700346}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_03_broken_cell.007
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,9 +125,9 @@ GameObject:
   m_Component:
   - component: {fileID: 981866953843455269}
   - component: {fileID: 119194355257641371}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: broken_ship_03
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,9 +184,9 @@ GameObject:
   - component: {fileID: 4872448070314460234}
   - component: {fileID: 2643602116005039274}
   - component: {fileID: 6823291609577451734}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_03_broken_cell.003
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -299,9 +299,9 @@ GameObject:
   - component: {fileID: 1550103447659083845}
   - component: {fileID: 6739381594898732903}
   - component: {fileID: 6113504888306836732}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_03_broken_cell.002
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -415,9 +415,9 @@ GameObject:
   - component: {fileID: 8923461471910735200}
   - component: {fileID: 6920848132317813954}
   - component: {fileID: 8162146684284913940}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_03_broken_cell.005
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -531,9 +531,9 @@ GameObject:
   - component: {fileID: 8896023195793075931}
   - component: {fileID: 7640017343457718449}
   - component: {fileID: 1621840419427888224}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_03_broken_cell.011
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -646,9 +646,9 @@ GameObject:
   - component: {fileID: 3918773309147452066}
   - component: {fileID: 2794550146181257433}
   - component: {fileID: 5197107444296826125}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_03_broken_cell.010
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -761,9 +761,9 @@ GameObject:
   - component: {fileID: 6154605632221976161}
   - component: {fileID: 6786772672762070212}
   - component: {fileID: 2538081958953441223}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_03_broken_cell.004
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -876,9 +876,9 @@ GameObject:
   - component: {fileID: 4798232408967226448}
   - component: {fileID: 8455543043480345884}
   - component: {fileID: 427684260286165033}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_03_broken_cell.001
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -991,9 +991,9 @@ GameObject:
   - component: {fileID: 8042095677273424734}
   - component: {fileID: 4567910618069399267}
   - component: {fileID: 7234280428525320473}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_03_broken_cell
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1106,9 +1106,9 @@ GameObject:
   - component: {fileID: 8342141296777431981}
   - component: {fileID: 7070133343797557682}
   - component: {fileID: 8222737244272785182}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_03_broken_cell.006
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1221,9 +1221,9 @@ GameObject:
   - component: {fileID: 2450097778030092323}
   - component: {fileID: 1825712419119001204}
   - component: {fileID: 580758357277588158}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ship_03_broken_cell.009
-  m_TagString: Untagged
+  m_TagString: scrap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
