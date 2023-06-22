@@ -24,7 +24,6 @@ public class ParticleSystemDestroy : MonoBehaviour
 
     private void DeactivateSystem()
     {
-        Debug.Log("explosion");
-         ObjectPoolManager.ReturnObjectToPool(gameObject);
+        ObjectPoolManager.ReturnObjectToPool(gameObject);
     }
 }

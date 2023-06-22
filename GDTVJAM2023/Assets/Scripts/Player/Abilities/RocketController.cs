@@ -114,7 +114,6 @@ public class RocketController : MonoBehaviour
 
                     // get EnemyHealthscript
                     EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
-                    Debug.Log("SF + " + scaleFactor + " | distance " + distance);
 
                     // calculate enemy damage
                     eHC.TakeExplosionDamage(adjustedDamage);

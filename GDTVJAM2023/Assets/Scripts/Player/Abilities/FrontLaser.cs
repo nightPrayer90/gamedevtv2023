@@ -15,8 +15,11 @@ public class FrontLaser : MonoBehaviour
     public string audioClip = "";
     private float nextSpawnTime = 0f;
     private int bulletCount = 0;
+    
 
     public LineRenderer lr;
+    //public BoxCollider boxCollider;
+    public bool laserIsEnable = false;
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -38,6 +41,7 @@ public class FrontLaser : MonoBehaviour
     void Update()
     {
         Shooting();
+        //SetLRPosition();
         Raycast_();
     }
 
@@ -64,6 +68,8 @@ public class FrontLaser : MonoBehaviour
             Invoke("RealodWeapon", realodInterval);
             bulletCount++;
             lr.enabled = false;
+            laserIsEnable = false;
+            //boxCollider.enabled = false;
         }
 
         if (bulletCount < bulletMaxCount)
@@ -80,10 +86,16 @@ public class FrontLaser : MonoBehaviour
                         weapon.Emit(1);
                         bulletCount++;
                 }
-
+               
                 nextSpawnTime = Time.time + spawnInterval;
             }
         }
+    }
+
+    void SetLRPosition()
+    {
+        lr.SetPosition(0, transform.position);
+        lr.SetPosition(1, transform.position + transform.forward * 5);
     }
 
     // realod a salve of weapons
@@ -91,6 +103,9 @@ public class FrontLaser : MonoBehaviour
     {
         bulletCount = 0;
         lr.enabled = true;
+        laserIsEnable = true;
+        //boxCollider.enabled = true;
+        //lr.SetPosition(1, transform.position + transform.forward * 5);
     }
 
     void Raycast_()
@@ -115,4 +130,6 @@ public class FrontLaser : MonoBehaviour
             lr.SetPosition(1, transform.position + transform.forward * raycastDistance);
         }
     }
+
+   
 }

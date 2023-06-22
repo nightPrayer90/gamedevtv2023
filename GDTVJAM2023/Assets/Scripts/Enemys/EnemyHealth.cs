@@ -64,7 +64,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (gameManager.dimensionShift == !secondDimensionEnemy)
         {
-            collider.enabled = false;
+            GetComponent<Collider>().enabled = false;
             if (miniMapIcon != null) miniMapIcon.SetActive(false);
             StopShooting();
         }
@@ -72,7 +72,7 @@ public class EnemyHealth : MonoBehaviour
         {
             if (isShooting == false)
             {
-                collider.enabled = true;
+                GetComponent<Collider>().enabled = true;
                 if (miniMapIcon != null) miniMapIcon.SetActive(true);
                 //StartShooting();
             }
@@ -88,7 +88,7 @@ public class EnemyHealth : MonoBehaviour
 
             AudioManager.Instance.PlaySFX("ImpactShot");
             TakeDamage(damage);
-
+            Debug.Log("damage_");
 
             int numCollisionEvents = part.GetCollisionEvents(this.gameObject, collisionEvents);
 
@@ -99,13 +99,39 @@ public class EnemyHealth : MonoBehaviour
             }
         }
     }
+    /*
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Playerlaser"))
+        {
+            LineRenderer lr = other.GetComponent<LineRenderer>();
+            if (lr.enabled == true)
+            {
+                InvokeRepeating("LaserDamage", 0.1f, 0.2f);
+            }
+        }
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Playerlaser"))
+        {
+            CancelInvoke("LaserDamage");
+            
+        }
+    }
 
-
-
+    */
     /* **************************************************************************** */
     /* TAKE DAMAGE CONTROLL-------------------------------------------------------- */
     /* **************************************************************************** */
+    /*private void LaserDamage()
+    {
+        TakeDamage(1);
+        Debug.Log("damage");
+    }*/
+    
+    
     // damage calculation
     public void TakeDamage(int damage)
     {
@@ -135,7 +161,7 @@ public class EnemyHealth : MonoBehaviour
                     ObjectPoolManager.ReturnObjectToPool(gameObject);
                 else
                     Destroy(gameObject);
-
+               
             }
         }
     }
@@ -182,7 +208,7 @@ public class EnemyHealth : MonoBehaviour
                     ObjectPoolManager.ReturnObjectToPool(gameObject);
                 else
                     Destroy(gameObject);
-
+                
             }
         }
     }
