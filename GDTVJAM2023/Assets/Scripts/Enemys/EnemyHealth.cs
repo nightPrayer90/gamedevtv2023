@@ -37,6 +37,9 @@ public class EnemyHealth : MonoBehaviour
     private float startCollisionMultiplier = 64;
     private float collisionMultiplier = 64;
 
+    [Header("Laser burning Control")]
+    public GameObject _burnReplacement;
+
     // gameObjects to find
     private GameManager gameManager;
     private Collider collider;
@@ -84,11 +87,23 @@ public class EnemyHealth : MonoBehaviour
         if (canTakeDamage == true)
         {
             ParticleSystem part = other.GetComponent<ParticleSystem>(); // *** important! Making a variable to acess the particle system of the emmiting object, in this case, the lasers from my player ship.
-            int damage = other.GetComponent<ParticleBullet>().bulletDamage;
+            var ps = other.GetComponent<ParticleBullet>();
+            int damage = ps.bulletDamage;
+            int damagetyp = ps.damageTyp;
 
-            AudioManager.Instance.PlaySFX("ImpactShot");
-            TakeDamage(damage);
-            Debug.Log("damage_");
+            // damage from a bullet
+            if (damagetyp == 0)
+            {
+                AudioManager.Instance.PlaySFX("ImpactShot");
+                TakeDamage(damage);
+            }
+            else if (damagetyp == 1)
+            {
+                // damage from Laser
+                AudioManager.Instance.PlaySFX("ImpactShot");
+                TakeLaserDamage(damage);
+            }
+
 
             int numCollisionEvents = part.GetCollisionEvents(this.gameObject, collisionEvents);
 
@@ -99,39 +114,11 @@ public class EnemyHealth : MonoBehaviour
             }
         }
     }
-    /*
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Playerlaser"))
-        {
-            LineRenderer lr = other.GetComponent<LineRenderer>();
-            if (lr.enabled == true)
-            {
-                InvokeRepeating("LaserDamage", 0.1f, 0.2f);
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Playerlaser"))
-        {
-            CancelInvoke("LaserDamage");
-            
-        }
-    }
-
-    */
+   
     /* **************************************************************************** */
     /* TAKE DAMAGE CONTROLL-------------------------------------------------------- */
     /* **************************************************************************** */
-    /*private void LaserDamage()
-    {
-        TakeDamage(1);
-        Debug.Log("damage");
-    }*/
-    
-    
+
     // damage calculation
     public void TakeDamage(int damage)
     {
@@ -213,6 +200,42 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    // damage calculation from Lasers
+    public void TakeLaserDamage(int damage)
+    {
+        if (canTakeDamage)
+        {
+            enemyHealth -= damage;
+
+            if (enemyHealth <= 0)
+            {
+                // drop an Item
+                if (expOrbSpawn)
+                    ObjectPoolManager.SpawnObject(expOrb, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
+
+                // create object to die effect
+                if (_burnReplacement != null)
+                {
+                    Instantiate(_burnReplacement, transform.position, transform.rotation);
+                }
+
+                // update player UI
+                if (secondDimensionEnemy == false)
+                {
+                    gameManager.UpdateEnemyCounter(-1);
+                    gameManager.UpdateEnemyToKill(1);
+                }
+
+
+                // pool (destroy) enemy object
+                if (canPoolObject == true)
+                    ObjectPoolManager.ReturnObjectToPool(gameObject);
+                else
+                    Destroy(gameObject);
+
+            }
+        }
+    }
 
     /* **************************************************************************** */
     /* Shooting contoll------------------------------------------------------------ */

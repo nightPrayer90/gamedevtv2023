@@ -115,11 +115,12 @@ public class GameManager : MonoBehaviour
         buildingMaterial.SetTexture("_MainTex", firstDimensionTexture1);
         emissionMaterial.SetTexture("_MainTex", firstDimensionTexture1);
         emissionMaterial.SetTexture("_EmissionMap", firstDimensionTexture1);
+        
 
         buildingMaterialReverse.SetTexture("_MainTex", secondDimenionTexture2);
         emissionMaterialReverse.SetTexture("_MainTex", secondDimenionTexture2);
         emissionMaterialReverse.SetTexture("_EmissionMap", secondDimenionTexture2);
-
+        
         // Reset directional ligth color
         directionalLight.color = firstDimensionColor;
 

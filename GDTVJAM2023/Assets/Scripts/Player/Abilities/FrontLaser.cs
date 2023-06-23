@@ -18,6 +18,7 @@ public class FrontLaser : MonoBehaviour
     
 
     public LineRenderer lr;
+    public ParticleSystem hitParticle;
     //public BoxCollider boxCollider;
     public bool laserIsEnable = false;
 
@@ -42,7 +43,7 @@ public class FrontLaser : MonoBehaviour
     {
         Shooting();
         //SetLRPosition();
-        Raycast_();
+        //Raycast_();
     }
 
 
@@ -63,6 +64,11 @@ public class FrontLaser : MonoBehaviour
     // shooting controller
     void Shooting()
     {
+        if (lr.enabled == true)
+        {
+            Raycast_();
+        }
+
         if (bulletCount == bulletMaxCount)
         {
             Invoke("RealodWeapon", realodInterval);
@@ -90,6 +96,7 @@ public class FrontLaser : MonoBehaviour
                 nextSpawnTime = Time.time + spawnInterval;
             }
         }
+
     }
 
     void SetLRPosition()
@@ -121,13 +128,20 @@ public class FrontLaser : MonoBehaviour
         {
             // Kollision mit einem Objekt auf den gewünschten Render-Layern
             GameObject collidedObject = hit.collider.gameObject;
-            Debug.Log("Kollision mit " + collidedObject.name);
+            //Debug.Log("Kollision mit " + collidedObject.name);
 
             lr.SetPosition(1, collidedObject.transform.position);
+
+            Vector3 dir = transform.position - collidedObject.transform.position;
+
+            hitParticle.transform.position = collidedObject.transform.position + dir.normalized * .2f;
+            if (!hitParticle.isPlaying)
+                hitParticle.Play();
         }
         else
         {
             lr.SetPosition(1, transform.position + transform.forward * raycastDistance);
+            hitParticle.Stop();
         }
     }
 
