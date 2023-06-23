@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<CameraController>();
         directionalLight = GameObject.Find("Directional Light").GetComponent<Light>();
-        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         weaponChooseList = GetComponent<WeaponChooseList>();
         upgradeChooseList = GetComponent<UpgradeChooseList>();
         spawnDistrictList = GetComponent<SpawnDistrictList>();

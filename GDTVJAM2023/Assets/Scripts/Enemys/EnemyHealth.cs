@@ -13,6 +13,7 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("Enemy Settings")]
     public float enemyHealth = 2.0f;
+    private float enemyHealthTemp;
     public int collisonDamage = 1; 
     public float explosionForce = 5.0f;
     public bool expOrbSpawn = false;
@@ -50,17 +51,19 @@ public class EnemyHealth : MonoBehaviour
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
     /* **************************************************************************** */
-    private void Start()
+    private void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         collider = GetComponent<Collider>();
         collisionMultiplier += startCollisionMultiplier + Random.Range(-16, 128);
+        enemyHealthTemp = enemyHealth;
     }
 
     private void OnEnable()
     {
         collisionEvents = new List<ParticleCollisionEvent>();
         isShooting = false;
+        enemyHealth = enemyHealthTemp;
     }
 
     private void Update()
@@ -100,7 +103,7 @@ public class EnemyHealth : MonoBehaviour
             else if (damagetyp == 1)
             {
                 // damage from Laser
-                AudioManager.Instance.PlaySFX("ImpactShot");
+                AudioManager.Instance.PlaySFX("PlayerLaserHit");
                 TakeLaserDamage(damage);
             }
 
@@ -119,7 +122,7 @@ public class EnemyHealth : MonoBehaviour
     /* TAKE DAMAGE CONTROLL-------------------------------------------------------- */
     /* **************************************************************************** */
 
-    // damage calculation
+    // take damage from a bullet
     public void TakeDamage(int damage)
     {
         if (canTakeDamage)
@@ -153,7 +156,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    // explosion damage calculation
+    // take damage from an explosion
     public void TakeExplosionDamage(int damage)
     {
         if (canTakeDamage)
@@ -200,7 +203,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    // damage calculation from Lasers
+    // take damage from a laser
     public void TakeLaserDamage(int damage)
     {
         if (canTakeDamage)
@@ -226,6 +229,8 @@ public class EnemyHealth : MonoBehaviour
                     gameManager.UpdateEnemyToKill(1);
                 }
 
+                //diesound
+                AudioManager.Instance.PlaySFX("PlayerLaserDie");
 
                 // pool (destroy) enemy object
                 if (canPoolObject == true)
@@ -240,7 +245,7 @@ public class EnemyHealth : MonoBehaviour
     /* **************************************************************************** */
     /* Shooting contoll------------------------------------------------------------ */
     /* **************************************************************************** */
-    //start shooting
+    // start shooting
     public void StartShooting()
     {
         foreach (EnemyParticleBullet particle in enemyWeapons)
@@ -251,7 +256,7 @@ public class EnemyHealth : MonoBehaviour
         isShooting = true;
     }
 
-    //stop shooting
+    // stop shooting
     public void StopShooting()
     {
         foreach (EnemyParticleBullet particle in enemyWeapons)

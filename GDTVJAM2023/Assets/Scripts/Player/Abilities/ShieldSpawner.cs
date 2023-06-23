@@ -14,7 +14,7 @@ public class ShieldSpawner : MonoBehaviour
 
     private void Start()
     {
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         nextSpawnTime = Time.time + spawnInterval/4;
     }
     // Update is called once per frame

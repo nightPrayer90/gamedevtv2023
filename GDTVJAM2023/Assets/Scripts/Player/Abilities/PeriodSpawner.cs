@@ -38,7 +38,7 @@ public class PeriodSpawner : MonoBehaviour
     // set start values fom the weaponController
     private void StartValues()
     {
-        PlayerWeaponController weaponController = GameObject.Find("Player").GetComponent<PlayerWeaponController>();
+        PlayerWeaponController weaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         rocketDamage = weaponController.rlDamage;
         lifeTime = weaponController.rlLifeTime;
         spawnInterval = weaponController.rlReloadTime;

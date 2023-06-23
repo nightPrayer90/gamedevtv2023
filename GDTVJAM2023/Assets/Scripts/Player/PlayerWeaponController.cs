@@ -22,6 +22,15 @@ public class PlayerWeaponController : MonoBehaviour
     public bool isFrontShield = false;
     public bool isBackShield = false;
 
+    private bool isHeadCannonInstalled = false;
+    private bool isRocketLauncherInstalled = false;
+    private bool isFireFliesInstalled = false;
+    private bool isBulletWingsInstalled = false;
+    private bool isLifeModulInstalled = false;
+    private bool isSpreadGunInstalled = false;
+    private bool isFrontShieldInstalled = false;
+    private bool isBackShieldInstalled = false;
+
 
     [Header("Objects")]
     public GameObject frontShield;
@@ -67,11 +76,12 @@ public class PlayerWeaponController : MonoBehaviour
     public GameObject spreadGun;
 
 
+    [Header("Container")]
+    public Transform passivParentContainer;
+
+
     //private Objects
     private PlayerController playerController;
-
-
-
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -92,16 +102,51 @@ public class PlayerWeaponController : MonoBehaviour
     /* **************************************************************************** */
     /* Weapon Management----------------------------------------------------------------- */
     /* **************************************************************************** */
+    
     public void WeaponChoose()
     {
-        headCannon.SetActive(isHeadCannon);
-        rocketLauncher.SetActive(isRocketLauncher);
-        fireFlys.SetActive(isFireFlies);
-        bulletWings.SetActive(isBulletWings);
-        lifeModul.SetActive(isLifeModul);
-        spreadGun.SetActive(isSpreadGun);
-        frontShield.SetActive(isFrontShield);
-        backShield.SetActive(isBackShield);
+        if (isHeadCannon == true && isHeadCannonInstalled == false)
+        {
+            Instantiate(headCannon, passivParentContainer);
+            isHeadCannonInstalled = true;
+        }
+        if (isRocketLauncher == true && isRocketLauncherInstalled == false)
+        {
+            Instantiate(rocketLauncher, passivParentContainer);
+            isRocketLauncherInstalled = true;
+        }
+        if (isFireFlies == true && isFireFliesInstalled == false)
+        {
+            Instantiate(fireFlys, passivParentContainer);
+            isFireFliesInstalled = true;
+        }
+        if (isBulletWings == true && isBulletWingsInstalled == false)
+        {
+            Instantiate(bulletWings, passivParentContainer);
+            isBulletWingsInstalled = true;
+        }
+        if (isLifeModul == true && isLifeModulInstalled == false)
+        {
+            Instantiate(lifeModul, passivParentContainer);
+            isLifeModulInstalled = true;
+        }
+        if (isSpreadGun == true && isSpreadGunInstalled == false)
+        {
+            Instantiate(spreadGun, passivParentContainer);
+            isSpreadGunInstalled = true;
+        }
+        if (isFrontShield == true && isFrontShieldInstalled == false)
+        {
+            var shild = Instantiate(frontShield, passivParentContainer);
+            shild.name = frontShield.name;
+            isFrontShieldInstalled = true;
+        }
+        if (isBackShield == true && isBackShieldInstalled == false)
+        {
+            var shild = Instantiate(backShield, passivParentContainer);
+            shild.name = backShield.name;
+            isBackShieldInstalled = true;
+        }
     }
 
 

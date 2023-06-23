@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindWithTag("Player");
         cameraOffset = transform.position - cameraOffset_;
 
         shakeIntensity_ = shakeIntensity;

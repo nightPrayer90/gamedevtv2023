@@ -26,7 +26,7 @@ public class BossController : MonoBehaviour
         cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
         //enemyHealth = gameObject.GetComponent<EnemyHealth>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        player = GameObject.Find("Player");
+        player = GameObject.FindWithTag("Player");
 
         if (battleScriptPlaceholder != null)
         {

@@ -1,7 +1,10 @@
 using UnityEngine;
 
 public class test : MonoBehaviour
-{
+{  
+
+    //wird glaub ich nicht verwendet)!!!
+
     public ParticleSystem particleSystem;
     public float xMin, xMax, zMin, zMax;
     public float yValue;

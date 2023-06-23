@@ -17,7 +17,7 @@ public class LifeModul : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         nextHealthTick = Time.time + tickInterval;
     }
     void Update()
