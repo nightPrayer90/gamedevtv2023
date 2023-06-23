@@ -28,9 +28,9 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _DissolveAmount: 0.237
+    - _DissolveAmount: 0.534
     - _Edge_Wdth: 0.005
-    - _Nose_Scale: 200000000
+    - _Nose_Scale: 100
     m_Colors:
     - _Base_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Edge_Color: {r: 0.99056596, g: 0.5083996, b: 0.060742237, a: 1}

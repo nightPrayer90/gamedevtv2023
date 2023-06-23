@@ -100,6 +100,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: fc0e7225839d0a040a146583b7770943, type: 3}
+      propertyPath: m_MotionVectors
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: fc0e7225839d0a040a146583b7770943, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: fc0e7225839d0a040a146583b7770943, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -121,11 +129,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc0e7225839d0a040a146583b7770943, type: 3}
---- !u!23 &166360332889900516 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: fc0e7225839d0a040a146583b7770943, type: 3}
-  m_PrefabInstance: {fileID: 1553339959949973856}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1298209922298789515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fc0e7225839d0a040a146583b7770943, type: 3}
@@ -148,5 +151,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e28d93959c7be42ab3ff909e1ce42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 166360332889900516}
+  meshRenderer: {fileID: 0}
   dissolveRate: 0.01

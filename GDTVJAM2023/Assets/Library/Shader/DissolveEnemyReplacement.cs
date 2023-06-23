@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DissolveEnemyReplacement : MonoBehaviour
 {
-    public MeshRenderer meshRenderer;
+    public SkinnedMeshRenderer meshRenderer;
 
     private Material[] meshMaterials;
     private float counter;
