@@ -20,6 +20,7 @@ public class RocketController : MonoBehaviour
 
 
     [Header("Game Objects")]
+    public GameObject trail;
     private GameObject target;
     private Rigidbody rbRocket;
     private GameManager gameManager;
@@ -31,6 +32,9 @@ public class RocketController : MonoBehaviour
     /* **************************************************************************** */
     private void OnEnable()
     {
+        if (trail != null)
+            Invoke("ActivateTrail", 0.1f);
+
         // set Game Objects
         rbRocket = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -141,6 +145,11 @@ public class RocketController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 
+    private void OnDisable()
+    {
+        if (trail != null)
+            trail.SetActive(false);
+    }
 
     /* **************************************************************************** */
     /* MOVMENT--------------------------------------------------------------------- */
@@ -199,5 +208,11 @@ public class RocketController : MonoBehaviour
 
         // spawn the explosion object
         ObjectPoolManager.SpawnObject(exposionDieObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
+    }
+
+    private void ActivateTrail()
+    {
+        if (trail != null)
+            trail.SetActive(true);
     }
 }

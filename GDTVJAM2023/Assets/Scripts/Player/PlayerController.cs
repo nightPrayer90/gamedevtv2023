@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource engineAudioSource;
     private Rigidbody playerRb;
     private GameManager gameManager;
-    private PlayerWeaponController playerWeaponController;
+    private PlayerMWController playerMWController;
 
 
 
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         // set game objects
         playerRb = GetComponent<Rigidbody>();
-        playerWeaponController = GetComponent<PlayerWeaponController>();
+        playerMWController = GetComponent<PlayerMWController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         // intro starting sound
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
                 // set .y to 6f
                 playerRb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
                 // start Shooting
-                playerWeaponController.StartShooting();
+                playerMWController.StartShooting();
             }
             isIntro = false;
         }
@@ -325,7 +325,7 @@ public class PlayerController : MonoBehaviour
     // set the main weapon particle damage
     public void SetBulletDamage()
     {
-        playerWeaponController.UpdateBulletValues();
+        playerMWController.UpdateBulletValues();
     }
 
 

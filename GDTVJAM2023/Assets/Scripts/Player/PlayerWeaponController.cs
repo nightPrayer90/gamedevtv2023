@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class PlayerWeaponController : MonoBehaviour
 {
-    [Header("Main Weapon")]
-    public int bulletBaseDamage;
-    public float fireRate;
-    public List<ParticleSystem> mainWeapons = new List<ParticleSystem>();
-    public List<ParticleBullet> particleBullets;
-    public AudioSource mainWeaponSound;
-
-
     [Header("Passiv abilitys")]
     public bool isHeadCannon = false;
     public bool isRocketLauncher = false;
@@ -88,11 +80,7 @@ public class PlayerWeaponController : MonoBehaviour
     /* **************************************************************************** */
     void Start()
     {
-        playerController = GetComponent<PlayerController>();
-        fireRate = playerController.playerFireRate;
-        UpdateBulletValues();
-
-        //optional
+        // testing
         WeaponChoose();
     }
 
@@ -148,68 +136,4 @@ public class PlayerWeaponController : MonoBehaviour
             isBackShieldInstalled = true;
         }
     }
-
-
-
-
-    /* **************************************************************************** */
-    /* Main weapon----------------------------------------------------------------- */
-    /* **************************************************************************** */
-    // the main weapon start to fire
-    public void StartShooting()
-    {
-        // set the main weapon particle damage
-        UpdateBulletValues();
-
-        // start invoke for main weapons
-        InvokeRepeating("ShotEmit", 0.5f, fireRate);
-    }
-
-    // stop the main waepon fire
-    public void StopShooting()
-    {
-        CancelInvoke("ShotEmit");
-    }
-
-    // invoke function - make the main weapon fire
-    void ShotEmit()
-    {
-        // shooting sound
-        mainWeaponSound.Play();
-
-        // emit 1 particle of each mainweapon
-        foreach (ParticleSystem mainWeapon in mainWeapons)
-        {
-            if (mainWeapon != null)
-                mainWeapon.Emit(1);
-        }
-    }
-
-    // set the main weapon particle damage
-    public void SetBulletDamage()
-    {
-        foreach (ParticleBullet particle in particleBullets)
-        {
-            particle.BulletSetDamage(bulletBaseDamage);
-        }
-    }
-
-    // update main Weapon base values from playerController
-    public void UpdateBulletValues()
-    {
-        bulletBaseDamage = playerController.playerBulletBaseDamage;
-
-        float temp_fireRate = fireRate;
-        fireRate = playerController.playerFireRate;
-
-        // restart Invoke
-        if (fireRate != temp_fireRate)
-        {
-            CancelInvoke("ShotEmit");
-            InvokeRepeating("ShotEmit", 0.3f, fireRate);
-        }
-
-        SetBulletDamage();
-    }
-
 }

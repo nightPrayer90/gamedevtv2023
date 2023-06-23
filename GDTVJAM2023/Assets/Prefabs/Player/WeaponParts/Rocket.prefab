@@ -86,6 +86,7 @@ MonoBehaviour:
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
   explosionRadius: 1
   explosionForce: 400
+  trail: {fileID: 4328560397251660117}
 --- !u!1 &4328560397251660117
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4770669752831407179
 Transform:
   m_ObjectHideFlags: 0

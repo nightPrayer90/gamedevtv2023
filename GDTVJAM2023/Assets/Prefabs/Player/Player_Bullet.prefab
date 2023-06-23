@@ -29814,6 +29814,7 @@ GameObject:
   - component: {fileID: 2604307836790789306}
   - component: {fileID: 2604307836790789304}
   - component: {fileID: 2604307836790789308}
+  - component: {fileID: 1191274111902304283}
   - component: {fileID: 6216807067363716947}
   - component: {fileID: 2559130692153237150}
   - component: {fileID: 2559130691838651932}
@@ -29903,6 +29904,34 @@ MonoBehaviour:
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   navigationController: {fileID: 318727567431198199}
   engineAudioSource: {fileID: 2559130692153237150}
+--- !u!114 &1191274111902304283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2604307836790789309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc59522e09a61149bd1c322abe34841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 0
+  bulletBaseDamage: 0
+  fireRate: 0
+  mainWeapons:
+  - {fileID: 2604307836572194382}
+  - {fileID: 2604307835793232683}
+  particleBullets:
+  - {fileID: 2604307836572194384}
+  - {fileID: 2604307835793232685}
+  mainWeaponSound: {fileID: 2559130691838651932}
+  lifeTime: 2
+  detectionRange: 6
+  rockedToLaunch: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  spawnPoint2: {fileID: 0}
+  hitColor: {r: 1, g: 0.6, b: 0, a: 1}
 --- !u!114 &6216807067363716947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29915,15 +29944,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c6d230817f4654dbf0dea641464992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletBaseDamage: 0
-  fireRate: 0
-  mainWeapons:
-  - {fileID: 2604307836572194382}
-  - {fileID: 2604307835793232683}
-  particleBullets:
-  - {fileID: 2604307836572194384}
-  - {fileID: 2604307835793232685}
-  mainWeaponSound: {fileID: 2559130691838651932}
   isHeadCannon: 0
   isRocketLauncher: 0
   isFireFlies: 0

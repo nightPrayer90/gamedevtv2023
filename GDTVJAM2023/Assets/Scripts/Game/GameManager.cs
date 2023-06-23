@@ -63,6 +63,19 @@ public class GameManager : MonoBehaviour
     [Header("Floating Damage")]
     public GameObject textPrefab;
 
+    public enum StartShip
+    {
+        bullet,
+        rocket,
+        laser,
+    }
+
+    [Header("Player Ship")]
+    public StartShip startShip;
+    public Transform playerStartPosition;
+    public GameObject playerShip_bullet;
+    public GameObject playerShip_rocket;
+    public GameObject playerShip_laser;
 
     // Objects
     private CameraController mainCamera;
@@ -76,12 +89,35 @@ public class GameManager : MonoBehaviour
     /* **************************************************************************** */
     /* Lifecycle-Methoden---------------------------------------------------------- */
     /* **************************************************************************** */
+    private void Awake()
+    {
+        // create the Playership
+        switch (startShip)
+        {
+            case StartShip.bullet:
+                var player_b = Instantiate(playerShip_bullet, playerStartPosition.position, playerStartPosition.rotation);
+                player = player_b.GetComponent<PlayerController>();
+                break;
+            case StartShip.rocket:
+                var player_r = Instantiate(playerShip_rocket, playerStartPosition.position, playerStartPosition.rotation);
+                player = player_r.GetComponent<PlayerController>();
+                break;
+            case StartShip.laser:
+                var player_l = Instantiate(playerShip_laser, playerStartPosition.position, playerStartPosition.rotation);
+                player = player_l.GetComponent<PlayerController>();
+                break;
+        }
+
+       
+
+
+       
+    }
 
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<CameraController>();
         directionalLight = GameObject.Find("Directional Light").GetComponent<Light>();
-        player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         weaponChooseList = GetComponent<WeaponChooseList>();
         upgradeChooseList = GetComponent<UpgradeChooseList>();
         spawnDistrictList = GetComponent<SpawnDistrictList>();

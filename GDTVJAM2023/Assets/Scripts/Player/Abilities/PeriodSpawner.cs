@@ -73,7 +73,7 @@ public class PeriodSpawner : MonoBehaviour
     // Invoke, spawns a rocked after spawnInterval sec
     private void SpawnRocked()
     {
-        
+        Debug.Log("spawnRocket");
         // in an enemy in range;
         DetectEnemy();
 
