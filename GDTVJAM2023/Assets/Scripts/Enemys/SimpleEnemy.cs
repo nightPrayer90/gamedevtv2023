@@ -65,7 +65,7 @@ public class SimpleEnemy : MonoBehaviour
     void OnEnable()
     {
         // find gameObjects
-        GameObject playerObjekt = GameObject.Find("Player");
+        GameObject playerObjekt = GameObject.FindWithTag("Player");
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         enemyRb = GetComponent<Rigidbody>();
         enemyHealth = GetComponent<EnemyHealth>();

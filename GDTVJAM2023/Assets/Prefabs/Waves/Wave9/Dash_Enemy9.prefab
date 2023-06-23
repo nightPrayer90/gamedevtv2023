@@ -343,6 +343,7 @@ MonoBehaviour:
   bulletDamage: 0
   hitColor: {r: 1, g: 0.5998216, b: 0, a: 1}
   _replacement: {fileID: 2939619707958075189, guid: dec4b4d02343e1546a0214b465b094e7, type: 3}
+  _burnReplacement: {fileID: 3161139216598759944, guid: d859b0033dbcef64d9a005e90429e0ef, type: 3}
 --- !u!1 &7022702905896314159
 GameObject:
   m_ObjectHideFlags: 0

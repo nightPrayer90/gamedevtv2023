@@ -50,7 +50,7 @@ public class SpreadGun : MonoBehaviour
     // set start values fom the weaponController
     private void StartValues()
     {
-        PlayerWeaponController weaponController = GameObject.Find("Player").GetComponent<PlayerWeaponController>();
+        PlayerWeaponController weaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         bulletDamage = weaponController.sgDamage;
         bulletMaxCount = weaponController.sgBulletCount;
         realodInterval = weaponController.sgReloadTime;

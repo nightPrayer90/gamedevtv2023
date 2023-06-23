@@ -41,8 +41,8 @@ public class UpgradePanelController : MonoBehaviour
     void OnEnable()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        playerWeaponController = GameObject.Find("Player").GetComponent<PlayerWeaponController>();
+        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
 
         upgradeValue = new float[3];
         headerStr = new string[3];

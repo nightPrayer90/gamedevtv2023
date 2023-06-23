@@ -18,7 +18,7 @@ public class DissolveEnemyReplacement : MonoBehaviour
 
         counter = meshMaterials[0].GetFloat("_DissolveAmount");
 
-        InvokeRepeating("FadeOutwithDissolve", 0.1f, 0.01f);
+        InvokeRepeating("FadeOutwithDissolve", 0.0f, 0.01f);
     }
 
 
@@ -28,6 +28,7 @@ public class DissolveEnemyReplacement : MonoBehaviour
         {
             counter += dissolveRate;
             meshMaterials[0].SetFloat("_DissolveAmount", counter);
+            meshMaterials[1].SetFloat("_DissolveAmount", counter);
         }
         else
         {

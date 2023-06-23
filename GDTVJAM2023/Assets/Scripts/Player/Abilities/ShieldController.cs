@@ -21,8 +21,8 @@ public class ShieldController : MonoBehaviour
     //private Vector3 initialOffset;
     private void Start()
     {
-        playerTr = GameObject.Find("Player").GetComponent<Transform>();
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerTr = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerRb = playerController.GetComponent<Rigidbody>();
 

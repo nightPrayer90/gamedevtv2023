@@ -48,7 +48,6 @@ public class FrontLaser : MonoBehaviour
 
 
 
-
     /* **************************************************************************** */
     /* RUNTIME METHODEN------------------------------------------------------------ */
     /* **************************************************************************** */
@@ -83,7 +82,7 @@ public class FrontLaser : MonoBehaviour
             if (Time.time >= nextSpawnTime)
             {
                 // shooting sound
-                //AudioManager.Instance.PlaySFX(audioClip);
+                AudioManager.Instance.PlaySFX(audioClip);
 
                 // emit 1 particle of each weapon
                 foreach (ParticleSystem weapon in particleSystems)
@@ -109,10 +108,9 @@ public class FrontLaser : MonoBehaviour
     void RealodWeapon()
     {
         bulletCount = 0;
+        SetLRPosition();
         lr.enabled = true;
         laserIsEnable = true;
-        //boxCollider.enabled = true;
-        //lr.SetPosition(1, transform.position + transform.forward * 5);
     }
 
     void Raycast_()

@@ -35,7 +35,7 @@ public class HeadCannon : MonoBehaviour
     private void Start()
     {
         // find Objects
-        player = GameObject.Find("Player");
+        player = GameObject.FindWithTag("Player");
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         particleSystem.GetComponent<ParticleBullet>().bulletDamage = bulletDamage;
 

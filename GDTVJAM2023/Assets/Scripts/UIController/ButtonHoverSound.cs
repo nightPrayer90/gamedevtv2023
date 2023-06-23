@@ -9,7 +9,6 @@ public class ButtonHoverSound : MonoBehaviour, IPointerEnterHandler
     public void OnPointerEnter(PointerEventData ped)
     {
         AudioManager.Instance.PlaySFX("MouseHover");
-        Debug.Log("test");
     }
     
 }
