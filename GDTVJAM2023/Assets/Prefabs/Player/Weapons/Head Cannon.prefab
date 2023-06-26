@@ -51,7 +51,7 @@ MonoBehaviour:
   reloadShotInterval: 0.1
   rotationSpeed: 50
   detectionRange: 5
-  particleSystem: {fileID: 6259656976950594170}
+  bulletParticleSystem: {fileID: 6259656976950594170}
 --- !u!1 &6259656975123131525
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public class PlayerWeaponController : MonoBehaviour
     public bool isFrontShield = false;
     public bool isBackShield = false;
     public bool isNovaExplosion = false;
+    public bool isRockedWings = false;
 
     private bool isHeadCannonInstalled = false;
     private bool isRocketLauncherInstalled = false;
@@ -24,6 +25,7 @@ public class PlayerWeaponController : MonoBehaviour
     private bool isFrontShieldInstalled = false;
     private bool isBackShieldInstalled = false;
     private bool isNovaExplosionInstalled = false;
+    private bool isRockedWingsInstalled = false;
 
 
     [Header("Objects")]
@@ -75,6 +77,14 @@ public class PlayerWeaponController : MonoBehaviour
     public float neReloadTime = 4.5f;
     public float neRadius = 3f;
     public GameObject novaExplosion;
+
+
+    [Header("Rocket Wings")]
+    public int rwDamage = 3;
+    public float rwReloadTime = 4.5f;
+    public int rwSalveCount = 6;
+    public GameObject rocketWings;
+
 
     [Header("Container")]
     public Transform passivParentContainer;
@@ -147,6 +157,11 @@ public class PlayerWeaponController : MonoBehaviour
         {
             Instantiate(novaExplosion, passivParentContainer);
             isNovaExplosionInstalled = true;
+        }
+        if (isRockedWings == true && isRockedWingsInstalled == false)
+        {
+            Instantiate(rocketWings, passivParentContainer);
+            isRockedWingsInstalled = true;
         }
     }
 }

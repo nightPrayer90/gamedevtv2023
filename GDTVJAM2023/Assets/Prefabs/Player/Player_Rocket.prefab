@@ -622,7 +622,7 @@ MonoBehaviour:
   speed: 500
   rotateSpeed: 3
   playerMaxHealth: 10
-  playerBulletBaseDamage: 3
+  playerBulletBaseDamage: 5
   playerFireRate: 1
   pickupRange: 0.8
   playerCurrentHealth: 10
@@ -663,6 +663,14 @@ MonoBehaviour:
   spawnPoint: {fileID: 5031554768623812592}
   spawnPoint2: {fileID: 9074861371868659753}
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
+  bulletDamage: 10
+  realodInterval: 5
+  bulletMaxCount: 10
+  spawnInterval: 0.1
+  audioClip: 
+  lr: {fileID: 0}
+  hitParticle: {fileID: 0}
+  laserIsEnable: 0
 --- !u!114 &6216807067363716947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -684,6 +692,7 @@ MonoBehaviour:
   isFrontShield: 0
   isBackShield: 0
   isNovaExplosion: 1
+  isRockedWings: 1
   frontShield: {fileID: 4831901517162404820, guid: 120689e8e5b520d439a8645f1b1162d9, type: 3}
   backShield: {fileID: 3147124995608451256, guid: 6da4992dab9d49646be6b65d0388b3e4, type: 3}
   hcBulletDamage: 4
@@ -700,7 +709,7 @@ MonoBehaviour:
   fireFlys: {fileID: 5998184823411945893, guid: 28e4039d445b9d84fa06f83e4b212d06, type: 3}
   bwDamage: 6
   bwRealoadTime: 4.5
-  bwSalveCount: 6
+  bwSalveCount: 7
   bulletWings: {fileID: 8390656690878353693, guid: 0aaf90ad2cd0d844397b6d95f3b62d12, type: 3}
   lifeModul: {fileID: 8459815295507979944, guid: 0bb488a5296b7d34eb8f8afe684ebff5, type: 3}
   sgDamage: 3
@@ -711,6 +720,10 @@ MonoBehaviour:
   neReloadTime: 4.5
   neRadius: 3
   novaExplosion: {fileID: 5372979302712396976, guid: 056b57503f6534c44a1d12a5f55b7ced, type: 3}
+  rwDamage: 2
+  rwReloadTime: 5
+  rwSalveCount: 5
+  rocketWings: {fileID: 8390656690878353693, guid: 8634b4018809df54b87676107fad22f7, type: 3}
   passivParentContainer: {fileID: 2604307836560290830}
 --- !u!82 &2559130692153237150
 AudioSource:

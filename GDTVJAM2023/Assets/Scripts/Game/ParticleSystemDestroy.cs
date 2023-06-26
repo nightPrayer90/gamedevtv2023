@@ -23,7 +23,6 @@ public class ParticleSystemDestroy : MonoBehaviour
         }
         Invoke("DeactivateSystem", 10f);
 
-        Debug.Log(rippleParicleSize);
         isRipplePlayed = false;
     }
 

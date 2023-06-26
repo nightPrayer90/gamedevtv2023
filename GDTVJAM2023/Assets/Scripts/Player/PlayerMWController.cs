@@ -29,6 +29,20 @@ public class PlayerMWController : MonoBehaviour
     public Color hitColor = new Color(1f, 0.6f, 0.0f, 1f);
     private bool spawnSideToggle = false;
 
+    [Header("Laser Settings")]
+    public float laserRange = 5f;
+    public int bulletMaxCount = 10;
+    public float spawnInterval = 0.1f;
+    public string audioClip = "";
+    private float nextSpawnTime = 0f;
+    private int bulletCount = 0;
+    public LineRenderer lr;
+    public LineRenderer lr2;
+    public ParticleSystem hitParticle;
+    public ParticleSystem hitParticle2;
+    public bool laserIsEnable = false;
+    public Transform LaserSpawnPoint1;
+    public Transform LaserSpawnPoint2;
 
     //private Objects
     private PlayerController playerController;
@@ -41,16 +55,28 @@ public class PlayerMWController : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        playerController = GetComponent<PlayerController>();
 
         // bullet
-        playerController = GetComponent<PlayerController>();
         fireRate = playerController.playerFireRate;
 
         UpdateBulletValues();
 
         // rocket
+        if (weaponType == MWeapontyp.rocket)
+            InvokeRepeating("SpawnRocked", fireRate, fireRate);
 
-        InvokeRepeating("SpawnRocked", fireRate, fireRate);        
+
+        //laser 
+        bulletCount = bulletMaxCount;
+
+        
+    }
+
+    private void Update()
+    {
+        if (weaponType == MWeapontyp.laser)
+            LaserShooting();
     }
 
     /* **************************************************************************** */
@@ -70,8 +96,8 @@ public class PlayerMWController : MonoBehaviour
             // restart Invoke
             if (fireRate != temp_fireRate)
             {
-                CancelInvoke("ShotEmit");
-                InvokeRepeating("ShotEmit", 0.3f, fireRate);
+                CancelInvoke("BulletShotEmit");
+                InvokeRepeating("BulletShotEmit", 0.3f, fireRate);
             }
             SetBulletDamage();
         }
@@ -90,8 +116,17 @@ public class PlayerMWController : MonoBehaviour
                 InvokeRepeating("SpawnRocked", fireRate, fireRate);
             }
         }
-    }
 
+        //update Laser values
+        else if (weaponType == MWeapontyp.laser)
+        {
+            // set damage to particle system
+            foreach (ParticleBullet weapon in particleBullets)
+            {
+                weapon.bulletDamage = bulletBaseDamage;
+            }
+        }
+    }
 
     // the main weapon start to fire
     public void StartShooting()
@@ -127,11 +162,11 @@ public class PlayerMWController : MonoBehaviour
     }
 
     /* **************************************************************************** */
-    /* Bullet---------------------------------------------------------------------- */
+    /* BULLET---------------------------------------------------------------------- */
     /* **************************************************************************** */
 
     // invoke function - make the main weapon fire
-    void ShotEmit()
+    void BulletShotEmit()
     {
         // shooting sound
         mainWeaponSound.Play();
@@ -155,11 +190,12 @@ public class PlayerMWController : MonoBehaviour
 
 
 
+
     /* **************************************************************************** */
-    /* Rocket---------------------------------------------------------------------- */
+    /* ROCKET---------------------------------------------------------------------- */
     /* **************************************************************************** */
     // in an enemy in range;
-    private void DetectEnemy()
+    private void DetectEnemyRocket()
     {
         // enemy target tag set
         string tagStr = "Enemy";
@@ -188,7 +224,7 @@ public class PlayerMWController : MonoBehaviour
     private void SpawnRocked()
     {
         // in an enemy in range;
-        DetectEnemy();
+        DetectEnemyRocket();
 
         // if an anemy detected
         if (enemyDetected == true)
@@ -220,5 +256,132 @@ public class PlayerMWController : MonoBehaviour
             enemyDetected = false;
         }
     }
+
+
+
+
+    /* **************************************************************************** */
+    /* LASER ---------------------------------------------------------------------- */
+    /* **************************************************************************** */
+    // set start values fom the weaponController
+
+    // shooting controller
+    void LaserShooting()
+    {
+        if (laserIsEnable == true)
+        {
+            LaserRaycast();
+            LaserRaycast2();
+        }
+
+        if (bulletCount == bulletMaxCount)
+        {
+            Invoke("RealoLaserWeapon", fireRate);
+            bulletCount++;
+            lr.enabled = false;
+            lr2.enabled = false;
+            laserIsEnable = false;
+        }
+
+        if (bulletCount < bulletMaxCount)
+        {
+            if (Time.time >= nextSpawnTime)
+            {
+                // shooting sound
+                AudioManager.Instance.PlaySFX(audioClip);
+
+                // emit 1 particle of each weapon
+                foreach (ParticleSystem weapon in mainWeapons)
+                {
+                    if (weapon != null)
+                        weapon.Emit(1);
+                    bulletCount++;
+                }
+
+                nextSpawnTime = Time.time + spawnInterval;
+            }
+        }
+
+    }
+
+    void SetLaserLRPosition()
+    {
+        lr.SetPosition(0, LaserSpawnPoint1.position);
+        lr.SetPosition(1, LaserSpawnPoint1.position + LaserSpawnPoint1.forward * laserRange);
+
+        lr2.SetPosition(0, LaserSpawnPoint2.position);
+        lr2.SetPosition(1, LaserSpawnPoint2.position + LaserSpawnPoint1.forward * laserRange);
+    }
+
+    // realod a salve of weapons
+    void RealoLaserWeapon()
+    {
+        SetLaserLRPosition();
+        bulletCount = 0;
+        lr.enabled = true;
+        lr2.enabled = true;
+        laserIsEnable = true;
+    }
+
+    void LaserRaycast()
+    {
+        lr.SetPosition(0, LaserSpawnPoint1.position);
+
+        float raycastDistance = laserRange; // Die maximale Entfernung des Raycasts
+        int layerMask = (1 << 6) | (1 << 9); // Bitmaske für Render-Layer 6 und 9
+
+        // laser 1
+        RaycastHit hit;
+        if (Physics.Raycast(LaserSpawnPoint1.position, -LaserSpawnPoint1.forward, out hit, raycastDistance, layerMask))
+        {
+            
+            // Kollision mit einem Objekt auf den gewünschten Render-Layern
+            GameObject collidedObject = hit.collider.gameObject;
+
+            lr.SetPosition(1, collidedObject.transform.position);
+
+            Vector3 dir = LaserSpawnPoint1.position - collidedObject.transform.position;
+
+            hitParticle.transform.position = collidedObject.transform.position + dir.normalized * .2f;
+            if (!hitParticle.isPlaying)
+                hitParticle.Play();
+        }
+        else
+        {
+            lr.SetPosition(1, LaserSpawnPoint1.position - LaserSpawnPoint1.forward * raycastDistance);
+            hitParticle.Stop();
+        }
+    }
+
+    void LaserRaycast2()
+    {
+        lr2.SetPosition(0, LaserSpawnPoint2.position);
+
+        float raycastDistance = laserRange; // Die maximale Entfernung des Raycasts
+        int layerMask = (1 << 6) | (1 << 9); // Bitmaske für Render-Layer 6 und 9
+
+        // laser 2
+        RaycastHit hit;
+        if (Physics.Raycast(LaserSpawnPoint2.position, -LaserSpawnPoint2.forward, out hit, raycastDistance, layerMask))
+        {
+
+            // Kollision mit einem Objekt auf den gewünschten Render-Layern
+            GameObject collidedObject = hit.collider.gameObject;
+
+            lr2.SetPosition(1, collidedObject.transform.position);
+
+            Vector3 dir = LaserSpawnPoint2.position - collidedObject.transform.position;
+
+            hitParticle.transform.position = collidedObject.transform.position + dir.normalized * .2f;
+            if (!hitParticle.isPlaying)
+                hitParticle.Play();
+        }
+        else
+        {
+            lr2.SetPosition(1, LaserSpawnPoint2.position - LaserSpawnPoint2.forward * raycastDistance);
+            hitParticle.Stop();
+        }
+    }
+
 
 }

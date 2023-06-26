@@ -43,7 +43,7 @@ public class EnemyHealth : MonoBehaviour
 
     // gameObjects to find
     private GameManager gameManager;
-    private Collider collider;
+    //private Collider objectCollider;
 
 
 
@@ -54,7 +54,7 @@ public class EnemyHealth : MonoBehaviour
     private void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        collider = GetComponent<Collider>();
+        //objectCollider = GetComponent<Collider>();
         collisionMultiplier += startCollisionMultiplier + Random.Range(-16, 128);
         enemyHealthTemp = enemyHealth;
     }

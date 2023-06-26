@@ -78,13 +78,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  speed: 5
-  rotationSpeed: 7.5
+  speed: 6.5
+  rotationSpeed: 5
+  startTime: 0.8
   exposionHitObject: {fileID: 4303235208557751318, guid: eb9d00288658133488952b36c49aca32, type: 3}
-  exposionDieObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   maxLifeTime: 4
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
-  explosionRadius: 0.4
+  explosionRadius: 0.6
   explosionForce: 100
   trail: {fileID: 4328560397251660117}
 --- !u!1 &4328560397251660117

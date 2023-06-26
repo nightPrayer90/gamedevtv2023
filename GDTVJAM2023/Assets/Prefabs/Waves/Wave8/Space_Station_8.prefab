@@ -9764,7 +9764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 2
   baseFireRate: 1
-  particleSystem: {fileID: 4469962174513549468}
+  bulletParticleSystem: {fileID: 4469962174513549468}
   fireOnBirth: 1
   interval: 1
   isEmittingSound: 1

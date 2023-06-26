@@ -5,7 +5,7 @@ public class EnemyParticleBullet : MonoBehaviour
     public int bulletDamage = 1;
     public float baseFireRate = 1f;
     //private GameManager gameManager;
-    public ParticleSystem particleSystem;
+    public ParticleSystem bulletParticleSystem;
     public bool fireOnBirth = false;
     public float interval = 1f;
     private bool isEmitting = false;
@@ -18,6 +18,7 @@ public class EnemyParticleBullet : MonoBehaviour
     //List<ParticleCollisionEvent> colEvents = new List<ParticleCollisionEvent>();
     public void Start()
     {
+        bulletParticleSystem = gameObject.GetComponent<ParticleSystem>();
         if (fireOnBirth)
         {
             BulletStart(bulletDamage, baseFireRate);
@@ -55,10 +56,10 @@ public class EnemyParticleBullet : MonoBehaviour
         bulletDamage = bulletDamage_;
         
         //Set FireRate
-        var main = particleSystem.main;
+        var main = bulletParticleSystem.main;
         main.duration = fireRate;
 
-        particleSystem.Play();
+        bulletParticleSystem.Play();
 
         interval = fireRate;
         isEmitting = true;
@@ -66,20 +67,20 @@ public class EnemyParticleBullet : MonoBehaviour
 
     public void BulletStart_()
     {
-        if (particleSystem.isStopped)
-            particleSystem.Play();
+        if (bulletParticleSystem.isStopped)
+            bulletParticleSystem.Play();
         isEmitting = true;
     }
 
     public void BulletStop()
     {
-        particleSystem.Stop();
+        bulletParticleSystem.Stop();
         isEmitting = false;
     }
 
     public void HardBulletStop()
     {
-        particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        bulletParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         isEmitting = false;
     }
 

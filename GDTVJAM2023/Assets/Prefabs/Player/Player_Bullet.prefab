@@ -19865,7 +19865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b81600d1444ad4e84b5ba5f68a1b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 0
+  bulletDamage: 10
   damageTyp: 0
 --- !u!1 &2604307836294656473
 GameObject:
@@ -29800,7 +29800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b81600d1444ad4e84b5ba5f68a1b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 0
+  bulletDamage: 10
   damageTyp: 0
 --- !u!1 &2604307836790789309
 GameObject:
@@ -29932,6 +29932,14 @@ MonoBehaviour:
   spawnPoint: {fileID: 0}
   spawnPoint2: {fileID: 0}
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
+  bulletDamage: 10
+  realodInterval: 5
+  bulletMaxCount: 10
+  spawnInterval: 0.1
+  audioClip: 
+  lr: {fileID: 0}
+  hitParticle: {fileID: 0}
+  laserIsEnable: 0
 --- !u!114 &6216807067363716947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29953,6 +29961,7 @@ MonoBehaviour:
   isFrontShield: 0
   isBackShield: 0
   isNovaExplosion: 0
+  isRockedWings: 0
   frontShield: {fileID: 4831901517162404820, guid: 120689e8e5b520d439a8645f1b1162d9, type: 3}
   backShield: {fileID: 3147124995608451256, guid: 6da4992dab9d49646be6b65d0388b3e4, type: 3}
   hcBulletDamage: 4
@@ -29969,7 +29978,7 @@ MonoBehaviour:
   fireFlys: {fileID: 5998184823411945893, guid: 28e4039d445b9d84fa06f83e4b212d06, type: 3}
   bwDamage: 6
   bwRealoadTime: 4.5
-  bwSalveCount: 6
+  bwSalveCount: 7
   bulletWings: {fileID: 8390656690878353693, guid: 0aaf90ad2cd0d844397b6d95f3b62d12, type: 3}
   lifeModul: {fileID: 8459815295507979944, guid: 0bb488a5296b7d34eb8f8afe684ebff5, type: 3}
   sgDamage: 3
@@ -29978,8 +29987,12 @@ MonoBehaviour:
   spreadGun: {fileID: 7701453864392984337, guid: 104de042193ebb248b57f868f189bcdf, type: 3}
   neDamage: 3
   neReloadTime: 4.5
-  neRadius: 5
+  neRadius: 3
   novaExplosion: {fileID: 5372979302712396976, guid: 056b57503f6534c44a1d12a5f55b7ced, type: 3}
+  rwDamage: 2
+  rwReloadTime: 5
+  rwSalveCount: 5
+  rocketWings: {fileID: 8390656690878353693, guid: 8634b4018809df54b87676107fad22f7, type: 3}
   passivParentContainer: {fileID: 2604307836560290830}
 --- !u!82 &2559130692153237150
 AudioSource:

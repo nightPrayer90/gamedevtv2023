@@ -44,6 +44,9 @@ public class NovaExplosion : MonoBehaviour
     // Invoke, spawns a rocked after spawnInterval sec
     private void SpawnNova()
     {
+        // Audio
+        AudioManager.Instance.PlaySFX("Playernova");
+
         // postion of explosion Object
         Vector3 pos = transform.position;
 

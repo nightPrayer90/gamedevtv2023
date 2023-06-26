@@ -19,7 +19,6 @@ public class FrontLaser : MonoBehaviour
 
     public LineRenderer lr;
     public ParticleSystem hitParticle;
-    //public BoxCollider boxCollider;
     public bool laserIsEnable = false;
 
     /* **************************************************************************** */
@@ -42,8 +41,6 @@ public class FrontLaser : MonoBehaviour
     void Update()
     {
         Shooting();
-        //SetLRPosition();
-        //Raycast_();
     }
 
 

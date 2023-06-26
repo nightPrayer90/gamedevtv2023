@@ -12,7 +12,7 @@ public class HeadCannon : MonoBehaviour
 
 
     [Header("Game Objects")]
-    public ParticleSystem particleSystem;
+    public ParticleSystem bulletParticleSystem;
     private GameObject nearestEnemy = null;
     private GameManager gameManager;
     private GameObject player;
@@ -37,7 +37,7 @@ public class HeadCannon : MonoBehaviour
         // find Objects
         player = GameObject.FindWithTag("Player");
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        particleSystem.GetComponent<ParticleBullet>().bulletDamage = bulletDamage;
+        bulletParticleSystem.GetComponent<ParticleBullet>().bulletDamage = bulletDamage;
 
         // set start values from the weapon Controller
         StartValues();
@@ -164,7 +164,7 @@ public class HeadCannon : MonoBehaviour
             AudioManager.Instance.PlaySFX("PlayerHeadCannon");
 
             // trigger 1 particle shot
-            particleSystem.Emit(1);
+            bulletParticleSystem.Emit(1);
             fireSalveCount ++;
 
             // reset timer

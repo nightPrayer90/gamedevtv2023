@@ -128,6 +128,11 @@ MonoBehaviour:
   valueList: 
   selectedNumbers_: 000000000000000000000000
   textPrefab: {fileID: 6659134210364813471, guid: 1ea4671065afbe240815deb035cf6c70, type: 3}
+  startShip: 2
+  playerStartPosition: {fileID: 0}
+  playerShip_bullet: {fileID: 2604307836790789309, guid: bca8a1f1b6f8d3049ad5e562a3b30554, type: 3}
+  playerShip_rocket: {fileID: 2604307836790789309, guid: 68fed91363a46834bbf35f39e1d73891, type: 3}
+  playerShip_laser: {fileID: 2604307836790789309, guid: 65bf2a34d60d5d846b014b28f4d18d26, type: 3}
 --- !u!114 &904126870923933655
 MonoBehaviour:
   m_ObjectHideFlags: 0
