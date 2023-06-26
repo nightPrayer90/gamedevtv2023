@@ -5,11 +5,13 @@ using UnityEngine;
 public class ParticleSystemDestroy : MonoBehaviour
 {
     public ParticleSystem particleSystemToCheck;
+    public ParticleSystem rippleParticleSystem;
     public bool isEmittingSound = true;
     //public string shootSound;
 
     public AudioSource audioSource;
-
+    public float rippleParicleSize = 1f;
+    private bool isRipplePlayed = false;
 
     private void OnEnable()
     {
@@ -20,10 +22,32 @@ public class ParticleSystemDestroy : MonoBehaviour
             audioSource.Play();
         }
         Invoke("DeactivateSystem", 10f);
+
+        Debug.Log(rippleParicleSize);
+        isRipplePlayed = false;
     }
+
+    private void LateUpdate()
+    {
+        if (rippleParticleSystem != null && isRipplePlayed == false)
+        {
+            var mainModule = rippleParticleSystem.main;
+            mainModule.startSize = rippleParicleSize * 3f; // factor = size rippleParticle/3
+
+            rippleParticleSystem.Play();
+            isRipplePlayed = true;
+        }
+    }
+
 
     private void DeactivateSystem()
     {
         ObjectPoolManager.ReturnObjectToPool(gameObject);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, rippleParicleSize); 
     }
 }

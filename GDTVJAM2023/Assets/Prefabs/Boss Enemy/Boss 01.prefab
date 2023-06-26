@@ -5018,6 +5018,8 @@ MonoBehaviour:
   - {fileID: 3291002793830874045}
   bulletDamage: 0
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
+  _replacement: {fileID: 0}
+  _burnReplacement: {fileID: 0}
 --- !u!135 &6607966429601285132
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10049,6 +10051,8 @@ MonoBehaviour:
   - {fileID: 8852117405559533232}
   bulletDamage: 0
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
+  _replacement: {fileID: 0}
+  _burnReplacement: {fileID: 0}
 --- !u!135 &4129544118369605749
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -34623,10 +34627,10 @@ GameObject:
   - component: {fileID: 3453679120459267937}
   - component: {fileID: 1748018196531081412}
   - component: {fileID: 4586566576772711438}
+  - component: {fileID: 3346452212386397618}
   - component: {fileID: 7191932893300737654}
   - component: {fileID: 787326265830227862}
   - component: {fileID: 8978284937335824689}
-  - component: {fileID: 3346452212386397618}
   m_Layer: 9
   m_Name: DiDamageMine3Shoots
   m_TagString: secondDimensionEnemy
@@ -34707,6 +34711,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &3346452212386397618
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2640866882484708827}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.009905215
+  m_Center: {x: -0.0000000759028, y: 0.000000014435502, z: -0.00000007636846}
 --- !u!54 &7191932893300737654
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -34768,19 +34785,8 @@ MonoBehaviour:
   - {fileID: 4802953054275547798}
   bulletDamage: 0
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
---- !u!135 &3346452212386397618
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2640866882484708827}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.009905215
-  m_Center: {x: -0.0000000759028, y: 0.000000014435502, z: -0.00000007636846}
+  _replacement: {fileID: 0}
+  _burnReplacement: {fileID: 0}
 --- !u!1 &2827501783262844649
 GameObject:
   m_ObjectHideFlags: 0
@@ -34929,6 +34935,8 @@ MonoBehaviour:
   - {fileID: 1494561047716732096}
   bulletDamage: 0
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
+  _replacement: {fileID: 0}
+  _burnReplacement: {fileID: 0}
 --- !u!135 &2443815698930140054
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -49789,6 +49797,8 @@ MonoBehaviour:
   - {fileID: 6360611743593835812}
   bulletDamage: 0
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
+  _replacement: {fileID: 0}
+  _burnReplacement: {fileID: 0}
 --- !u!135 &7369676991442445511
 SphereCollider:
   m_ObjectHideFlags: 0

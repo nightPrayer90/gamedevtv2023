@@ -31,6 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8810512103524382858}
+  - {fileID: 7041769592849244553}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,8 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystemToCheck: {fileID: 886906482968318348}
+  rippleParticleSystem: {fileID: 6992243055464327323}
   isEmittingSound: 1
   audioSource: {fileID: 4775533782357955424}
+  rippleParicleSize: 0
 --- !u!82 &4775533782357955424
 AudioSource:
   m_ObjectHideFlags: 0
@@ -170,13 +173,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5241432918420107393}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8810512103524382858}
-  m_RootOrder: 2
+  m_Father: {fileID: 6041745420926864551}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &6992243055464327323
 ParticleSystem:
@@ -195,8 +198,8 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
-  useUnscaledTime: 0
+  playOnAwake: 0
+  useUnscaledTime: 1
   autoRandomSeed: 1
   startDelay:
     serializedVersion: 2
@@ -430,7 +433,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.5
+      scalar: 10
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5027,8 +5030,24 @@ PrefabInstance:
       value: EXPLOSION
       objectReference: {fileID: 0}
     - target: {fileID: 3836871348533104252, guid: 80e99fd4bef0e3d4fafa727a15eab68a, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3836871348533104252, guid: 80e99fd4bef0e3d4fafa727a15eab68a, type: 3}
+      propertyPath: InitialModule.size3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3836871348533104252, guid: 80e99fd4bef0e3d4fafa727a15eab68a, type: 3}
       propertyPath: ShapeModule.radius.value
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3836871348533104252, guid: 80e99fd4bef0e3d4fafa727a15eab68a, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3836871348533104252, guid: 80e99fd4bef0e3d4fafa727a15eab68a, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3836871348533104252, guid: 80e99fd4bef0e3d4fafa727a15eab68a, type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].time
@@ -5079,6 +5098,10 @@ PrefabInstance:
       value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 4230823387711805968, guid: 80e99fd4bef0e3d4fafa727a15eab68a, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230823387711805968, guid: 80e99fd4bef0e3d4fafa727a15eab68a, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 0.15
       objectReference: {fileID: 0}
@@ -5093,6 +5116,10 @@ PrefabInstance:
     - target: {fileID: 4230823387711805968, guid: 80e99fd4bef0e3d4fafa727a15eab68a, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759268016764575395, guid: 80e99fd4bef0e3d4fafa727a15eab68a, type: 3}
+      propertyPath: playOnAwake
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4759268016764575395, guid: 80e99fd4bef0e3d4fafa727a15eab68a, type: 3}
       propertyPath: ShapeModule.m_Scale.x

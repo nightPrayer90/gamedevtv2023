@@ -177,7 +177,14 @@ public class PlayerController : MonoBehaviour
     // activate if collide with an Enemy
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        // enemy target tag set
+        string tagStr = "Enemy";
+        if (gameManager.dimensionShift == true)
+        {
+            tagStr = "secondDimensionEnemy";
+        }
+
+        if (collision.gameObject.CompareTag(tagStr))
         {
             // get enemyHealth component
             EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();

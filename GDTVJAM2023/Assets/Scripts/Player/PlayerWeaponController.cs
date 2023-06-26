@@ -13,6 +13,7 @@ public class PlayerWeaponController : MonoBehaviour
     public bool isSpreadGun = false;
     public bool isFrontShield = false;
     public bool isBackShield = false;
+    public bool isNovaExplosion = false;
 
     private bool isHeadCannonInstalled = false;
     private bool isRocketLauncherInstalled = false;
@@ -22,6 +23,7 @@ public class PlayerWeaponController : MonoBehaviour
     private bool isSpreadGunInstalled = false;
     private bool isFrontShieldInstalled = false;
     private bool isBackShieldInstalled = false;
+    private bool isNovaExplosionInstalled = false;
 
 
     [Header("Objects")]
@@ -67,6 +69,12 @@ public class PlayerWeaponController : MonoBehaviour
     public int sgBulletCount = 8;
     public GameObject spreadGun;
 
+
+    [Header("Nova Explosion")]
+    public int neDamage = 3;
+    public float neReloadTime = 4.5f;
+    public float neRadius = 3f;
+    public GameObject novaExplosion;
 
     [Header("Container")]
     public Transform passivParentContainer;
@@ -134,6 +142,11 @@ public class PlayerWeaponController : MonoBehaviour
             var shild = Instantiate(backShield, passivParentContainer);
             shild.name = backShield.name;
             isBackShieldInstalled = true;
+        }
+        if (isNovaExplosion == true && isNovaExplosionInstalled == false)
+        {
+            Instantiate(novaExplosion, passivParentContainer);
+            isNovaExplosionInstalled = true;
         }
     }
 }

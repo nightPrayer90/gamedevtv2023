@@ -657,7 +657,7 @@ MonoBehaviour:
   - {fileID: 2604307836572194384, guid: bca8a1f1b6f8d3049ad5e562a3b30554, type: 3}
   - {fileID: 2604307835793232685, guid: bca8a1f1b6f8d3049ad5e562a3b30554, type: 3}
   mainWeaponSound: {fileID: 2559130691838651932, guid: bca8a1f1b6f8d3049ad5e562a3b30554, type: 3}
-  lifeTime: 1.5
+  lifeTime: 2
   detectionRange: 5
   rockedToLaunch: {fileID: 667735904795272308, guid: 48c407aa3f91c1748992d7e83b657ae3, type: 3}
   spawnPoint: {fileID: 5031554768623812592}
@@ -676,13 +676,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHeadCannon: 0
-  isRocketLauncher: 1
+  isRocketLauncher: 0
   isFireFlies: 0
   isBulletWings: 0
   isLifeModul: 0
   isSpreadGun: 0
   isFrontShield: 0
   isBackShield: 0
+  isNovaExplosion: 1
   frontShield: {fileID: 4831901517162404820, guid: 120689e8e5b520d439a8645f1b1162d9, type: 3}
   backShield: {fileID: 3147124995608451256, guid: 6da4992dab9d49646be6b65d0388b3e4, type: 3}
   hcBulletDamage: 4
@@ -706,6 +707,10 @@ MonoBehaviour:
   sgReloadTime: 2.5
   sgBulletCount: 20
   spreadGun: {fileID: 7701453864392984337, guid: 104de042193ebb248b57f868f189bcdf, type: 3}
+  neDamage: 3
+  neReloadTime: 4.5
+  neRadius: 3
+  novaExplosion: {fileID: 5372979302712396976, guid: 056b57503f6534c44a1d12a5f55b7ced, type: 3}
   passivParentContainer: {fileID: 2604307836560290830}
 --- !u!82 &2559130692153237150
 AudioSource:

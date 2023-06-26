@@ -6,8 +6,9 @@ public class RocketController : MonoBehaviour
     [HideInInspector] public int damage; // rocked damage
     public float speed = 10f; // rocked Speed
     public float rotationSpeed = 5f; // rotation speed
+    public float startTime = 0.5f; // time until the rocked flys to a target
+    private float rotationSpeedtmp = 0;
     public GameObject exposionHitObject;
-    public GameObject exposionDieObject;
     [HideInInspector] public float maxLifeTime;   // time before the rocked get destroyed
     [HideInInspector] public Color hitColor;
 
@@ -15,14 +16,13 @@ public class RocketController : MonoBehaviour
     [Header("Explosion Controll")]
     public float explosionRadius = 5f;
     public float explosionForce = 500f;
-    private Rigidbody rb;
     private LayerMask layerMask;
 
 
     [Header("Game Objects")]
     public GameObject trail;
     private GameObject target;
-    private Rigidbody rbRocket;
+   // private Rigidbody rbRocket;
     private GameManager gameManager;
 
     
@@ -32,11 +32,14 @@ public class RocketController : MonoBehaviour
     /* **************************************************************************** */
     private void OnEnable()
     {
+        rotationSpeedtmp = rotationSpeed;
+        rotationSpeed = 0;
+        Invoke("SetRotateSpeed", startTime);
+
         if (trail != null)
-            Invoke("ActivateTrail", 0.1f);
+            Invoke("ActivateTrail", 0.2f);
 
         // set Game Objects
-        rbRocket = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         
         // reset Target
@@ -46,19 +49,23 @@ public class RocketController : MonoBehaviour
         maxLifeTime = Random.Range(maxLifeTime - 0.25f, maxLifeTime + 0.25f);
         Invoke("DestroyObject", maxLifeTime);
 
-
         // Layermask
         layerMask = (1 << 6);
     }
+
 
     private void FixedUpdate()
     {
         // rocked movement
         if (target != null)
         {
+
             Vector3 direction = (target.transform.position - transform.position).normalized;
-            rbRocket.velocity = speed * direction;
-            RotateTowardsTarget(direction);
+            transform.position += transform.forward * speed * Time.deltaTime;
+
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
 
             if (!target.activeSelf)
             {
@@ -89,61 +96,13 @@ public class RocketController : MonoBehaviour
             tagStr = "secondDimensionEnemy";
         }
 
-        // postion of explosion Object
-        Vector3 pos = transform.position;
         // enemy target tag compare only than destroy the rocked
         if (other.gameObject.CompareTag(tagStr))
         {
-            // cancle invoke
-            CancelInvoke("DestroyObject");
-
-
-            // array of all Objects in the explosionRadius
-            var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius, layerMask);
-
-            foreach (var obj in surroundingObjects)
-            {
-                // get rigidbodys from all objects in range
-                var rb = obj.GetComponent<Rigidbody>();
-                if (rb == null) continue;
-
-                // calculate distance between explosioncenter and objects in Range
-                float distance = Vector3.Distance(pos, rb.transform.position);
-                //Debug.Log(distance);
-
-                if (distance < explosionRadius)
-                {
-                    float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius), 1f);
-                    int adjustedDamage = Mathf.CeilToInt(damage * scaleFactor);
-
-                    // get EnemyHealthscript
-                    EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
-
-                    // calculate enemy damage
-                    eHC.TakeExplosionDamage(adjustedDamage);
-
-                    // show floating text
-                    gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), hitColor);
-                }
-
-                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
-            }
-
-           
-            // spawn the explosion object
-            ObjectPoolManager.SpawnObject(exposionHitObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
-
-            // object goes back to the pool
-            ObjectPoolManager.ReturnObjectToPool(gameObject);
+            Explode();
         }
     }
 
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
-    }
 
     private void OnDisable()
     {
@@ -154,13 +113,6 @@ public class RocketController : MonoBehaviour
     /* **************************************************************************** */
     /* MOVMENT--------------------------------------------------------------------- */
     /* **************************************************************************** */
-    // rotate the rocked in flydirection
-    private void RotateTowardsTarget(Vector3 direction)
-    {
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-    }
-
     // find and set the next target
     private void FindNextTarget()
     {
@@ -191,6 +143,17 @@ public class RocketController : MonoBehaviour
         target = closestEnemy;
     }
 
+    // set the rotatespeed and a new target after start
+    private void SetRotateSpeed()
+    {
+        rotationSpeed = rotationSpeedtmp;
+
+        // Target reset
+        target = null;
+        FindNextTarget();
+    }
+
+
 
 
 
@@ -200,19 +163,73 @@ public class RocketController : MonoBehaviour
     // destroy function 
     private void DestroyObject()
     {
-        // cancle destroy invoke
+        // enemy target tag set
+        if (gameManager.dimensionShift == true)
+        {
+            layerMask = (1 << 9);
+        }
+
+        Explode();
+    }
+
+    private void Explode()
+    {
+        // postion of explosion Object
+        Vector3 pos = transform.position;
+
+        // cancle invoke
         CancelInvoke("DestroyObject");
 
-        // object goes back to the pool
-        ObjectPoolManager.ReturnObjectToPool(gameObject);
+            // array of all Objects in the explosionRadius
+            var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius, layerMask);
 
-        // spawn the explosion object
-        ObjectPoolManager.SpawnObject(exposionDieObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
+            foreach (var obj in surroundingObjects)
+            {
+                // get rigidbodys from all objects in range
+                var rb = obj.GetComponent<Rigidbody>();
+                if (rb == null) continue;
+
+                // calculate distance between explosioncenter and objects in Range
+                float distance = Vector3.Distance(pos, rb.transform.position);
+                //Debug.Log(distance);
+
+                if (distance < explosionRadius)
+                {
+                    float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius), 1f);
+                    int adjustedDamage = Mathf.CeilToInt(damage * scaleFactor);
+
+                    // get EnemyHealthscript
+                    EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
+
+                    // calculate enemy damage
+                    eHC.TakeExplosionDamage(adjustedDamage);
+
+                    // show floating text
+                    gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), hitColor);
+                }
+
+                rb.AddExplosionForce(explosionForce, pos, explosionRadius);
+            }
+
+
+            // spawn the explosion object
+            GameObject go = ObjectPoolManager.SpawnObject(exposionHitObject, pos, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
+
+            go.GetComponent<ParticleSystemDestroy>().rippleParicleSize = explosionRadius;
+
+            // object goes back to the pool
+            ObjectPoolManager.ReturnObjectToPool(gameObject);
     }
 
     private void ActivateTrail()
     {
         if (trail != null)
             trail.SetActive(true);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }
