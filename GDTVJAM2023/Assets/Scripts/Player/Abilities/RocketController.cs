@@ -13,7 +13,7 @@ public class RocketController : MonoBehaviour
     [HideInInspector] public Color hitColor;
 
 
-    [Header("Explosion Controll")]
+    [Header("Explosion Control")]
     public float explosionRadius = 5f;
     public float explosionForce = 500f;
     private LayerMask layerMask;
@@ -96,10 +96,12 @@ public class RocketController : MonoBehaviour
             tagStr = "secondDimensionEnemy";
         }
 
+        GameObject go = other.gameObject;
+        
         // enemy target tag compare only than destroy the rocked
         if (other.gameObject.CompareTag(tagStr))
         {
-            Explode();
+            Explode(go);
         }
     }
 
@@ -172,29 +174,33 @@ public class RocketController : MonoBehaviour
         Explode();
     }
 
-    private void Explode()
+    private void Explode(GameObject collisionTarget = null)
     {
+
         // postion of explosion Object
         Vector3 pos = transform.position;
 
         // cancle invoke
         CancelInvoke("DestroyObject");
 
-            // array of all Objects in the explosionRadius
-            var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius, layerMask);
+        // array of all Objects in the explosionRadius
+        var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius, layerMask);
 
-            foreach (var obj in surroundingObjects)
+        foreach (var obj in surroundingObjects)
+        { 
+            // get rigidbodys from all objects in range
+            var rb = obj.GetComponent<Rigidbody>();
+            if (rb == null) continue;
+
+            // calculate distance between explosioncenter and objects in Range
+            float distance = Vector3.Distance(pos, rb.transform.position);
+            //Debug.Log(distance);
+
+            if (obj.gameObject != collisionTarget)
             {
-                // get rigidbodys from all objects in range
-                var rb = obj.GetComponent<Rigidbody>();
-                if (rb == null) continue;
-
-                // calculate distance between explosioncenter and objects in Range
-                float distance = Vector3.Distance(pos, rb.transform.position);
-                //Debug.Log(distance);
-
                 if (distance < explosionRadius)
                 {
+
                     float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius), 1f);
                     int adjustedDamage = Mathf.CeilToInt(damage * scaleFactor);
 
@@ -207,18 +213,30 @@ public class RocketController : MonoBehaviour
                     // show floating text
                     gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), hitColor);
                 }
+            }
+            else
+            {
+                // get EnemyHealthscript
+                EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
 
-                rb.AddExplosionForce(explosionForce, pos, explosionRadius);
+                // calculate enemy damage
+                eHC.TakeExplosionDamage(damage);
+
+                // show floating text
+                gameManager.DoFloatingText(rb.transform.position, "+" + damage.ToString(), hitColor);
             }
 
+            rb.AddExplosionForce(explosionForce, pos, explosionRadius);
+        }
 
-            // spawn the explosion object
-            GameObject go = ObjectPoolManager.SpawnObject(exposionHitObject, pos, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
 
-            go.GetComponent<ParticleSystemDestroy>().rippleParicleSize = explosionRadius;
+        // spawn the explosion object
+        GameObject go = ObjectPoolManager.SpawnObject(exposionHitObject, pos, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
 
-            // object goes back to the pool
-            ObjectPoolManager.ReturnObjectToPool(gameObject);
+        go.GetComponent<ParticleSystemDestroy>().rippleParicleSize = explosionRadius;
+
+        // object goes back to the pool
+        ObjectPoolManager.ReturnObjectToPool(gameObject);
     }
 
     private void ActivateTrail()

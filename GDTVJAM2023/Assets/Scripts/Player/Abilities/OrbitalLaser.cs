@@ -6,16 +6,20 @@ public class OrbitalLaser : MonoBehaviour
 {
     // Start is called before the first frame update
     public float rotationSpeed = 10f;
+    private GameObject player;
+    private Transform playerTransform;
+
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player");
+        playerTransform = player.transform;
+        
+    }
 
     private void Update()
     {
-        // Erhalten Sie die aktuelle lokale Rotation des Objekts
-        Quaternion currentRotation = transform.localRotation;
+        transform.position = playerTransform.position;
 
-        // Berechnen Sie die neue Rotation basierend auf dem Rotationsspeed
-        Quaternion newRotation = Quaternion.Euler(0f, rotationSpeed * Time.deltaTime, 0f) * currentRotation;
-
-        // Setzen Sie die neue Rotation als lokale Rotation des Objekts
-        transform.localRotation = newRotation;
+        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime, Space.Self);
     }
 }

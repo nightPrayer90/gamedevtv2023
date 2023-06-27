@@ -71,13 +71,13 @@ MonoBehaviour:
   - name: PlayerShot
     clip: {fileID: 8300000, guid: 790370ff575fde448be9b52912b262ec, type: 3}
   - name: ImpactShot
-    clip: {fileID: 8300000, guid: 43c3fc29c21eb564dba7a3b252467252, type: 3}
+    clip: {fileID: 8300000, guid: 671fad344cd205a49a1fe7165d807aee, type: 3}
   - name: Explosion
     clip: {fileID: 8300000, guid: 7635c223dc9701c4597ff4b31918aa25, type: 3}
   - name: LiftUP
     clip: {fileID: 8300000, guid: 0cb5b776371ddc1438886b99fecc16c5, type: 3}
   - name: LiftUPBoss
-    clip: {fileID: 8300000, guid: da82a21ca6b16704087cbde71f20fd66, type: 3}
+    clip: {fileID: 8300000, guid: d137d82c8547cde49bc45136ebb387df, type: 3}
   - name: PlayerGetDamage
     clip: {fileID: 8300000, guid: 63506713d2653204b8d983d159d09fda, type: 3}
   - name: WarningBoss
@@ -102,6 +102,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8137f38d8a5d3534f9b31323e7008a22, type: 3}
   - name: PlayerLaserHit
     clip: {fileID: 8300000, guid: 4bacce749a460e94cb6f475c783f90d9, type: 3}
+  - name: Playernova
+    clip: {fileID: 8300000, guid: 8431ae2f64bb88c46aaebc7775b9cb6a, type: 3}
+  - name: PlayerRocketStarts
+    clip: {fileID: 8300000, guid: f17935d11ad3cf84e8d8e0ecdbd31b4b, type: 3}
+  - name: PlayerOrbitalSound
+    clip: {fileID: 8300000, guid: dc149fd690520114c9c868fbfc4c24f1, type: 3}
   musicSource: {fileID: 5360521062723552136}
   sfxSource: {fileID: 6929376283259157201}
   musicVolume: 0.2

@@ -139,8 +139,8 @@ public class PlayerMWController : MonoBehaviour
         // start invoke for main weapons
         if (weaponType == MWeapontyp.bullet)
         {
-            if (!IsInvoking("ShotEmit"))
-                InvokeRepeating("ShotEmit", 0.5f, fireRate);
+            if (!IsInvoking("BulletShotEmit"))
+                InvokeRepeating("BulletShotEmit", 0.5f, fireRate);
         }
         else if (weaponType == MWeapontyp.rocket)
         {
@@ -154,7 +154,7 @@ public class PlayerMWController : MonoBehaviour
     {
         if (weaponType == MWeapontyp.bullet)
         {
-            CancelInvoke("ShotEmit");
+            CancelInvoke("BulletShotEmit");
         }
         else if (weaponType == MWeapontyp.rocket)
         {

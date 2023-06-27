@@ -97,13 +97,11 @@ public class EnemyHealth : MonoBehaviour
             // damage from a bullet
             if (damagetyp == 0)
             {
-                AudioManager.Instance.PlaySFX("ImpactShot");
                 TakeDamage(damage);
             }
             else if (damagetyp == 1)
             {
                 // damage from Laser
-                AudioManager.Instance.PlaySFX("PlayerLaserHit");
                 TakeLaserDamage(damage);
             }
 
@@ -119,12 +117,14 @@ public class EnemyHealth : MonoBehaviour
     }
    
     /* **************************************************************************** */
-    /* TAKE DAMAGE CONTROLL-------------------------------------------------------- */
+    /* TAKE DAMAGE CONTROL--------------------------------------------------------- */
     /* **************************************************************************** */
 
     // take damage from a bullet
     public void TakeDamage(int damage)
     {
+        AudioManager.Instance.PlaySFX("ImpactShot");
+
         if (canTakeDamage)
         {
             enemyHealth -= damage;
@@ -169,10 +169,6 @@ public class EnemyHealth : MonoBehaviour
                 if (expOrbSpawn)
                     ObjectPoolManager.SpawnObject(expOrb, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
 
-                // instanstiate explosion
-                //ObjectPoolManager.SpawnObject(explosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
-
-
                 // create object to die effect
                 if (_replacement != null)
                 {
@@ -206,6 +202,8 @@ public class EnemyHealth : MonoBehaviour
     // take damage from a laser
     public void TakeLaserDamage(int damage)
     {
+        AudioManager.Instance.PlaySFX("PlayerLaserHit");
+
         if (canTakeDamage)
         {
             enemyHealth -= damage;
@@ -243,7 +241,7 @@ public class EnemyHealth : MonoBehaviour
     }
 
     /* **************************************************************************** */
-    /* Shooting contoll------------------------------------------------------------ */
+    /* SHOOTING CONTROL------------------------------------------------------------ */
     /* **************************************************************************** */
     // start shooting
     public void StartShooting()
@@ -264,5 +262,11 @@ public class EnemyHealth : MonoBehaviour
             particle.HardBulletStop();
         }
         isShooting = false;
+    }
+
+    public void ShowDamageFromObjects(int damage)
+    {
+        Vector3 pos = transform.position; // the point of intersection between the particle and the enemy
+        gameManager.DoFloatingText(pos, "+" + damage.ToString(), hitColor);
     }
 }

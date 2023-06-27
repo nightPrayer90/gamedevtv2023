@@ -24,10 +24,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
         PlayMusic("MenuMusic");
     }
+
 
     // How to use:
     // AudioManager.Instance.PlaySFX("name")

@@ -16,6 +16,8 @@ public class PlayerWeaponController : MonoBehaviour
     public bool isNovaExplosion = false;
     public bool isRockedWings = false;
     public bool isFrontLaser = false;
+    public bool isOrbitalLaser = false;
+
 
     private bool isHeadCannonInstalled = false;
     private bool isRocketLauncherInstalled = false;
@@ -28,6 +30,7 @@ public class PlayerWeaponController : MonoBehaviour
     private bool isNovaExplosionInstalled = false;
     private bool isRockedWingsInstalled = false;
     private bool isFrontLaserInstalled = false;
+    private bool isOrbitalLaserInstalled = false;
 
 
     [Header("Objects")]
@@ -94,6 +97,8 @@ public class PlayerWeaponController : MonoBehaviour
     public int flBulletCount = 50;
     public GameObject frontLaser;
 
+    [Header("Orbital Laser")]
+    public GameObject orbitalLaser;
 
     [Header("Container")]
     public Transform passivParentContainer;
@@ -176,6 +181,11 @@ public class PlayerWeaponController : MonoBehaviour
         {
             Instantiate(frontLaser, passivParentContainer);
             isFrontLaserInstalled = true;
+        }
+        if (isOrbitalLaser == true && isOrbitalLaserInstalled == false)
+        {
+            Instantiate(orbitalLaser);
+            isOrbitalLaserInstalled = true;
         }
     }
 }
