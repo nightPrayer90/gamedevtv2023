@@ -19,6 +19,7 @@ public class FrontLaser : MonoBehaviour
 
     public LineRenderer lr;
     public ParticleSystem hitParticle;
+    public ParticleSystem muzzleParticle;
     public bool laserIsEnable = false;
 
     /* **************************************************************************** */
@@ -26,7 +27,7 @@ public class FrontLaser : MonoBehaviour
     /* **************************************************************************** */
     private void Start()
     {
-        //StartValues();
+        StartValues();
         bulletCount = bulletMaxCount;
 
         // set damage to particle system
@@ -40,6 +41,7 @@ public class FrontLaser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SetLRPosition();
         Shooting();
     }
 
@@ -51,10 +53,10 @@ public class FrontLaser : MonoBehaviour
     // set start values fom the weaponController
     private void StartValues()
     {
-        PlayerWeaponController weaponController = GameObject.Find("Player").GetComponent<PlayerWeaponController>();
-        bulletDamage = weaponController.ffDamage;
-        bulletMaxCount = weaponController.ffbulletCount;
-        realodInterval = weaponController.ffReloadTime;
+        PlayerWeaponController weaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
+        bulletDamage = weaponController.flDamage;
+        bulletMaxCount = weaponController.flBulletCount;
+        realodInterval = weaponController.flReloadTime;
     }
 
     // shooting controller
@@ -71,7 +73,7 @@ public class FrontLaser : MonoBehaviour
             bulletCount++;
             lr.enabled = false;
             laserIsEnable = false;
-            //boxCollider.enabled = false;
+            muzzleParticle.Stop();
         }
 
         if (bulletCount < bulletMaxCount)
@@ -105,9 +107,9 @@ public class FrontLaser : MonoBehaviour
     void RealodWeapon()
     {
         bulletCount = 0;
-        SetLRPosition();
         lr.enabled = true;
         laserIsEnable = true;
+        muzzleParticle.Play();
     }
 
     void Raycast_()

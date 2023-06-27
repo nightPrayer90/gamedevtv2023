@@ -40,6 +40,8 @@ public class PlayerMWController : MonoBehaviour
     public LineRenderer lr2;
     public ParticleSystem hitParticle;
     public ParticleSystem hitParticle2;
+    public ParticleSystem muzzleParticle;
+    public ParticleSystem muzzleParticle2;
     public bool laserIsEnable = false;
     public Transform LaserSpawnPoint1;
     public Transform LaserSpawnPoint2;
@@ -270,6 +272,7 @@ public class PlayerMWController : MonoBehaviour
     {
         if (laserIsEnable == true)
         {
+            SetLaserLRPosition();
             LaserRaycast();
             LaserRaycast2();
         }
@@ -281,6 +284,8 @@ public class PlayerMWController : MonoBehaviour
             lr.enabled = false;
             lr2.enabled = false;
             laserIsEnable = false;
+            muzzleParticle.Stop();
+            muzzleParticle2.Stop();
         }
 
         if (bulletCount < bulletMaxCount)
@@ -316,10 +321,11 @@ public class PlayerMWController : MonoBehaviour
     // realod a salve of weapons
     void RealoLaserWeapon()
     {
-        SetLaserLRPosition();
         bulletCount = 0;
         lr.enabled = true;
         lr2.enabled = true;
+        muzzleParticle.Play();
+        muzzleParticle2.Play();
         laserIsEnable = true;
     }
 

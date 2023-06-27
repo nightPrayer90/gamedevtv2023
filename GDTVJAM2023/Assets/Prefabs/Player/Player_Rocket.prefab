@@ -663,14 +663,19 @@ MonoBehaviour:
   spawnPoint: {fileID: 5031554768623812592}
   spawnPoint2: {fileID: 9074861371868659753}
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
-  bulletDamage: 10
-  realodInterval: 5
+  laserRange: 5
   bulletMaxCount: 10
   spawnInterval: 0.1
   audioClip: 
   lr: {fileID: 0}
+  lr2: {fileID: 0}
   hitParticle: {fileID: 0}
+  hitParticle2: {fileID: 0}
+  muzzleParticle: {fileID: 0}
+  muzzleParticle2: {fileID: 0}
   laserIsEnable: 0
+  LaserSpawnPoint1: {fileID: 0}
+  LaserSpawnPoint2: {fileID: 0}
 --- !u!114 &6216807067363716947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,6 +698,7 @@ MonoBehaviour:
   isBackShield: 0
   isNovaExplosion: 1
   isRockedWings: 1
+  isFrontLaser: 0
   frontShield: {fileID: 4831901517162404820, guid: 120689e8e5b520d439a8645f1b1162d9, type: 3}
   backShield: {fileID: 3147124995608451256, guid: 6da4992dab9d49646be6b65d0388b3e4, type: 3}
   hcBulletDamage: 4
@@ -724,6 +730,9 @@ MonoBehaviour:
   rwReloadTime: 5
   rwSalveCount: 5
   rocketWings: {fileID: 8390656690878353693, guid: 8634b4018809df54b87676107fad22f7, type: 3}
+  flDamage: 3
+  flReloadTime: 4.5
+  frontLaser: {fileID: 8635275999776491353, guid: 750e087bff3860840ad534f2097f41f6, type: 3}
   passivParentContainer: {fileID: 2604307836560290830}
 --- !u!82 &2559130692153237150
 AudioSource:

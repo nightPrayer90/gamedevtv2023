@@ -15,6 +15,7 @@ public class PlayerWeaponController : MonoBehaviour
     public bool isBackShield = false;
     public bool isNovaExplosion = false;
     public bool isRockedWings = false;
+    public bool isFrontLaser = false;
 
     private bool isHeadCannonInstalled = false;
     private bool isRocketLauncherInstalled = false;
@@ -26,6 +27,7 @@ public class PlayerWeaponController : MonoBehaviour
     private bool isBackShieldInstalled = false;
     private bool isNovaExplosionInstalled = false;
     private bool isRockedWingsInstalled = false;
+    private bool isFrontLaserInstalled = false;
 
 
     [Header("Objects")]
@@ -84,6 +86,13 @@ public class PlayerWeaponController : MonoBehaviour
     public float rwReloadTime = 4.5f;
     public int rwSalveCount = 6;
     public GameObject rocketWings;
+
+
+    [Header("Front Laser")]
+    public int flDamage = 4;
+    public float flReloadTime = 6f;
+    public int flBulletCount = 50;
+    public GameObject frontLaser;
 
 
     [Header("Container")]
@@ -162,6 +171,11 @@ public class PlayerWeaponController : MonoBehaviour
         {
             Instantiate(rocketWings, passivParentContainer);
             isRockedWingsInstalled = true;
+        }
+        if (isFrontLaser == true && isFrontLaserInstalled == false)
+        {
+            Instantiate(frontLaser, passivParentContainer);
+            isFrontLaserInstalled = true;
         }
     }
 }
