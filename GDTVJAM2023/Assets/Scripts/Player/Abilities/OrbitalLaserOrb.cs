@@ -7,11 +7,19 @@ public class OrbitalLaserOrb : MonoBehaviour
     public ParticleSystem orbParticle;
     public ParticleSystem hitParticle;
 
+    private int damage;
+    private float realoadTime;
+
     public int index;
 
     // Start is called before the first frame update
     void Start()
     {
+        PlayerWeaponController pwc = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
+
+        damage = pwc.olDamage;
+        realoadTime = pwc.bwRealoadTime;
+
         Invoke("ActivateOrb", index);
         gameObject.SetActive(false);
     }
@@ -26,10 +34,10 @@ public class OrbitalLaserOrb : MonoBehaviour
         if (other.CompareTag("Enemy") || other.CompareTag("secondDimensionEnemy"))
         {
             EnemyHealth eh = other.GetComponent<EnemyHealth>();
-            eh.TakeLaserDamage(5);
-            eh.ShowDamageFromObjects(5);
+            eh.TakeLaserDamage(damage);
+            eh.ShowDamageFromObjects(damage);
 
-            Invoke("ActivateOrb", 3f);
+            Invoke("ActivateOrb", realoadTime);
 
             hitParticle.transform.position = gameObject.transform.position;
             hitParticle.Play();

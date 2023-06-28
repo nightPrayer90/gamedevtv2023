@@ -128,6 +128,22 @@ public class UpgradePanelController : MonoBehaviour
                     headerStr[i] = "Back Shield";
                     descriptionTextStr[i] = "Regenerating shield on the back of the ship.";
                     break;
+                case 14:
+                    headerStr[i] = "Shock Nova";
+                    descriptionTextStr[i] = "Creates a nova around the ship that knocks back enemies.";
+                    break;
+                case 15:
+                    headerStr[i] = "Rocket Wings";
+                    descriptionTextStr[i] = "Sends out a batterie of homing missiles.";
+                    break;
+                case 16:
+                    headerStr[i] = "Front Laser";
+                    descriptionTextStr[i] = "Fires a laser beam in the direction of flight that burns enemies on contact.";
+                    break;
+                case 17:
+                    headerStr[i] = "Orbital Laser";
+                    descriptionTextStr[i] = "Creates three laser spheres that orbit the player and burn enemies on contact.";
+                    break;
             }
 
             panelList[i].SetDescription();
@@ -169,6 +185,19 @@ public class UpgradePanelController : MonoBehaviour
 
         if (!playerWeaponController.isBackShield) imBackShield.color = imPanelBaseColor;
         else imBackShield.color = imPanelUpgradeColor;
+
+        /*
+        if (!playerWeaponController.isNovaExplosion) imBackShield.color = imPanelBaseColor;
+        else imBackShield.color = imPanelUpgradeColor;
+
+        if (!playerWeaponController.isBackShield) imBackShield.color = imPanelBaseColor;
+        else imBackShield.color = imPanelUpgradeColor;
+
+        if (!playerWeaponController.isBackShield) imBackShield.color = imPanelBaseColor;
+        else imBackShield.color = imPanelUpgradeColor;
+
+        if (!playerWeaponController.isBackShield) imBackShield.color = imPanelBaseColor;
+        else imBackShield.color = imPanelUpgradeColor;*/
     }
     
     
@@ -200,27 +229,40 @@ public class UpgradePanelController : MonoBehaviour
             case 6: //weapon: headgun
                 if (playerWeaponController.isHeadCannon == false) {  imHeadCannon.color = imPanelUpgradeColor; }
                 break;
-            case 7: //weapon: Rocket Launcher
+            case 7: //weapon: rocket launcher
                 if (playerWeaponController.isRocketLauncher == false) {  imRocketLauncher.color = imPanelUpgradeColor; }
                 break;
-            case 8: //weapon: Fire Flys
+            case 8: //weapon: fire flys
                 if (playerWeaponController.isFireFlies == false) {  imFireflies.color = imPanelUpgradeColor; }
                 break;
-            case 9: //weapon: Bullet Wings
+            case 9: //weapon: bullet wings
                 if (playerWeaponController.isBulletWings == false) {  imBulletWings.color = imPanelUpgradeColor; }
                 break;
-            case 10: //weapon: Life Modul
+            case 10: //weapon: life modul
                 if (playerWeaponController.isLifeModul == false) {  imLifeModul.color = imPanelUpgradeColor; }
                 break;
-            case 11: //weapon: Spread Gun
+            case 11: //weapon: spread gun
                 if (playerWeaponController.isSpreadGun == false) {  imSpreadGun.color = imPanelUpgradeColor; }
                 break;
-            case 12: //weapon: front Shield
+            case 12: //weapon: front shield
                 if (playerWeaponController.isFrontShield == false) {  imFrontShield.color = imPanelUpgradeColor; }
                 break;
             case 13: //weapon: back shield
                 if (playerWeaponController.isBackShield == false) {  imBackShield.color = imPanelUpgradeColor; }
                 break;
+            /*
+            case 14: //weapon: shock nova
+                if (playerWeaponController.isNovaExplosion == false) { imBackShield.color = imPanelUpgradeColor; }
+                break;
+            case 15: //weapon: rocket wings
+                if (playerWeaponController.isRockedWings == false) { imBackShield.color = imPanelUpgradeColor; }
+                break;
+            case 16: //weapon: front laser
+                if (playerWeaponController.isFrontLaser == false) { imBackShield.color = imPanelUpgradeColor; }
+                break;
+            case 17 //weapon: orbital laser
+                if (playerWeaponController.orbitalLaser == false) { imBackShield.color = imPanelUpgradeColor; }
+                break;*/
         }
     }
 
@@ -260,32 +302,32 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 break;
-            case 7: //weapon: Rocket Launcher
+            case 7: //weapon: rocket launcher
                 playerWeaponController.isRocketLauncher = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 break;
-            case 8: //weapon: Fire Flys
+            case 8: //weapon: fire flys
                 playerWeaponController.isFireFlies = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 break;
-            case 9: //weapon: Bullet Wings
+            case 9: //weapon: bullet wings
                 playerWeaponController.isBulletWings = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 break;
-            case 10: //weapon: Life Modul
+            case 10: //weapon: life modul
                 playerWeaponController.isLifeModul = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 break;
-            case 11: //weapon: Spread Gun
+            case 11: //weapon: spread gun
                 playerWeaponController.isSpreadGun = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 break;
-            case 12: //weapon: front Shield
+            case 12: //weapon: front shield
                 playerWeaponController.isFrontShield = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
@@ -295,6 +337,27 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 break;
+            case 14: //weapon: schock nova
+                playerWeaponController.isNovaExplosion = true;
+                playerWeaponController.WeaponChoose();
+                gameManager.RemoveValueWeaponList(number);
+                break;
+            case 15: //weapon: rocket wings
+                playerWeaponController.isRockedWings = true;
+                playerWeaponController.WeaponChoose();
+                gameManager.RemoveValueWeaponList(number);
+                break;
+            case 16: //weapon: front laser
+                playerWeaponController.isFrontLaser = true;
+                playerWeaponController.WeaponChoose();
+                gameManager.RemoveValueWeaponList(number);
+                break;
+            case 17: //weapon: orbital laser
+                playerWeaponController.isOrbitalLaser = true;
+                playerWeaponController.WeaponChoose();
+                gameManager.RemoveValueWeaponList(number);
+                break;
+
         }
 
         gameManager.UpgradeGet();

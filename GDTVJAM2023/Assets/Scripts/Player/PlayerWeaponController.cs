@@ -97,8 +97,12 @@ public class PlayerWeaponController : MonoBehaviour
     public int flBulletCount = 50;
     public GameObject frontLaser;
 
+
     [Header("Orbital Laser")]
+    public int olDamage = 10;
+    public float olReloadTime = 3f;
     public GameObject orbitalLaser;
+
 
     [Header("Container")]
     public Transform passivParentContainer;
