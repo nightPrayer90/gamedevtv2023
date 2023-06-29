@@ -16,6 +16,8 @@ public class UpgradPanelIndex : MonoBehaviour
     public TextMeshProUGUI headerText;
     public TextMeshProUGUI descriptionText;
     public Image iconPanel;
+    public TextMeshProUGUI mainClass;
+    public TextMeshProUGUI subClass;
 
     public void SetDescription()
     { 
@@ -23,6 +25,9 @@ public class UpgradPanelIndex : MonoBehaviour
         iconPanel.sprite = upgradePanelController.iconPanel[index];
         headerText.text = upgradePanelController.headerStr[index];
         descriptionText.text = upgradePanelController.descriptionTextStr[index];
+
+        mainClass.text = upgradePanelController.mainClass[index];
+        subClass.text = upgradePanelController.subClass[index];
     }
 
     public void OnMouseEnter_()
