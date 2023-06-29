@@ -29957,6 +29957,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c6d230817f4654dbf0dea641464992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletCritChance: 20
+  bulletCritDamage: 125
+  burnDamagechance: 5
+  burnTickCount: 5
   isHeadCannon: 0
   isRocketLauncher: 0
   isFireFlies: 0

@@ -4,6 +4,23 @@ using UnityEngine;
 
 public class PlayerWeaponController : MonoBehaviour
 {
+    [Header("Weapon buffs")]
+    public int bulletCritChance = 5;
+    public int bulletCritDamage = 125;
+    public int burnDamagechance = 5;
+    public int burnTickCount = 5;
+
+    //[Header("Weapon classes")]
+    [HideInInspector] public int mcBulletLvl = 0;
+    [HideInInspector] public int mcExplosionLvl = 0;
+    [HideInInspector] public int mcLaserLvl = 0;
+    [HideInInspector] public int mcSupportLvl = 0;
+    [HideInInspector] public int scSwarmLvl = 0;
+    [HideInInspector] public int scDefenceLvl = 0;
+    [HideInInspector] public int scTargetingLvl = 0;
+    [HideInInspector] public int scBackwardsLvl = 0;
+
+
     [Header("Passiv abilitys")]
     public bool isHeadCannon = false;
     public bool isRocketLauncher = false;
@@ -17,7 +34,6 @@ public class PlayerWeaponController : MonoBehaviour
     public bool isRockedWings = false;
     public bool isFrontLaser = false;
     public bool isOrbitalLaser = false;
-
 
     private bool isHeadCannonInstalled = false;
     private bool isRocketLauncherInstalled = false;
@@ -110,6 +126,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     //private Objects
     private PlayerController playerController;
+    private PlayerMWController playerMWController;
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -118,7 +135,23 @@ public class PlayerWeaponController : MonoBehaviour
     {
         // testing
         WeaponChoose();
-    }
+
+        playerMWController = gameObject.GetComponent<PlayerMWController>();
+
+        
+        switch (playerMWController.weaponType)
+        {
+            case PlayerMWController.MWeapontyp.bullet: 
+                mcBulletLvl++;
+                break;
+            case PlayerMWController.MWeapontyp.rocket: 
+                mcExplosionLvl++;
+                break;
+            case PlayerMWController.MWeapontyp.laser:
+                mcLaserLvl++;
+                break;
+        }
+}
 
 
 

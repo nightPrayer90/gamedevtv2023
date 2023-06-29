@@ -1,25 +1,27 @@
 using UnityEngine.UI;
 using UnityEngine;
+using System.Collections.Generic;
+
 
 [System.Serializable]
 public class UpgradeContainer
 {
-    public enum MainClass
+    public enum MainClass : int
     {
-        Nothing,
-        Bullet,
-        Explosion,
-        Laser,
-        Support
+        Nothing = 8,
+        Bullet = 0,
+        Explosion = 1,
+        Laser = 2,
+        Support = 3
     }
 
-    public enum SubClass
+    public enum SubClass : int
     {
-        Nothing,
-        Swarm,
-        Defence,
-        Targeting,
-        backwards
+        Nothing = 8,
+        Swarm = 4,
+        Defence = 5,
+        Targeting = 6,
+        Backwards = 7
     }
 
     public string headerStr;

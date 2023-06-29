@@ -10207,6 +10207,7 @@ MonoBehaviour:
   - {fileID: 6568500339046026327}
   bulletDamage: 0
   hitColor: {r: 1, g: 0.5998216, b: 0, a: 1}
+  critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
   _replacement: {fileID: 498661947742941087, guid: 879076efe0ef8a94b8cf1508e4b1d2db, type: 3}
   _burnReplacement: {fileID: 3161139216598759944, guid: 3ca646b75815fa14f9c5b18f60aed900, type: 3}
 --- !u!1 &5047808053468307657

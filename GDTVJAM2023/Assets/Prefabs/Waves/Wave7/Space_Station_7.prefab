@@ -9764,7 +9764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 2
   baseFireRate: 1
-  particleSystem: {fileID: 4469962174513549468}
+  bulletParticleSystem: {fileID: 0}
   fireOnBirth: 1
   interval: 1
   isEmittingSound: 1
@@ -14853,6 +14853,7 @@ MonoBehaviour:
   - {fileID: 6719128948750945254}
   bulletDamage: 0
   hitColor: {r: 1, g: 0.5998216, b: 0, a: 1}
+  critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
   _replacement: {fileID: 3472188482371739261, guid: dec4b4d02343e1546a0214b465b094e7, type: 3}
   _burnReplacement: {fileID: 3161139216598759944, guid: 66c73ca4a484c3442b5ccf25b4091605, type: 3}
 --- !u!1 &6235606423459588010
