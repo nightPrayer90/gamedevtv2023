@@ -4967,9 +4967,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791706733638030459}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 1000
+  m_Drag: 100
+  m_AngularDrag: 100
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -5013,13 +5013,15 @@ MonoBehaviour:
   expOrbSpawn: 1
   secondDimensionEnemy: 1
   canTakeDamage: 1
-  canPoolObject: 1
+  canPoolObject: 0
   enemyWeapons:
   - {fileID: 3291002793830874045}
   bulletDamage: 0
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
+  critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
   _replacement: {fileID: 0}
   _burnReplacement: {fileID: 0}
+  burnParticleSystem: {fileID: 0}
 --- !u!135 &6607966429601285132
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10000,9 +10002,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179786177087645634}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 1000
+  m_Drag: 100
+  m_AngularDrag: 100
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -10046,13 +10048,15 @@ MonoBehaviour:
   expOrbSpawn: 1
   secondDimensionEnemy: 1
   canTakeDamage: 1
-  canPoolObject: 1
+  canPoolObject: 0
   enemyWeapons:
   - {fileID: 8852117405559533232}
   bulletDamage: 0
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
+  critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
   _replacement: {fileID: 0}
   _burnReplacement: {fileID: 0}
+  burnParticleSystem: {fileID: 0}
 --- !u!135 &4129544118369605749
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10098,6 +10102,7 @@ Transform:
   m_Children:
   - {fileID: 3453679120459267937}
   - {fileID: 8869187741884931195}
+  - {fileID: 4274026364566693655}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19844,7 +19849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 1
   baseFireRate: 0.8
-  particleSystem: {fileID: 4401630707591521885}
+  bulletParticleSystem: {fileID: 4401630707591521885}
   fireOnBirth: 0
   interval: 0.8
   isEmittingSound: 1
@@ -34515,7 +34520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 1
   baseFireRate: 0.8
-  particleSystem: {fileID: 8676910153280832119}
+  bulletParticleSystem: {fileID: 8676910153280832119}
   fireOnBirth: 0
   interval: 0.8
   isEmittingSound: 1
@@ -34733,8 +34738,8 @@ Rigidbody:
   m_GameObject: {fileID: 2640866882484708827}
   serializedVersion: 2
   m_Mass: 1000
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 100
+  m_AngularDrag: 100
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -34785,8 +34790,10 @@ MonoBehaviour:
   - {fileID: 4802953054275547798}
   bulletDamage: 0
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
+  critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
   _replacement: {fileID: 0}
   _burnReplacement: {fileID: 0}
+  burnParticleSystem: {fileID: 8144756217257180376}
 --- !u!1 &2827501783262844649
 GameObject:
   m_ObjectHideFlags: 0
@@ -34884,9 +34891,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2827501783262844649}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 1000
+  m_Drag: 100
+  m_AngularDrag: 100
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -34930,13 +34937,15 @@ MonoBehaviour:
   expOrbSpawn: 1
   secondDimensionEnemy: 1
   canTakeDamage: 1
-  canPoolObject: 1
+  canPoolObject: 0
   enemyWeapons:
   - {fileID: 1494561047716732096}
   bulletDamage: 0
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
+  critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
   _replacement: {fileID: 0}
   _burnReplacement: {fileID: 0}
+  burnParticleSystem: {fileID: 0}
 --- !u!135 &2443815698930140054
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -39843,7 +39852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 1
   baseFireRate: 1
-  particleSystem: {fileID: 6860551081744734972}
+  bulletParticleSystem: {fileID: 6860551081744734972}
   fireOnBirth: 1
   interval: 1
   isEmittingSound: 1
@@ -44678,7 +44687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 1
   baseFireRate: 0.8
-  particleSystem: {fileID: 5033456177921706138}
+  bulletParticleSystem: {fileID: 5033456177921706138}
   fireOnBirth: 0
   interval: 0.8
   isEmittingSound: 1
@@ -49746,9 +49755,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4001957639493031347}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 1000
+  m_Drag: 100
+  m_AngularDrag: 100
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -49792,13 +49801,15 @@ MonoBehaviour:
   expOrbSpawn: 1
   secondDimensionEnemy: 1
   canTakeDamage: 1
-  canPoolObject: 1
+  canPoolObject: 0
   enemyWeapons:
   - {fileID: 6360611743593835812}
   bulletDamage: 0
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
+  critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
   _replacement: {fileID: 0}
   _burnReplacement: {fileID: 0}
+  burnParticleSystem: {fileID: 0}
 --- !u!135 &7369676991442445511
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -64446,7 +64457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 1
   baseFireRate: 1
-  particleSystem: {fileID: 5921540658055073011}
+  bulletParticleSystem: {fileID: 5921540658055073011}
   fireOnBirth: 1
   interval: 1
   isEmittingSound: 1
@@ -64572,8 +64583,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6411777579483363464}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 817, y: 600, z: -775}
-  m_LocalScale: {x: 600, y: 600.00006, z: 600.00006}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1238716703606193738}
@@ -69461,7 +69472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 1
   baseFireRate: 0.8
-  particleSystem: {fileID: 2949693732202535504}
+  bulletParticleSystem: {fileID: 2949693732202535504}
   fireOnBirth: 0
   interval: 0.8
   isEmittingSound: 1
@@ -84195,8 +84206,99 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 1
   baseFireRate: 1
-  particleSystem: {fileID: 7265013308764642956}
+  bulletParticleSystem: {fileID: 7265013308764642956}
   fireOnBirth: 1
   interval: 1
   isEmittingSound: 1
   audioSource: {fileID: 0}
+--- !u!1001 &5838504932127517783
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1238716703606193738}
+    m_Modifications:
+    - target: {fileID: 2230144017793020432, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_Name
+      value: LaserBurnEffekt
+      objectReference: {fileID: 0}
+    - target: {fileID: 2306254145580372111, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5111180376473361277, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+--- !u!4 &4274026364566693655 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+  m_PrefabInstance: {fileID: 5838504932127517783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8144756217257180376 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2306254145580372111, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+  m_PrefabInstance: {fileID: 5838504932127517783}
+  m_PrefabAsset: {fileID: 0}

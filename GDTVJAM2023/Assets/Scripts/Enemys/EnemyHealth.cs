@@ -41,6 +41,10 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("Laser burning Control")]
     public GameObject _burnReplacement;
+    public ParticleSystem burnParticleSystem;
+    public Color burningColor = new Color(1f, 0.0f, 0.01f, 1f);
+    private bool isBurning = false;
+    private int burnTickCount = 0;
 
     // gameObjects to find
     private GameManager gameManager;
@@ -64,9 +68,11 @@ public class EnemyHealth : MonoBehaviour
         collisionEvents = new List<ParticleCollisionEvent>();
         isShooting = false;
         enemyHealth = enemyHealthTemp;
-        
-
-        
+        isBurning = false;
+        burnTickCount = 0;
+        CancelInvoke();
+        if (burnParticleSystem != null)
+            burnParticleSystem.Stop();
     }
 
     private void Start()
@@ -116,9 +122,10 @@ public class EnemyHealth : MonoBehaviour
 
                 TakeDamage(damage);
             }
+
+            // damage from Laser
             else if (damagetyp == 1)
             {
-                // damage from Laser
                 TakeLaserDamage(damage);
             }
 
@@ -142,7 +149,7 @@ public class EnemyHealth : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("ImpactShot");
 
-        if (canTakeDamage)
+        //if (canTakeDamage)
         {
 
             // calculate Enemy Health
@@ -170,7 +177,9 @@ public class EnemyHealth : MonoBehaviour
                     ObjectPoolManager.ReturnObjectToPool(gameObject);
                 else
                     Destroy(gameObject);
-               
+
+                // cancle all Invokes
+                CancelInvoke();
             }
         }
     }
@@ -201,6 +210,7 @@ public class EnemyHealth : MonoBehaviour
                     }
                 }
 
+
                 // update player UI
                 if (secondDimensionEnemy == false)
                 {
@@ -213,7 +223,9 @@ public class EnemyHealth : MonoBehaviour
                     ObjectPoolManager.ReturnObjectToPool(gameObject);
                 else
                     Destroy(gameObject);
-                
+
+                // cancle all Invokes
+                CancelInvoke();
             }
         }
     }
@@ -223,7 +235,17 @@ public class EnemyHealth : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("PlayerLaserHit");
 
-        if (canTakeDamage)
+        // calculate burning damage
+        int ran = Random.Range(0, 100);
+        if (ran < playerWeaponController.burnDamageChance && isBurning == false)
+        {
+            isBurning = true;
+            InvokeRepeating("TakeBurningDamage", .2f, 1f);
+            if (burnParticleSystem != null)
+                burnParticleSystem.Play();
+        }
+
+        //if (canTakeDamage)
         {
             enemyHealth -= damage;
 
@@ -246,8 +268,9 @@ public class EnemyHealth : MonoBehaviour
                     gameManager.UpdateEnemyToKill(1);
                 }
 
-                //diesound
+                //die sound
                 AudioManager.Instance.PlaySFX("PlayerLaserDie");
+
 
                 // pool (destroy) enemy object
                 if (canPoolObject == true)
@@ -255,7 +278,28 @@ public class EnemyHealth : MonoBehaviour
                 else
                     Destroy(gameObject);
 
+                // cancle all Invokes
+                CancelInvoke();
             }
+        }
+    }
+
+    public void TakeBurningDamage()
+    {
+        int burningDamage = playerWeaponController.burnDamage;
+
+        ShowDamageFromObjectsColor(burningDamage, burningColor);
+        TakeLaserDamage(burningDamage);
+
+        burnTickCount++;
+
+        if (burnTickCount > playerWeaponController.burnTickCount)
+        {
+            CancelInvoke("TakeBurningDamage");
+            burnTickCount = 0;
+            isBurning = false;
+            if (burnParticleSystem != null)
+                burnParticleSystem.Stop();
         }
     }
 
@@ -287,5 +331,11 @@ public class EnemyHealth : MonoBehaviour
     {
         Vector3 pos = transform.position; // the point of intersection between the particle and the enemy
         gameManager.DoFloatingText(pos, "+" + damage.ToString(), hitColor);
+    }
+
+    public void ShowDamageFromObjectsColor(int damage, Color hitColor_)
+    {
+        Vector3 pos = transform.position; // the point of intersection between the particle and the enemy
+        gameManager.DoFloatingText(pos, "+" + damage.ToString(), hitColor_);
     }
 }

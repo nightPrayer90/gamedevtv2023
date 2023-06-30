@@ -4899,7 +4899,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 58663403459204929}
-  - {fileID: 2985081584382290407}
   m_Father: {fileID: 3146397459246506894}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4932,7 +4931,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 260142428273233373}
-  - {fileID: 6733523029187579473}
   m_Father: {fileID: 3146397459246506894}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4966,8 +4964,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1176198006324977546}
-  m_RootOrder: 1
+  m_Father: {fileID: 58663403459204929}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &3991515200798795601
 ParticleSystem:
@@ -9820,7 +9818,7 @@ GameObject:
   - component: {fileID: 3999915428303312224}
   - component: {fileID: 6523410310393875323}
   m_Layer: 7
-  m_Name: Orbital Laser (3)
+  m_Name: Orbital Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9840,6 +9838,7 @@ Transform:
   m_Children:
   - {fileID: 709638121948460426}
   - {fileID: 5824956672215801898}
+  - {fileID: 6733523029187579473}
   m_Father: {fileID: 6251079685854276720}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10212,7 +10211,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1255380348475032355}
-  - {fileID: 7718018531059498636}
   m_Father: {fileID: 3146397459246506894}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15100,7 +15098,7 @@ GameObject:
   - component: {fileID: 3242863979736811530}
   - component: {fileID: 3619069512217732629}
   m_Layer: 7
-  m_Name: Orbital Laser (2)
+  m_Name: Orbital Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15120,6 +15118,7 @@ Transform:
   m_Children:
   - {fileID: 3965874618525365006}
   - {fileID: 1042971229085456975}
+  - {fileID: 7718018531059498636}
   m_Father: {fileID: 7920054520756180149}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20236,6 +20235,7 @@ Transform:
   m_Children:
   - {fileID: 1814367411197478189}
   - {fileID: 7918251126626604335}
+  - {fileID: 2985081584382290407}
   m_Father: {fileID: 1176198006324977546}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20343,13 +20343,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6184673669628468215}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.981818, y: 0, z: -10.881819}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6251079685854276720}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_Father: {fileID: 260142428273233373}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &504223584002464422
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -39874,13 +39874,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8320174697416249499}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.954545, y: 0, z: -10.881819}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7920054520756180149}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_Father: {fileID: 1255380348475032355}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &1983087096158484566
 ParticleSystem:
   m_ObjectHideFlags: 0

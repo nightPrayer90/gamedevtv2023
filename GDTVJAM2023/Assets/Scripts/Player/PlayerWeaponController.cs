@@ -7,7 +7,8 @@ public class PlayerWeaponController : MonoBehaviour
     [Header("Weapon buffs")]
     public int bulletCritChance = 5;
     public int bulletCritDamage = 125;
-    public int burnDamagechance = 5;
+    public int burnDamageChance = 3;
+    public int burnDamage = 2;
     public int burnTickCount = 5;
 
     //[Header("Weapon classes")]

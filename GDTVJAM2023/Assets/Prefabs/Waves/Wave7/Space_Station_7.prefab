@@ -14854,8 +14854,10 @@ MonoBehaviour:
   bulletDamage: 0
   hitColor: {r: 1, g: 0.5998216, b: 0, a: 1}
   critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
-  _replacement: {fileID: 3472188482371739261, guid: dec4b4d02343e1546a0214b465b094e7, type: 3}
+  _replacement: {fileID: 3472188482371739261, guid: 41a986c33a3c23947b8c448cb37304fc, type: 3}
   _burnReplacement: {fileID: 3161139216598759944, guid: 66c73ca4a484c3442b5ccf25b4091605, type: 3}
+  burnParticleSystem: {fileID: 2205158104932902200}
+  burningColor: {r: 1, g: 0, b: 0.01, a: 1}
 --- !u!1 &6235606423459588010
 GameObject:
   m_ObjectHideFlags: 0
@@ -15080,6 +15082,84 @@ TrailRenderer:
   m_MinVertexDistance: 0.15
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!1001 &4511268110200632759
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6780905462511860088}
+    m_Modifications:
+    - target: {fileID: 2230144017793020432, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_Name
+      value: LaserBurnEffekt
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+--- !u!198 &2205158104932902200 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2306254145580372111, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+  m_PrefabInstance: {fileID: 4511268110200632759}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6453698853902950035
 PrefabInstance:
   m_ObjectHideFlags: 0

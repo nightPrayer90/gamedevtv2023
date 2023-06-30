@@ -10128,6 +10128,8 @@ MonoBehaviour:
   critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
   _replacement: {fileID: 2707211570806456033, guid: 9f5d02807566d27419f1194fb44fee56, type: 3}
   _burnReplacement: {fileID: 3161139216598759944, guid: 3061df085c4b6b24b83c1c9c6fb2506b, type: 3}
+  burnParticleSystem: {fileID: 3857683832639346041}
+  burningColor: {r: 1, g: 0, b: 0.01, a: 1}
 --- !u!1 &5047808053468307657
 GameObject:
   m_ObjectHideFlags: 0
@@ -29817,6 +29819,84 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &1551572452879582710
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7129953534572361138}
+    m_Modifications:
+    - target: {fileID: 2230144017793020432, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_Name
+      value: LaserBurnEffekt
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+--- !u!198 &3857683832639346041 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2306254145580372111, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
+  m_PrefabInstance: {fileID: 1551572452879582710}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7311619884352574041
 PrefabInstance:
   m_ObjectHideFlags: 0

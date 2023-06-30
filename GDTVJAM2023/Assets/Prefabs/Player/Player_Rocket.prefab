@@ -688,6 +688,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c6d230817f4654dbf0dea641464992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletCritChance: 5
+  bulletCritDamage: 125
+  burnDamageChance: 15
+  burnDamage: 2
+  burnTickCount: 4
+  mcBulletLvl: 0
+  mcExplosionLvl: 0
+  mcLaserLvl: 0
+  mcSupportLvl: 0
+  scSwarmLvl: 0
+  scDefenceLvl: 0
+  scTargetingLvl: 0
+  scBackwardsLvl: 0
   isHeadCannon: 0
   isRocketLauncher: 0
   isFireFlies: 0

@@ -49,7 +49,7 @@ public class BossController : MonoBehaviour
         {
             bossHealthSlider.value = enemyHealth.enemyHealth;
        
-            Debug.Log("enemyHealth = " +  enemyHealth.enemyHealth + "/ " + bossHealthSlider.value);
+            //Debug.Log("enemyHealth = " +  enemyHealth.enemyHealth + "/ " + bossHealthSlider.value);
         }
     }
 
