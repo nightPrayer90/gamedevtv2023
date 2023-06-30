@@ -340,6 +340,7 @@ MonoBehaviour:
   enemyWeapons: []
   bulletDamage: 0
   hitColor: {r: 1, g: 0.5998216, b: 0, a: 1}
+  critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
   _replacement: {fileID: 919132149155446097, guid: 6cbcdd3e91c1d8842b54e2ef13a3333e, type: 3}
   _burnReplacement: {fileID: 3161139216598759944, guid: f99d7d19b56abf3458dae03a23bbe866, type: 3}
 --- !u!1001 &6453698853902950035

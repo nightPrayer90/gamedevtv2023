@@ -149,6 +149,7 @@ MonoBehaviour:
   explosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   dieExplosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   expOrb: {fileID: 5693635298845190373, guid: 5ca91630af6a61c4f99d7279b939e976, type: 3}
+  miniMapIcon: {fileID: 0}
   enemyHealth: 12
   collisonDamage: 5
   explosionForce: 15
@@ -160,6 +161,9 @@ MonoBehaviour:
   - {fileID: 19829536297991706}
   bulletDamage: 0
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
+  critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
+  _replacement: {fileID: 0}
+  _burnReplacement: {fileID: 0}
 --- !u!1 &4133928706926207379
 GameObject:
   m_ObjectHideFlags: 0
@@ -4990,7 +4994,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 2
   baseFireRate: 1
-  particleSystem: {fileID: 1222785090643354618}
+  bulletParticleSystem: {fileID: 0}
   fireOnBirth: 0
   interval: 1
   isEmittingSound: 1

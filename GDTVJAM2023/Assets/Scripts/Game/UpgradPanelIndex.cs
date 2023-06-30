@@ -26,8 +26,10 @@ public class UpgradPanelIndex : MonoBehaviour
         headerText.text = upgradePanelController.headerStr[index];
         descriptionText.text = upgradePanelController.descriptionTextStr[index];
 
-        mainClass.text = upgradePanelController.mainClass[index];
-        subClass.text = upgradePanelController.subClass[index];
+        mainClass.text = upgradePanelController.mainClassStr[index];
+        mainClass.color = upgradePanelController.mainClassColor[index];
+        subClass.text = upgradePanelController.subClassStr[index];
+        subClass.color = upgradePanelController.subClassColor[index];
     }
 
     public void OnMouseEnter_()

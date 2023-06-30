@@ -11,8 +11,10 @@ public class UpgradePanelController : MonoBehaviour
     [HideInInspector] public float[] upgradeValue;
     [HideInInspector] public string[] headerStr;
     [HideInInspector] public string[] descriptionTextStr;
-    [HideInInspector] public string[] mainClass;
-    [HideInInspector] public string[] subClass;
+    [HideInInspector] public Color[] mainClassColor;
+    [HideInInspector] public string[] mainClassStr;
+    [HideInInspector] public Color[] subClassColor;
+    [HideInInspector] public string[] subClassStr;
     [HideInInspector] public Sprite[] iconPanel;
 
 
@@ -23,16 +25,9 @@ public class UpgradePanelController : MonoBehaviour
     public TextMeshProUGUI speedText;
     public TextMeshProUGUI agilityText;
     public TextMeshProUGUI pickupText;
-    /*public Image imFrontShield;
-    public Image imBackShield;
-    public Image imLifeModul;
-    public Image imSpreadGun;
-    public Image imHeadCannon;
-    public Image imBulletWings;
-    public Image imRocketLauncher;
-    public Image imFireflies;*/
-    //public Color imPanelBaseColor;
-    //public Color imPanelUpgradeColor;
+    public List<Color> classColors = new List<Color>();
+    public List<Image> classPanels = new List<Image>();
+
     public List<Image> selectedUpgradePanelList = new List<Image>();
     private int weaponCount = 0;
 
@@ -40,6 +35,7 @@ public class UpgradePanelController : MonoBehaviour
     private GameManager gameManager;
     private PlayerController playerController;
     private PlayerWeaponController playerWeaponController;
+  
 
 
     void OnEnable()
@@ -51,9 +47,12 @@ public class UpgradePanelController : MonoBehaviour
         upgradeValue = new float[3];
         headerStr = new string[3];
         descriptionTextStr = new string[3];
-        mainClass = new string[3];
-        subClass = new string[3];
+        mainClassColor = new Color[3];
+        mainClassStr = new string[3];
+        subClassColor = new Color[3];
+        subClassStr = new string[3];
         iconPanel = new Sprite[3];
+        
 
         StringLibrary();
         UpdateValuePanel();
@@ -70,8 +69,6 @@ public class UpgradePanelController : MonoBehaviour
             upgradeValue[i] =0f;
             int number = gameManager.selectedNumbers_[i];
 
-            UpgradeContainer uC = upgradeIndex[number];
-            
             // calculate values
             switch (number)
             {
@@ -95,12 +92,23 @@ public class UpgradePanelController : MonoBehaviour
                     break;
             }
 
+
+            UpgradeContainer uC = upgradeIndex[number];
+
             // set text descriptions
             iconPanel[i] = uC.iconPanel;
             headerStr[i] = uC.headerStr;
             descriptionTextStr[i] = uC.descriptionStr.Replace("XX", upgradeValue[i].ToString());
-            if (uC.mainClass == 0) mainClass[i] = ""; else mainClass[i] = uC.mainClass.ToString();
-            if (uC.subClass == 0) subClass[i] = ""; else subClass[i] = uC.subClass.ToString();
+
+            // mainClass
+            int index = (int)uC.mainClass;
+            mainClassStr[i] = System.Enum.GetName(typeof(UpgradeContainer.MainClass), uC.mainClass).ToString();
+            mainClassColor[i] = classColors[index];
+
+            // subClass
+            index = (int)uC.subClass;
+            subClassStr[i] = uC.subClass.ToString();
+            subClassColor[i] = classColors[index];
 
             panelList[i].SetDescription();
         }
@@ -111,13 +119,25 @@ public class UpgradePanelController : MonoBehaviour
     // Update Values in Panel 4
     public void UpdateValuePanel()
     {
-        // Update Main Upgrade Text
+        // update main weapon valuesText
         lifeText.text = playerController.playerMaxHealth.ToString();
         damageText.text = playerController.playerBulletBaseDamage.ToString();
         rateText.text = playerController.playerFireRate.ToString();
         speedText.text = (playerController.speed/100).ToString();
         agilityText.text = playerController.rotateSpeed.ToString();
         pickupText.text =playerController.pickupRange.ToString();
+
+        // update class colors
+        if (playerWeaponController.mcBulletLvl > 0) { classPanels[0].color = classColors[0]; } else { classPanels[0].color = Color.white; }
+        if (playerWeaponController.mcExplosionLvl > 0) { classPanels[1].color = classColors[1]; } else { classPanels[1].color = Color.white; }
+        if (playerWeaponController.mcLaserLvl > 0) { classPanels[2].color = classColors[2]; } else { classPanels[2].color = Color.white; }
+        if (playerWeaponController.mcSupportLvl > 0) { classPanels[3].color = classColors[3]; } else { classPanels[3].color = Color.white; }
+
+        if (playerWeaponController.scSwarmLvl > 0) { classPanels[4].color = classColors[4]; } else { classPanels[4].color = Color.white; }
+        if (playerWeaponController.scDefenceLvl > 0) { classPanels[5].color = classColors[5]; } else { classPanels[5].color = Color.white; }
+        if (playerWeaponController.scTargetingLvl > 0) { classPanels[6].color = classColors[6]; } else { classPanels[6].color = Color.white; }
+        if (playerWeaponController.scBackwardsLvl > 0) { classPanels[7].color = classColors[7]; } else { classPanels[7].color = Color.white; }
+
     }
     
     
@@ -151,9 +171,23 @@ public class UpgradePanelController : MonoBehaviour
                 break;
         }
 
-        
+        UpgradeContainer uC = upgradeIndex[number];
 
+
+        // update class colors
+        int index_ = (int)uC.mainClass;
+        if (index_ == 0) { classPanels[0].color = classColors[0]; }
+        if (index_ == 1) { classPanels[1].color = classColors[1]; }
+        if (index_ == 2) { classPanels[2].color = classColors[2]; }
+        if (index_ == 3) { classPanels[3].color = classColors[3]; }
+
+        index_ = (int)uC.subClass;
+        if (index_ == 4) { classPanels[4].color = classColors[4]; }
+        if (index_ == 5) { classPanels[5].color = classColors[5]; }
+        if (index_ == 6) { classPanels[6].color = classColors[6]; }
+        if (index_ == 7) { classPanels[7].color = classColors[7]; }
     }
+
 
     // Click Event - Choose an Ability
     public void ChooseAValue(int index)
