@@ -127,16 +127,18 @@ public class UpgradePanelController : MonoBehaviour
         agilityText.text = playerController.rotateSpeed.ToString();
         pickupText.text =playerController.pickupRange.ToString();
 
-        // update class colors
-        if (playerWeaponController.mcBulletLvl > 0) { classPanels[0].color = classColors[0]; } else { classPanels[0].color = Color.white; }
-        if (playerWeaponController.mcExplosionLvl > 0) { classPanels[1].color = classColors[1]; } else { classPanels[1].color = Color.white; }
-        if (playerWeaponController.mcLaserLvl > 0) { classPanels[2].color = classColors[2]; } else { classPanels[2].color = Color.white; }
-        if (playerWeaponController.mcSupportLvl > 0) { classPanels[3].color = classColors[3]; } else { classPanels[3].color = Color.white; }
+        Color defaultColor = new Color(0.2f, 0.2f, 0.2f, 0.5f);
 
-        if (playerWeaponController.scSwarmLvl > 0) { classPanels[4].color = classColors[4]; } else { classPanels[4].color = Color.white; }
-        if (playerWeaponController.scDefenceLvl > 0) { classPanels[5].color = classColors[5]; } else { classPanels[5].color = Color.white; }
-        if (playerWeaponController.scTargetingLvl > 0) { classPanels[6].color = classColors[6]; } else { classPanels[6].color = Color.white; }
-        if (playerWeaponController.scBackwardsLvl > 0) { classPanels[7].color = classColors[7]; } else { classPanels[7].color = Color.white; }
+        // update class colors
+        if (playerWeaponController.mcBulletLvl > 0) { classPanels[0].color = classColors[0]; } else { classPanels[0].color = defaultColor; }
+        if (playerWeaponController.mcExplosionLvl > 0) { classPanels[1].color = classColors[1]; } else { classPanels[1].color = defaultColor; }
+        if (playerWeaponController.mcLaserLvl > 0) { classPanels[2].color = classColors[2]; } else { classPanels[2].color = defaultColor; }
+        if (playerWeaponController.mcSupportLvl > 0) { classPanels[3].color = classColors[3]; } else { classPanels[3].color = defaultColor; }
+
+        if (playerWeaponController.scSwarmLvl > 0) { classPanels[4].color = classColors[4]; } else { classPanels[4].color = defaultColor; }
+        if (playerWeaponController.scDefenceLvl > 0) { classPanels[5].color = classColors[5]; } else { classPanels[5].color = defaultColor; }
+        if (playerWeaponController.scTargetingLvl > 0) { classPanels[6].color = classColors[6]; } else { classPanels[6].color = defaultColor; }
+        if (playerWeaponController.scBackwardsLvl > 0) { classPanels[7].color = classColors[7]; } else { classPanels[7].color = defaultColor; }
 
     }
     
@@ -192,8 +194,9 @@ public class UpgradePanelController : MonoBehaviour
     // Click Event - Choose an Ability
     public void ChooseAValue(int index)
     {
-        
         int number = gameManager.selectedNumbers_[index];
+
+        
 
         switch (number)
         {
@@ -223,78 +226,131 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isHeadCannon = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
+                UpdateClass(number);
                 weaponCount++;
                 break;
             case 7: //weapon: rocket launcher
                 playerWeaponController.isRocketLauncher = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
+                UpdateClass(number);
                 weaponCount++;
                 break;
             case 8: //weapon: fire flys
                 playerWeaponController.isFireFlies = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
+                UpdateClass(number);
                 weaponCount++;
                 break;
             case 9: //weapon: bullet wings
                 playerWeaponController.isBulletWings = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
+                UpdateClass(number);
                 weaponCount++;
                 break;
             case 10: //weapon: life modul
                 playerWeaponController.isLifeModul = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
+                UpdateClass(number);
                 weaponCount++;
                 break;
             case 11: //weapon: spread gun
                 playerWeaponController.isSpreadGun = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
+                UpdateClass(number);
                 weaponCount++;
                 break;
             case 12: //weapon: front shield
                 playerWeaponController.isFrontShield = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
+                UpdateClass(number);
                 weaponCount++;
                 break;
             case 13: //weapon: back shield
                 playerWeaponController.isBackShield = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
+                UpdateClass(number);
                 weaponCount++;
                 break;
             case 14: //weapon: schock nova
                 playerWeaponController.isNovaExplosion = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
+                UpdateClass(number);
                 weaponCount++;
                 break;
             case 15: //weapon: rocket wings
                 playerWeaponController.isRockedWings = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
+                UpdateClass(number);
                 weaponCount++;
                 break;
             case 16: //weapon: front laser
                 playerWeaponController.isFrontLaser = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
+                UpdateClass(number);
                 weaponCount++;
                 break;
             case 17: //weapon: orbital laser
                 playerWeaponController.isOrbitalLaser = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
+                UpdateClass(number);
                 weaponCount++;
                 break;
 
         }
 
         gameManager.UpgradeGet();
-     
+    }
+
+    // update classlevel in player weapon controller
+    private void UpdateClass(int number)
+    {
+        UpgradeContainer uC = upgradeIndex[number];
+
+        // update mainClass level
+        int index = (int)uC.mainClass;
+        switch (index)
+        {
+            case 0:
+                playerWeaponController.mcBulletLvl ++;
+                break;
+            case 1:
+                playerWeaponController.mcExplosionLvl ++;
+                break;
+            case 2:
+                playerWeaponController.mcLaserLvl ++;
+                break;
+            case 3:
+                playerWeaponController.mcSupportLvl ++;
+                break;
+        }
+
+        // update subClass level
+        index = (int)uC.subClass;
+        switch (index)
+        {
+            case 4:
+                playerWeaponController.scSwarmLvl ++;
+                break;
+            case 5:
+                playerWeaponController.scDefenceLvl ++;
+                break;
+            case 6:
+                playerWeaponController.scTargetingLvl ++;
+                break;
+            case 7:
+                playerWeaponController.scBackwardsLvl ++;
+                break;
+        }
     }
 }

@@ -54,3 +54,4 @@ public class UpgradPanelIndex : MonoBehaviour
         AudioManager.Instance.PlaySFX("WindowOpen");
     }
 }
+

@@ -128,6 +128,9 @@ public class PlayerWeaponController : MonoBehaviour
     //private Objects
     private PlayerController playerController;
     private PlayerMWController playerMWController;
+    
+
+
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -152,7 +155,7 @@ public class PlayerWeaponController : MonoBehaviour
                 mcLaserLvl++;
                 break;
         }
-}
+    }
 
 
 
