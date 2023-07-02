@@ -5523,7 +5523,7 @@ MonoBehaviour:
   isBackShield: 0
   isNovaExplosion: 0
   isRockedWings: 0
-  isFrontLaser: 0
+  isFrontLaser: 1
   isOrbitalLaser: 1
   frontShield: {fileID: 4831901517162404820, guid: 120689e8e5b520d439a8645f1b1162d9, type: 3}
   backShield: {fileID: 3147124995608451256, guid: 6da4992dab9d49646be6b65d0388b3e4, type: 3}
@@ -15492,7 +15492,6 @@ LineRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 69cacdfb068b67347a19df422e0964b5, type: 2}
-  - {fileID: 2100000, guid: 69cacdfb068b67347a19df422e0964b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15514,8 +15513,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  - {x: 5, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -15554,8 +15553,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 0}
-      key1: {r: 1, g: 1, b: 1, a: 0}
+      key0: {r: 1, g: 1, b: 1, a: 0.78431374}
+      key1: {r: 1, g: 1, b: 1, a: 0.39215687}
       key2: {r: 0.83863455, g: 0.68355906, b: 0.2929805, a: 1}
       key3: {r: 0.6115113, g: 0.5177452, b: 0.28158265, a: 0.85490197}
       key4: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 0}
@@ -30554,7 +30553,6 @@ LineRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 69cacdfb068b67347a19df422e0964b5, type: 2}
-  - {fileID: 2100000, guid: 69cacdfb068b67347a19df422e0964b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -30577,7 +30575,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 5, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -30616,8 +30614,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 0}
-      key1: {r: 1, g: 1, b: 1, a: 0}
+      key0: {r: 1, g: 1, b: 1, a: 0.78431374}
+      key1: {r: 1, g: 1, b: 1, a: 0.39215687}
       key2: {r: 0.83863455, g: 0.68355906, b: 0.2929805, a: 1}
       key3: {r: 0.6115113, g: 0.5177452, b: 0.28158265, a: 0.85490197}
       key4: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 0}
@@ -30632,7 +30630,7 @@ LineRenderer:
       ctime5: 43369
       ctime6: 0
       ctime7: 0
-      atime0: 0
+      atime0: 386
       atime1: 65535
       atime2: 29876
       atime3: 55705

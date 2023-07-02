@@ -6,18 +6,17 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 {
     public string header;
     public string content;
-    private GameObject go;
+    private Vector2 triggerPosition;
 
-    private void Awake()
-    {
-        go = gameObject;
-    }
+    public Tooltip tooltip;
 
+    
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // delay? 
-        TooltipSystem.Show(go, content, header);
+        triggerPosition = transform.position;
+        TooltipSystem.Show(tooltip, triggerPosition, content, header);
     }
+
 
     public void OnPointerExit(PointerEventData eventData)
     {

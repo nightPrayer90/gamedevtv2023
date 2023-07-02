@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class FrontLaser : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class FrontLaser : MonoBehaviour
     public string audioClip = "";
     private float nextSpawnTime = 0f;
     private int bulletCount = 0;
-    
+    private float laserDistance = 4;
 
     public LineRenderer lr;
     public ParticleSystem hitParticle;
@@ -71,9 +72,18 @@ public class FrontLaser : MonoBehaviour
         {
             Invoke("RealodWeapon", realodInterval);
             bulletCount++;
-            lr.enabled = false;
+            
             laserIsEnable = false;
             muzzleParticle.Stop();
+           
+
+            Color whiteZero = new Color(1f, 1f, 1f, 0f);
+            Color whiteStart = new Color(1f, 1f, 1f, 0.8f);
+            Color whiteEnd = new Color(1f, 1f, 1f, 0.3f);
+
+            lr.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 0.2f).OnComplete(() =>
+            { lr.enabled = false; });
+
         }
 
         if (bulletCount < bulletMaxCount)
@@ -100,12 +110,19 @@ public class FrontLaser : MonoBehaviour
     void SetLRPosition()
     {
         lr.SetPosition(0, transform.position);
-        lr.SetPosition(1, transform.position + transform.forward * 5);
+        lr.SetPosition(1, transform.position + transform.forward * laserDistance);
     }
 
     // realod a salve of weapons
     void RealodWeapon()
     {
+        Color whiteZero = new Color(1f, 1f, 1f, 0f);
+        Color whiteStart = new Color(1f, 1f, 1f, 0.8f);
+        Color whiteEnd = new Color(1f, 1f, 1f, 0.3f);
+
+        lr.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 1f);
+
+
         bulletCount = 0;
         lr.enabled = true;
         laserIsEnable = true;
@@ -117,7 +134,7 @@ public class FrontLaser : MonoBehaviour
         lr.SetPosition(0, transform.position);
 
         //lr.SetPosition(0, transform.position);
-        int raycastDistance = 5; // Die maximale Entfernung des Raycasts
+        float raycastDistance = laserDistance; // Die maximale Entfernung des Raycasts
         int layerMask = (1 << 6) | (1 << 9); // Bitmaske für Render-Layer 6 und 8
 
         RaycastHit hit;

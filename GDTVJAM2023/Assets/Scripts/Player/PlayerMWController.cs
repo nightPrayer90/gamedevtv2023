@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+
 
 public class PlayerMWController : MonoBehaviour
 {
@@ -281,11 +283,22 @@ public class PlayerMWController : MonoBehaviour
         {
             Invoke("RealoLaserWeapon", fireRate);
             bulletCount++;
-            lr.enabled = false;
-            lr2.enabled = false;
-            laserIsEnable = false;
             muzzleParticle.Stop();
             muzzleParticle2.Stop();
+
+            Gradient gradient = lr.colorGradient;
+
+            GradientAlphaKey[] alphaKeys = gradient.alphaKeys;
+            Color whiteZero = new Color(1f, 1f, 1f, 0f);
+            Color whiteStart = new Color(1f, 1f, 1f, 0.8f);
+            Color whiteEnd = new Color(1f, 1f, 1f, 0.3f);
+
+            lr.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 0.2f).OnComplete(() =>
+            { lr.enabled = false; });
+
+            lr2.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 0.2f).OnComplete(() =>
+            { lr2.enabled = false; laserIsEnable = false; });
+
         }
 
         if (bulletCount < bulletMaxCount)
@@ -314,6 +327,7 @@ public class PlayerMWController : MonoBehaviour
         lr.SetPosition(0, LaserSpawnPoint1.position);
         lr.SetPosition(1, LaserSpawnPoint1.position + LaserSpawnPoint1.forward * laserRange);
 
+
         lr2.SetPosition(0, LaserSpawnPoint2.position);
         lr2.SetPosition(1, LaserSpawnPoint2.position + LaserSpawnPoint1.forward * laserRange);
     }
@@ -321,6 +335,13 @@ public class PlayerMWController : MonoBehaviour
     // realod a salve of weapons
     void RealoLaserWeapon()
     {
+        Color whiteZero = new Color(1f, 1f, 1f, 0f);
+        Color whiteStart = new Color(1f, 1f, 1f, 0.8f);
+        Color whiteEnd = new Color(1f, 1f, 1f, 0.3f);
+
+        lr.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 0.5f);
+        lr2.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 0.5f);
+
         bulletCount = 0;
         lr.enabled = true;
         lr2.enabled = true;

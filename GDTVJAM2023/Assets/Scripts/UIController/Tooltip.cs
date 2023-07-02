@@ -14,42 +14,26 @@ public class Tooltip : MonoBehaviour
     public TextMeshProUGUI contentField;
     public LayoutElement layoutElement;
     public int characterWarpLimit;
-    private GameObject triggerObejct_;
+    private Vector2 triggerPosition_;
     public CanvasGroup cg;
 
-    //public Animator animator;
-
-    /*public void FadeIn()
-    {
-        animator.SetTrigger("FadeIn");
-        //animator.Play("FadeCanvasGroup");
-    }
-
-    public void FadeOut()
-    {
-        animator.SetTrigger("FadeOut");
-        //animator.Play("FadeOutCanvsGroup");
-    }*/
+    
 
     void OnEnable()
     {
-        if (triggerObejct_ != null)
+        if (triggerPosition_ != null)
         {
-            Vector2 position = triggerObejct_.transform.position;
-
-            transform.position = position;
+            transform.position = triggerPosition_;
         }
+        // FadeIn
         cg.alpha = 0;
-        cg.DOFade(1f, 0.2f).SetUpdate(true);
+        cg.DOFade(1f, 0.1f).SetUpdate(true);
         AudioManager.Instance.PlaySFX("MouseHover");
     }
 
     public void FadeOut()
     {
-        //cg.DOFade(0f, 0.02f).SetUpdate(true).From(1).OnComplete(() =>
-        //{
-            gameObject.SetActive(false);
-        //});
+        gameObject.SetActive(false);
     }
 
     private void Update()
@@ -65,9 +49,9 @@ public class Tooltip : MonoBehaviour
     }
 
 
-    public void SetText(GameObject triggerObject, string content, string header = "")
+    public void SetText(Vector2 triggerPosition, string content, string header = "")
     {
-        triggerObejct_ = triggerObject;
+        triggerPosition_ = triggerPosition;
 
         if (string.IsNullOrEmpty(header))
         {
