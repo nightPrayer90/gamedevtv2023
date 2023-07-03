@@ -13,10 +13,18 @@ public class EnemyExp : MonoBehaviour
    
     void OnEnable()
     {
-        playercontroller = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        playerRb = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
-        detectionRange = playercontroller.pickupRange;
+        var player = GameObject.FindWithTag("Player");
 
+        if (player != null)
+        {
+            playercontroller = player.GetComponent<PlayerController>();
+            playerRb = player.GetComponent<Rigidbody>();
+            detectionRange = playercontroller.pickupRange;
+        }
+        else 
+        {
+            detectionRange = 5;
+        }
         ifcollect = false;
     }
 
