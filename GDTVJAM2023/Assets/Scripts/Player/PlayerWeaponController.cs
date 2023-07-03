@@ -7,9 +7,10 @@ public class PlayerWeaponController : MonoBehaviour
     [Header("Weapon buffs")]
     public int bulletCritChance = 5;
     public int bulletCritDamage = 125;
-    public int burnDamageChance = 3;
-    public int burnDamage = 2;
+    public int burnDamageChance = 1;
+    public int burnDamage = 5;
     public int burnTickCount = 5;
+    public float rocketAOERadius = 0;
 
     //[Header("Weapon classes")]
     [HideInInspector] public int mcBulletLvl = 0;
@@ -36,18 +37,18 @@ public class PlayerWeaponController : MonoBehaviour
     public bool isFrontLaser = false;
     public bool isOrbitalLaser = false;
 
-    private bool isHeadCannonInstalled = false;
-    private bool isRocketLauncherInstalled = false;
-    private bool isFireFliesInstalled = false;
-    private bool isBulletWingsInstalled = false;
-    private bool isLifeModulInstalled = false;
-    private bool isSpreadGunInstalled = false;
-    private bool isFrontShieldInstalled = false;
-    private bool isBackShieldInstalled = false;
-    private bool isNovaExplosionInstalled = false;
-    private bool isRockedWingsInstalled = false;
-    private bool isFrontLaserInstalled = false;
-    private bool isOrbitalLaserInstalled = false;
+    private GameObject isHeadCannonInstalled;
+    private GameObject isRocketLauncherInstalled;
+    private GameObject isFireFliesInstalled;
+    private GameObject isBulletWingsInstalled;
+    private GameObject isLifeModulInstalled;
+    private GameObject isSpreadGunInstalled;
+    private GameObject isFrontShieldInstalled;
+    private GameObject isBackShieldInstalled;
+    private GameObject isNovaExplosionInstalled;
+    private GameObject isRockedWingsInstalled;
+    private GameObject isFrontLaserInstalled;
+    private GameObject isOrbitalLaserInstalled;
 
 
     [Header("Objects")]
@@ -163,70 +164,148 @@ public class PlayerWeaponController : MonoBehaviour
     /* **************************************************************************** */
     /* Weapon Management----------------------------------------------------------------- */
     /* **************************************************************************** */
-    
+    public void UpdateWeaponValues()
+    {
+        // main Class
+        bulletCritChance = 5 + (mcBulletLvl * 5);
+        burnDamageChance = 1 + (mcLaserLvl * 3);
+        rocketAOERadius = (mcExplosionLvl * 0.5f);
+        float reloadTime = 1 + (mcSupportLvl * 0.03f);
+
+        // sub class
+        int scSwarmLvl_ = scSwarmLvl * 2;
+        float scDefenceLvl_ = scDefenceLvl * 0.05f;
+        int scTargetingLvl_ = scTargetingLvl;
+        int scBackwardsLvl_ = scBackwardsLvl;
+        /*
+        [HideInInspector] public int scTargetingLvl = 0;
+        [HideInInspector] public int scBackwardsLvl = 0;
+        */
+
+        // Head Cannon - bullet - target
+        if (isHeadCannonInstalled != null)
+        {
+            var headCannon = isHeadCannonInstalled.GetComponent<HeadCannon>();
+            headCannon.bulletDamage = hcBulletDamage + scTargetingLvl; 
+            headCannon.fireSalveMax = hcSalveCount;
+            headCannon.reloadSalveInterval = hcReloadTime;
+        }
+
+        // Rocket Launcher - rocket - target
+        if (isRocketLauncherInstalled != null)
+        {
+            var rocketLauncher = isRocketLauncherInstalled.GetComponent<PeriodSpawner>();
+            rocketLauncher.rocketDamage = rlDamage + scTargetingLvl;
+            rocketLauncher.lifeTime = rlLifeTime;
+            rocketLauncher.spawnInterval = rlReloadTime;
+        }
+
+        // Fireflies - bullet - backwards
+        if (isFireFliesInstalled != null)
+        {
+            var fireflies = isFireFliesInstalled.GetComponent<Fireflies>();
+            fireflies.bulletDamage = ffDamage + scBackwardsLvl;
+            fireflies.realodInterval = ffReloadTime;
+            fireflies.bulletMaxCount = ffbulletCount;
+        } 
+
+        /*
+
+        // Bullet Wings
+        bwDamage = 6;
+        bwRealoadTime = 6f;
+        bwSalveCount = 6;
+
+
+        // Life Modul
+
+
+        // Spread Gun
+        sgDamage = 8;
+        sgReloadTime = 3f;
+        sgBulletCount = 8;
+
+
+        // Nova Explosion
+        neDamage = 3;
+        neReloadTime = 4.5f;
+        neRadius = 3f;
+
+
+        // Rocket Wings
+        rwDamage = 3;
+        rwReloadTime = 4.5f;
+        rwSalveCount = 6;
+
+
+        // Front Laser
+        flDamage = 4;
+        flReloadTime = 6f;
+        flBulletCount = 50;
+
+
+        // Orbital Laser
+        olDamage = 10;
+        olReloadTime = 3f;
+        */
+}
+
+
     public void WeaponChoose()
     {
-        if (isHeadCannon == true && isHeadCannonInstalled == false)
+        if (isHeadCannon == true && isHeadCannonInstalled == null)
         {
-            Instantiate(headCannon, passivParentContainer);
-            isHeadCannonInstalled = true;
+            isHeadCannonInstalled = Instantiate(headCannon, passivParentContainer);
         }
-        if (isRocketLauncher == true && isRocketLauncherInstalled == false)
+        if (isRocketLauncher == true && isRocketLauncherInstalled == null)
         {
-            Instantiate(rocketLauncher, passivParentContainer);
-            isRocketLauncherInstalled = true;
+            isRocketLauncherInstalled = Instantiate(rocketLauncher, passivParentContainer);
         }
-        if (isFireFlies == true && isFireFliesInstalled == false)
+        if (isFireFlies == true && isFireFliesInstalled == null)
         {
-            Instantiate(fireFlys, passivParentContainer);
-            isFireFliesInstalled = true;
+            isFireFliesInstalled = Instantiate(fireFlys, passivParentContainer);
         }
-        if (isBulletWings == true && isBulletWingsInstalled == false)
+        if (isBulletWings == true && isBulletWingsInstalled == null)
         {
-            Instantiate(bulletWings, passivParentContainer);
-            isBulletWingsInstalled = true;
+            isBulletWingsInstalled = Instantiate(bulletWings, passivParentContainer);
         }
-        if (isLifeModul == true && isLifeModulInstalled == false)
+        if (isLifeModul == true && isLifeModulInstalled == null)
         {
-            Instantiate(lifeModul, passivParentContainer);
-            isLifeModulInstalled = true;
+            isLifeModulInstalled = Instantiate(lifeModul, passivParentContainer);
         }
-        if (isSpreadGun == true && isSpreadGunInstalled == false)
+        if (isSpreadGun == true && isSpreadGunInstalled == null)
         {
-            Instantiate(spreadGun, passivParentContainer);
-            isSpreadGunInstalled = true;
+            isSpreadGunInstalled = Instantiate(spreadGun, passivParentContainer);
         }
-        if (isFrontShield == true && isFrontShieldInstalled == false)
+        if (isFrontShield == true && isFrontShieldInstalled == null)
         {
             var shild = Instantiate(frontShield, passivParentContainer);
             shild.name = frontShield.name;
-            isFrontShieldInstalled = true;
+            isFrontShieldInstalled = shild;
         }
-        if (isBackShield == true && isBackShieldInstalled == false)
+        if (isBackShield == true && isBackShieldInstalled == null)
         {
             var shild = Instantiate(backShield, passivParentContainer);
             shild.name = backShield.name;
-            isBackShieldInstalled = true;
+            isBackShieldInstalled = shild;
         }
-        if (isNovaExplosion == true && isNovaExplosionInstalled == false)
+        if (isNovaExplosion == true && isNovaExplosionInstalled == null)
         {
-            Instantiate(novaExplosion, passivParentContainer);
-            isNovaExplosionInstalled = true;
+            isNovaExplosionInstalled = Instantiate(novaExplosion, passivParentContainer);
         }
-        if (isRockedWings == true && isRockedWingsInstalled == false)
+        if (isRockedWings == true && isRockedWingsInstalled == null)
         {
-            Instantiate(rocketWings, passivParentContainer);
-            isRockedWingsInstalled = true;
+            isRockedWingsInstalled = Instantiate(rocketWings, passivParentContainer);
         }
-        if (isFrontLaser == true && isFrontLaserInstalled == false)
+        if (isFrontLaser == true && isFrontLaserInstalled == null)
         {
-            Instantiate(frontLaser, passivParentContainer);
-            isFrontLaserInstalled = true;
+            isFrontLaserInstalled = Instantiate(frontLaser, passivParentContainer);
         }
-        if (isOrbitalLaser == true && isOrbitalLaserInstalled == false)
+        if (isOrbitalLaser == true && isOrbitalLaserInstalled == null)
         {
-            Instantiate(orbitalLaser);
-            isOrbitalLaserInstalled = true;
+            isOrbitalLaserInstalled = Instantiate(orbitalLaser);
         }
+
+        UpdateWeaponValues();
     }
 }

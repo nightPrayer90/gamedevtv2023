@@ -247,6 +247,7 @@ MonoBehaviour:
   explosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   dieExplosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   expOrb: {fileID: 5693635298845190373, guid: 5ca91630af6a61c4f99d7279b939e976, type: 3}
+  classPickup: {fileID: 5693635298845190373, guid: d8d2b78aecd465f4c84d40add32cceb0, type: 3}
   miniMapIcon: {fileID: 8087742276739236362}
   enemyHealth: 6
   collisonDamage: 1
@@ -262,6 +263,7 @@ MonoBehaviour:
   _replacement: {fileID: 1380446238132243176, guid: 1889541fec859cb41bcfbf836cdd7fd4, type: 3}
   _burnReplacement: {fileID: 3161139216598759944, guid: cd7e2ae33aa90d64ba9fabdedf60f220, type: 3}
   burnParticleSystem: {fileID: 3848154008130576996}
+  burningColor: {r: 1, g: 0, b: 0.01, a: 1}
 --- !u!1 &7022702905896314159
 GameObject:
   m_ObjectHideFlags: 0

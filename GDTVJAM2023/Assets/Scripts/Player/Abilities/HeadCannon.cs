@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HeadCannon : MonoBehaviour
 {
-    [Header("Rocked Settings")]
+    [Header("Head Cannon")]
     public int bulletDamage = 2;
     public int fireSalveMax;
     public float reloadSalveInterval = 2f;

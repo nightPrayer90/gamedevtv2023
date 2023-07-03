@@ -8,6 +8,7 @@ public class EnemyHealth : MonoBehaviour
     public GameObject explosionObject;
     public GameObject dieExplosionObject;
     public GameObject expOrb;
+    public GameObject classPickup;
     public GameObject miniMapIcon;
 
 
@@ -158,8 +159,7 @@ public class EnemyHealth : MonoBehaviour
             if (enemyHealth <= 0)
             {
                 // drop an Item
-                if (expOrbSpawn)
-                    ObjectPoolManager.SpawnObject(expOrb, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
+                Drop();
 
                 // instanstiate explosion
                 ObjectPoolManager.SpawnObject(explosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
@@ -194,8 +194,7 @@ public class EnemyHealth : MonoBehaviour
             if (enemyHealth <= 0)
             {
                 // drop an Item
-                if (expOrbSpawn)
-                    ObjectPoolManager.SpawnObject(expOrb, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
+                Drop();
 
                 // create object to die effect
                 if (_replacement != null)
@@ -209,7 +208,6 @@ public class EnemyHealth : MonoBehaviour
                         rb.AddExplosionForce(collisionMultiplier, transform.position, 1);  //collision.contacts[0].point;
                     }
                 }
-
 
                 // update player UI
                 if (secondDimensionEnemy == false)
@@ -230,6 +228,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    
     // take damage from a laser
     public void TakeLaserDamage(int damage)
     {
@@ -252,8 +251,7 @@ public class EnemyHealth : MonoBehaviour
             if (enemyHealth <= 0)
             {
                 // drop an Item
-                if (expOrbSpawn)
-                    ObjectPoolManager.SpawnObject(expOrb, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
+                Drop();
 
                 // create object to die effect
                 if (_burnReplacement != null)
@@ -337,5 +335,23 @@ public class EnemyHealth : MonoBehaviour
     {
         Vector3 pos = transform.position; // the point of intersection between the particle and the enemy
         gameManager.DoFloatingText(pos, "+" + damage.ToString(), hitColor_);
+    }
+
+    // drop an Item
+    private void Drop()
+    {
+        if (expOrbSpawn)
+        {
+            int ran = Random.Range(0, 100);
+
+            if (ran >= 3 || classPickup == null)
+            {
+                ObjectPoolManager.SpawnObject(expOrb, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
+            }
+            else
+            {
+                ObjectPoolManager.SpawnObject(classPickup, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
+            }
+        }
     }
 }

@@ -25,7 +25,7 @@ public class UpgradePanelController : MonoBehaviour
     public TextMeshProUGUI speedText;
     public TextMeshProUGUI agilityText;
     public TextMeshProUGUI pickupText;
-    public List<Color> classColors = new List<Color>();
+    public List<Color> classColors;
     public List<Image> classPanels = new List<Image>();
 
     public List<Image> selectedUpgradePanelList = new List<Image>();
@@ -41,6 +41,7 @@ public class UpgradePanelController : MonoBehaviour
     void OnEnable()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        classColors = new List<Color>(gameManager.globalClassColor);
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
 

@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI enemyToKillText;
     public TextMeshProUGUI enemyCounterText;
     public TextMeshProUGUI outsideBorderText;
+    public List<Color> globalClassColor;
     [HideInInspector] public float curretEnemyCounter;
 
 

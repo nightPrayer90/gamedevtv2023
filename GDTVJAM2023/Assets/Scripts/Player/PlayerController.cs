@@ -19,9 +19,9 @@ public class PlayerController : MonoBehaviour
     public float playerFireRate = 0.5f;
     public float pickupRange = 2f;
 
-   
+
     [Header("Properties")]
-    public int playerCurrentHealth= 10;
+    public int playerCurrentHealth = 10;
     private int playerCurrentExperience;
     private int playerExperienceToLevelUp = 6;
     private int playerLevel = 1;
@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRb;
     private GameManager gameManager;
     private PlayerMWController playerMWController;
+    private PlayerWeaponController playerWeaponController;
 
 
 
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour
         // set game objects
         playerRb = GetComponent<Rigidbody>();
         playerMWController = GetComponent<PlayerMWController>();
+        playerWeaponController = GetComponent<PlayerWeaponController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         // intro starting sound
@@ -79,7 +81,7 @@ public class PlayerController : MonoBehaviour
             isIntro = true;
         }
         else
-        {   if (isStartSound == false)
+        { if (isStartSound == false)
             {
                 AudioManager.Instance.PlaySFX("ShortAlert");
                 isStartSound = true;
@@ -112,8 +114,48 @@ public class PlayerController : MonoBehaviour
         switch (tag)
         {
             case "Exp":
-                ObjectPoolManager.ReturnObjectToPool(other.gameObject); 
+                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
                 UpdatePlayerExperience();
+                break;
+
+            case "BulletPickup":
+                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
+                UpdateClassLevel(0);
+                break;
+
+            case "ExplosionPickup":
+                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
+                UpdateClassLevel(1);
+                break;
+
+            case "LaserPickup":
+                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
+                UpdateClassLevel(2);
+                break;
+
+            case "SupportPickup":
+                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
+                UpdateClassLevel(3);
+                break;
+
+            case "SwarmPickup":
+                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
+                UpdateClassLevel(4);
+                break;
+
+            case "DefensePickup":
+                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
+                UpdateClassLevel(5);
+                break;
+
+            case "TargetingPickup":
+                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
+                UpdateClassLevel(6);
+                break;
+
+            case "BackwardsPickup":
+                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
+                UpdateClassLevel(7);
                 break;
 
             case "DimensionPickUp":
@@ -146,8 +188,52 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // activate if trigger stay - border control
-    private void OnTriggerStay(Collider other)
+    private void UpdateClassLevel(int input)
+    {
+        string floatingText = "";
+        switch (input)
+        {
+            case 0:
+                playerWeaponController.mcBulletLvl ++;
+                floatingText = "+1 bullet class";
+                break;
+            case 1:
+                playerWeaponController.mcExplosionLvl ++;
+                floatingText = "+1 explosion class";
+                break;
+            case 2:
+                playerWeaponController.mcLaserLvl ++;
+                floatingText = "+1 laser class";
+                break;
+            case 3:
+                playerWeaponController.mcSupportLvl ++;
+                floatingText = "+1 support class";
+                break;
+            case 4:
+                playerWeaponController.scSwarmLvl ++;
+                floatingText = "+1 swarm class";
+                break;
+            case 5:
+                playerWeaponController.scDefenceLvl ++;
+                floatingText = "+1 defense class";
+                break;
+            case 6:
+                playerWeaponController.scTargetingLvl ++;
+                floatingText = "+1 targeting class";
+                break;
+            case 7:
+                playerWeaponController.scBackwardsLvl ++;
+                floatingText = "+1 backwards class";
+                break;
+        }
+
+        gameManager.DoFloatingText(transform.position, floatingText, gameManager.globalClassColor[input]);
+        playerWeaponController.UpdateWeaponValues();
+    }
+
+
+// activate if trigger stay - border control
+private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("BorderCollider"))
         {

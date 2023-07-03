@@ -14981,6 +14981,7 @@ MonoBehaviour:
   explosionObject: {fileID: 3618260324052109233, guid: c3a52b50cdd3f3e4291bda36ca9cab53, type: 3}
   dieExplosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   expOrb: {fileID: 5693635298845190373, guid: 5ca91630af6a61c4f99d7279b939e976, type: 3}
+  classPickup: {fileID: 5693635298845190373, guid: d8d2b78aecd465f4c84d40add32cceb0, type: 3}
   miniMapIcon: {fileID: 4225249393952903944}
   enemyHealth: 60
   collisonDamage: 5
