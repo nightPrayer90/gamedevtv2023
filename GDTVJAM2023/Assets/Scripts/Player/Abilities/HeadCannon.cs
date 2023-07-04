@@ -13,6 +13,7 @@ public class HeadCannon : MonoBehaviour
 
     [Header("Game Objects")]
     public ParticleSystem bulletParticleSystem;
+    private ParticleBullet particleBullet;
     private GameObject nearestEnemy = null;
     private GameManager gameManager;
     private GameObject player;
@@ -37,10 +38,10 @@ public class HeadCannon : MonoBehaviour
         // find Objects
         player = GameObject.FindWithTag("Player");
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        bulletParticleSystem.GetComponent<ParticleBullet>().bulletDamage = bulletDamage;
+        particleBullet = bulletParticleSystem.GetComponent<ParticleBullet>();
 
         // set start values from the weapon Controller
-        StartValues();
+        // StartValues();
 
         //set first reload time
         nextSalveTime = Time.time + reloadSalveInterval;
@@ -160,6 +161,10 @@ public class HeadCannon : MonoBehaviour
     {
         if (fireSalveCount < fireSalveMax && nearestEnemy != null && canFire == true)
         {
+            // set damage to particle
+            
+            particleBullet.bulletDamage = bulletDamage;
+
             // trigger the head cannon audio
             AudioManager.Instance.PlaySFX("PlayerHeadCannon");
 

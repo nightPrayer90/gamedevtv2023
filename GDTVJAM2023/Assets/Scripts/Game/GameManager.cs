@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI enemyCounterText;
     public TextMeshProUGUI outsideBorderText;
     public List<Color> globalClassColor;
+    public Transform outsideBorderTextTweenTarget;
     [HideInInspector] public float curretEnemyCounter;
 
 
@@ -137,7 +139,7 @@ public class GameManager : MonoBehaviour
         UpdateUIPlayerHealth(10,10);
         UpdateUIPlayerExperience(false, 1, 10, 0);
         UpdateTimerText();
-        UpdateDistrictText(districtNumber);
+        UpdateDistrictText();
         UpdateEnemyToKill(0);
         UpdateEnemyCounter(0);
     }
@@ -257,6 +259,11 @@ public class GameManager : MonoBehaviour
 
         playerUI.SetActive(true);
         panelUI.SetActive(false);
+
+        experienceSlider.DOValue(0, 0.4f, false);
+        experienceSlider.transform.DOPunchScale(new Vector3 (0.5f, 0.5f, 0.5f) , 0.5f, 5, 0.5f).SetUpdate(true).OnComplete(() => {
+            experienceSlider.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+        }); ;
     }
 
 
@@ -273,8 +280,12 @@ public class GameManager : MonoBehaviour
 
         // update slider
         healthBar.maxValue = playerMaxHealth;
-        healthBar.value = playerCurrentHealth;
-        
+        //healthBar.value = playerCurrentHealth;
+        healthBar.DOValue(playerCurrentHealth, 0.5f);
+        healthBar.transform.DOKill(true);
+        healthBar.transform.DOShakePosition(0.5f, 2, 10, 90, true, true,ShakeRandomnessMode.Harmonic);
+
+
         // check if is game over
         if (playerMaxHealth <= 0)
             GameIsOver();
@@ -283,9 +294,12 @@ public class GameManager : MonoBehaviour
     // update the player experience bar - PlayerUI
     public void UpdateUIPlayerExperience(bool isLevelUp, int playerLevel, int playerExperienceToLevelUp, int playerCurrentExperience)
     {
+        experienceSlider.maxValue = playerExperienceToLevelUp;
+
         // Levelup
         if (isLevelUp)
         {
+            experienceSlider.value = experienceSlider.maxValue;
             CreateRandomNumbers(playerLevel);
 
             gameIsPlayed = false;
@@ -295,21 +309,33 @@ public class GameManager : MonoBehaviour
             bossUI.SetActive(false);
 
             expText.text = playerLevel.ToString();
+            DOTween.CompleteAll();
         }
-
-        experienceSlider.maxValue = playerExperienceToLevelUp;
-        experienceSlider.value = playerCurrentExperience;
+        else
+        {
+            experienceSlider.transform.DOKill(true);
+            experienceSlider.transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.5f, 5, 0.5f).SetUpdate(true);
+            experienceSlider.DOValue(playerCurrentExperience, 0.5f);
+        }
+        //experienceSlider.value = playerCurrentExperience;
     }
 
     // update district text - PlayerUI
-    public void UpdateDistrictText(int curretDistrict)
+    public void UpdateDistrictText()
     {
-        districtText.text = "District " + curretDistrict.ToString() + "/9";
+        districtText.text = "District " + districtNumber.ToString() + "/9";
+        districtText.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 1.5f, 5, 0.5f).SetUpdate(true);
+
 
         //wird bei jedem districtwechsel ausgelöst
         killCounter = 0;
-        enemysToKill = spawnDistrictList.waveKillList[curretDistrict - 1];
+        enemysToKill = spawnDistrictList.waveKillList[districtNumber - 1];
+        enemyToKillText.text = "Enemys to defeat: " + enemysToKill.ToString();
+
+        enemyToKillText.transform.DOKill(true);
+        enemyToKillText.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 1f, 5, 0.5f).SetUpdate(true);
     }
+   
 
     // update the enemys to defeat text and spawn the dimension spawp items
     public void UpdateEnemyToKill(int amount)
@@ -332,6 +358,10 @@ public class GameManager : MonoBehaviour
 
                 // activate a camera shake
                 ScreenShake(2);
+
+                // tewwn enemytoDefeat text
+                enemyToKillText.transform.DOKill(true);
+                enemyToKillText.transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 1.5f, 5, 0.5f).SetUpdate(true);
             }
         }
     }
@@ -359,8 +389,6 @@ public class GameManager : MonoBehaviour
             CancelInvoke("UpdateTimerText");
         }
     }
-
-
 
     // (help function) create 3 random numbers für the upgrade/ ability panel - trigger by levelup
     public void CreateRandomNumbers(int playerLevel)
@@ -454,8 +482,10 @@ public class GameManager : MonoBehaviour
         bossUI.SetActive(false);
 
         // activate the next district 
+        //Debug.Log(districtNumber);
         districtNumber++;
-        UpdateDistrictText(districtNumber);
+        Invoke("UpdateDistrictText", 0.5f);
+        //UpdateDistrictText(districtNumber);
         spawnDistrictList.districtList[districtNumber - 1].GetComponent<GroundBaseUp>().GrowUP();
         AudioManager.Instance.PlaySFX("LiftUP");
 

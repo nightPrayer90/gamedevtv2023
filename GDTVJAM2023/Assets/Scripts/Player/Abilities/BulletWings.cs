@@ -6,6 +6,7 @@ public class BulletWings : MonoBehaviour
 {
     [Header("Bullet Particle")]
     public List<ParticleSystem> particleSystems;
+    public List<ParticleBullet> particleBullets;
 
     [Header("Weapon Settings")]
     public int bulletDamage = 10;
@@ -24,14 +25,8 @@ public class BulletWings : MonoBehaviour
     /* **************************************************************************** */
     private void Start()
     {
-        StartValues();
+        //StartValues();
         salveCount = salveMaxCount;
-        
-        foreach (ParticleSystem weapon in particleSystems)
-        {
-            weapon.GetComponent<ParticleBullet>().bulletDamage = bulletDamage;
-        }
-
     }
 
     // Update is called once per frame
@@ -62,6 +57,11 @@ public class BulletWings : MonoBehaviour
         {
             Invoke("RealodWeapon", realodInterval);
             salveCount++;
+
+            foreach (ParticleBullet weapon in particleBullets)
+            {
+                weapon.bulletDamage = bulletDamage;
+            }
         }
 
         if (salveCount < salveMaxCount)

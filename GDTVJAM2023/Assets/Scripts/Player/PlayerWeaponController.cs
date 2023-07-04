@@ -12,15 +12,15 @@ public class PlayerWeaponController : MonoBehaviour
     public int burnTickCount = 5;
     public float rocketAOERadius = 0;
 
-    //[Header("Weapon classes")]
-    [HideInInspector] public int mcBulletLvl = 0;
-    [HideInInspector] public int mcExplosionLvl = 0;
-    [HideInInspector] public int mcLaserLvl = 0;
-    [HideInInspector] public int mcSupportLvl = 0;
-    [HideInInspector] public int scSwarmLvl = 0;
-    [HideInInspector] public int scDefenceLvl = 0;
-    [HideInInspector] public int scTargetingLvl = 0;
-    [HideInInspector] public int scBackwardsLvl = 0;
+    [Header("Weapon class level")]
+    public int mcBulletLvl = 0;
+    public int mcExplosionLvl = 0;
+    public int mcLaserLvl = 0;
+    public int mcSupportLvl = 0;
+    public int scSwarmLvl = 0;
+    public int scDefenceLvl = 0;
+    public int scTargetingLvl = 0;
+    public int scBackwardsLvl = 0;
 
 
     [Header("Passiv abilitys")]
@@ -165,119 +165,8 @@ public class PlayerWeaponController : MonoBehaviour
 
 
     /* **************************************************************************** */
-    /* Weapon Management----------------------------------------------------------------- */
+    /* WEAPON MANAGEMENT----------------------------------------------------------- */
     /* **************************************************************************** */
-    public void UpdateWeaponValues()
-    {
-        // main Class
-        bulletCritChance = 5 + (mcBulletLvl * 5);
-        burnDamageChance = (mcLaserLvl);
-        rocketAOERadius = 1 +(mcExplosionLvl * 0.05f);
-        float reloadTime = 1 + (mcSupportLvl * 0.03f);
-
-        // sub class
-        int scSwarmLvl_ = scSwarmLvl;
-        float scDefenceLvl_ = scDefenceLvl * 0.05f;
-        int scTargetingLvl_ = scTargetingLvl;
-        int scBackwardsLvl_ = scBackwardsLvl;
-        /*
-        [HideInInspector] public int scTargetingLvl = 0;
-        [HideInInspector] public int scBackwardsLvl = 0;
-        */
-
-        // Head Cannon - bullet - target
-        if (isHeadCannonInstalled != null)
-        {
-            isHeadCannonInstalled.bulletDamage = hcBulletDamage + scTargetingLvl;
-            isHeadCannonInstalled.fireSalveMax = hcSalveCount;
-            isHeadCannonInstalled.reloadSalveInterval = hcReloadTime;
-        }
-
-        // Rocket Launcher - rocket - target
-        if (isRocketLauncherInstalled != null)
-        {
-            isRocketLauncherInstalled.rocketDamage = rlDamage + scTargetingLvl;
-            isRocketLauncherInstalled.lifeTime = rlLifeTime;
-            isRocketLauncherInstalled.spawnInterval = rlReloadTime;
-        }
-
-        // Fireflies - bullet - backwards
-        if (isFireFliesInstalled != null)
-        {
-            isFireFliesInstalled.bulletDamage = ffDamage + scBackwardsLvl;
-            isFireFliesInstalled.realodInterval = ffReloadTime;
-            isFireFliesInstalled.bulletMaxCount = ffbulletCount;
-        }
-
-        // Bullet Wings - bullet - swarm
-        if (isBulletWingsInstalled != null)
-        {
-            isBulletWingsInstalled.bulletDamage = bwDamage;
-            isBulletWingsInstalled.realodInterval = bwRealoadTime;
-            isBulletWingsInstalled.salveMaxCount = bwSalveCount;
-        }
-
-        // Life Modul - support
-        if (isLifeModulInstalled != null)
-        {
-            //isLifeModulInstalled
-        }
-
-        // Spread Gun - bullet - swarm
-        if (isSpreadGunInstalled != null)
-        {
-            isSpreadGunInstalled.bulletDamage = sgDamage;
-            isSpreadGunInstalled.realodInterval = sgReloadTime;
-            isSpreadGunInstalled.bulletMaxCount = sgBulletCount;
-        }
-
-        // Front Shield - support
-        if (isFrontShieldInstalled != null)
-        {
-            //isFrontShieldInstalled
-        }
-
-        // Back Shield - support
-        if (isBackShieldInstalled != null)
-        {
-            //isBackShieldInstalled
-        }
-
-        // Nova Explosion - explosion - defence
-        if (isNovaExplosionInstalled != null)
-        {
-            isNovaExplosionInstalled.novaDamage = neDamage;
-            isNovaExplosionInstalled.spawnInterval = neReloadTime;
-            isNovaExplosionInstalled.explosionRadius = neRadius;
-        }
-
-        // Rocket Wings - explosion - swarm
-        if (isRockedWingsInstalled != null)
-        {
-            isRockedWingsInstalled.rocketDamage = rwDamage;
-            isRockedWingsInstalled.relodInterval = rwReloadTime;
-            isRockedWingsInstalled.salveMaxCount = rwSalveCount;
-        }
-
-        // Front Laser - laser
-        if (isFrontLaserInstalled != null)
-        {
-            isFrontLaserInstalled.bulletDamage = flDamage;
-            isFrontLaserInstalled.realodInterval = flReloadTime;
-            isFrontLaserInstalled.bulletMaxCount = flBulletCount;
-        }
-
-        // Orbital Laser - laser - defence
-        if (isOrbitalLaserInstalled != null)
-        {
-            isOrbitalLaserInstalled.damage = olDamage;
-            isOrbitalLaserInstalled.realoadTime = olReloadTime;
-
-            isOrbitalLaserInstalled.UpdateOrbs();
-        }
-    }
-
-
     public void WeaponChoose()
     {
         GameObject go = null;
@@ -297,7 +186,7 @@ public class PlayerWeaponController : MonoBehaviour
             isFireFliesInstalled = go.GetComponent<Fireflies>();
         }
         if (isBulletWings == true && isBulletWingsInstalled == null)
-        { 
+        {
             go = Instantiate(bulletWings, passivParentContainer);
             isBulletWingsInstalled = go.GetComponent<BulletWings>();
         }
@@ -344,6 +233,121 @@ public class PlayerWeaponController : MonoBehaviour
             isOrbitalLaserInstalled = go.GetComponent<OrbitalLaser>();
         }
 
-        UpdateWeaponValues();
+        Invoke("UpdateWeaponValues", 0.1f);
     }
+
+
+    public void UpdateWeaponValues()
+    {
+        Debug.Log("weapon Upgrade");
+
+        // main Class
+        bulletCritChance = 5 + (mcBulletLvl * 5);
+        burnDamageChance = (mcLaserLvl);
+        rocketAOERadius = 1 +(mcExplosionLvl * 0.05f);
+        float suReloadTime = (mcSupportLvl * 0.03f);
+
+        // sub class
+        int scSwarmLvl_ = scSwarmLvl;
+        float scDefenceLvl_ = scDefenceLvl * 0.05f;
+        int scTargetingLvl_ = scTargetingLvl;
+        int scBackwardsLvl_ = scBackwardsLvl;
+
+
+        // Head Cannon - bullet - target
+        if (isHeadCannonInstalled != null)
+        {
+            isHeadCannonInstalled.bulletDamage = hcBulletDamage + scTargetingLvl;
+            isHeadCannonInstalled.fireSalveMax = hcSalveCount;
+            isHeadCannonInstalled.reloadSalveInterval = Mathf.Max(0.1f, hcReloadTime - (hcReloadTime*suReloadTime));
+        }
+
+        // Rocket Launcher - rocket - target
+        if (isRocketLauncherInstalled != null)
+        {
+            isRocketLauncherInstalled.rocketDamage = rlDamage + scTargetingLvl;
+            isRocketLauncherInstalled.lifeTime = rlLifeTime;
+            isRocketLauncherInstalled.spawnInterval = Mathf.Max(0.1f, rlReloadTime - (rlReloadTime*suReloadTime));
+        }
+
+        // Fireflies - bullet - backwards
+        if (isFireFliesInstalled != null)
+        {
+            isFireFliesInstalled.bulletDamage = ffDamage + scBackwardsLvl;
+            isFireFliesInstalled.realodInterval = Mathf.Max(0.1f, ffReloadTime - (ffReloadTime*suReloadTime));
+            isFireFliesInstalled.bulletMaxCount = ffbulletCount;
+        }
+
+        // Bullet Wings - bullet - swarm
+        if (isBulletWingsInstalled != null)
+        {
+            isBulletWingsInstalled.bulletDamage = bwDamage;
+            isBulletWingsInstalled.realodInterval = Mathf.Max(0.1f, bwRealoadTime - (bwRealoadTime * suReloadTime));
+            isBulletWingsInstalled.salveMaxCount = bwSalveCount + scSwarmLvl_;
+        }
+
+        // Life Modul - support
+        if (isLifeModulInstalled != null)
+        {
+            //isLifeModulInstalled
+            //suReloadTime
+        }
+
+        // Spread Gun - bullet - swarm
+        if (isSpreadGunInstalled != null)
+        {
+            isSpreadGunInstalled.bulletDamage = sgDamage;
+            isSpreadGunInstalled.realodInterval = Mathf.Max( sgReloadTime - (sgReloadTime * suReloadTime));
+            isSpreadGunInstalled.bulletMaxCount = sgBulletCount + scSwarmLvl_;
+        }
+
+        // Front Shield - support
+        if (isFrontShieldInstalled != null)
+        {
+            //isFrontShieldInstalled
+            //scDefenceLvl_, suReloadTime
+        }
+
+        // Back Shield - support
+        if (isBackShieldInstalled != null)
+        {
+            //isBackShieldInstalled
+            //scDefenceLvl_, suReloadTime
+        }
+
+        // Nova Explosion - explosion - defence
+        if (isNovaExplosionInstalled != null)
+        {
+            isNovaExplosionInstalled.novaDamage = neDamage;
+            isNovaExplosionInstalled.spawnInterval = Mathf.Max(0.1f, neReloadTime - (neReloadTime*(scDefenceLvl_ + suReloadTime)));
+            isNovaExplosionInstalled.explosionRadius = neRadius;
+        }
+
+        // Rocket Wings - explosion - swarm
+        if (isRockedWingsInstalled != null)
+        {
+            isRockedWingsInstalled.rocketDamage = rwDamage;
+            isRockedWingsInstalled.relodInterval = Mathf.Max(0.1f, rwReloadTime - (rwReloadTime * suReloadTime));
+            isRockedWingsInstalled.salveMaxCount = rwSalveCount + scSwarmLvl_;
+        }
+
+        // Front Laser - laser
+        if (isFrontLaserInstalled != null)
+        {
+            isFrontLaserInstalled.bulletDamage = flDamage;
+            isFrontLaserInstalled.realodInterval = Mathf.Max (0.1f, flReloadTime -(flReloadTime * suReloadTime));
+            isFrontLaserInstalled.bulletMaxCount = flBulletCount;
+        }
+
+        // Orbital Laser - laser - defence
+        if (isOrbitalLaserInstalled != null)
+        {
+            isOrbitalLaserInstalled.damage = olDamage;
+            isOrbitalLaserInstalled.realoadTime = Mathf.Max(0.1f, olReloadTime - (olReloadTime* (scDefenceLvl_+ suReloadTime)));
+
+            isOrbitalLaserInstalled.UpdateOrbs();
+        }
+    }
+
+
 }

@@ -5,7 +5,8 @@ using UnityEngine;
 public class Fireflies : MonoBehaviour
 {
     [Header("Bullet Particle")]
-    public List<ParticleSystem> particleSystems;
+    public ParticleSystem particleSystems;
+    private ParticleBullet particleBullet;
 
     [Header("Weapon Settings")]
     public int bulletDamage = 10;
@@ -24,15 +25,13 @@ public class Fireflies : MonoBehaviour
     /* **************************************************************************** */
     private void Start()
     {
-        StartValues();
+        //StartValues();
         bulletCount = bulletMaxCount;
 
         // set damage to particle system
-        foreach (ParticleSystem weapon in particleSystems)
-        {
-            weapon.GetComponent<ParticleBullet>().bulletDamage = bulletDamage;
-        }
 
+        particleBullet = particleSystems.GetComponent<ParticleBullet>();
+      
     }
 
     // Update is called once per frame
@@ -61,6 +60,7 @@ public class Fireflies : MonoBehaviour
     {
         if (bulletCount == bulletMaxCount)
         {
+            particleBullet.bulletDamage = bulletDamage;
             Invoke("RealodWeapon", realodInterval);
             bulletCount++;
         }
@@ -73,12 +73,8 @@ public class Fireflies : MonoBehaviour
                 AudioManager.Instance.PlaySFX(audioClip);
 
                 // emit 1 particle of each weapon
-                foreach (ParticleSystem weapon in particleSystems)
-                {
-                    if (weapon != null)
-                        weapon.Emit(1);
-                        bulletCount++;
-                }
+                particleSystems.Emit(1);
+                bulletCount++;
 
                 nextSpawnTime = Time.time + spawnInterval;
             }

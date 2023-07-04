@@ -1,4 +1,6 @@
 using UnityEngine;
+using DG.Tweening;
+
 
 public class RotateToTarget : MonoBehaviour
 {
@@ -6,7 +8,17 @@ public class RotateToTarget : MonoBehaviour
     public float rotationStep = 5f;
     public NavigationController navigationController;
 
-  
+    private void OnEnable()
+    {
+        transform.DOPunchScale(new Vector3(0.07f, 0.0f, 0.07f), 0.5f, 5, 0.5f).SetLoops(-1,LoopType.Restart);
+    }
+
+    private void OnDisable()
+    {
+        transform.DOKill(true);
+    }
+
+
     private void Update()
     {
         Vector3 direction = navigationController.targetPosition - transform.position;

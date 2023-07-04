@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -255,7 +257,9 @@ private void OnTriggerStay(Collider other)
             {
                 InvokeRepeating("PlayerIsOutsideBorder", 1f, damageInterval);
                 gameManager.outsideBorderText.text = "outside border!";
+                gameManager.outsideBorderTextTweenTarget.DOPunchScale(new Vector3(0.15f, 0.15f, 0.15f), 0.8f, 10, 0.5f);
                 isOutsideBorder = true;
+                AudioManager.Instance.PlaySFX("WarningBoss");
             }
         }
     }
@@ -431,6 +435,7 @@ private void OnTriggerStay(Collider other)
     private void PlayerIsOutsideBorder()
     {
         UpdatePlayerHealth(damageTaken);
+        gameManager.outsideBorderTextTweenTarget.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.6f, 15, 0.5f);
     }
 
     // activate the navigation controller

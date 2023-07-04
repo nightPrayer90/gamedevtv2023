@@ -5502,9 +5502,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletCritChance: 5
   bulletCritDamage: 125
-  burnDamageChance: 15
-  burnDamage: 2
-  burnTickCount: 4
+  burnDamageChance: 1
+  burnDamage: 5
+  burnTickCount: 5
   rocketAOERadius: 0
   mcBulletLvl: 0
   mcExplosionLvl: 0
