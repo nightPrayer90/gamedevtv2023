@@ -24,7 +24,7 @@ public class RocketController : MonoBehaviour
     private GameObject target;
    // private Rigidbody rbRocket;
     private GameManager gameManager;
-
+    private PlayerWeaponController playerWeaponController;
     
 
     /* **************************************************************************** */
@@ -41,7 +41,7 @@ public class RocketController : MonoBehaviour
 
         // set Game Objects
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        
+        playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         // reset Target
         target = null;
 
@@ -184,7 +184,8 @@ public class RocketController : MonoBehaviour
         CancelInvoke("DestroyObject");
 
         // array of all Objects in the explosionRadius
-        var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius, layerMask);
+        float explosionRadius_ = explosionRadius * playerWeaponController.rocketAOERadius;
+        var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius_, layerMask);
 
         foreach (var obj in surroundingObjects)
         { 
@@ -198,10 +199,10 @@ public class RocketController : MonoBehaviour
 
             if (obj.gameObject != collisionTarget)
             {
-                if (distance < explosionRadius)
+                if (distance < explosionRadius_)
                 {
 
-                    float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius), 1f);
+                    float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius_), 1f);
                     int adjustedDamage = Mathf.CeilToInt(damage * scaleFactor);
 
                     // get EnemyHealthscript
@@ -233,7 +234,7 @@ public class RocketController : MonoBehaviour
         // spawn the explosion object
         GameObject go = ObjectPoolManager.SpawnObject(exposionHitObject, pos, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
 
-        go.GetComponent<ParticleSystemDestroy>().rippleParicleSize = explosionRadius;
+        go.GetComponent<ParticleSystemDestroy>().rippleParicleSize = explosionRadius_;
 
         // object goes back to the pool
         ObjectPoolManager.ReturnObjectToPool(gameObject);

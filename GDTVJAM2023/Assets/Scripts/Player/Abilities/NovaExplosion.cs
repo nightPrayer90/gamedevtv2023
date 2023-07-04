@@ -14,6 +14,7 @@ public class NovaExplosion : MonoBehaviour
     public GameObject explosionFX;
     private LayerMask layerMask;
     public Color hitColor = new Color(1f, 0.6f, 0.0f, 1f);
+    private PlayerWeaponController weaponController;
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -34,7 +35,7 @@ public class NovaExplosion : MonoBehaviour
     // set start values fom the weaponController
     private void StartValues()
     {
-        PlayerWeaponController weaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
+        weaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         novaDamage = weaponController.neDamage;
         spawnInterval = weaponController.neReloadTime;
         explosionRadius = weaponController.neRadius;
@@ -56,7 +57,6 @@ public class NovaExplosion : MonoBehaviour
         {
             layerMask = (1 << 9);
         }
-
         // array of all Objects in the explosionRadius
         var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius, layerMask);
 

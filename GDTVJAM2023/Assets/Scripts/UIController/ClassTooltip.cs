@@ -44,9 +44,7 @@ public class ClassTooltip : MonoBehaviour
         // FadeIn
         cg.alpha = 0;
         cg.DOFade(1f, 0.1f).SetUpdate(true);
-        
 
-        
     }
 
 
@@ -71,8 +69,8 @@ public class ClassTooltip : MonoBehaviour
                 contentvalue_ = "+ " + contentvaluefloat.ToString() + "%";
                 break;
             case 1: // explosion
-                contentvaluefloat = playerWeaponController.mcExplosionLvl * 0.5f;
-                contentvalue_ = "+ " + contentvaluefloat.ToString() + "m";
+                contentvaluefloat = playerWeaponController.mcExplosionLvl * 5;
+                contentvalue_ = "+ " + contentvaluefloat.ToString() + "%";
                 break;
             case 2: // laser
                 contentvaluefloat = playerWeaponController.mcLaserLvl;

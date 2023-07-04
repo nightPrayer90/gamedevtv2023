@@ -9919,6 +9919,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbParticle: {fileID: 504223584002464422}
   hitParticle: {fileID: 2454562219160215214}
+  orbitalLaser: {fileID: -987062272540951175}
+  damage: 0
+  realoadTime: 0
   index: 3
 --- !u!1 &2908001507501239912
 GameObject:
@@ -15199,6 +15202,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbParticle: {fileID: 1983087096158484566}
   hitParticle: {fileID: 567780199077201089}
+  orbitalLaser: {fileID: -987062272540951175}
+  damage: 0
+  realoadTime: 0
   index: 2
 --- !u!1 &4448056703190000311
 GameObject:
@@ -20316,6 +20322,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbParticle: {fileID: 3991515200798795601}
   hitParticle: {fileID: 8348743913264123162}
+  orbitalLaser: {fileID: -987062272540951175}
+  damage: 0
+  realoadTime: 0
   index: 1
 --- !u!1 &6184673669628468215
 GameObject:
@@ -39806,7 +39815,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3146397459246506894}
-  - component: {fileID: 9115253781161321427}
+  - component: {fileID: -987062272540951175}
   m_Layer: 7
   m_Name: Orbital Laser
   m_TagString: Untagged
@@ -39835,7 +39844,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9115253781161321427
+--- !u!114 &-987062272540951175
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -39848,6 +39857,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 450
+  damage: 0
+  realoadTime: 0
+  orbitalLaserOrbs:
+  - {fileID: 9057481169102850986}
+  - {fileID: 3619069512217732629}
+  - {fileID: 6523410310393875323}
 --- !u!1 &8320174697416249499
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,32 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class OrbitalLaserOrb : MonoBehaviour
 {
     public ParticleSystem orbParticle;
     public ParticleSystem hitParticle;
+    public OrbitalLaser orbitalLaser;
 
-    private int damage;
-    private float realoadTime;
+    public int damage;
+    public float realoadTime;
 
     public int index;
 
     // Start is called before the first frame update
     void Start()
     {
-        PlayerWeaponController pwc = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
-
-        damage = pwc.olDamage;
-        realoadTime = pwc.bwRealoadTime;
+        damage = orbitalLaser.damage;
+        realoadTime = orbitalLaser.realoadTime;
 
         Invoke("ActivateOrb", index);
         gameObject.SetActive(false);
-    }
-
-    private void OnEnable()
-    {
-        
     }
 
     private void OnTriggerEnter(Collider other)
