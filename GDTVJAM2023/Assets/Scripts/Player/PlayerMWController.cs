@@ -292,10 +292,10 @@ public class PlayerMWController : MonoBehaviour
             Color whiteStart = new Color(1f, 1f, 1f, 0.8f);
             Color whiteEnd = new Color(1f, 1f, 1f, 0.3f);
 
-            lr.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 0.2f).OnComplete(() =>
+            lr.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 0.5f).OnComplete(() =>
             { lr.enabled = false; });
 
-            lr2.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 0.2f).OnComplete(() =>
+            lr2.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 0.5f).OnComplete(() =>
             { lr2.enabled = false; laserIsEnable = false; });
 
         }
@@ -325,7 +325,6 @@ public class PlayerMWController : MonoBehaviour
     {
         lr.SetPosition(0, LaserSpawnPoint1.position);
         lr.SetPosition(1, LaserSpawnPoint1.position + LaserSpawnPoint1.forward * laserRange);
-
 
         lr2.SetPosition(0, LaserSpawnPoint2.position);
         lr2.SetPosition(1, LaserSpawnPoint2.position + LaserSpawnPoint1.forward * laserRange);

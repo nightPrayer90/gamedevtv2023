@@ -21,9 +21,10 @@ public class ShieldController : MonoBehaviour
     public ParticleSystem dieEffect;
     public ParticleSystem hitEffect;
     public GameObject shieldMesh;
+    public Vector3 shieldSize;
     public BoxCollider shieldCollider;
 
-
+    private bool canGetDamage = true;
 
 
     /* **************************************************************************** */
@@ -38,6 +39,8 @@ public class ShieldController : MonoBehaviour
         playerWeaponController = player.GetComponent<PlayerWeaponController>();
 
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
+        shieldSize = shieldMesh.transform.localScale;
 
         ShieldEnable();
         targetMaterial.DOFade(0, 0.01f);
@@ -106,6 +109,7 @@ public class ShieldController : MonoBehaviour
         shieldMesh.transform.DOPunchScale(new Vector3(1f, 1f, 1f), 1f, 5, 0.5f).SetUpdate(true);
 
         // reset shild life
+        canGetDamage = true;
         shieldLife_ = shieldLife;
         
         // set shield status
@@ -132,29 +136,40 @@ public class ShieldController : MonoBehaviour
         shieldCollider.enabled = true;
         shieldMesh.SetActive(true);
 
-        targetMaterial.DOFade(1f, 1f);
+        targetMaterial.DOFade(0.8f, 1f);
     }
 
     // the shiled get an hit from a bullet!
     public void UpdateShieldHealth()
     {
         // Update shield life
-        shieldLife_ = Mathf.Max(0, shieldLife_ - 1);
+        if (canGetDamage == true)
+        {
+            shieldLife_ = Mathf.Max(0, shieldLife_ - 1);
+            canGetDamage = false;
+            Invoke("CanDamageControl", 0.4f);
 
-        // destroy shield
-        if (shieldLife_ <= 0)
-        {
-            ShieldTypeDieControl();
-            AudioManager.Instance.PlaySFX("ShieldDie");
-        }
-        else
-        {
-            // update shield color;
-            shieldMesh.transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0.5f), 0.5f, 5, 0.5f).SetUpdate(true);
-            UpdateShildColor();
-            AudioManager.Instance.PlaySFX("ShieldGetHit");
+            // destroy shield
+            if (shieldLife_ <= 0)
+            {
+                ShieldTypeDieControl();
+                AudioManager.Instance.PlaySFX("ShieldDie");
+            }
+            else
+            {
+                // update shield color;
+                shieldMesh.transform.DOKill();
+                shieldMesh.transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0.5f), 0.3f, 5, 0.5f).OnComplete(() => { shieldMesh.transform.localScale = shieldSize; } );
+                UpdateShildColor();
+                AudioManager.Instance.PlaySFX("ShieldGetHit");
+            }
         }
      }
+
+    private void CanDamageControl()
+    {
+        canGetDamage = true;
+    }
 
     // Update the weapon and shieldcontroller if the ShildObject die
     private void ShieldTypeDieControl()

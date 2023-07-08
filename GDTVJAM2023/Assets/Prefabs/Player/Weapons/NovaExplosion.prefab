@@ -47,6 +47,6 @@ MonoBehaviour:
   novaDamage: 5
   spawnInterval: 4
   explosionRadius: 5
-  explosionForce: 300
+  explosionForce: 350
   explosionFX: {fileID: 4303235208557751318, guid: eb9d00288658133488952b36c49aca32, type: 3}
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
