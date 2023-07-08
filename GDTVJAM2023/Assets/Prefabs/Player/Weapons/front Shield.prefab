@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9114402548511165230}
-  - component: {fileID: 8486697330388974730}
+  - component: {fileID: -3184409808274765360}
   m_Layer: 7
   m_Name: front Shield
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8486697330388974730
+--- !u!114 &-3184409808274765360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,11 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4831901517162404820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70035fc372c99ce4ca812bd6f826a62f, type: 3}
+  m_Script: {fileID: 11500000, guid: 56fdfede79d931f43988e8c5457996e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldObjects:
-  - {fileID: 135186969060692196, guid: 4aa7a4d23bea64242a5a08a0d690f362, type: 3}
-  spawnInterval: 12
+  shieldObject: {fileID: 135186969060692196, guid: 4aa7a4d23bea64242a5a08a0d690f362, type: 3}
+  spawnInterval: 10
   nextSpawnTime: 0
-  isBackShield: 0

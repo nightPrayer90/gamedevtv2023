@@ -36,10 +36,7 @@ public class PlayerController : MonoBehaviour
     public bool isOutsideBorder = false;
 
 
-    [Header("Shield Controll")]
-    public bool isFrontShield = false;
-    public bool isBackShieldLeft = false;
-    public bool isBackShieldRight = false;
+    
 
 
     [Header("Floating Text")]
@@ -54,6 +51,7 @@ public class PlayerController : MonoBehaviour
     private GameManager gameManager;
     private PlayerMWController playerMWController;
     private PlayerWeaponController playerWeaponController;
+
 
 
 
@@ -192,6 +190,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateClassLevel(int input)
     {
+        AudioManager.Instance.PlaySFX("WindowOpen");
         string floatingText = "";
         switch (input)
         {

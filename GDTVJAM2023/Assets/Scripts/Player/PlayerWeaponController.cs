@@ -43,8 +43,8 @@ public class PlayerWeaponController : MonoBehaviour
     private BulletWings isBulletWingsInstalled;
     private LifeModul isLifeModulInstalled;
     private SpreadGun isSpreadGunInstalled;
-    private ShieldSpawner isFrontShieldInstalled;
-    private ShieldSpawner isBackShieldInstalled;
+    private FrontShieldSpawner isFrontShieldInstalled;
+    private BackShieldSpawner isBackShieldInstalled;
     private NovaExplosion isNovaExplosionInstalled;
     private RocketWings isRockedWingsInstalled;
     private FrontLaser isFrontLaserInstalled;
@@ -126,6 +126,16 @@ public class PlayerWeaponController : MonoBehaviour
     public Transform passivParentContainer;
 
 
+    [Header("Shield Controll")]
+    public float fsSpawnTime = 10f;
+    public int fsShieldLife = 3;
+    public float bsSpawnTime = 6f;
+    public int bsShildLife = 2; 
+    public bool isFrontShieldEnabled = false;
+    public bool isBackShieldLeft = false;
+    public bool isBackShieldRight = false;
+
+
     //private Objects
     private PlayerController playerController;
     private PlayerMWController playerMWController;
@@ -204,13 +214,13 @@ public class PlayerWeaponController : MonoBehaviour
         {
             var shild = Instantiate(frontShield, passivParentContainer);
             shild.name = frontShield.name;
-            isFrontShieldInstalled = shild.GetComponent<ShieldSpawner>();
+            isFrontShieldInstalled = shild.GetComponent<FrontShieldSpawner>();
         }
         if (isBackShield == true && isBackShieldInstalled == null)
         {
             var shild = Instantiate(backShield, passivParentContainer);
             shild.name = backShield.name;
-            isBackShieldInstalled = shild.GetComponent<ShieldSpawner>();
+            isBackShieldInstalled = shild.GetComponent<BackShieldSpawner>();
         }
         if (isNovaExplosion == true && isNovaExplosionInstalled == null)
         {
@@ -297,22 +307,22 @@ public class PlayerWeaponController : MonoBehaviour
         if (isSpreadGunInstalled != null)
         {
             isSpreadGunInstalled.bulletDamage = sgDamage;
-            isSpreadGunInstalled.realodInterval = Mathf.Max( sgReloadTime - (sgReloadTime * suReloadTime));
+            isSpreadGunInstalled.realodInterval = Mathf.Max(0.1f, sgReloadTime - (sgReloadTime * suReloadTime));
             isSpreadGunInstalled.bulletMaxCount = sgBulletCount + scSwarmLvl_;
         }
 
-        // Front Shield - support
+        // Front Shield - support - defence
         if (isFrontShieldInstalled != null)
         {
-            //isFrontShieldInstalled
-            //scDefenceLvl_, suReloadTime
+            isFrontShieldInstalled.spawnInterval = Mathf.Max(0.1f, fsSpawnTime - (fsSpawnTime * suReloadTime) - (fsSpawnTime * scDefenceLvl_));
+            isFrontShieldInstalled.shieldLife = fsShieldLife;
         }
 
-        // Back Shield - support
+        // Back Shield - support - defence
         if (isBackShieldInstalled != null)
         {
-            //isBackShieldInstalled
-            //scDefenceLvl_, suReloadTime
+            isBackShieldInstalled.spawnInterval = Mathf.Max(0.1f, bsSpawnTime - (bsSpawnTime * suReloadTime) - (bsSpawnTime * scDefenceLvl_));
+            isBackShieldInstalled.shieldLife = bsShildLife;
         }
 
         // Nova Explosion - explosion - defence

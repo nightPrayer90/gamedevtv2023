@@ -4975,7 +4975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d716017f498db43b97dc8d158888b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleSystem: {fileID: 5998184823661752213}
+  particleSystems: {fileID: 5998184823661752213}
   bulletDamage: 10
   realodInterval: 5.5
   bulletMaxCount: 16

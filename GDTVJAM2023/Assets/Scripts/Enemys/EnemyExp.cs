@@ -6,7 +6,7 @@ public class EnemyExp : MonoBehaviour
     public float detectionRange = 0.5f;
 
     private PlayerController playercontroller;
-    private Rigidbody playerRb;
+    private Transform playerTransform;
     private bool ifcollect = false;
 
     // Start is called before the first frame update
@@ -18,29 +18,43 @@ public class EnemyExp : MonoBehaviour
         if (player != null)
         {
             playercontroller = player.GetComponent<PlayerController>();
-            playerRb = player.GetComponent<Rigidbody>();
-            detectionRange = playercontroller.pickupRange;
+            playerTransform = player.GetComponent<Transform>();
+            
         }
         else 
         {
             detectionRange = 5;
         }
+
+        InvokeRepeating("DistanceToPlayer",0,0.2f);
         ifcollect = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, playerRb.transform.position);
-
-        if (distanceToPlayer < detectionRange)
-            ifcollect = true;
-
         if (ifcollect == true)
         {
-            Vector3 directionToPlayer = (playerRb.transform.position - transform.position).normalized;
+            Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
             Vector3 newPosition = transform.position + directionToPlayer * moveSpeed * Time.deltaTime;
             transform.position = newPosition;
         }
+    }
+
+    private void DistanceToPlayer()
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+        detectionRange = playercontroller.pickupRange;
+
+        if (distanceToPlayer < detectionRange)
+        {
+            ifcollect = true;
+            CancelInvoke("DistanceToPlayer");
+        }
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke("DistanceToPlayer");
     }
 }

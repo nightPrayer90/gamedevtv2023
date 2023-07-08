@@ -10,9 +10,10 @@ Material:
   m_Name: BackShield_Right
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords:
-  - _ALPHAPREMULTIPLY_ON
+  - _ALPHABLEND_ON
+  - _EMISSION
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
@@ -68,15 +69,15 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
-    - _Mode: 3
+    - _Mode: 2
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
+    - _SrcBlend: 5
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.5882353, g: 0.89411765, b: 1, a: 0.5}
-    - _EmissionColor: {r: 0.017501563, g: 0.058237962, b: 0.058237962, a: 1}
+    - _Color: {r: 0.5882353, g: 0.89411765, b: 1, a: 0.73165035}
+    - _EmissionColor: {r: 0.29411766, g: 0.44705883, b: 0.5, a: 1}
   m_BuildTextureStacks: []

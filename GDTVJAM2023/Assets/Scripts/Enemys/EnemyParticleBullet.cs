@@ -99,7 +99,7 @@ public class EnemyParticleBullet : MonoBehaviour
     
             if (other.TryGetComponent(out ShieldController en))
             {
-                en.UpdateShieldHealth(bulletDamage);
+                en.UpdateShieldHealth();
             }
 
         }

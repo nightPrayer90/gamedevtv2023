@@ -629,9 +629,6 @@ MonoBehaviour:
   damageInterval: 1
   damageTaken: 1
   isOutsideBorder: 0
-  isFrontShield: 0
-  isBackShieldLeft: 0
-  isBackShieldRight: 0
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   navigationController: {fileID: 318727567431198199}
   engineAudioSource: {fileID: 2559130692153237150}
@@ -753,6 +750,13 @@ MonoBehaviour:
   olReloadTime: 3
   orbitalLaser: {fileID: 7601612212577922131, guid: 9bcf5e0e76ce98b44a72e49fe758b485, type: 3}
   passivParentContainer: {fileID: 2604307836560290830}
+  fsSpawnTime: 8
+  fsShieldLife: 3
+  bsSpawnTime: 6
+  bsShildLife: 2
+  isFrontShieldEnabled: 0
+  isBackShieldLeft: 0
+  isBackShieldRight: 0
 --- !u!82 &2559130692153237150
 AudioSource:
   m_ObjectHideFlags: 0

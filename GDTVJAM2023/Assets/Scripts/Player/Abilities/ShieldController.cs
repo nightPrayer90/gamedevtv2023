@@ -1,52 +1,49 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class ShieldController : MonoBehaviour
 {
     private Transform playerTr;
-    private PlayerController playerController;
+    private PlayerWeaponController playerWeaponController;
     private GameManager gameManager;
     private Rigidbody playerRb;
-    private ShieldSpawner shieldSpawner;
+    private FrontShieldSpawner frontShieldSpawner;
+    private BackShieldSpawner backShieldSpawner;
 
     public Material targetMaterial;
-    private Color albedoColor;
 
     public int shieldLife = 10;
+    private int shieldLife_;
     public bool isBackShield = false;
     public bool isBackShieldLeft = false;
     public bool isBackShieldRight = false;
 
-    
+    public ParticleSystem dieEffect;
+    public ParticleSystem hitEffect;
+    public GameObject shieldMesh;
+    public BoxCollider shieldCollider;
 
-    //private Vector3 initialOffset;
-    private void Start()
+
+
+
+    /* **************************************************************************** */
+    /* LIFECYCLE METHODEN---------------------------------------------------------- */
+    /* **************************************************************************** */
+    private void Awake()
     {
-        playerTr = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        // get player Components
+        var player = GameObject.FindWithTag("Player");
+        playerTr = player.GetComponent<Transform>();
+        playerRb = player.GetComponent<Rigidbody>();
+        playerWeaponController = player.GetComponent<PlayerWeaponController>();
+
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        playerRb = playerController.GetComponent<Rigidbody>();
 
-        if (isBackShield == false)
-        {
-            playerController.isFrontShield = true;
-            shieldSpawner = GameObject.Find("front Shield").GetComponent<ShieldSpawner>();
-        }
-        else
-        {
-            if (isBackShieldLeft == true)
-                playerController.isBackShieldLeft = isBackShieldLeft;
-            else
-                playerController.isBackShieldRight = isBackShieldRight;
-            shieldSpawner = GameObject.Find("back Shield").GetComponent<ShieldSpawner>();
-        }
-
-
-        Color albedoColor = targetMaterial.GetColor("_Color");
-        float newAlpha = 0.5f; 
-        albedoColor.a = newAlpha;
-        targetMaterial.SetColor("_Color", albedoColor);
+        ShieldEnable();
+        targetMaterial.DOFade(0, 0.01f);
     }
 
+    // set position to player position
     private void LateUpdate()
     {
         if (playerTr != null)
@@ -56,64 +53,148 @@ public class ShieldController : MonoBehaviour
         }
     }
 
+    // if collision with an Enemy
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        // enemy target tag set
+        string tagStr = "Enemy";
+        if (gameManager.dimensionShift == true)
         {
+            tagStr = "secondDimensionEnemy";
+        }
 
-            EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
-            Transform eneymTransform = collision.gameObject.GetComponent<Transform>();
+        // shield destroy on collosion and gives the player a force in the backwards direction
+        if (collision.gameObject.CompareTag(tagStr))
+        {
+            if (tagStr == "Enemy")
+            {
+                // player bounce
+                Vector3 explosionDirection = collision.transform.position - transform.position;
+                explosionDirection.Normalize();
+                playerRb.AddForce(explosionDirection * -1f * .1f, ForceMode.Impulse);
 
-            Vector3 explosionDirection = collision.transform.position - transform.position;
-            explosionDirection.Normalize();
+                // enemy bounce
+                Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
+                enemyRb.AddForce(explosionDirection * 1f * 10f, ForceMode.Impulse);
 
-            playerRb.AddForce(explosionDirection * -1f * (enemyHealth.explosionForce/4), ForceMode.Impulse);
+                hitEffect.Play();
 
-            if (isBackShield == false)
-                playerController.isFrontShield = false;
+                // update shield health
+                UpdateShieldHealth();
+            }
             else
             {
-                if (isBackShieldLeft == true)
-                    playerController.isBackShieldLeft = false;
-                else
-                    playerController.isBackShieldRight = false;
+                // player bounce
+                Vector3 explosionDirection = collision.transform.position - transform.position;
+                explosionDirection.Normalize();
+                playerRb.AddForce(explosionDirection * -1f * 10f, ForceMode.Impulse);
+
+                // destroy shild
+                ShieldTypeDieControl();
             }
-            shieldSpawner.nextSpawnTime = Time.time + shieldSpawner.spawnInterval;
-
-            Instantiate(enemyHealth.dieExplosionObject, eneymTransform.position, eneymTransform.rotation);
-
-            gameManager.UpdateEnemyCounter(-1);
-
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
         }
     }
 
-    public void UpdateShieldHealth(int decHealth)
+
+    /* **************************************************************************** */
+    /* SHIELD MANAGEMENT----------------------------------------------------------- */
+    /* **************************************************************************** */
+    // manuel OnEnable Event for the shield object
+    public void ShieldEnable()
     {
-        shieldLife = Mathf.Max(0, shieldLife - decHealth);
+        AudioManager.Instance.PlaySFX("ShieldActivate");
+        shieldMesh.transform.DOPunchScale(new Vector3(1f, 1f, 1f), 1f, 5, 0.5f).SetUpdate(true);
 
-        Color albedoColor = targetMaterial.GetColor("_Color");
-        float newAlpha = 0.5f - (0.5f/shieldLife);
-        albedoColor.a = newAlpha;
-        targetMaterial.SetColor("_Color", albedoColor);
-
-
-        if (shieldLife <= 0)
+        // reset shild life
+        shieldLife_ = shieldLife;
+        
+        // set shield status
+        if (isBackShield == false)
         {
-            Destroy(gameObject);
+            playerWeaponController.isFrontShieldEnabled = true;
+            frontShieldSpawner = GameObject.Find("front Shield").GetComponent<FrontShieldSpawner>();
+        
+        }
+        else
+        {
+            backShieldSpawner = GameObject.Find("back Shield").GetComponent<BackShieldSpawner>();
+            if (isBackShieldLeft == true)
+            {
+                playerWeaponController.isBackShieldLeft = isBackShieldLeft;
+            }
+            else
+            {
+                playerWeaponController.isBackShieldRight = isBackShieldRight;
+            }
         }
 
+        // set material Color
+        shieldCollider.enabled = true;
+        shieldMesh.SetActive(true);
+
+        targetMaterial.DOFade(1f, 1f);
+    }
+
+    // the shiled get an hit from a bullet!
+    public void UpdateShieldHealth()
+    {
+        // Update shield life
+        shieldLife_ = Mathf.Max(0, shieldLife_ - 1);
+
+        // destroy shield
+        if (shieldLife_ <= 0)
+        {
+            ShieldTypeDieControl();
+            AudioManager.Instance.PlaySFX("ShieldDie");
+        }
+        else
+        {
+            // update shield color;
+            shieldMesh.transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0.5f), 0.5f, 5, 0.5f).SetUpdate(true);
+            UpdateShildColor();
+            AudioManager.Instance.PlaySFX("ShieldGetHit");
+        }
+     }
+
+    // Update the weapon and shieldcontroller if the ShildObject die
+    private void ShieldTypeDieControl()
+    {
+        // update all Controller
         if (isBackShield == false)
-            playerController.isFrontShield = false;
+        {
+            // front shild
+            playerWeaponController.isFrontShieldEnabled = false;
+            frontShieldSpawner.SpawnFrondShieldControl();
+        }
         else
         {
             if (isBackShieldLeft == true)
-                playerController.isBackShieldLeft = false;
+            {
+                playerWeaponController.isBackShieldLeft = false;
+                backShieldSpawner.SpawnBackShildLeftControl();
+            }
             else
-                playerController.isBackShieldRight = false;
+            {
+                playerWeaponController.isBackShieldRight = false;
+                backShieldSpawner.SpawnBackShildRightControl();
+            }
         }
-        shieldSpawner.nextSpawnTime = Time.time + shieldSpawner.spawnInterval;
 
+        // set the shild die Effect
+        dieEffect.Play();
+
+        // deactivate the shield Object
+        targetMaterial.DOFade(0f, 0.01f);
+        shieldCollider.enabled = false;
+        shieldMesh.SetActive(false);
+    }
+
+    // update the alpha value from the shield material 
+    private void UpdateShildColor()
+    {
+        float newAlpha = 1f - (0.9f / shieldLife_);
+
+        targetMaterial.DOKill();
+        targetMaterial.DOFade(newAlpha, 0.5f);
     }
 }

@@ -108,6 +108,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: f17935d11ad3cf84e8d8e0ecdbd31b4b, type: 3}
   - name: PlayerOrbitalSound
     clip: {fileID: 8300000, guid: dc149fd690520114c9c868fbfc4c24f1, type: 3}
+  - name: ShieldActivate
+    clip: {fileID: 8300000, guid: 9a53cc83c6a2ca84ca47de75da1ff84c, type: 3}
+  - name: ShieldGetHit
+    clip: {fileID: 8300000, guid: 18c3c34dc1fb0bc48960d9fae520e580, type: 3}
+  - name: ShieldDie
+    clip: {fileID: 8300000, guid: b5e9438bdeb99c94ab375932ba7466e8, type: 3}
   musicSource: {fileID: 5360521062723552136}
   sfxSource: {fileID: 6929376283259157201}
   musicVolume: 0.2

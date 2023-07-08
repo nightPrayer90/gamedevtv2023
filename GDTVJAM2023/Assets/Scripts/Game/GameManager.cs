@@ -109,12 +109,7 @@ public class GameManager : MonoBehaviour
                 var player_l = Instantiate(playerShip_laser, playerStartPosition.position, playerStartPosition.rotation);
                 player = player_l.GetComponent<PlayerController>();
                 break;
-        }
-
-       
-
-
-       
+        } 
     }
 
     void Start()
