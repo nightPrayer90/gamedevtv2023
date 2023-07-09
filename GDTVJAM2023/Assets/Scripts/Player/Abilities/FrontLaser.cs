@@ -10,6 +10,7 @@ public class FrontLaser : MonoBehaviour
 
     [Header("Weapon Settings")]
     public int bulletDamage = 10;
+    public int laserShootTime = 3;
     public float realodInterval = 5f;
     public int bulletMaxCount = 10;
     public float spawnInterval = 0.1f;
@@ -22,6 +23,10 @@ public class FrontLaser : MonoBehaviour
     public ParticleSystem hitParticle;
     public ParticleSystem muzzleParticle;
     public bool laserIsEnable = false;
+    private Color whiteZero = new Color(1f, 1f, 1f, 0f);
+    private Color whiteStart = new Color(1f, 1f, 1f, 0.8f);
+    private Color whiteEnd = new Color(1f, 1f, 1f, 0.3f);
+
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -37,12 +42,14 @@ public class FrontLaser : MonoBehaviour
             weapon.GetComponent<ParticleBullet>().bulletDamage = bulletDamage;
         }
 
+        // start fireing
+        StopLaserShooting();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        SetLRPosition();
         Shooting();
     }
 
@@ -65,29 +72,9 @@ public class FrontLaser : MonoBehaviour
     {
         if (lr.enabled == true)
         {
+            SetLRPosition();
             Raycast_();
-        }
 
-        if (bulletCount == bulletMaxCount)
-        {
-            Invoke("RealodWeapon", realodInterval);
-            bulletCount++;
-            
-            laserIsEnable = false;
-            muzzleParticle.Stop();
-           
-
-            Color whiteZero = new Color(1f, 1f, 1f, 0f);
-            Color whiteStart = new Color(1f, 1f, 1f, 0.8f);
-            Color whiteEnd = new Color(1f, 1f, 1f, 0.3f);
-
-            lr.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 0.2f).OnComplete(() =>
-            { lr.enabled = false; });
-
-        }
-
-        if (bulletCount < bulletMaxCount)
-        {
             if (Time.time >= nextSpawnTime)
             {
                 // shooting sound
@@ -114,24 +101,31 @@ public class FrontLaser : MonoBehaviour
     }
 
     // realod a salve of weapons
-    void RealodWeapon()
+    void StartLaserShooting()
     {
-        Color whiteZero = new Color(1f, 1f, 1f, 0f);
-        Color whiteStart = new Color(1f, 1f, 1f, 0.8f);
-        Color whiteEnd = new Color(1f, 1f, 1f, 0.3f);
+        Invoke("StopLaserShooting", laserShootTime);
 
-        lr.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 1f);
-
-
-        bulletCount = 0;
-        lr.enabled = true;
-        laserIsEnable = true;
         muzzleParticle.Play();
+
+        // FadeIn
+        lr.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 1f).OnComplete(() =>
+        { lr.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), laserShootTime - 0.5f).SetEase(Ease.InExpo).SetUpdate(UpdateType.Normal,false); });
+
+        laserIsEnable = true;
+    }
+
+    private void StopLaserShooting()
+    {
+        Invoke("StartLaserShooting", realodInterval);
+
+        muzzleParticle.Stop();
+
+        laserIsEnable = false;
     }
 
     void Raycast_()
     {
-        lr.SetPosition(0, transform.position);
+        //lr.SetPosition(0, transform.position);
 
         //lr.SetPosition(0, transform.position);
         float raycastDistance = laserDistance; // Die maximale Entfernung des Raycasts
