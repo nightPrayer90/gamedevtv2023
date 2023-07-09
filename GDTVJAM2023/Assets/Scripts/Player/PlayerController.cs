@@ -81,7 +81,8 @@ public class PlayerController : MonoBehaviour
             isIntro = true;
         }
         else
-        { if (isStartSound == false)
+        { 
+            if (isStartSound == false)
             {
                 AudioManager.Instance.PlaySFX("ShortAlert");
                 isStartSound = true;

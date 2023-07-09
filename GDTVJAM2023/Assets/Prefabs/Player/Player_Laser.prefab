@@ -5474,6 +5474,7 @@ MonoBehaviour:
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
   laserRange: 3
   bulletMaxCount: 60
+  laserShootTime: 3
   spawnInterval: 0.2
   audioClip: PlayerLaser
   lr: {fileID: 8436376726539609849}
@@ -5522,7 +5523,7 @@ MonoBehaviour:
   isNovaExplosion: 0
   isRockedWings: 0
   isFrontLaser: 0
-  isOrbitalLaser: 0
+  isOrbitalLaser: 1
   frontShield: {fileID: 4831901517162404820, guid: 120689e8e5b520d439a8645f1b1162d9, type: 3}
   backShield: {fileID: 3147124995608451256, guid: 6da4992dab9d49646be6b65d0388b3e4, type: 3}
   hcBulletDamage: 4

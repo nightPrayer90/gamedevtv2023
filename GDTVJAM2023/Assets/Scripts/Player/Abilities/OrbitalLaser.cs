@@ -30,10 +30,14 @@ public class OrbitalLaser : MonoBehaviour
 
     public void UpdateOrbs()
     {
-        foreach (OrbitalLaserOrb orb in orbitalLaserOrbs)
+        Debug.Log(player);
+        if (playerWeaponController != null)
         {
-            orb.damage = playerWeaponController.olDamage;
-            orb.realoadTime = playerWeaponController.olReloadTime;
+            foreach (OrbitalLaserOrb orb in orbitalLaserOrbs)
+            {
+                orb.damage = playerWeaponController.olDamage;
+                orb.realoadTime = playerWeaponController.olReloadTime;
+            }
         }
     }
 }

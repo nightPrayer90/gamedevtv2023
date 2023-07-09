@@ -32,11 +32,10 @@ public class PlayerMWController : MonoBehaviour
 
     [Header("Laser Settings")]
     public float laserRange = 5f;
-    public int bulletMaxCount = 10;
+    public int laserShootTime = 3;
     public float spawnInterval = 0.1f;
     public string audioClip = "";
     private float nextSpawnTime = 0f;
-    private int bulletCount = 0;
     public LineRenderer lr;
     public LineRenderer lr2;
     public ParticleSystem hitParticle;
@@ -46,6 +45,9 @@ public class PlayerMWController : MonoBehaviour
     public bool laserIsEnable = false;
     public Transform LaserSpawnPoint1;
     public Transform LaserSpawnPoint2;
+    private Color whiteZero = new Color(1f, 1f, 1f, 0f);
+    private  Color whiteStart = new Color(1f, 1f, 1f, 0.8f);
+    private Color whiteEnd = new Color(1f, 1f, 1f, 0.3f);
 
     //private Objects
     private PlayerController playerController;
@@ -69,11 +71,6 @@ public class PlayerMWController : MonoBehaviour
         if (weaponType == MWeapontyp.rocket)
             InvokeRepeating("SpawnRocked", fireRate, fireRate);
 
-
-        //laser 
-        bulletCount = bulletMaxCount;
-
-        
     }
 
     private void Update()
@@ -147,6 +144,11 @@ public class PlayerMWController : MonoBehaviour
         {
             if (!IsInvoking("SpawnRocked"))
                 InvokeRepeating("SpawnRocked", fireRate, fireRate);
+        }
+        else if (weaponType == MWeapontyp.laser)
+        {
+            if (!IsInvoking("StartLaserShooting") || IsInvoking("StopLaserShooting"))
+                StartLaserShooting();
         }
     }
 
@@ -266,8 +268,6 @@ public class PlayerMWController : MonoBehaviour
     /* **************************************************************************** */
     /* LASER ---------------------------------------------------------------------- */
     /* **************************************************************************** */
-    // set start values fom the weaponController
-
     // shooting controller
     void LaserShooting()
     {
@@ -276,32 +276,7 @@ public class PlayerMWController : MonoBehaviour
             SetLaserLRPosition();
             LaserRaycast();
             LaserRaycast2();
-        }
 
-        if (bulletCount == bulletMaxCount)
-        {
-            Invoke("RealoLaserWeapon", fireRate);
-            bulletCount++;
-            muzzleParticle.Stop();
-            muzzleParticle2.Stop();
-
-            Gradient gradient = lr.colorGradient;
-
-            GradientAlphaKey[] alphaKeys = gradient.alphaKeys;
-            Color whiteZero = new Color(1f, 1f, 1f, 0f);
-            Color whiteStart = new Color(1f, 1f, 1f, 0.8f);
-            Color whiteEnd = new Color(1f, 1f, 1f, 0.3f);
-
-            lr.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 0.5f).OnComplete(() =>
-            { lr.enabled = false; });
-
-            lr2.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 0.5f).OnComplete(() =>
-            { lr2.enabled = false; laserIsEnable = false; });
-
-        }
-
-        if (bulletCount < bulletMaxCount)
-        {
             if (Time.time >= nextSpawnTime)
             {
                 // shooting sound
@@ -312,43 +287,59 @@ public class PlayerMWController : MonoBehaviour
                 {
                     if (weapon != null)
                         weapon.Emit(1);
-                    bulletCount++;
                 }
 
                 nextSpawnTime = Time.time + spawnInterval;
             }
+
         }
-
     }
 
-    void SetLaserLRPosition()
+    private void StopLaserShooting()
     {
-        lr.SetPosition(0, LaserSpawnPoint1.position);
-        lr.SetPosition(1, LaserSpawnPoint1.position + LaserSpawnPoint1.forward * laserRange);
+        Invoke("StartLaserShooting", fireRate);
 
-        lr2.SetPosition(0, LaserSpawnPoint2.position);
-        lr2.SetPosition(1, LaserSpawnPoint2.position + LaserSpawnPoint1.forward * laserRange);
+        muzzleParticle.Stop();
+        muzzleParticle2.Stop();
+
+        //FadeOut
+        /*
+        lr.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 0.5f).OnComplete(() =>
+        { lr.enabled = false; });
+
+        lr2.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 0.5f).OnComplete(() =>
+        { lr2.enabled = false; laserIsEnable = false; });
+        */
+
+        //lr.enabled = false;
+        //lr2.enabled = false;
+        laserIsEnable = false;
     }
+
+ 
 
     // realod a salve of weapons
-    void RealoLaserWeapon()
+    void StartLaserShooting()
     {
-        Color whiteZero = new Color(1f, 1f, 1f, 0f);
-        Color whiteStart = new Color(1f, 1f, 1f, 0.8f);
-        Color whiteEnd = new Color(1f, 1f, 1f, 0.3f);
+        Invoke("StopLaserShooting", laserShootTime);
 
-        lr.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 0.5f);
-        lr2.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 0.5f);
-
-        bulletCount = 0;
-        lr.enabled = true;
-        lr2.enabled = true;
         muzzleParticle.Play();
         muzzleParticle2.Play();
+
+
+        // FadeIn
+        lr.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 0.5f).OnComplete(() =>
+        { lr.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), laserShootTime-0.5f).SetEase(Ease.InExpo); ; }) ;
+
+        lr2.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 0.5f).OnComplete(() =>
+        { lr2.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), laserShootTime-0.5f).SetEase(Ease.InExpo); }); ;
+
+        //lr.enabled = true;
+        //lr2.enabled = true;
         laserIsEnable = true;
     }
 
-    void LaserRaycast()
+    private void LaserRaycast()
     {
         lr.SetPosition(0, LaserSpawnPoint1.position);
 
@@ -378,7 +369,7 @@ public class PlayerMWController : MonoBehaviour
         }
     }
 
-    void LaserRaycast2()
+    private void LaserRaycast2()
     {
         lr2.SetPosition(0, LaserSpawnPoint2.position);
 
@@ -408,5 +399,12 @@ public class PlayerMWController : MonoBehaviour
         }
     }
 
+    private void SetLaserLRPosition()
+    {
+        lr.SetPosition(0, LaserSpawnPoint1.position);
+        lr.SetPosition(1, LaserSpawnPoint1.position + LaserSpawnPoint1.forward * laserRange);
 
+        lr2.SetPosition(0, LaserSpawnPoint2.position);
+        lr2.SetPosition(1, LaserSpawnPoint2.position + LaserSpawnPoint1.forward * laserRange);
+    }
 }
