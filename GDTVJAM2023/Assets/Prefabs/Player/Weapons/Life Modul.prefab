@@ -5000,9 +5000,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96eecb9bbacaa24fbf71b1739cb68b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleSystems:
-  - {fileID: 1462650886838710130}
-  tickInterval: 12
-  PercentHealthPerTick: 0.1
+  nextHealTick: 5
+  healthPerTick: 1
+  healColor: {r: 0, g: 1, b: 0.046100378, a: 1}
+  healParticleEffect: {fileID: 1462650886838710130}
   audioClip: MouseKlick
-  healColor: {r: 0, g: 0, b: 0, a: 0}

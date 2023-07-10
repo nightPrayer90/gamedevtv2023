@@ -60,25 +60,27 @@ public class ClassTooltip : MonoBehaviour
         contentField.text = tooltipContent[contentType].content;
 
         float contentvaluefloat = 0;
+        float contentvaluefloat2 = 0;
         string contentvalue_ = "0";
 
         switch (contentType)
         {
             case 0: // bullet
-                contentvaluefloat = playerWeaponController.mcBulletLvl * 5;
-                contentvalue_ = "+ " + contentvaluefloat.ToString() + "%";
+                contentvaluefloat = 5 + playerWeaponController.mcBulletLvl * 5;
+                contentvaluefloat2 = 125 + playerWeaponController.mcBulletLvl * 5;
+                contentvalue_ = "+ " + contentvaluefloat.ToString() + "% to crit with " + contentvaluefloat2.ToString() + "% damage";
                 break;
             case 1: // explosion
                 contentvaluefloat = playerWeaponController.mcExplosionLvl * 5;
-                contentvalue_ = "+ " + contentvaluefloat.ToString() + "%";
+                contentvalue_ = "+ " + contentvaluefloat.ToString() + "% more explosion range";
                 break;
             case 2: // laser
                 contentvaluefloat = playerWeaponController.mcLaserLvl;
-                contentvalue_ = "+ " + contentvaluefloat.ToString() + " %";
+                contentvalue_ = "+ " + contentvaluefloat.ToString() + " % burningchance";
                 break;
             case 3: // support
                 contentvaluefloat = playerWeaponController.mcSupportLvl * 3;
-                contentvalue_ = "- " + contentvaluefloat.ToString() + "%";
+                contentvalue_ = "- " + contentvaluefloat.ToString() + "% reaload time for all weapons";
                 break;
             case 4: // swarm
                 contentvaluefloat = playerWeaponController.scSwarmLvl * 2;

@@ -320,13 +320,18 @@ public class PlayerMWController : MonoBehaviour
         lr2.enabled = true;
 
         // FadeIn
-        lr.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 0.5f).OnComplete(() =>
-        { lr.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 1f).SetDelay(laserShootTime - 1f);  });
+        lr.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 0.8f).SetEase(Ease.OutElastic).OnComplete(() =>
+        { Invoke("LaserFadeOut", laserShootTime-1.5f);   });
 
-        lr2.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 0.5f).OnComplete(() =>
-        { lr2.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 1f).SetDelay(laserShootTime - 1f); }); 
+        lr2.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 0.8f).SetEase(Ease.OutElastic);
 
         laserIsEnable = true;
+    }
+
+    private void LaserFadeOut()
+    {
+        lr2.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 1f).SetEase(Ease.InBounce);
+        lr.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 1f).SetEase(Ease.InBounce);
     }
 
     private void LaserRaycast()

@@ -4,42 +4,37 @@ using UnityEngine;
 
 public class LifeModul : MonoBehaviour
 {
-    public List<ParticleSystem> particleSystems;
-    public float tickInterval = 2f;
-    private float nextHealthTick = 12f;
-    public float PercentHealthPerTick = 0.1f;
-    private PlayerController playerController;
+    public float nextHealTick = 12f;
+    public int healthPerTick = 1;
+    public Color healColor;
+    public ParticleSystem healParticleEffect;
     public string audioClip = "";
     private GameManager gameManager;
-    public Color healColor;
+    private PlayerController playerController;
+    
 
     // Update is called once per frame
     private void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        nextHealthTick = Time.time + tickInterval;
+
+        Invoke("Heal", nextHealTick);
     }
-    void Update()
+    void Heal()
     {
         if (playerController.playerCurrentHealth < playerController.playerMaxHealth)
         {
-            if (Time.time >= nextHealthTick)
-            {
-                foreach (ParticleSystem particleSystem in particleSystems)
-                {
-                    particleSystem.Play();
-                    
-                }
+                healParticleEffect.Play();
                 AudioManager.Instance.PlaySFX(audioClip);
 
-                int heal = -Mathf.Max(1, Mathf.RoundToInt(playerController.playerMaxHealth * PercentHealthPerTick));
+                int heal = Mathf.Min(healthPerTick, playerController.playerMaxHealth - playerController.playerCurrentHealth);
 
-                gameManager.DoFloatingText(gameObject.transform.position, heal.ToString(), healColor);
-                playerController.UpdatePlayerHealth(heal);
-                nextHealthTick = Time.time + tickInterval;
-            }
-  
+                gameManager.DoFloatingText(gameObject.transform.position, "+" + heal.ToString(), healColor);
+                playerController.UpdatePlayerHealth(-heal);
         }
+
+        // trigger the next heal
+        Invoke("Heal", nextHealTick);
     }
 }
