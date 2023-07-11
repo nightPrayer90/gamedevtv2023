@@ -27,8 +27,8 @@ public class UpgradPanelIndex : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y + 400f, transform.position.z);
       
         panelImage.sprite = spPanelDeselcet;
-        float duration = (float)index / 15;
-        transform.DOLocalMoveY(55f, .22f, true).SetUpdate(UpdateType.Normal, true).SetDelay(duration).OnComplete(() =>
+        //float duration = (float)index / 15;
+        transform.DOLocalMoveY(55f, .22f, true).SetUpdate(UpdateType.Normal, true).OnComplete(() =>
         {
             transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1).SetUpdate(true);
             AudioManager.Instance.PlaySFX("MouseKlick");

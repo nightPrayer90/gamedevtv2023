@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
-using DG.Tweening;
+
 
 public class UpgradePanelController : MonoBehaviour
 {
@@ -120,6 +120,7 @@ public class UpgradePanelController : MonoBehaviour
     // Update Values in Panel 4
     public void UpdateValuePanel()
     {
+  
         // update main weapon valuesText
         lifeText.text = playerController.playerMaxHealth.ToString();
         damageText.text = playerController.playerBulletBaseDamage.ToString();
