@@ -9,6 +9,7 @@ public class UpgradePanelController : MonoBehaviour
     [Header("Main Panel")]
     public UpgradeContainer[] upgradeIndex;
     public List<UpgradPanelIndex> panelList;
+    public UpgradeShipPanelController shipPanalController;
     [HideInInspector] public float[] upgradeValue;
     [HideInInspector] public string[] headerStr;
     [HideInInspector] public string[] descriptionTextStr;
@@ -36,7 +37,7 @@ public class UpgradePanelController : MonoBehaviour
     private GameManager gameManager;
     private PlayerController playerController;
     private PlayerWeaponController playerWeaponController;
-
+    
 
     void OnEnable()
     {
@@ -317,6 +318,7 @@ public class UpgradePanelController : MonoBehaviour
         panelList[0].FadeOut(index);
         panelList[1].FadeOut(index);
         panelList[2].FadeOut(index);
+        shipPanalController.FadeOut();
     }
 
     public void GetUpdate()

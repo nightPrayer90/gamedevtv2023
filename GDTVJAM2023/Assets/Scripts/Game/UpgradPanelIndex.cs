@@ -20,16 +20,19 @@ public class UpgradPanelIndex : MonoBehaviour
     public Image iconPanel;
     public TextMeshProUGUI mainClass;
     public TextMeshProUGUI subClass;
+    private bool isTweening = true;
 
     private void OnEnable()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y + 400f, transform.position.z);
       
         panelImage.sprite = spPanelDeselcet;
-        float duration = (float)index / 5;
-        transform.DOLocalMoveY(55f, .2f, true).SetUpdate(UpdateType.Normal, true).SetDelay(duration).OnComplete(() =>
+        float duration = (float)index / 15;
+        transform.DOLocalMoveY(55f, .22f, true).SetUpdate(UpdateType.Normal, true).SetDelay(duration).OnComplete(() =>
         {
             transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1).SetUpdate(true);
+            AudioManager.Instance.PlaySFX("MouseKlick");
+            isTweening = false;
         });
     }
 
@@ -57,8 +60,12 @@ public class UpgradPanelIndex : MonoBehaviour
         panelImage.sprite = spPanelSelect;
 
         AudioManager.Instance.PlaySFX("MouseHover");
-        transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.1f, 5, 1).SetUpdate(true);
-        
+        if (isTweening == false)
+        {
+            transform.DOComplete();
+            transform.DOPunchScale(new Vector3(0.08f, 0.08f, 0.08f), 0.08f, 5, 1).SetUpdate(true);
+       
+        } 
     }
 
     public void OnMouseExit_()
@@ -78,16 +85,18 @@ public class UpgradPanelIndex : MonoBehaviour
 
     public void FadeOut(int index_)
     {
+        float duration = (float)index / 15;
+
         if (index == index_)
         {
-            transform.DOLocalMoveY(855f, .6f, true).SetUpdate(UpdateType.Normal, true).OnComplete(() =>
+            transform.DOLocalMoveY(855f, .7f, true).SetUpdate(UpdateType.Normal, true).SetEase(Ease.InQuart).OnComplete(() =>
             {
                 upgradePanelController.GetUpdate();
             });
         }
         else
         {
-            transform.DOLocalMoveY(855f, .5f, true).SetUpdate(UpdateType.Normal, true).SetDelay(0.2f);
+            transform.DOLocalMoveY(855f, .5f, true).SetUpdate(UpdateType.Normal, true).SetEase(Ease.InQuart).SetDelay(0.2f + duration);
         }
 
 
