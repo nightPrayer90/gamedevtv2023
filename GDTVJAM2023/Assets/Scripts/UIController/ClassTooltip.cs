@@ -18,7 +18,6 @@ public class ClassTooltipC
 
 
 
-[ExecuteInEditMode]
 public class ClassTooltip : MonoBehaviour
 {
     public TextMeshProUGUI headerField;
