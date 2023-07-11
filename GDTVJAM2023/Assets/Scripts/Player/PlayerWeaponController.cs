@@ -85,6 +85,8 @@ public class PlayerWeaponController : MonoBehaviour
 
 
     [Header("Life Modul")]
+    public int lmLifePerTick = 1;
+    public float lmReloadTime = 10;
     public GameObject lifeModul;
 
 
@@ -112,7 +114,7 @@ public class PlayerWeaponController : MonoBehaviour
     [Header("Front Laser")]
     public int flDamage = 4;
     public float flReloadTime = 6f;
-    public int flBulletCount = 50;
+    public float flShootingTime = 3f;
     public GameObject frontLaser;
 
 
@@ -253,8 +255,10 @@ public class PlayerWeaponController : MonoBehaviour
 
         // main Class
         bulletCritChance = 5 + (mcBulletLvl * 5);
+        bulletCritDamage = 125 + (mcBulletLvl * 5);
+
         burnDamageChance = (mcLaserLvl);
-        rocketAOERadius = 1 +(mcExplosionLvl * 0.05f);
+        rocketAOERadius = 1 + (mcExplosionLvl * 0.1f);
         float suReloadTime = (mcSupportLvl * 0.03f);
 
         // sub class
@@ -299,8 +303,8 @@ public class PlayerWeaponController : MonoBehaviour
         // Life Modul - support
         if (isLifeModulInstalled != null)
         {
-            //isLifeModulInstalled
-            //suReloadTime
+            isLifeModulInstalled.nextHealTick = Mathf.Max(0.1f, lmReloadTime - (lmReloadTime * suReloadTime));
+            isLifeModulInstalled.healthPerTick = lmLifePerTick;
         }
 
         // Spread Gun - bullet - swarm
@@ -345,8 +349,8 @@ public class PlayerWeaponController : MonoBehaviour
         if (isFrontLaserInstalled != null)
         {
             isFrontLaserInstalled.bulletDamage = flDamage;
-            isFrontLaserInstalled.realodInterval = Mathf.Max (0.1f, flReloadTime -(flReloadTime * suReloadTime));
-            isFrontLaserInstalled.bulletMaxCount = flBulletCount;
+            isFrontLaserInstalled.realodInterval = Mathf.Max (1f, flReloadTime -(flReloadTime * suReloadTime));
+            isFrontLaserInstalled.laserShootTime = flShootingTime;
         }
 
         // Orbital Laser - laser - defence

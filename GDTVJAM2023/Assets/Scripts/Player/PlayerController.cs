@@ -183,6 +183,7 @@ public class PlayerController : MonoBehaviour
                 {
                     gameManager.outsideBorderText.text = "";
                     CancelInvoke("PlayerIsOutsideBorder");
+                    CancelInvoke("PlayerIsOutsideBorderWarning");
                     isOutsideBorder = false;
                 }
                 break;
@@ -242,6 +243,7 @@ private void OnTriggerStay(Collider other)
             if (isOutsideBorder == true)
             {
                 CancelInvoke("PlayerIsOutsideBorder");
+                CancelInvoke("PlayerIsOutsideBorderWarning");
                 gameManager.outsideBorderText.text = "";
                 isOutsideBorder = false;
             }
@@ -256,10 +258,12 @@ private void OnTriggerStay(Collider other)
             if (isOutsideBorder == false && isIntro == false)
             {
                 InvokeRepeating("PlayerIsOutsideBorder", 1f, damageInterval);
+                Invoke("PlayerIsOutsideBorderWarning", 0.1f);
+
                 gameManager.outsideBorderText.text = "outside border!";
                 gameManager.outsideBorderTextTweenTarget.DOPunchScale(new Vector3(0.15f, 0.15f, 0.15f), 0.8f, 10, 0.5f);
                 isOutsideBorder = true;
-                AudioManager.Instance.PlaySFX("WarningBoss");
+                
             }
         }
     }
@@ -437,11 +441,17 @@ private void OnTriggerStay(Collider other)
         UpdatePlayerHealth(damageTaken);
         gameManager.outsideBorderTextTweenTarget.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.6f, 15, 0.5f);
     }
+    // the player goes outside border
+    private void PlayerIsOutsideBorderWarning()
+    {
+        AudioManager.Instance.PlaySFX("WarningBoss");
+    }
 
     // activate the navigation controller
     public void SetNavigationController()
     {
         navigationController.SetTargetPosition();
     }
+
 
 }

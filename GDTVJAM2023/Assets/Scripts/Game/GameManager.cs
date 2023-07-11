@@ -294,6 +294,8 @@ public class GameManager : MonoBehaviour
         // Levelup
         if (isLevelUp)
         {
+            DOTween.CompleteAll();
+
             experienceSlider.value = experienceSlider.maxValue;
             CreateRandomNumbers(playerLevel);
 
@@ -304,7 +306,7 @@ public class GameManager : MonoBehaviour
             bossUI.SetActive(false);
 
             expText.text = playerLevel.ToString();
-            DOTween.CompleteAll();
+            
         }
         else
         {

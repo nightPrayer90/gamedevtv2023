@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class UpgradePanelController : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class UpgradePanelController : MonoBehaviour
     public TextMeshProUGUI speedText;
     public TextMeshProUGUI agilityText;
     public TextMeshProUGUI pickupText;
-    public List<Color> classColors;
+    [HideInInspector] public List<Color> classColors;
     public List<Image> classPanels = new List<Image>();
 
     public List<Image> selectedUpgradePanelList = new List<Image>();
@@ -35,7 +36,6 @@ public class UpgradePanelController : MonoBehaviour
     private GameManager gameManager;
     private PlayerController playerController;
     private PlayerWeaponController playerWeaponController;
-  
 
 
     void OnEnable()
@@ -57,10 +57,9 @@ public class UpgradePanelController : MonoBehaviour
 
         StringLibrary();
         UpdateValuePanel();
+
     }
 
-
-  
 
     // String Library
     public void StringLibrary()
@@ -310,6 +309,18 @@ public class UpgradePanelController : MonoBehaviour
 
         }
 
+        
+    }
+
+    public void TriggerPanel(int index)
+    {
+        panelList[0].FadeOut(index);
+        panelList[1].FadeOut(index);
+        panelList[2].FadeOut(index);
+    }
+
+    public void GetUpdate()
+    {
         gameManager.UpgradeGet();
     }
 

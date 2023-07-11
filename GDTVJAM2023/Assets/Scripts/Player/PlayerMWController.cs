@@ -71,6 +71,12 @@ public class PlayerMWController : MonoBehaviour
         if (weaponType == MWeapontyp.rocket)
             InvokeRepeating("SpawnRocked", fireRate, fireRate);
 
+        // rocket
+        if (weaponType == MWeapontyp.laser)
+        {
+            lr.enabled = false;
+            lr2.enabled = false;
+        }
     }
 
     private void Update()
@@ -271,9 +277,10 @@ public class PlayerMWController : MonoBehaviour
     // shooting controller
     void LaserShooting()
     {
+        SetLaserLRPosition();
+
         if (laserIsEnable == true)
         {
-            SetLaserLRPosition();
             LaserRaycast();
             LaserRaycast2();
 
@@ -302,21 +309,8 @@ public class PlayerMWController : MonoBehaviour
         muzzleParticle.Stop();
         muzzleParticle2.Stop();
 
-        //FadeOut
-        /*
-        lr.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 0.5f).OnComplete(() =>
-        { lr.enabled = false; });
-
-        lr2.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 0.5f).OnComplete(() =>
-        { lr2.enabled = false; laserIsEnable = false; });
-        */
-
-        //lr.enabled = false;
-        //lr2.enabled = false;
         laserIsEnable = false;
     }
-
- 
 
     // realod a salve of weapons
     void StartLaserShooting()
@@ -326,32 +320,33 @@ public class PlayerMWController : MonoBehaviour
         muzzleParticle.Play();
         muzzleParticle2.Play();
 
+        lr.enabled = true;
+        lr2.enabled = true;
 
         // FadeIn
-        lr.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 0.5f).OnComplete(() =>
-        { lr.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), laserShootTime-0.5f).SetEase(Ease.InExpo); ; }) ;
+        lr.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 0.8f).SetEase(Ease.OutElastic).OnComplete(() =>
+        { Invoke("LaserFadeOut", laserShootTime-1.5f);   });
 
-        lr2.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 0.5f).OnComplete(() =>
-        { lr2.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), laserShootTime-0.5f).SetEase(Ease.InExpo); }); ;
+        lr2.DOColor(new Color2(whiteZero, whiteZero), new Color2(whiteStart, whiteEnd), 0.8f).SetEase(Ease.OutElastic);
 
-        //lr.enabled = true;
-        //lr2.enabled = true;
         laserIsEnable = true;
+    }
+
+    private void LaserFadeOut()
+    {
+        lr2.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 1f).SetEase(Ease.InBounce);
+        lr.DOColor(new Color2(whiteStart, whiteEnd), new Color2(whiteZero, whiteZero), 1f).SetEase(Ease.InBounce);
     }
 
     private void LaserRaycast()
     {
-        lr.SetPosition(0, LaserSpawnPoint1.position);
-
-        float raycastDistance = laserRange; // Die maximale Entfernung des Raycasts
-        int layerMask = (1 << 6) | (1 << 9); // Bitmaske für Render-Layer 6 und 9
+        float raycastDistance = laserRange;
+        int layerMask = (1 << 6) | (1 << 9);
 
         // laser 1
         RaycastHit hit;
         if (Physics.Raycast(LaserSpawnPoint1.position, -LaserSpawnPoint1.forward, out hit, raycastDistance, layerMask))
-        {
-            
-            // Kollision mit einem Objekt auf den gewünschten Render-Layern
+        { 
             GameObject collidedObject = hit.collider.gameObject;
 
             lr.SetPosition(1, collidedObject.transform.position);
@@ -371,17 +366,13 @@ public class PlayerMWController : MonoBehaviour
 
     private void LaserRaycast2()
     {
-        lr2.SetPosition(0, LaserSpawnPoint2.position);
-
-        float raycastDistance = laserRange; // Die maximale Entfernung des Raycasts
-        int layerMask = (1 << 6) | (1 << 9); // Bitmaske für Render-Layer 6 und 9
+        float raycastDistance = laserRange; 
+        int layerMask = (1 << 6) | (1 << 9);
 
         // laser 2
         RaycastHit hit;
         if (Physics.Raycast(LaserSpawnPoint2.position, -LaserSpawnPoint2.forward, out hit, raycastDistance, layerMask))
         {
-
-            // Kollision mit einem Objekt auf den gewünschten Render-Layern
             GameObject collidedObject = hit.collider.gameObject;
 
             lr2.SetPosition(1, collidedObject.transform.position);
@@ -402,9 +393,9 @@ public class PlayerMWController : MonoBehaviour
     private void SetLaserLRPosition()
     {
         lr.SetPosition(0, LaserSpawnPoint1.position);
-        lr.SetPosition(1, LaserSpawnPoint1.position + LaserSpawnPoint1.forward * laserRange);
+        lr.SetPosition(1, LaserSpawnPoint1.position - LaserSpawnPoint1.forward * laserRange);
 
         lr2.SetPosition(0, LaserSpawnPoint2.position);
-        lr2.SetPosition(1, LaserSpawnPoint2.position + LaserSpawnPoint1.forward * laserRange);
+        lr2.SetPosition(1, LaserSpawnPoint2.position - LaserSpawnPoint2.forward * laserRange);
     }
 }

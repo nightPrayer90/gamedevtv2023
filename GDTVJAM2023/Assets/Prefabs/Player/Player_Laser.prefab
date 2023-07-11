@@ -5473,7 +5473,6 @@ MonoBehaviour:
   spawnPoint2: {fileID: 9074861371868659753}
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
   laserRange: 3
-  bulletMaxCount: 60
   laserShootTime: 3
   spawnInterval: 0.2
   audioClip: PlayerLaser
@@ -5516,14 +5515,14 @@ MonoBehaviour:
   isRocketLauncher: 0
   isFireFlies: 0
   isBulletWings: 0
-  isLifeModul: 0
+  isLifeModul: 1
   isSpreadGun: 0
-  isFrontShield: 1
-  isBackShield: 1
+  isFrontShield: 0
+  isBackShield: 0
   isNovaExplosion: 0
   isRockedWings: 0
   isFrontLaser: 0
-  isOrbitalLaser: 1
+  isOrbitalLaser: 0
   frontShield: {fileID: 4831901517162404820, guid: 120689e8e5b520d439a8645f1b1162d9, type: 3}
   backShield: {fileID: 3147124995608451256, guid: 6da4992dab9d49646be6b65d0388b3e4, type: 3}
   hcBulletDamage: 4
@@ -5542,6 +5541,8 @@ MonoBehaviour:
   bwRealoadTime: 4.5
   bwSalveCount: 7
   bulletWings: {fileID: 8390656690878353693, guid: 0aaf90ad2cd0d844397b6d95f3b62d12, type: 3}
+  lmLifePerTick: 1
+  lmReloadTime: 10
   lifeModul: {fileID: 8459815295507979944, guid: 0bb488a5296b7d34eb8f8afe684ebff5, type: 3}
   sgDamage: 3
   sgReloadTime: 2.5
@@ -15915,7 +15916,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0}
+      maxColor: {r: 0, g: 1, b: 1, a: 0}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -20974,7 +20975,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0}
+      maxColor: {r: 0, g: 1, b: 1, a: 0}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

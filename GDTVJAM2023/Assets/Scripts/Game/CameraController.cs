@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+
 
 public class CameraController : MonoBehaviour
 {
@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour
     public GameManager gameManager;
     private float shakeTimer = 0f;
 
+    private bool isShake = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         // Blockt alle Screenshakes
         if (!gameManager.gameIsPlayed || gameManager.gameOver)
             shakeTimer = 0f;
@@ -42,36 +44,63 @@ public class CameraController : MonoBehaviour
         }
         else
         {
+            
+        }*/
+        //if (isShake == false)
             transform.position = player.transform.position + cameraOffset;
-        }
+
     }
 
-        
+
     public void ShakeScreen()
     {
         // Starte den Screen Shake
         shakeTimer = shakeDuration;
         shakeIntensity = shakeIntensity_;
+
+        if (isShake == false)
+        {
+            isShake = true;
+            transform.DOShakeRotation(shakeTimer, new Vector3(shakeIntensity, shakeIntensity, shakeIntensity), 30, 90f, true, ShakeRandomnessMode.Full).OnComplete(() => { isShake = false; });
+        }
     }
 
     public void BigShakeScreen()
     {
         // Starte den Screen Shake
-        shakeTimer = shakeDuration*10;
-        shakeIntensity = shakeIntensity_*3;
+        shakeTimer = shakeDuration*7;
+        shakeIntensity = shakeIntensity_*1.5f;
+
+        if (isShake == false)
+        {
+            isShake = true;
+            transform.DOShakeRotation(shakeTimer, new Vector3(shakeIntensity, shakeIntensity, shakeIntensity), 30, 90f, true, ShakeRandomnessMode.Full).OnComplete(() => { isShake = false; });
+        }
     }
 
     public void BigShortShakeScreen()
     {
         // Starte den Screen Shake
         shakeTimer = shakeDuration * 5;
-        shakeIntensity = shakeIntensity_ * 2;
+        shakeIntensity = shakeIntensity_ * 1.5f;
+
+        if (isShake == false)
+        {
+            isShake = true;
+            transform.DOShakeRotation(shakeTimer, new Vector3(shakeIntensity, shakeIntensity, shakeIntensity), 30, 90f, true, ShakeRandomnessMode.Full).OnComplete(() => { isShake = false; });
+        }
     }
 
     public void LongShakeScreen()
     {
         // Starte den Screen Shake
-        shakeTimer = shakeDuration * 70;
-        shakeIntensity = shakeIntensity_ * 0.3f;
+        shakeTimer = shakeDuration * 48;
+        shakeIntensity = shakeIntensity_ * 0.4f;
+
+        if (isShake == false)
+        {
+            isShake = true;
+            transform.DOShakeRotation(shakeTimer, new Vector3(shakeIntensity, shakeIntensity, shakeIntensity), 30, 90f, true, ShakeRandomnessMode.Full).OnComplete(() => { isShake = false; });
+        }
     }
 }
