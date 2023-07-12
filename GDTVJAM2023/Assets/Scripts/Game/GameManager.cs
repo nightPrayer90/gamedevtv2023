@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     public List<Color> globalClassColor;
     public Transform outsideBorderTextTweenTarget;
     [HideInInspector] public float curretEnemyCounter;
-
+    public GameObject miniMap;
 
     [Header("Dimension Shift")]
     public Texture firstDimensionTexture1;
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
     private PlayerController player;
     private Light directionalLight;
     private GameObject currentSpawnManager;
-
+    private bool isIntro = true;
 
 
 
@@ -131,12 +131,14 @@ public class GameManager : MonoBehaviour
         StartDimensionValues();
 
         // Initialze HUD Values
-        UpdateUIPlayerHealth(10,10);
+        //UpdateUIPlayerHealth(10,10);
         UpdateUIPlayerExperience(false, 1, 10, 0);
         UpdateTimerText();
         UpdateDistrictText();
         UpdateEnemyToKill(0);
         UpdateEnemyCounter(0);
+
+        PlayerUIIntroTween();
     }
 
     // sets start values that must be the same for every run
@@ -270,20 +272,23 @@ public class GameManager : MonoBehaviour
     // update the player health UI bar - PlayerUI
     public void UpdateUIPlayerHealth(int playerCurrentHealth, int playerMaxHealth)
     {
-        // update text
-        healthText.text = playerCurrentHealth + "/" + playerMaxHealth;
+        if (isIntro == false)
+        {
+            // update text
+            healthText.text = playerCurrentHealth + "/" + playerMaxHealth;
 
-        // update slider
-        healthBar.maxValue = playerMaxHealth;
-        //healthBar.value = playerCurrentHealth;
-        healthBar.DOValue(playerCurrentHealth, 0.5f);
-        healthBar.transform.DOKill(true);
-        healthBar.transform.DOShakePosition(0.5f, 2, 10, 90, true, true,ShakeRandomnessMode.Harmonic);
+            // update slider
+            healthBar.maxValue = playerMaxHealth;
 
+            healthBar.DOValue(playerCurrentHealth, 0.5f);
+            healthBar.transform.DOKill(true);
+            healthBar.transform.DOShakePosition(0.5f, 2, 10, 90, true, true, ShakeRandomnessMode.Harmonic);
 
-        // check if is game over
-        if (playerMaxHealth <= 0)
-            GameIsOver();
+      
+            // check if is game over
+            if (playerMaxHealth <= 0)
+                GameIsOver();
+        }
     }
 
     // update the player experience bar - PlayerUI
@@ -310,8 +315,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            experienceSlider.transform.DOKill(true);
-            experienceSlider.transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.5f, 5, 0.5f).SetUpdate(true);
+            if (isIntro == false)
+            {
+                experienceSlider.transform.DOKill(true);
+                experienceSlider.transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.5f, 5, 0.5f).SetUpdate(true);
+            }
             experienceSlider.DOValue(playerCurrentExperience, 0.5f);
         }
         //experienceSlider.value = playerCurrentExperience;
@@ -321,7 +329,8 @@ public class GameManager : MonoBehaviour
     public void UpdateDistrictText()
     {
         districtText.text = "District " + districtNumber.ToString() + "/9";
-        districtText.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 1.5f, 5, 0.5f).SetUpdate(true);
+        if (isIntro == false)
+            districtText.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 1.5f, 5, 0.5f).SetUpdate(true);
 
 
         //wird bei jedem districtwechsel ausgelöst
@@ -329,8 +338,11 @@ public class GameManager : MonoBehaviour
         enemysToKill = spawnDistrictList.waveKillList[districtNumber - 1];
         enemyToKillText.text = "Enemys to defeat: " + enemysToKill.ToString();
 
-        enemyToKillText.transform.DOKill(true);
-        enemyToKillText.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 1f, 5, 0.5f).SetUpdate(true);
+        if (isIntro == false)
+        {
+            enemyToKillText.transform.DOKill(true);
+            enemyToKillText.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 1f, 5, 0.5f).SetUpdate(true);
+        }
     }
    
 
@@ -357,8 +369,11 @@ public class GameManager : MonoBehaviour
                 ScreenShake(2);
 
                 // tewwn enemytoDefeat text
-                enemyToKillText.transform.DOKill(true);
-                enemyToKillText.transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 1.5f, 5, 0.5f).SetUpdate(true);
+                if (isIntro == false)
+                {
+                    enemyToKillText.transform.DOKill(true);
+                    enemyToKillText.transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 1.5f, 5, 0.5f).SetUpdate(true);
+                }
             }
         }
     }
@@ -541,9 +556,55 @@ public class GameManager : MonoBehaviour
     {
         GameObject floatingText = ObjectPoolManager.SpawnObject(textPrefab, position, Quaternion.LookRotation(Camera.main.transform.forward), ObjectPoolManager.PoolType.FloatingText);
         floatingText.GetComponent<TMP_Text>().color = c;
+        // You can call this from anywhere by calling gameManager.DoFloatingText(position, text, c);
         floatingText.GetComponent<DamagePopup>().SetText(text);
     }
-    // You can call this from anywhere by calling gameManager.DoFloatingText(position, text, c);
+    
+    public void PlayerUIIntroTween()
+    {
+        healthText.text = "";
+        healthBar.value = 0;
+
+        // save default position from the Editor
+        Transform timerTr = timerText.transform;
+        Transform districtTr = districtText.transform;
+        Transform killTextTr = enemyToKillText.transform;
+        Transform miniMapTr = miniMap.transform;
+
+        // set textmesh outsinde from view
+        timerTr.position = new Vector3(timerTr.position.x, timerTr.position.y+100f, timerTr.position.z);
+        districtTr.position = new Vector3(districtTr.position.x, districtTr.position.y + 100f, districtTr.position.z);
+        killTextTr.position = new Vector3(killTextTr.position.x, killTextTr.position.y + 100f, killTextTr.position.z);
+        miniMapTr.position = new Vector3(miniMapTr.position.x+200, miniMapTr.position.y, miniMapTr.position.z);
+
+        experienceSlider.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 0.3f, 5, 1).SetDelay(0.5f).OnComplete(() =>
+        {
+            healthBar.DOValue(player.playerMaxHealth, 1f, false).SetEase(Ease.InQuart).OnComplete(() => { healthText.text = player.playerCurrentHealth + "/" + player.playerMaxHealth;  });
+            healthBar.transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1).SetDelay(0.5f);
+        }); ;
+
+
+        // doTween elements
+        timerTr.DOLocalMoveY(-14f, .3f, true).SetUpdate(UpdateType.Normal, true).SetDelay(1.5f).OnComplete(() =>
+        {
+            timerTr.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1);
+        });
+        districtTr.DOLocalMoveY(-14f, .3f, true).SetUpdate(UpdateType.Normal, true).SetDelay(2f).OnComplete(() =>
+        {
+            districtTr.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1);
+        });
+        killTextTr.DOLocalMoveY(-14f, .3f, true).SetUpdate(UpdateType.Normal, true).SetDelay(2.5f).OnComplete(() =>
+        {
+            killTextTr.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1);
+            isIntro = false;
+
+            miniMapTr.DOLocalMoveX(-28f, .3f, true).SetUpdate(UpdateType.Normal, true).OnComplete(() =>
+            {
+                miniMapTr.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1);
+            });
+        });
+    }
+
 }
 
 
