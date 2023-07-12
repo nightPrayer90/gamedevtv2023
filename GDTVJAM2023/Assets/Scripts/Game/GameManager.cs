@@ -570,37 +570,49 @@ public class GameManager : MonoBehaviour
         Transform districtTr = districtText.transform;
         Transform killTextTr = enemyToKillText.transform;
         Transform miniMapTr = miniMap.transform;
+        float miniX = miniMapTr.position.x;
 
         // set textmesh outsinde from view
         timerTr.position = new Vector3(timerTr.position.x, timerTr.position.y+100f, timerTr.position.z);
         districtTr.position = new Vector3(districtTr.position.x, districtTr.position.y + 100f, districtTr.position.z);
         killTextTr.position = new Vector3(killTextTr.position.x, killTextTr.position.y + 100f, killTextTr.position.z);
-        miniMapTr.position = new Vector3(miniMapTr.position.x+200, miniMapTr.position.y, miniMapTr.position.z);
+        miniMapTr.position = new Vector3(miniMapTr.position.x+500, miniMapTr.position.y, miniMapTr.position.z);
 
-        experienceSlider.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 0.3f, 5, 1).SetDelay(0.5f).OnComplete(() =>
+        AudioManager.Instance.PlaySFX("WindowOpen");
+        experienceSlider.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 0.4f, 5, 1).SetDelay(0.2f).OnComplete(() =>
         {
-            healthBar.DOValue(player.playerMaxHealth, 1f, false).SetEase(Ease.InQuart).OnComplete(() => { healthText.text = player.playerCurrentHealth + "/" + player.playerMaxHealth;  });
-            healthBar.transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1).SetDelay(0.5f);
-        }); ;
+            AudioManager.Instance.PlaySFX("PlayerLaserDie"); 
+            healthBar.DOValue(player.playerMaxHealth, 0.6f, false).SetEase(Ease.InExpo).OnComplete(() => 
+            { 
+                healthText.text = player.playerCurrentHealth + "/" + player.playerMaxHealth;
+                
+            });
+            healthBar.transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1).SetDelay(0.55f);
+        }); 
 
 
         // doTween elements
-        timerTr.DOLocalMoveY(-14f, .3f, true).SetUpdate(UpdateType.Normal, true).SetDelay(1.5f).OnComplete(() =>
+        timerTr.DOLocalMoveY(-14f, .3f, true).SetUpdate(UpdateType.Normal, true).SetDelay(1.4f).OnComplete(() =>
         {
-            timerTr.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1);
+            timerTr.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.25f, 5, 1);
+            AudioManager.Instance.PlaySFX("MouseKlick");
         });
-        districtTr.DOLocalMoveY(-14f, .3f, true).SetUpdate(UpdateType.Normal, true).SetDelay(2f).OnComplete(() =>
+        districtTr.DOLocalMoveY(-14f, .3f, true).SetUpdate(UpdateType.Normal, true).SetDelay(1.8f).OnComplete(() =>
         {
-            districtTr.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1);
+            districtTr.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.25f, 5, 1);
+            AudioManager.Instance.PlaySFX("MouseKlick");
         });
-        killTextTr.DOLocalMoveY(-14f, .3f, true).SetUpdate(UpdateType.Normal, true).SetDelay(2.5f).OnComplete(() =>
+        killTextTr.DOLocalMoveY(-14f, .3f, true).SetUpdate(UpdateType.Normal, true).SetDelay(2.2f).OnComplete(() =>
         {
-            killTextTr.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1);
-            isIntro = false;
-
-            miniMapTr.DOLocalMoveX(-28f, .3f, true).SetUpdate(UpdateType.Normal, true).OnComplete(() =>
+            killTextTr.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.25f, 5, 1);
+            AudioManager.Instance.PlaySFX("MouseKlick");
+            
+            miniMapTr.DOMoveX(miniX, .25f, true).SetUpdate(UpdateType.Normal, true).SetDelay(0.2f).OnComplete(() =>
             {
-                miniMapTr.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1);
+                AudioManager.Instance.PlaySFX("MouseKlick");
+                miniMapTr.DOPunchScale(new Vector3(0.12f, 0.12f, 0.12f), 0.25f, 5, 1);
+                //AudioManager.Instance.PlaySFX("WindowOpen");
+                isIntro = false;
             });
         });
     }

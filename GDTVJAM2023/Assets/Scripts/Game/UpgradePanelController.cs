@@ -37,7 +37,9 @@ public class UpgradePanelController : MonoBehaviour
     private GameManager gameManager;
     private PlayerController playerController;
     private PlayerWeaponController playerWeaponController;
-    
+
+    public int selectetPanel;
+    private bool isButtonPressed = false;
 
     void OnEnable()
     {
@@ -60,6 +62,7 @@ public class UpgradePanelController : MonoBehaviour
         UpdateValuePanel();
 
     }
+
 
 
     // String Library
@@ -149,6 +152,14 @@ public class UpgradePanelController : MonoBehaviour
     public void UpdateValuePanelOnMouseEnter(int index)
     {
         int number = gameManager.selectedNumbers_[index];
+
+        selectetPanel = index;
+
+        panelList[0].DeselectPanel();
+        panelList[1].DeselectPanel();
+        panelList[2].DeselectPanel();
+
+        panelList[index].SelectPanel();
 
         switch (number)
         {

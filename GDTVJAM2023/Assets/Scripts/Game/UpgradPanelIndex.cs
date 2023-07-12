@@ -21,18 +21,25 @@ public class UpgradPanelIndex : MonoBehaviour
     public TextMeshProUGUI mainClass;
     public TextMeshProUGUI subClass;
     private bool isTweening = true;
+    public bool isSelected = false;
+
 
     private void OnEnable()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y + 400f, transform.position.z);
       
+        // fade in
         panelImage.sprite = spPanelDeselcet;
-        //float duration = (float)index / 15;
         transform.DOLocalMoveY(55f, .22f, true).SetUpdate(UpdateType.Normal, true).OnComplete(() =>
         {
             transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1).SetUpdate(true);
             AudioManager.Instance.PlaySFX("MouseKlick");
             isTweening = false;
+
+            if (index == 0)
+            {
+                SelectPanel();
+            }
         });
     }
 
@@ -56,8 +63,13 @@ public class UpgradPanelIndex : MonoBehaviour
     public void OnMouseEnter_()
     {
         // Farbe des Panels ändern, wenn die Maus über das Panel fährt
-        upgradePanelController.UpdateValuePanelOnMouseEnter(index);
-        panelImage.sprite = spPanelSelect;
+
+        if (isTweening == false)
+        {
+            upgradePanelController.UpdateValuePanelOnMouseEnter(index);
+            SelectPanel();
+        }
+        /*panelImage.sprite = spPanelSelect;
 
         AudioManager.Instance.PlaySFX("MouseHover");
         if (isTweening == false)
@@ -65,14 +77,33 @@ public class UpgradPanelIndex : MonoBehaviour
             transform.DOComplete();
             transform.DOPunchScale(new Vector3(0.08f, 0.08f, 0.08f), 0.08f, 5, 1).SetUpdate(true);
        
-        } 
+        } */
+    }
+
+    public void SelectPanel()
+    {
+        isSelected = true;
+        panelImage.sprite = spPanelSelect;
+
+        AudioManager.Instance.PlaySFX("MouseHover");
+        if (isTweening == false)
+        {
+            transform.DOComplete();
+            transform.DOPunchScale(new Vector3(0.08f, 0.08f, 0.08f), 0.08f, 5, 1).SetUpdate(true);
+        }
     }
 
     public void OnMouseExit_()
     {
         // Zurück zur Standardfarbe wechseln, wenn die Maus das Panel verlässt
-        panelImage.sprite = spPanelDeselcet;
         upgradePanelController.UpdateValuePanel();
+        DeselectPanel();
+    }
+
+    public void DeselectPanel()
+    {
+        isSelected = false;
+        panelImage.sprite = spPanelDeselcet;
     }
 
     public void OnMouseDown_()
