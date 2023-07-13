@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
             {
                 AudioManager.Instance.PlaySFX("ShortAlert");
                 isStartSound = true;
-                playerRb.AddForce(gameObject.transform.forward * -speed * startImpulse * Time.deltaTime, ForceMode.Force);
+                playerRb.AddForce(transform.forward * -speed * startImpulse, ForceMode.Force);
                 // set .y to 6f
                 playerRb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
                 // start Shooting
@@ -325,6 +325,7 @@ private void OnTriggerStay(Collider other)
             // get Input values from the user
             float forwardInput = Input.GetAxis("Vertical");
             float horizontalInput = Input.GetAxis("Horizontal");
+            float horizontalInput2 = Input.GetAxis("Horizontal2");
 
             // engine sound
             if (forwardInput != 0)
@@ -342,10 +343,19 @@ private void OnTriggerStay(Collider other)
             {
                 forwardInput *= 0.25f;
             }
-            
+
             // calculate movement
-            playerRb.AddForce(forwardInput * (-speed) * Time.deltaTime* gameObject.transform.forward, ForceMode.Force);
-            gameObject.transform.Rotate(0f, horizontalInput * rotateSpeed,  0f);
+            playerRb.AddForce(forwardInput * (-speed) *  transform.forward, ForceMode.Force);        
+            transform.Rotate(0f, horizontalInput * rotateSpeed,  0f);
+
+            // side step
+            if (forwardInput < 0.3f && forwardInput > -0.3f)
+            {
+                Vector3 rightAngle = Quaternion.Euler(0, 90f, 0f) * transform.forward;
+                playerRb.AddForce(rightAngle * horizontalInput2 * -speed * 0.75f);
+            }
+
+            //playerRb.velocity = Vector3.ClampMagnitude(playerRb.velocity, speed/3.5f);
         }
         
     }

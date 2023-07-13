@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startImpulse: 100
-  speed: 500
+  speed: 10
   rotateSpeed: 3
   playerMaxHealth: 10
   playerBulletBaseDamage: 5
@@ -661,7 +661,7 @@ MonoBehaviour:
   spawnPoint2: {fileID: 9074861371868659753}
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
   laserRange: 5
-  bulletMaxCount: 10
+  laserShootTime: 3
   spawnInterval: 0.1
   audioClip: 
   lr: {fileID: 0}
@@ -729,6 +729,8 @@ MonoBehaviour:
   bwRealoadTime: 4.5
   bwSalveCount: 7
   bulletWings: {fileID: 8390656690878353693, guid: 0aaf90ad2cd0d844397b6d95f3b62d12, type: 3}
+  lmLifePerTick: 1
+  lmReloadTime: 10
   lifeModul: {fileID: 8459815295507979944, guid: 0bb488a5296b7d34eb8f8afe684ebff5, type: 3}
   sgDamage: 3
   sgReloadTime: 2.5
@@ -744,7 +746,7 @@ MonoBehaviour:
   rocketWings: {fileID: 8390656690878353693, guid: 8634b4018809df54b87676107fad22f7, type: 3}
   flDamage: 3
   flReloadTime: 4.5
-  flBulletCount: 50
+  flShootingTime: 3
   frontLaser: {fileID: 8635275999776491353, guid: 750e087bff3860840ad534f2097f41f6, type: 3}
   olDamage: 10
   olReloadTime: 3

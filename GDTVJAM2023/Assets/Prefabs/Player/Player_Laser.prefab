@@ -5431,7 +5431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startImpulse: 100
-  speed: 500
+  speed: 10
   rotateSpeed: 3
   playerMaxHealth: 10
   playerBulletBaseDamage: 2
@@ -5558,7 +5558,7 @@ MonoBehaviour:
   rocketWings: {fileID: 8390656690878353693, guid: 8634b4018809df54b87676107fad22f7, type: 3}
   flDamage: 3
   flReloadTime: 4.5
-  flBulletCount: 50
+  flShootingTime: 3
   frontLaser: {fileID: 8635275999776491353, guid: 750e087bff3860840ad534f2097f41f6, type: 3}
   olDamage: 10
   olReloadTime: 3

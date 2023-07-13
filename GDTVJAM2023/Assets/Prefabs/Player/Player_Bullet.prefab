@@ -29856,7 +29856,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 2
   m_Drag: 1.5
-  m_AngularDrag: 1.5
+  m_AngularDrag: 10
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -29888,7 +29888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startImpulse: 100
-  speed: 500
+  speed: 10
   rotateSpeed: 3
   playerMaxHealth: 10
   playerBulletBaseDamage: 5
