@@ -581,7 +581,9 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlaySFX("WindowOpen");
         experienceSlider.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 0.4f, 5, 1).SetDelay(0.2f).OnComplete(() =>
         {
-            AudioManager.Instance.PlaySFX("PlayerLaserDie"); 
+            AudioManager.Instance.PlaySFX("PlayerLaserDie");
+
+            healthBar.maxValue = player.playerMaxHealth;
             healthBar.DOValue(player.playerMaxHealth, 0.6f, false).SetEase(Ease.InExpo).OnComplete(() => 
             { 
                 healthText.text = player.playerCurrentHealth + "/" + player.playerMaxHealth;

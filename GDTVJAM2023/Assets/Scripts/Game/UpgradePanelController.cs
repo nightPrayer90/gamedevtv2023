@@ -40,6 +40,7 @@ public class UpgradePanelController : MonoBehaviour
 
     public int selectetPanel;
     private bool isButtonPressed = false;
+    public bool isTweening = true;
 
     void OnEnable()
     {
@@ -56,11 +57,79 @@ public class UpgradePanelController : MonoBehaviour
         subClassColor = new Color[3];
         subClassStr = new string[3];
         iconPanel = new Sprite[3];
-        
+
+        selectetPanel = -1;
+        isTweening = true;
+        isButtonPressed = true;
 
         StringLibrary();
         UpdateValuePanel();
 
+    }
+
+    private void Update()
+    {
+        if (isTweening == false)
+        {
+            if (Input.GetAxisRaw("Horizontal") >= 0.5 && !isButtonPressed)
+            {
+                switch (selectetPanel)
+                {
+                    case -1:
+                        selectetPanel = 1;
+                        break;
+                    case 0:
+                        selectetPanel = 1;
+                        break;
+                    case 1:
+                        selectetPanel = 2;
+                        break;
+                    case 2:
+                        selectetPanel = 0;
+                        break;
+                }
+                UpdateValuePanelOnMouseEnter(selectetPanel);
+
+                isButtonPressed = true;
+                Debug.Log(selectetPanel);
+            }
+            else if (Input.GetAxisRaw("Horizontal") <= -0.5 && !isButtonPressed)
+            {
+                switch (selectetPanel)
+                {
+                    case -1:
+                        selectetPanel = 0;
+                        break;
+                    case 0:
+                        selectetPanel = 2;
+                        break;
+                    case 1:
+                        selectetPanel = 0;
+                        break;
+                    case 2:
+                        selectetPanel = 1;
+                        break;
+                }
+                UpdateValuePanelOnMouseEnter(selectetPanel);
+
+                isButtonPressed = true;
+                Debug.Log(selectetPanel);
+            }
+
+            if (selectetPanel != -1 && Input.GetAxisRaw("SubmitEnter") >= 0.5 && isButtonPressed == false)
+            {
+                panelList[selectetPanel].OnMouseDown_();
+                isButtonPressed = true;
+            }
+
+            if (isButtonPressed == true)
+            {
+                if (Input.GetAxisRaw("Horizontal") > -0.5 && Input.GetAxisRaw("Horizontal") < 0.5 && Input.GetAxisRaw("SubmitEnter") < 0.5)
+                {
+                    isButtonPressed = false;
+                }
+            }
+        }
     }
 
 
@@ -153,13 +222,13 @@ public class UpgradePanelController : MonoBehaviour
     {
         int number = gameManager.selectedNumbers_[index];
 
-        selectetPanel = index;
-
         panelList[0].DeselectPanel();
         panelList[1].DeselectPanel();
         panelList[2].DeselectPanel();
 
-        panelList[index].SelectPanel();
+        
+        if (selectetPanel != -1)
+            panelList[index].SelectPanel();
 
         switch (number)
         {
@@ -331,6 +400,7 @@ public class UpgradePanelController : MonoBehaviour
         panelList[1].FadeOut(index);
         panelList[2].FadeOut(index);
         shipPanalController.FadeOut();
+        isTweening = true;
     }
 
     public void GetUpdate()
