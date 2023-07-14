@@ -25,6 +25,8 @@ public class UpgradeShipPanelController : MonoBehaviour
     private PlayerController playerController;
     private PlayerWeaponController playerWeaponController;
 
+    public Image ShipPanel;
+    public List<Sprite> shipImages = new List<Sprite>();
 
     private void Awake()
     {
@@ -47,6 +49,20 @@ public class UpgradeShipPanelController : MonoBehaviour
         // FadeIn Tween
         transform.position = localPositon;
         transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.6f, 8, 1).SetUpdate(true);
+
+        // set Ship Panel Image
+        switch (gameManager.startShip)
+        {
+            case GameManager.StartShip.bullet:
+                ShipPanel.sprite = shipImages[0];
+                break;
+            case GameManager.StartShip.laser:
+                ShipPanel.sprite = shipImages[1];
+                break;
+            case GameManager.StartShip.rocket:
+                ShipPanel.sprite = shipImages[2];
+                break;
+        }
     }
 
     // FadeOut Tween
