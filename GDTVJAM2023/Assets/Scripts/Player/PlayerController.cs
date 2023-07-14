@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public int playerBulletBaseDamage = 2;
     public float playerFireRate = 0.5f;
     public float pickupRange = 2f;
+    public float boostValue = 1f;
+    public float boostPower = 3f;
 
 
     [Header("Properties")]
@@ -28,15 +30,20 @@ public class PlayerController : MonoBehaviour
     private int playerExperienceToLevelUp = 6;
     private int playerLevel = 1;
     private float playerLevelUpFactor = 1.2f;
+    private bool isBoost = false;
+    private bool setPosition = false;
+    private float originalRotationX;
+    private float forwardInput;
+    private float horizontalInput;
+    private float horizontalInput2;
+    private float currentRotationX;
+    private float targetRotation2 = 0; 
 
 
     [Header("Outside Border")]
     public float damageInterval = 1f;
     public int damageTaken = 2;
     public bool isOutsideBorder = false;
-
-
-    
 
 
     [Header("Floating Text")]
@@ -47,6 +54,8 @@ public class PlayerController : MonoBehaviour
     [Header("Game Objects")]
     public NavigationController navigationController;
     public AudioSource engineAudioSource;
+    public ParticleSystem boostParticle;
+    public Transform playerMesh;
     private Rigidbody playerRb;
     private GameManager gameManager;
     private PlayerMWController playerMWController;
@@ -68,6 +77,9 @@ public class PlayerController : MonoBehaviour
 
         // intro starting sound
         AudioManager.Instance.PlaySFX("LiftUPBoss");
+
+        originalRotationX = playerMesh.localRotation.x-90 ;
+        currentRotationX = originalRotationX;
     }
 
     private void FixedUpdate()
@@ -86,7 +98,7 @@ public class PlayerController : MonoBehaviour
             {
                 AudioManager.Instance.PlaySFX("ShortAlert");
                 isStartSound = true;
-                playerRb.AddForce(gameObject.transform.forward * -speed * startImpulse * Time.deltaTime, ForceMode.Force);
+                playerRb.AddForce(transform.forward * -speed * startImpulse, ForceMode.Force);
                 // set .y to 6f
                 playerRb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
                 // start Shooting
@@ -102,7 +114,48 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (gameManager.gameIsPlayed && !gameManager.gameOver)
+        {
+            // get Input values from the user
+            forwardInput = Input.GetAxis("Vertical");
+            horizontalInput = Input.GetAxis("Horizontal");
+            horizontalInput2 = Input.GetAxis("Horizontal2");
 
+           
+            if (Input.GetButtonUp("Boost"))
+            {
+                CancelInvoke("BoostReload");
+                Invoke("BoostReload", 1f);
+                isBoost = false;
+                setPosition = true;
+            }
+
+            // set PlayerMesh position back to zero
+            if (setPosition == true)
+            {
+               
+                if (Vector3.Distance(playerMesh.localPosition, Vector3.zero) > 0.005f)
+                {
+                    playerMesh.localPosition = Vector3.Lerp(playerMesh.localPosition, Vector3.zero, Time.deltaTime * 3f);
+                }
+                else
+                {
+                    setPosition = false;
+                }
+            }
+
+            // rotate Playermesh
+            
+            float targetRotationX = originalRotationX - (horizontalInput * 20f) - targetRotation2;
+            currentRotationX = Mathf.Lerp(currentRotationX, targetRotationX, Time.deltaTime*15f );
+            playerMesh.localRotation = Quaternion.Euler(currentRotationX, transform.rotation.y + 90f, transform.rotation.z);
+
+        }
+
+        
+    }
 
 
     /* **************************************************************************** */
@@ -322,15 +375,11 @@ private void OnTriggerStay(Collider other)
     {
         if (gameManager.gameIsPlayed && !gameManager.gameOver)
         {
-            // get Input values from the user
-            float forwardInput = Input.GetAxis("Vertical");
-            float horizontalInput = Input.GetAxis("Horizontal");
-
             // engine sound
             if (forwardInput != 0)
             {
                 if (!engineAudioSource.isPlaying)
-                engineAudioSource.Play();
+                    engineAudioSource.Play();
             }
             else
             {
@@ -342,12 +391,61 @@ private void OnTriggerStay(Collider other)
             {
                 forwardInput *= 0.25f;
             }
-            
+            // boost
+            else if (Input.GetButton("Boost"))
+            {  
+                boostValue = gameManager.UpdateBoostSlider(boostValue);
+
+                if (boostValue > 0)
+                {
+                    if (isBoost == false)
+                    {
+                        //gameManager.ScreenShake(5);
+                        if (boostValue > 0.3f)
+                        {
+                            //playerMesh.localPosition = new Vector3(0, 0, -0.1f);
+                            playerMesh.DOLocalMoveZ(-0.1f, 0.1f);
+                            boostParticle.Emit(80);
+                        }
+                        isBoost = true;
+                    }
+                    
+                    float boostSpeed = boostPower;
+                    forwardInput = boostSpeed;
+                    boostParticle.Emit(1);
+                    
+                }
+                else
+                {
+                    // set player Mesh positon to zero
+                    setPosition = true;
+                }
+            }
+
             // calculate movement
-            playerRb.AddForce(forwardInput * (-speed) * Time.deltaTime* gameObject.transform.forward, ForceMode.Force);
-            gameObject.transform.Rotate(0f, horizontalInput * rotateSpeed,  0f);
+            playerRb.AddForce(forwardInput * (-speed) * transform.forward, ForceMode.Force);
+            transform.Rotate(0f, horizontalInput * rotateSpeed, 0f);
+
+            // side step
+            if (forwardInput < 0.3f && forwardInput > -0.3f)
+            {
+                Vector3 rightAngle = Quaternion.Euler(0, 90f, 0f) * transform.forward;
+                playerRb.AddForce(rightAngle * horizontalInput2 * -speed * 0.75f);
+                targetRotation2 = (horizontalInput2 * 10f);
+            }   
+            else
+            {
+                targetRotation2 = 0;
+            }
         }
-        
+
+    }
+
+    // Invoke to aktivate the BoostReaload()
+    private void BoostReload()
+    {
+        gameManager.BoostReload();
+        boostParticle.Emit(20);
     }
 
 

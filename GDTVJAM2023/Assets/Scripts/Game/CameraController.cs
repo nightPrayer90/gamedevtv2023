@@ -29,26 +29,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        // Blockt alle Screenshakes
-        if (!gameManager.gameIsPlayed || gameManager.gameOver)
-            shakeTimer = 0f;
-        
-        if (shakeTimer > 0f)
-        {
-            // Zufällige Verschiebung der Kamera-Position
-            Vector3 randomOffset = Random.insideUnitSphere * shakeIntensity;
-            transform.localPosition = player.transform.position + cameraOffset + randomOffset;
-
-            shakeTimer -= Time.deltaTime;
-        }
-        else
-        {
-            
-        }*/
-        //if (isShake == false)
-            transform.position = player.transform.position + cameraOffset;
-
+        transform.position = player.transform.position + cameraOffset;
     }
 
 
@@ -103,4 +84,7 @@ public class CameraController : MonoBehaviour
             transform.DOShakeRotation(shakeTimer, new Vector3(shakeIntensity, shakeIntensity, shakeIntensity), 30, 90f, true, ShakeRandomnessMode.Full).OnComplete(() => { isShake = false; });
         }
     }
+
+       
+
 }

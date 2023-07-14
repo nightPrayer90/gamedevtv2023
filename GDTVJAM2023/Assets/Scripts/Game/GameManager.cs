@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     private bool isGameOverUI_, isPlayerUI_, isBossUI_, isVictoryUI;
     public Slider healthBar;
     public Slider experienceSlider;
+    public Slider boostSlider;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI expText;
     public TextMeshProUGUI timerText;
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour
     [Header("Floating Damage")]
     public GameObject textPrefab;
 
+
     public enum StartShip
     {
         bullet,
@@ -79,6 +81,9 @@ public class GameManager : MonoBehaviour
     public GameObject playerShip_bullet;
     public GameObject playerShip_rocket;
     public GameObject playerShip_laser;
+    private float _boostTimer;
+    private float _boostIntervall = 0.01f;
+
 
     // Objects
     private CameraController mainCamera;
@@ -109,7 +114,7 @@ public class GameManager : MonoBehaviour
                 var player_l = Instantiate(playerShip_laser, playerStartPosition.position, playerStartPosition.rotation);
                 player = player_l.GetComponent<PlayerController>();
                 break;
-        } 
+        }
     }
 
     void Start()
@@ -121,7 +126,7 @@ public class GameManager : MonoBehaviour
         spawnDistrictList = GetComponent<SpawnDistrictList>();
 
         // Initialize timer
-        currentTime = totalTime+1;
+        currentTime = totalTime + 1;
         InvokeRepeating("UpdateTimerText", 3f, 1f);
 
         // Initialize Bgm
@@ -151,12 +156,12 @@ public class GameManager : MonoBehaviour
         buildingMaterial.SetTexture("_MainTex", firstDimensionTexture1);
         emissionMaterial.SetTexture("_MainTex", firstDimensionTexture1);
         emissionMaterial.SetTexture("_EmissionMap", firstDimensionTexture1);
-        
+
 
         buildingMaterialReverse.SetTexture("_MainTex", secondDimenionTexture2);
         emissionMaterialReverse.SetTexture("_MainTex", secondDimenionTexture2);
         emissionMaterialReverse.SetTexture("_EmissionMap", secondDimenionTexture2);
-        
+
         // Reset directional ligth color
         directionalLight.color = firstDimensionColor;
 
@@ -235,7 +240,7 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1;
             AudioManager.Instance.PlaySFX("MouseNo");
-            
+
 
             //huds zurücksetzen
             gameOverUI.SetActive(isGameOverUI_);
@@ -243,14 +248,14 @@ public class GameManager : MonoBehaviour
             bossUI.SetActive(isBossUI_);
             victoryUI.SetActive(isVictoryUI);
             pauseUI.SetActive(false);
-            
+
             isPause = false;
         }
     }
 
     // deactivate upgradeUI and activate the playerUI
     public void UpgradeGet()
-    { 
+    {
         Time.timeScale = 1;
         gameIsPlayed = true;
 
@@ -258,7 +263,7 @@ public class GameManager : MonoBehaviour
         panelUI.SetActive(false);
 
         experienceSlider.DOValue(0, 0.4f, false);
-        experienceSlider.transform.DOPunchScale(new Vector3 (0.5f, 0.5f, 0.5f) , 0.5f, 5, 0.5f).SetUpdate(true).OnComplete(() => {
+        experienceSlider.transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0.5f), 0.5f, 5, 0.5f).SetUpdate(true).OnComplete(() => {
             experienceSlider.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
         }); ;
     }
@@ -284,7 +289,7 @@ public class GameManager : MonoBehaviour
             healthBar.transform.DOKill(true);
             healthBar.transform.DOShakePosition(0.5f, 2, 10, 90, true, true, ShakeRandomnessMode.Harmonic);
 
-      
+
             // check if is game over
             if (playerMaxHealth <= 0)
                 GameIsOver();
@@ -311,7 +316,7 @@ public class GameManager : MonoBehaviour
             bossUI.SetActive(false);
 
             expText.text = playerLevel.ToString();
-            
+
         }
         else
         {
@@ -323,6 +328,29 @@ public class GameManager : MonoBehaviour
             experienceSlider.DOValue(playerCurrentExperience, 0.5f);
         }
         //experienceSlider.value = playerCurrentExperience;
+    }
+
+    // updade Player Boost slider
+    public float UpdateBoostSlider(float boostValue)
+    {
+        boostValue = boostSlider.value;
+        _boostTimer += Time.deltaTime;
+
+        if (_boostTimer > _boostIntervall)
+        {
+            boostValue -= _boostIntervall;
+            boostSlider.DOKill();
+            boostSlider.value = boostValue;
+            _boostTimer = 0f;
+        }
+
+        return boostValue;
+    }
+
+    // Reaload Boost
+    public void BoostReload()
+    {
+        boostSlider.DOValue(boostSlider.maxValue, 3f, false).SetEase(Ease.InCirc); 
     }
 
     // update district text - PlayerUI
@@ -344,7 +372,6 @@ public class GameManager : MonoBehaviour
             enemyToKillText.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 1f, 5, 0.5f).SetUpdate(true);
         }
     }
-   
 
     // update the enemys to defeat text and spawn the dimension spawp items
     public void UpdateEnemyToKill(int amount)
@@ -399,42 +426,6 @@ public class GameManager : MonoBehaviour
         {
             GameIsOver();
             CancelInvoke("UpdateTimerText");
-        }
-    }
-
-    // (help function) create 3 random numbers für the upgrade/ ability panel - trigger by levelup
-    public void CreateRandomNumbers(int playerLevel)
-    {
-        List<int> selectedNumbers = new List<int>();
-
-        // create temporary list from weapons or normal upgrades - depends on the player level
-        if (((playerLevel % 4) == 3) && playerLevel <= 26)
-            valueList.AddRange(weaponChooseList.weaponIndex);
-        else
-            valueList.AddRange(upgradeChooseList.upgradeIndex);
-
-        // create 3 random possible numbers that do not duplicate each other
-        for (int i = 0; i < 3; i++)
-        {
-            int randomIndex = Random.Range(0, valueList.Count);     // generate a random number
-            selectedNumbers.Add(valueList[randomIndex]);            // save the number in a list
-            valueList.RemoveAt(randomIndex);                        // remove the value from the temp list
-        }
-
-        selectedNumbers_ = selectedNumbers.ToArray();
-
-        //reset 
-        valueList.Clear();
-    }
-
-    // (help function) an already installed weapon is removed from the weapons list - trigger by UpgradeWeaponController
-    public void RemoveValueWeaponList(int removeIndex)
-    {
-        if (weaponChooseList != null)
-        {
-            int removePos = weaponChooseList.weaponIndex.IndexOf(removeIndex);
-
-            weaponChooseList.weaponIndex.RemoveAt(removePos);
         }
     }
 
@@ -528,6 +519,43 @@ public class GameManager : MonoBehaviour
     /* **************************************************************************** */
     /* MISC---------- ------------------------------------------------------------- */
     /* **************************************************************************** */
+
+    // (help function) create 3 random numbers für the upgrade/ ability panel - trigger by levelup
+    public void CreateRandomNumbers(int playerLevel)
+    {
+        List<int> selectedNumbers = new List<int>();
+
+        // create temporary list from weapons or normal upgrades - depends on the player level
+        if (((playerLevel % 4) == 3) && playerLevel <= 26)
+            valueList.AddRange(weaponChooseList.weaponIndex);
+        else
+            valueList.AddRange(upgradeChooseList.upgradeIndex);
+
+        // create 3 random possible numbers that do not duplicate each other
+        for (int i = 0; i < 3; i++)
+        {
+            int randomIndex = Random.Range(0, valueList.Count);     // generate a random number
+            selectedNumbers.Add(valueList[randomIndex]);            // save the number in a list
+            valueList.RemoveAt(randomIndex);                        // remove the value from the temp list
+        }
+
+        selectedNumbers_ = selectedNumbers.ToArray();
+
+        //reset 
+        valueList.Clear();
+    }
+
+    // (help function) an already installed weapon is removed from the weapons list - trigger by UpgradeWeaponController
+    public void RemoveValueWeaponList(int removeIndex)
+    {
+        if (weaponChooseList != null)
+        {
+            int removePos = weaponChooseList.weaponIndex.IndexOf(removeIndex);
+
+            weaponChooseList.weaponIndex.RemoveAt(removePos);
+        }
+    }
+
     // camera screenshake control
     public void ScreenShake(int shakeIndex)
     {
@@ -584,10 +612,11 @@ public class GameManager : MonoBehaviour
             AudioManager.Instance.PlaySFX("PlayerLaserDie");
 
             healthBar.maxValue = player.playerMaxHealth;
-            healthBar.DOValue(player.playerMaxHealth, 0.6f, false).SetEase(Ease.InExpo).OnComplete(() => 
+            boostSlider.maxValue = player.boostValue;
+           healthBar.DOValue(healthBar.maxValue, 0.6f, false).SetEase(Ease.InExpo).OnComplete(() => 
             { 
                 healthText.text = player.playerCurrentHealth + "/" + player.playerMaxHealth;
-                
+                boostSlider.DOValue(boostSlider.maxValue, 0.3f, false).SetEase(Ease.InExpo);
             });
             healthBar.transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1).SetDelay(0.55f);
         }); 
