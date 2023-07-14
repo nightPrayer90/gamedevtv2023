@@ -45,22 +45,22 @@ InputManager:
     positiveButton: e
     altNegativeButton: 
     altPositiveButton: 
-    gravity: 3
+    gravity: 1000
     dead: 0.001
-    sensitivity: 3
+    sensitivity: 100
     snap: 1
     invert: 0
     type: 0
     axis: 0
     joyNum: 2
   - serializedVersion: 3
-    m_Name: Fire2
+    m_Name: Boost
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: left alt
+    positiveButton: left shift
     altNegativeButton: 
-    altPositiveButton: mouse 1
+    altPositiveButton: right shift
     gravity: 1000
     dead: 0.001
     sensitivity: 1000

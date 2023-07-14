@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public int playerBulletBaseDamage = 2;
     public float playerFireRate = 0.5f;
     public float pickupRange = 2f;
+    public float boostValue = 1f;
+    public float boostPower = 3f;
 
 
     [Header("Properties")]
@@ -28,15 +30,16 @@ public class PlayerController : MonoBehaviour
     private int playerExperienceToLevelUp = 6;
     private int playerLevel = 1;
     private float playerLevelUpFactor = 1.2f;
+    private bool isBoost = false;
+    private float originalRotationX;
+    private float forwardInput;
+    private float horizontalInput;
+    private float horizontalInput2;
 
-
-    [Header("Outside Border")]
+[Header("Outside Border")]
     public float damageInterval = 1f;
     public int damageTaken = 2;
     public bool isOutsideBorder = false;
-
-
-    
 
 
     [Header("Floating Text")]
@@ -47,6 +50,8 @@ public class PlayerController : MonoBehaviour
     [Header("Game Objects")]
     public NavigationController navigationController;
     public AudioSource engineAudioSource;
+    public ParticleSystem boostParticle;
+    public Transform playerMesh;
     private Rigidbody playerRb;
     private GameManager gameManager;
     private PlayerMWController playerMWController;
@@ -68,6 +73,8 @@ public class PlayerController : MonoBehaviour
 
         // intro starting sound
         AudioManager.Instance.PlaySFX("LiftUPBoss");
+
+        originalRotationX = playerMesh.rotation.eulerAngles.x;
     }
 
     private void FixedUpdate()
@@ -102,7 +109,34 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (gameManager.gameIsPlayed && !gameManager.gameOver)
+        {
+            // get Input values from the user
+            forwardInput = Input.GetAxis("Vertical");
+            horizontalInput = Input.GetAxis("Horizontal");
+            horizontalInput2 = Input.GetAxis("Horizontal2");
 
+            if (Input.GetButtonUp("Boost"))
+            {
+                CancelInvoke("BoostReload");
+                Invoke("BoostReload", 1f);
+                isBoost = false;
+            }
+
+            // rotate Playermesh
+            float newRotationX = (horizontalInput * 25);
+
+            Debug.Log(newRotationX);
+
+           
+            //playerMesh.localRotation = Quaternion.Euler(originalRotationX - 25f, playerMesh.localRotation.eulerAngles.y, playerMesh.localRotation.eulerAngles.z);
+
+        }
+
+        
+    }
 
 
     /* **************************************************************************** */
@@ -322,16 +356,11 @@ private void OnTriggerStay(Collider other)
     {
         if (gameManager.gameIsPlayed && !gameManager.gameOver)
         {
-            // get Input values from the user
-            float forwardInput = Input.GetAxis("Vertical");
-            float horizontalInput = Input.GetAxis("Horizontal");
-            float horizontalInput2 = Input.GetAxis("Horizontal2");
-
             // engine sound
             if (forwardInput != 0)
             {
                 if (!engineAudioSource.isPlaying)
-                engineAudioSource.Play();
+                    engineAudioSource.Play();
             }
             else
             {
@@ -343,21 +372,45 @@ private void OnTriggerStay(Collider other)
             {
                 forwardInput *= 0.25f;
             }
+            // boost
+            else if (Input.GetButton("Boost"))
+            {
+                boostValue = gameManager.UpdateBoostSlider(boostValue);
+
+                if (boostValue > 0)
+                {
+                    if (isBoost == false)
+                    {
+                        //gameManager.ScreenShake(5);
+                    }
+                    isBoost = true;
+                    float boostSpeed = boostPower;
+                    forwardInput = boostSpeed;
+                    /*if (!boostParticle.isPlaying)
+                        boostParticle.Play();*/
+                    boostParticle.Emit(1);
+                }
+            }
 
             // calculate movement
-            playerRb.AddForce(forwardInput * (-speed) *  transform.forward, ForceMode.Force);        
-            transform.Rotate(0f, horizontalInput * rotateSpeed,  0f);
+            playerRb.AddForce(forwardInput * (-speed) * transform.forward, ForceMode.Force);
+            transform.Rotate(0f, horizontalInput * rotateSpeed, 0f);
 
             // side step
             if (forwardInput < 0.3f && forwardInput > -0.3f)
             {
                 Vector3 rightAngle = Quaternion.Euler(0, 90f, 0f) * transform.forward;
                 playerRb.AddForce(rightAngle * horizontalInput2 * -speed * 0.75f);
-            }
-
-            //playerRb.velocity = Vector3.ClampMagnitude(playerRb.velocity, speed/3.5f);
+            }           
         }
-        
+
+    }
+
+    // Invoke to aktivate the BoostReaload()
+    private void BoostReload()
+    {
+        gameManager.BoostReload();
+        boostParticle.Emit(20);
     }
 
 
