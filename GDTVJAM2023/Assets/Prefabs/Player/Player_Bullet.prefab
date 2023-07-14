@@ -29895,7 +29895,7 @@ MonoBehaviour:
   playerFireRate: 0.3
   pickupRange: 0.8
   boostValue: 0.5
-  boostPower: 3
+  boostPower: 2
   playerCurrentHealth: 10
   damageInterval: 1
   damageTaken: 1
@@ -29978,12 +29978,12 @@ MonoBehaviour:
   isBulletWings: 0
   isLifeModul: 0
   isSpreadGun: 0
-  isFrontShield: 0
-  isBackShield: 0
+  isFrontShield: 1
+  isBackShield: 1
   isNovaExplosion: 0
   isRockedWings: 0
   isFrontLaser: 0
-  isOrbitalLaser: 0
+  isOrbitalLaser: 1
   frontShield: {fileID: 4831901517162404820, guid: 120689e8e5b520d439a8645f1b1162d9, type: 3}
   backShield: {fileID: 3147124995608451256, guid: 6da4992dab9d49646be6b65d0388b3e4, type: 3}
   hcBulletDamage: 4
@@ -30250,7 +30250,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5467178583199263533}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0145, y: 0, z: 0}
+  m_LocalPosition: {x: -0.0113, y: 0, z: 0.0048}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30445,8 +30445,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 0
-      minColor: {r: 1, g: 1, b: 1, a: 1}
+      minMaxState: 2
+      minColor: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 0.6117647}
       maxColor: {r: 0, g: 1, b: 0.97979045, a: 0.7176471}
       maxGradient:
         serializedVersion: 2
@@ -30509,8 +30509,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.04
-      minScalar: 0.015
+      scalar: 0.06
+      minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -30885,15 +30885,15 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 10
+    type: 18
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: -88.08, z: 0}
-    m_Scale: {x: 0.1, y: 0.1, z: 0.1}
+    m_Rotation: {x: 0, y: 90, z: 90}
+    m_Scale: {x: 0.5, y: 0.1, z: 0.1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -30972,7 +30972,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.53
+      value: 2.04
       mode: 0
       spread: 0
       speed:
@@ -31579,7 +31579,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -31588,7 +31588,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0.29411766}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -31603,7 +31603,7 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 0
+        atime0: 27371
         atime1: 65535
         atime2: 0
         atime3: 0

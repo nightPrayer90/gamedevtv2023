@@ -31,12 +31,16 @@ public class PlayerController : MonoBehaviour
     private int playerLevel = 1;
     private float playerLevelUpFactor = 1.2f;
     private bool isBoost = false;
+    private bool setPosition = false;
     private float originalRotationX;
     private float forwardInput;
     private float horizontalInput;
     private float horizontalInput2;
+    private float currentRotationX;
+    private float targetRotation2 = 0; 
 
-[Header("Outside Border")]
+
+    [Header("Outside Border")]
     public float damageInterval = 1f;
     public int damageTaken = 2;
     public bool isOutsideBorder = false;
@@ -74,7 +78,8 @@ public class PlayerController : MonoBehaviour
         // intro starting sound
         AudioManager.Instance.PlaySFX("LiftUPBoss");
 
-        originalRotationX = playerMesh.rotation.eulerAngles.x;
+        originalRotationX = playerMesh.localRotation.x-90 ;
+        currentRotationX = originalRotationX;
     }
 
     private void FixedUpdate()
@@ -118,20 +123,34 @@ public class PlayerController : MonoBehaviour
             horizontalInput = Input.GetAxis("Horizontal");
             horizontalInput2 = Input.GetAxis("Horizontal2");
 
+           
             if (Input.GetButtonUp("Boost"))
             {
                 CancelInvoke("BoostReload");
                 Invoke("BoostReload", 1f);
                 isBoost = false;
+                setPosition = true;
+            }
+
+            // set PlayerMesh position back to zero
+            if (setPosition == true)
+            {
+               
+                if (Vector3.Distance(playerMesh.localPosition, Vector3.zero) > 0.005f)
+                {
+                    playerMesh.localPosition = Vector3.Lerp(playerMesh.localPosition, Vector3.zero, Time.deltaTime * 3f);
+                }
+                else
+                {
+                    setPosition = false;
+                }
             }
 
             // rotate Playermesh
-            float newRotationX = (horizontalInput * 25);
-
-            Debug.Log(newRotationX);
-
-           
-            //playerMesh.localRotation = Quaternion.Euler(originalRotationX - 25f, playerMesh.localRotation.eulerAngles.y, playerMesh.localRotation.eulerAngles.z);
+            
+            float targetRotationX = originalRotationX - (horizontalInput * 20f) - targetRotation2;
+            currentRotationX = Mathf.Lerp(currentRotationX, targetRotationX, Time.deltaTime*15f );
+            playerMesh.localRotation = Quaternion.Euler(currentRotationX, transform.rotation.y + 90f, transform.rotation.z);
 
         }
 
@@ -374,7 +393,7 @@ private void OnTriggerStay(Collider other)
             }
             // boost
             else if (Input.GetButton("Boost"))
-            {
+            {  
                 boostValue = gameManager.UpdateBoostSlider(boostValue);
 
                 if (boostValue > 0)
@@ -382,13 +401,24 @@ private void OnTriggerStay(Collider other)
                     if (isBoost == false)
                     {
                         //gameManager.ScreenShake(5);
+                        if (boostValue > 0.3f)
+                        {
+                            //playerMesh.localPosition = new Vector3(0, 0, -0.1f);
+                            playerMesh.DOLocalMoveZ(-0.1f, 0.1f);
+                            boostParticle.Emit(80);
+                        }
+                        isBoost = true;
                     }
-                    isBoost = true;
+                    
                     float boostSpeed = boostPower;
                     forwardInput = boostSpeed;
-                    /*if (!boostParticle.isPlaying)
-                        boostParticle.Play();*/
                     boostParticle.Emit(1);
+                    
+                }
+                else
+                {
+                    // set player Mesh positon to zero
+                    setPosition = true;
                 }
             }
 
@@ -401,7 +431,12 @@ private void OnTriggerStay(Collider other)
             {
                 Vector3 rightAngle = Quaternion.Euler(0, 90f, 0f) * transform.forward;
                 playerRb.AddForce(rightAngle * horizontalInput2 * -speed * 0.75f);
-            }           
+                targetRotation2 = (horizontalInput2 * 10f);
+            }   
+            else
+            {
+                targetRotation2 = 0;
+            }
         }
 
     }
