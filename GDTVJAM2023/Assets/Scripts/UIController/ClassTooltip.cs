@@ -75,11 +75,11 @@ public class ClassTooltip : MonoBehaviour
                 break;
             case 2: // laser
                 contentvaluefloat = playerWeaponController.mcLaserLvl;
-                contentvalue_ = "+ " + contentvaluefloat.ToString() + " % burningchance";
+                contentvalue_ = "+ " + contentvaluefloat.ToString() + " % burning chance";
                 break;
             case 3: // support
                 contentvaluefloat = playerWeaponController.mcSupportLvl * 3;
-                contentvalue_ = "- " + contentvaluefloat.ToString() + "% reaload time for all weapons";
+                contentvalue_ = "- " + contentvaluefloat.ToString() + "% reload time for all weapons";
                 break;
             case 4: // swarm
                 contentvaluefloat = playerWeaponController.scSwarmLvl * 2;

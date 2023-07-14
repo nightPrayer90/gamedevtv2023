@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager.gameIsPlayed && !gameManager.gameOver)
+        if (gameManager.gameIsPlayed && !gameManager.gameOver && !isIntro)
         {
             // get Input values from the user
             forwardInput = Input.GetAxis("Vertical");
@@ -147,7 +147,6 @@ public class PlayerController : MonoBehaviour
             }
 
             // rotate Playermesh
-            
             float targetRotationX = originalRotationX - (horizontalInput * 20f) - targetRotation2;
             currentRotationX = Mathf.Lerp(currentRotationX, targetRotationX, Time.deltaTime*15f );
             playerMesh.localRotation = Quaternion.Euler(currentRotationX, transform.rotation.y + 90f, transform.rotation.z);
@@ -401,11 +400,13 @@ private void OnTriggerStay(Collider other)
                     if (isBoost == false)
                     {
                         //gameManager.ScreenShake(5);
-                        if (boostValue > 0.3f)
+                        if (boostValue >= gameManager.boostSlider.maxValue*0.9)
                         {
+                            AudioManager.Instance.PlaySFX("PlayerBoostKick");
                             //playerMesh.localPosition = new Vector3(0, 0, -0.1f);
                             playerMesh.DOLocalMoveZ(-0.1f, 0.1f);
                             boostParticle.Emit(80);
+                            playerRb.AddForce(transform.forward*-speed*50, ForceMode.Force);
                         }
                         isBoost = true;
                     }
