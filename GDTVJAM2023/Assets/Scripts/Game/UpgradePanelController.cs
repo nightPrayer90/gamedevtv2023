@@ -23,8 +23,8 @@ public class UpgradePanelController : MonoBehaviour
     [Header("Value Panel")]
     public TextMeshProUGUI lifeText;
     public TextMeshProUGUI damageText;
-    public TextMeshProUGUI rateText;
-    public TextMeshProUGUI speedText;
+    public TextMeshProUGUI protectionText;
+    public TextMeshProUGUI boostText;
     public TextMeshProUGUI agilityText;
     public TextMeshProUGUI pickupText;
     [HideInInspector] public List<Color> classColors;
@@ -88,6 +88,7 @@ public class UpgradePanelController : MonoBehaviour
                         selectetPanel = 0;
                         break;
                 }
+                UpdateValuePanel();
                 UpdateValuePanelOnMouseEnter(selectetPanel);
 
                 isButtonPressed = true;
@@ -110,6 +111,7 @@ public class UpgradePanelController : MonoBehaviour
                         selectetPanel = 1;
                         break;
                 }
+                UpdateValuePanel();
                 UpdateValuePanelOnMouseEnter(selectetPanel);
 
                 isButtonPressed = true;
@@ -151,11 +153,11 @@ public class UpgradePanelController : MonoBehaviour
                 case 1: //damage
                     upgradeValue[i] = 1;
                     break;
-                case 2: //fire rate
-                    upgradeValue[i] = Mathf.RoundToInt(Random.Range(2, 3)) / 100f;
+                case 2: //Protection
+                    upgradeValue[i] = 1;
                     break;
-                case 3: // speed
-                    upgradeValue[i] = Mathf.RoundToInt(Random.Range(2, 4) * 5)/100;
+                case 3: // boost
+                    upgradeValue[i] = Mathf.RoundToInt(Random.Range(2, 4)) / 10f;
                     break;
                 case 4: // agility
                     upgradeValue[i] = Mathf.RoundToInt(Random.Range(1, 3)) / 10f;
@@ -196,8 +198,8 @@ public class UpgradePanelController : MonoBehaviour
         // update main weapon valuesText
         lifeText.text = playerController.playerMaxHealth.ToString();
         damageText.text = playerController.playerBulletBaseDamage.ToString();
-        rateText.text = playerController.playerFireRate.ToString();
-        speedText.text = (playerController.speed/100).ToString();
+        protectionText.text = playerController.protectionPerc.ToString() + "%";
+        boostText.text = (gameManager.boostSlider.maxValue).ToString() + "s";
         agilityText.text = playerController.rotateSpeed.ToString();
         pickupText.text =playerController.pickupRange.ToString();
 
@@ -239,10 +241,12 @@ public class UpgradePanelController : MonoBehaviour
                 damageText.text = (playerController.playerBulletBaseDamage + upgradeValue[index]).ToString();
                 break;
             case 2:
-                rateText.text = (playerController.playerFireRate - upgradeValue[index]).ToString();
+                float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + upgradeValue[index]);
+                float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
+                protectionText.text = targetPercentage.ToString() + "%";
                 break;
             case 3:
-                speedText.text = ((playerController.speed + upgradeValue[index]) / 100).ToString();
+                boostText.text = (gameManager.boostSlider.maxValue + upgradeValue[index]).ToString() + "s";
                 break;
             case 4:
                 agilityText.text = (playerController.rotateSpeed + upgradeValue[index]).ToString();
@@ -291,12 +295,17 @@ public class UpgradePanelController : MonoBehaviour
                 playerController.playerBulletBaseDamage = playerController.playerBulletBaseDamage + Mathf.RoundToInt(upgradeValue[index]);
                 playerController.SetBulletDamage();
                 break;
-            case 2: //upgrade: fire Rate
-                playerController.playerFireRate = Mathf.Max(0.05f, playerController.playerFireRate - upgradeValue[index]);
-                playerController.SetBulletDamage();
+            case 2: //upgrade: Protection
+                float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + upgradeValue[index]);
+                float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
+
+                playerController.protectionPerc = targetPercentage;
+                playerController.protectionLvl ++;
+
                 break;
-            case 3: //upgrade: speed
-                playerController.speed = playerController.speed + upgradeValue[index];
+            case 3: //upgrade: boost
+                gameManager.boostSlider.maxValue = gameManager.boostSlider.maxValue + upgradeValue[index];
+                playerController.boostValue = gameManager.boostSlider.maxValue + upgradeValue[index];
                 break;
             case 4: //upgrade: rotate speed
                 playerController.rotateSpeed = playerController.rotateSpeed + upgradeValue[index];

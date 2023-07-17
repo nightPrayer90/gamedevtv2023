@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public float pickupRange = 2f;
     public float boostValue = 1f;
     public float boostPower = 3f;
+    public float protectionPerc = 0;
+    public int protectionLvl = 0;
 
 
     [Header("Properties")]

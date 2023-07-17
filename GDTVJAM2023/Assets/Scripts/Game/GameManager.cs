@@ -350,7 +350,7 @@ public class GameManager : MonoBehaviour
     // Reaload Boost
     public void BoostReload()
     {
-        boostSlider.DOValue(boostSlider.maxValue, 3f, false).SetEase(Ease.InCirc); 
+        boostSlider.DOValue(boostSlider.maxValue, 3f, false).SetEase(Ease.OutSine); 
     }
 
     // update district text - PlayerUI

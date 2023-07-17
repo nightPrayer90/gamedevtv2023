@@ -9,8 +9,8 @@ public class UpgradeShipPanelController : MonoBehaviour
     private Vector3 localPositon;
     public TextMeshProUGUI lifeText;
     public TextMeshProUGUI damageText;
-    public TextMeshProUGUI rateText;
-    public TextMeshProUGUI speedText;
+    public TextMeshProUGUI protectionText;
+    public TextMeshProUGUI boostText;
     public TextMeshProUGUI agilityText;
     public TextMeshProUGUI pickupText;
 
@@ -77,8 +77,8 @@ public class UpgradeShipPanelController : MonoBehaviour
         // update main weapon valuesText
         lifeText.text = playerController.playerMaxHealth.ToString();
         damageText.text = playerController.playerBulletBaseDamage.ToString();
-        rateText.text = playerController.playerFireRate.ToString();
-        speedText.text = (playerController.speed / 100).ToString();
+        protectionText.text = playerController.protectionPerc.ToString() + "%";
+        boostText.text = (gameManager.boostSlider.maxValue).ToString() +"s";
         agilityText.text = playerController.rotateSpeed.ToString();
         pickupText.text = playerController.pickupRange.ToString();
 
