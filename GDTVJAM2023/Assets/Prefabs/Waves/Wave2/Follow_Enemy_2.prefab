@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTyp: 0
+  enemyMesh: {fileID: 1823953070199006257}
   speed: 1.5
   rotationSpeed: 5
   dashForce: 0
@@ -422,6 +423,11 @@ PrefabInstance:
 --- !u!4 &1298209922298789515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fc0e7225839d0a040a146583b7770943, type: 3}
+  m_PrefabInstance: {fileID: 1553339959949973856}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1823953070199006257 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fc0e7225839d0a040a146583b7770943, type: 3}
   m_PrefabInstance: {fileID: 1553339959949973856}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5728911377843249195

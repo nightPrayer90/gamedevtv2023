@@ -21,7 +21,7 @@ public class GroundBaseUp : MonoBehaviour
         if (isGrowing == true)
         {
             float distanceToTarget = Vector3.Distance(transform.position, targetPosition);
-            if (distanceToTarget > 0.1f)
+            if (distanceToTarget > 0.01f)
             {
                 Vector3 newPosition = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * movementSpeed / distanceToTarget);
                 transform.position = newPosition;

@@ -406,7 +406,7 @@ private void OnTriggerStay(Collider other)
                             //playerMesh.localPosition = new Vector3(0, 0, -0.1f);
                             playerMesh.DOLocalMoveZ(-0.1f, 0.1f);
                             boostParticle.Emit(80);
-                            playerRb.AddForce(transform.forward*-speed*50, ForceMode.Force);
+                            playerRb.AddForce(transform.forward*-speed*30, ForceMode.Force);
                         }
                         isBoost = true;
                     }

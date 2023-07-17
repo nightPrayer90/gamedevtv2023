@@ -64,14 +64,13 @@ public class PlayerMWController : MonoBehaviour
 
         // bullet
         fireRate = playerController.playerFireRate;
-
         UpdateBulletValues();
 
         // rocket
         if (weaponType == MWeapontyp.rocket)
             InvokeRepeating("SpawnRocked", fireRate, fireRate);
 
-        // rocket
+        // laser
         if (weaponType == MWeapontyp.laser)
         {
             lr.enabled = false;

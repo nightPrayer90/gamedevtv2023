@@ -29978,19 +29978,19 @@ MonoBehaviour:
   isBulletWings: 0
   isLifeModul: 0
   isSpreadGun: 0
-  isFrontShield: 1
-  isBackShield: 1
+  isFrontShield: 0
+  isBackShield: 0
   isNovaExplosion: 0
   isRockedWings: 0
   isFrontLaser: 0
-  isOrbitalLaser: 1
+  isOrbitalLaser: 0
   frontShield: {fileID: 4831901517162404820, guid: 120689e8e5b520d439a8645f1b1162d9, type: 3}
   backShield: {fileID: 3147124995608451256, guid: 6da4992dab9d49646be6b65d0388b3e4, type: 3}
   hcBulletDamage: 4
   hcSalveCount: 6
   hcReloadTime: 2.5
   headCannon: {fileID: 6259656975113115787, guid: 28380b77c519d364f86c7806b2b37858, type: 3}
-  rlDamage: 20
+  rlDamage: 14
   rlLifeTime: 4
   rlReloadTime: 5
   rocketLauncher: {fileID: 7608659782651776090, guid: f8a12e7bd2c5605449b3f598e8eb6886, type: 3}
@@ -30009,19 +30009,19 @@ MonoBehaviour:
   sgReloadTime: 2.5
   sgBulletCount: 20
   spreadGun: {fileID: 7701453864392984337, guid: 104de042193ebb248b57f868f189bcdf, type: 3}
-  neDamage: 3
+  neDamage: 4
   neReloadTime: 3.5
-  neRadius: 3
+  neRadius: 3.2
   novaExplosion: {fileID: 5372979302712396976, guid: 056b57503f6534c44a1d12a5f55b7ced, type: 3}
   rwDamage: 2
   rwReloadTime: 5
-  rwSalveCount: 5
+  rwSalveCount: 4
   rocketWings: {fileID: 8390656690878353693, guid: 8634b4018809df54b87676107fad22f7, type: 3}
   flDamage: 3
   flReloadTime: 4.5
   flShootingTime: 3
   frontLaser: {fileID: 8635275999776491353, guid: 750e087bff3860840ad534f2097f41f6, type: 3}
-  olDamage: 10
+  olDamage: 8
   olReloadTime: 3
   orbitalLaser: {fileID: 7601612212577922131, guid: 9bcf5e0e76ce98b44a72e49fe758b485, type: 3}
   passivParentContainer: {fileID: 2604307836560290830}

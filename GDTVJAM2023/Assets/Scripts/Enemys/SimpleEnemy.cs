@@ -14,7 +14,7 @@ public class SimpleEnemy : MonoBehaviour
 
     [Header("Movement Typ")]
     public MoveTyp moveTyp;
-
+    public GameObject enemyMesh;
 
     [Header("Movement Settings")]
     public float speed;
@@ -155,6 +155,14 @@ public class SimpleEnemy : MonoBehaviour
             targetRotation *= Quaternion.Euler(0f, 180f, 0f);
 
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            if (enemyMesh != null)
+            {
+                Vector3 forwardDirection = directionToPlayer.normalized;
+                forwardDirection.y = 0f;
+                float tiltAngle = Mathf.Clamp(Vector3.Angle(forwardDirection, Vector3.forward) - 90f, 0f, 15f);
+                enemyMesh.transform.rotation = Quaternion.Euler(tiltAngle-90, targetRotation.eulerAngles.y+90, targetRotation.eulerAngles.z);
+            }
         }
 
         Vector3 movement = directionToPlayer.normalized * speed * Time.deltaTime;
@@ -174,6 +182,14 @@ public class SimpleEnemy : MonoBehaviour
             targetRotation *= Quaternion.Euler(0f, 180f, 0f);
 
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            if (enemyMesh != null)
+            {
+                Vector3 forwardDirection = directionToPlayer.normalized;
+                forwardDirection.y = 0f;
+                float tiltAngle = Mathf.Clamp(Vector3.Angle(forwardDirection, Vector3.forward) - 90f, 0f, 15f);
+                enemyMesh.transform.rotation = Quaternion.Euler(tiltAngle - 90, targetRotation.eulerAngles.y + 90, targetRotation.eulerAngles.z);
+            }
         }
 
         if (distanceToPlayer < dashDistance && isDash == false)
