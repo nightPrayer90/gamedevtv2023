@@ -3,8 +3,10 @@ using UnityEngine;
 public class FadeOut : MonoBehaviour
 {
     public float fadeSpeed = 0.5f; // Geschwindigkeit des Ausblendens
+    public bool canExplode = false;
 
     private Renderer[] childRenderers;
+    private Rigidbody[] childRigidbodys;
     private Color[] targetColors;
     private bool fadingOut;
 
@@ -34,6 +36,16 @@ public class FadeOut : MonoBehaviour
                 materials[j].renderQueue = 3000;
 
                 targetColors[i] = materials[j].color;
+            }
+        }
+
+        if (canExplode == true)
+        {
+            childRigidbodys = GetComponentsInChildren<Rigidbody>();
+
+            foreach (var rb in childRigidbodys)
+            {
+                rb.AddExplosionForce(300, rb.position, 2);
             }
         }
 

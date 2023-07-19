@@ -28,6 +28,8 @@ public class Boss01 : MonoBehaviour
     public GameObject minimapIcon;
     public SpriteRenderer minimapSpR;
     public GameObject damageArea;
+    public GameObject replacement;
+    private SphereCollider baseCollider;
     private Material[] materialList;
     private EnemyHealth enemyHealthScr;
     private Transform playerTr;
@@ -46,6 +48,7 @@ public class Boss01 : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerTr = GameObject.FindWithTag("Player").transform;
         playerRb = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
+        baseCollider = gameObject.GetComponent<SphereCollider>();
         enemyHealthScr = gameObject.GetComponent<EnemyHealth>();
         bossChanceState = gameObject.GetComponent<AudioSource>();
 
@@ -178,6 +181,8 @@ public class Boss01 : MonoBehaviour
                 // turns only one time per state
                 if (isState[0] == false)
                 {
+                    rippleParticle.Play();
+                    PushThePlayer(2.5f, 5f);
                     //Debug.Log("state0 @ " + enemyHealthScr.enemyHealth);
                     InvokeRepeating("Shooting1",0.5f,0.5f);
                     isState[0] = true;
@@ -194,6 +199,7 @@ public class Boss01 : MonoBehaviour
                     bossChanceState.Play();
                     enemyHealthScr.canTakeDamage = false;
                     rippleParticle.Play();
+                    PushThePlayer(2.5f, 5f);
                     //Debug.Log("state1 @ " + enemyHealthScr.enemyHealth);
                     CancelInvoke();
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
@@ -218,6 +224,8 @@ public class Boss01 : MonoBehaviour
                     bossChanceState.Play( );
                     enemyHealthScr.canTakeDamage = false;
                     rippleParticle.Play();
+                    PushThePlayer(2.5f, 5f);
+
                     //Debug.Log("state2 @ " + enemyHealthScr.enemyHealth);
                     CancelInvoke();
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
@@ -245,27 +253,36 @@ public class Boss01 : MonoBehaviour
         {
             CancelInvoke();
             rippleParticle.Play();
+            PushThePlayer(2.5f, 5f);
             bossChanceState.Play();
 
-            transform.DOShakePosition(4f, 0.2f, 20, 90, false, true).OnComplete(() =>
-            {
-                rippleParticleDie.Play();
+            // set activate material
+            materialList[1] = buildingMaterial;
+            bossMeshRenderer.materials = materialList;
 
-                if (DistanceToPlayer() <= 6)
-                {
-                    // push the player
-                    Vector3 pushDirection = playerTr.position - transform.position;
-                    Vector3 pushForceVector = pushDirection.normalized * 20f;
-                    playerRb.AddForce(pushForceVector, ForceMode.Impulse);
-                }
+            transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 2f).SetDelay(2f);
+            transform.DOShakePosition(4f, 0.3f, 20, 90, false, true).OnComplete(() =>
+            {
+                AudioManager.Instance.PlaySFX("BossExplode");
+                rippleParticleDie.Play();
+                PushThePlayer(6f, 6f);
 
                 // replace
-                //Destroy(gameObject);
+                Instantiate(replacement, transform.position, transform.rotation);
                 bossMeshRenderer.enabled = false;
+                baseCollider.enabled = false;
+
+                // destroy the object
+                Invoke("BossDelete",11f);
             });
         });
 
         bossState = 4;
+    }
+
+    private void BossDelete()
+    {
+        Destroy(gameObject);
     }
 
 
@@ -327,9 +344,21 @@ public class Boss01 : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("ShieldGetHit");
         rippleParticle.Play();
+        PushThePlayer(2.5f, 5f);
         transform.DOShakeScale(0.2f, 0.2f, 10, 90, true);
         dieRotation = dieRotation + 15;
         // instanstiate explosion
         ObjectPoolManager.SpawnObject(explosionObject, transform.position, Quaternion.Euler(0f, dieRotation, 0f), ObjectPoolManager.PoolType.ParticleSystem);
+    }
+
+    private void PushThePlayer(float distence, float forcepower)
+    {
+        if (DistanceToPlayer() <= distence)
+        {
+            // push the player
+            Vector3 pushDirection = playerTr.position - transform.position;
+            Vector3 pushForceVector = pushDirection.normalized * forcepower;
+            playerRb.AddForce(pushForceVector, ForceMode.Impulse);
+        }
     }
 }

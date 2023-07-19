@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: buildings
-    second: {fileID: 2100000, guid: 79850a606d718c2409405aff6ffe6887, type: 2}
+    second: {fileID: 2100000, guid: a43fb6755e8669e4d82cb390c4b53847, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: emissive
-    second: {fileID: 2100000, guid: f0459b728238f3c40a469e373574cdbf, type: 2}
+    second: {fileID: 2100000, guid: a43fb6755e8669e4d82cb390c4b53847, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

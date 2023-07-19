@@ -281,7 +281,7 @@ public class UpgradePanelController : MonoBehaviour
     public void ChooseAValue(int index)
     {
         int number = gameManager.selectedNumbers_[index];
-
+        isTweening = true;
         
 
         switch (number)

@@ -69,9 +69,9 @@ MonoBehaviour:
   - name: LevelUp
     clip: {fileID: 8300000, guid: 2d181c8f97436ea478dd450562b3bd9e, type: 3}
   - name: PlayerShot
-    clip: {fileID: 8300000, guid: 790370ff575fde448be9b52912b262ec, type: 3}
+    clip: {fileID: 8300000, guid: 81e60661f9666a54abbdc732e4ea3ffd, type: 3}
   - name: ImpactShot
-    clip: {fileID: 8300000, guid: 671fad344cd205a49a1fe7165d807aee, type: 3}
+    clip: {fileID: 8300000, guid: 51dc7b471546b384690a620835910dc6, type: 3}
   - name: Explosion
     clip: {fileID: 8300000, guid: 7635c223dc9701c4597ff4b31918aa25, type: 3}
   - name: LiftUP
@@ -118,6 +118,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 08df8a49539ec2a47a262fda2f53b041, type: 3}
   - name: EnemyShootSound
     clip: {fileID: 8300000, guid: e5de4309042e23b45acbc0dbb4db09a5, type: 3}
+  - name: BossExplode
+    clip: {fileID: 8300000, guid: 8045518017f6b484299b8cceb9a4e119, type: 3}
   musicSource: {fileID: 5360521062723552136}
   sfxSource: {fileID: 6929376283259157201}
   musicVolume: 0.2
