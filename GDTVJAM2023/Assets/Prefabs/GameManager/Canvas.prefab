@@ -59,8 +59,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 0, g: 1, b: 0.9329295, a: 1}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -513,8 +513,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 222.6, y: -79.5}
-  m_SizeDelta: {x: 200, y: 15}
+  m_AnchoredPosition: {x: 207.3, y: -75.6}
+  m_SizeDelta: {x: 170, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1554452960
 MonoBehaviour:
@@ -537,10 +537,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 1, b: 0.8718877, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.9103774, g: 1, b: 0.98518443, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3448,7 +3448,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -249.49988, y: 342}
+  m_AnchoredPosition: {x: -249.49988, y: 50}
   m_SizeDelta: {x: 250, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6249226895932777586
@@ -3474,7 +3474,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 21, y: 21, z: 21, w: 21}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4967,12 +4967,12 @@ MonoBehaviour:
     iconPanel: {fileID: 21300000, guid: d717766fd39692e47bc9e10ac04ab6dc, type: 3}
     mainClass: 8
     subClass: 8
-  - headerStr: Fire rate
-    descriptionStr: Increase your main weapon fire rate by XX.
-    iconPanel: {fileID: 21300000, guid: d23e632d3fae25248ace3d83ddc9902e, type: 3}
+  - headerStr: Protection
+    descriptionStr: Increase your protection level by XX.
+    iconPanel: {fileID: 21300000, guid: 0ed2cb74a7f3ebb479bdc536ce9e1422, type: 3}
     mainClass: 8
     subClass: 8
-  - headerStr: Speed
+  - headerStr: Boost Duration
     descriptionStr: Increase your movement speed by XX.
     iconPanel: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
     mainClass: 8
@@ -5029,24 +5029,24 @@ MonoBehaviour:
     subClass: 5
   - headerStr: Shock Nova
     descriptionStr: Creates a nova around the ship that knocks back enemies.
-    iconPanel: {fileID: 21300000, guid: 9689a6e207a49ab4eac8dbb4698edb25, type: 3}
+    iconPanel: {fileID: 21300000, guid: b5adefc2f49023b4e9917d4e5664ed8c, type: 3}
     mainClass: 1
     subClass: 5
   - headerStr: Rocket Wings
     descriptionStr: Sends out a batterie of homing missiles.
-    iconPanel: {fileID: 21300000, guid: 9689a6e207a49ab4eac8dbb4698edb25, type: 3}
+    iconPanel: {fileID: 21300000, guid: 88f631d3dd40cd24585c3384e7bedd70, type: 3}
     mainClass: 1
     subClass: 4
   - headerStr: Front Laser
     descriptionStr: Fires a laser beam in the direction of flight that burns enemies
       on contact.
-    iconPanel: {fileID: 21300000, guid: 9689a6e207a49ab4eac8dbb4698edb25, type: 3}
+    iconPanel: {fileID: 21300000, guid: d3137069e9e58f042aa289b4de30f4b9, type: 3}
     mainClass: 2
     subClass: 8
   - headerStr: Orbital Laser
     descriptionStr: Creates three laser spheres that orbit the player and burn enemies
       on contact.
-    iconPanel: {fileID: 21300000, guid: 9689a6e207a49ab4eac8dbb4698edb25, type: 3}
+    iconPanel: {fileID: 21300000, guid: eb4257d784bcf9341903fc1efd7fbefa, type: 3}
     mainClass: 2
     subClass: 5
   panelList:
@@ -5064,8 +5064,8 @@ MonoBehaviour:
   iconPanel: []
   lifeText: {fileID: 6883646672619920783}
   damageText: {fileID: 6883646671699519630}
-  rateText: {fileID: 6883646672097580293}
-  speedText: {fileID: 6883646672650845250}
+  protectionText: {fileID: 6883646672097580293}
+  boostText: {fileID: 6883646672650845250}
   agilityText: {fileID: 6883646672551422222}
   pickupText: {fileID: 6883646671343395042}
   classColors: []
@@ -5784,7 +5784,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 21, y: 21, z: 21, w: 21}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5951,7 +5951,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 21, y: 21, z: 21, w: 21}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6963,7 +6963,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0.000091552734, y: 0.000011444092}
   m_SizeDelta: {x: 0, y: -0.06427002}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7282,6 +7282,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6883646672097580293}
     - target: {fileID: 1061291156897925111, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: ShipPanel
+      value: 
+      objectReference: {fileID: 6883646672668333046}
+    - target: {fileID: 1061291156897925111, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: boostText
+      value: 
+      objectReference: {fileID: 6883646672650845250}
+    - target: {fileID: 1061291156897925111, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
       propertyPath: speedText
       value: 
       objectReference: {fileID: 6883646672650845250}
@@ -7298,9 +7306,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6883646672551422222}
     - target: {fileID: 1061291156897925111, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: protectionText
+      value: 
+      objectReference: {fileID: 6883646672097580293}
+    - target: {fileID: 1061291156897925111, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: shipImages.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1061291156897925111, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
       propertyPath: classPanels.Array.size
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1061291156897925111, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: shipImages.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1e1ffa433f68c644c9a4da3169d71e46, type: 3}
+    - target: {fileID: 1061291156897925111, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: shipImages.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 89bc8a0a72f977d46a49801366a9a807, type: 3}
+    - target: {fileID: 1061291156897925111, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: shipImages.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: a234fb4dc61c9c44da3e6ae32922551f, type: 3}
     - target: {fileID: 1061291156897925111, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
       propertyPath: classPanels.Array.data[0]
       value: 
@@ -7333,6 +7361,54 @@ PrefabInstance:
       propertyPath: classPanels.Array.data[7]
       value: 
       objectReference: {fileID: 8267236933366642034}
+    - target: {fileID: 6342124285756635070, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: m_Name
+      value: Boost Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342124285756635071, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -28.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342124285784397424, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 27.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342124285858669299, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -28.600006
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342124286062888784, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: m_Name
+      value: Protection Text_
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342124286062888798, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: m_text
+      value: 'Protection: '
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342124286172652403, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.600006
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342124286288983966, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 200.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342124286310670074, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.5999756
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342124286310670075, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342124286310670077, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: m_Name
+      value: Protection Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342124286529563423, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 11.399994
+      objectReference: {fileID: 0}
     - target: {fileID: 6342124286578577462, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
       propertyPath: m_Name
       value: Panel 4
@@ -7420,6 +7496,22 @@ PrefabInstance:
     - target: {fileID: 6342124286578577463, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342124286843025204, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 200.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342124286843025205, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: m_text
+      value: 'Boost time:'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342124286843025207, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: m_Name
+      value: Boost Text (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6342124287407944414, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 200.5
       objectReference: {fileID: 0}
     - target: {fileID: 7220456142870172541, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
       propertyPath: tooltipContent.Array.data[0].header
@@ -7700,6 +7792,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6883646672668333046 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6342124285740701704, guid: 5a6d5e8ef6305b448a758b461edf8e1f, type: 3}
+  m_PrefabInstance: {fileID: 541663695789476862}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8267236933366642034 stripped

@@ -114,6 +114,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 18c3c34dc1fb0bc48960d9fae520e580, type: 3}
   - name: ShieldDie
     clip: {fileID: 8300000, guid: b5e9438bdeb99c94ab375932ba7466e8, type: 3}
+  - name: PlayerBoostKick
+    clip: {fileID: 8300000, guid: 08df8a49539ec2a47a262fda2f53b041, type: 3}
+  - name: EnemyShootSound
+    clip: {fileID: 8300000, guid: e5de4309042e23b45acbc0dbb4db09a5, type: 3}
   musicSource: {fileID: 5360521062723552136}
   sfxSource: {fileID: 6929376283259157201}
   musicVolume: 0.2

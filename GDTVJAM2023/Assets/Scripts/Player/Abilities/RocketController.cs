@@ -53,7 +53,6 @@ public class RocketController : MonoBehaviour
         layerMask = (1 << 6);
     }
 
-
     private void FixedUpdate()
     {
         // rocked movement
@@ -82,8 +81,6 @@ public class RocketController : MonoBehaviour
             // find the next target
             FindNextTarget(); 
         }
-        
-       
     }
 
     private void OnTriggerEnter(Collider other)
@@ -104,7 +101,6 @@ public class RocketController : MonoBehaviour
             Explode(go);
         }
     }
-
 
     private void OnDisable()
     {
@@ -212,7 +208,8 @@ public class RocketController : MonoBehaviour
                     eHC.TakeExplosionDamage(adjustedDamage);
 
                     // show floating text
-                    gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), hitColor);
+                    if (eHC.canTakeDamage == true)
+                        gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), hitColor);
                 }
             }
             else
@@ -224,7 +221,8 @@ public class RocketController : MonoBehaviour
                 eHC.TakeExplosionDamage(damage);
 
                 // show floating text
-                gameManager.DoFloatingText(rb.transform.position, "+" + damage.ToString(), hitColor);
+                if (eHC.canTakeDamage == true)
+                    gameManager.DoFloatingText(rb.transform.position, "+" + damage.ToString(), hitColor);
             }
 
             rb.AddExplosionForce(explosionForce, pos, explosionRadius);

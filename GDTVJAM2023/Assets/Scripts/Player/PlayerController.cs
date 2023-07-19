@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private float horizontalInput2;
     private float currentRotationX;
-    private float targetRotation2 = 0; 
+    private float targetRotation2 = 0;
 
 
     [Header("Outside Border")]
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
         // intro starting sound
         AudioManager.Instance.PlaySFX("LiftUPBoss");
 
-        originalRotationX = playerMesh.localRotation.x-90 ;
+        originalRotationX = playerMesh.localRotation.x - 90;
         currentRotationX = originalRotationX;
     }
 
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
             isIntro = true;
         }
         else
-        { 
+        {
             if (isStartSound == false)
             {
                 AudioManager.Instance.PlaySFX("ShortAlert");
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
             horizontalInput = Input.GetAxis("Horizontal");
             horizontalInput2 = Input.GetAxis("Horizontal2");
 
-           
+
             if (Input.GetButtonUp("Boost"))
             {
                 CancelInvoke("BoostReload");
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
             // set PlayerMesh position back to zero
             if (setPosition == true)
             {
-               
+
                 if (Vector3.Distance(playerMesh.localPosition, Vector3.zero) > 0.005f)
                 {
                     playerMesh.localPosition = Vector3.Lerp(playerMesh.localPosition, Vector3.zero, Time.deltaTime * 3f);
@@ -150,12 +150,12 @@ public class PlayerController : MonoBehaviour
 
             // rotate Playermesh
             float targetRotationX = originalRotationX - (horizontalInput * 20f) - targetRotation2;
-            currentRotationX = Mathf.Lerp(currentRotationX, targetRotationX, Time.deltaTime*15f );
+            currentRotationX = Mathf.Lerp(currentRotationX, targetRotationX, Time.deltaTime * 15f);
             playerMesh.localRotation = Quaternion.Euler(currentRotationX, transform.rotation.y + 90f, transform.rotation.z);
 
         }
 
-        
+
     }
 
 
@@ -251,35 +251,35 @@ public class PlayerController : MonoBehaviour
         switch (input)
         {
             case 0:
-                playerWeaponController.mcBulletLvl ++;
+                playerWeaponController.mcBulletLvl++;
                 floatingText = "+1 bullet class";
                 break;
             case 1:
-                playerWeaponController.mcExplosionLvl ++;
+                playerWeaponController.mcExplosionLvl++;
                 floatingText = "+1 explosion class";
                 break;
             case 2:
-                playerWeaponController.mcLaserLvl ++;
+                playerWeaponController.mcLaserLvl++;
                 floatingText = "+1 laser class";
                 break;
             case 3:
-                playerWeaponController.mcSupportLvl ++;
+                playerWeaponController.mcSupportLvl++;
                 floatingText = "+1 support class";
                 break;
             case 4:
-                playerWeaponController.scSwarmLvl ++;
+                playerWeaponController.scSwarmLvl++;
                 floatingText = "+1 swarm class";
                 break;
             case 5:
-                playerWeaponController.scDefenceLvl ++;
+                playerWeaponController.scDefenceLvl++;
                 floatingText = "+1 defense class";
                 break;
             case 6:
-                playerWeaponController.scTargetingLvl ++;
+                playerWeaponController.scTargetingLvl++;
                 floatingText = "+1 targeting class";
                 break;
             case 7:
-                playerWeaponController.scBackwardsLvl ++;
+                playerWeaponController.scBackwardsLvl++;
                 floatingText = "+1 backwards class";
                 break;
         }
@@ -289,8 +289,8 @@ public class PlayerController : MonoBehaviour
     }
 
 
-// activate if trigger stay - border control
-private void OnTriggerStay(Collider other)
+    // activate if trigger stay - border control
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("BorderCollider"))
         {
@@ -317,7 +317,7 @@ private void OnTriggerStay(Collider other)
                 gameManager.outsideBorderText.text = "outside border!";
                 gameManager.outsideBorderTextTweenTarget.DOPunchScale(new Vector3(0.15f, 0.15f, 0.15f), 0.8f, 10, 0.5f);
                 isOutsideBorder = true;
-                
+
             }
         }
     }
@@ -351,8 +351,9 @@ private void OnTriggerStay(Collider other)
             ObjectPoolManager.SpawnObject(enemyHealth.dieExplosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
 
             // calculate player health
-            UpdatePlayerHealth(enemyHealth.collisonDamage);
-            
+            int damage = Mathf.Max(enemyHealth.collisonDamage - Mathf.RoundToInt(enemyHealth.collisonDamage * protectionPerc / 100), 1);
+            UpdatePlayerHealth(damage);
+
             // refresh the UI
             if (enemyHealth.secondDimensionEnemy == false)
             {
@@ -371,7 +372,7 @@ private void OnTriggerStay(Collider other)
     /* **************************************************************************** */
     /* Movement Stuff-------------------------------------------------------------- */
     /* **************************************************************************** */
-   // control the basic player movement
+    // control the basic player movement
     private void PlayerMovement()
     {
         if (gameManager.gameIsPlayed && !gameManager.gameOver)
@@ -394,7 +395,7 @@ private void OnTriggerStay(Collider other)
             }
             // boost
             else if (Input.GetButton("Boost"))
-            {  
+            {
                 boostValue = gameManager.UpdateBoostSlider(boostValue);
 
                 if (boostValue > 0)
@@ -402,21 +403,22 @@ private void OnTriggerStay(Collider other)
                     if (isBoost == false)
                     {
                         //gameManager.ScreenShake(5);
-                        if (boostValue >= gameManager.boostSlider.maxValue*0.9)
+                        if (boostValue >= gameManager.boostSlider.maxValue * 0.9)
                         {
                             AudioManager.Instance.PlaySFX("PlayerBoostKick");
                             //playerMesh.localPosition = new Vector3(0, 0, -0.1f);
                             playerMesh.DOLocalMoveZ(-0.1f, 0.1f);
                             boostParticle.Emit(80);
-                            playerRb.AddForce(transform.forward*-speed*30, ForceMode.Force);
+                            playerRb.AddForce(transform.forward * -speed * 30, ForceMode.Force);
+                            gameManager.boostSlider.value = boostValue * 0.75f;
                         }
                         isBoost = true;
                     }
-                    
+
                     float boostSpeed = boostPower;
                     forwardInput = boostSpeed;
                     boostParticle.Emit(1);
-                    
+
                 }
                 else
                 {
@@ -435,7 +437,7 @@ private void OnTriggerStay(Collider other)
                 Vector3 rightAngle = Quaternion.Euler(0, 90f, 0f) * transform.forward;
                 playerRb.AddForce(rightAngle * horizontalInput2 * -speed * 0.75f);
                 targetRotation2 = (horizontalInput2 * 10f);
-            }   
+            }
             else
             {
                 targetRotation2 = 0;
@@ -472,12 +474,13 @@ private void OnTriggerStay(Collider other)
             engineAudioSource.Stop();
 
             // recalculate new experience values
-            playerLevel += 1;
+            playerLevel++;
             playerExperienceToLevelUp = Mathf.RoundToInt(playerExperienceToLevelUp * playerLevelUpFactor);
             playerCurrentExperience = 0;
 
             // player get +1 health und heal 25 % of his life
-            playerMaxHealth = playerMaxHealth + 1;
+            playerMaxHealth++;
+
             int temphealth = Mathf.RoundToInt(playerMaxHealth * 0.25f);
             UpdatePlayerHealth(-temphealth);
 
@@ -499,12 +502,12 @@ private void OnTriggerStay(Collider other)
     {
         // calculate the player health value
         playerCurrentHealth = Mathf.Min(Mathf.Max(0, playerCurrentHealth - decHealth), playerMaxHealth);
-        
+
         // update playerUI
         gameManager.UpdateUIPlayerHealth(playerCurrentHealth, playerMaxHealth);
 
         // get damage but dont die
-        if (decHealth > 0) 
+        if (decHealth > 0)
         {
             gameManager.ScreenShake(1);
             AudioManager.Instance.PlaySFX("PlayerGetDamage");

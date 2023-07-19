@@ -24,7 +24,7 @@ public class MineController : MonoBehaviour
 
     private void Start()
     {
-        // set coponents
+        // set components
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         enemyHealth = gameObject.GetComponent<EnemyHealth>();
         player = GameObject.FindWithTag("Player");

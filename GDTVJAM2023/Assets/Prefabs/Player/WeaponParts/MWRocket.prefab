@@ -78,9 +78,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  speed: 6.5
+  speed: 6
   rotationSpeed: 10
-  startTime: 0.8
+  startTime: 0.7
   exposionHitObject: {fileID: 4303235208557751318, guid: eb9d00288658133488952b36c49aca32, type: 3}
   maxLifeTime: 4
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}

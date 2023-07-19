@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +22,8 @@ public class EnemyHealth : MonoBehaviour
     public bool secondDimensionEnemy = false;
     public bool canTakeDamage = true;
     public bool canPoolObject = true;
-
+    public event EventHandler DieEvent;
+    
 
     [Header("Enemy Weapons")]
     public List<EnemyParticleBullet> enemyWeapons;
@@ -60,7 +62,7 @@ public class EnemyHealth : MonoBehaviour
     private void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        collisionMultiplier += startCollisionMultiplier + Random.Range(-16, 128);
+        collisionMultiplier += startCollisionMultiplier + UnityEngine.Random.Range(-16, 128);
         enemyHealthTemp = enemyHealth;
     }
 
@@ -70,6 +72,8 @@ public class EnemyHealth : MonoBehaviour
         isShooting = false;
         enemyHealth = enemyHealthTemp;
         isBurning = false;
+        if (canPoolObject == false)
+            canTakeDamage = true;
         burnTickCount = 0;
         CancelInvoke();
         if (burnParticleSystem != null)
@@ -114,7 +118,7 @@ public class EnemyHealth : MonoBehaviour
             if (damagetyp == 0)
             {
                 // calculate crit damage
-                int ran = Random.Range(0, 100);
+                int ran = UnityEngine.Random.Range(0, 100);
                 if (ran < playerWeaponController.bulletCritChance)
                 {
                     damage = Mathf.RoundToInt(damage * playerWeaponController.bulletCritDamage / 100);
@@ -158,6 +162,9 @@ public class EnemyHealth : MonoBehaviour
 
             if (enemyHealth <= 0)
             {
+                // cancle all Invokes
+                CancelInvoke();
+
                 // drop an Item
                 Drop();
 
@@ -171,28 +178,25 @@ public class EnemyHealth : MonoBehaviour
                     gameManager.UpdateEnemyToKill(1);
                 }
 
-         
-                // pool (destroy) enemy object
-                if (canPoolObject == true)
-                    ObjectPoolManager.ReturnObjectToPool(gameObject);
-                else
-                    Destroy(gameObject);
 
-                // cancle all Invokes
-                CancelInvoke();
-            }
+                Die();
+
+           }
         }
     }
 
     // take damage from an explosion
     public void TakeExplosionDamage(int damage)
     {
-        if (canTakeDamage)
+        if (canTakeDamage == true)
         {
             enemyHealth -= damage;
 
             if (enemyHealth <= 0)
             {
+                // cancle all Invokes
+                CancelInvoke();
+
                 // drop an Item
                 Drop();
 
@@ -216,14 +220,7 @@ public class EnemyHealth : MonoBehaviour
                     gameManager.UpdateEnemyToKill(1);
                 }
 
-                // pool (destroy) enemy object
-                if (canPoolObject == true)
-                    ObjectPoolManager.ReturnObjectToPool(gameObject);
-                else
-                    Destroy(gameObject);
-
-                // cancle all Invokes
-                CancelInvoke();
+                Die();
             }
         }
     }
@@ -235,7 +232,7 @@ public class EnemyHealth : MonoBehaviour
         AudioManager.Instance.PlaySFX("PlayerLaserHit");
 
         // calculate burning damage
-        int ran = Random.Range(0, 100);
+        int ran = UnityEngine.Random.Range(0, 100);
         if (ran < playerWeaponController.burnDamageChance && isBurning == false)
         {
             isBurning = true;
@@ -250,6 +247,9 @@ public class EnemyHealth : MonoBehaviour
 
             if (enemyHealth <= 0)
             {
+                // cancle all Invokes
+                CancelInvoke();
+
                 // drop an Item
                 Drop();
 
@@ -269,15 +269,7 @@ public class EnemyHealth : MonoBehaviour
                 //die sound
                 AudioManager.Instance.PlaySFX("PlayerLaserDie");
 
-
-                // pool (destroy) enemy object
-                if (canPoolObject == true)
-                    ObjectPoolManager.ReturnObjectToPool(gameObject);
-                else
-                    Destroy(gameObject);
-
-                // cancle all Invokes
-                CancelInvoke();
+                Die();
             }
         }
     }
@@ -299,6 +291,22 @@ public class EnemyHealth : MonoBehaviour
             if (burnParticleSystem != null)
                 burnParticleSystem.Stop();
         }
+    }
+
+    private void Die()
+    {
+        canTakeDamage = false;
+
+        if (DieEvent != null) {
+            DieEvent.Invoke(this, new EventArgs());
+            return;
+        }
+
+        // pool (destroy) enemy object
+        if (canPoolObject == true)
+            ObjectPoolManager.ReturnObjectToPool(gameObject);
+        else
+            Destroy(gameObject);
     }
 
     /* **************************************************************************** */
@@ -342,7 +350,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (expOrbSpawn)
         {
-            int ran = Random.Range(0, 100);
+            int ran = UnityEngine.Random.Range(0, 100);
 
             if (ran >= 3 || classPickup == null)
             {

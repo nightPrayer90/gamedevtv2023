@@ -29892,10 +29892,12 @@ MonoBehaviour:
   rotateSpeed: 3
   playerMaxHealth: 10
   playerBulletBaseDamage: 5
-  playerFireRate: 0.3
+  playerFireRate: 0.4
   pickupRange: 0.8
   boostValue: 0.5
   boostPower: 2
+  protectionPerc: 0
+  protectionLvl: 0
   playerCurrentHealth: 10
   damageInterval: 1
   damageTaken: 1
@@ -30007,7 +30009,7 @@ MonoBehaviour:
   lifeModul: {fileID: 8459815295507979944, guid: 0bb488a5296b7d34eb8f8afe684ebff5, type: 3}
   sgDamage: 3
   sgReloadTime: 2.5
-  sgBulletCount: 20
+  sgBulletCount: 18
   spreadGun: {fileID: 7701453864392984337, guid: 104de042193ebb248b57f868f189bcdf, type: 3}
   neDamage: 4
   neReloadTime: 3.5
@@ -30015,7 +30017,7 @@ MonoBehaviour:
   novaExplosion: {fileID: 5372979302712396976, guid: 056b57503f6534c44a1d12a5f55b7ced, type: 3}
   rwDamage: 2
   rwReloadTime: 5
-  rwSalveCount: 4
+  rwSalveCount: 3
   rocketWings: {fileID: 8390656690878353693, guid: 8634b4018809df54b87676107fad22f7, type: 3}
   flDamage: 3
   flReloadTime: 4.5

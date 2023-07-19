@@ -82,7 +82,8 @@ public class NovaExplosion : MonoBehaviour
                 eHC.TakeExplosionDamage(adjustedDamage);
 
                 // show floating text
-                gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), hitColor);
+                if (eHC.canTakeDamage == true)
+                    gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), hitColor);
             }
 
             rb.AddExplosionForce(explosionForce, pos, explosionRadius);

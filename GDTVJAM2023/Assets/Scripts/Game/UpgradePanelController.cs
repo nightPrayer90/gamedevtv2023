@@ -306,6 +306,7 @@ public class UpgradePanelController : MonoBehaviour
             case 3: //upgrade: boost
                 gameManager.boostSlider.maxValue = gameManager.boostSlider.maxValue + upgradeValue[index];
                 playerController.boostValue = gameManager.boostSlider.maxValue + upgradeValue[index];
+                gameManager.boostSlider.value = gameManager.boostSlider.maxValue;
                 break;
             case 4: //upgrade: rotate speed
                 playerController.rotateSpeed = playerController.rotateSpeed + upgradeValue[index];
