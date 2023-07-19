@@ -72,8 +72,9 @@ public class EnemyHealth : MonoBehaviour
         isShooting = false;
         enemyHealth = enemyHealthTemp;
         isBurning = false;
-        if (canPoolObject == false)
+        if (canPoolObject == true)
             canTakeDamage = true;
+
         burnTickCount = 0;
         CancelInvoke();
         if (burnParticleSystem != null)

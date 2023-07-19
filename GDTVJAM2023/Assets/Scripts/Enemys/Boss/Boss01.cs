@@ -11,7 +11,8 @@ public class Boss01 : MonoBehaviour
     private int numberOfFightingStates = 3;
     private float fightingStatesStepSize = 0;
     private bool[] isState;
-
+    private float dieRotation = 0;
+    private bool isMinimap = false;
 
 [Header("GameObjects")]
     public Slider bossHealthSlider;
@@ -20,14 +21,20 @@ public class Boss01 : MonoBehaviour
     public Material emissivMaterial;
     public MeshRenderer bossMeshRenderer;
     public ParticleSystem rippleParticle;
+    public ParticleSystem rippleParticleDie;
     public List<ParticleSystem> particleWeapons = new List<ParticleSystem>();
     public List<ParticleSystem> particleWeapons2 = new List<ParticleSystem>();
+    public GameObject explosionObject;
+    public GameObject minimapIcon;
+    public SpriteRenderer minimapSpR;
+    public GameObject damageArea;
     private Material[] materialList;
     private EnemyHealth enemyHealthScr;
     private Transform playerTr;
+    private Rigidbody playerRb;
     private GameManager gameManager;
-
-
+    private AudioSource bossChanceState;
+   
 
 
     /* **************************************************************************** */
@@ -38,7 +45,9 @@ public class Boss01 : MonoBehaviour
         // hash components
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerTr = GameObject.FindWithTag("Player").transform;
+        playerRb = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
         enemyHealthScr = gameObject.GetComponent<EnemyHealth>();
+        bossChanceState = gameObject.GetComponent<AudioSource>();
 
         // set values
         enemyHealthScr.canTakeDamage = false;
@@ -86,7 +95,7 @@ public class Boss01 : MonoBehaviour
                     break;
 
                 case 3: // die
-
+                    DieState();
                     break;
             }
         }
@@ -103,8 +112,12 @@ public class Boss01 : MonoBehaviour
         if (distanceToPlayer <= 3.5f)
         {
             bossState = 1;
+            damageArea.SetActive(true);
             transform.DOMoveY(6, 5f).SetEase(Ease.InOutSine).OnComplete(() =>
             {
+                minimapIcon.transform.DOComplete();
+                minimapSpR.DOColor(Color.red, 1f);
+
                 // open bosshud
                 bossHud.SetActive(true);
                 bossHealthSlider.maxValue = enemyHealthScr.enemyHealth;
@@ -115,11 +128,28 @@ public class Boss01 : MonoBehaviour
                 { 
                     ActivateState();
                     bossHealthSlider.DOValue(enemyHealthScr.enemyHealth, 1f);
+                    damageArea.GetComponent<DamageArea>().FadeOut();
                 });
 
             });
             gameManager.ScreenShake(3);
             AudioManager.Instance.PlaySFX("LiftUPBoss");
+        }
+        else
+        {
+            if (isMinimap == false)
+            {
+                minimapIcon.SetActive(true);
+
+                minimapSpR.DOFade(1f, 2f).SetDelay(1f);
+                minimapIcon.transform.DOScale(new Vector3(15f, 15f, 15f), 2f).SetDelay(1f).OnComplete(() =>
+                {
+                    minimapIcon.transform.DOPunchScale(new Vector3(7f, 7f, 7f), 2f, 1, 0.4f).SetDelay(2f).SetLoops(-1, LoopType.Restart);
+                });
+
+
+                isMinimap = true;
+            }
         }
 
     }
@@ -148,24 +178,23 @@ public class Boss01 : MonoBehaviour
                 // turns only one time per state
                 if (isState[0] == false)
                 {
-                    Debug.Log("state0 @ " + enemyHealthScr.enemyHealth);
-                    isState[0] = true;
+                    //Debug.Log("state0 @ " + enemyHealthScr.enemyHealth);
                     InvokeRepeating("Shooting1",0.5f,0.5f);
+                    isState[0] = true;
                 }
 
                 RotateBoss(10f);
-                MoveToPlayer(8f);
+                MoveToPlayer(6f);
                 break;
 
             case 1:
                 // turns only one time per state
                 if (isState[1] == false)
                 {
-                    AudioManager.Instance.PlaySFX("Explosion");
+                    bossChanceState.Play();
                     enemyHealthScr.canTakeDamage = false;
                     rippleParticle.Play();
-                    Debug.Log("state1 @ " + enemyHealthScr.enemyHealth);
-                    isState[1] = true;
+                    //Debug.Log("state1 @ " + enemyHealthScr.enemyHealth);
                     CancelInvoke();
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
                     { 
@@ -175,7 +204,7 @@ public class Boss01 : MonoBehaviour
                             enemyHealthScr.canTakeDamage = true;
                         });
                     });
-                    
+                    isState[1] = true;
                 }
 
                 RotateBoss(-13f);
@@ -186,11 +215,10 @@ public class Boss01 : MonoBehaviour
                 // turns only one time per state
                 if (isState[2] == false)
                 {
+                    bossChanceState.Play( );
                     enemyHealthScr.canTakeDamage = false;
-                    AudioManager.Instance.PlaySFX("Explosion");
                     rippleParticle.Play();
-                    Debug.Log("state2 @ " + enemyHealthScr.enemyHealth);
-                    isState[2] = true;
+                    //Debug.Log("state2 @ " + enemyHealthScr.enemyHealth);
                     CancelInvoke();
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
                     { 
@@ -201,35 +229,46 @@ public class Boss01 : MonoBehaviour
                             enemyHealthScr.canTakeDamage = true;
                         });
                     });
+                    isState[2] = true;
                 }
 
                 RotateBoss(10f);
-                MoveToPlayer(4f);
+                MoveToPlayer(6f);
                 break;
         }
     }
 
-    private void Shooting1()
+    private void DieState()
     {
-        foreach (ParticleSystem weapon in particleWeapons)
+        InvokeRepeating("InvokeSpawnExplosion", 0.5f, 1f);
+        transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
         {
-            weapon.Emit(1);
+            CancelInvoke();
+            rippleParticle.Play();
+            bossChanceState.Play();
 
-        }
+            transform.DOShakePosition(4f, 0.2f, 20, 90, false, true).OnComplete(() =>
+            {
+                rippleParticleDie.Play();
+
+                if (DistanceToPlayer() <= 6)
+                {
+                    // push the player
+                    Vector3 pushDirection = playerTr.position - transform.position;
+                    Vector3 pushForceVector = pushDirection.normalized * 20f;
+                    playerRb.AddForce(pushForceVector, ForceMode.Impulse);
+                }
+
+                // replace
+                //Destroy(gameObject);
+                bossMeshRenderer.enabled = false;
+            });
+        });
+
+        bossState = 4;
     }
 
-    private void Shooting2()
-    {
-        foreach (ParticleSystem weapon in particleWeapons2)
-        {
-            weapon.Emit(1);
-        }
-    }
 
-    private void InvokeShootSound()
-    {
-        AudioManager.Instance.PlaySFX("EnemyShootSound");
-    }
     /* **************************************************************************** */
     /* HELP FUNCTIONS ------------------------------------------------------------- */
     /* **************************************************************************** */
@@ -257,5 +296,40 @@ public class Boss01 : MonoBehaviour
     private void RotateBoss(float rotationSpeed)
     {
         transform.rotation = transform.rotation * Quaternion.Euler( 0f , rotationSpeed * Time.deltaTime, 0f);
+    }
+
+    // invoke - shoot attack 1
+    private void Shooting1()
+    {
+        foreach (ParticleSystem weapon in particleWeapons)
+        {
+            weapon.Emit(1);
+
+        }
+    }
+
+    // invoke - shoot attack 2
+    private void Shooting2()
+    {
+        foreach (ParticleSystem weapon in particleWeapons2)
+        {
+            weapon.Emit(1);
+        }
+    }
+
+    // invoke - shoot sound
+    private void InvokeShootSound()
+    {
+        AudioManager.Instance.PlaySFX("EnemyShootSound");
+    }
+
+    private void InvokeSpawnExplosion()
+    {
+        AudioManager.Instance.PlaySFX("ShieldGetHit");
+        rippleParticle.Play();
+        transform.DOShakeScale(0.2f, 0.2f, 10, 90, true);
+        dieRotation = dieRotation + 15;
+        // instanstiate explosion
+        ObjectPoolManager.SpawnObject(explosionObject, transform.position, Quaternion.Euler(0f, dieRotation, 0f), ObjectPoolManager.PoolType.ParticleSystem);
     }
 }
