@@ -10209,7 +10209,7 @@ MonoBehaviour:
   enemyWeapons:
   - {fileID: 6568500339046026327}
   - {fileID: 8093461885592205405}
-  bulletDamage: 0
+  bulletDamage: 1
   hitColor: {r: 1, g: 0.5998216, b: 0, a: 1}
   critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
   _replacement: {fileID: 2707211570806456033, guid: 9f5d02807566d27419f1194fb44fee56, type: 3}

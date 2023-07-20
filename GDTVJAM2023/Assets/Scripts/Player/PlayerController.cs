@@ -154,8 +154,6 @@ public class PlayerController : MonoBehaviour
             playerMesh.localRotation = Quaternion.Euler(currentRotationX, transform.rotation.y + 90f, transform.rotation.z);
 
         }
-
-
     }
 
 
@@ -371,6 +369,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnParticleCollision(GameObject other)
+    {
+        Debug.Log("hit");
+        ParticleSystem part = other.GetComponent<ParticleSystem>(); // *** important! Making a variable to acess the particle system of the emmiting object, in this case, the lasers from my player ship.
+        var ps = other.GetComponent<EnemyParticleBullet>();
+        int damage = ps.bulletDamage;
+
+        damage = Mathf.Max(damage - Mathf.RoundToInt(damage * protectionPerc / 100), 1);
+        UpdatePlayerHealth(damage);
+
+        gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
+        /*
+        int numCollisionEvents = part.GetCollisionEvents(this.gameObject, collisionEvents);
+
+        foreach (ParticleCollisionEvent collisionEvent in collisionEvents) //  for each collision, do the following:
+        {
+            Vector3 pos = collisionEvent.intersection; // the point of intersection between the particle and the enemy
+            gameManager.DoFloatingText(pos, "+" + damage.ToString(), hitColor);
+        }*/
+    }
 
 
 

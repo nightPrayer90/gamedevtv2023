@@ -63,11 +63,13 @@ public class UpgradPanelIndex : MonoBehaviour
 
     public void OnMouseEnter_()
     {
-        // Farbe des Panels ändern, wenn die Maus über das Panel fährt
-        upgradePanelController.selectetPanel = index;
-        upgradePanelController.UpdateValuePanelOnMouseEnter(index);
-        //SelectPanel();
-        
+        if (isTweening == false)
+        {
+            // Farbe des Panels ändern, wenn die Maus über das Panel fährt
+            upgradePanelController.selectetPanel = index;
+            upgradePanelController.UpdateValuePanelOnMouseEnter(index);
+            //SelectPanel();
+        }
     }
 
     public void SelectPanel()

@@ -141,7 +141,7 @@ public class EnemyHealth : MonoBehaviour
                 TakeLaserDamage(damage);
             }
 
-
+            
             int numCollisionEvents = part.GetCollisionEvents(this.gameObject, collisionEvents);
 
             foreach (ParticleCollisionEvent collisionEvent in collisionEvents) //  for each collision, do the following:

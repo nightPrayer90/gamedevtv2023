@@ -87,7 +87,7 @@ public class Boss01 : MonoBehaviour
         bossHealthForeground.color = Color.red;
 
         // set tag for targeting weapons
-        gameObject.tag = "Default";
+        gameObject.tag = "Untagged";
 
     }
 
@@ -324,7 +324,7 @@ public class Boss01 : MonoBehaviour
                 Invoke("BossDelete",11f);
 
                 // set tag for targeting weapons
-                gameObject.tag = "Default";
+                gameObject.tag = "Untagged";
             });
         });
 
