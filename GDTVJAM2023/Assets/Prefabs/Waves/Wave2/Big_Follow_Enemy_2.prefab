@@ -304,7 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveTyp: 0
   enemyMesh: {fileID: 6147779886400807874}
-  speed: 0.9
+  speed: 0.8
   rotationSpeed: 10
   dashForce: 0
   dashDistance: 0
@@ -332,7 +332,7 @@ MonoBehaviour:
   expOrb: {fileID: 5693635298845190373, guid: 5ca91630af6a61c4f99d7279b939e976, type: 3}
   classPickup: {fileID: 5693635298845190373, guid: d8d2b78aecd465f4c84d40add32cceb0, type: 3}
   miniMapIcon: {fileID: 276777249927020237}
-  enemyHealth: 70
+  enemyHealth: 40
   collisonDamage: 3
   explosionForce: 10
   expOrbSpawn: 1

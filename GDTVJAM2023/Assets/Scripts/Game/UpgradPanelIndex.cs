@@ -66,7 +66,7 @@ public class UpgradPanelIndex : MonoBehaviour
         // Farbe des Panels ändern, wenn die Maus über das Panel fährt
         upgradePanelController.selectetPanel = index;
         upgradePanelController.UpdateValuePanelOnMouseEnter(index);
-        SelectPanel();
+        //SelectPanel();
         
     }
 
@@ -80,6 +80,7 @@ public class UpgradPanelIndex : MonoBehaviour
         if (isTweening == false)
         {
             transform.DOComplete();
+            transform.DOKill();
             transform.DOPunchScale(new Vector3(0.08f, 0.08f, 0.08f), 0.08f, 5, 1).SetUpdate(true);
         }
     }

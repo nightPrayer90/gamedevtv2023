@@ -10303,7 +10303,7 @@ MonoBehaviour:
   startImpulse: 100
   speed: 10
   rotateSpeed: 3
-  playerMaxHealth: 214748364
+  playerMaxHealth: 10
   playerBulletBaseDamage: 2
   playerFireRate: 2.5
   pickupRange: 0.8
@@ -10311,7 +10311,7 @@ MonoBehaviour:
   boostPower: 2
   protectionPerc: 0
   protectionLvl: 0
-  playerCurrentHealth: 214748364
+  playerCurrentHealth: 10
   damageInterval: 1
   damageTaken: 1
   isOutsideBorder: 0

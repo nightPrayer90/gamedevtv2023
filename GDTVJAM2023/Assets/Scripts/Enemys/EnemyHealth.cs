@@ -30,17 +30,20 @@ public class EnemyHealth : MonoBehaviour
     public int bulletDamage;
     private bool isShooting = false;
 
+
     [Header("Collision Control")]
     public List<ParticleCollisionEvent> collisionEvents;
     public Color hitColor = new Color(1f, 0.6f, 0.0f, 1f);
     public Color critColor = new Color(1f, 0.6f, 0.0f, 1f);
     private Color resultColor;
+    private bool isdied = false;
 
 
     [Header("AOE Damage Control")]
     public GameObject _replacement;
     private float startCollisionMultiplier = 64;
     private float collisionMultiplier = 64;
+
 
     [Header("Laser burning Control")]
     public GameObject _burnReplacement;
@@ -88,19 +91,22 @@ public class EnemyHealth : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager.dimensionShift == !secondDimensionEnemy)
+        if (isdied == false)
         {
-            GetComponent<Collider>().enabled = false;
-            if (miniMapIcon != null) miniMapIcon.SetActive(false);
-            StopShooting();
-        }
-        else
-        {
-            if (isShooting == false)
+            if (gameManager.dimensionShift == !secondDimensionEnemy)
             {
-                GetComponent<Collider>().enabled = true;
-                if (miniMapIcon != null) miniMapIcon.SetActive(true);
-                //StartShooting();
+                GetComponent<Collider>().enabled = false;
+                if (miniMapIcon != null) miniMapIcon.SetActive(false);
+                StopShooting();
+            }
+            else
+            {
+                if (isShooting == false)
+                {
+                    GetComponent<Collider>().enabled = true;
+                    if (miniMapIcon != null) miniMapIcon.SetActive(true);
+                    //StartShooting();
+                }
             }
         }
     }
@@ -297,6 +303,7 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         canTakeDamage = false;
+        isdied = true;
 
         if (DieEvent != null) {
             DieEvent.Invoke(this, new EventArgs());

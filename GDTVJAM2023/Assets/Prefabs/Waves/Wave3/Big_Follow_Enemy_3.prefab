@@ -220,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveTyp: 0
   enemyMesh: {fileID: 6147779886400807874}
-  speed: 0.9
+  speed: 0.8
   rotationSpeed: 10
   dashForce: 0
   dashDistance: 0

@@ -14,8 +14,6 @@ public class EnemyClassPickup : MonoBehaviour
     private Color classColor; 
 
 
-    // Start is called before the first frame update
-
     void OnEnable()
     {
         var player = GameObject.FindWithTag("Player");

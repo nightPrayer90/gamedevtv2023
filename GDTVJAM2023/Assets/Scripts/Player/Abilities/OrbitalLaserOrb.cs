@@ -26,9 +26,12 @@ public class OrbitalLaserOrb : MonoBehaviour
         if (other.CompareTag("Enemy") || other.CompareTag("secondDimensionEnemy"))
         {
             EnemyHealth eh = other.GetComponent<EnemyHealth>();
-            eh.TakeLaserDamage(damage);
-            eh.ShowDamageFromObjects(damage);
 
+            if (eh.canTakeDamage == true)
+            {
+                eh.TakeLaserDamage(damage);
+                eh.ShowDamageFromObjects(damage);
+            }
             Invoke("ActivateOrb", realoadTime);
 
             hitParticle.transform.position = gameObject.transform.position;

@@ -327,7 +327,23 @@ public class GameManager : MonoBehaviour
             }
             experienceSlider.DOValue(playerCurrentExperience, 0.5f);
         }
-        //experienceSlider.value = playerCurrentExperience;
+    }
+
+    // trigger if the player collect an Upgrade Pickup
+    public void PlayerWeaponUpdatePickup() 
+    {
+        DOTween.CompleteAll();
+
+        CreateRandomNumbers(-1);
+
+        gameIsPlayed = false;
+
+        panelUI.SetActive(true);
+        playerUI.SetActive(false);
+        bossUI.SetActive(false);
+
+        // spawn the district dimension item
+        spawnDistrictList.goBackDimensionPickup[districtNumber - 1].SetActive(true);
     }
 
     // updade Player Boost slider
@@ -526,7 +542,7 @@ public class GameManager : MonoBehaviour
         List<int> selectedNumbers = new List<int>();
 
         // create temporary list from weapons or normal upgrades - depends on the player level
-        if (((playerLevel % 4) == 3) && playerLevel <= 26)
+        if (playerLevel == -1) //((playerLevel % 4) == 3) && playerLevel <= 26
             valueList.AddRange(weaponChooseList.weaponIndex);
         else
             valueList.AddRange(upgradeChooseList.upgradeIndex);

@@ -213,6 +213,11 @@ public class PlayerController : MonoBehaviour
                 UpdateClassLevel(7);
                 break;
 
+            case "UpgradePickup":
+                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
+                PlayerWeaponUpdatePickup();
+                break;
+
             case "DimensionPickUp":
                 other.gameObject.SetActive(false);
                 navigationController.DeactivateNavigatorMesh();
@@ -495,6 +500,20 @@ public class PlayerController : MonoBehaviour
 
         // refresh player UI
         gameManager.UpdateUIPlayerExperience(isLevelUp, playerLevel, playerExperienceToLevelUp, playerCurrentExperience);
+    }
+
+    public void PlayerWeaponUpdatePickup()
+    {
+
+        Time.timeScale = 0;
+        AudioManager.Instance.PlaySFX("LevelUp");
+        engineAudioSource.Stop();
+
+        int temphealth = playerMaxHealth - playerCurrentHealth;
+        UpdatePlayerHealth(-temphealth);
+
+        // refresh player UI
+        gameManager.PlayerWeaponUpdatePickup();
     }
 
     // update player life after get damage, heal or level up

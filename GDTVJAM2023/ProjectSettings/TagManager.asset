@@ -23,6 +23,7 @@ TagManager:
   - TargetingPickup
   - BackwardsPickup
   - ExplosionPickup
+  - UpgradePickup
   layers:
   - Default
   - TransparentFX

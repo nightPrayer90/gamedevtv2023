@@ -19,5 +19,6 @@ public class WeaponChooseList : MonoBehaviour
         weaponIndex.Add(14);
         weaponIndex.Add(15);
         weaponIndex.Add(16);
+        weaponIndex.Add(17);
     }
 }
