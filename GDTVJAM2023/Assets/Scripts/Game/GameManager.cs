@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
     private Light directionalLight;
     private GameObject currentSpawnManager;
     private bool isIntro = true;
-
+    private bool canSpawnNextDimention = true;
 
 
     /* **************************************************************************** */
@@ -398,12 +398,13 @@ public class GameManager : MonoBehaviour
         enemyToKillText.text = "Enemys to defeat: " + enemyToDefeat;
 
         // if the enemy kill quest for the current destrict is done
-        if (enemyToDefeat == 0)
+        if (enemyToDefeat == 0 && canSpawnNextDimention == true)
         {
             if (spawnDistrictList.goToDimensionPickup[districtNumber - 1].activeSelf == false)
             {
                 // spawn the district dimension item
                 spawnDistrictList.goToDimensionPickup[districtNumber - 1].SetActive(true);
+                canSpawnNextDimention = false;
 
                 // activate the navigation controler
                 player.SetNavigationController();
@@ -421,6 +422,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void InvokeCanSpawnNext()
+    {
+        canSpawnNextDimention = true;
+    }
     // update the enemy counter text
     public void UpdateEnemyCounter(float curretEnemyCounter_)
     {
@@ -516,6 +521,8 @@ public class GameManager : MonoBehaviour
         currentSpawnManager.transform.SetParent(gameObject.transform);
 
         dimensionShift = false;
+
+        Invoke("InvokeCanSpawnNext", 2f);
     }
 
     // (help function) destroy alle expOrbs if the player goes into the secound dimension

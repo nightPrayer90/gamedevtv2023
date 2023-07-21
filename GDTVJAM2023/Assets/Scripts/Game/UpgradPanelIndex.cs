@@ -124,13 +124,14 @@ public class UpgradPanelIndex : MonoBehaviour
     {
         float duration = (float)index / 15;
 
+        Debug.Log(upgradePanelController.selectetPanel);
         if (upgradePanelController.selectetPanel == index)
+        { 
             panelImage.sprite = spPanelSelect;
 
-        if (index == index_)
-        {
             transform.DOLocalMoveY(855f, .7f, true).SetUpdate(UpdateType.Normal, true).SetEase(Ease.InQuart).OnComplete(() =>
             {
+                Debug.Log("getUpdate");
                 upgradePanelController.GetUpdate();
             });
         }

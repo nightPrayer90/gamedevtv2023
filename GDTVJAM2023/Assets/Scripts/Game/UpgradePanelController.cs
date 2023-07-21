@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
-
+using DG.Tweening;
 
 public class UpgradePanelController : MonoBehaviour
 {
@@ -27,6 +27,7 @@ public class UpgradePanelController : MonoBehaviour
     public TextMeshProUGUI boostText;
     public TextMeshProUGUI agilityText;
     public TextMeshProUGUI pickupText;
+    public Image bkImage;
     [HideInInspector] public List<Color> classColors;
     public List<Image> classPanels = new List<Image>();
 
@@ -65,6 +66,7 @@ public class UpgradePanelController : MonoBehaviour
         StringLibrary();
         UpdateValuePanel();
 
+        bkImage.DOFade(1f, 0.2f).SetUpdate(true);
     }
 
     private void Update()
@@ -398,10 +400,7 @@ public class UpgradePanelController : MonoBehaviour
                 UpdateClass(number);
                 weaponCount++;
                 break;
-
         }
-
-        
     }
 
     public void TriggerPanel(int index)
@@ -411,6 +410,8 @@ public class UpgradePanelController : MonoBehaviour
         panelList[2].FadeOut(index);
         shipPanalController.FadeOut();
         isTweening = true;
+
+        bkImage.DOFade(0f, 0.8f).SetUpdate(true);
     }
 
     public void GetUpdate()

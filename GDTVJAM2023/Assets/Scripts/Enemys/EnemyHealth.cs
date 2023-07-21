@@ -82,6 +82,8 @@ public class EnemyHealth : MonoBehaviour
         CancelInvoke();
         if (burnParticleSystem != null)
             burnParticleSystem.Stop();
+
+        isdied = false;
     }
 
     private void Start()

@@ -17,7 +17,7 @@ public class EnemyParticleBullet : MonoBehaviour
     //List<ParticleCollisionEvent> colEvents = new List<ParticleCollisionEvent>();
     public void Start()
     {
-        //bulletParticleSystem = gameObject.GetComponent<ParticleSystem>();
+        bulletParticleSystem = gameObject.GetComponent<ParticleSystem>();
         if (fireOnBirth)
         {
             BulletStart(bulletDamage, baseFireRate);
