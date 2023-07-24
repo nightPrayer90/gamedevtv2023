@@ -109,14 +109,16 @@ public class UpgradPanelIndex : MonoBehaviour
         if (isTweening == false)
         {
             if (upgradePanelController.selectetPanel == index)
+            {
                 panelImage.sprite = spPanelSelect;
 
-            upgradePanelController.ChooseAValue(index);
-            AudioManager.Instance.PlaySFX("WindowOpen");
+                upgradePanelController.ChooseAValue(index);
+                AudioManager.Instance.PlaySFX("WindowOpen");
 
-            transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), .2f, 5, 1).SetUpdate(true).OnComplete(() => { upgradePanelController.TriggerPanel(index); });
+                transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), .2f, 5, 1).SetUpdate(true).OnComplete(() => { upgradePanelController.TriggerPanel(index); });
 
-            isTweening = true;
+                isTweening = true;
+            }
         }
     }
 
@@ -125,6 +127,7 @@ public class UpgradPanelIndex : MonoBehaviour
         float duration = (float)index / 15;
 
         Debug.Log(upgradePanelController.selectetPanel);
+
         if (upgradePanelController.selectetPanel == index)
         { 
             panelImage.sprite = spPanelSelect;

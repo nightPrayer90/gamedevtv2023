@@ -230,7 +230,7 @@ public class UpgradePanelController : MonoBehaviour
         panelList[1].DeselectPanel();
         panelList[2].DeselectPanel();
 
-        
+        // on mouse exit
         if (selectetPanel != -1)
             panelList[index].SelectPanel();
 
