@@ -24760,13 +24760,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2604307836560290831}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: -0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.125}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2604307836790789305}
-  m_RootOrder: 5
+  m_Father: {fileID: 2571244571310328356}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2604307836568498216
 GameObject:
@@ -29842,7 +29842,6 @@ Transform:
   - {fileID: 2604307835793232686}
   - {fileID: 3912979951281732864}
   - {fileID: 2559130692791834935}
-  - {fileID: 2604307836560290830}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -29974,7 +29973,7 @@ MonoBehaviour:
   scDefenceLvl: 0
   scTargetingLvl: 0
   scBackwardsLvl: 0
-  isHeadCannon: 0
+  isHeadCannon: 1
   isRocketLauncher: 0
   isFireFlies: 0
   isBulletWings: 0
@@ -35367,6 +35366,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a1e49422cadbbbe4abaca60ed8e130ac, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a1e49422cadbbbe4abaca60ed8e130ac, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1e49422cadbbbe4abaca60ed8e130ac, type: 3}
