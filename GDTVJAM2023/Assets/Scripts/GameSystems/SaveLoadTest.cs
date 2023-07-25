@@ -43,6 +43,7 @@ public class SaveLoadTest : MonoBehaviour
     private bool isLoad3 = false;
 
     private int index;
+    public PlayerData playerData;
 
     public void SetIndex(int index_)
     {
@@ -160,18 +161,27 @@ public class SaveLoadTest : MonoBehaviour
             switch (index_)
             {
                 case 0:
+                    WriteOnPlayerData(playerStats01);
                     shipPane01.transform.DOPunchScale(new Vector3(0.35f, 0.35f, 0.35f), delayTime, 5, 1).OnComplete(() => { SceneManager.LoadScene("MenueScene"); });
                     break;
 
                 case 1:
+                    WriteOnPlayerData(playerStats02);
                     shipPane02.transform.DOPunchScale(new Vector3(0.35f, 0.35f, 0.35f), delayTime, 5, 1).OnComplete(() => { SceneManager.LoadScene("MenueScene"); });
                     break;
 
                 case 2:
+                    WriteOnPlayerData(playerStats03);
                     shipPane03.transform.DOPunchScale(new Vector3(0.35f, 0.35f, 0.35f), delayTime, 5, 1).OnComplete(() => { SceneManager.LoadScene("MenueScene"); });
                     break;
             }
         }
+    }
+
+    // write all loaded values in the PlayerData Object 
+    public void WriteOnPlayerData(PlayerStats playerStats)
+    {
+        playerData.playerName = playerStats.playerName;
     }
 
 
@@ -191,14 +201,14 @@ public class SaveLoadTest : MonoBehaviour
     {
         try
         {
-            PlayerStats data = DataService.LoadData<PlayerStats>("/player-stats01.json", encriptionEnabled);
+            playerStats01 = DataService.LoadData<PlayerStats>("/player-stats01.json", encriptionEnabled);
 
             inputField01.gameObject.SetActive(false);
             playerName01Text.gameObject.SetActive(true);
             deleteButton01.gameObject.SetActive(true);
-            playerName01Text.text = data.playerName.ToString();
+            playerName01Text.text = playerStats01.playerName.ToString();
             shipPane01.gameObject.SetActive(true);
-            shipPane01.sprite = sprShipPanels[data.shipPanelIndex];
+            shipPane01.sprite = sprShipPanels[playerStats01.shipPanelIndex];
             isLoad1 = true;
         }
         catch (Exception e)
