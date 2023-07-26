@@ -29888,7 +29888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startImpulse: 100
   speed: 10
-  rotateSpeed: 3
+  rotateSpeed: 3.5
   playerMaxHealth: 10
   playerBulletBaseDamage: 5
   playerFireRate: 0.4
@@ -29974,17 +29974,17 @@ MonoBehaviour:
   scTargetingLvl: 0
   scBackwardsLvl: 0
   isHeadCannon: 1
-  isRocketLauncher: 0
-  isFireFlies: 0
-  isBulletWings: 0
-  isLifeModul: 0
-  isSpreadGun: 0
-  isFrontShield: 0
-  isBackShield: 0
-  isNovaExplosion: 0
-  isRockedWings: 0
-  isFrontLaser: 0
-  isOrbitalLaser: 0
+  isRocketLauncher: 1
+  isFireFlies: 1
+  isBulletWings: 1
+  isLifeModul: 1
+  isSpreadGun: 1
+  isFrontShield: 1
+  isBackShield: 1
+  isNovaExplosion: 1
+  isRockedWings: 1
+  isFrontLaser: 1
+  isOrbitalLaser: 1
   frontShield: {fileID: 4831901517162404820, guid: 120689e8e5b520d439a8645f1b1162d9, type: 3}
   backShield: {fileID: 3147124995608451256, guid: 6da4992dab9d49646be6b65d0388b3e4, type: 3}
   hcBulletDamage: 4
@@ -30023,7 +30023,7 @@ MonoBehaviour:
   flShootingTime: 3
   frontLaser: {fileID: 8635275999776491353, guid: 750e087bff3860840ad534f2097f41f6, type: 3}
   olDamage: 8
-  olReloadTime: 3
+  olReloadTime: 7
   orbitalLaser: {fileID: 7601612212577922131, guid: 9bcf5e0e76ce98b44a72e49fe758b485, type: 3}
   passivParentContainer: {fileID: 2604307836560290830}
   fsSpawnTime: 8

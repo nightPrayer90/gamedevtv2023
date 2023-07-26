@@ -5625,7 +5625,7 @@ MonoBehaviour:
   flShootingTime: 3
   frontLaser: {fileID: 8635275999776491353, guid: 750e087bff3860840ad534f2097f41f6, type: 3}
   olDamage: 8
-  olReloadTime: 3
+  olReloadTime: 7
   orbitalLaser: {fileID: 7601612212577922131, guid: 9bcf5e0e76ce98b44a72e49fe758b485, type: 3}
   passivParentContainer: {fileID: 2604307836560290830}
   fsSpawnTime: 8

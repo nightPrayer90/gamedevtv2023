@@ -42,6 +42,7 @@ public class Boss01 : MonoBehaviour
     public AudioSource bossChanceState;
     public AudioSource shootSound;
     public GameObject itemDrop;
+    public RipplePostProcessor mainCamera;
     private Material[] materialList;
     private EnemyHealth enemyHealthScr;
     private Transform playerTr;
@@ -411,6 +412,7 @@ public class Boss01 : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("ShieldGetHit");
         rippleParticle.Play();
+        mainCamera.RippleEffect(transform.position.x, transform.position.y, 15f, 0.5f);
         PushThePlayer(2.5f, 5f);
         transform.DOShakeScale(0.2f, 0.2f, 10, 90, true);
         dieRotation = dieRotation + 15;

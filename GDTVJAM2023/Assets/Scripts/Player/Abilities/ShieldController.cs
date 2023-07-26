@@ -139,7 +139,16 @@ public class ShieldController : MonoBehaviour
         targetMaterial.DOFade(0.8f, 1f);
     }
 
-    // the shiled get an hit from a bullet!
+    private void OnParticleCollision(GameObject other)
+    {
+        ParticleSystem part = other.GetComponent<ParticleSystem>(); // *** important! Making a variable to acess the particle system of the emmiting object, in this case, the lasers from my player ship.
+        var ps = other.GetComponent<EnemyParticleBullet>();
+
+        if (ps != null)
+            UpdateShieldHealth();
+    }
+
+    // the shield get an hit from a bullet!
     public void UpdateShieldHealth()
     {
         // Update shield life
