@@ -5,6 +5,8 @@ using DG.Tweening;
 public class CameraController : MonoBehaviour
 {
     private GameObject player;
+    private float moveOffsetY=0;
+    public Vector3 startOffset;
     public Vector3 cameraOffset_;
     private Vector3 cameraOffset;
 
@@ -16,21 +18,29 @@ public class CameraController : MonoBehaviour
     private float shakeTimer = 0f;
 
     private bool isShake = false;
+    private bool isMoving = false;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        cameraOffset = transform.position - cameraOffset_;
-
         shakeIntensity_ = shakeIntensity;
+
+
+        cameraOffset = transform.position - startOffset;
+
+        DOTween.To(() => moveOffsetY, x => moveOffsetY = x, 3.5f, 5f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.transform.position + cameraOffset;
+         
+
+        transform.position = player.transform.position + new Vector3(cameraOffset.x, cameraOffset.y + moveOffsetY, cameraOffset.z);
     }
+
+   
 
 
     public void ShakeScreen()
