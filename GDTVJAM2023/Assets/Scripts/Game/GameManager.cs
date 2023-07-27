@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
 
 
     // Objects
-    private CameraController mainCamera;
+    public CameraController mainCamera;
     private PlayerController player;
     private Light directionalLight;
     private GameObject currentSpawnManager;

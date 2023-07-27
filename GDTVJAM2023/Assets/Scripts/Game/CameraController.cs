@@ -15,10 +15,13 @@ public class CameraController : MonoBehaviour
     private float shakeIntensity_;
 
     public GameManager gameManager;
+    public Transform mainCameraTr;
+    public bool flyModeToggle = true;
     private float shakeTimer = 0f;
 
     private bool isShake = false;
     private bool isMoving = false;
+    private bool toggleSwith = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,9 +38,35 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         
+        // position emptys
+        
+        if (flyModeToggle == true)
+        {
+            transform.position = player.transform.position + new Vector3(cameraOffset.x, cameraOffset.y + moveOffsetY, cameraOffset.z);
+            mainCameraTr.position = transform.position;
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            mainCameraTr.rotation = Quaternion.Euler(70f, 0f, 0f);
+        }
+        else
+        {
+            // postion empty
+            transform.position = player.transform.position;
+            // roation empty
+            transform.rotation = player.transform.rotation;
 
-        transform.position = player.transform.position + new Vector3(cameraOffset.x, cameraOffset.y + moveOffsetY, cameraOffset.z);
+
+            if (toggleSwith == false)
+            {
+                
+
+                // position camera
+                mainCameraTr.localPosition = new Vector3(0, 2f, 2f);
+                
+                mainCameraTr.localRotation = Quaternion.Euler(30, 180 , 0);
+                
+                toggleSwith = true;
+            }
+        }
     }
 
    
