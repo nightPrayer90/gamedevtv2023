@@ -29973,18 +29973,18 @@ MonoBehaviour:
   scDefenceLvl: 0
   scTargetingLvl: 0
   scBackwardsLvl: 0
-  isHeadCannon: 1
-  isRocketLauncher: 1
-  isFireFlies: 1
-  isBulletWings: 1
-  isLifeModul: 1
-  isSpreadGun: 1
-  isFrontShield: 1
-  isBackShield: 1
-  isNovaExplosion: 1
-  isRockedWings: 1
-  isFrontLaser: 1
-  isOrbitalLaser: 1
+  isHeadCannon: 0
+  isRocketLauncher: 0
+  isFireFlies: 0
+  isBulletWings: 0
+  isLifeModul: 0
+  isSpreadGun: 0
+  isFrontShield: 0
+  isBackShield: 0
+  isNovaExplosion: 0
+  isRockedWings: 0
+  isFrontLaser: 0
+  isOrbitalLaser: 0
   frontShield: {fileID: 4831901517162404820, guid: 120689e8e5b520d439a8645f1b1162d9, type: 3}
   backShield: {fileID: 3147124995608451256, guid: 6da4992dab9d49646be6b65d0388b3e4, type: 3}
   hcBulletDamage: 4
