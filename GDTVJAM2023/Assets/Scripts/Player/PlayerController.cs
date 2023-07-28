@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     private float forwardInput;
     private float horizontalInput;
     private float horizontalInput2;
-    private float currentRotationX;
+    [HideInInspector] public float currentRotationX;
     private float targetRotation2 = 0;
 
 

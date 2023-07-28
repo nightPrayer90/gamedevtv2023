@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+
 
 public class ParticleSystemDestroy : MonoBehaviour
 {
@@ -12,12 +14,7 @@ public class ParticleSystemDestroy : MonoBehaviour
     public AudioSource audioSource;
     public float rippleParicleSize = 1f;
     private bool isRipplePlayed = false;
-    private RipplePostProcessor mainCamera;
-
-    private void Start()
-    {
-        mainCamera = GameObject.Find("Main Camera").GetComponent<RipplePostProcessor>();
-    }
+ 
 
     private void OnEnable()
     {
@@ -40,7 +37,6 @@ public class ParticleSystemDestroy : MonoBehaviour
             mainModule.startSize = rippleParicleSize * 3f; // factor = size rippleParticle/3
 
             rippleParticleSystem.Play();
-            mainCamera.RippleEffect(transform.position.x, transform.position.y, 5f, 0.9f);
             isRipplePlayed = true;
         }
     }

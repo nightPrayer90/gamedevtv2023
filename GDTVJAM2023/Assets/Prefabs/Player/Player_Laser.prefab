@@ -10301,7 +10301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startImpulse: 100
-  speed: 10
+  speed: 11
   rotateSpeed: 3
   playerMaxHealth: 10
   playerBulletBaseDamage: 2
@@ -10312,6 +10312,7 @@ MonoBehaviour:
   protectionPerc: 0
   protectionLvl: 0
   playerCurrentHealth: 10
+  currentRotationX: 0
   damageInterval: 1
   damageTaken: 1
   isOutsideBorder: 0

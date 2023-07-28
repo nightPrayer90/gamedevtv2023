@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        mainCamera = GameObject.Find("Main Camera").GetComponent<CameraController>();
+        //mainCamera = GameObject.Find("Main Camera").GetComponent<CameraController>();
         directionalLight = GameObject.Find("Directional Light").GetComponent<Light>();
         weaponChooseList = GetComponent<WeaponChooseList>();
         upgradeChooseList = GetComponent<UpgradeChooseList>();

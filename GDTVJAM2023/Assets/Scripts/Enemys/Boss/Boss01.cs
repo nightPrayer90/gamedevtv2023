@@ -316,6 +316,7 @@ public class Boss01 : MonoBehaviour
                 ObjectPoolManager.SpawnObject(itemDrop, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
 
                 // replace
+                //mainCamera.RippleEffect(transform.position.x, transform.position.y, 15f, 0.5f);
                 minimapIcon.SetActive(false);
                 baseCollider.enabled = false;
                 Instantiate(replacement, transform.position, transform.rotation);
@@ -412,7 +413,6 @@ public class Boss01 : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("ShieldGetHit");
         rippleParticle.Play();
-        mainCamera.RippleEffect(transform.position.x, transform.position.y, 15f, 0.5f);
         PushThePlayer(2.5f, 5f);
         transform.DOShakeScale(0.2f, 0.2f, 10, 90, true);
         dieRotation = dieRotation + 15;

@@ -22,11 +22,16 @@ public class CameraController : MonoBehaviour
     private bool isShake = false;
     private bool isMoving = false;
     private bool toggleSwith = false;
+    private float timer = 0f;
+    public float interpolationDuration = 2f;
+    private PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
+
         shakeIntensity_ = shakeIntensity;
 
 
@@ -39,31 +44,63 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         // position emptys
-        
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (flyModeToggle)
+                flyModeToggle = false;
+            else
+                flyModeToggle = true;
+        }
+
+
         if (flyModeToggle == true)
         {
             transform.position = player.transform.position + new Vector3(cameraOffset.x, cameraOffset.y + moveOffsetY, cameraOffset.z);
-            mainCameraTr.position = transform.position;
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            mainCameraTr.rotation = Quaternion.Euler(70f, 0f, 0f);
+            
+
+            if (toggleSwith == true)
+            {
+                AudioManager.Instance.PlaySFX("ViewChange");
+                mainCameraTr.DOLocalMove(new Vector3(0f,0f,0f),0.5f);
+                //mainCameraTr.position = transform.position;
+                //transform.DOLocalRotate(new Vector3(0f, 0f, 0f), 0.5f);
+                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            
+                mainCameraTr.rotation = Quaternion.Euler(70f, 0f, 0f);
+                toggleSwith = false;
+            }
         }
         else
         {
             // postion empty
             transform.position = player.transform.position;
-            // roation empty
-            transform.rotation = player.transform.rotation;
 
+
+            //float var = Mathf.Lerp(transform.rotation.eulerAngles.y, player.transform.rotation.eulerAngles.y,t);
+            //Debug.Log(transform.rotation.eulerAngles.y + " - " + player.transform.rotation.eulerAngles.y + " = " + var);
+
+            //Quaternion targetRotation = Quaternion.Euler(0f, player.transform.rotation.eulerAngles.y, 0f);
+
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, player.transform.rotation, Time.deltaTime * 150f);
+
+            var rotationZ =  (playerController.currentRotationX + 90)*0.2f;
+            mainCameraTr.localRotation = Quaternion.Euler(30, 180, rotationZ);  
+
+            Debug.Log(playerController.currentRotationX);
 
             if (toggleSwith == false)
             {
-                
-
+                AudioManager.Instance.PlaySFX("ViewChange");
+                transform.rotation = player.transform.rotation;
                 // position camera
-                mainCameraTr.localPosition = new Vector3(0, 2f, 2f);
-                
-                mainCameraTr.localRotation = Quaternion.Euler(30, 180 , 0);
-                
+
+                mainCameraTr.DOLocalMove(new Vector3(0, 2f, 2f), 0.5f);
+                //mainCameraTr.localPosition = new Vector3(0, 2f, 2f);
+
+                mainCameraTr.localRotation = Quaternion.Euler(30, 180, 0);
+
                 toggleSwith = true;
             }
         }

@@ -29887,10 +29887,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startImpulse: 100
-  speed: 10
+  speed: 11
   rotateSpeed: 3.5
   playerMaxHealth: 10
-  playerBulletBaseDamage: 5
+  playerBulletBaseDamage: 20
   playerFireRate: 0.4
   pickupRange: 0.8
   boostValue: 0.5
@@ -29898,6 +29898,7 @@ MonoBehaviour:
   protectionPerc: 0
   protectionLvl: 0
   playerCurrentHealth: 10
+  currentRotationX: 0
   damageInterval: 1
   damageTaken: 1
   isOutsideBorder: 0
