@@ -14,16 +14,17 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("Player Stats")]
-    public float speed;
-    public float rotateSpeed = 0.25f;
-    public int playerMaxHealth = 10;
-    public int playerBulletBaseDamage = 2;
-    public float playerFireRate = 0.5f;
-    public float pickupRange = 2f;
-    public float boostValue = 1f;
-    public float boostPower = 3f;
-    public float protectionPerc = 0;
-    public int protectionLvl = 0;
+    public ShipData shipData;
+    [HideInInspector] public float speed;
+    [HideInInspector] public float rotateSpeed = 0.25f;
+    [HideInInspector] public int playerMaxHealth = 10;
+    [HideInInspector] public int playerBulletBaseDamage = 2;
+    [HideInInspector] public float playerFireRate = 0.5f;
+    [HideInInspector] public float pickupRange = 2f;
+    [HideInInspector] public float boostValue = 1f;
+    [HideInInspector] public float boostPower = 3f;
+    [HideInInspector] public float protectionPerc = 0;
+    [HideInInspector] public int protectionLvl = 0;
 
 
     [Header("Properties")]
@@ -71,6 +72,19 @@ public class PlayerController : MonoBehaviour
     /* **************************************************************************** */
     void Start()
     {
+        // get Data from shipDataObject
+        speed = shipData.speed;
+        rotateSpeed = shipData.rotateSpeed;
+        playerMaxHealth = shipData.health;
+        playerCurrentHealth = playerMaxHealth;
+        playerBulletBaseDamage = shipData.baseDamage;
+        playerFireRate = shipData.fireRate;
+        pickupRange = shipData.PickupRange;
+        boostValue = shipData.boostDuration;
+        boostPower = shipData.boostPower;
+        protectionLvl = shipData.protectionLevel;
+
+
         // set game objects
         playerRb = GetComponent<Rigidbody>();
         playerMWController = GetComponent<PlayerMWController>();

@@ -20,10 +20,7 @@ public class CameraController : MonoBehaviour
     private float shakeTimer = 0f;
 
     private bool isShake = false;
-    private bool isMoving = false;
     private bool toggleSwith = false;
-    private float timer = 0f;
-    public float interpolationDuration = 2f;
     private PlayerController playerController;
 
     // Start is called before the first frame update
@@ -87,8 +84,6 @@ public class CameraController : MonoBehaviour
 
             var rotationZ =  (playerController.currentRotationX + 90)*0.2f;
             mainCameraTr.localRotation = Quaternion.Euler(30, 180, rotationZ);  
-
-            Debug.Log(playerController.currentRotationX);
 
             if (toggleSwith == false)
             {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerWeaponController : MonoBehaviour
 {
     [Header("Weapon buffs")]
+    private ShipData shipData;
     public int bulletCritChance = 5;
     public int bulletCritDamage = 125;
     public int burnDamageChance = 1;
@@ -13,14 +14,14 @@ public class PlayerWeaponController : MonoBehaviour
     public float rocketAOERadius = 0;
 
     [Header("Weapon class level")]
-    public int mcBulletLvl = 0;
-    public int mcExplosionLvl = 0;
-    public int mcLaserLvl = 0;
-    public int mcSupportLvl = 0;
-    public int scSwarmLvl = 0;
-    public int scDefenceLvl = 0;
-    public int scTargetingLvl = 0;
-    public int scBackwardsLvl = 0;
+    [HideInInspector] public int mcBulletLvl = 0;
+    [HideInInspector] public int mcExplosionLvl = 0;
+    [HideInInspector] public int mcLaserLvl = 0;
+    [HideInInspector] public int mcSupportLvl = 0;
+    [HideInInspector] public int scSwarmLvl = 0;
+    [HideInInspector] public int scDefenceLvl = 0;
+    [HideInInspector] public int scTargetingLvl = 0;
+    [HideInInspector] public int scBackwardsLvl = 0;
 
 
     [Header("Passiv abilitys")]
@@ -150,10 +151,23 @@ public class PlayerWeaponController : MonoBehaviour
     /* **************************************************************************** */
     void Start()
     {
+        playerController = gameObject.GetComponent<PlayerController>();
+        playerMWController = gameObject.GetComponent<PlayerMWController>();
+
+        // copy ship Data
+        shipData = playerController.shipData;
+
+        mcBulletLvl = shipData.bulletClass;
+        mcExplosionLvl = shipData.explosionClass;
+        mcLaserLvl = shipData.laserClass;
+        mcSupportLvl = shipData.supportClass;
+        scSwarmLvl = shipData.swarmClass;
+        scDefenceLvl = shipData.defenseClass;
+        scTargetingLvl = shipData.targetClass;
+        scBackwardsLvl = shipData.backwardsClass;
+
         // Start Values
         WeaponChoose();
-
-        playerMWController = gameObject.GetComponent<PlayerMWController>();
 
         // Upadate Start - Class
         switch (playerMWController.weaponType)
@@ -334,7 +348,7 @@ public class PlayerWeaponController : MonoBehaviour
         {
             isNovaExplosionInstalled.novaDamage = neDamage;
             isNovaExplosionInstalled.spawnInterval = Mathf.Max(0.1f, neReloadTime - (neReloadTime*(scDefenceLvl_ + suReloadTime)));
-            isNovaExplosionInstalled.explosionRadius = neRadius;
+            isNovaExplosionInstalled.explosionRadius = neRadius * rocketAOERadius;
         }
 
         // Rocket Wings - explosion - swarm

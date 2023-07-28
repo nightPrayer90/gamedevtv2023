@@ -19,9 +19,10 @@ public class PlayerMWController : MonoBehaviour
     public List<ParticleSystem> mainWeapons = new List<ParticleSystem>();
     public List<ParticleBullet> particleBullets;
     public AudioSource mainWeaponSound;
+    private ShipData shipData;
 
     [Header("Rocked Settings")]
-    public float lifeTime = 10f;
+    [HideInInspector] public float lifeTime = 10f;
     public float detectionRange = 10f;
     public GameObject rockedToLaunch;
     public GameObject spawnPoint;
@@ -31,8 +32,8 @@ public class PlayerMWController : MonoBehaviour
     private bool spawnSideToggle = false;
 
     [Header("Laser Settings")]
-    public float laserRange = 5f;
-    public int laserShootTime = 3;
+    [HideInInspector] public float laserRange = 5f;
+    [HideInInspector] public float laserShootTime = 3f;
     public float spawnInterval = 0.1f;
     public string audioClip = "";
     private float nextSpawnTime = 0f;
@@ -61,6 +62,9 @@ public class PlayerMWController : MonoBehaviour
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerController = GetComponent<PlayerController>();
+        shipData = playerController.shipData;
+        laserShootTime = shipData.laserShooingTime;
+        lifeTime = shipData.rocketLifeTime;
 
         // bullet
         fireRate = playerController.playerFireRate;

@@ -5257,13 +5257,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2604307836560290831}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: -0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.083333336, y: 0.083333336, z: 0.125}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2604307836790789305}
-  m_RootOrder: 3
+  m_Father: {fileID: 2571244571310328356}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2604307836568498216
 GameObject:
@@ -5443,7 +5443,6 @@ Transform:
   - {fileID: 2571244571310328356}
   - {fileID: 3912979951281732864}
   - {fileID: 2559130692791834935}
-  - {fileID: 2604307836560290830}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -5489,6 +5488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startImpulse: 100
+  shipData: {fileID: 11400000, guid: fd4dec7417175864e8b8eaac6cc2ee8a, type: 2}
   speed: 11
   rotateSpeed: 3
   playerMaxHealth: 10
@@ -5532,7 +5532,7 @@ MonoBehaviour:
   - {fileID: 2604307835793232685, guid: bca8a1f1b6f8d3049ad5e562a3b30554, type: 3}
   mainWeaponSound: {fileID: 2559130691838651932, guid: bca8a1f1b6f8d3049ad5e562a3b30554, type: 3}
   lifeTime: 1.5
-  detectionRange: 5
+  detectionRange: 7
   rockedToLaunch: {fileID: 667735904795272308, guid: 48c407aa3f91c1748992d7e83b657ae3, type: 3}
   spawnPoint: {fileID: 5031554768623812592}
   spawnPoint2: {fileID: 9074861371868659753}
@@ -5584,7 +5584,7 @@ MonoBehaviour:
   isSpreadGun: 0
   isFrontShield: 0
   isBackShield: 0
-  isNovaExplosion: 0
+  isNovaExplosion: 1
   isRockedWings: 0
   isFrontLaser: 0
   isOrbitalLaser: 0

@@ -27,6 +27,7 @@ public class UpgradPanelIndex : MonoBehaviour
     private void OnEnable()
     {
         isTweening = true;
+        isSelected = false;
         transform.position = new Vector3(transform.position.x, transform.position.y + 400f, transform.position.z);
       
         // fade in
@@ -36,10 +37,19 @@ public class UpgradPanelIndex : MonoBehaviour
             transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1).SetUpdate(true).OnComplete(() =>
             {
                 upgradePanelController.isTweening = false;
+                AudioManager.Instance.PlaySFX("MouseKlick");
+                isTweening = false;
+
+                if (upgradePanelController.selectetPanel == index)
+                {
+                    if (isSelected == false)
+                    {
+                        SelectPanel();
+                    }        
+                }
             });
 
-            AudioManager.Instance.PlaySFX("MouseKlick");
-            isTweening = false;
+            
             
         });
     }
@@ -63,10 +73,11 @@ public class UpgradPanelIndex : MonoBehaviour
 
     public void OnMouseEnter_()
     {
+        upgradePanelController.selectetPanel = index;
+
         if (isTweening == false)
         {
             // Farbe des Panels ändern, wenn die Maus über das Panel fährt
-            upgradePanelController.selectetPanel = index;
             upgradePanelController.UpdateValuePanelOnMouseEnter(index);
             //SelectPanel();
         }

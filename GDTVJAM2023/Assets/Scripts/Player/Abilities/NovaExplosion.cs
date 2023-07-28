@@ -15,6 +15,7 @@ public class NovaExplosion : MonoBehaviour
     private LayerMask layerMask;
     public Color hitColor = new Color(1f, 0.6f, 0.0f, 1f);
     private PlayerWeaponController weaponController;
+    public ParticleSystem loadParticle;
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -22,7 +23,7 @@ public class NovaExplosion : MonoBehaviour
     private void Start()
     {
         StartValues();
-        InvokeRepeating("SpawnNova", spawnInterval, spawnInterval);
+        InvokeRepeating("SpawnloadEffect", spawnInterval, spawnInterval);
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
@@ -38,7 +39,7 @@ public class NovaExplosion : MonoBehaviour
         weaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         novaDamage = weaponController.neDamage;
         spawnInterval = weaponController.neReloadTime;
-        explosionRadius = weaponController.neRadius;
+        explosionRadius = weaponController.neRadius * weaponController.rocketAOERadius;
     }
 
 
@@ -93,6 +94,12 @@ public class NovaExplosion : MonoBehaviour
         // spawn the explosion object
         GameObject go = ObjectPoolManager.SpawnObject(explosionFX, pos, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
         go.GetComponent<ParticleSystemDestroy>().rippleParicleSize = explosionRadius;
+    }
+
+    private void SpawnloadEffect()
+    {
+        Invoke("SpawnNova", 1.5f);
+        loadParticle.Play();
     }
 
     private void OnDrawGizmos()
