@@ -41,7 +41,8 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput2;
     [HideInInspector] public float currentRotationX;
     private float targetRotation2 = 0;
-
+    public List<ParticleSystem> engineParticles;
+    public ParticleSystem boostEngine;
 
     [Header("Outside Border")]
     public float damageInterval = 1f;
@@ -100,6 +101,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
 
         if (isIntro = true && transform.position.y < introTargetY)
         {
@@ -114,6 +116,10 @@ public class PlayerController : MonoBehaviour
             {
                 AudioManager.Instance.PlaySFX("ShortAlert");
                 isStartSound = true;
+                foreach (ParticleSystem ep in engineParticles)
+                {
+                    ep.Play();
+                }
                 playerRb.AddForce(transform.forward * -speed * startImpulse, ForceMode.Force);
                 // set .y to 6f
                 playerRb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
@@ -419,6 +425,15 @@ public class PlayerController : MonoBehaviour
             {
                 if (!engineAudioSource.isPlaying)
                     engineAudioSource.Play();
+
+                // engine trail
+                if (forwardInput > 0.1)
+                {
+                    foreach(ParticleSystem ep in engineParticles)
+                    {
+                        ep.Emit(1);
+                    }
+                }
             }
             else
             {
@@ -455,7 +470,7 @@ public class PlayerController : MonoBehaviour
                     float boostSpeed = boostPower;
                     forwardInput = boostSpeed;
                     boostParticle.Emit(1);
-
+                    boostEngine.Emit(1);
                 }
                 else
                 {
