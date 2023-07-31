@@ -14726,6 +14726,7 @@ MonoBehaviour:
   bossChanceState: {fileID: 1452938716}
   shootSound: {fileID: 408070986}
   itemDrop: {fileID: 5693635298845190373, guid: 729f177133f1d16408bccaee36a0e345, type: 3}
+  mainCamera: {fileID: 0}
 --- !u!114 &2861572413740522644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14738,8 +14739,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4debb9d2c1aef3d4d979265fa726bd4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
-  dieExplosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
+  explosionObject: {fileID: 0}
+  collisionExplosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   expOrb: {fileID: 0}
   classPickup: {fileID: 0}
   miniMapIcon: {fileID: 0}
@@ -14751,7 +14752,9 @@ MonoBehaviour:
   canTakeDamage: 0
   canPoolObject: 0
   enemyWeapons: []
+  enemyWeaponParticles: []
   bulletDamage: 0
+  fireRate: 0
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
   critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
   _replacement: {fileID: 0}
@@ -24654,12 +24657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 1
-  baseFireRate: 1
   bulletParticleSystem: {fileID: 3071244891969582302}
-  fireOnBirth: 0
-  interval: 1
-  isEmittingSound: 0
-  audioSource: {fileID: 0}
 --- !u!1 &1772860062184677582
 GameObject:
   m_ObjectHideFlags: 0
@@ -78389,12 +78387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 1
-  baseFireRate: 1
   bulletParticleSystem: {fileID: 2349311840280695631}
-  fireOnBirth: 0
-  interval: 1
-  isEmittingSound: 0
-  audioSource: {fileID: 0}
 --- !u!1 &4976620787195861422
 GameObject:
   m_ObjectHideFlags: 0
@@ -88099,12 +88092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 1
-  baseFireRate: 1
   bulletParticleSystem: {fileID: 1322537603045541417}
-  fireOnBirth: 0
-  interval: 1
-  isEmittingSound: 0
-  audioSource: {fileID: 0}
 --- !u!1 &5583359326427644319
 GameObject:
   m_ObjectHideFlags: 0
@@ -92939,12 +92927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 1
-  baseFireRate: 1
   bulletParticleSystem: {fileID: 4388572967151018150}
-  fireOnBirth: 0
-  interval: 1
-  isEmittingSound: 0
-  audioSource: {fileID: 0}
 --- !u!1 &5761679962869358151
 GameObject:
   m_ObjectHideFlags: 0
@@ -107488,12 +107471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 1
-  baseFireRate: 1
   bulletParticleSystem: {fileID: 5921540658055073011}
-  fireOnBirth: 0
-  interval: 1
-  isEmittingSound: 0
-  audioSource: {fileID: 0}
 --- !u!1 &6411777579483363464
 GameObject:
   m_ObjectHideFlags: 0
@@ -122152,12 +122130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 1
-  baseFireRate: 1
   bulletParticleSystem: {fileID: 5607505170650244423}
-  fireOnBirth: 0
-  interval: 1
-  isEmittingSound: 0
-  audioSource: {fileID: 0}
 --- !u!1 &6953607986532605126
 GameObject:
   m_ObjectHideFlags: 0
@@ -131862,12 +131835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 1
-  baseFireRate: 1
   bulletParticleSystem: {fileID: 1166509460897916031}
-  fireOnBirth: 0
-  interval: 1
-  isEmittingSound: 0
-  audioSource: {fileID: 0}
 --- !u!1 &7294959616615031584
 GameObject:
   m_ObjectHideFlags: 0
@@ -146442,12 +146410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 1
-  baseFireRate: 1
   bulletParticleSystem: {fileID: 3926175738448848302}
-  fireOnBirth: 0
-  interval: 1
-  isEmittingSound: 0
-  audioSource: {fileID: 0}
 --- !u!1 &8065452558550061873
 GameObject:
   m_ObjectHideFlags: 0

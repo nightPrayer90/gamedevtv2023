@@ -26,7 +26,7 @@ public class SimpleEnemy : MonoBehaviour
     public float dashForce = 10f;
     public float dashDistance = 5f;
     private bool isDash = false;
-
+    public ParticleSystem dashParticle;
 
     [Header("Rotate Settings")]
     public float radius = 5f; // Radius um den Spieler herum
@@ -96,7 +96,7 @@ public class SimpleEnemy : MonoBehaviour
             else
             {
                 DoAttackState();
-                enemyHealth.StartShooting();
+                if (enemyHealth.bulletDamage > 0) enemyHealth.StartShooting();
             }
         }
     }
@@ -198,6 +198,7 @@ public class SimpleEnemy : MonoBehaviour
             Vector3 dashDirection = (playerRb.transform.position - transform.position).normalized;
             Rigidbody enemyRb = GetComponent<Rigidbody>();
             enemyRb.AddForce(dashDirection * dashForce, ForceMode.Impulse);
+            dashParticle.Play();
             isDash = true;
         }
         else

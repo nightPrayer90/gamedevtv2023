@@ -7,11 +7,12 @@ public class EnemyHealth : MonoBehaviour
 {
     [Header("Objects")]
     public GameObject explosionObject;
-    public GameObject dieExplosionObject;
+    public GameObject collisionExplosionObject;
     public GameObject expOrb;
     public GameObject classPickup;
     public GameObject miniMapIcon;
-
+    public ParticleSystem engineParticle;
+    private Collider enemyCollider;
 
     [Header("Enemy Settings")]
     public float enemyHealth = 2.0f;
@@ -27,8 +28,11 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("Enemy Weapons")]
     public List<EnemyParticleBullet> enemyWeapons;
+    public List<ParticleSystem> enemyWeaponParticles;
     public int bulletDamage;
+    public float fireRate;
     private bool isShooting = false;
+    private AudioSource audioSource;
 
 
     [Header("Collision Control")]
@@ -55,7 +59,7 @@ public class EnemyHealth : MonoBehaviour
     // gameObjects to find
     private GameManager gameManager;
     private PlayerWeaponController playerWeaponController;
-
+    
 
 
 
@@ -65,8 +69,12 @@ public class EnemyHealth : MonoBehaviour
     private void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        if (bulletDamage != 0) audioSource = GetComponent<AudioSource>();
+
         collisionMultiplier += startCollisionMultiplier + UnityEngine.Random.Range(-16, 128);
         enemyHealthTemp = enemyHealth;
+
+        enemyCollider = GetComponent<Collider>();
     }
 
     private void OnEnable()
@@ -83,6 +91,9 @@ public class EnemyHealth : MonoBehaviour
         if (burnParticleSystem != null)
             burnParticleSystem.Stop();
 
+        if (engineParticle != null)
+            engineParticle.Play();
+
         isdied = false;
     }
 
@@ -97,17 +108,19 @@ public class EnemyHealth : MonoBehaviour
         {
             if (gameManager.dimensionShift == !secondDimensionEnemy)
             {
-                GetComponent<Collider>().enabled = false;
+                enemyCollider.enabled = false;
                 if (miniMapIcon != null) miniMapIcon.SetActive(false);
-                StopShooting();
+                if (bulletDamage > 0) StopShooting();
+                if (engineParticle != null) engineParticle.Stop();
             }
             else
             {
                 if (isShooting == false)
                 {
-                    GetComponent<Collider>().enabled = true;
+                    enemyCollider.enabled = true;
                     if (miniMapIcon != null) miniMapIcon.SetActive(true);
-                    //StartShooting();
+                    if (bulletDamage > 0) StartShooting();
+                    if (engineParticle != null) engineParticle.Play();
                 }
             }
         }
@@ -177,9 +190,6 @@ public class EnemyHealth : MonoBehaviour
                 // drop an Item
                 Drop();
 
-                // instanstiate explosion
-                ObjectPoolManager.SpawnObject(explosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
-                
                 // update player UI
                 if (secondDimensionEnemy == false)
                 {
@@ -187,6 +197,8 @@ public class EnemyHealth : MonoBehaviour
                     gameManager.UpdateEnemyToKill(1);
                 }
 
+                // Trigger Explosion
+                ObjectPoolManager.SpawnObject(collisionExplosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
 
                 Die();
 
@@ -312,6 +324,14 @@ public class EnemyHealth : MonoBehaviour
             return;
         }
 
+        // instanstiate explosion
+        if (explosionObject != null)
+            ObjectPoolManager.SpawnObject(explosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
+
+        // stop EngineParticleEffect
+        if (engineParticle == null)
+            engineParticle.Stop();
+
         // pool (destroy) enemy object
         if (canPoolObject == true)
             ObjectPoolManager.ReturnObjectToPool(gameObject);
@@ -325,21 +345,32 @@ public class EnemyHealth : MonoBehaviour
     // start shooting
     public void StartShooting()
     {
-        foreach (EnemyParticleBullet particle in enemyWeapons)
+        if (isShooting == false)
         {
-            particle.BulletStart_();
-            particle.GetComponent<EnemyParticleBullet>().bulletDamage = bulletDamage;
+            foreach (EnemyParticleBullet particle in enemyWeapons)
+            {
+                particle.bulletDamage = bulletDamage;
+            }
+
+            InvokeRepeating("InvokeShooting", 1f, fireRate);
         }
         isShooting = true;
+    }
+
+    public void InvokeShooting()
+    {
+        foreach (ParticleSystem particle in enemyWeaponParticles)
+        {
+            particle.Emit(1);
+        }
+        audioSource.volume = AudioManager.Instance.sfxVolume;
+        audioSource.Play();
     }
 
     // stop shooting
     public void StopShooting()
     {
-        foreach (EnemyParticleBullet particle in enemyWeapons)
-        {
-            particle.HardBulletStop();
-        }
+        CancelInvoke("InvokeShooting");
         isShooting = false;
     }
 
