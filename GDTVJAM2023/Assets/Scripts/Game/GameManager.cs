@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
     public Color firstDimensionColor;
     public Color secondDimenionColor;
     [HideInInspector] public bool dimensionShift = false;
+    public GameObject fogPlane;
+    public GameObject fogPlaneDimension;
 
 
     //Listen für Abilitys und UpgradeSystem
@@ -176,6 +178,10 @@ public class GameManager : MonoBehaviour
         panelUI.SetActive(false);
         victoryUI.SetActive(false);
         pauseUI.SetActive(false);
+
+        //FogPlanes
+        fogPlane.SetActive(true);
+        fogPlaneDimension.SetActive(false);
     }
 
     private void Update()
@@ -477,6 +483,10 @@ public class GameManager : MonoBehaviour
         // screen shake
         ScreenShake(3);
 
+        // set FogPlanes
+        fogPlane.SetActive(false);
+        fogPlaneDimension.SetActive(true);
+
         // destroy stuff
         Destroy(currentSpawnManager);
         DestroyAllEXPOrbs();
@@ -515,6 +525,10 @@ public class GameManager : MonoBehaviour
 
         // screen shake
         ScreenShake(4);
+
+        // set FogPlanes
+        fogPlane.SetActive(true);
+        fogPlaneDimension.SetActive(false);
 
         // spawn a new SpawnManager
         currentSpawnManager = Instantiate(spawnDistrictList.spawnManagerList[districtNumber - 1], transform.position, transform.rotation);

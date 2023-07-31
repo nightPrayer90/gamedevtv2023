@@ -120,8 +120,9 @@ public class EnemyHealth : MonoBehaviour
                     enemyCollider.enabled = true;
                     if (miniMapIcon != null) miniMapIcon.SetActive(true);
                     if (bulletDamage > 0) StartShooting();
-                    if (engineParticle != null) engineParticle.Play();
+                    
                 }
+                if (engineParticle != null && engineParticle.isPlaying == false) engineParticle.Play();
             }
         }
     }
