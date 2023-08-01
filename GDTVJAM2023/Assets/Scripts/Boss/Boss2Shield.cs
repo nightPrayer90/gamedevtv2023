@@ -64,7 +64,7 @@ public class Boss2Shield : MonoBehaviour
         else
         {
             transform.DOComplete();
-            transform.DOPunchScale(new Vector3(5f, 5f, 5f), 0.05f, 10, 1));
+            transform.DOPunchScale(new Vector3(5f, 5f, 5f), 0.05f, 10, 1);
             
         }
 
