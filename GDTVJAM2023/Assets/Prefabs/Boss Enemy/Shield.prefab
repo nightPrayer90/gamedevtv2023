@@ -14729,3 +14729,4 @@ MonoBehaviour:
   rippleParticle: {fileID: 5992938722355081828}
   hitParticle: {fileID: 1082593040971450340}
   shieldMesh: {fileID: 2650788799715246501}
+  shieldCollider: {fileID: 0}

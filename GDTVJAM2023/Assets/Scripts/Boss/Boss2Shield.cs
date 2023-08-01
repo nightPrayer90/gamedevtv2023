@@ -14,16 +14,19 @@ public class Boss2Shield : MonoBehaviour
     public ParticleSystem hitParticle;
 
     public MeshRenderer shieldMesh;
-    private MeshCollider shieldCollider;
+    public MeshCollider shieldCollider;
+
+    public GameObject replacement;
+    private Transform playerTr;
+    private Rigidbody playerRb;
 
 
-    private void Awake()
-    {
-       
-    }
 
     private void OnEnable()
     {
+        //playerTr = GameObject.FindWithTag("Player").transform;
+        //playerRb = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
+
         transform.localScale = new Vector3(1, 1, 1);
         
         Debug.Log(shieldCollider);
@@ -34,6 +37,12 @@ public class Boss2Shield : MonoBehaviour
 
     private void Update()
     {
+        if (playerTr == null)
+        {
+            playerTr = GameObject.FindWithTag("Player").transform;
+            playerRb = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
+        }
+
         transform.Rotate(new Vector3(0, 0, rotationSpeed) * Time.deltaTime);   
     }
 
@@ -57,18 +66,39 @@ public class Boss2Shield : MonoBehaviour
         if (shieldHealth <= 0)
         {
             rippleParticle.Play();
-            shieldCollider.GetComponent<MeshCollider>();
             shieldCollider.enabled = false;
             shieldMesh.enabled = false;
+            Instantiate(replacement, transform.position, transform.rotation);
+            PushThePlayer(3f,200f);
         }
         else
         {
             transform.DOComplete();
             transform.DOPunchScale(new Vector3(5f, 5f, 5f), 0.05f, 10, 1);
-            
         }
+    }
 
-       
 
+    float DistanceToPlayer()
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, playerTr.transform.position);
+        return distanceToPlayer;
+    }
+
+    private void PushThePlayer(float distance, float maxForce)
+    {
+        float distanceToPlayer = DistanceToPlayer();
+
+        if (distanceToPlayer <= distance)
+        {
+            // push the player
+            float normalizedDistance = distanceToPlayer / distance;
+            float forcePower = maxForce * (1.0f - normalizedDistance); // Abnehmende Kraft
+
+            // Stoße den Spieler an
+            Vector3 pushDirection = playerTr.position - transform.position;
+            Vector3 pushForceVector = pushDirection.normalized * forcePower;
+            playerRb.AddForce(pushForceVector, ForceMode.Impulse);
+        }
     }
 }
