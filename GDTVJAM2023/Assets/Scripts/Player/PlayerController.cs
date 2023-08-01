@@ -269,7 +269,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateClassLevel(int input)
     {
-        AudioManager.Instance.PlaySFX("WindowOpen");
+        AudioManager.Instance.PlaySFX("c");
         string floatingText = "";
         switch (input)
         {
@@ -360,38 +360,41 @@ public class PlayerController : MonoBehaviour
             // get enemyHealth component
             EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
 
-            // find the right explosion direction
-            Vector3 explosionDirection = collision.transform.position - transform.position;
-            explosionDirection.Normalize();
-
-            // trigger the damage floating text
-            gameManager.DoFloatingText(transform.position, "+" + enemyHealth.collisonDamage.ToString(), hitColor);
-
-            // add a force after the collision to the player
-            playerRb.AddForce(explosionDirection * -1f * enemyHealth.explosionForce, ForceMode.Impulse);
-
-            // trigger a Explosion on the Enemy
-            ObjectPoolManager.SpawnObject(enemyHealth.collisionExplosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
-
-            // calculate player health
-            int damage = Mathf.Max(enemyHealth.collisonDamage - Mathf.RoundToInt(enemyHealth.collisonDamage * protectionPerc / 100), 1);
-            UpdatePlayerHealth(damage);
-
-            // refresh the UI
-            if (enemyHealth.secondDimensionEnemy == false)
+            if (enemyHealth != null)
             {
-                gameManager.UpdateEnemyCounter(-1);
-                gameManager.UpdateEnemyToKill(1);
-            }
 
-            // destroy the enemy
-            Destroy(collision.gameObject);
+                // find the right explosion direction
+                Vector3 explosionDirection = collision.transform.position - transform.position;
+                explosionDirection.Normalize();
+
+                // trigger the damage floating text
+                gameManager.DoFloatingText(transform.position, "+" + enemyHealth.collisonDamage.ToString(), hitColor);
+
+                // add a force after the collision to the player
+                playerRb.AddForce(explosionDirection * -1f * enemyHealth.explosionForce, ForceMode.Impulse);
+
+                // trigger a Explosion on the Enemy
+                ObjectPoolManager.SpawnObject(enemyHealth.collisionExplosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
+
+                // calculate player health
+                int damage = Mathf.Max(enemyHealth.collisonDamage - Mathf.RoundToInt(enemyHealth.collisonDamage * protectionPerc / 100), 1);
+                UpdatePlayerHealth(damage);
+
+                // refresh the UI
+                if (enemyHealth.secondDimensionEnemy == false)
+                {
+                    gameManager.UpdateEnemyCounter(-1);
+                    gameManager.UpdateEnemyToKill(1);
+                }
+
+                // destroy the enemy
+                Destroy(collision.gameObject);
+            }
         }
     }
 
     private void OnParticleCollision(GameObject other)
     {
-        Debug.Log("hit");
         ParticleSystem part = other.GetComponent<ParticleSystem>(); // *** important! Making a variable to acess the particle system of the emmiting object, in this case, the lasers from my player ship.
         var ps = other.GetComponent<EnemyParticleBullet>();
         int damage = ps.bulletDamage;

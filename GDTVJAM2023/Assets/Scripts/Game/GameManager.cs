@@ -643,7 +643,7 @@ public class GameManager : MonoBehaviour
         killTextTr.position = new Vector3(killTextTr.position.x, killTextTr.position.y + 100f, killTextTr.position.z);
         miniMapTr.position = new Vector3(miniMapTr.position.x+500, miniMapTr.position.y, miniMapTr.position.z);
 
-        AudioManager.Instance.PlaySFX("WindowOpen");
+        //AudioManager.Instance.PlaySFX("WindowOpen");
         experienceSlider.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 0.4f, 5, 1).SetDelay(0.2f).OnComplete(() =>
         {
             AudioManager.Instance.PlaySFX("PlayerLaserDie");

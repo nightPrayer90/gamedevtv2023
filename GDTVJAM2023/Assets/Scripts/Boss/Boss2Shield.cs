@@ -46,7 +46,44 @@ public class Boss2Shield : MonoBehaviour
         transform.Rotate(new Vector3(0, 0, rotationSpeed) * Time.deltaTime);   
     }
 
-    
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            AudioManager.Instance.PlaySFX("Boss2ShieldBounce");
+
+            hitParticle.transform.position = collision.transform.position;
+            hitParticle.Emit(100);
+
+            transform.DOComplete();
+            transform.DOPunchScale(new Vector3(30f, 30f, 30f), 0.1f, 10, 1);
+
+            PushThePlayerAway(15f);
+        }
+
+        if (collision.gameObject.CompareTag("Rocket"))
+        {
+            Debug.Log("Rocket");
+            shieldHealth -= 1;
+
+            if (shieldHealth <= 0)
+            {
+                AudioManager.Instance.PlaySFX("ShieldDie");
+
+                ShieldDie();
+            }
+            else
+            {
+                AudioManager.Instance.PlaySFX("ImpactShot");
+
+                ShieldGetHit();
+            }
+        }
+    }
+
+
     private void OnParticleCollision(GameObject other)
     {
         shieldHealth -= 1;
@@ -58,28 +95,54 @@ public class Boss2Shield : MonoBehaviour
         {
             Vector3 pos = collisionEvent.intersection; // the point of intersection between the particle and the enemy
             hitParticle.transform.position = pos;
-            hitParticle.Emit(30);
+
+            
         }
 
-       
 
         if (shieldHealth <= 0)
         {
-            rippleParticle.Play();
-            shieldCollider.enabled = false;
-            shieldMesh.enabled = false;
-            Instantiate(replacement, transform.position, transform.rotation);
-            PushThePlayer(3f,200f);
+            AudioManager.Instance.PlaySFX("ShieldDie");
+
+            ShieldDie();
         }
         else
         {
-            transform.DOComplete();
-            transform.DOPunchScale(new Vector3(5f, 5f, 5f), 0.05f, 10, 1);
+            AudioManager.Instance.PlaySFX("ImpactShot");
+
+            ShieldGetHit();
         }
     }
 
 
-    float DistanceToPlayer()
+    private void ShieldGetHit()
+    {
+        hitParticle.Emit(5);
+        transform.DOComplete();
+        transform.DOPunchScale(new Vector3(10f, 10f, 10f), 0.05f, 10, 1);
+    }
+
+
+    public void ShieldDie()
+    {
+        shieldCollider.enabled = false;
+        transform.DOShakePosition(0.8f, 0.15f, 35, 90, false, false);
+        transform.DOScale(new Vector3(140, 140, 140), 0.8f).OnComplete(() =>
+        {
+            rippleParticle.Play();
+            PushThePlayer(3f, 10f);
+            hitParticle.transform.position = gameObject.transform.position;
+            hitParticle.Emit(80);
+            AudioManager.Instance.PlaySFX("Boss2ShieldBounce");
+
+            shieldMesh.enabled = false;
+        });
+        Instantiate(replacement, transform.position, transform.rotation);
+ 
+    }
+
+
+    private float DistanceToPlayer()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, playerTr.transform.position);
         return distanceToPlayer;
@@ -91,14 +154,16 @@ public class Boss2Shield : MonoBehaviour
 
         if (distanceToPlayer <= distance)
         {
-            // push the player
-            float normalizedDistance = distanceToPlayer / distance;
-            float forcePower = maxForce * (1.0f - normalizedDistance); // Abnehmende Kraft
-
-            // Stoße den Spieler an
             Vector3 pushDirection = playerTr.position - transform.position;
-            Vector3 pushForceVector = pushDirection.normalized * forcePower;
+            Vector3 pushForceVector = pushDirection.normalized * maxForce;
             playerRb.AddForce(pushForceVector, ForceMode.Impulse);
         }
+    }
+
+    private void PushThePlayerAway(float forcepower)
+    {
+        Vector3 pushDirection = playerTr.position - transform.position;
+        Vector3 pushForceVector = pushDirection.normalized * forcepower;
+        playerRb.AddForce(pushForceVector, ForceMode.Impulse);
     }
 }
