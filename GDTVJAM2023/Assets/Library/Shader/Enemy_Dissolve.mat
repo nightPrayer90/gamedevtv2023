@@ -40,13 +40,12 @@ Material:
     - _BUILTIN_ZTest: 4
     - _BUILTIN_ZWrite: 1
     - _BUILTIN_ZWriteControl: 0
-    - _DissolveAmount: 0.2
+    - _DissolveAmount: 0.197
     - _Edge_Wdth: 0.02
     - _Nose_Scale: 5
-17bd62cd8dc6c6c9d33f6a9d1f5e768752b71b89
     m_Colors:
     - _Base_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Edge_Color: {r: 0.99056596, g: 0.5083996, b: 0.060742237, a: 1}
+    - _Edge_Color: {r: 0.99056596, g: 0.5083996, b: 0.06074226, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &4122983387001017978
 MonoBehaviour:

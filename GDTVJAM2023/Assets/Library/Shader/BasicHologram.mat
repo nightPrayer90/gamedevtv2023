@@ -207,11 +207,11 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseEmissionColor: {r: 0, g: 1.4980392, b: 0.8522254, a: 0.007843138}
+    - _BaseEmissionColor: {r: 0, g: 0.6756485, b: 1.4980392, a: 0.007843138}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _FresnelColor: {r: 0, g: 0.49999994, b: 0.24869107, a: 1}
+    - _FresnelColor: {r: 0, g: 0.36299682, b: 0.5, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &7805316018102955446

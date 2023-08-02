@@ -15085,7 +15085,7 @@ MonoBehaviour:
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
   laserRange: 3
   laserShootTime: 3
-  spawnInterval: 0.2
+  spawnInterval: 0.25
   audioClip: PlayerLaser
   lr: {fileID: 8436376726539609849}
   lr2: {fileID: 270253198654909545}

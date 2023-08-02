@@ -20,13 +20,21 @@ public class EnemyShield : MonoBehaviour
     public GameObject replacement;
     private Transform playerTr;
     private Rigidbody playerRb;
-
+    private GameManager gameManager;
+    public Color hitColor;
 
 
     private void OnEnable()
     {
-        //playerTr = GameObject.FindWithTag("Player").transform;
-        //playerRb = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
+        GameObject player = GameObject.FindWithTag("Player");
+
+        if(player != null)
+        {
+            playerTr = player.transform;
+            playerRb = player.GetComponent<Rigidbody>();
+        }
+
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         transform.localScale = new Vector3(1, 1, 1);
         
@@ -38,7 +46,7 @@ public class EnemyShield : MonoBehaviour
 
     private void Update()
     {
-        if (playerTr == null)
+        if (playerTr == null) // todoo
         {
             playerTr = GameObject.FindWithTag("Player").transform;
             playerRb = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
@@ -77,8 +85,7 @@ public class EnemyShield : MonoBehaviour
         {
             Vector3 pos = collisionEvent.intersection; // the point of intersection between the particle and the enemy
             hitParticle.transform.position = pos;
-
-
+            gameManager.DoFloatingText(pos, "+1", hitColor);
         }
 
         ShieldGetDamage();
@@ -117,6 +124,7 @@ public class EnemyShield : MonoBehaviour
         transform.DOShakePosition(0.8f, 0.15f, 35, 90, false, false);
         transform.DOScale(new Vector3(140, 140, 140), 0.8f).OnComplete(() =>
         {
+            Instantiate(replacement, transform.position, transform.rotation);
             rippleParticle.Play();
             PushThePlayer(3f, 10f);
             hitParticle.transform.position = gameObject.transform.position;
@@ -125,7 +133,7 @@ public class EnemyShield : MonoBehaviour
 
             shieldMesh.enabled = false;
         });
-        Instantiate(replacement, transform.position, transform.rotation);
+       
  
     }
 

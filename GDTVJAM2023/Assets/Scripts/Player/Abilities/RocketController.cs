@@ -179,7 +179,7 @@ public class RocketController : MonoBehaviour
         // cancle invoke
         CancelInvoke("DestroyObject");
 
-        // array of all Objects in the explosionRadius
+        // array of all Objects in explosionRadius
         float explosionRadius_ = explosionRadius * playerWeaponController.rocketAOERadius;
         var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius_, layerMask);
 
@@ -191,18 +191,18 @@ public class RocketController : MonoBehaviour
             {
                 int shieldDamage = 1;
                 eSh.ShieldGetDamage(shieldDamage);
-                gameManager.DoFloatingText(transform.position, "+" + shieldDamage, hitColor);
+                gameManager.DoFloatingText(transform.position, "+" + shieldDamage, eSh.hitColor);
                 continue;
             }
-
 
             // get rigidbodys from all objects in range
             var rb = obj.GetComponent<Rigidbody>();
             if (rb == null) continue;
 
+           
+
             // calculate distance between explosioncenter and objects in Range
             float distance = Vector3.Distance(pos, rb.transform.position);
-            //Debug.Log(distance);
 
             int adjustedDamage = damage;
 
@@ -214,7 +214,7 @@ public class RocketController : MonoBehaviour
                     adjustedDamage = Mathf.CeilToInt(damage * scaleFactor); 
                 }
             }
-            else
+           /* else
             {
                /* // get EnemyHealthscript
                 EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
@@ -224,18 +224,26 @@ public class RocketController : MonoBehaviour
 
                 // show floating text
                 if (eHC.canTakeDamage == true)
-                    gameManager.DoFloatingText(rb.transform.position, "+" + damage.ToString(), hitColor);*/
-            }
+                    gameManager.DoFloatingText(rb.transform.position, "+" + damage.ToString(), hitColor);
+            }*/
 
             // get EnemyHealthscript
             EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
 
+            Debug.Log(eHC.canTakeDamage);
+            // show floating text
+            if (eHC.canTakeDamage == true)
+            {
+                Debug.Log("can take damage");
+                gameManager.DoFloatingText(obj.transform.position, "+" + adjustedDamage.ToString(), hitColor);
+            }
+
+
             // calculate enemy damage
             eHC.TakeExplosionDamage(adjustedDamage);
 
-            // show floating text
-            if (eHC.canTakeDamage == true)
-                gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), hitColor);
+
+           
 
             rb.AddExplosionForce(explosionForce, pos, explosionRadius);
         }
