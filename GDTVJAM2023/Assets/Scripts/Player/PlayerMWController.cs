@@ -350,20 +350,18 @@ public class PlayerMWController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(LaserSpawnPoint1.position, -LaserSpawnPoint1.forward, out hit, raycastDistance, layerMask))
         { 
-            GameObject collidedObject = hit.collider.gameObject;
+            //GameObject collidedObject = hit.collider.gameObject;
 
-            lr.SetPosition(1, collidedObject.transform.position);
+            lr.SetPosition(1, hit.point);//collidedObject.transform.position);
 
-            Vector3 dir = LaserSpawnPoint1.position - collidedObject.transform.position;
+            // Vector3 dir = LaserSpawnPoint1.position - hit.point;//collidedObject.transform.position;
 
-            hitParticle.transform.position = collidedObject.transform.position + dir.normalized * .2f;
-            if (!hitParticle.isPlaying)
-                hitParticle.Play();
+            hitParticle.transform.position = hit.point;//; + dir.normalized * .2f;// collidedObject.transform.position + dir.normalized * .2f;
+            hitParticle.Emit(1);
         }
         else
         {
             lr.SetPosition(1, LaserSpawnPoint1.position - LaserSpawnPoint1.forward * raycastDistance);
-            hitParticle.Stop();
         }
     }
 
@@ -376,20 +374,19 @@ public class PlayerMWController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(LaserSpawnPoint2.position, -LaserSpawnPoint2.forward, out hit, raycastDistance, layerMask))
         {
-            GameObject collidedObject = hit.collider.gameObject;
+            //GameObject collidedObject = hit.collider.gameObject;
 
-            lr2.SetPosition(1, collidedObject.transform.position);
 
-            Vector3 dir = LaserSpawnPoint2.position - collidedObject.transform.position;
+            lr2.SetPosition(1, hit.point);//collidedObject.transform.position);
 
-            hitParticle.transform.position = collidedObject.transform.position + dir.normalized * .2f;
-            if (!hitParticle.isPlaying)
-                hitParticle.Play();
+            // Vector3 dir = LaserSpawnPoint2.position - hit.point; //collidedObject.transform.position;
+
+            hitParticle2.transform.position = hit.point;// + dir.normalized;// * .2f;     // collidedObject.transform.position + dir.normalized * .2f;
+            hitParticle2.Emit(1);
         }
         else
         {
             lr2.SetPosition(1, LaserSpawnPoint2.position - LaserSpawnPoint2.forward * raycastDistance);
-            hitParticle.Stop();
         }
     }
 

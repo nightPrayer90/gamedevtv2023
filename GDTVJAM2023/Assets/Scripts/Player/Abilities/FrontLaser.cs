@@ -128,20 +128,18 @@ public class FrontLaser : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, raycastDistance, layerMask))
         {
-            GameObject collidedObject = hit.collider.gameObject;
+            //GameObject collidedObject = hit.collider.gameObject;
 
-            lr.SetPosition(1, collidedObject.transform.position);
+            lr.SetPosition(1, hit.point); // collidedObject.transform.position);
 
-            Vector3 dir = transform.position - collidedObject.transform.position;
+            //Vector3 dir = transform.position - collidedObject.transform.position;
 
-            hitParticle.transform.position = collidedObject.transform.position + dir.normalized * .2f;
-            if (!hitParticle.isPlaying)
-                hitParticle.Play();
+            hitParticle.transform.position = hit.point; //collidedObject.transform.position + dir.normalized * .2f;
+            hitParticle.Emit(1);
         }
         else
         {
             lr.SetPosition(1, transform.position + transform.forward * raycastDistance);
-            hitParticle.Stop();
         }
     }
 

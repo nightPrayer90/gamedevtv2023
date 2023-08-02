@@ -95,6 +95,7 @@ public class RocketController : MonoBehaviour
 
         GameObject go = other.gameObject;
         
+
         // enemy target tag compare only than destroy the rocked
         if (other.gameObject.CompareTag(tagStr))
         {
@@ -172,7 +173,6 @@ public class RocketController : MonoBehaviour
 
     private void Explode(GameObject collisionTarget = null)
     {
-
         // postion of explosion Object
         Vector3 pos = transform.position;
 
@@ -184,7 +184,18 @@ public class RocketController : MonoBehaviour
         var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius_, layerMask);
 
         foreach (var obj in surroundingObjects)
-        { 
+        {
+            // control is shield;
+            EnemyShield eSh = obj.GetComponent<EnemyShield>();
+            if (eSh != null)
+            {
+                int shieldDamage = 1;
+                eSh.ShieldGetDamage(shieldDamage);
+                gameManager.DoFloatingText(transform.position, "+" + shieldDamage, hitColor);
+                continue;
+            }
+
+
             // get rigidbodys from all objects in range
             var rb = obj.GetComponent<Rigidbody>();
             if (rb == null) continue;
@@ -193,28 +204,19 @@ public class RocketController : MonoBehaviour
             float distance = Vector3.Distance(pos, rb.transform.position);
             //Debug.Log(distance);
 
+            int adjustedDamage = damage;
+
             if (obj.gameObject != collisionTarget)
             {
                 if (distance < explosionRadius_)
                 {
-
                     float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius_), 1f);
-                    int adjustedDamage = Mathf.CeilToInt(damage * scaleFactor);
-
-                    // get EnemyHealthscript
-                    EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
-
-                    // calculate enemy damage
-                    eHC.TakeExplosionDamage(adjustedDamage);
-
-                    // show floating text
-                    if (eHC.canTakeDamage == true)
-                        gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), hitColor);
+                    adjustedDamage = Mathf.CeilToInt(damage * scaleFactor); 
                 }
             }
             else
             {
-                // get EnemyHealthscript
+               /* // get EnemyHealthscript
                 EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
 
                 // calculate enemy damage
@@ -222,8 +224,18 @@ public class RocketController : MonoBehaviour
 
                 // show floating text
                 if (eHC.canTakeDamage == true)
-                    gameManager.DoFloatingText(rb.transform.position, "+" + damage.ToString(), hitColor);
+                    gameManager.DoFloatingText(rb.transform.position, "+" + damage.ToString(), hitColor);*/
             }
+
+            // get EnemyHealthscript
+            EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
+
+            // calculate enemy damage
+            eHC.TakeExplosionDamage(adjustedDamage);
+
+            // show floating text
+            if (eHC.canTakeDamage == true)
+                gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), hitColor);
 
             rb.AddExplosionForce(explosionForce, pos, explosionRadius);
         }

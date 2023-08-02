@@ -4,8 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 
 
-public class Boss2Shield : MonoBehaviour
+public class EnemyShield : MonoBehaviour
 {
+    private GameObject spawnEnemy;
     public float rotationSpeed = 10f;
     public int shieldHealth = 30;
     public List<ParticleCollisionEvent> collisionEvents; // creating a list to store the collision events
@@ -43,6 +44,7 @@ public class Boss2Shield : MonoBehaviour
             playerRb = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
         }
 
+        // spawnEnemy - todo
         transform.Rotate(new Vector3(0, 0, rotationSpeed) * Time.deltaTime);   
     }
 
@@ -62,31 +64,11 @@ public class Boss2Shield : MonoBehaviour
 
             PushThePlayerAway(15f);
         }
-
-        if (collision.gameObject.CompareTag("Rocket"))
-        {
-            Debug.Log("Rocket");
-            shieldHealth -= 1;
-
-            if (shieldHealth <= 0)
-            {
-                AudioManager.Instance.PlaySFX("ShieldDie");
-
-                ShieldDie();
-            }
-            else
-            {
-                AudioManager.Instance.PlaySFX("ImpactShot");
-
-                ShieldGetHit();
-            }
-        }
     }
 
 
     private void OnParticleCollision(GameObject other)
     {
-        shieldHealth -= 1;
 
         ParticleSystem part = other.GetComponent<ParticleSystem>();
         int numCollisionEvents = part.GetCollisionEvents(this.gameObject, collisionEvents);
@@ -96,9 +78,15 @@ public class Boss2Shield : MonoBehaviour
             Vector3 pos = collisionEvent.intersection; // the point of intersection between the particle and the enemy
             hitParticle.transform.position = pos;
 
-            
+
         }
 
+        ShieldGetDamage();
+    }
+
+    public void ShieldGetDamage(int damage = 1)
+    {
+        shieldHealth -= damage;
 
         if (shieldHealth <= 0)
         {
