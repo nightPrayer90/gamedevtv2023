@@ -269,7 +269,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateClassLevel(int input)
     {
-        AudioManager.Instance.PlaySFX("c");
+        AudioManager.Instance.PlaySFX("WindowOpen");
         string floatingText = "";
         switch (input)
         {
@@ -413,6 +413,10 @@ public class PlayerController : MonoBehaviour
         }*/
     }
 
+    public void GetLaserDamage()
+    {
+        //Debug.Log("LaserDamage");
+    }
 
 
     /* **************************************************************************** */
@@ -606,7 +610,7 @@ public class PlayerController : MonoBehaviour
 
 
     /* **************************************************************************** */
-    /* Fly Control----------------------------------------------------------------- */
+    /* Fly Controll---------------------------------------------------------------- */
     /* **************************************************************************** */
     // the player take damage after he is outside the border
     private void PlayerIsOutsideBorder()

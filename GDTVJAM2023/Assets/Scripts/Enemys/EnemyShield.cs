@@ -38,8 +38,6 @@ public class EnemyShield : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         //transform.localScale = new Vector3(1, 1, 1);
-        
-        Debug.Log(shieldCollider);
 
         transform.DOScale(1, 2f);
         collisionEvents = new List<ParticleCollisionEvent>();

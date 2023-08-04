@@ -6,53 +6,91 @@ public class Laser2 : MonoBehaviour
 {
     public int maxBounces = 5;
     private LineRenderer lr;
-    public Transform startPoint;
     public float laserDistance = 10;
 
     private PlayerController player;
+    private GameManager gameManager;
+    private string tagStr;
+    private LayerMask layerMask;
 
-    // Start is called before the first frame update
-    void Start()
+    public ParticleSystem muzzleParticle;
+    public ParticleSystem hitParticle;
+
+    private void Awake()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         lr = GetComponent<LineRenderer>();
-        lr.SetPosition(0, startPoint.position);
-        InvokeRepeating("InvokeTest", 0.1f, 0.02f);
-
-        
+        lr.SetPosition(0, transform.position);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
-        
+        GameObject playerOb = GameObject.FindWithTag("Player");
+        if (playerOb != null)
+        {
+            player = playerOb.GetComponent<PlayerController>();
+        }
+        Debug.Log(player);
+        muzzleParticle.Play();
+
+        //LaserActivate(); //toDoo
     }
 
-    void InvokeTest()
+    private void Update()
     {
-        Debug.Log("test");
-        //player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        CastLaser(startPoint.transform.position, -startPoint.transform.forward);
+        if (player == null)
+        {
+            player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+            Debug.Log("playerget");
+        }
+    }
+
+
+    public void LaserActivate()
+    {
+        tagStr = "Enemy";
+        if (gameManager.dimensionShift == true) { tagStr = "secondDimensionEnemy"; }
+        layerMask = (1 << 6) | (1 << 7) | (1 << 9);
+
+        InvokeRepeating("InvokeShoot", 0.01f, 0.02f);
+    }
+
+
+    public void LaserStop()
+    {
+
+
+        CancelInvoke("InvokeShoot");
+    }
+
+    void InvokeShoot()
+    {
+        CastLaser(transform.position, transform.forward);
     }
 
 
     void CastLaser(Vector3 position, Vector3 direction)
     {
-        lr.SetPosition(0, startPoint.position);
+
+        float remainingLaserDistance = laserDistance;
+
+        lr.SetPosition(0, transform.position);
 
         for (int i = 0; i< maxBounces; i++)
         {
             Ray ray = new Ray(position, direction);
             RaycastHit hit;
 
-            if(Physics.Raycast(ray, out hit, laserDistance, 1)) //TODOO LAyermask
+            if(Physics.Raycast(ray, out hit, remainingLaserDistance, layerMask))
             {
                 position = hit.point;
                 direction = Vector3.Reflect(direction, hit.normal);
                 lr.SetPosition(i+1, hit.point);
 
-                
-                if (hit.transform.tag != "Enemy")
+                float distance = Vector3.Distance(lr.GetPosition(i), hit.point);
+                remainingLaserDistance = laserDistance - distance;
+
+                if (hit.transform.tag != tagStr)
                 {
                     for (int j=( i+1); j <= maxBounces; j++)
                     {
@@ -61,20 +99,22 @@ public class Laser2 : MonoBehaviour
 
                     if (hit.transform.tag == "Player")
                     {
-
-                        //player.GetLaserHit();
-
+                        hitParticle.transform.position = hit.point;
+                        hitParticle.Emit(2);
+                        player.GetLaserDamage();
                     }
                     break;
                 }
                 else
                 {
                     lr.SetPosition(i + 1, hit.point);
+                    hitParticle.transform.position = hit.point;
+                    hitParticle.Emit(2);
                 }
             }
             else
             {
-                lr.SetPosition(i+1, ray.GetPoint(laserDistance));
+                lr.SetPosition(i+1, ray.GetPoint(remainingLaserDistance));
             }
         }
     }

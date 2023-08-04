@@ -5472,7 +5472,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 50
+    maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -14624,9 +14624,9 @@ GameObject:
   - component: {fileID: 2650788799715246501}
   - component: {fileID: 5148438797423982058}
   - component: {fileID: 869871315}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14709,7 +14709,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1272481795433867914, guid: bffd17d4a8ad1494aa159f09549399c0, type: 3}
 --- !u!114 &869871315
@@ -14725,8 +14725,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 30
-  shieldHealth: 30
+  shieldHealth: 50
   rippleParticle: {fileID: 5992938722355081828}
   hitParticle: {fileID: 1082593040971450340}
   shieldMesh: {fileID: 2650788799715246501}
-  shieldCollider: {fileID: 0}
+  shieldEmitterMesh: {fileID: 0}
+  shieldCollider: {fileID: 5148438797423982058}
+  replacement: {fileID: 7998683966832688913, guid: c68bbb17fd458e44c9bd13477679b770, type: 3}
+  hitColor: {r: 1, g: 0, b: 0.93442965, a: 1}

@@ -31,8 +31,8 @@ public class Boss02 : MonoBehaviour
     public MeshRenderer bossMeshRenderer;
     public ParticleSystem rippleParticle;
     public ParticleSystem rippleParticleDie;
-    public List<ParticleSystem> particleWeapons = new List<ParticleSystem>();
-    public List<ParticleSystem> particleWeapons2 = new List<ParticleSystem>();
+    public List<Laser2> laserWeapons = new List<Laser2>();
+    public List<Laser2> laserWeapons2 = new List<Laser2>();
     public GameObject explosionObject;
     public GameObject minimapIcon;
     public SpriteRenderer minimapSpR;
@@ -217,9 +217,10 @@ public class Boss02 : MonoBehaviour
                 {
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
+                    Shooting1();
                     //Debug.Log("state0 @ " + enemyHealthScr.enemyHealth);
-                    InvokeRepeating("Shooting1",0.5f,0.5f);
-                    InvokeRepeating("InvokeShootSound", 0.5f, 0.5f);
+                    //InvokeRepeating("Shooting1",0.5f,0.5f);
+                    //InvokeRepeating("InvokeShootSound", 0.5f, 0.5f);
                     isState[0] = true;
                 }
 
@@ -241,8 +242,9 @@ public class Boss02 : MonoBehaviour
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
-                        InvokeRepeating("Shooting2", 3f, 0.5f);
-                        InvokeRepeating("InvokeShootSound", 3f, 0.5f);
+                        //InvokeRepeating("Shooting2", 3f, 0.5f);
+                        //InvokeRepeating("InvokeShootSound", 3f, 0.5f);
+                        Shooting2();
                         transform.DOShakePosition(3f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
                             enemyHealthScr.canTakeDamage = true;
@@ -252,7 +254,7 @@ public class Boss02 : MonoBehaviour
                     isState[1] = true;
                 }
 
-                RotateBoss(-13f);
+                RotateBoss(10f);
                 MoveToPlayer(6f);
                 break;
 
@@ -271,9 +273,8 @@ public class Boss02 : MonoBehaviour
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
-                        InvokeRepeating("Shooting1", 4f, 0.5f);
-                        InvokeRepeating("Shooting2", 4f, 0.5f);
-                        InvokeRepeating("InvokeShootSound", 4f, 0.5f);
+                        //
+                        //InvokeRepeating("InvokeShootSound", 4f, 0.5f);
                         transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
                             enemyHealthScr.canTakeDamage = true;
@@ -386,19 +387,20 @@ public class Boss02 : MonoBehaviour
     // invoke - shoot attack 1
     private void Shooting1()
     {
-        foreach (ParticleSystem weapon in particleWeapons)
+        foreach (Laser2 weapon in laserWeapons)
         {
-            weapon.Emit(1);
-
+            weapon.gameObject.SetActive(true);
+            weapon.LaserActivate();
         }
     }
 
     // invoke - shoot attack 2
     private void Shooting2()
     {
-        foreach (ParticleSystem weapon in particleWeapons2)
+        foreach (Laser2 weapon in laserWeapons2)
         {
-            weapon.Emit(1);
+            weapon.gameObject.SetActive(true);
+            weapon.LaserActivate();
         }
     }
 
