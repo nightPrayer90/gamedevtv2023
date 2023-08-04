@@ -9,7 +9,7 @@ public class Laser2 : MonoBehaviour
     public Transform startPoint;
     public float laserDistance = 10;
 
-    private PlayerTest player;
+    private PlayerController player;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class Laser2 : MonoBehaviour
         lr.SetPosition(0, startPoint.position);
         InvokeRepeating("InvokeTest", 0.1f, 0.02f);
 
-        player = GameObject.Find("Player").GetComponent<PlayerTest>();
+        
     }
 
     // Update is called once per frame
@@ -30,6 +30,8 @@ public class Laser2 : MonoBehaviour
 
     void InvokeTest()
     {
+        Debug.Log("test");
+        //player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         CastLaser(startPoint.transform.position, -startPoint.transform.forward);
     }
 
@@ -60,7 +62,7 @@ public class Laser2 : MonoBehaviour
                     if (hit.transform.tag == "Player")
                     {
 
-                        player.GetLaserHit();
+                        //player.GetLaserHit();
 
                     }
                     break;

@@ -18,7 +18,7 @@ public class FadeOutHolo : MonoBehaviour
 
         foreach (var rb in childRigidbodys)
         {
-            rb.AddExplosionForce(5000, rb.position, 250);
+            rb.AddExplosionForce(150, rb.position, 2);
         }
 
         // Sammle alle MeshRenderer-Komponenten der Kindobjekte

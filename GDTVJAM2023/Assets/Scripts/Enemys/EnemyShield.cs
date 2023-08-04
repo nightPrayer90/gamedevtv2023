@@ -15,7 +15,8 @@ public class EnemyShield : MonoBehaviour
     public ParticleSystem hitParticle;
 
     public MeshRenderer shieldMesh;
-    public MeshCollider shieldCollider;
+    public MeshRenderer shieldEmitterMesh;
+    public Collider shieldCollider;
 
     public GameObject replacement;
     private Transform playerTr;
@@ -36,11 +37,11 @@ public class EnemyShield : MonoBehaviour
 
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
-        transform.localScale = new Vector3(1, 1, 1);
+        //transform.localScale = new Vector3(1, 1, 1);
         
         Debug.Log(shieldCollider);
 
-        transform.DOScale(150, 2f);
+        transform.DOScale(1, 2f);
         collisionEvents = new List<ParticleCollisionEvent>();
     }
 
@@ -68,7 +69,7 @@ public class EnemyShield : MonoBehaviour
             hitParticle.Emit(100);
 
             transform.DOComplete();
-            transform.DOPunchScale(new Vector3(30f, 30f, 30f), 0.1f, 10, 1);
+            transform.DOPunchScale(new Vector3(0.12f, 0.12f, 0.12f), 0.2f, 10, 1);
 
             PushThePlayerAway(15f);
         }
@@ -114,15 +115,15 @@ public class EnemyShield : MonoBehaviour
     {
         hitParticle.Emit(5);
         transform.DOComplete();
-        transform.DOPunchScale(new Vector3(10f, 10f, 10f), 0.05f, 10, 1);
+        transform.DOPunchScale(new Vector3(.05f, .05f, .05f), 0.05f, 10, 1);
     }
 
 
     public void ShieldDie()
     {
         shieldCollider.enabled = false;
-        transform.DOShakePosition(0.8f, 0.15f, 35, 90, false, false);
-        transform.DOScale(new Vector3(140, 140, 140), 0.8f).OnComplete(() =>
+        transform.DOShakePosition(1f, 0.15f, 35, 90, false, false);
+        transform.DOScale(new Vector3(0.85f, 0.85f, 0.85f), 1f).OnComplete(() =>
         {
             Instantiate(replacement, transform.position, transform.rotation);
             rippleParticle.Play();
@@ -132,6 +133,7 @@ public class EnemyShield : MonoBehaviour
             AudioManager.Instance.PlaySFX("Boss2ShieldBounce");
 
             shieldMesh.enabled = false;
+            if (shieldEmitterMesh != null) shieldEmitterMesh.enabled = false;
         });
        
  
