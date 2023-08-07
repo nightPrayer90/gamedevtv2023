@@ -16,6 +16,8 @@ public class Laser2 : MonoBehaviour
     public ParticleSystem muzzleParticle;
     public ParticleSystem hitParticle;
 
+    public bool isShootOnEnable = false;
+
     private void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -33,7 +35,10 @@ public class Laser2 : MonoBehaviour
         Debug.Log(player);
         muzzleParticle.Play();
 
-        //LaserActivate(); //toDoo
+        if (isShootOnEnable == true)
+        {
+            LaserActivate();
+        }
     }
 
     private void Update()
