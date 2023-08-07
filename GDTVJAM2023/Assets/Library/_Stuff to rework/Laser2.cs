@@ -63,9 +63,10 @@ public class Laser2 : MonoBehaviour
 
     public void LaserStop()
     {
-
-
         CancelInvoke("InvokeShoot");
+        gameObject.SetActive(false);
+        muzzleParticle.Stop();
+        hitParticle.Stop();
     }
 
     void InvokeShoot()

@@ -14,6 +14,7 @@ public class Boss2upPhase : MonoBehaviour
     public Boss2DownPhase downPhase;
 
     private bool isRotate = false;
+    public bool isShieldActive = false;
     public float rotationSpeed = 0.5f;
 
     private void Update()
@@ -34,7 +35,11 @@ public class Boss2upPhase : MonoBehaviour
 
     public void PhaseUP()
     {
-        transform.DOMoveY(6.7f, 4).SetDelay(3f).OnComplete(() => {downPhase.ActivateShield();});
+        transform.DOMoveY(6.7f, 4).SetDelay(3f).OnComplete(() => 
+        {
+            isShieldActive = true;
+            downPhase.ActivateShield();
+        });
     }
 
     public void StartShooting()

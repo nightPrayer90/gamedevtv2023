@@ -31,8 +31,8 @@ public class Boss02 : MonoBehaviour
     public MeshRenderer bossMeshRenderer;
     public ParticleSystem rippleParticle;
     public ParticleSystem rippleParticleDie;
-    public List<Laser2> laserWeapons = new List<Laser2>();
-    public List<Laser2> laserWeapons2 = new List<Laser2>();
+    public List<Boss2SidePhase> laserWeapons = new List<Boss2SidePhase>();
+    public List<Boss2SidePhase> laserWeapons2 = new List<Boss2SidePhase>();
     public GameObject explosionObject;
     public GameObject minimapIcon;
     public SpriteRenderer minimapSpR;
@@ -222,10 +222,8 @@ public class Boss02 : MonoBehaviour
                     downPhase.ActivateMesh();
                     downPhase.GoOnPosition();
 
-                   
-                    //Debug.Log("state0 @ " + enemyHealthScr.enemyHealth);
-                    //InvokeRepeating("Shooting1",0.5f,0.5f);
-                    //InvokeRepeating("InvokeShootSound", 0.5f, 0.5f);
+                    InvokeRepeating("SpawnShield", 5f, 10f);
+                  
                     isState[0] = true;
                 }
 
@@ -237,6 +235,7 @@ public class Boss02 : MonoBehaviour
                 // turns only one time per state
                 if (isState[1] == false)
                 {
+                    CancelInvoke("SpawnShield");
                     bossChanceState.Play();
                     enemyHealthScr.canTakeDamage = false;
                     bossHealthForeground.color = Color.red;
@@ -307,6 +306,7 @@ public class Boss02 : MonoBehaviour
     private void DieState()
     {
         bossHudCg.DOFade(0f, 0.5f).OnComplete(()=> { bossHud.SetActive(false); });
+        LaserStop();
 
         InvokeRepeating("InvokeSpawnExplosion", 0.5f, 1f);
         transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
@@ -403,20 +403,45 @@ public class Boss02 : MonoBehaviour
     // invoke - shoot attack 1
     private void Shooting1()
     {
-        foreach (Laser2 weapon in laserWeapons)
+        int delay = 1;
+        foreach (Boss2SidePhase weapon in laserWeapons)
         {
-            weapon.gameObject.SetActive(true);
-            weapon.LaserActivate();
+            weapon.ActivateWeapon(0, delay);
+            delay += 2;
         }
     }
 
     // invoke - shoot attack 2
     private void Shooting2()
     {
-        foreach (Laser2 weapon in laserWeapons2)
+        int delay = 1;
+        foreach (Boss2SidePhase weapon in laserWeapons2)
         {
-            weapon.gameObject.SetActive(true);
-            weapon.LaserActivate();
+            weapon.ActivateWeapon(0, delay);
+            delay += 2;
+        }
+    }
+
+    private void SpawnShield()
+    {
+        int delay = 0;
+        foreach (Boss2SidePhase weapon in laserWeapons2)
+        {
+            weapon.ActivateWeapon(1, delay);
+            delay += 4;
+        }
+    }
+
+
+    private void LaserStop()
+    {
+        foreach (Boss2SidePhase weapon in laserWeapons)
+        {
+            weapon.LaserDie();
+        }
+        foreach (Boss2SidePhase weapon in laserWeapons2)
+        {
+            weapon.LaserDie();
         }
     }
 

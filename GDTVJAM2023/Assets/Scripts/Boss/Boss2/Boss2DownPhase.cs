@@ -35,6 +35,8 @@ public class Boss2DownPhase : MonoBehaviour
 
     public void ActivateShield()
     {
+        AudioManager.Instance.PlaySFX("Boss2ShieldBounce");
+        
         shieldCollider1.enabled = true;
         isRotate = true;
         shieldMesh.enabled = true;
@@ -49,7 +51,9 @@ public class Boss2DownPhase : MonoBehaviour
 
     public void ShieldDie()
     {
-        Destroy(gameObject);
+        AudioManager.Instance.PlaySFX("ShieldDie");
         Instantiate(replacement, transform.position, transform.rotation);
+
+        Destroy(gameObject);
     }
 }

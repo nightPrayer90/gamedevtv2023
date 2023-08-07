@@ -17,16 +17,21 @@ public class EnemyShield : MonoBehaviour
     public MeshRenderer shieldMesh;
     public MeshRenderer shieldEmitterMesh;
     public Collider shieldCollider;
+    public Collider backCollider;
 
     public GameObject replacement;
     private Transform playerTr;
     private Rigidbody playerRb;
     private GameManager gameManager;
     public Color hitColor;
+    public Rigidbody rb;
 
 
     private void OnEnable()
     {
+        rb.AddForce(transform.right*3f,ForceMode.Impulse);
+
+
         GameObject player = GameObject.FindWithTag("Player");
 
         if(player != null)
@@ -37,10 +42,16 @@ public class EnemyShield : MonoBehaviour
 
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
-        //transform.localScale = new Vector3(1, 1, 1);
+        transform.localScale = new Vector3(1, 1, 1);
 
         transform.DOScale(1, 2f);
         collisionEvents = new List<ParticleCollisionEvent>();
+        Invoke("ActivateBackCollider",0.5f);
+    }
+
+    private void ActivateBackCollider()
+    {
+       // backCollider.enabled = true;
     }
 
     private void Update()
@@ -108,6 +119,13 @@ public class EnemyShield : MonoBehaviour
         }
     }
 
+    public void ActivateShield()
+    {
+        shieldMesh.enabled = true;
+        shieldCollider.enabled = true;
+        shieldMesh.transform.DOScale(new Vector3(100, 100, 100), 0.5f);
+        transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 2f, 10, 1);
+    }
 
     private void ShieldGetHit()
     {
@@ -115,7 +133,6 @@ public class EnemyShield : MonoBehaviour
         transform.DOComplete();
         transform.DOPunchScale(new Vector3(.05f, .05f, .05f), 0.05f, 10, 1);
     }
-
 
     public void ShieldDie()
     {
@@ -133,10 +150,7 @@ public class EnemyShield : MonoBehaviour
             shieldMesh.enabled = false;
             if (shieldEmitterMesh != null) shieldEmitterMesh.enabled = false;
         });
-       
- 
     }
-
 
     private float DistanceToPlayer()
     {
