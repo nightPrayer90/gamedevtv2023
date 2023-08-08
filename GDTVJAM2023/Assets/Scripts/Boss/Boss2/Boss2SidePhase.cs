@@ -20,8 +20,6 @@ public class Boss2SidePhase : MonoBehaviour
     public void ActivateWeapon(int mat, float delay)
     {
         
-       
-
         switch(mat)
         {
             case 0:
@@ -34,8 +32,6 @@ public class Boss2SidePhase : MonoBehaviour
                 break;
 
         }
-
-        
     }
 
     public void InvokeActivateLaser()
@@ -102,13 +98,18 @@ public class Boss2SidePhase : MonoBehaviour
 
         if (isXTransform == false)
         {
-            if (isZInverse == false) { transform.DOLocalMoveZ(0.1f, 0.5f).SetDelay(0.5f); }
-            else { transform.DOLocalMoveZ(-0.1f, 0.5f).SetDelay(0.5f); ; }
+            if (isZInverse == false) { transform.DOLocalMoveZ(0.1f, 0.2f).SetDelay(0.4f); }
+            else { transform.DOLocalMoveZ(-0.1f, 0.2f).SetDelay(0.4f); ; }
         }
         else
         {
-            if (isZInverse == false) { transform.DOLocalMoveX(0.1f, 0.5f).SetDelay(0.5f); ; }
-            else { transform.DOLocalMoveX(-0.1f, 0.5f).SetDelay(0.5f); ; }
+            if (isZInverse == false) { transform.DOLocalMoveX(0.1f, 0.2f).SetDelay(0.4f); ; }
+            else { transform.DOLocalMoveX(-0.1f, 0.2f).SetDelay(0.4f); ; }
         }
+    }
+
+    public void ObjectDie()
+    {
+        Destroy(gameObject);
     }
 }

@@ -30,7 +30,7 @@ public class Boss2DownPhase : MonoBehaviour
 
     public void GoOnPosition()
     {
-        transform.DOMoveY(5f, 3f).SetDelay(2f);
+        transform.DOMoveY(5f, 3f).SetDelay(7f);
     }
 
     public void ActivateShield()

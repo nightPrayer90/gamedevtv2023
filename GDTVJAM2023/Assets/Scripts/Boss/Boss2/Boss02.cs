@@ -13,7 +13,9 @@ public class Boss02 : MonoBehaviour
     private bool[] isState;
     private float dieRotation = 0;
     private bool isMinimap = false;
-
+    [HideInInspector] public bool isDying = false;
+    private int shieldObjects;
+    private int maxShieldObjects = 10;
 
     [Header("Boss UI")]
     public GameObject bossHud;
@@ -47,10 +49,13 @@ public class Boss02 : MonoBehaviour
     private EnemyHealth enemyHealthScr;
     private Transform playerTr;
     private Rigidbody playerRb;
+    public Rigidbody rb;
     private GameManager gameManager;
 
     public Boss2upPhase upPhase;
     public Boss2DownPhase downPhase;
+    public GameObject shootingWeapon;
+    private Quaternion targetRotation;
 
     /* **************************************************************************** */
     /* Lifecycle-Methoden---------------------------------------------------------- */
@@ -115,6 +120,7 @@ public class Boss02 : MonoBehaviour
 
                 case 2: // fight!
                     FightingState();
+                    RotateWeaponToPlayer();
                     break;
 
                 case 3: // die
@@ -149,7 +155,7 @@ public class Boss02 : MonoBehaviour
                 bossHealthSlider.transform.DOPunchScale(new Vector3(0.05f, 0.05f, 0.05f), 1.5f, 10, 1f);
             });
 
-            // fly to y = 7
+            // fly to y = 6
             transform.DOMoveY(6, 5f).SetEase(Ease.InOutSine).OnComplete(() =>
             {
                 // set minimap to a red color
@@ -157,6 +163,11 @@ public class Boss02 : MonoBehaviour
                 minimapIcon.transform.DOKill();
                 minimapSpR.DOColor(Color.red, 1f);
 
+                rb.constraints = RigidbodyConstraints.FreezePositionX |
+                             RigidbodyConstraints.FreezePositionY |
+                             RigidbodyConstraints.FreezePositionZ |
+                             RigidbodyConstraints.FreezeRotationX |
+                             RigidbodyConstraints.FreezeRotationZ;
 
                 // go to the activate State
                 AudioManager.Instance.PlaySFX("WarningBoss");
@@ -222,7 +233,7 @@ public class Boss02 : MonoBehaviour
                     downPhase.ActivateMesh();
                     downPhase.GoOnPosition();
 
-                    InvokeRepeating("SpawnShield", 5f, 10f);
+                    InvokeRepeating("SpawnShield", 6f, 7.5f);
                   
                     isState[0] = true;
                 }
@@ -241,6 +252,9 @@ public class Boss02 : MonoBehaviour
                     bossHealthForeground.color = Color.red;
                     rippleParticle.Play();
                     upPhase.ActivateMesh();
+                    upPhase.PhaseUP();
+
+                    
 
                     PushThePlayer(2.5f, 5f);
                     //Debug.Log("state1 @ " + enemyHealthScr.enemyHealth);
@@ -251,8 +265,7 @@ public class Boss02 : MonoBehaviour
                         //InvokeRepeating("Shooting2", 3f, 0.5f);
                         //InvokeRepeating("InvokeShootSound", 3f, 0.5f);
 
-                        upPhase.PhaseUP();
-
+                       
                         Shooting2();
                         transform.DOShakePosition(3f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
@@ -264,7 +277,7 @@ public class Boss02 : MonoBehaviour
                     isState[1] = true;
                 }
 
-                RotateBoss(10f);
+                RotateBoss(15f);
                 MoveToPlayer(6f);
                 break;
 
@@ -297,7 +310,7 @@ public class Boss02 : MonoBehaviour
                     isState[2] = true;
                 }
 
-                RotateBoss(10f);
+                RotateBoss(15f);
                 MoveToPlayer(6f);
                 break;
         }
@@ -306,9 +319,12 @@ public class Boss02 : MonoBehaviour
     private void DieState()
     {
         bossHudCg.DOFade(0f, 0.5f).OnComplete(()=> { bossHud.SetActive(false); });
-        LaserStop();
+        DestoryLaserWeapon();
 
         InvokeRepeating("InvokeSpawnExplosion", 0.5f, 1f);
+        
+        isDying = true;
+
         transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
         {
             CancelInvoke();
@@ -407,29 +423,32 @@ public class Boss02 : MonoBehaviour
         foreach (Boss2SidePhase weapon in laserWeapons)
         {
             weapon.ActivateWeapon(0, delay);
-            delay += 2;
+            delay += 3;
         }
     }
 
     // invoke - shoot attack 2
     private void Shooting2()
     {
-        int delay = 1;
+        int delay = 6;
         foreach (Boss2SidePhase weapon in laserWeapons2)
         {
             weapon.ActivateWeapon(0, delay);
-            delay += 2;
+            delay += 3;
         }
     }
 
     private void SpawnShield()
     {
         int delay = 0;
+        shieldObjects += 2;
         foreach (Boss2SidePhase weapon in laserWeapons2)
         {
             weapon.ActivateWeapon(1, delay);
             delay += 4;
         }
+
+        if (shieldObjects == maxShieldObjects) { CancelInvoke("SpawnShield");  }
     }
 
 
@@ -444,6 +463,20 @@ public class Boss02 : MonoBehaviour
             weapon.LaserDie();
         }
     }
+    private void DestoryLaserWeapon()
+    {
+        foreach (Boss2SidePhase weapon in laserWeapons)
+        {
+            weapon.LaserDie();
+            weapon.ObjectDie();
+        }
+        foreach (Boss2SidePhase weapon in laserWeapons2)
+        {
+            weapon.LaserDie();
+            weapon.ObjectDie();
+        }
+    }
+
 
     // invoke - shoot sound
     private void InvokeShootSound()
@@ -461,5 +494,24 @@ public class Boss02 : MonoBehaviour
         dieRotation = dieRotation + 15;
         // instanstiate explosion
         ObjectPoolManager.SpawnObject(explosionObject, transform.position, Quaternion.Euler(0f, dieRotation, 0f), ObjectPoolManager.PoolType.ParticleSystem);
+    }
+
+    private void RotateWeaponToPlayer()
+    {
+        Vector3 directionToPlayer = playerTr.position - shootingWeapon.transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer, Vector3.up);
+
+        // Verzögere die Ausrichtung des Objekts mit einer Rotationsgeschwindigkeit
+        targetRotation = Quaternion.Slerp(targetRotation, lookRotation, 2 * Time.deltaTime);
+
+        if (Quaternion.Angle(transform.rotation, targetRotation) < 5)
+        {
+
+            return; // Beende die Aktualisierung der Ausrichtung
+        }
+
+        // Wende die Zielrotation auf das Objekt an
+        shootingWeapon.transform.rotation = targetRotation;
+
     }
 }

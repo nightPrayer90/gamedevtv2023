@@ -17,7 +17,6 @@ public class EnemyShield : MonoBehaviour
     public MeshRenderer shieldMesh;
     public MeshRenderer shieldEmitterMesh;
     public Collider shieldCollider;
-    public Collider backCollider;
 
     public GameObject replacement;
     private Transform playerTr;
@@ -29,9 +28,6 @@ public class EnemyShield : MonoBehaviour
 
     private void OnEnable()
     {
-        rb.AddForce(transform.right*3f,ForceMode.Impulse);
-
-
         GameObject player = GameObject.FindWithTag("Player");
 
         if(player != null)
@@ -46,13 +42,8 @@ public class EnemyShield : MonoBehaviour
 
         transform.DOScale(1, 2f);
         collisionEvents = new List<ParticleCollisionEvent>();
-        Invoke("ActivateBackCollider",0.5f);
     }
 
-    private void ActivateBackCollider()
-    {
-       // backCollider.enabled = true;
-    }
 
     private void Update()
     {

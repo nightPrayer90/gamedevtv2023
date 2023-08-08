@@ -4965,6 +4965,7 @@ GameObject:
   - component: {fileID: 3496348997019112187}
   - component: {fileID: 5484708464190701959}
   - component: {fileID: 7860792713790995158}
+  - component: {fileID: 1897390443557309492}
   m_Layer: 9
   m_Name: Boss2.010
   m_TagString: Untagged
@@ -5038,6 +5039,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1897390443557309492
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3458243246959387300}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.005974169, y: 0.0110642165, z: 0.009581893}
+  m_Center: {x: 0.016305583, y: 0, z: 0}
 --- !u!1 &5584971385402615166
 GameObject:
   m_ObjectHideFlags: 0
@@ -9923,7 +9937,7 @@ GameObject:
   - component: {fileID: 2006606971950152360}
   m_Layer: 9
   m_Name: Boss2Minion
-  m_TagString: Enemy
+  m_TagString: secondDimensionEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9966,7 +9980,6 @@ MonoBehaviour:
   shieldMesh: {fileID: 1634904987607678222}
   shieldEmitterMesh: {fileID: 7860792713790995158}
   shieldCollider: {fileID: 919132149584809428}
-  backCollider: {fileID: 0}
   replacement: {fileID: 5669948963245265451, guid: 282a762ab0151904ca919273b724a39e, type: 3}
   hitColor: {r: 0, g: 1, b: 0.9897847, a: 1}
   rb: {fileID: 2006606971950152360}
@@ -10005,13 +10018,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5970539681075225402}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0.5
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!1 &8813929824952889165
 GameObject:

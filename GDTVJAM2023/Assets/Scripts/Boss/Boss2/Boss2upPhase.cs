@@ -15,7 +15,7 @@ public class Boss2upPhase : MonoBehaviour
 
     private bool isRotate = false;
     public bool isShieldActive = false;
-    public float rotationSpeed = 0.5f;
+    public float rotationSpeed = -30f;
 
     private void Update()
     {
@@ -35,7 +35,7 @@ public class Boss2upPhase : MonoBehaviour
 
     public void PhaseUP()
     {
-        transform.DOMoveY(6.7f, 4).SetDelay(3f).OnComplete(() => 
+        transform.DOMoveY(6.7f, 2f).SetDelay(3f).OnComplete(() => 
         {
             isShieldActive = true;
             downPhase.ActivateShield();
@@ -52,7 +52,7 @@ public class Boss2upPhase : MonoBehaviour
             laserPointer4.SetActive(true);
 
             isRotate = true;
-            transform.DOMoveY(9, 12f).SetDelay(2f).SetLoops(-1, LoopType.Yoyo);
+            transform.DOMoveY(8.5f, 8f).SetDelay(1f).SetLoops(-1, LoopType.Yoyo);
         });
     }
 
