@@ -533,7 +533,7 @@ public class Boss02 : MonoBehaviour
 
         if (frontWeaponCount <= frontWeaponMaxCount+1)
         {
-            Invoke("InvokeShoot", 0.4f);
+            Invoke("InvokeShoot", 0.6f);
         }
         else
         {
