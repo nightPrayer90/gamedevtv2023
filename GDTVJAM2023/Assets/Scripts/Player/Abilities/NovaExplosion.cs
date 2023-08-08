@@ -77,14 +77,18 @@ public class NovaExplosion : MonoBehaviour
                 int adjustedDamage = Mathf.CeilToInt(novaDamage * scaleFactor);
 
                 // get EnemyHealthscript
+              
                 EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
 
-                // calculate enemy damage
-                eHC.TakeExplosionDamage(adjustedDamage);
+                if (eHC != null)
+                {
+                    // calculate enemy damage
+                    eHC.TakeExplosionDamage(adjustedDamage);
 
-                // show floating text
-                if (eHC.canTakeDamage == true)
-                    gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), hitColor);
+                    // show floating text
+                    if (eHC.canTakeDamage == true)
+                        gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), hitColor);
+                }
             }
 
             rb.AddExplosionForce(explosionForce, pos, explosionRadius);

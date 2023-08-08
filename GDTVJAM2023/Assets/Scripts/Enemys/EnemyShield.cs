@@ -17,6 +17,7 @@ public class EnemyShield : MonoBehaviour
     public MeshRenderer shieldMesh;
     public MeshRenderer shieldEmitterMesh;
     public Collider shieldCollider;
+    public Collider backCollider;
 
     public GameObject replacement;
     private Transform playerTr;
@@ -24,7 +25,7 @@ public class EnemyShield : MonoBehaviour
     private GameManager gameManager;
     public Color hitColor;
     public Rigidbody rb;
-
+    private bool isdied = false;
 
     private void OnEnable()
     {
@@ -94,19 +95,23 @@ public class EnemyShield : MonoBehaviour
 
     public void ShieldGetDamage(int damage = 1)
     {
-        shieldHealth -= damage;
-
-        if (shieldHealth <= 0)
+        if (isdied == false)
         {
-            AudioManager.Instance.PlaySFX("ShieldDie");
+            shieldHealth -= damage;
 
-            ShieldDie();
-        }
-        else
-        {
-            AudioManager.Instance.PlaySFX("ImpactShot");
+            if (shieldHealth <= 0)
+            {
+                AudioManager.Instance.PlaySFX("ShieldDie");
 
-            ShieldGetHit();
+                isdied = true;
+                ShieldDie();
+            }
+            else
+            {
+                AudioManager.Instance.PlaySFX("ImpactShot");
+
+                ShieldGetHit();
+            }
         }
     }
 
@@ -127,20 +132,27 @@ public class EnemyShield : MonoBehaviour
 
     public void ShieldDie()
     {
-        shieldCollider.enabled = false;
         transform.DOShakePosition(1f, 0.15f, 35, 90, false, false);
         transform.DOScale(new Vector3(0.85f, 0.85f, 0.85f), 1f).OnComplete(() =>
         {
             Instantiate(replacement, transform.position, transform.rotation);
+            shieldCollider.enabled = false;
+            backCollider.enabled = false;
             rippleParticle.Play();
             PushThePlayer(3f, 10f);
             hitParticle.transform.position = gameObject.transform.position;
             hitParticle.Emit(80);
             AudioManager.Instance.PlaySFX("Boss2ShieldBounce");
+            Invoke("gameObject", 8f);
 
             shieldMesh.enabled = false;
             if (shieldEmitterMesh != null) shieldEmitterMesh.enabled = false;
         });
+    }
+
+    private void ShielDelete()
+    {
+        Destroy(gameObject);
     }
 
     private float DistanceToPlayer()
@@ -160,6 +172,8 @@ public class EnemyShield : MonoBehaviour
             playerRb.AddForce(pushForceVector, ForceMode.Impulse);
         }
     }
+
+
 
     private void PushThePlayerAway(float forcepower)
     {

@@ -13,6 +13,7 @@ public class Boss2SidePhase : MonoBehaviour
 
     public Laser2 laser2;
     public ParticleSystem laserLoadParticle;
+    public ParticleSystem shieldLoadParticle;
     public bool isZInverse = false;
     public bool isXTransform = false;
 
@@ -72,6 +73,7 @@ public class Boss2SidePhase : MonoBehaviour
 
     public void InvokeSpawnShield()
     {
+        AudioManager.Instance.PlaySFX("Boss2SmallAlert");
         Material[] materials = meshRen.materials;
         materials[0] = emissive;
         meshRen.materials = materials;
@@ -88,8 +90,9 @@ public class Boss2SidePhase : MonoBehaviour
             else { transform.DOLocalMoveX(0.2f, 2f); }
         }
 
+        AudioManager.Instance.PlaySFX("Boss2ShieldSpawn");
         Invoke("SpawnShield", 2);
-        laserLoadParticle.Play();
+        shieldLoadParticle.Play();
     }
 
     public void SpawnShield()
@@ -98,13 +101,13 @@ public class Boss2SidePhase : MonoBehaviour
 
         if (isXTransform == false)
         {
-            if (isZInverse == false) { transform.DOLocalMoveZ(0.1f, 0.2f).SetDelay(0.4f); }
-            else { transform.DOLocalMoveZ(-0.1f, 0.2f).SetDelay(0.4f); ; }
+            if (isZInverse == false) { transform.DOLocalMoveZ(0.1f, 0.4f).SetDelay(0.5f); }
+            else { transform.DOLocalMoveZ(-0.1f, 0.4f).SetDelay(0.5f); ; }
         }
         else
         {
-            if (isZInverse == false) { transform.DOLocalMoveX(0.1f, 0.2f).SetDelay(0.4f); ; }
-            else { transform.DOLocalMoveX(-0.1f, 0.2f).SetDelay(0.4f); ; }
+            if (isZInverse == false) { transform.DOLocalMoveX(0.1f, 0.4f).SetDelay(0.5f); ; }
+            else { transform.DOLocalMoveX(-0.1f, 0.4f).SetDelay(0.5f); ; }
         }
     }
 

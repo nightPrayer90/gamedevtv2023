@@ -6,7 +6,6 @@ public class EnemyParticleBullet : MonoBehaviour
     public ParticleSystem bulletParticleSystem;
 
     public bool canReflect = false;
-    public int maxReflectionCount = 3;
 
     //List<ParticleCollisionEvent> colEvents = new List<ParticleCollisionEvent>();
     public void Start()
@@ -15,20 +14,12 @@ public class EnemyParticleBullet : MonoBehaviour
     }
 
 
-  /*  public void BulletStart_()
-    {
-        if (bulletParticleSystem.isStopped)
-            bulletParticleSystem.Play();
-        isEmitting = true;
-    }
-  */
-
     public void HardBulletStop()
     {
         bulletParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
-    [System.Obsolete]
+    /*[System.Obsolete]
     private void OnParticleCollision(GameObject other)
     {
         Debug.Log("reflect");
@@ -48,5 +39,5 @@ public class EnemyParticleBullet : MonoBehaviour
         }
     }
 
-
+    */
 }

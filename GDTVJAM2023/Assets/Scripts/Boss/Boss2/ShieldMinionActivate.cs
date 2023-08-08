@@ -10,7 +10,7 @@ public class ShieldMinionActivate : MonoBehaviour
     private Boss02 boss02;
     private bool isShieldActive_ = false;
     private bool isSetConstraints = true;
-
+    private bool isShiedDied = false;
 
     private void Start()
     {
@@ -34,7 +34,8 @@ public class ShieldMinionActivate : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, boss02.gameObject.transform.position) > 2f)
             {
-                enemyShield.ActivateShield();
+                float randomtime = Random.Range(0.1f, 2f);
+                Invoke("ShieldActivateRandomTime", randomtime);
                 isShieldActive_ = true;
             }
             else 
@@ -61,11 +62,23 @@ public class ShieldMinionActivate : MonoBehaviour
             }
         }
 
-        if (boss02.isDying == true)
+        if (boss02.isDying == true && isShiedDied == false)
         {
-            enemyShield.ShieldDie();
-            enabled = false;
+            float randomtime = Random.Range(0.1f, 3f);
+            Invoke("ShieldDieRandomTime", randomtime);
+            isShiedDied = true;
         }
     }
 
+
+    private void ShieldDieRandomTime()
+    {
+        enemyShield.ShieldDie();
+        enabled = false;
+    }
+
+    private void ShieldActivateRandomTime()
+    {
+        enemyShield.ActivateShield();
+    }
 }

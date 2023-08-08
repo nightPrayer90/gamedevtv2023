@@ -31,9 +31,9 @@ public class AudioManager : MonoBehaviour
 
 
     // How to use:
-    // AudioManager.Instance.PlaySFX("name")
-    // AudioManager.Instance.PlayMusic("name")
-    // AudioManager.Instance.musicSource.Stop() - Stop Music
+    // AudioManager.Instance.PlaySFX("name");
+    // AudioManager.Instance.PlayMusic("name");
+    // AudioManager.Instance.musicSource.Stop(); - Stop Music
 
     public void PlayMusic(string name)
     {

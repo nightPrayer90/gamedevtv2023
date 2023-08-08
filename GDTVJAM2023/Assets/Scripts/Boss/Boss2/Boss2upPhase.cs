@@ -31,11 +31,15 @@ public class Boss2upPhase : MonoBehaviour
     }
 
     public void InvokeActivateMesh()
-    { mesh.enabled = true; }
+    {
+        AudioManager.Instance.PlaySFX("Boss2SmallAlert");
+        mesh.enabled = true; 
+    }
 
     public void PhaseUP()
     {
-        transform.DOMoveY(6.7f, 2f).SetDelay(3f).OnComplete(() => 
+        AudioManager.Instance.PlaySFX("Boss2ShieldSpawn");
+        transform.DOMoveY(6.7f, 2f).SetDelay(2f).OnComplete(() => 
         {
             isShieldActive = true;
             downPhase.ActivateShield();

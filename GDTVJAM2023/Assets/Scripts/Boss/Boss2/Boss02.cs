@@ -15,7 +15,7 @@ public class Boss02 : MonoBehaviour
     private bool isMinimap = false;
     [HideInInspector] public bool isDying = false;
     private int shieldObjects;
-    private int maxShieldObjects = 10;
+    private int maxShieldObjects = 8;
 
     [Header("Boss UI")]
     public GameObject bossHud;
@@ -35,6 +35,16 @@ public class Boss02 : MonoBehaviour
     public ParticleSystem rippleParticleDie;
     public List<Boss2SidePhase> laserWeapons = new List<Boss2SidePhase>();
     public List<Boss2SidePhase> laserWeapons2 = new List<Boss2SidePhase>();
+    public ParticleSystem frontWeapon;
+    public ParticleSystem frontWeapon2;
+    public GameObject shootingWeapon;
+    public GameObject shootingWeapon2;
+
+    private int frontWeaponCount= 0;
+    private int frontWeaponMaxCount = 5;
+    private int frontWeaponCount2 = 0;
+    private int frontWeaponMaxCount2 = 3;
+
     public GameObject explosionObject;
     public GameObject minimapIcon;
     public SpriteRenderer minimapSpR;
@@ -54,8 +64,9 @@ public class Boss02 : MonoBehaviour
 
     public Boss2upPhase upPhase;
     public Boss2DownPhase downPhase;
-    public GameObject shootingWeapon;
+    
     private Quaternion targetRotation;
+
 
     /* **************************************************************************** */
     /* Lifecycle-Methoden---------------------------------------------------------- */
@@ -120,7 +131,6 @@ public class Boss02 : MonoBehaviour
 
                 case 2: // fight!
                     FightingState();
-                    RotateWeaponToPlayer();
                     break;
 
                 case 3: // die
@@ -206,6 +216,7 @@ public class Boss02 : MonoBehaviour
         // set activate material
         materialList[1] = emissivMaterial;
         bossMeshRenderer.materials = materialList;
+        downPhase.ActivateMesh();
 
         // go into fighting phase
         enemyHealthScr.canTakeDamage = true;
@@ -230,16 +241,16 @@ public class Boss02 : MonoBehaviour
                     PushThePlayer(2.5f, 5f);
                     Shooting1();
 
-                    downPhase.ActivateMesh();
                     downPhase.GoOnPosition();
 
-                    InvokeRepeating("SpawnShield", 6f, 7.5f);
+                    InvokeRepeating("SpawnShield", 10f, 7.5f);
                   
                     isState[0] = true;
                 }
 
-                RotateBoss(10f);
+                RotateBoss(12f);
                 MoveToPlayer(6f);
+                RotateWeaponToPlayer(12);
                 break;
 
             case 1:
@@ -259,6 +270,8 @@ public class Boss02 : MonoBehaviour
                     PushThePlayer(2.5f, 5f);
                     //Debug.Log("state1 @ " + enemyHealthScr.enemyHealth);
                     CancelInvoke();
+                    Invoke("FrontWeaponReset", 1f);
+
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
@@ -277,7 +290,9 @@ public class Boss02 : MonoBehaviour
                     isState[1] = true;
                 }
 
-                RotateBoss(15f);
+                RotateBoss(12f);
+                RotateWeaponToPlayer(12);
+                RotateWeaponToPlayer2(3);
                 MoveToPlayer(6f);
                 break;
 
@@ -295,6 +310,8 @@ public class Boss02 : MonoBehaviour
 
                     //Debug.Log("state2 @ " + enemyHealthScr.enemyHealth);
                     CancelInvoke();
+                    Invoke("FrontWeaponReset", 1f);
+
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
@@ -310,7 +327,9 @@ public class Boss02 : MonoBehaviour
                     isState[2] = true;
                 }
 
-                RotateBoss(15f);
+                RotateWeaponToPlayer(5);
+                RotateWeaponToPlayer2(4);
+                RotateBoss(12f);
                 MoveToPlayer(6f);
                 break;
         }
@@ -398,7 +417,7 @@ public class Boss02 : MonoBehaviour
         }
     }
 
-    // rotate 
+    // rotate the boss
     private void RotateBoss(float rotationSpeed)
     {
         transform.rotation = transform.rotation * Quaternion.Euler( 0f , rotationSpeed * Time.deltaTime, 0f);
@@ -416,14 +435,16 @@ public class Boss02 : MonoBehaviour
         }
     }
 
+
+
     // invoke - shoot attack 1
     private void Shooting1()
     {
-        int delay = 1;
+        int delay = 2;
         foreach (Boss2SidePhase weapon in laserWeapons)
         {
             weapon.ActivateWeapon(0, delay);
-            delay += 3;
+            delay += 6;
         }
     }
 
@@ -434,10 +455,11 @@ public class Boss02 : MonoBehaviour
         foreach (Boss2SidePhase weapon in laserWeapons2)
         {
             weapon.ActivateWeapon(0, delay);
-            delay += 3;
+            delay += 6;
         }
     }
 
+    // spawn Shields
     private void SpawnShield()
     {
         int delay = 0;
@@ -451,18 +473,7 @@ public class Boss02 : MonoBehaviour
         if (shieldObjects == maxShieldObjects) { CancelInvoke("SpawnShield");  }
     }
 
-
-    private void LaserStop()
-    {
-        foreach (Boss2SidePhase weapon in laserWeapons)
-        {
-            weapon.LaserDie();
-        }
-        foreach (Boss2SidePhase weapon in laserWeapons2)
-        {
-            weapon.LaserDie();
-        }
-    }
+    // stops and destroy all laser
     private void DestoryLaserWeapon()
     {
         foreach (Boss2SidePhase weapon in laserWeapons)
@@ -477,13 +488,6 @@ public class Boss02 : MonoBehaviour
         }
     }
 
-
-    // invoke - shoot sound
-    private void InvokeShootSound()
-    {
-        shootSound.Play();
-    }
-
     // invoke - last attack after die
     private void InvokeSpawnExplosion()
     {
@@ -496,7 +500,8 @@ public class Boss02 : MonoBehaviour
         ObjectPoolManager.SpawnObject(explosionObject, transform.position, Quaternion.Euler(0f, dieRotation, 0f), ObjectPoolManager.PoolType.ParticleSystem);
     }
 
-    private void RotateWeaponToPlayer()
+    // control the frontweapon
+    private void RotateWeaponToPlayer(int frontWeaponMaxCount_)
     {
         Vector3 directionToPlayer = playerTr.position - shootingWeapon.transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer, Vector3.up);
@@ -504,14 +509,90 @@ public class Boss02 : MonoBehaviour
         // Verzögere die Ausrichtung des Objekts mit einer Rotationsgeschwindigkeit
         targetRotation = Quaternion.Slerp(targetRotation, lookRotation, 2 * Time.deltaTime);
 
-        if (Quaternion.Angle(transform.rotation, targetRotation) < 5)
+        if (Quaternion.Angle(shootingWeapon.transform.rotation, targetRotation) < 10)
         {
-
+            if (frontWeaponCount == 0)
+            {
+                Invoke("InvokeShoot", 1f);
+                frontWeaponCount = 1;
+                frontWeaponMaxCount = frontWeaponMaxCount_;
+            }
             return; // Beende die Aktualisierung der Ausrichtung
         }
 
         // Wende die Zielrotation auf das Objekt an
         shootingWeapon.transform.rotation = targetRotation;
+    }
 
+    // invoke - shoot
+    private void InvokeShoot()
+    {
+        shootSound.Play();
+        frontWeapon.Emit(1);
+        frontWeaponCount += 1;
+
+        if (frontWeaponCount <= frontWeaponMaxCount+1)
+        {
+            Invoke("InvokeShoot", 0.4f);
+        }
+        else
+        {
+            Invoke("FrontWeaponReset",3f);
+        }
+
+    }
+    
+    // invoke - reset the frontweapon 
+    private void FrontWeaponReset()
+    {
+        frontWeaponCount = 0;
+    }
+
+    // control the frontweapon
+    private void RotateWeaponToPlayer2(int frontWeaponMaxCount_)
+    {
+        Vector3 directionToPlayer = playerTr.position - shootingWeapon2.transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer, Vector3.up);
+
+        // Verzögere die Ausrichtung des Objekts mit einer Rotationsgeschwindigkeit
+        targetRotation = Quaternion.Slerp(targetRotation, lookRotation, 3 * Time.deltaTime);
+
+        if (Quaternion.Angle(shootingWeapon2.transform.rotation, targetRotation) < 2)
+        {
+            if (frontWeaponCount2 == 0)
+            {
+                Invoke("InvokeShoot2", 3f);
+                frontWeaponCount2 = 1;
+                frontWeaponMaxCount2 = frontWeaponMaxCount_;
+            }
+            return; // Beende die Aktualisierung der Ausrichtung
+        }
+
+        // Wende die Zielrotation auf das Objekt an
+        shootingWeapon2.transform.rotation = targetRotation;
+    }
+
+    // invoke - shoot
+    private void InvokeShoot2()
+    {
+        shootSound.Play();
+        frontWeapon2.Emit(1);
+        frontWeaponCount2 += 1;
+
+        if (frontWeaponCount2 <= frontWeaponMaxCount2 + 1)
+        {
+            Invoke("InvokeShoot2", 1f);
+        }
+        else
+        {
+            Invoke("FrontWeaponReset2", 5f);
+        }
+
+    }
+
+    // invoke - reset the frontweapon 
+    private void FrontWeaponReset2()
+    {
+        frontWeaponCount2 = 0;
     }
 }

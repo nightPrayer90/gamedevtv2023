@@ -23,3 +23,11 @@ MonoBehaviour:
   protectionLevel: 0
   rocketLifeTime: 0
   laserShooingTime: 0
+  bulletClass: 0
+  explosionClass: 0
+  laserClass: 0
+  supportClass: 0
+  swarmClass: 0
+  defenseClass: 0
+  targetClass: 0
+  backwardsClass: 0
