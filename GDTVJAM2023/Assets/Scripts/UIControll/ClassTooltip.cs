@@ -82,11 +82,11 @@ public class ClassTooltip : MonoBehaviour
                 contentvalue_ = "- " + contentvaluefloat.ToString() + "% reload time for all weapons";
                 break;
             case 4: // swarm
-                contentvaluefloat = playerWeaponController.scSwarmLvl * 2;
+                contentvaluefloat = playerWeaponController.scSwarmLvl;
                 contentvalue_ = "+ " + contentvaluefloat.ToString() + " projectiles";
                 break;
             case 5: // defense
-                contentvaluefloat = playerWeaponController.scDefenceLvl * 5;
+                contentvaluefloat = playerWeaponController.scDefenceLvl * 10;
                 contentvalue_ = "- " + contentvaluefloat.ToString() + "%";
                 break;
             case 6: // targeting

@@ -320,85 +320,109 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isHeadCannon = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
-                UpdateClass(number);
+                UpdateClass(number,1);
                 weaponCount++;
                 break;
             case 7: //weapon: rocket launcher
                 playerWeaponController.isRocketLauncher = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
-                UpdateClass(number);
+                UpdateClass(number,1);
                 weaponCount++;
                 break;
             case 8: //weapon: fire flys
                 playerWeaponController.isFireFlies = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
-                UpdateClass(number);
+                UpdateClass(number,1);
                 weaponCount++;
                 break;
             case 9: //weapon: bullet wings
                 playerWeaponController.isBulletWings = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
-                UpdateClass(number);
+                UpdateClass(number,1);
                 weaponCount++;
                 break;
             case 10: //weapon: life modul
                 playerWeaponController.isLifeModul = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
-                UpdateClass(number);
+                UpdateClass(number,1);
                 weaponCount++;
                 break;
             case 11: //weapon: spread gun
                 playerWeaponController.isSpreadGun = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
-                UpdateClass(number);
+                UpdateClass(number,1);
                 weaponCount++;
                 break;
             case 12: //weapon: front shield
                 playerWeaponController.isFrontShield = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
-                UpdateClass(number);
+                UpdateClass(number,1);
                 weaponCount++;
                 break;
             case 13: //weapon: back shield
                 playerWeaponController.isBackShield = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
-                UpdateClass(number);
+                UpdateClass(number,1);
                 weaponCount++;
                 break;
             case 14: //weapon: schock nova
                 playerWeaponController.isNovaExplosion = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
-                UpdateClass(number);
+                UpdateClass(number,1);
                 weaponCount++;
                 break;
             case 15: //weapon: rocket wings
                 playerWeaponController.isRockedWings = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
-                UpdateClass(number);
+                UpdateClass(number,1);
                 weaponCount++;
                 break;
             case 16: //weapon: front laser
                 playerWeaponController.isFrontLaser = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
-                UpdateClass(number);
+                UpdateClass(number,1);
                 weaponCount++;
                 break;
             case 17: //weapon: orbital laser
                 playerWeaponController.isOrbitalLaser = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
-                UpdateClass(number);
+                UpdateClass(number,1);
                 weaponCount++;
+                break;
+            case 18: //bullet class
+                UpdateClass(number, 2);
+                break;
+            case 19: //rocked class
+                UpdateClass(number, 2);
+                break;
+            case 20: //laser class
+                UpdateClass(number, 2);
+                break;
+            case 21: //support class
+                UpdateClass(number, 2);
+                break;
+            case 22: //spwarm class
+                UpdateClass(number, 1);
+                break;
+            case 23: //Defense class
+                UpdateClass(number, 1);
+                break;
+            case 24: //Targeting class
+                UpdateClass(number, 1);
+                break;
+            case 25: //Backwards class
+                UpdateClass(number, 1);
                 break;
         }
     }
@@ -420,7 +444,7 @@ public class UpgradePanelController : MonoBehaviour
     }
 
     // update classlevel in player weapon controller
-    private void UpdateClass(int number)
+    private void UpdateClass(int number, int factor = 1)
     {
         UpgradeContainer uC = upgradeIndex[number];
 
@@ -429,16 +453,16 @@ public class UpgradePanelController : MonoBehaviour
         switch (index)
         {
             case 0:
-                playerWeaponController.mcBulletLvl ++;
+                playerWeaponController.mcBulletLvl += factor;
                 break;
             case 1:
-                playerWeaponController.mcExplosionLvl ++;
+                playerWeaponController.mcExplosionLvl += factor;
                 break;
             case 2:
-                playerWeaponController.mcLaserLvl ++;
+                playerWeaponController.mcLaserLvl += factor;
                 break;
             case 3:
-                playerWeaponController.mcSupportLvl ++;
+                playerWeaponController.mcSupportLvl += factor;
                 break;
         }
 
@@ -447,16 +471,16 @@ public class UpgradePanelController : MonoBehaviour
         switch (index)
         {
             case 4:
-                playerWeaponController.scSwarmLvl ++;
+                playerWeaponController.scSwarmLvl += factor;
                 break;
             case 5:
-                playerWeaponController.scDefenceLvl ++;
+                playerWeaponController.scDefenceLvl += factor;
                 break;
             case 6:
-                playerWeaponController.scTargetingLvl ++;
+                playerWeaponController.scTargetingLvl += factor;
                 break;
             case 7:
-                playerWeaponController.scBackwardsLvl ++;
+                playerWeaponController.scBackwardsLvl += factor;
                 break;
         }
     }

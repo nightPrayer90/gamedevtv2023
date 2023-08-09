@@ -277,7 +277,7 @@ public class PlayerWeaponController : MonoBehaviour
 
         // sub class
         int scSwarmLvl_ = scSwarmLvl;
-        float scDefenceLvl_ = scDefenceLvl * 0.05f;
+        float scDefenceLvl_ = scDefenceLvl * 0.1f;
         int scTargetingLvl_ = scTargetingLvl;
         int scBackwardsLvl_ = scBackwardsLvl;
 

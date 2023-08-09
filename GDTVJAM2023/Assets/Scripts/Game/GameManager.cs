@@ -563,8 +563,8 @@ public class GameManager : MonoBehaviour
         List<int> selectedNumbers = new List<int>();
 
         // create temporary list from weapons or normal upgrades - depends on the player level
-        if (playerLevel == -1) //((playerLevel % 4) == 3) && playerLevel <= 26
-            valueList.AddRange(weaponChooseList.weaponIndex);
+        if ((playerLevel % 5) == 0) //-> entspricht alle 8 level
+            valueList.AddRange(upgradeChooseList.classUpgradeIndex);
         else
             valueList.AddRange(upgradeChooseList.upgradeIndex);
 
