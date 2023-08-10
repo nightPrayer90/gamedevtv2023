@@ -107,8 +107,8 @@ public class CameraController : MonoBehaviour
     public void ShakeScreen()
     {
         // Starte den Screen Shake
-        shakeTimer = shakeDuration;
-        shakeIntensity = shakeIntensity_;
+        shakeTimer = shakeDuration*2;
+        shakeIntensity = shakeIntensity_ * 1.25f;
 
         if (isShake == false)
         {

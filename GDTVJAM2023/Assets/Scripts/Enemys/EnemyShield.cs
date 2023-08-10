@@ -143,9 +143,10 @@ public class EnemyShield : MonoBehaviour
             hitParticle.transform.position = gameObject.transform.position;
             hitParticle.Emit(80);
             AudioManager.Instance.PlaySFX("Boss2ShieldBounce");
-            Invoke("gameObject", 8f);
+            Invoke("ShielDelete", 8f);
 
             shieldMesh.enabled = false;
+            gameObject.tag = "Untagged";
             if (shieldEmitterMesh != null) shieldEmitterMesh.enabled = false;
         });
     }

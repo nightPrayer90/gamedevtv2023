@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
 
     //Listen für Abilitys und UpgradeSystem
     [Header("Upgrade Lists")]
-    [HideInInspector] public WeaponChooseList weaponChooseList;
     [HideInInspector] public UpgradeChooseList upgradeChooseList;
     [HideInInspector] public SpawnDistrictList spawnDistrictList;
     [HideInInspector] public List<int> valueList;
@@ -123,7 +122,6 @@ public class GameManager : MonoBehaviour
     {
         //mainCamera = GameObject.Find("Main Camera").GetComponent<CameraController>();
         directionalLight = GameObject.Find("Directional Light").GetComponent<Light>();
-        weaponChooseList = GetComponent<WeaponChooseList>();
         upgradeChooseList = GetComponent<UpgradeChooseList>();
         spawnDistrictList = GetComponent<SpawnDistrictList>();
 
@@ -563,7 +561,9 @@ public class GameManager : MonoBehaviour
         List<int> selectedNumbers = new List<int>();
 
         // create temporary list from weapons or normal upgrades - depends on the player level
-        if ((playerLevel % 5) == 0) //-> entspricht alle 8 level
+        if (playerLevel == -1) // new weapon
+            valueList.AddRange(upgradeChooseList.weaponIndex);
+        else if ((playerLevel % 5) == 0) // class update
             valueList.AddRange(upgradeChooseList.classUpgradeIndex);
         else
             valueList.AddRange(upgradeChooseList.upgradeIndex);
@@ -585,11 +585,11 @@ public class GameManager : MonoBehaviour
     // (help function) an already installed weapon is removed from the weapons list - trigger by UpgradeWeaponController
     public void RemoveValueWeaponList(int removeIndex)
     {
-        if (weaponChooseList != null)
+        if (upgradeChooseList != null)
         {
-            int removePos = weaponChooseList.weaponIndex.IndexOf(removeIndex);
+            int removePos = upgradeChooseList.weaponIndex.IndexOf(removeIndex);
 
-            weaponChooseList.weaponIndex.RemoveAt(removePos);
+            upgradeChooseList.weaponIndex.RemoveAt(removePos);
         }
     }
 

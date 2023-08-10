@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
     private float targetRotation2 = 0;
     public List<ParticleSystem> engineParticles;
     public ParticleSystem boostEngine;
+    private bool canGetLaserDamage = true;
+
 
     [Header("Outside Border")]
     public float damageInterval = 1f;
@@ -311,7 +313,6 @@ public class PlayerController : MonoBehaviour
         playerWeaponController.UpdateWeaponValues();
     }
 
-
     // activate if trigger stay - border control
     private void OnTriggerStay(Collider other)
     {
@@ -413,9 +414,23 @@ public class PlayerController : MonoBehaviour
         }*/
     }
 
-    public void GetLaserDamage()
+    // player get damage vom a laserpointer
+    public void GetLaserDamage(int damage)
     {
-        //Debug.Log("LaserDamage");
+        if (canGetLaserDamage == true)
+        {
+            UpdatePlayerHealth(damage);
+            gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
+
+            Invoke("InvokeLaserDamage", 1f);
+
+            canGetLaserDamage = false;
+        }
+    }
+
+    private void InvokeLaserDamage()
+    {
+        canGetLaserDamage = true;
     }
 
 

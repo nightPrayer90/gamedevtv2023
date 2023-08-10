@@ -17,6 +17,7 @@ public class Boss02 : MonoBehaviour
     private int shieldObjects;
     private int maxShieldObjects = 8;
 
+
     [Header("Boss UI")]
     public GameObject bossHud;
     public CanvasGroup bossHudCg;
@@ -54,7 +55,6 @@ public class Boss02 : MonoBehaviour
     public AudioSource bossChanceState;
     public AudioSource shootSound;
     public GameObject itemDrop;
-    public RipplePostProcessor mainCamera;
     private Material[] materialList;
     private EnemyHealth enemyHealthScr;
     private Transform playerTr;
@@ -63,6 +63,7 @@ public class Boss02 : MonoBehaviour
     private GameManager gameManager;
 
     public Boss2upPhase upPhase;
+    public Boss2upPhase2 upPhase2;
     public Boss2DownPhase downPhase;
     
     private Quaternion targetRotation;
@@ -248,7 +249,7 @@ public class Boss02 : MonoBehaviour
                     isState[0] = true;
                 }
 
-                RotateBoss(12f);
+                RotateBoss(9f);
                 MoveToPlayer(6f);
                 RotateWeaponToPlayer(12);
                 break;
@@ -290,7 +291,7 @@ public class Boss02 : MonoBehaviour
                     isState[1] = true;
                 }
 
-                RotateBoss(12f);
+                RotateBoss(9f);
                 RotateWeaponToPlayer(12);
                 RotateWeaponToPlayer2(3);
                 MoveToPlayer(6f);
@@ -315,20 +316,22 @@ public class Boss02 : MonoBehaviour
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
-                        //
-                        //InvokeRepeating("InvokeShootSound", 4f, 0.5f);
+                        
                         transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
                             enemyHealthScr.canTakeDamage = true;
                             bossHealthForeground.color = Color.white;
-                            upPhase.StartShooting();
+
+                            upPhase2.ActivateMesh();
+
+
                         });
                     });
                     isState[2] = true;
                 }
 
-                RotateWeaponToPlayer(5);
-                RotateWeaponToPlayer2(4);
+                RotateWeaponToPlayer(6);
+                RotateWeaponToPlayer2(3);
                 RotateBoss(12f);
                 MoveToPlayer(6f);
                 break;
@@ -339,6 +342,7 @@ public class Boss02 : MonoBehaviour
     {
         bossHudCg.DOFade(0f, 0.5f).OnComplete(()=> { bossHud.SetActive(false); });
         DestoryLaserWeapon();
+        upPhase2.LaserStop();
 
         InvokeRepeating("InvokeSpawnExplosion", 0.5f, 1f);
         
@@ -368,9 +372,9 @@ public class Boss02 : MonoBehaviour
                 ObjectPoolManager.SpawnObject(itemDrop, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
 
                 // replace
-                //mainCamera.RippleEffect(transform.position.x, transform.position.y, 15f, 0.5f);
                 minimapIcon.SetActive(false);
                 baseCollider.enabled = false;
+                gameObject.tag = "Untagged";
                 Instantiate(replacement, transform.position, transform.rotation);
                 bossMeshRenderer.enabled = false;
                 
@@ -554,7 +558,6 @@ public class Boss02 : MonoBehaviour
         Vector3 directionToPlayer = playerTr.position - shootingWeapon2.transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer, Vector3.up);
 
-        // Verzögere die Ausrichtung des Objekts mit einer Rotationsgeschwindigkeit
         targetRotation = Quaternion.Slerp(targetRotation, lookRotation, 3 * Time.deltaTime);
 
         if (Quaternion.Angle(shootingWeapon2.transform.rotation, targetRotation) < 2)
@@ -565,10 +568,9 @@ public class Boss02 : MonoBehaviour
                 frontWeaponCount2 = 1;
                 frontWeaponMaxCount2 = frontWeaponMaxCount_;
             }
-            return; // Beende die Aktualisierung der Ausrichtung
+            return; 
         }
 
-        // Wende die Zielrotation auf das Objekt an
         shootingWeapon2.transform.rotation = targetRotation;
     }
 
@@ -581,7 +583,7 @@ public class Boss02 : MonoBehaviour
 
         if (frontWeaponCount2 <= frontWeaponMaxCount2 + 1)
         {
-            Invoke("InvokeShoot2", 1f);
+            Invoke("InvokeShoot2", 2f);
         }
         else
         {

@@ -7,6 +7,7 @@ public class Laser2 : MonoBehaviour
     public int maxBounces = 5;
     private LineRenderer lr;
     public float laserDistance = 10;
+    public int laserDamage = 3;
 
     private PlayerController player;
     private GameManager gameManager;
@@ -22,7 +23,13 @@ public class Laser2 : MonoBehaviour
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         lr = GetComponent<LineRenderer>();
-        lr.SetPosition(0, transform.position);
+        //lr.SetPosition(0, transform.position);
+
+        // reset all points
+        for (int i = 0; i <= maxBounces; i++)
+        {
+            lr.SetPosition(i, transform.position);
+        }
     }
 
     private void OnEnable()
@@ -32,7 +39,7 @@ public class Laser2 : MonoBehaviour
         {
             player = playerOb.GetComponent<PlayerController>();
         }
-        Debug.Log(player);
+
         muzzleParticle.Play();
 
         if (isShootOnEnable == true)
@@ -107,7 +114,7 @@ public class Laser2 : MonoBehaviour
                     {
                         hitParticle.transform.position = hit.point;
                         hitParticle.Emit(2);
-                        player.GetLaserDamage();
+                        player.GetLaserDamage(laserDamage);
                     }
                     break;
                 }
