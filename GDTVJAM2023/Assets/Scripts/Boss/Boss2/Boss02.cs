@@ -293,7 +293,7 @@ public class Boss02 : MonoBehaviour
 
                 RotateBoss(9f);
                 RotateWeaponToPlayer(12);
-                RotateWeaponToPlayer2(3);
+                RotateWeaponToPlayer2(2);
                 MoveToPlayer(6f);
                 break;
 
@@ -360,6 +360,7 @@ public class Boss02 : MonoBehaviour
             // set activate material
             materialList[1] = buildingMaterial;
             bossMeshRenderer.materials = materialList;
+            baseCollider.enabled = false;
 
             transform.DOScale(new Vector3(0.7f, 0.7f, 0.7f), 2f).SetDelay(2f);
             transform.DOShakePosition(4f, 0.3f, 20, 90, false, true).OnComplete(() =>
@@ -372,11 +373,11 @@ public class Boss02 : MonoBehaviour
                 ObjectPoolManager.SpawnObject(itemDrop, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
 
                 // replace
-                minimapIcon.SetActive(false);
-                baseCollider.enabled = false;
+                minimapIcon.SetActive(false);            
                 gameObject.tag = "Untagged";
-                Instantiate(replacement, transform.position, transform.rotation);
                 bossMeshRenderer.enabled = false;
+
+                Instantiate(replacement, transform.position, replacement.transform.rotation);
                 
                 // destroy the object
                 Invoke("BossDelete",11f);

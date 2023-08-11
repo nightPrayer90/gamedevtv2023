@@ -30,7 +30,7 @@ public class Boss2DownPhase : MonoBehaviour
 
     public void GoOnPosition()
     {
-        transform.DOMoveY(5f, 3f).SetDelay(7f);
+        transform.DOMoveY(5.5f, 3f).SetDelay(7f);
     }
 
     public void ActivateShield()
@@ -52,7 +52,7 @@ public class Boss2DownPhase : MonoBehaviour
     public void ShieldDie()
     {
         AudioManager.Instance.PlaySFX("ShieldDie");
-        Instantiate(replacement, transform.position, transform.rotation);
+        Instantiate(replacement, transform.position, replacement.transform.rotation);
 
         Destroy(gameObject);
     }
