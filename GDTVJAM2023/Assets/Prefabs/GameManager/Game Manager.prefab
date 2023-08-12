@@ -55,7 +55,6 @@ GameObject:
   - component: {fileID: 4112829420943899899}
   - component: {fileID: 4112829420943899898}
   - component: {fileID: 904126870923933655}
-  - component: {fileID: 4112829420943899896}
   - component: {fileID: 4112829420943899897}
   m_Layer: 0
   m_Name: Game Manager
@@ -105,6 +104,7 @@ MonoBehaviour:
   victoryUI: {fileID: 0}
   healthBar: {fileID: 0}
   experienceSlider: {fileID: 0}
+  boostSlider: {fileID: 0}
   healthText: {fileID: 0}
   expText: {fileID: 0}
   timerText: {fileID: 0}
@@ -112,7 +112,19 @@ MonoBehaviour:
   enemyToKillText: {fileID: 0}
   enemyCounterText: {fileID: 0}
   outsideBorderText: {fileID: 0}
+  globalClassColor:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.9607843, g: 0.4392157, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.9254902, a: 1}
+  - {r: 0.6745098, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0.9529412, b: 0.7019608, a: 1}
+  - {r: 0.69411767, g: 0.7176471, b: 1, a: 1}
+  - {r: 1, g: 0.7019608, b: 0.8745098, a: 1}
+  - {r: 0.68235296, g: 1, b: 0.72156864, a: 1}
+  - {r: 0, g: 0, b: 0, a: 0}
+  outsideBorderTextTweenTarget: {fileID: 0}
   curretEnemyCounter: 0
+  miniMap: {fileID: 0}
   firstDimensionTexture1: {fileID: 2800000, guid: be79e60dd524c474687d15fd6f717937, type: 3}
   secondDimenionTexture2: {fileID: 2800000, guid: 549d44c9f0cd81a4a8c407c3cdb97d4c, type: 3}
   buildingMaterial: {fileID: 2100000, guid: 79850a606d718c2409405aff6ffe6887, type: 2}
@@ -122,17 +134,19 @@ MonoBehaviour:
   firstDimensionColor: {r: 0.972549, g: 0.5372549, b: 0.8627451, a: 1}
   secondDimenionColor: {r: 0.4575472, g: 1, b: 0.9700911, a: 1}
   dimensionShift: 0
-  weaponChooseList: {fileID: 4112829420943899896}
+  fogPlane: {fileID: 0}
+  fogPlaneDimension: {fileID: 0}
   upgradeChooseList: {fileID: 4112829420943899897}
   spawnDistrictList: {fileID: 904126870923933655}
   valueList: 
   selectedNumbers_: 000000000000000000000000
   textPrefab: {fileID: 6659134210364813471, guid: 1ea4671065afbe240815deb035cf6c70, type: 3}
-  startShip: 2
+  startShip: 0
   playerStartPosition: {fileID: 0}
   playerShip_bullet: {fileID: 2604307836790789309, guid: bca8a1f1b6f8d3049ad5e562a3b30554, type: 3}
   playerShip_rocket: {fileID: 2604307836790789309, guid: 68fed91363a46834bbf35f39e1d73891, type: 3}
   playerShip_laser: {fileID: 2604307836790789309, guid: 65bf2a34d60d5d846b014b28f4d18d26, type: 3}
+  mainCamera: {fileID: 0}
 --- !u!114 &904126870923933655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +169,7 @@ MonoBehaviour:
   - {fileID: 4663641790574016719, guid: 6c1af1b59dd21b648a13db5c038caacc, type: 3}
   - {fileID: 4663641790574016719, guid: 30f53379405faca4192bf790ae14d55e, type: 3}
   - {fileID: 4663641790574016719, guid: c12916ab9dd410848a03ec160e285d74, type: 3}
-  waveKillList: 0f00000023000000320000003c00000046000000500000005a0000007800000096000000
+  waveKillList: 0100000023000000320000003c00000046000000500000005a0000007800000096000000
   districtList:
   - {fileID: 0}
   - {fileID: 0}
@@ -176,19 +190,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &4112829420943899896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4112829420943899877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc5a952761f4caa4cb55afad878ec433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponIndex: 
+  goBackDimensionPickup:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &4112829420943899897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,3 +212,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeIndex: 
+  classUpgradeIndex: 
+  weaponIndex: 

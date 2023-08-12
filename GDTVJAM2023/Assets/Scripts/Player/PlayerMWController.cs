@@ -22,8 +22,8 @@ public class PlayerMWController : MonoBehaviour
     private ShipData shipData;
 
     [Header("Rocked Settings")]
-    [HideInInspector] public float lifeTime = 10f;
     public float detectionRange = 10f;
+    [HideInInspector] public float lifeTime = 10f;
     public GameObject rockedToLaunch;
     public GameObject spawnPoint;
     public GameObject spawnPoint2;
@@ -32,9 +32,9 @@ public class PlayerMWController : MonoBehaviour
     private bool spawnSideToggle = false;
 
     [Header("Laser Settings")]
+    public float spawnInterval = 0.1f;
     [HideInInspector] public float laserRange = 5f;
     [HideInInspector] public float laserShootTime = 3f;
-    public float spawnInterval = 0.1f;
     public string audioClip = "";
     private float nextSpawnTime = 0f;
     public LineRenderer lr;
@@ -43,6 +43,8 @@ public class PlayerMWController : MonoBehaviour
     public ParticleSystem hitParticle2;
     public ParticleSystem muzzleParticle;
     public ParticleSystem muzzleParticle2;
+    public ParticleSystem collisionParticle;
+    public ParticleSystem collisionParticle2;
     public bool laserIsEnable = false;
     public Transform LaserSpawnPoint1;
     public Transform LaserSpawnPoint2;
@@ -126,15 +128,7 @@ public class PlayerMWController : MonoBehaviour
             }
         }
 
-        //update Laser values
-        else if (weaponType == MWeapontyp.laser)
-        {
-            // set damage to particle system
-            foreach (ParticleBullet weapon in particleBullets)
-            {
-                weapon.bulletDamage = bulletBaseDamage;
-            }
-        }
+ 
     }
 
     // the main weapon start to fire
@@ -291,14 +285,6 @@ public class PlayerMWController : MonoBehaviour
             {
                 // shooting sound
                 AudioManager.Instance.PlaySFX(audioClip);
-
-                // emit 1 particle of each weapon
-                foreach (ParticleSystem weapon in mainWeapons)
-                {
-                    if (weapon != null)
-                        weapon.Emit(1);
-                }
-
                 nextSpawnTime = Time.time + spawnInterval;
             }
 
@@ -349,14 +335,20 @@ public class PlayerMWController : MonoBehaviour
         // laser 1
         RaycastHit hit;
         if (Physics.Raycast(LaserSpawnPoint1.position, -LaserSpawnPoint1.forward, out hit, raycastDistance, layerMask))
-        { 
-            //GameObject collidedObject = hit.collider.gameObject;
+        {
+            EnemyHealth collidedObject = hit.collider.gameObject.GetComponent<EnemyHealth>();
 
-            lr.SetPosition(1, hit.point);//collidedObject.transform.position);
+            if (collidedObject.canTakeLaserDamage == true && collidedObject.canTakeDamage == true)
+            {
+                collidedObject.TakeLaserDamage(bulletBaseDamage);
+                collidedObject.ShowDamageFromPosition(hit.point, bulletBaseDamage);
+                collisionParticle.transform.position = hit.point;
+                collisionParticle.Play();
+            }
 
-            // Vector3 dir = LaserSpawnPoint1.position - hit.point;//collidedObject.transform.position;
+            lr.SetPosition(1, hit.point);
 
-            hitParticle.transform.position = hit.point;//; + dir.normalized * .2f;// collidedObject.transform.position + dir.normalized * .2f;
+            hitParticle.transform.position = hit.point;
             hitParticle.Emit(1);
         }
         else
@@ -374,12 +366,18 @@ public class PlayerMWController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(LaserSpawnPoint2.position, -LaserSpawnPoint2.forward, out hit, raycastDistance, layerMask))
         {
-            //GameObject collidedObject = hit.collider.gameObject;
+            EnemyHealth collidedObject = hit.collider.gameObject.GetComponent<EnemyHealth>();
+
+            if (collidedObject.canTakeLaserDamage == true && collidedObject.canTakeDamage == true)
+            {
+                collidedObject.TakeLaserDamage(bulletBaseDamage);
+                collidedObject.ShowDamageFromPosition(hit.point, bulletBaseDamage);
+                collisionParticle2.transform.position = hit.point;
+                collisionParticle2.Play();
+            }
 
 
             lr2.SetPosition(1, hit.point);//collidedObject.transform.position);
-
-            // Vector3 dir = LaserSpawnPoint2.position - hit.point; //collidedObject.transform.position;
 
             hitParticle2.transform.position = hit.point;// + dir.normalized;// * .2f;     // collidedObject.transform.position + dir.normalized * .2f;
             hitParticle2.Emit(1);

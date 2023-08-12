@@ -5,26 +5,25 @@ using DG.Tweening;
 
 public class FrontLaser : MonoBehaviour
 {
-    [Header("Bullet Particle")]
-    public List<ParticleSystem> particleSystems;
-
     [Header("Weapon Settings")]
     public int bulletDamage = 10;
     public float laserShootTime = 1f;
     public float realodInterval = 5f;
-    public float spawnInterval = 0.1f;
     public string audioClip = "";
-    private float nextSpawnTime = 0f;
     private float laserDistance = 4;
+    [HideInInspector] public bool laserIsEnable = false;
+    private float nextSpawnTime = 0f;
+    private float spawnInterval = 3f;
 
+    [Header("Weapon Objects")]
     public LineRenderer lr;
     public ParticleSystem hitParticle;
     public ParticleSystem muzzleParticle;
-    public bool laserIsEnable = false;
+    public ParticleSystem collisionParticle;
     private Color whiteZero = new Color(1f, 1f, 1f, 0f);
     private Color whiteStart = new Color(1f, 1f, 1f, 0.8f);
     private Color whiteEnd = new Color(1f, 1f, 1f, 0.3f);
-
+    private GameManager gameManager;
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -32,12 +31,7 @@ public class FrontLaser : MonoBehaviour
     private void Start()
     {
         StartValues();
-
-        // set damage to particle system
-        foreach (ParticleSystem weapon in particleSystems)
-        {
-            weapon.GetComponent<ParticleBullet>().bulletDamage = bulletDamage;
-        }
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         // start fireing
         StopLaserShooting();
@@ -51,6 +45,7 @@ public class FrontLaser : MonoBehaviour
     {
         Shooting();
     }
+
 
 
 
@@ -79,14 +74,6 @@ public class FrontLaser : MonoBehaviour
             {
                 // shooting sound
                 AudioManager.Instance.PlaySFX(audioClip);
-
-                // emit 1 particle of each weapon
-                foreach (ParticleSystem weapon in particleSystems)
-                {
-                    if (weapon != null)
-                        weapon.Emit(1);
-                }
-               
                 nextSpawnTime = Time.time + spawnInterval;
             }
         }
@@ -128,14 +115,21 @@ public class FrontLaser : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, raycastDistance, layerMask))
         {
-            //GameObject collidedObject = hit.collider.gameObject;
+            EnemyHealth collidedObject = hit.collider.gameObject.GetComponent<EnemyHealth>();
 
-            lr.SetPosition(1, hit.point); // collidedObject.transform.position);
+            if (collidedObject.canTakeLaserDamage == true && collidedObject.canTakeDamage == true)
+            {
+                collidedObject.TakeLaserDamage(bulletDamage);
+                collidedObject.ShowDamageFromPosition(hit.point, bulletDamage);
+                collisionParticle.transform.position = hit.point;
+                collisionParticle.Play();
+            }
 
-            //Vector3 dir = transform.position - collidedObject.transform.position;
+            lr.SetPosition(1, hit.point); 
 
-            hitParticle.transform.position = hit.point; //collidedObject.transform.position + dir.normalized * .2f;
+            hitParticle.transform.position = hit.point;
             hitParticle.Emit(1);
+            
         }
         else
         {
