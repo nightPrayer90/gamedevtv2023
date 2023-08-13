@@ -338,9 +338,9 @@ public class PlayerMWController : MonoBehaviour
         {
             EnemyHealth collidedObject = hit.collider.gameObject.GetComponent<EnemyHealth>();
 
-            if (collidedObject.canTakeLaserDamage == true && collidedObject.canTakeDamage == true)
+            if (collidedObject.canTakeLaserDamage[1] == true && collidedObject.canTakeDamage == true)
             {
-                collidedObject.TakeLaserDamage(bulletBaseDamage);
+                collidedObject.TakeLaserDamage(bulletBaseDamage,1);
                 collidedObject.ShowDamageFromPosition(hit.point, bulletBaseDamage);
                 collisionParticle.transform.position = hit.point;
                 collisionParticle.Play();
@@ -368,9 +368,9 @@ public class PlayerMWController : MonoBehaviour
         {
             EnemyHealth collidedObject = hit.collider.gameObject.GetComponent<EnemyHealth>();
 
-            if (collidedObject.canTakeLaserDamage == true && collidedObject.canTakeDamage == true)
+            if (collidedObject.canTakeLaserDamage[2] == true && collidedObject.canTakeDamage == true)
             {
-                collidedObject.TakeLaserDamage(bulletBaseDamage);
+                collidedObject.TakeLaserDamage(bulletBaseDamage,2);
                 collidedObject.ShowDamageFromPosition(hit.point, bulletBaseDamage);
                 collisionParticle2.transform.position = hit.point;
                 collisionParticle2.Play();

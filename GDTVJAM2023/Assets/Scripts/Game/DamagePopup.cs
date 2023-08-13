@@ -6,20 +6,27 @@ using DG.Tweening;
 public class DamagePopup : MonoBehaviour
 {
     [HideInInspector]
+    public TMP_Text tmp_text;
     //public string displayText;
+
+    private void Awake()
+    {
+        tmp_text = GetComponent<TMP_Text>();
+    }
+
 
     // Start is called before the first frame update
     private void OnEnable()
     {
-        TMP_Text tmp_text = GetComponent<TMP_Text>();
-        tmp_text.DOFade(0f, 1f);
+        tmp_text.DOComplete();
+        tmp_text.DOFade(0f, 1f).From(1f);
         transform.DOMove(transform.position + Vector3.up, 0.8f).OnComplete(() => {
             ObjectPoolManager.ReturnObjectToPool(gameObject);
         });
     }
     public void SetText(string text_)
     {
-        TMP_Text tmp_text = GetComponent<TMP_Text>();
         tmp_text.text = text_;
     }
+
 }

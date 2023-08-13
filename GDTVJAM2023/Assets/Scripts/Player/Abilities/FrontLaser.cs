@@ -117,9 +117,9 @@ public class FrontLaser : MonoBehaviour
         {
             EnemyHealth collidedObject = hit.collider.gameObject.GetComponent<EnemyHealth>();
 
-            if (collidedObject.canTakeLaserDamage == true && collidedObject.canTakeDamage == true)
+            if (collidedObject.canTakeLaserDamage[3] == true && collidedObject.canTakeDamage == true)
             {
-                collidedObject.TakeLaserDamage(bulletDamage);
+                collidedObject.TakeLaserDamage(bulletDamage,3);
                 collidedObject.ShowDamageFromPosition(hit.point, bulletDamage);
                 collisionParticle.transform.position = hit.point;
                 collisionParticle.Play();

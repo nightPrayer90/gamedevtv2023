@@ -29,7 +29,7 @@ public class OrbitalLaserOrb : MonoBehaviour
 
             if (eh.canTakeDamage == true)
             {
-                eh.TakeLaserDamage(damage);
+                eh.TakeLaserDamage(damage,3);
                 eh.ShowDamageFromObjects(damage);
             }
             Invoke("ActivateOrb", realoadTime);

@@ -17,14 +17,14 @@ public class EnemyHealth : MonoBehaviour
     [Header("Enemy Settings")]
     public float enemyHealth = 2.0f;
     private float enemyHealthTemp;
-    public int collisonDamage = 1; 
+    public int collisonDamage = 1;
     public float explosionForce = 5.0f;
     public bool expOrbSpawn = false;
     public bool secondDimensionEnemy = false;
     public bool canTakeDamage = true;
     public bool canPoolObject = true;
     public event EventHandler DieEvent;
-    
+
 
     [Header("Enemy Weapons")]
     public List<EnemyParticleBullet> enemyWeapons;
@@ -55,7 +55,7 @@ public class EnemyHealth : MonoBehaviour
     public Color burningColor = new Color(1f, 0.0f, 0.01f, 1f);
     private bool isBurning = false;
     private int burnTickCount = 0;
-    public bool canTakeLaserDamage = false;
+    public bool[] canTakeLaserDamage = new bool[5];
 
 
     // gameObjects to find
@@ -97,7 +97,11 @@ public class EnemyHealth : MonoBehaviour
             engineParticle.Play();
 
         isdied = false;
-        canTakeLaserDamage = true;
+        canTakeLaserDamage[0] = true; //burning Damage
+        canTakeLaserDamage[1] = true; // MW Laser 1
+        canTakeLaserDamage[2] = true; // MW Laser 2
+        canTakeLaserDamage[3] = true; // front Laser
+        canTakeLaserDamage[4] = true; // Orbital Laser
     }
 
     private void Start()
@@ -250,19 +254,22 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    
+
     // take damage from a laser
-    private void InvokeCanGetLaserDamage()
+    private IEnumerator InvokeCanGetLaserDamage(int index)
     {
-        canTakeLaserDamage = true;
+        yield return new WaitForSeconds(0.3f);
+        canTakeLaserDamage[index] = true;
     }
-    public void TakeLaserDamage(int damage)
+
+
+    public void TakeLaserDamage(int damage, int index)
     {
-        if (canTakeLaserDamage == true)
+        if (canTakeLaserDamage[index] == true)
         {
             AudioManager.Instance.PlaySFX("PlayerLaserHit");
-            canTakeLaserDamage = false;
-            Invoke("InvokeCanGetLaserDamage", 0.3f);
+            canTakeLaserDamage[index] = false;
+            StartCoroutine(InvokeCanGetLaserDamage(index));
 
             // calculate burning damage
             int ran = UnityEngine.Random.Range(0, 100);
@@ -313,7 +320,7 @@ public class EnemyHealth : MonoBehaviour
         int burningDamage = playerWeaponController.burnDamage;
 
         ShowDamageFromObjectsColor(burningDamage, burningColor);
-        TakeLaserDamage(burningDamage);
+        TakeLaserDamage(burningDamage,0);
 
         burnTickCount++;
 
@@ -401,7 +408,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void ShowDamageFromPosition(Vector3 pos, int damage)
     {
-        gameManager.DoFloatingText(pos, "+" + damage.ToString(), hitColor);
+        gameManager.DoFloatingText(pos, "+" + damage.ToString(),new Color(1f, 0.6f, 0.0f, 1f));
     }
 
     // drop an Item
