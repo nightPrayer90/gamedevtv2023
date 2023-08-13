@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     public Material emissionMaterial;
     public Material buildingMaterialReverse;
     public Material emissionMaterialReverse;
+    public Material districtBaseShader;
     public Color firstDimensionColor;
     public Color secondDimenionColor;
     [HideInInspector] public bool dimensionShift = false;
@@ -157,10 +158,12 @@ public class GameManager : MonoBehaviour
         emissionMaterial.SetTexture("_MainTex", firstDimensionTexture1);
         emissionMaterial.SetTexture("_EmissionMap", firstDimensionTexture1);
 
-
         buildingMaterialReverse.SetTexture("_MainTex", secondDimenionTexture2);
         emissionMaterialReverse.SetTexture("_MainTex", secondDimenionTexture2);
         emissionMaterialReverse.SetTexture("_EmissionMap", secondDimenionTexture2);
+
+        districtBaseShader.SetFloat("_DimensionControll", 1f);
+
 
         // Reset directional ligth color
         directionalLight.color = firstDimensionColor;
@@ -475,8 +478,14 @@ public class GameManager : MonoBehaviour
         emissionMaterialReverse.SetTexture("_MainTex", firstDimensionTexture1);
         emissionMaterialReverse.SetTexture("_EmissionMap", firstDimensionTexture1);
 
+        districtBaseShader.SetFloat("_DimensionControll", 0f);
+
         // set a new light color
         directionalLight.color = secondDimenionColor;
+        foreach (GroundBaseUp district in spawnDistrictList.districtList)
+        {
+            district.ChangeEmissiv(1, districtNumber);
+        }
 
         // screen shake
         ScreenShake(3);
@@ -507,6 +516,8 @@ public class GameManager : MonoBehaviour
         emissionMaterialReverse.SetTexture("_MainTex", secondDimenionTexture2);
         emissionMaterialReverse.SetTexture("_EmissionMap", secondDimenionTexture2);
 
+        districtBaseShader.SetFloat("_DimensionControll", 1f);
+
         // set a new light color
         directionalLight.color = firstDimensionColor;
 
@@ -518,7 +529,13 @@ public class GameManager : MonoBehaviour
         districtNumber++;
         Invoke("UpdateDistrictText", 0.5f);
         //UpdateDistrictText(districtNumber);
-        spawnDistrictList.districtList[districtNumber - 1].GetComponent<GroundBaseUp>().GrowUP();
+
+        spawnDistrictList.districtList[districtNumber - 1].GrowUP();
+        foreach (GroundBaseUp district in spawnDistrictList.districtList)
+        {
+            district.ChangeEmissiv(0, districtNumber);
+        }
+
         AudioManager.Instance.PlaySFX("LiftUP");
 
         // screen shake

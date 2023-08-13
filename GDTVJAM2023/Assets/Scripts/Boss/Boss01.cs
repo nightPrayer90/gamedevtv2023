@@ -132,7 +132,7 @@ public class Boss01 : MonoBehaviour
     private void SleepState()
     {
         float distanceToPlayer = DistanceToPlayer();
-        if (distanceToPlayer <= 3.5f)
+        if (distanceToPlayer <= 5f)
         {
             bossState = 1;
             damageArea.SetActive(true);

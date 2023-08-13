@@ -131,8 +131,9 @@ MonoBehaviour:
   emissionMaterial: {fileID: 2100000, guid: f0459b728238f3c40a469e373574cdbf, type: 2}
   buildingMaterialReverse: {fileID: 2100000, guid: a43fb6755e8669e4d82cb390c4b53847, type: 2}
   emissionMaterialReverse: {fileID: 2100000, guid: 71d4cba053fd51349a3913828654dbdf, type: 2}
-  firstDimensionColor: {r: 0.972549, g: 0.5372549, b: 0.8627451, a: 1}
-  secondDimenionColor: {r: 0.4575472, g: 1, b: 0.9700911, a: 1}
+  districtBaseShader: {fileID: 2100000, guid: 076f221eea110b342910ef1132e23142, type: 2}
+  firstDimensionColor: {r: 0.8396226, g: 0.43961373, b: 0.73852134, a: 1}
+  secondDimenionColor: {r: 0.3700605, g: 0.7924528, b: 0.7692445, a: 1}
   dimensionShift: 0
   fogPlane: {fileID: 0}
   fogPlaneDimension: {fileID: 0}
@@ -141,7 +142,7 @@ MonoBehaviour:
   valueList: 
   selectedNumbers_: 000000000000000000000000
   textPrefab: {fileID: 6659134210364813471, guid: 1ea4671065afbe240815deb035cf6c70, type: 3}
-  startShip: 0
+  startShip: 2
   playerStartPosition: {fileID: 0}
   playerShip_bullet: {fileID: 2604307836790789309, guid: bca8a1f1b6f8d3049ad5e562a3b30554, type: 3}
   playerShip_rocket: {fileID: 2604307836790789309, guid: 68fed91363a46834bbf35f39e1d73891, type: 3}

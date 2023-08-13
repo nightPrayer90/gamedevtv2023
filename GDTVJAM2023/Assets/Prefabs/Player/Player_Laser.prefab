@@ -14848,7 +14848,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2559130692791834935
 Transform:
   m_ObjectHideFlags: 0
@@ -15077,15 +15077,15 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   mainWeaponSound: {fileID: 2559130691838651932, guid: bca8a1f1b6f8d3049ad5e562a3b30554, type: 3}
-  lifeTime: 2
   detectionRange: 7
+  lifeTime: 2
   rockedToLaunch: {fileID: 667735904795272308, guid: 48c407aa3f91c1748992d7e83b657ae3, type: 3}
   spawnPoint: {fileID: 5031554768623812592}
   spawnPoint2: {fileID: 9074861371868659753}
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
+  spawnInterval: 0.25
   laserRange: 3
   laserShootTime: 3
-  spawnInterval: 0.25
   audioClip: PlayerLaser
   lr: {fileID: 8436376726539609849}
   lr2: {fileID: 270253198654909545}

@@ -22,7 +22,7 @@ public class EnemyClassPickup : MonoBehaviour
         ParticleSystem.MainModule mainModuleMP = main_Part.main;
         ParticleSystem.MainModule mainModuleSP = sub_Part.main;
 
-        int randomNumber = Random.Range(0, 8);
+        int randomNumber = Random.Range(4, 8);
         classColor = gameManager.globalClassColor[randomNumber];
         mainModuleMP.startColor = classColor;
         mainModuleSP.startColor = classColor;
@@ -51,7 +51,7 @@ public class EnemyClassPickup : MonoBehaviour
                 gameObject.tag = "TargetingPickup";
                 break;
             case 7:
-                gameObject.tag = "BackwardsPickup";
+                gameObject.tag = "DirectionPickup";
                 break;
         }
 
