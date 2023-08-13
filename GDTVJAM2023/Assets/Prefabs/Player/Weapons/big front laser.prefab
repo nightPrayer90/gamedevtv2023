@@ -14595,8 +14595,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 669c60d6668b94b4a95c9632d42a5896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 3
-  laserShootTime: 3
+  bulletDamage: 7
+  laserShootTime: 2
   realodInterval: 3
   audioClip: PlayerLaser
   laserIsEnable: 0
