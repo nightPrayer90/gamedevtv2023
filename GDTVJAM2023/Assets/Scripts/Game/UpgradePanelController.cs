@@ -7,9 +7,10 @@ using DG.Tweening;
 public class UpgradePanelController : MonoBehaviour
 {
     [Header("Main Panel")]
-    public UpgradeContainer[] upgradeIndex;
+    //public UpgradeContainer[] upgradeIndex;
     public List<UpgradPanelIndex> panelList;
     public UpgradeShipPanelController shipPanalController;
+    public UpgradeChooseList upgradeList;
     [HideInInspector] public float[] upgradeValue;
     [HideInInspector] public string[] headerStr;
     [HideInInspector] public string[] descriptionTextStr;
@@ -170,7 +171,7 @@ public class UpgradePanelController : MonoBehaviour
             }
 
 
-            UpgradeContainer uC = upgradeIndex[number];
+            UpgradeContainer uC = upgradeList.weaponUpgrades[number];
 
             // set text descriptions
             iconPanel[i] = uC.iconPanel;
@@ -261,7 +262,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
         }
 
-        UpgradeContainer uC = upgradeIndex[number];
+        UpgradeContainer uC = upgradeList.weaponUpgrades[number];
 
 
         // update class colors
@@ -446,7 +447,7 @@ public class UpgradePanelController : MonoBehaviour
     // update classlevel in player weapon controller
     private void UpdateClass(int number, int factor = 1)
     {
-        UpgradeContainer uC = upgradeIndex[number];
+        UpgradeContainer uC = upgradeList.weaponUpgrades[number];
 
         // update mainClass level
         int index = (int)uC.mainClass;

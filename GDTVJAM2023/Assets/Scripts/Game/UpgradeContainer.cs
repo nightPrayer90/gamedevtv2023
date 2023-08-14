@@ -6,6 +6,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class UpgradeContainer
 {
+    
     public enum MainClass : int
     {
         Nothing = 8,
@@ -21,7 +22,16 @@ public class UpgradeContainer
         Swarm = 4,
         Defence = 5,
         Targeting = 6,
-        Backwards = 7
+        Direction = 7
+    }
+
+    public enum UpgradeTyp 
+    {
+        WeaponUpgrade,
+        NormalUpgrade,
+        ClassUpgrade,
+        SubClassUpgrade,
+        SpecialUpgrade
     }
 
     public string headerStr;
@@ -29,5 +39,10 @@ public class UpgradeContainer
     public Sprite iconPanel;
     public MainClass mainClass;
     public SubClass subClass;
-
+    public int upgradeIndex;
+    public int reqBullet;
+    public int reqRocket;
+    public int reqLaser;
+    public int reqSupport;
+    public UpgradeTyp upgradeTyp;
 }

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class UpgradeChooseList : MonoBehaviour
 {
+    public UpgradeContainer[] weaponUpgrades;
     public List<int> upgradeIndex = new List<int>(); // normal upgrades
     public List<int> classUpgradeIndex = new List<int>(); // class upgrades
     public List<int> weaponIndex = new List<int>(); // weapon upgrades
+
 
     private void Start()
     {

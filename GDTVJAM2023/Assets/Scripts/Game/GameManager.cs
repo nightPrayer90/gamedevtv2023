@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
     // Objects
     public CameraController mainCamera;
     private PlayerController player;
+    private PlayerWeaponController weaponController;
     private Light directionalLight;
     private GameObject currentSpawnManager;
     private bool isIntro = true;
@@ -107,14 +108,17 @@ public class GameManager : MonoBehaviour
             case StartShip.bullet:
                 var player_b = Instantiate(playerShip_bullet, playerStartPosition.position, playerStartPosition.rotation);
                 player = player_b.GetComponent<PlayerController>();
+                //weaponController = player_b.GetComponent<PlayerWeaponController>();
                 break;
             case StartShip.rocket:
                 var player_r = Instantiate(playerShip_rocket, playerStartPosition.position, playerStartPosition.rotation);
                 player = player_r.GetComponent<PlayerController>();
+                //weaponController = player_r.GetComponent<PlayerWeaponController>();
                 break;
             case StartShip.laser:
                 var player_l = Instantiate(playerShip_laser, playerStartPosition.position, playerStartPosition.rotation);
                 player = player_l.GetComponent<PlayerController>();
+                //weaponController = player_l.GetComponent<PlayerWeaponController>();
                 break;
         }
     }
