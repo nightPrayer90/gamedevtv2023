@@ -30,10 +30,10 @@ public class UpgradeChooseList : MonoBehaviour
         weaponIndex.Add(16);
         weaponIndex.Add(17);
 
-        classUpgradeIndex.Add(18);
-        classUpgradeIndex.Add(19);
-        classUpgradeIndex.Add(20);
-        classUpgradeIndex.Add(21);
+        //classUpgradeIndex.Add(18);
+        //classUpgradeIndex.Add(19);
+        //classUpgradeIndex.Add(20);
+        //classUpgradeIndex.Add(21);
         classUpgradeIndex.Add(22);
         classUpgradeIndex.Add(23);
         classUpgradeIndex.Add(24);

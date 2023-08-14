@@ -15093,7 +15093,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.4
+      scalar: 0.45
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -15146,7 +15146,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 12
       minScalar: 8
       maxCurve:
         serializedVersion: 2
@@ -24887,7 +24887,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.4
+      scalar: 0.45
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -24940,7 +24940,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 12
       minScalar: 8
       maxCurve:
         serializedVersion: 2
@@ -29764,6 +29764,7 @@ MonoBehaviour:
   - {fileID: 6894677010233439952}
   - {fileID: 62231538956883697}
   boostEngine: {fileID: 6785288599795224579}
+  playerMouseMode: 0
   damageInterval: 1
   damageTaken: 1
   isOutsideBorder: 0

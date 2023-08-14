@@ -14998,7 +14998,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 2
   m_Drag: 1.5
-  m_AngularDrag: 1.5
+  m_AngularDrag: 10
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -15047,6 +15047,7 @@ MonoBehaviour:
   - {fileID: 4510288571750707690}
   - {fileID: 8045190667923554887}
   boostEngine: {fileID: 8544312338355738820}
+  playerMouseMode: 0
   damageInterval: 1
   damageTaken: 1
   isOutsideBorder: 0

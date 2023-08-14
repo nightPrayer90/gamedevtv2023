@@ -21,7 +21,7 @@ TagManager:
   - SwarmPickup
   - DefensePickup
   - TargetingPickup
-  - BackwardsPickup
+  - DirectionPickup
   - ExplosionPickup
   - UpgradePickup
   layers:

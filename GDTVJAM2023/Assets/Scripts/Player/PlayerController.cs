@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     public List<ParticleSystem> engineParticles;
     public ParticleSystem boostEngine;
     private bool canGetLaserDamage = true;
-
+    public bool playerMouseMode = false;
 
     [Header("Outside Border")]
     public float damageInterval = 1f;
@@ -67,8 +67,8 @@ public class PlayerController : MonoBehaviour
     private PlayerMWController playerMWController;
     private PlayerWeaponController playerWeaponController;
 
-
-
+    private Quaternion previousRotation;
+    private CameraController cameraController;
 
     /* **************************************************************************** */
     /* Lifecycle-Methoden---------------------------------------------------------- */
@@ -93,6 +93,9 @@ public class PlayerController : MonoBehaviour
         playerMWController = GetComponent<PlayerMWController>();
         playerWeaponController = GetComponent<PlayerWeaponController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        previousRotation = transform.rotation;
+        cameraController = GameObject.Find("Camera Controller").GetComponent<CameraController>();
+
 
         // intro starting sound
         AudioManager.Instance.PlaySFX("LiftUPBoss");
@@ -147,6 +150,18 @@ public class PlayerController : MonoBehaviour
             horizontalInput = Input.GetAxis("Horizontal");
             horizontalInput2 = Input.GetAxis("Horizontal2");
 
+            if (Input.GetMouseButton(1))
+            {
+                playerMouseMode = true;
+                if (Input.GetMouseButton(0)) //?
+                {
+                    forwardInput = 1;
+                }
+            }
+            else
+            {
+                playerMouseMode = false;
+            }
 
             if (Input.GetButtonUp("Boost"))
             {
@@ -170,8 +185,24 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            // rotate Playermesh
-            float targetRotationX = originalRotationX - (horizontalInput * 20f) - targetRotation2;
+            float targetRotationX = 0;
+            // player use mouse to control
+            if (playerMouseMode == true)
+            {
+                Quaternion deltaRotation = transform.rotation * Quaternion.Inverse(previousRotation);
+                float rotationAngle = Mathf.Abs(Quaternion.Angle(Quaternion.identity, deltaRotation));
+                float rotationSpeedNormalized = Mathf.Clamp(deltaRotation.eulerAngles.y > 180 ? -rotationAngle : rotationAngle, -1f, 1f);
+
+                previousRotation = transform.rotation;
+                targetRotationX = originalRotationX - (rotationSpeedNormalized * 20f) - targetRotation2; 
+            }
+
+            // WASD - mode
+            else
+            {   
+                targetRotationX = originalRotationX - (horizontalInput * 20f) - targetRotation2;
+            }
+
             currentRotationX = Mathf.Lerp(currentRotationX, targetRotationX, Time.deltaTime * 15f);
             playerMesh.localRotation = Quaternion.Euler(currentRotationX, transform.rotation.y + 90f, transform.rotation.z);
 
@@ -228,7 +259,7 @@ public class PlayerController : MonoBehaviour
                 UpdateClassLevel(6);
                 break;
 
-            case "BackwardsPickup":
+            case "DirectionPickup":
                 ObjectPoolManager.ReturnObjectToPool(other.gameObject);
                 UpdateClassLevel(7);
                 break;
@@ -501,9 +532,14 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+
             // calculate movement
             playerRb.AddForce(forwardInput * (-speed) * transform.forward, ForceMode.Force);
-            transform.Rotate(0f, horizontalInput * rotateSpeed, 0f);
+
+            // calculate rotation
+            PlayerRotation();
+
+
 
             // side step
             if (forwardInput < 0.3f && forwardInput > -0.3f)
@@ -527,7 +563,46 @@ public class PlayerController : MonoBehaviour
         boostParticle.Emit(20);
     }
 
+    //calculate Player Rotation
+    private void PlayerRotation()
+    {
+        if (playerMouseMode == true)
+        {
+            if (cameraController.flyModeToggle == true)
+            {
 
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 6));
+                Vector3 directionToMouse = transform.position - mousePosition;
+                directionToMouse.y = 0;
+
+                if (directionToMouse != Vector3.zero)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(directionToMouse);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * 60 * Time.deltaTime);
+                }
+            }
+            else
+            {
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.farClipPlane));
+
+                // Berechne die Richtung vom Spieler zur Maus
+                Vector3 directionToMouse = (transform.position - mousePosition).normalized * 0.001f;
+
+                directionToMouse.y = 0; // Setze die Y-Komponente auf 0, um nur um die Y-Achse zu drehen
+
+                // Drehe den Spieler in Richtung der Maus mit dem angegebenen Rotationstempo
+                if (directionToMouse != Vector3.zero)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(directionToMouse);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * 25 * Time.deltaTime);
+                }
+            }
+        }
+        else
+        {
+            transform.Rotate(0f, horizontalInput * rotateSpeed, 0f);
+        }
+    }
 
 
     /* **************************************************************************** */
