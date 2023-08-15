@@ -24,6 +24,7 @@ public class RocketController : MonoBehaviour
     private GameObject target;
    // private Rigidbody rbRocket;
     private GameManager gameManager;
+    private UpgradeChooseList upgradeChooseList;
     private PlayerWeaponController playerWeaponController;
     
 
@@ -41,12 +42,14 @@ public class RocketController : MonoBehaviour
 
         // set Game Objects
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
+
         playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         // reset Target
         target = null;
 
         // destroytime
-        maxLifeTime = Random.Range(maxLifeTime - 0.25f, maxLifeTime + 0.25f);
+        maxLifeTime = Random.Range(maxLifeTime - 0.25f, maxLifeTime + 0.25f) + upgradeChooseList.rocketLifeTime;
         Invoke("DestroyObject", maxLifeTime);
 
         // Layermask

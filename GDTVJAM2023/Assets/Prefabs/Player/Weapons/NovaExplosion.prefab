@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   novaDamage: 5
   spawnInterval: 4
-  explosionRadius: 5
-  explosionForce: 430
+  explosionRadius: 2
+  explosionForce: 450
   explosionFX: {fileID: 4303235208557751318, guid: c01ac0e458a23da41aaf1c60e7ee97a7, type: 3}
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
   loadParticle: {fileID: 3373119549730042108}

@@ -16,12 +16,12 @@ MonoBehaviour:
   rotateSpeed: 3.5
   health: 10
   baseDamage: 6
-  fireRate: 0.8
+  fireRate: 1
   PickupRange: 0.8
   boostPower: 2
   boostDuration: 0.5
   protectionLevel: 0
-  rocketLifeTime: 2
+  rocketLifeTime: 1.1
   laserShooingTime: 0
   bulletClass: 0
   explosionClass: 1

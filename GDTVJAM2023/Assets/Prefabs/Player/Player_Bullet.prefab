@@ -29834,14 +29834,6 @@ MonoBehaviour:
   burnDamage: 5
   burnTickCount: 5
   rocketAOERadius: 0
-  mcBulletLvl: 0
-  mcExplosionLvl: 0
-  mcLaserLvl: 0
-  mcSupportLvl: 0
-  scSwarmLvl: 0
-  scDefenceLvl: 0
-  scTargetingLvl: 0
-  scBackwardsLvl: 0
   isHeadCannon: 0
   isRocketLauncher: 0
   isFireFlies: 0
@@ -29879,9 +29871,9 @@ MonoBehaviour:
   sgReloadTime: 2.5
   sgBulletCount: 18
   spreadGun: {fileID: 7701453864392984337, guid: 104de042193ebb248b57f868f189bcdf, type: 3}
-  neDamage: 4
-  neReloadTime: 3.5
-  neRadius: 3.2
+  neDamage: 7
+  neReloadTime: 3.2
+  neRadius: 2
   novaExplosion: {fileID: 5372979302712396976, guid: 056b57503f6534c44a1d12a5f55b7ced, type: 3}
   rwDamage: 2
   rwReloadTime: 5

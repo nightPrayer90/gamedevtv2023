@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem boostEngine;
     private bool canGetLaserDamage = true;
     public bool playerMouseMode = false;
+    private bool canTakeDamge = false;
 
     [Header("Outside Border")]
     public float damageInterval = 1f;
@@ -408,16 +409,20 @@ public class PlayerController : MonoBehaviour
 
                 // trigger the damage floating text
                 gameManager.DoFloatingText(transform.position, "+" + enemyHealth.collisonDamage.ToString(), hitColor);
-
-                // add a force after the collision to the player
-                playerRb.AddForce(explosionDirection * -1f * enemyHealth.explosionForce, ForceMode.Impulse);
-
+       
                 // trigger a Explosion on the Enemy
                 ObjectPoolManager.SpawnObject(enemyHealth.collisionExplosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
 
-                // calculate player health
-                int damage = Mathf.Max(enemyHealth.collisonDamage - Mathf.RoundToInt(enemyHealth.collisonDamage * protectionPerc / 100), 1);
-                UpdatePlayerHealth(damage);
+                // if the player is invulnerability 
+                if (canTakeDamge == true || enemyHealth.canPoolObject == false)
+                {
+                    // add a force after the collision to the player
+                    playerRb.AddForce(explosionDirection * -1f * enemyHealth.explosionForce, ForceMode.Impulse);
+
+                    // calculate player health
+                    int damage = Mathf.Max(enemyHealth.collisonDamage - Mathf.RoundToInt(enemyHealth.collisonDamage * protectionPerc / 100), 1);
+                    UpdatePlayerHealth(damage);
+                }
 
                 // refresh the UI
                 if (enemyHealth.secondDimensionEnemy == false)
@@ -432,16 +437,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // player get bullet damage
     private void OnParticleCollision(GameObject other)
     {
         ParticleSystem part = other.GetComponent<ParticleSystem>(); // *** important! Making a variable to acess the particle system of the emmiting object, in this case, the lasers from my player ship.
-        var ps = other.GetComponent<EnemyParticleBullet>();
-        int damage = ps.bulletDamage;
 
-        damage = Mathf.Max(damage - Mathf.RoundToInt(damage * protectionPerc / 100), 1);
-        UpdatePlayerHealth(damage);
+        if (canTakeDamge == true)
+        {
+            var ps = other.GetComponent<EnemyParticleBullet>();
+            int damage = ps.bulletDamage;
 
-        gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
+            damage = Mathf.Max(damage - Mathf.RoundToInt(damage * protectionPerc / 100), 1);
+            UpdatePlayerHealth(damage);
+
+            gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
+        }
         /*
         int numCollisionEvents = part.GetCollisionEvents(this.gameObject, collisionEvents);
 
@@ -455,7 +465,7 @@ public class PlayerController : MonoBehaviour
     // player get damage vom a laserpointer
     public void GetLaserDamage(int damage)
     {
-        if (canGetLaserDamage == true)
+        if (canGetLaserDamage == true && canTakeDamge == true)
         {
             UpdatePlayerHealth(damage);
             gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
@@ -514,15 +524,15 @@ public class PlayerController : MonoBehaviour
                 {
                     if (isBoost == false)
                     {
-                        //gameManager.ScreenShake(5);
                         if (boostValue >= gameManager.boostSlider.maxValue * 0.9)
                         {
                             AudioManager.Instance.PlaySFX("PlayerBoostKick");
-                            //playerMesh.localPosition = new Vector3(0, 0, -0.1f);
                             playerMesh.DOLocalMoveZ(-0.1f, 0.1f);
                             boostParticle.Emit(80);
                             playerRb.AddForce(transform.forward * -speed * 30, ForceMode.Force);
                             gameManager.boostSlider.value = boostValue * 0.75f;
+                            canTakeDamge = false;
+                            Invoke("Invulnerability", upgradeChooseList.baseBoostInvulnerability);
                         }
                         isBoost = true;
                     }
@@ -563,6 +573,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void Invulnerability()
+    {
+        canTakeDamge = true;
+    }
     // Invoke to aktivate the BoostReaload()
     private void BoostReload()
     {
@@ -614,8 +628,30 @@ public class PlayerController : MonoBehaviour
     // update the player experience
     private void UpdatePlayerExperience()
     {
+        int exp = 1;
         // get + 1 experience
-        playerCurrentExperience += 1;
+
+        // chance to get double exp
+        if (upgradeChooseList.chanceToGetTwoExp > 0)
+        {
+            if (Random.Range(0,100) <= upgradeChooseList.chanceToGetTwoExp)
+            {
+                gameManager.DoFloatingText(transform.position, "+", Color.green);
+                exp = 2;
+            }
+        }
+
+        //chance to get one health
+        if (upgradeChooseList.chanceToGet1Health > 0)
+        {
+            if (Random.Range(0, 100) <= upgradeChooseList.chanceToGet1Health)
+            {
+                gameManager.DoFloatingText(transform.position, "+1" , Color.green);
+                UpdatePlayerHealth(-1);
+            }
+        }
+
+        playerCurrentExperience += exp;
         bool isLevelUp;
 
         // if level up

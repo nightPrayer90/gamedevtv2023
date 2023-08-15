@@ -14,12 +14,13 @@ public class UpgradePanelController : MonoBehaviour
     [HideInInspector] public float[] upgradeValue;
     [HideInInspector] public string[] headerStr;
     [HideInInspector] public string[] descriptionTextStr;
+    [HideInInspector] public Color[] headerColor;
     [HideInInspector] public Color[] mainClassColor;
     [HideInInspector] public string[] mainClassStr;
     [HideInInspector] public Color[] subClassColor;
     [HideInInspector] public string[] subClassStr;
     [HideInInspector] public Sprite[] iconPanel;
-
+    public Color weaponColor;
 
     [Header("Value Panel")]
     public TextMeshProUGUI lifeText;
@@ -61,6 +62,7 @@ public class UpgradePanelController : MonoBehaviour
         subClassColor = new Color[3];
         subClassStr = new string[3];
         iconPanel = new Sprite[3];
+        headerColor = new Color[3];
 
         selectetPanel = -1;
         isTweening = true;
@@ -144,9 +146,15 @@ public class UpgradePanelController : MonoBehaviour
     // String Library
     public void StringLibrary()
     {
+        headerColor[0] = new Color(255, 255, 255, 1f);
+        headerColor[1] = new Color(255, 255, 255, 1f);
+        headerColor[2] = new Color(255, 255, 255, 1f);
+
         for (int i = 0; i < 3; i++)
         {
             upgradeValue[i] =0f;
+            
+
             int number = gameManager.selectedNumbers_[i];
 
             // calculate values
@@ -170,6 +178,67 @@ public class UpgradePanelController : MonoBehaviour
                 case 5: // pickup range
                     upgradeValue[i] = 0.8f;
                     break;
+
+                //----
+                case 18: //bullet class  
+                    headerColor[i] = gameManager.globalClassColor[0];
+                    break;
+                case 19: //explosion class
+                    headerColor[i] = gameManager.globalClassColor[1];
+                    break;
+                case 20: //laser class
+                    headerColor[i] = gameManager.globalClassColor[2];
+                    break;
+                case 21: //support class
+                    headerColor[i] = gameManager.globalClassColor[3];
+                    break;
+                case 22: //swarm class
+                    headerColor[i] = gameManager.globalClassColor[4];
+                    break;
+                case 23: //defence class
+                    headerColor[i] = gameManager.globalClassColor[5];
+                    break;
+                case 24: //targeting class
+                    headerColor[i] = gameManager.globalClassColor[6];
+                    break;
+                case 25: //direction class
+                    headerColor[i] = gameManager.globalClassColor[7];
+                    break;
+
+                //----
+                case 26: //crit damage
+                    headerColor[i] = gameManager.globalClassColor[0];
+                    break;
+                case 27: //crit chance
+                    headerColor[i] = gameManager.globalClassColor[0];
+                    break;
+                case 28: //explosion range
+                    headerColor[i] = gameManager.globalClassColor[1];
+                    break;
+                case 29: //burning tick damage
+                    headerColor[i] = gameManager.globalClassColor[2];
+                    break;
+                case 30: //burning chance
+                    headerColor[i] = gameManager.globalClassColor[2];
+                    break;
+                case 31: //invulnerability
+                    headerColor[i] = gameManager.globalClassColor[3];
+                    break;
+                case 32: //chance to get double exp
+                    headerColor[i] = gameManager.globalClassColor[3];
+                    break;
+                case 33: //chance to collect exp
+                    headerColor[i] = gameManager.globalClassColor[3];
+                    break;
+                case 34: // rocket life time
+                    headerColor[i] = gameManager.globalClassColor[1];
+                    break;
+
+
+                //----
+                default: //weapon select
+                    headerColor[i] = weaponColor;
+                    break;
             }
 
             UpgradeContainer uC = upgradeList.weaponUpgrades[number];
@@ -189,7 +258,7 @@ public class UpgradePanelController : MonoBehaviour
             subClassStr[i] = uC.subClass.ToString();
             subClassColor[i] = classColors[index];
 
-            panelList[i].SetDescription();
+            panelList[i].SetDescription();        
         }
     }
 
@@ -259,7 +328,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
 
                 //----
-            case 18: //bullet class
+            case 18: //bullet class  
                 break;
             case 19: //explosion class
                 break;
@@ -277,6 +346,27 @@ public class UpgradePanelController : MonoBehaviour
                 break;
 
                 //----
+            case 26: //crit damage
+                break;
+            case 27: //crit chance
+                break;
+            case 28: //explosion range
+                break;
+            case 29: //burning tick damage
+                break;
+            case 30: //burning chance
+                break;
+            case 31: //invulnerability
+                break;
+            case 32: //chance to get double exp
+                break;
+            case 33: //chance to collect exp
+                break;
+            case 34: //chance to collect exp
+                break;
+
+
+            //----
             default: //weapon select
                 selectedUpgradePanelList[weaponCount].sprite = iconPanel[index];
                 break;
@@ -339,6 +429,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 6: //weapon: headgun
                 playerWeaponController.isHeadCannon = true;
+                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
@@ -346,6 +437,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 7: //weapon: rocket launcher
                 playerWeaponController.isRocketLauncher = true;
+                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
@@ -353,6 +445,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 8: //weapon: fire flys
                 playerWeaponController.isFireFlies = true;
+                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
@@ -360,6 +453,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 9: //weapon: bullet wings
                 playerWeaponController.isBulletWings = true;
+                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
@@ -367,6 +461,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 10: //weapon: life modul
                 playerWeaponController.isLifeModul = true;
+                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
@@ -374,6 +469,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 11: //weapon: spread gun
                 playerWeaponController.isSpreadGun = true;
+                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
@@ -381,6 +477,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 12: //weapon: front shield
                 playerWeaponController.isFrontShield = true;
+                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
@@ -388,6 +485,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 13: //weapon: back shield
                 playerWeaponController.isBackShield = true;
+                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
@@ -395,6 +493,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 14: //weapon: schock nova
                 playerWeaponController.isNovaExplosion = true;
+                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
@@ -402,6 +501,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 15: //weapon: rocket wings
                 playerWeaponController.isRockedWings = true;
+                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
@@ -409,6 +509,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 16: //weapon: front laser
                 playerWeaponController.isFrontLaser = true;
+                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
@@ -416,6 +517,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 17: //weapon: orbital laser
                 playerWeaponController.isOrbitalLaser = true;
+                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
@@ -444,6 +546,34 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 25: //Backwards class
                 UpdateClass(number, 1);
+                break;
+
+            case 26: // crit damage
+                upgradeChooseList.baseBulletCritDamage += 12;
+                break;
+            case 27: // crit chance
+                upgradeChooseList.baseBulletCritChance += 3;
+                break;
+            case 28: // explosion range
+                upgradeChooseList.baseRocketAOERadius += 10;
+                break;
+            case 29: // burning tick damage
+                upgradeChooseList.buringChance += 20;
+                break;
+            case 30: // burning chance
+                upgradeChooseList.baseLaserBurnDamageChance += 1;
+                break;
+            case 31: // invulnerability
+                upgradeChooseList.baseBoostInvulnerability += 0.3f;
+                break;
+            case 32: // chance to get douple exp
+                upgradeChooseList.chanceToGetTwoExp += 5;
+                break;
+            case 33: // 1 life to collect exp
+                upgradeChooseList.chanceToGet1Health += 2;
+                break;
+            case 34: // rocket life time
+                upgradeChooseList.rocketLifeTime += 0.2f;
                 break;
         }
     }

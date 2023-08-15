@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rocketDamage: 25
-  lifeTime: 3
+  lifeTime: 2.5
   spawnInterval: 6
   detectionRange: 8
   rockedToLaunch: {fileID: 667735904795272308, guid: a6d86ef9fcb3b084fae049be9d2a24b8, type: 3}

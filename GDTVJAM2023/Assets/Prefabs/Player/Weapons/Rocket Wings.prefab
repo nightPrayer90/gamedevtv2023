@@ -52,7 +52,7 @@ MonoBehaviour:
   salveMaxCount: 0
   spawnInterval: 0.2
   audioClip: PlayerRocketStarts
-  rocketLifetime: 1.5
+  rocketLifetime: 1.3
   rockedToLaunch: {fileID: 667735904795272308, guid: 0db8372d90341b4449ae53d01e48fd1e, type: 3}
   spawnPoint1: {fileID: 8390656691493204491}
   spawnPoint2: {fileID: 8390656692642978581}

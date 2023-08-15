@@ -48,9 +48,6 @@ public class UpgradPanelIndex : MonoBehaviour
                     }        
                 }
             });
-
-            
-            
         });
     }
 
@@ -60,12 +57,16 @@ public class UpgradPanelIndex : MonoBehaviour
         // Build Panel description
         iconPanel.sprite = upgradePanelController.iconPanel[index];
         headerText.text = upgradePanelController.headerStr[index];
+        
+
         descriptionText.text = upgradePanelController.descriptionTextStr[index];
 
         mainClass.text = upgradePanelController.mainClassStr[index];
         mainClass.color = upgradePanelController.mainClassColor[index];
         subClass.text = upgradePanelController.subClassStr[index];
         subClass.color = upgradePanelController.subClassColor[index];
+
+        headerText.color = upgradePanelController.headerColor[index];
         
     }
 
@@ -136,8 +137,6 @@ public class UpgradPanelIndex : MonoBehaviour
     public void FadeOut(int index_)
     {
         float duration = (float)index / 15;
-
-        Debug.Log(upgradePanelController.selectetPanel);
 
         if (upgradePanelController.selectetPanel == index)
         { 

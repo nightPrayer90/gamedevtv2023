@@ -9,8 +9,6 @@ public class PlayerWeaponController : MonoBehaviour
     public int bulletCritChance = 5;
     public int bulletCritDamage = 125;
     public int burnDamageChance = 1;
-    public int burnDamage = 5;
-    public int burnTickCount = 5;
     public float rocketAOERadius = 0;
 
     [Header("Passiv abilitys")]
@@ -197,75 +195,64 @@ public class PlayerWeaponController : MonoBehaviour
         {
             go = Instantiate(headCannon, passivParentContainer);
             isHeadCannonInstalled = go.GetComponent<HeadCannon>();
-            upgradeChooseList.weaponIndexInstalled[6] = true;
+            
         }
         if (isRocketLauncher == true && isRocketLauncherInstalled == null)
         {
             go = Instantiate(rocketLauncher, passivParentContainer);
             isRocketLauncherInstalled = go.GetComponent<PeriodSpawner>();
-            upgradeChooseList.weaponIndexInstalled[7] = true;
         }
         if (isFireFlies == true && isFireFliesInstalled == null)
         {
             go = Instantiate(fireFlys, passivParentContainer);
             isFireFliesInstalled = go.GetComponent<Fireflies>();
-            upgradeChooseList.weaponIndexInstalled[8] = true;
         }
         if (isBulletWings == true && isBulletWingsInstalled == null)
         {
             go = Instantiate(bulletWings, passivParentContainer);
             isBulletWingsInstalled = go.GetComponent<BulletWings>();
-            upgradeChooseList.weaponIndexInstalled[9] = true;
         }
         if (isLifeModul == true && isLifeModulInstalled == null)
         {
             go = Instantiate(lifeModul, passivParentContainer);
             isLifeModulInstalled = go.GetComponent<LifeModul>();
-            upgradeChooseList.weaponIndexInstalled[10] = true;
         }
         if (isSpreadGun == true && isSpreadGunInstalled == null)
         {
             go = Instantiate(spreadGun, passivParentContainer);
             isSpreadGunInstalled = go.GetComponent<SpreadGun>();
-            upgradeChooseList.weaponIndexInstalled[11] = true;
         }
         if (isFrontShield == true && isFrontShieldInstalled == null)
         {
             var shild = Instantiate(frontShield, passivParentContainer);
             shild.name = frontShield.name;
             isFrontShieldInstalled = shild.GetComponent<FrontShieldSpawner>();
-            upgradeChooseList.weaponIndexInstalled[12] = true;
         }
         if (isBackShield == true && isBackShieldInstalled == null)
         {
             var shild = Instantiate(backShield, passivParentContainer);
             shild.name = backShield.name;
             isBackShieldInstalled = shild.GetComponent<BackShieldSpawner>();
-            upgradeChooseList.weaponIndexInstalled[13] = true;
         }
         if (isNovaExplosion == true && isNovaExplosionInstalled == null)
         {
             go = Instantiate(novaExplosion, passivParentContainer);
             isNovaExplosionInstalled = go.GetComponent<NovaExplosion>();
-            upgradeChooseList.weaponIndexInstalled[14] = true;
         }
         if (isRockedWings == true && isRockedWingsInstalled == null)
         {
             go = Instantiate(rocketWings, passivParentContainer);
             isRockedWingsInstalled = go.GetComponent<RocketWings>();
-            upgradeChooseList.weaponIndexInstalled[15] = true;
         }
         if (isFrontLaser == true && isFrontLaserInstalled == null)
         {
             go = Instantiate(frontLaser, passivParentContainer);
-            upgradeChooseList.weaponIndexInstalled[16] = true;
             isFrontLaserInstalled = go.GetComponent<FrontLaser>();
         }
         if (isOrbitalLaser == true && isOrbitalLaserInstalled == null)
         {
             go = Instantiate(orbitalLaser);
             isOrbitalLaserInstalled = go.GetComponent<OrbitalLaser>();
-            upgradeChooseList.weaponIndexInstalled[17] = true;
         }
 
         Invoke("UpdateWeaponValues", 0.1f);
@@ -281,8 +268,8 @@ public class PlayerWeaponController : MonoBehaviour
         bulletCritDamage = upgradeChooseList.baseBulletCritDamage;
 
         burnDamageChance = upgradeChooseList.baseLaserBurnDamageChance;
-        rocketAOERadius = 1 + upgradeChooseList.baseRocketAOERadius * 0.1f;
-        float suReloadTime = (upgradeChooseList.baseSupportRealoadTime * 0.1f);
+        rocketAOERadius = 1 + upgradeChooseList.baseRocketAOERadius * 0.01f;
+        float suReloadTime = (upgradeChooseList.baseSupportRealoadTime * 0.01f);
 
         // sub class
         int scSwarmLvl_ = upgradeChooseList.scSwarmLvl;

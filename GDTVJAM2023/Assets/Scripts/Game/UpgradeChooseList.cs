@@ -24,12 +24,13 @@ public class UpgradeChooseList : MonoBehaviour
     public float baseRocketAOERadius = 0;
     public int baseLaserBurnDamageChance = 0;
     public int baseSupportRealoadTime = 0;
-    public float baseLaserTicks = 4;
-    public float baseLaserTickDamage = 5;
+    public int baseLaserTicks = 4;
+    public int baseLaserTickDamage = 5;
     public float baseAttackSpeed = 0;
-    public float baseBoostInvulnerability = 0;
+    public float baseBoostInvulnerability = 0.2f;
     public float chanceToGetTwoExp = 0;
     public float chanceToGet1Health = 0;
+    public float rocketLifeTime = 0;
 
     [Header("Class Upgrade Values")]
     public int critChance = 7;
@@ -38,6 +39,7 @@ public class UpgradeChooseList : MonoBehaviour
     public int buringChance = 2;
     public int supportRealodTime = 10;
     public int laserBurningTickDamancePercent = 100;
+    
 
     private void Start()
     {
@@ -55,8 +57,7 @@ public class UpgradeChooseList : MonoBehaviour
         for( int i=0; i < weaponUpgrades.Length; i++ )
         {
             if (weaponUpgrades[i].upgradeTyp == upgradeTyp && weaponIndexInstalled[i] == false &&
-               mcBulletLvl >= weaponUpgrades[i].reqBullet && mcExplosionLvl >= weaponUpgrades[i].reqRocket && mcLaserLvl >= weaponUpgrades[i].reqLaser && mcSupportLvl >= weaponUpgrades[i].reqSupport ) 
-                
+               mcBulletLvl >= weaponUpgrades[i].reqBullet && mcExplosionLvl >= weaponUpgrades[i].reqRocket && mcLaserLvl >= weaponUpgrades[i].reqLaser && mcSupportLvl >= weaponUpgrades[i].reqSupport )   
             {
                 buildList.Add(i);
             }

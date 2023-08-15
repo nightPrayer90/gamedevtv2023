@@ -60,6 +60,7 @@ public class EnemyHealth : MonoBehaviour
 
     // gameObjects to find
     private GameManager gameManager;
+    private UpgradeChooseList upgradeChooseList;
     private PlayerWeaponController playerWeaponController;
     
 
@@ -71,6 +72,7 @@ public class EnemyHealth : MonoBehaviour
     private void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
         if (bulletDamage != 0) audioSource = GetComponent<AudioSource>();
 
         collisionMultiplier += startCollisionMultiplier + UnityEngine.Random.Range(-16, 128);
@@ -151,18 +153,12 @@ public class EnemyHealth : MonoBehaviour
                 int ran = UnityEngine.Random.Range(0, 100);
                 if (ran < playerWeaponController.bulletCritChance)
                 {
-                    damage = Mathf.RoundToInt(damage * playerWeaponController.bulletCritDamage / 100);
+                    damage = Mathf.CeilToInt(damage * playerWeaponController.bulletCritDamage / 100);
                     resultColor = critColor;
                 }
 
                 TakeDamage(damage);
             }
-
-            // damage from Laser
-            /*else if (damagetyp == 1)
-            {
-                TakeLaserDamage(damage);
-            }*/
 
             
             int numCollisionEvents = part.GetCollisionEvents(this.gameObject, collisionEvents);
@@ -317,14 +313,14 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeBurningDamage()
     {
-        int burningDamage = playerWeaponController.burnDamage;
+        int burningDamage = Mathf.CeilToInt( upgradeChooseList.baseLaserTickDamage * (upgradeChooseList.laserBurningTickDamancePercent)/100);
 
         ShowDamageFromObjectsColor(burningDamage, burningColor);
         TakeLaserDamage(burningDamage,0);
 
         burnTickCount++;
 
-        if (burnTickCount > playerWeaponController.burnTickCount)
+        if (burnTickCount > upgradeChooseList.baseLaserTicks)
         {
             CancelInvoke("TakeBurningDamage");
             burnTickCount = 0;
