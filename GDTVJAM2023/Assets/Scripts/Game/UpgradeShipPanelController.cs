@@ -22,6 +22,7 @@ public class UpgradeShipPanelController : MonoBehaviour
 
     //Objects
     private GameManager gameManager;
+    private UpgradeChooseList upgradeChooseList;
     private PlayerController playerController;
     private PlayerWeaponController playerWeaponController;
 
@@ -35,6 +36,7 @@ public class UpgradeShipPanelController : MonoBehaviour
 
         // set Objects
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
         classColors = new List<Color>(gameManager.globalClassColor);
     }
     private void OnEnable()
@@ -85,15 +87,15 @@ public class UpgradeShipPanelController : MonoBehaviour
         Color defaultColor = new Color(0.2f, 0.2f, 0.2f, 0.5f);
 
         // update class colors
-        if (playerWeaponController.mcBulletLvl > 0) { classPanels[0].color = classColors[0]; } else { classPanels[0].color = defaultColor; }
-        if (playerWeaponController.mcExplosionLvl > 0) { classPanels[1].color = classColors[1]; } else { classPanels[1].color = defaultColor; }
-        if (playerWeaponController.mcLaserLvl > 0) { classPanels[2].color = classColors[2]; } else { classPanels[2].color = defaultColor; }
-        if (playerWeaponController.mcSupportLvl > 0) { classPanels[3].color = classColors[3]; } else { classPanels[3].color = defaultColor; }
+        if (upgradeChooseList.mcBulletLvl > 0) { classPanels[0].color = classColors[0]; } else { classPanels[0].color = defaultColor; }
+        if (upgradeChooseList.mcExplosionLvl > 0) { classPanels[1].color = classColors[1]; } else { classPanels[1].color = defaultColor; }
+        if (upgradeChooseList.mcLaserLvl > 0) { classPanels[2].color = classColors[2]; } else { classPanels[2].color = defaultColor; }
+        if (upgradeChooseList.mcSupportLvl > 0) { classPanels[3].color = classColors[3]; } else { classPanels[3].color = defaultColor; }
 
-        if (playerWeaponController.scSwarmLvl > 0) { classPanels[4].color = classColors[4]; } else { classPanels[4].color = defaultColor; }
-        if (playerWeaponController.scDefenceLvl > 0) { classPanels[5].color = classColors[5]; } else { classPanels[5].color = defaultColor; }
-        if (playerWeaponController.scTargetingLvl > 0) { classPanels[6].color = classColors[6]; } else { classPanels[6].color = defaultColor; }
-        if (playerWeaponController.scBackwardsLvl > 0) { classPanels[7].color = classColors[7]; } else { classPanels[7].color = defaultColor; }
+        if (upgradeChooseList.scSwarmLvl > 0) { classPanels[4].color = classColors[4]; } else { classPanels[4].color = defaultColor; }
+        if (upgradeChooseList.scDefenceLvl > 0) { classPanels[5].color = classColors[5]; } else { classPanels[5].color = defaultColor; }
+        if (upgradeChooseList.scTargetingLvl > 0) { classPanels[6].color = classColors[6]; } else { classPanels[6].color = defaultColor; }
+        if (upgradeChooseList.scDirectionLvl > 0) { classPanels[7].color = classColors[7]; } else { classPanels[7].color = defaultColor; }
     }
 
 }

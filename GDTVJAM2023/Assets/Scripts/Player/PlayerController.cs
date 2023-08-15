@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
     public Transform playerMesh;
     private Rigidbody playerRb;
     private GameManager gameManager;
+    private UpgradeChooseList upgradeChooseList;
     private PlayerMWController playerMWController;
     private PlayerWeaponController playerWeaponController;
 
@@ -93,6 +94,7 @@ public class PlayerController : MonoBehaviour
         playerMWController = GetComponent<PlayerMWController>();
         playerWeaponController = GetComponent<PlayerWeaponController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
         previousRotation = transform.rotation;
         cameraController = GameObject.Find("Camera Controller").GetComponent<CameraController>();
 
@@ -307,36 +309,41 @@ public class PlayerController : MonoBehaviour
         switch (input)
         {
             case 0:
-                playerWeaponController.mcBulletLvl++;
+                upgradeChooseList.mcBulletLvl++;
+                upgradeChooseList.baseBulletCritChance += upgradeChooseList.critChance;
+                upgradeChooseList.baseBulletCritDamage += upgradeChooseList.critDamage;
                 floatingText = "+1 bullet class";
                 break;
             case 1:
-                playerWeaponController.mcExplosionLvl++;
+                upgradeChooseList.mcExplosionLvl++;
+                upgradeChooseList.baseRocketAOERadius += upgradeChooseList.aoeRange;
                 floatingText = "+1 explosion class";
                 break;
             case 2:
-                playerWeaponController.mcLaserLvl++;
+                upgradeChooseList.mcLaserLvl++;
+                upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.buringChance;
                 floatingText = "+1 laser class";
                 break;
             case 3:
-                playerWeaponController.mcSupportLvl++;
+                upgradeChooseList.mcSupportLvl++;
                 floatingText = "+1 support class";
+                upgradeChooseList.baseSupportRealoadTime += upgradeChooseList.supportRealodTime;
                 break;
             case 4:
-                playerWeaponController.scSwarmLvl++;
+                upgradeChooseList.scSwarmLvl++;
                 floatingText = "+1 swarm class";
                 break;
             case 5:
-                playerWeaponController.scDefenceLvl++;
+                upgradeChooseList.scDefenceLvl++;
                 floatingText = "+1 defense class";
                 break;
             case 6:
-                playerWeaponController.scTargetingLvl++;
+                upgradeChooseList.scTargetingLvl++;
                 floatingText = "+1 targeting class";
                 break;
             case 7:
-                playerWeaponController.scBackwardsLvl++;
-                floatingText = "+1 backwards class";
+                upgradeChooseList.scDirectionLvl++;
+                floatingText = "+1 direction class";
                 break;
         }
 
@@ -584,13 +591,9 @@ public class PlayerController : MonoBehaviour
             else
             {
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.farClipPlane));
-
-                // Berechne die Richtung vom Spieler zur Maus
                 Vector3 directionToMouse = (transform.position - mousePosition).normalized * 0.001f;
+                directionToMouse.y = 0; 
 
-                directionToMouse.y = 0; // Setze die Y-Komponente auf 0, um nur um die Y-Achse zu drehen
-
-                // Drehe den Spieler in Richtung der Maus mit dem angegebenen Rotationstempo
                 if (directionToMouse != Vector3.zero)
                 {
                     Quaternion targetRotation = Quaternion.LookRotation(directionToMouse);

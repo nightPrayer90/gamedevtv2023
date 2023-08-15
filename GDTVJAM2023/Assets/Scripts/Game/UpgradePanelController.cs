@@ -39,6 +39,7 @@ public class UpgradePanelController : MonoBehaviour
     private GameManager gameManager;
     private PlayerController playerController;
     private PlayerWeaponController playerWeaponController;
+    private UpgradeChooseList upgradeChooseList;
 
     public int selectetPanel;
     private bool isButtonPressed = false;
@@ -47,6 +48,7 @@ public class UpgradePanelController : MonoBehaviour
     void OnEnable()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
         classColors = new List<Color>(gameManager.globalClassColor);
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
@@ -151,7 +153,7 @@ public class UpgradePanelController : MonoBehaviour
             switch (number)
             {
                 case 0: // life
-                    upgradeValue[i] = Mathf.RoundToInt(Random.Range(1, 3));
+                    upgradeValue[i] = 2;
                     break;
                 case 1: //damage
                     upgradeValue[i] = 1;
@@ -160,16 +162,15 @@ public class UpgradePanelController : MonoBehaviour
                     upgradeValue[i] = 1;
                     break;
                 case 3: // boost
-                    upgradeValue[i] = Mathf.RoundToInt(Random.Range(2, 4)) / 10f;
+                    upgradeValue[i] = 0.4f;
                     break;
                 case 4: // agility
-                    upgradeValue[i] = Mathf.RoundToInt(Random.Range(1, 3)) / 10f;
+                    upgradeValue[i] = 0.3f;
                     break;
                 case 5: // pickup range
-                    upgradeValue[i] = Mathf.RoundToInt(Random.Range(5, 10)) / 10f;
+                    upgradeValue[i] = 0.8f;
                     break;
             }
-
 
             UpgradeContainer uC = upgradeList.weaponUpgrades[number];
 
@@ -193,7 +194,6 @@ public class UpgradePanelController : MonoBehaviour
     }
 
 
-
     // Update Values in Panel 4
     public void UpdateValuePanel()
     {
@@ -209,15 +209,15 @@ public class UpgradePanelController : MonoBehaviour
         Color defaultColor = new Color(0.2f, 0.2f, 0.2f, 0.5f);
 
         // update class colors
-        if (playerWeaponController.mcBulletLvl > 0) { classPanels[0].color = classColors[0]; } else { classPanels[0].color = defaultColor; }
-        if (playerWeaponController.mcExplosionLvl > 0) { classPanels[1].color = classColors[1]; } else { classPanels[1].color = defaultColor; }
-        if (playerWeaponController.mcLaserLvl > 0) { classPanels[2].color = classColors[2]; } else { classPanels[2].color = defaultColor; }
-        if (playerWeaponController.mcSupportLvl > 0) { classPanels[3].color = classColors[3]; } else { classPanels[3].color = defaultColor; }
+        if (upgradeChooseList.mcBulletLvl > 0) { classPanels[0].color = classColors[0]; } else { classPanels[0].color = defaultColor; }
+        if (upgradeChooseList.mcExplosionLvl > 0) { classPanels[1].color = classColors[1]; } else { classPanels[1].color = defaultColor; }
+        if (upgradeChooseList.mcLaserLvl > 0) { classPanels[2].color = classColors[2]; } else { classPanels[2].color = defaultColor; }
+        if (upgradeChooseList.mcSupportLvl > 0) { classPanels[3].color = classColors[3]; } else { classPanels[3].color = defaultColor; }
 
-        if (playerWeaponController.scSwarmLvl > 0) { classPanels[4].color = classColors[4]; } else { classPanels[4].color = defaultColor; }
-        if (playerWeaponController.scDefenceLvl > 0) { classPanels[5].color = classColors[5]; } else { classPanels[5].color = defaultColor; }
-        if (playerWeaponController.scTargetingLvl > 0) { classPanels[6].color = classColors[6]; } else { classPanels[6].color = defaultColor; }
-        if (playerWeaponController.scBackwardsLvl > 0) { classPanels[7].color = classColors[7]; } else { classPanels[7].color = defaultColor; }
+        if (upgradeChooseList.scSwarmLvl > 0) { classPanels[4].color = classColors[4]; } else { classPanels[4].color = defaultColor; }
+        if (upgradeChooseList.scDefenceLvl > 0) { classPanels[5].color = classColors[5]; } else { classPanels[5].color = defaultColor; }
+        if (upgradeChooseList.scTargetingLvl > 0) { classPanels[6].color = classColors[6]; } else { classPanels[6].color = defaultColor; }
+        if (upgradeChooseList.scDirectionLvl > 0) { classPanels[7].color = classColors[7]; } else { classPanels[7].color = defaultColor; }
 
     }
     
@@ -257,6 +257,26 @@ public class UpgradePanelController : MonoBehaviour
             case 5:
                 pickupText.text = (playerController.pickupRange + upgradeValue[index]).ToString();
                 break;
+
+                //----
+            case 18: //bullet class
+                break;
+            case 19: //explosion class
+                break;
+            case 20: //laser class
+                break;
+            case 21: //support class
+                break;
+            case 22: //swarm class
+                break;
+            case 23: //defence class
+                break;
+            case 24: //targeting class
+                break;
+            case 25: //direction class
+                break;
+
+                //----
             default: //weapon select
                 selectedUpgradePanelList[weaponCount].sprite = iconPanel[index];
                 break;
@@ -402,16 +422,16 @@ public class UpgradePanelController : MonoBehaviour
                 weaponCount++;
                 break;
             case 18: //bullet class
-                UpdateClass(number, 2);
+                UpdateClass(number, 1);
                 break;
             case 19: //rocked class
-                UpdateClass(number, 2);
+                UpdateClass(number, 1);
                 break;
             case 20: //laser class
-                UpdateClass(number, 2);
+                UpdateClass(number, 1);
                 break;
             case 21: //support class
-                UpdateClass(number, 2);
+                UpdateClass(number, 1);
                 break;
             case 22: //spwarm class
                 UpdateClass(number, 1);
@@ -454,16 +474,21 @@ public class UpgradePanelController : MonoBehaviour
         switch (index)
         {
             case 0:
-                playerWeaponController.mcBulletLvl += factor;
+                upgradeChooseList.mcBulletLvl += factor;
+                upgradeChooseList.baseBulletCritChance += upgradeChooseList.critChance;
+                upgradeChooseList.baseBulletCritDamage += upgradeChooseList.critDamage;
                 break;
             case 1:
-                playerWeaponController.mcExplosionLvl += factor;
+                upgradeChooseList.mcExplosionLvl += factor;
+                upgradeChooseList.baseRocketAOERadius += upgradeChooseList.aoeRange;
                 break;
             case 2:
-                playerWeaponController.mcLaserLvl += factor;
+                upgradeChooseList.mcLaserLvl += factor;
+                upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.buringChance;
                 break;
             case 3:
-                playerWeaponController.mcSupportLvl += factor;
+                upgradeChooseList.mcSupportLvl += factor;
+                upgradeChooseList.baseSupportRealoadTime += upgradeChooseList.supportRealodTime;
                 break;
         }
 
@@ -472,16 +497,16 @@ public class UpgradePanelController : MonoBehaviour
         switch (index)
         {
             case 4:
-                playerWeaponController.scSwarmLvl += factor;
+                upgradeChooseList.scSwarmLvl += factor;
                 break;
             case 5:
-                playerWeaponController.scDefenceLvl += factor;
+                upgradeChooseList.scDefenceLvl += factor;
                 break;
             case 6:
-                playerWeaponController.scTargetingLvl += factor;
+                upgradeChooseList.scTargetingLvl += factor;
                 break;
             case 7:
-                playerWeaponController.scBackwardsLvl += factor;
+                upgradeChooseList.scDirectionLvl += factor;
                 break;
         }
     }

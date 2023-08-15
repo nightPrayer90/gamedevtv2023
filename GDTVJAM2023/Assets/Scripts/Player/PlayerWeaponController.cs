@@ -13,17 +13,6 @@ public class PlayerWeaponController : MonoBehaviour
     public int burnTickCount = 5;
     public float rocketAOERadius = 0;
 
-    [Header("Weapon class level")]
-    [HideInInspector] public int mcBulletLvl = 0;
-    [HideInInspector] public int mcExplosionLvl = 0;
-    [HideInInspector] public int mcLaserLvl = 0;
-    [HideInInspector] public int mcSupportLvl = 0;
-    [HideInInspector] public int scSwarmLvl = 0;
-    [HideInInspector] public int scDefenceLvl = 0;
-    [HideInInspector] public int scTargetingLvl = 0;
-    [HideInInspector] public int scBackwardsLvl = 0;
-
-
     [Header("Passiv abilitys")]
     public bool isHeadCannon = false;
     public bool isRocketLauncher = false;
@@ -50,6 +39,7 @@ public class PlayerWeaponController : MonoBehaviour
     private RocketWings isRockedWingsInstalled;
     private FrontLaser isFrontLaserInstalled;
     private OrbitalLaser isOrbitalLaserInstalled;
+
 
 
     [Header("Objects")]
@@ -142,7 +132,7 @@ public class PlayerWeaponController : MonoBehaviour
     //private Objects
     private PlayerController playerController;
     private PlayerMWController playerMWController;
-    
+    private UpgradeChooseList upgradeChooseList;
 
 
 
@@ -153,35 +143,42 @@ public class PlayerWeaponController : MonoBehaviour
     {
         playerController = gameObject.GetComponent<PlayerController>();
         playerMWController = gameObject.GetComponent<PlayerMWController>();
+        upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
+
 
         // copy ship Data
         shipData = playerController.shipData;
 
-        mcBulletLvl = shipData.bulletClass;
-        mcExplosionLvl = shipData.explosionClass;
-        mcLaserLvl = shipData.laserClass;
-        mcSupportLvl = shipData.supportClass;
-        scSwarmLvl = shipData.swarmClass;
-        scDefenceLvl = shipData.defenseClass;
-        scTargetingLvl = shipData.targetClass;
-        scBackwardsLvl = shipData.backwardsClass;
+        upgradeChooseList.mcBulletLvl = shipData.bulletClass;
+        upgradeChooseList.mcExplosionLvl = shipData.explosionClass;
+        upgradeChooseList.mcLaserLvl = shipData.laserClass;
+        upgradeChooseList.mcSupportLvl = shipData.supportClass;
+        upgradeChooseList.scSwarmLvl = shipData.swarmClass;
+        upgradeChooseList.scDefenceLvl = shipData.defenseClass;
+        upgradeChooseList.scTargetingLvl = shipData.targetClass;
+        upgradeChooseList.scDirectionLvl = shipData.directionClass;
+
+        // set start class upgrades
+        if (shipData.bulletClass > 0)
+        {
+            upgradeChooseList.baseBulletCritChance += upgradeChooseList.critChance;
+            upgradeChooseList.baseBulletCritDamage += upgradeChooseList.critDamage;
+        }
+        if (shipData.explosionClass > 0)
+        {
+            upgradeChooseList.baseRocketAOERadius += upgradeChooseList.aoeRange;
+        }
+        if (shipData.laserClass > 0)
+        {
+            upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.buringChance;
+        }
+        if (shipData.supportClass > 0)
+        {
+            upgradeChooseList.baseSupportRealoadTime += upgradeChooseList.supportRealodTime;
+        }
 
         // Start Values
         WeaponChoose();
-
-        // Upadate Start - Class
-        switch (playerMWController.weaponType)
-        {
-            case PlayerMWController.MWeapontyp.bullet: 
-                mcBulletLvl++;
-                break;
-            case PlayerMWController.MWeapontyp.rocket: 
-                mcExplosionLvl++;
-                break;
-            case PlayerMWController.MWeapontyp.laser:
-                mcLaserLvl++;
-                break;
-        }
 
         // upgrade Weapon Values
         UpdateWeaponValues();
@@ -200,63 +197,75 @@ public class PlayerWeaponController : MonoBehaviour
         {
             go = Instantiate(headCannon, passivParentContainer);
             isHeadCannonInstalled = go.GetComponent<HeadCannon>();
+            upgradeChooseList.weaponIndexInstalled[6] = true;
         }
         if (isRocketLauncher == true && isRocketLauncherInstalled == null)
         {
             go = Instantiate(rocketLauncher, passivParentContainer);
             isRocketLauncherInstalled = go.GetComponent<PeriodSpawner>();
+            upgradeChooseList.weaponIndexInstalled[7] = true;
         }
         if (isFireFlies == true && isFireFliesInstalled == null)
         {
             go = Instantiate(fireFlys, passivParentContainer);
             isFireFliesInstalled = go.GetComponent<Fireflies>();
+            upgradeChooseList.weaponIndexInstalled[8] = true;
         }
         if (isBulletWings == true && isBulletWingsInstalled == null)
         {
             go = Instantiate(bulletWings, passivParentContainer);
             isBulletWingsInstalled = go.GetComponent<BulletWings>();
+            upgradeChooseList.weaponIndexInstalled[9] = true;
         }
         if (isLifeModul == true && isLifeModulInstalled == null)
         {
             go = Instantiate(lifeModul, passivParentContainer);
             isLifeModulInstalled = go.GetComponent<LifeModul>();
+            upgradeChooseList.weaponIndexInstalled[10] = true;
         }
         if (isSpreadGun == true && isSpreadGunInstalled == null)
         {
             go = Instantiate(spreadGun, passivParentContainer);
             isSpreadGunInstalled = go.GetComponent<SpreadGun>();
+            upgradeChooseList.weaponIndexInstalled[11] = true;
         }
         if (isFrontShield == true && isFrontShieldInstalled == null)
         {
             var shild = Instantiate(frontShield, passivParentContainer);
             shild.name = frontShield.name;
             isFrontShieldInstalled = shild.GetComponent<FrontShieldSpawner>();
+            upgradeChooseList.weaponIndexInstalled[12] = true;
         }
         if (isBackShield == true && isBackShieldInstalled == null)
         {
             var shild = Instantiate(backShield, passivParentContainer);
             shild.name = backShield.name;
             isBackShieldInstalled = shild.GetComponent<BackShieldSpawner>();
+            upgradeChooseList.weaponIndexInstalled[13] = true;
         }
         if (isNovaExplosion == true && isNovaExplosionInstalled == null)
         {
             go = Instantiate(novaExplosion, passivParentContainer);
             isNovaExplosionInstalled = go.GetComponent<NovaExplosion>();
+            upgradeChooseList.weaponIndexInstalled[14] = true;
         }
         if (isRockedWings == true && isRockedWingsInstalled == null)
         {
             go = Instantiate(rocketWings, passivParentContainer);
             isRockedWingsInstalled = go.GetComponent<RocketWings>();
+            upgradeChooseList.weaponIndexInstalled[15] = true;
         }
         if (isFrontLaser == true && isFrontLaserInstalled == null)
         {
             go = Instantiate(frontLaser, passivParentContainer);
+            upgradeChooseList.weaponIndexInstalled[16] = true;
             isFrontLaserInstalled = go.GetComponent<FrontLaser>();
         }
         if (isOrbitalLaser == true && isOrbitalLaserInstalled == null)
         {
             go = Instantiate(orbitalLaser);
             isOrbitalLaserInstalled = go.GetComponent<OrbitalLaser>();
+            upgradeChooseList.weaponIndexInstalled[17] = true;
         }
 
         Invoke("UpdateWeaponValues", 0.1f);
@@ -268,24 +277,24 @@ public class PlayerWeaponController : MonoBehaviour
         Debug.Log("weapon Upgrade");
 
         // main Class
-        bulletCritChance = 5 + (mcBulletLvl * 5);
-        bulletCritDamage = 125 + (mcBulletLvl * 5);
+        bulletCritChance = upgradeChooseList.baseBulletCritChance;
+        bulletCritDamage = upgradeChooseList.baseBulletCritDamage;
 
-        burnDamageChance = (mcLaserLvl);
-        rocketAOERadius = 1 + (mcExplosionLvl * 0.1f);
-        float suReloadTime = (mcSupportLvl * 0.03f);
+        burnDamageChance = upgradeChooseList.baseLaserBurnDamageChance;
+        rocketAOERadius = 1 + upgradeChooseList.baseRocketAOERadius * 0.1f;
+        float suReloadTime = (upgradeChooseList.baseSupportRealoadTime * 0.1f);
 
         // sub class
-        int scSwarmLvl_ = scSwarmLvl;
-        float scDefenceLvl_ = scDefenceLvl * 0.1f;
-        int scTargetingLvl_ = scTargetingLvl;
-        int scBackwardsLvl_ = scBackwardsLvl;
+        int scSwarmLvl_ = upgradeChooseList.scSwarmLvl;
+        float scDefenceLvl_ = upgradeChooseList.scDefenceLvl * 0.1f;
+        int scTargetingLvl_ = upgradeChooseList.scTargetingLvl;
+        int scDirectionLvl_ = upgradeChooseList.scDirectionLvl;
 
 
         // Head Cannon - bullet - target
         if (isHeadCannonInstalled != null)
         {
-            isHeadCannonInstalled.bulletDamage = hcBulletDamage + scTargetingLvl;
+            isHeadCannonInstalled.bulletDamage = hcBulletDamage + scTargetingLvl_;
             isHeadCannonInstalled.fireSalveMax = hcSalveCount;
             isHeadCannonInstalled.reloadSalveInterval = Mathf.Max(0.1f, hcReloadTime - (hcReloadTime*suReloadTime));
         }
@@ -293,7 +302,7 @@ public class PlayerWeaponController : MonoBehaviour
         // Rocket Launcher - rocket - target
         if (isRocketLauncherInstalled != null)
         {
-            isRocketLauncherInstalled.rocketDamage = rlDamage + scTargetingLvl;
+            isRocketLauncherInstalled.rocketDamage = rlDamage + scTargetingLvl_;
             isRocketLauncherInstalled.lifeTime = rlLifeTime;
             isRocketLauncherInstalled.spawnInterval = Mathf.Max(0.1f, rlReloadTime - (rlReloadTime*suReloadTime));
         }
@@ -301,7 +310,7 @@ public class PlayerWeaponController : MonoBehaviour
         // Fireflies - bullet - backwards
         if (isFireFliesInstalled != null)
         {
-            isFireFliesInstalled.bulletDamage = ffDamage + scBackwardsLvl;
+            isFireFliesInstalled.bulletDamage = ffDamage + scDirectionLvl_;
             isFireFliesInstalled.realodInterval = Mathf.Max(0.1f, ffReloadTime - (ffReloadTime*suReloadTime));
             isFireFliesInstalled.bulletMaxCount = ffbulletCount;
         }

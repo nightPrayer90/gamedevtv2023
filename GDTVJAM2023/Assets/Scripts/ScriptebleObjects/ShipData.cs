@@ -29,6 +29,6 @@ public class ShipData : ScriptableObject
     public int swarmClass = 0;
     public int defenseClass = 0;
     public int targetClass = 0;
-    public int backwardsClass = 0;
+    public int directionClass = 0;
 
 }

@@ -28,20 +28,4 @@ public class ClassTooltipTrigger : MonoBehaviour
         //tooltip.Hide();
         goTooltip.SetActive(false);
     }
-
-
-    /*
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        triggerPosition = transform.position;
-        tooltip.Show(triggerPosition, contentType);
-        tooltip.enabled = true;
-    }
-
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        //tooltip.Hide();
-        tooltip.enabled = false;
-    }*/
 }

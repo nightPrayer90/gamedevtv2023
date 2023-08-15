@@ -3,6 +3,16 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
+public enum UpgradeTyp
+{
+    WeaponUpgrade,
+    NormalUpgrade,
+    ClassUpgrade,
+    SubClassUpgrade,
+    SpecialUpgrade
+}
+
+
 [System.Serializable]
 public class UpgradeContainer
 {
@@ -25,14 +35,7 @@ public class UpgradeContainer
         Direction = 7
     }
 
-    public enum UpgradeTyp 
-    {
-        WeaponUpgrade,
-        NormalUpgrade,
-        ClassUpgrade,
-        SubClassUpgrade,
-        SpecialUpgrade
-    }
+ 
 
     public string headerStr;
     public string descriptionStr;

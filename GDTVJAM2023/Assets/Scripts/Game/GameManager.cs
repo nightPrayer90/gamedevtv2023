@@ -583,11 +583,11 @@ public class GameManager : MonoBehaviour
 
         // create temporary list from weapons or normal upgrades - depends on the player level
         if (playerLevel == -1) // new weapon
-            valueList.AddRange(upgradeChooseList.weaponIndex);
+            valueList.AddRange( upgradeChooseList.BuildUpgradeList(UpgradeTyp.WeaponUpgrade) );
         else if ((playerLevel % 5) == 0) // class update
-            valueList.AddRange(upgradeChooseList.classUpgradeIndex);
+            valueList.AddRange(upgradeChooseList.BuildUpgradeList(UpgradeTyp.ClassUpgrade));
         else
-            valueList.AddRange(upgradeChooseList.upgradeIndex);
+            valueList.AddRange((upgradeChooseList.BuildUpgradeList(UpgradeTyp.NormalUpgrade)));
 
         // create 3 random possible numbers that do not duplicate each other
         for (int i = 0; i < 3; i++)
@@ -596,7 +596,7 @@ public class GameManager : MonoBehaviour
             selectedNumbers.Add(valueList[randomIndex]);            // save the number in a list
             valueList.RemoveAt(randomIndex);                        // remove the value from the temp list
         }
-
+        
         selectedNumbers_ = selectedNumbers.ToArray();
 
         //reset 
@@ -606,12 +606,12 @@ public class GameManager : MonoBehaviour
     // (help function) an already installed weapon is removed from the weapons list - trigger by UpgradeWeaponController
     public void RemoveValueWeaponList(int removeIndex)
     {
-        if (upgradeChooseList != null)
+        /*if (upgradeChooseList != null)
         {
             int removePos = upgradeChooseList.weaponIndex.IndexOf(removeIndex);
 
             upgradeChooseList.weaponIndex.RemoveAt(removePos);
-        }
+        }*/
     }
 
     // camera screenshake control

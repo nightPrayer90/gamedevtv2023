@@ -4,42 +4,65 @@ using UnityEngine;
 
 public class UpgradeChooseList : MonoBehaviour
 {
+    [Header("Upgrade System")]
     public UpgradeContainer[] weaponUpgrades;
-    public List<int> upgradeIndex = new List<int>(); // normal upgrades
-    public List<int> classUpgradeIndex = new List<int>(); // class upgrades
-    public List<int> weaponIndex = new List<int>(); // weapon upgrades
+    public List<bool> weaponIndexInstalled = new List<bool>();
 
+    [Header("Class level")]
+    public int mcBulletLvl = 0;
+    public int mcExplosionLvl = 0;
+    public int mcLaserLvl = 0;
+    public int mcSupportLvl = 0;
+    public int scSwarmLvl = 0;
+    public int scDefenceLvl = 0;
+    public int scTargetingLvl = 0;
+    public int scDirectionLvl = 0;
+
+    [Header("Basic Ability Values")]
+    public int baseBulletCritChance = 0;
+    public int baseBulletCritDamage = 100;
+    public float baseRocketAOERadius = 0;
+    public int baseLaserBurnDamageChance = 0;
+    public int baseSupportRealoadTime = 0;
+    public float baseLaserTicks = 4;
+    public float baseLaserTickDamage = 5;
+    public float baseAttackSpeed = 0;
+    public float baseBoostInvulnerability = 0;
+    public float chanceToGetTwoExp = 0;
+    public float chanceToGet1Health = 0;
+
+    [Header("Class Upgrade Values")]
+    public int critChance = 7;
+    public int critDamage = 20;
+    public float aoeRange = 20;
+    public int buringChance = 2;
+    public int supportRealodTime = 10;
+    public int laserBurningTickDamancePercent = 100;
 
     private void Start()
     {
-        upgradeIndex.Add(0);
-        upgradeIndex.Add(1);
-        upgradeIndex.Add(2);
-        upgradeIndex.Add(3);
-        upgradeIndex.Add(4);
-        upgradeIndex.Add(5);
-
-        weaponIndex.Add(6);
-        weaponIndex.Add(7);
-        weaponIndex.Add(8);
-        weaponIndex.Add(9);
-        weaponIndex.Add(10);
-        weaponIndex.Add(11);
-        weaponIndex.Add(12);
-        weaponIndex.Add(13);
-        weaponIndex.Add(14);
-        weaponIndex.Add(15);
-        weaponIndex.Add(16);
-        weaponIndex.Add(17);
-
-        //classUpgradeIndex.Add(18);
-        //classUpgradeIndex.Add(19);
-        //classUpgradeIndex.Add(20);
-        //classUpgradeIndex.Add(21);
-        classUpgradeIndex.Add(22);
-        classUpgradeIndex.Add(23);
-        classUpgradeIndex.Add(24);
-        classUpgradeIndex.Add(25);
+        // this list was filled fom playerWeaponController
+        for (int i = 0; i < weaponUpgrades.Length; i++)
+        {
+            weaponIndexInstalled.Add(false);
+        }
     }
 
+    public List<int> BuildUpgradeList(UpgradeTyp upgradeTyp)
+    {
+        List<int> buildList = new List<int>();
+
+        for( int i=0; i < weaponUpgrades.Length; i++ )
+        {
+            if (weaponUpgrades[i].upgradeTyp == upgradeTyp && weaponIndexInstalled[i] == false &&
+               mcBulletLvl >= weaponUpgrades[i].reqBullet && mcExplosionLvl >= weaponUpgrades[i].reqRocket && mcLaserLvl >= weaponUpgrades[i].reqLaser && mcSupportLvl >= weaponUpgrades[i].reqSupport ) 
+                
+            {
+                buildList.Add(i);
+            }
+        }
+
+        //Debug.Log(buildList.Count);
+        return buildList;
+    }
 }

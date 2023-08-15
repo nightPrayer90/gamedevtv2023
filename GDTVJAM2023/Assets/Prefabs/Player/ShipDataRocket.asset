@@ -24,10 +24,10 @@ MonoBehaviour:
   rocketLifeTime: 2
   laserShooingTime: 0
   bulletClass: 0
-  explosionClass: 0
+  explosionClass: 1
   laserClass: 0
   supportClass: 0
   swarmClass: 0
   defenseClass: 0
   targetClass: 0
-  backwardsClass: 0
+  directionClass: 0
