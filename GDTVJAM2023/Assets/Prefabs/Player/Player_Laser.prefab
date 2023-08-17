@@ -15048,6 +15048,7 @@ MonoBehaviour:
   - {fileID: 8045190667923554887}
   boostEngine: {fileID: 8544312338355738820}
   playerMouseMode: 0
+  canTakeDamge: 1
   damageInterval: 1
   damageTaken: 1
   isOutsideBorder: 0
@@ -15114,11 +15115,9 @@ MonoBehaviour:
   bulletCritChance: 5
   bulletCritDamage: 125
   burnDamageChance: 1
-  burnDamage: 5
-  burnTickCount: 5
   rocketAOERadius: 0
   isHeadCannon: 0
-  isRocketLauncher: 0
+  isRocketLauncher: 1
   isFireFlies: 0
   isBulletWings: 0
   isLifeModul: 0

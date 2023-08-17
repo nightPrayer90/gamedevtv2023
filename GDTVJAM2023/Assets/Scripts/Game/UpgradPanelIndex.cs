@@ -144,7 +144,6 @@ public class UpgradPanelIndex : MonoBehaviour
 
             transform.DOLocalMoveY(855f, .7f, true).SetUpdate(UpdateType.Normal, true).SetEase(Ease.InQuart).OnComplete(() =>
             {
-                Debug.Log("getUpdate");
                 upgradePanelController.GetUpdate();
             });
         }

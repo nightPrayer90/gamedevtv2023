@@ -27,7 +27,7 @@ public class UpgradeChooseList : MonoBehaviour
     public int baseLaserTicks = 4;
     public int baseLaserTickDamage = 5;
     public float baseAttackSpeed = 0;
-    public float baseBoostInvulnerability = 0.2f;
+    public float baseBoostInvulnerability = 0.5f;
     public float chanceToGetTwoExp = 0;
     public float chanceToGet1Health = 0;
     public float rocketLifeTime = 0;

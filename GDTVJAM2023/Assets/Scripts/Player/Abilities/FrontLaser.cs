@@ -117,12 +117,31 @@ public class FrontLaser : MonoBehaviour
         {
             EnemyHealth collidedObject = hit.collider.gameObject.GetComponent<EnemyHealth>();
 
-            if (collidedObject.canTakeLaserDamage[3] == true && collidedObject.canTakeDamage == true)
+            if (collidedObject != null)
             {
-                collidedObject.TakeLaserDamage(bulletDamage,3);
-                collidedObject.ShowDamageFromPosition(hit.point, bulletDamage);
-                collisionParticle.transform.position = hit.point;
-                collisionParticle.Play();
+
+                if (collidedObject.canTakeLaserDamage[3] == true && collidedObject.canTakeDamage == true)
+                {
+                    collidedObject.TakeLaserDamage(bulletDamage, 3);
+                    collidedObject.ShowDamageFromPosition(hit.point, bulletDamage);
+                    collisionParticle.transform.position = hit.point;
+                    collisionParticle.Play();
+                }
+            }
+            else
+            {
+                EnemyShield collidedShield = hit.collider.GetComponentInParent<EnemyShield>();
+                if (collidedShield != null)
+                {
+                    if (collidedShield.canTakeDamage == true)
+                    {
+                        collidedShield.ShieldGetLaserDamage();
+                        collidedShield.ShowDamageFromPosition(hit.point);
+                        collisionParticle.transform.position = hit.point;
+                        collisionParticle.Play();
+                    }
+                }
+
             }
 
             lr.SetPosition(1, hit.point); 

@@ -24,6 +24,7 @@ TagManager:
   - DirectionPickup
   - ExplosionPickup
   - UpgradePickup
+  - PlayerLaser
   layers:
   - Default
   - TransparentFX

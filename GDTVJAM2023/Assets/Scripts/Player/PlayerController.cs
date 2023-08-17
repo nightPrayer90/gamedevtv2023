@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem boostEngine;
     private bool canGetLaserDamage = true;
     public bool playerMouseMode = false;
-    private bool canTakeDamge = false;
+    [SerializeField] private bool canTakeDamge = true;
 
     [Header("Outside Border")]
     public float damageInterval = 1f;
@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButtonUp("Boost"))
             {
                 CancelInvoke("BoostReload");
-                Invoke("BoostReload", 1f);
+                Invoke("BoostReload", 0.5f);
                 isBoost = false;
                 setPosition = true;
             }
@@ -210,6 +210,8 @@ public class PlayerController : MonoBehaviour
             playerMesh.localRotation = Quaternion.Euler(currentRotationX, transform.rotation.y + 90f, transform.rotation.z);
 
         }
+
+       
     }
 
 
@@ -406,9 +408,6 @@ public class PlayerController : MonoBehaviour
                 // find the right explosion direction
                 Vector3 explosionDirection = collision.transform.position - transform.position;
                 explosionDirection.Normalize();
-
-                // trigger the damage floating text
-                gameManager.DoFloatingText(transform.position, "+" + enemyHealth.collisonDamage.ToString(), hitColor);
        
                 // trigger a Explosion on the Enemy
                 ObjectPoolManager.SpawnObject(enemyHealth.collisionExplosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
@@ -416,12 +415,20 @@ public class PlayerController : MonoBehaviour
                 // if the player is invulnerability 
                 if (canTakeDamge == true || enemyHealth.canPoolObject == false)
                 {
+                    // trigger the damage floating text
+                    gameManager.DoFloatingText(transform.position, "+" + enemyHealth.collisonDamage.ToString(), hitColor);
+
                     // add a force after the collision to the player
                     playerRb.AddForce(explosionDirection * -1f * enemyHealth.explosionForce, ForceMode.Impulse);
 
                     // calculate player health
                     int damage = Mathf.Max(enemyHealth.collisonDamage - Mathf.RoundToInt(enemyHealth.collisonDamage * protectionPerc / 100), 1);
                     UpdatePlayerHealth(damage);
+                }
+                else 
+                {
+                    // add a force after the collision to the player
+                    playerRb.AddForce(explosionDirection * 1f * enemyHealth.explosionForce, ForceMode.Impulse);
                 }
 
                 // refresh the UI
@@ -541,11 +548,18 @@ public class PlayerController : MonoBehaviour
                     forwardInput = boostSpeed;
                     boostParticle.Emit(1);
                     boostEngine.Emit(1);
+
+                    if (canTakeDamge == false)
+                    {
+                        boostParticle.Emit(10);
+                    }
+
                 }
                 else
                 {
                     // set player Mesh positon to zero
                     setPosition = true;
+                    canTakeDamge = true;
                 }
             }
 

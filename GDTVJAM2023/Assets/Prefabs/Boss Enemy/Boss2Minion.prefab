@@ -4968,7 +4968,7 @@ GameObject:
   - component: {fileID: 1897390443557309492}
   m_Layer: 9
   m_Name: Boss2.010
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9984,6 +9984,7 @@ MonoBehaviour:
   replacement: {fileID: 5669948963245265451, guid: 282a762ab0151904ca919273b724a39e, type: 3}
   hitColor: {r: 0, g: 1, b: 0.9897847, a: 1}
   rb: {fileID: 2006606971950152360}
+  canTakeDamage: 1
 --- !u!114 &4097034792588251494
 MonoBehaviour:
   m_ObjectHideFlags: 0

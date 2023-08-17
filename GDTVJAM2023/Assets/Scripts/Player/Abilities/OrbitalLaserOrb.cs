@@ -27,19 +27,42 @@ public class OrbitalLaserOrb : MonoBehaviour
         {
             EnemyHealth eh = other.GetComponent<EnemyHealth>();
 
-            if (eh.canTakeDamage == true)
+            if (eh != null)
             {
-                eh.TakeLaserDamage(damage,3);
-                eh.ShowDamageFromObjects(damage);
+                if (eh.canTakeDamage == true)
+                {
+                    eh.TakeLaserDamage(damage, 3);
+                    eh.ShowDamageFromObjects(damage);
+                }
             }
-            Invoke("ActivateOrb", realoadTime);
+            else
+            {
+                
+                EnemyShield es = other.transform.GetComponentInParent<EnemyShield>();
 
-            hitParticle.transform.position = gameObject.transform.position;
-            hitParticle.Play();
+                Debug.Log(es);
 
-            orbParticle.Stop();
-            gameObject.SetActive(false);
+                if (es != null)
+                {
+                    es.ShieldGetDamage();
+                    es.ShowDamageFromPosition(transform.position);
+                }
+            }
+
+            DestroyOrb();
         }
+    }
+
+    // if the Orb Collide with an Enemy laser2
+    public void DestroyOrb()
+    {
+        Invoke("ActivateOrb", realoadTime);
+
+        hitParticle.transform.position = gameObject.transform.position;
+        hitParticle.Play();
+
+        orbParticle.Stop();
+        gameObject.SetActive(false);
     }
 
     private void ActivateOrb()

@@ -334,6 +334,7 @@ public class EnemyHealth : MonoBehaviour
     {
         canTakeDamage = false;
         isdied = true;
+        burnParticleSystem.Stop();
 
         if (DieEvent != null) {
             DieEvent.Invoke(this, new EventArgs());

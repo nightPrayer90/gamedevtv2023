@@ -26,6 +26,7 @@ public class EnemyShield : MonoBehaviour
     public Color hitColor;
     public Rigidbody rb;
     private bool isdied = false;
+    public bool canTakeDamage = true;
 
     private void OnEnable()
     {
@@ -115,6 +116,18 @@ public class EnemyShield : MonoBehaviour
         }
     }
 
+    public void ShieldGetLaserDamage()
+    {
+        ShieldGetDamage(1);
+        canTakeDamage = false;
+        Invoke("CanTakeDamageReset", 0.5f);
+    }
+    
+    private void CanTakeDamageReset()
+    {
+        canTakeDamage = true;
+    }
+
     public void ActivateShield()
     {
         shieldMesh.enabled = true;
@@ -175,11 +188,15 @@ public class EnemyShield : MonoBehaviour
     }
 
 
-
     private void PushThePlayerAway(float forcepower)
     {
         Vector3 pushDirection = playerTr.position - transform.position;
         Vector3 pushForceVector = pushDirection.normalized * forcepower;
         playerRb.AddForce(pushForceVector, ForceMode.Impulse);
+    }
+
+    public void ShowDamageFromPosition(Vector3 pos)
+    {
+        gameManager.DoFloatingText(pos, "+1", hitColor);
     }
 }

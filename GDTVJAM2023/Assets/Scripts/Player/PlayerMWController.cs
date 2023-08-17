@@ -338,14 +338,33 @@ public class PlayerMWController : MonoBehaviour
         {
             EnemyHealth collidedObject = hit.collider.gameObject.GetComponent<EnemyHealth>();
 
-            if (collidedObject.canTakeLaserDamage[1] == true && collidedObject.canTakeDamage == true)
+            if (collidedObject != null)
             {
-                collidedObject.TakeLaserDamage(bulletBaseDamage,1);
-                collidedObject.ShowDamageFromPosition(hit.point, bulletBaseDamage);
-                collisionParticle.transform.position = hit.point;
-                collisionParticle.Play();
+              
+                if (collidedObject.canTakeLaserDamage[1] == true && collidedObject.canTakeDamage == true)
+                {
+                    collidedObject.TakeLaserDamage(bulletBaseDamage, 1);
+                    collidedObject.ShowDamageFromPosition(hit.point, bulletBaseDamage);
+                    collisionParticle.transform.position = hit.point;
+                    collisionParticle.Play();
+                }
             }
+            else
+            {
+                EnemyShield collidedShield = hit.collider.GetComponentInParent<EnemyShield>();
+                if (collidedShield != null)
+                {
+                    if (collidedShield.canTakeDamage == true)
+                    {
+                        collidedShield.ShieldGetLaserDamage();
+                        collidedShield.ShowDamageFromPosition(hit.point);
+                        collisionParticle.transform.position = hit.point;
+                        collisionParticle.Play();
+                    }
+                }
 
+            }
+       
             lr.SetPosition(1, hit.point);
 
             hitParticle.transform.position = hit.point;
@@ -368,12 +387,31 @@ public class PlayerMWController : MonoBehaviour
         {
             EnemyHealth collidedObject = hit.collider.gameObject.GetComponent<EnemyHealth>();
 
-            if (collidedObject.canTakeLaserDamage[2] == true && collidedObject.canTakeDamage == true)
+            if (collidedObject != null)
             {
-                collidedObject.TakeLaserDamage(bulletBaseDamage,2);
-                collidedObject.ShowDamageFromPosition(hit.point, bulletBaseDamage);
-                collisionParticle2.transform.position = hit.point;
-                collisionParticle2.Play();
+
+                if (collidedObject.canTakeLaserDamage[2] == true && collidedObject.canTakeDamage == true)
+                {
+                    collidedObject.TakeLaserDamage(bulletBaseDamage, 2);
+                    collidedObject.ShowDamageFromPosition(hit.point, bulletBaseDamage);
+                    collisionParticle.transform.position = hit.point;
+                    collisionParticle.Play();
+                }
+            }
+            else
+            {
+                EnemyShield collidedShield = hit.collider.GetComponentInParent<EnemyShield>();
+                if (collidedShield != null)
+                {
+                    if (collidedShield.canTakeDamage == true)
+                    {
+                        collidedShield.ShieldGetLaserDamage();
+                        collidedShield.ShowDamageFromPosition(hit.point);
+                        collisionParticle.transform.position = hit.point;
+                        collisionParticle.Play();
+                    }
+                }
+
             }
 
 

@@ -62,7 +62,7 @@ public class Laser2 : MonoBehaviour
     {
         tagStr = "Enemy";
         if (gameManager.dimensionShift == true) { tagStr = "secondDimensionEnemy"; }
-        layerMask = (1 << 6) | (1 << 7) | (1 << 9);
+        layerMask = (1 << 6) | (1 << 7) | (1<< 8) | (1 << 9);
 
         InvokeRepeating("InvokeShoot", 0.01f, 0.02f);
     }
@@ -116,6 +116,25 @@ public class Laser2 : MonoBehaviour
                         hitParticle.Emit(2);
                         player.GetLaserDamage(laserDamage);
                     }
+
+                    if (hit.transform.tag == "PlayerLaser")
+                    {
+                        OrbitalLaserOrb orb = hit.transform.GetComponent<OrbitalLaserOrb>();
+
+                        hitParticle.transform.position = hit.point;
+                        hitParticle.Emit(2);
+                        orb.DestroyOrb();
+                    }
+
+                    if (hit.transform.tag == "Shield")
+                    {
+                        ShieldController shield = hit.transform.GetComponent<ShieldController>();
+
+                        hitParticle.transform.position = hit.point;
+                        hitParticle.Emit(2);
+                        shield.UpdateShieldHealth();
+                    }
+
                     break;
                 }
                 else

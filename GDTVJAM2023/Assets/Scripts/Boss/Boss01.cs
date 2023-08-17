@@ -309,7 +309,9 @@ public class Boss01 : MonoBehaviour
             transform.DOShakePosition(4f, 0.3f, 20, 90, false, true).OnComplete(() =>
             {
                 AudioManager.Instance.PlaySFX("BossExplode");
+                
                 rippleParticleDie.Play();
+                gameObject.tag = "Untagged";
                 PushThePlayer(6f, 6f);
 
                 //drop

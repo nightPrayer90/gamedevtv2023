@@ -564,7 +564,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.baseLaserBurnDamageChance += 1;
                 break;
             case 31: // invulnerability
-                upgradeChooseList.baseBoostInvulnerability += 0.3f;
+                upgradeChooseList.baseBoostInvulnerability += 0.2f;
                 break;
             case 32: // chance to get douple exp
                 upgradeChooseList.chanceToGetTwoExp += 5;
@@ -639,5 +639,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.scDirectionLvl += factor;
                 break;
         }
+
+        playerWeaponController.UpdateWeaponValues();
     }
 }

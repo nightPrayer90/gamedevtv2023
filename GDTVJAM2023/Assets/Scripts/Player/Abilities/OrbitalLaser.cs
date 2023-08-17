@@ -30,7 +30,6 @@ public class OrbitalLaser : MonoBehaviour
 
     public void UpdateOrbs()
     {
-        Debug.Log(player);
         if (playerWeaponController != null)
         {
             foreach (OrbitalLaserOrb orb in orbitalLaserOrbs)
