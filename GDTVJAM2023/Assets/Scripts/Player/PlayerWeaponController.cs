@@ -137,6 +137,7 @@ public class PlayerWeaponController : MonoBehaviour
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
     /* **************************************************************************** */
+    #region lifecycle
     void Start()
     {
         playerController = gameObject.GetComponent<PlayerController>();
@@ -181,13 +182,13 @@ public class PlayerWeaponController : MonoBehaviour
         // upgrade Weapon Values
         UpdateWeaponValues();
     }
-
-
+    #endregion
 
 
     /* **************************************************************************** */
     /* WEAPON MANAGEMENT----------------------------------------------------------- */
     /* **************************************************************************** */
+    #region weapon management
     public void WeaponChoose()
     {
         GameObject go = null;
@@ -372,6 +373,6 @@ public class PlayerWeaponController : MonoBehaviour
             isOrbitalLaserInstalled.UpdateOrbs();
         }
     }
-
+    #endregion
 
 }

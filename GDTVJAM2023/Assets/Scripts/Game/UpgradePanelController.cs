@@ -233,6 +233,12 @@ public class UpgradePanelController : MonoBehaviour
                 case 34: // rocket life time
                     headerColor[i] = gameManager.globalClassColor[1];
                     break;
+                case 35: // Impact Burst
+                    headerColor[i] = gameManager.globalClassColor[1];
+                    break;
+                case 36: // Overdrive
+                    headerColor[i] = gameManager.globalClassColor[1];
+                    break;
 
 
                 //----
@@ -364,6 +370,10 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 34: //chance to collect exp
                 break;
+            case 35: // Impact Burst
+                break;
+            case 36: // Overdrive
+                break;
 
 
             //----
@@ -431,7 +441,6 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isHeadCannon = true;
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
-                gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
                 weaponCount++;
                 break;
@@ -439,7 +448,6 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isRocketLauncher = true;
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
-                gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
                 weaponCount++;
                 break;
@@ -447,7 +455,6 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isFireFlies = true;
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
-                gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
                 weaponCount++;
                 break;
@@ -455,7 +462,6 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isBulletWings = true;
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
-                gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
                 weaponCount++;
                 break;
@@ -463,7 +469,6 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isLifeModul = true;
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
-                gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
                 weaponCount++;
                 break;
@@ -471,7 +476,6 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isSpreadGun = true;
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
-                gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
                 weaponCount++;
                 break;
@@ -479,7 +483,6 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isFrontShield = true;
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
-                gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
                 weaponCount++;
                 break;
@@ -487,7 +490,6 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isBackShield = true;
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
-                gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
                 weaponCount++;
                 break;
@@ -495,7 +497,6 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isNovaExplosion = true;
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
-                gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
                 weaponCount++;
                 break;
@@ -503,7 +504,6 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isRockedWings = true;
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
-                gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
                 weaponCount++;
                 break;
@@ -511,7 +511,6 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isFrontLaser = true;
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
-                gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
                 weaponCount++;
                 break;
@@ -519,7 +518,6 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isOrbitalLaser = true;
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
-                gameManager.RemoveValueWeaponList(number);
                 UpdateClass(number,1);
                 weaponCount++;
                 break;
@@ -575,6 +573,14 @@ public class UpgradePanelController : MonoBehaviour
             case 34: // rocket life time
                 upgradeChooseList.rocketLifeTime += 0.2f;
                 break;
+            case 35: // Chance to trigger a Nova if u get hit
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                break;
+            case 36: // Chance to trigger a Nova if u dash Enemys
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                break;
+
+
         }
     }
 

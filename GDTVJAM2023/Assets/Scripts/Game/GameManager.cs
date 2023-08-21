@@ -603,17 +603,6 @@ public class GameManager : MonoBehaviour
         valueList.Clear();
     }
 
-    // (help function) an already installed weapon is removed from the weapons list - trigger by UpgradeWeaponController
-    public void RemoveValueWeaponList(int removeIndex)
-    {
-        /*if (upgradeChooseList != null)
-        {
-            int removePos = upgradeChooseList.weaponIndex.IndexOf(removeIndex);
-
-            upgradeChooseList.weaponIndex.RemoveAt(removePos);
-        }*/
-    }
-
     // camera screenshake control
     public void ScreenShake(int shakeIndex)
     {

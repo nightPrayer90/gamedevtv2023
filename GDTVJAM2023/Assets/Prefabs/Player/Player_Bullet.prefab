@@ -29765,14 +29765,17 @@ MonoBehaviour:
   - {fileID: 62231538956883697}
   boostEngine: {fileID: 6785288599795224579}
   playerMouseMode: 0
+  canTakeDamge: 1
   damageInterval: 1
   damageTaken: 1
   isOutsideBorder: 0
   hitColor: {r: 1, g: 0, b: 0, a: 1}
+  enemyHitColor: {r: 1, g: 0.6, b: 0, a: 1}
   navigationController: {fileID: 318727567431198199}
   engineAudioSource: {fileID: 2559130692153237150}
   boostParticle: {fileID: 5954068033412087406}
   playerMesh: {fileID: 2571244571310328356}
+  novaOnHit: {fileID: 4303235208557751318, guid: c01ac0e458a23da41aaf1c60e7ee97a7, type: 3}
 --- !u!114 &1191274111902304283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29831,8 +29834,6 @@ MonoBehaviour:
   bulletCritChance: 5
   bulletCritDamage: 125
   burnDamageChance: 1
-  burnDamage: 5
-  burnTickCount: 5
   rocketAOERadius: 0
   isHeadCannon: 0
   isRocketLauncher: 0
@@ -30086,6 +30087,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &4207119695660769880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9506550655580024}
+  m_Layer: 7
+  m_Name: -----abilities-----
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9506550655580024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4207119695660769880}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: -0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.125}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2571244571310328356}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5467178583199263533
 GameObject:
   m_ObjectHideFlags: 0

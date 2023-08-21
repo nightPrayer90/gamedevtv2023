@@ -5371,10 +5371,12 @@ MonoBehaviour:
   damageTaken: 1
   isOutsideBorder: 0
   hitColor: {r: 1, g: 0, b: 0, a: 1}
+  enemyHitColor: {r: 1, g: 0.6, b: 0, a: 1}
   navigationController: {fileID: 318727567431198199}
   engineAudioSource: {fileID: 2559130692153237150}
   boostParticle: {fileID: 6095360711487397578}
   playerMesh: {fileID: 2571244571310328356}
+  novaOnHit: {fileID: 4303235208557751318, guid: c01ac0e458a23da41aaf1c60e7ee97a7, type: 3}
 --- !u!114 &1812526233724689727
 MonoBehaviour:
   m_ObjectHideFlags: 0

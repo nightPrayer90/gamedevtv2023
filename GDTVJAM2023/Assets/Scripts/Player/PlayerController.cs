@@ -56,13 +56,14 @@ public class PlayerController : MonoBehaviour
     [Header("Floating Text")]
     public List<ParticleCollisionEvent> collisionEvents; // creating a list to store the collision events
     public Color hitColor = new Color(1f, 0.0f, 0.0f, 1f);
-
+    public Color enemyHitColor = new Color(1f, 0.0f, 0.0f, 1f);
 
     [Header("Game Objects")]
     public NavigationController navigationController;
     public AudioSource engineAudioSource;
     public ParticleSystem boostParticle;
     public Transform playerMesh;
+    public GameObject novaOnHit;
     private Rigidbody playerRb;
     private GameManager gameManager;
     private UpgradeChooseList upgradeChooseList;
@@ -75,6 +76,7 @@ public class PlayerController : MonoBehaviour
     /* **************************************************************************** */
     /* Lifecycle-Methoden---------------------------------------------------------- */
     /* **************************************************************************** */
+    #region lifecycle
     void Start()
     {
         // get Data from shipDataObject
@@ -109,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+
 
         if (isIntro = true && transform.position.y < introTargetY)
         {
@@ -197,12 +199,12 @@ public class PlayerController : MonoBehaviour
                 float rotationSpeedNormalized = Mathf.Clamp(deltaRotation.eulerAngles.y > 180 ? -rotationAngle : rotationAngle, -1f, 1f);
 
                 previousRotation = transform.rotation;
-                targetRotationX = originalRotationX - (rotationSpeedNormalized * 20f) - targetRotation2; 
+                targetRotationX = originalRotationX - (rotationSpeedNormalized * 20f) - targetRotation2;
             }
 
             // WASD - mode
             else
-            {   
+            {
                 targetRotationX = originalRotationX - (horizontalInput * 20f) - targetRotation2;
             }
 
@@ -211,13 +213,16 @@ public class PlayerController : MonoBehaviour
 
         }
 
-       
+
     }
+    #endregion
 
 
     /* **************************************************************************** */
     /* Collision Stuff------------------------------------------------------------- */
     /* **************************************************************************** */
+    #region collision stuff
+
     // activate if trigger enter - some Pickup stuff
     private void OnTriggerEnter(Collider other)
     {
@@ -376,7 +381,7 @@ public class PlayerController : MonoBehaviour
         {
             if (isOutsideBorder == false && isIntro == false)
             {
-                InvokeRepeating("PlayerIsOutsideBorder", 1f, damageInterval);
+                InvokeRepeating("PlayerIsOutsideBorder", 2.2f, damageInterval);
                 Invoke("PlayerIsOutsideBorderWarning", 0.1f);
 
                 gameManager.outsideBorderText.text = "outside border!";
@@ -408,7 +413,7 @@ public class PlayerController : MonoBehaviour
                 // find the right explosion direction
                 Vector3 explosionDirection = collision.transform.position - transform.position;
                 explosionDirection.Normalize();
-       
+
                 // trigger a Explosion on the Enemy
                 ObjectPoolManager.SpawnObject(enemyHealth.collisionExplosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
 
@@ -424,11 +429,24 @@ public class PlayerController : MonoBehaviour
                     // calculate player health
                     int damage = Mathf.Max(enemyHealth.collisonDamage - Mathf.RoundToInt(enemyHealth.collisonDamage * protectionPerc / 100), 1);
                     UpdatePlayerHealth(damage);
+
+                    if (upgradeChooseList.weaponIndexInstalled[35] == true)  NovaOnHit(2f, 8);
                 }
-                else 
+                else
                 {
                     // add a force after the collision to the player
-                    playerRb.AddForce(explosionDirection * 1f * enemyHealth.explosionForce, ForceMode.Impulse);
+                    if (upgradeChooseList.weaponIndexInstalled[36] == true)
+                    {
+                        NovaOnHit(1.2f, 6);
+                        playerRb.AddForce(explosionDirection * 1.4f * enemyHealth.explosionForce, ForceMode.Impulse);
+                    }
+                    else
+                    {
+                        gameManager.DoFloatingText(collision.transform.position, "+" + enemyHealth.enemyHealth, enemyHitColor);
+                        playerRb.AddForce(explosionDirection * 1f * enemyHealth.explosionForce, ForceMode.Impulse);
+                    }
+                    
+                   
                 }
 
                 // refresh the UI
@@ -459,14 +477,6 @@ public class PlayerController : MonoBehaviour
 
             gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
         }
-        /*
-        int numCollisionEvents = part.GetCollisionEvents(this.gameObject, collisionEvents);
-
-        foreach (ParticleCollisionEvent collisionEvent in collisionEvents) //  for each collision, do the following:
-        {
-            Vector3 pos = collisionEvent.intersection; // the point of intersection between the particle and the enemy
-            gameManager.DoFloatingText(pos, "+" + damage.ToString(), hitColor);
-        }*/
     }
 
     // player get damage vom a laserpointer
@@ -487,11 +497,14 @@ public class PlayerController : MonoBehaviour
     {
         canGetLaserDamage = true;
     }
+    #endregion
 
 
     /* **************************************************************************** */
     /* Movement Stuff-------------------------------------------------------------- */
     /* **************************************************************************** */
+    #region movement stuff
+
     // control the basic player movement
     private void PlayerMovement()
     {
@@ -506,7 +519,7 @@ public class PlayerController : MonoBehaviour
                 // engine trail
                 if (forwardInput > 0.1)
                 {
-                    foreach(ParticleSystem ep in engineParticles)
+                    foreach (ParticleSystem ep in engineParticles)
                     {
                         ep.Emit(1);
                     }
@@ -620,7 +633,7 @@ public class PlayerController : MonoBehaviour
             {
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.farClipPlane));
                 Vector3 directionToMouse = (transform.position - mousePosition).normalized * 0.001f;
-                directionToMouse.y = 0; 
+                directionToMouse.y = 0;
 
                 if (directionToMouse != Vector3.zero)
                 {
@@ -634,11 +647,14 @@ public class PlayerController : MonoBehaviour
             transform.Rotate(0f, horizontalInput * rotateSpeed, 0f);
         }
     }
+    #endregion
 
 
     /* **************************************************************************** */
     /* Health and Experience------------------------------------------------------- */
     /* **************************************************************************** */
+    #region health and experience
+
     // update the player experience
     private void UpdatePlayerExperience()
     {
@@ -648,7 +664,7 @@ public class PlayerController : MonoBehaviour
         // chance to get double exp
         if (upgradeChooseList.chanceToGetTwoExp > 0)
         {
-            if (Random.Range(0,100) <= upgradeChooseList.chanceToGetTwoExp)
+            if (Random.Range(0, 100) <= upgradeChooseList.chanceToGetTwoExp)
             {
                 gameManager.DoFloatingText(transform.position, "+", Color.green);
                 exp = 2;
@@ -660,7 +676,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Random.Range(0, 100) <= upgradeChooseList.chanceToGet1Health)
             {
-                gameManager.DoFloatingText(transform.position, "+1" , Color.green);
+                gameManager.DoFloatingText(transform.position, "+1", Color.green);
                 UpdatePlayerHealth(-1);
             }
         }
@@ -669,7 +685,7 @@ public class PlayerController : MonoBehaviour
         bool isLevelUp;
 
         // if level up
-        if (playerCurrentExperience == playerExperienceToLevelUp)
+        if (playerCurrentExperience >= playerExperienceToLevelUp)
         {
             Time.timeScale = 0;
             AudioManager.Instance.PlaySFX("LevelUp");
@@ -737,24 +753,79 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    #endregion
 
 
     /* **************************************************************************** */
-    /* Main weapon----------------------------------------------------------------- */
+    /* Weapon Stuff---------------------------------------------------------------- */
     /* **************************************************************************** */
+    #region weapon stuff
     // set the main weapon particle damage
     public void SetBulletDamage()
     {
         playerMWController.UpdateBulletValues();
     }
 
+    // trigger a nova on Hit
+    public void NovaOnHit(float explosionRadius, int NovaDamage)
+    {
+            // Audio
+            AudioManager.Instance.PlaySFX("Playernova");
 
+            Vector3 pos = transform.position;
+            LayerMask layerMask = (1 << 6);
+            explosionRadius = explosionRadius + playerWeaponController.rocketAOERadius;
+            NovaDamage = 6;
+
+            if (gameManager.dimensionShift == true)
+            {
+                layerMask = (1 << 9);
+            }
+
+            // array of all Objects in the explosionRadius
+            var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius, layerMask);
+
+            foreach (var obj in surroundingObjects)
+            {
+                // get rigidbodys from all objects in range
+                var rb = obj.GetComponent<Rigidbody>();
+                if (rb == null) continue;
+
+                // calculate distance between explosioncenter and objects in Range
+                float distance = Vector3.Distance(pos, rb.transform.position);
+
+                if (distance < explosionRadius)
+                {
+                    float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius), 1f);
+                    int adjustedDamage = Mathf.CeilToInt(NovaDamage * scaleFactor);
+
+                    // get EnemyHealthscript
+                    EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
+
+                    if (eHC != null)
+                    {
+                        // calculate enemy damage
+                        eHC.TakeExplosionDamage(adjustedDamage);
+
+                        // show floating text
+                        if (eHC.canTakeDamage == true)
+                            gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), enemyHitColor);
+                    }
+                }
+                rb.AddExplosionForce(400, pos, explosionRadius);
+            }
+
+            GameObject go = ObjectPoolManager.SpawnObject(novaOnHit, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
+            go.GetComponent<ParticleSystemDestroy>().rippleParicleSize = explosionRadius;
+        
+    }
+    #endregion
 
 
     /* **************************************************************************** */
     /* Fly Controll---------------------------------------------------------------- */
     /* **************************************************************************** */
+    #region fly controll
     // the player take damage after he is outside the border
     private void PlayerIsOutsideBorder()
     {
@@ -772,6 +843,6 @@ public class PlayerController : MonoBehaviour
     {
         navigationController.SetTargetPosition();
     }
-
+    #endregion
 
 }
