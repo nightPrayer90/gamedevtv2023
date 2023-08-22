@@ -12,7 +12,7 @@ public class BackShieldSpawner : MonoBehaviour
     private PlayerWeaponController playerWaeponController;
 
     public float spawnInterval = 10f;
-    public int shieldLife;
+    //public int shieldLife;
     private float randomSpawntime;
 
     private void Start()
@@ -42,14 +42,13 @@ public class BackShieldSpawner : MonoBehaviour
         {
             GameObject enabledShieldObject = Instantiate(leftShieldObject, gameObject.transform.position, Quaternion.Euler(0f, 0f, 0f) * gameObject.transform.rotation);
             leftShieldController = enabledShieldObject.GetComponent<ShieldController>();
-            leftShieldController.shieldLife = shieldLife;
+            leftShieldController.ShieldEnable(playerWaeponController.bsShildLife);
         }
         else
         {
             if (leftShieldController != null)
             {
-                leftShieldController.ShieldEnable();
-                leftShieldController.shieldLife = shieldLife;
+                leftShieldController.ShieldEnable(playerWaeponController.bsShildLife);
             }
         }
     }
@@ -61,15 +60,14 @@ public class BackShieldSpawner : MonoBehaviour
         {
             GameObject enabledShieldObject = Instantiate(rightShieldObject, gameObject.transform.position, Quaternion.Euler(0f, 0f, 0f) * gameObject.transform.rotation);
             rightShieldContoller = enabledShieldObject.GetComponent<ShieldController>();
-            rightShieldContoller.shieldLife = shieldLife;
+            rightShieldContoller.ShieldEnable(playerWaeponController.bsShildLife);
             randomSpawntime = 0;
         }
         else
         {
             if (rightShieldContoller != null)
             {
-                rightShieldContoller.ShieldEnable();
-                rightShieldContoller.shieldLife = shieldLife;
+                rightShieldContoller.ShieldEnable(playerWaeponController.bsShildLife);
             }
         }
     }

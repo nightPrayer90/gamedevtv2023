@@ -49,13 +49,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetMaterial: {fileID: 2100000, guid: e9faa18243b0ad44d976b0eff6dfd348, type: 2}
-  shieldLife: 3
+  shieldLife: 2
   isBackShield: 0
   isBackShieldLeft: 0
   isBackShieldRight: 0
   dieEffect: {fileID: 4951054707249704599}
   hitEffect: {fileID: 8580554068993650203}
   shieldMesh: {fileID: 6061755543470534798}
+  shieldSize: {x: 0, y: 0, z: 0}
   shieldCollider: {fileID: 7653055359343623226}
 --- !u!65 &7653055359343623226
 BoxCollider:

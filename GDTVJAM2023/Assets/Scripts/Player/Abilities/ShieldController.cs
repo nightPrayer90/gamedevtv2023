@@ -6,6 +6,7 @@ public class ShieldController : MonoBehaviour
     private Transform playerTr;
     private PlayerWeaponController playerWeaponController;
     private GameManager gameManager;
+    //private UpgradeChooseList upgradeChooseList;
     private Rigidbody playerRb;
     private FrontShieldSpawner frontShieldSpawner;
     private BackShieldSpawner backShieldSpawner;
@@ -21,7 +22,7 @@ public class ShieldController : MonoBehaviour
     public ParticleSystem dieEffect;
     public ParticleSystem hitEffect;
     public GameObject shieldMesh;
-    public Vector3 shieldSize;
+    private Vector3 shieldSize;
     public BoxCollider shieldCollider;
 
     private bool canGetDamage = true;
@@ -39,11 +40,12 @@ public class ShieldController : MonoBehaviour
         playerWeaponController = player.GetComponent<PlayerWeaponController>();
 
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        //upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
 
         shieldSize = shieldMesh.transform.localScale;
-
-        ShieldEnable();
         targetMaterial.DOFade(0, 0.01f);
+
+        
     }
 
     // set position to player position
@@ -103,14 +105,14 @@ public class ShieldController : MonoBehaviour
     /* SHIELD MANAGEMENT----------------------------------------------------------- */
     /* **************************************************************************** */
     // manuel OnEnable Event for the shield object
-    public void ShieldEnable()
+    public void ShieldEnable( int shildLife)
     {
         AudioManager.Instance.PlaySFX("ShieldActivate");
         shieldMesh.transform.DOPunchScale(new Vector3(1f, 1f, 1f), 1f, 5, 0.5f).SetUpdate(true);
+        shieldLife_ = shildLife;
 
         // reset shild life
         canGetDamage = true;
-        shieldLife_ = shieldLife;
         
         // set shield status
         if (isBackShield == false)

@@ -69,6 +69,7 @@ MonoBehaviour:
   dieEffect: {fileID: 3982561129295180439}
   hitEffect: {fileID: 8190568222847926749}
   shieldMesh: {fileID: 2634956619968452132}
+  shieldSize: {x: 0, y: 0, z: 0}
   shieldCollider: {fileID: 3838933028753933591}
 --- !u!1 &570284039279548838
 GameObject:

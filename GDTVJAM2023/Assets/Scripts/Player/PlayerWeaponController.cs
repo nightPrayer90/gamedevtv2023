@@ -330,14 +330,14 @@ public class PlayerWeaponController : MonoBehaviour
         if (isFrontShieldInstalled != null)
         {
             isFrontShieldInstalled.spawnInterval = Mathf.Max(0.1f, (fsSpawnTime * suReloadTime));
-            isFrontShieldInstalled.shieldLife = fsShieldLife;
+            fsShieldLife = fsShieldLife + upgradeChooseList.shieldHealth;
         }
 
         // Back Shield - support - defence
         if (isBackShieldInstalled != null)
         {
             isBackShieldInstalled.spawnInterval = Mathf.Max(0.1f, (bsSpawnTime * suReloadTime));
-            isBackShieldInstalled.shieldLife = bsShildLife;
+            bsShildLife = bsShildLife + upgradeChooseList.shieldHealth;
         }
 
         // Nova Explosion - explosion - defence

@@ -6,9 +6,7 @@ public class FrontShieldSpawner : MonoBehaviour
     private PlayerWeaponController playerWaeponController;
     private ShieldController enabledShieldController;
     public float spawnInterval = 10f;
-    public int shieldLife;
-
-    
+    //public int shieldLife = 1;
 
     private void Start()
     {
@@ -30,11 +28,12 @@ public class FrontShieldSpawner : MonoBehaviour
         {
             GameObject enabledShieldObject = Instantiate(shieldObject, gameObject.transform.position, Quaternion.Euler(0f, 0f, 0f) * gameObject.transform.rotation);
             enabledShieldController = enabledShieldObject.GetComponent<ShieldController>();
+            enabledShieldController.ShieldEnable(playerWaeponController.fsShieldLife);
         }
         else
         {
             if (enabledShieldController != null)
-                enabledShieldController.ShieldEnable();
+                enabledShieldController.ShieldEnable(playerWaeponController.fsShieldLife);
         }
     }
 

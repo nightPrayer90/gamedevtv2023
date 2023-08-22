@@ -29841,8 +29841,8 @@ MonoBehaviour:
   isBulletWings: 0
   isLifeModul: 0
   isSpreadGun: 0
-  isFrontShield: 0
-  isBackShield: 0
+  isFrontShield: 1
+  isBackShield: 1
   isNovaExplosion: 0
   isRockedWings: 0
   isFrontLaser: 0
@@ -29875,7 +29875,7 @@ MonoBehaviour:
   neDamage: 7
   neReloadTime: 3.2
   neRadius: 2
-  novaExplosion: {fileID: 5372979302712396976, guid: 056b57503f6534c44a1d12a5f55b7ced, type: 3}
+  novaExplosion: {fileID: 5372979302712396976, guid: 1881bb6667bcf7140b96c38cd7cd297b, type: 3}
   rwDamage: 2
   rwReloadTime: 5
   rwSalveCount: 3

@@ -31,6 +31,8 @@ public class UpgradeChooseList : MonoBehaviour
     public float chanceToGetTwoExp = 0;
     public float chanceToGet1Health = 0;
     public float rocketLifeTime = 0;
+    public int shieldHealth = 0;
+    public int shieldDamage = 0;
 
     [Header("Class Upgrade Values")]
     public int critChance = 7;

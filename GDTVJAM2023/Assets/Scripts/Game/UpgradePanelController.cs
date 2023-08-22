@@ -247,7 +247,24 @@ public class UpgradePanelController : MonoBehaviour
                     break;
                 case 39: // Ignition Augment
                     headerColor[i] = gameManager.globalClassColor[2];
-
+                    break;
+                case 40: // Fortified Defense
+                    headerColor[i] = gameManager.globalClassColor[3];
+                    break;
+                case 41: // Shielded Strike
+                    headerColor[i] = gameManager.globalClassColor[3];
+                    break;
+                case 42: // Lifeflow Shields
+                    headerColor[i] = gameManager.globalClassColor[3];
+                    break;
+                case 43: // Ignition Shield
+                    headerColor[i] = weaponColor;
+                    break;
+                case 44: // Shield Nova
+                    headerColor[i] = weaponColor;
+                    break;
+                case 45: // Shieldbreaker's Might
+                    headerColor[i] = weaponColor;
                     break;
                 //----
                 default: //weapon select
@@ -388,6 +405,18 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 39: // Ignition Augment
                 break;
+            case 40: // Fortified Defense
+                break;
+            case 41: // Shielded Strike
+                break;
+            case 42: // Lifeflow Shields
+                break;
+            case 43: // Ignition Shield
+                break;
+            case 44: // Shield Nova
+                break;
+            case 45: // Shieldbreaker's Might
+                break;
 
             //----
             default: //weapon select
@@ -497,6 +526,14 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
+
+                upgradeChooseList.weaponUpgrades[40].reqSupport = 1; // Fortified Defense
+                upgradeChooseList.weaponUpgrades[41].reqSupport = 2; // Shielded Strike
+                upgradeChooseList.weaponUpgrades[42].reqSupport = 3; // Lifeflow Shields
+                upgradeChooseList.weaponUpgrades[43].reqSupport = 2; // Ignition Shield
+                upgradeChooseList.weaponUpgrades[44].reqSupport = 2; // Shield Nova
+                upgradeChooseList.weaponUpgrades[45].reqSupport = 2; // Shieldbreaker's Might
+
                 weaponCount++;
                 break;
             case 13: //weapon: back shield
@@ -504,6 +541,14 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
+
+                upgradeChooseList.weaponUpgrades[40].reqSupport = 1; // Fortified Defense
+                upgradeChooseList.weaponUpgrades[41].reqSupport = 2; // Shielded Strike
+                upgradeChooseList.weaponUpgrades[42].reqSupport = 3; // Lifeflow Shields
+                upgradeChooseList.weaponUpgrades[43].reqSupport = 2; // Ignition Shield
+                upgradeChooseList.weaponUpgrades[44].reqSupport = 2; // Shield Nova
+                upgradeChooseList.weaponUpgrades[45].reqSupport = 2; // Shieldbreaker's Might
+
                 weaponCount++;
                 break;
             case 14: //weapon: schock nova
@@ -511,6 +556,9 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
+
+                upgradeChooseList.weaponUpgrades[36].reqRocket = 2; // Boosted Nova Impact
+
                 weaponCount++;
                 break;
             case 15: //weapon: rocket wings
@@ -603,6 +651,24 @@ public class UpgradePanelController : MonoBehaviour
             case 39: // Ignition Augment
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 upgradeChooseList.baseLaserTickDamage += 3;
+                break;
+            case 40: // Fortified Defense
+                upgradeChooseList.shieldHealth += 1;
+                break;
+            case 41: // Shielded Strike
+                upgradeChooseList.shieldDamage += 5;
+                break;
+            case 42: // Lifeflow Shields
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                break;
+            case 43: // Ignition Shield
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                break;
+            case 44: // Shield Nova
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                break;
+            case 45: // Shieldbreaker's Might
+                upgradeChooseList.weaponIndexInstalled[number] = true;
                 break;
 
         }
