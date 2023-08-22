@@ -236,11 +236,19 @@ public class UpgradePanelController : MonoBehaviour
                 case 35: // Impact Burst
                     headerColor[i] = gameManager.globalClassColor[1];
                     break;
-                case 36: // Overdrive
+                case 36: // Boosted Nova Impact
                     headerColor[i] = gameManager.globalClassColor[1];
                     break;
+                case 37: // Deadly Focus
+                    headerColor[i] = gameManager.globalClassColor[0];
+                    break;
+                case 38: // Extended Blast Expansion
+                    headerColor[i] = gameManager.globalClassColor[1];
+                    break;
+                case 39: // Ignition Augment
+                    headerColor[i] = gameManager.globalClassColor[2];
 
-
+                    break;
                 //----
                 default: //weapon select
                     headerColor[i] = weaponColor;
@@ -374,7 +382,12 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 36: // Overdrive
                 break;
-
+            case 37: // Deadly Focus
+                break;
+            case 38: // Extended Blast Expansion
+                break;
+            case 39: // Ignition Augment
+                break;
 
             //----
             default: //weapon select
@@ -553,7 +566,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.baseBulletCritChance += 3;
                 break;
             case 28: // explosion range
-                upgradeChooseList.baseRocketAOERadius += 10;
+                upgradeChooseList.baseRocketAOERadius += 8;
                 break;
             case 29: // burning tick damage
                 upgradeChooseList.buringChance += 20;
@@ -579,7 +592,18 @@ public class UpgradePanelController : MonoBehaviour
             case 36: // Chance to trigger a Nova if u dash Enemys
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 break;
-
+            case 37: // Bullet crit chance +10%
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                upgradeChooseList.baseBulletCritChance += 10;
+                break;
+            case 38: // Extended Blast Expansion
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                upgradeChooseList.baseRocketAOERadius += 15;
+                break;
+            case 39: // Ignition Augment
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                upgradeChooseList.baseLaserTickDamage += 3;
+                break;
 
         }
     }
