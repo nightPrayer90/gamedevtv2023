@@ -6,7 +6,7 @@ public class ShieldController : MonoBehaviour
     private Transform playerTr;
     private PlayerWeaponController playerWeaponController;
     private GameManager gameManager;
-    //private UpgradeChooseList upgradeChooseList;
+    private UpgradeChooseList upgradeChooseList;
     private Rigidbody playerRb;
     private FrontShieldSpawner frontShieldSpawner;
     private BackShieldSpawner backShieldSpawner;
@@ -40,7 +40,7 @@ public class ShieldController : MonoBehaviour
         playerWeaponController = player.GetComponent<PlayerWeaponController>();
 
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        //upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
+        upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
 
         shieldSize = shieldMesh.transform.localScale;
         targetMaterial.DOFade(0, 0.01f);
@@ -82,8 +82,11 @@ public class ShieldController : MonoBehaviour
                 Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
                 enemyRb.AddForce(explosionDirection * 1f * 10f, ForceMode.Impulse);
 
-                hitEffect.Play();
+                // enemy get Damage
+                ShieldDamage(collision.gameObject);
 
+                hitEffect.Play();
+                
                 // update shield health
                 UpdateShieldHealth();
             }
@@ -99,7 +102,14 @@ public class ShieldController : MonoBehaviour
             }
         }
     }
+    private void OnParticleCollision(GameObject other)
+    {
+        ParticleSystem part = other.GetComponent<ParticleSystem>(); // *** important! Making a variable to acess the particle system of the emmiting object, in this case, the lasers from my player ship.
+        var ps = other.GetComponent<EnemyParticleBullet>();
 
+        if (ps != null)
+            UpdateShieldHealth();
+    }
 
     /* **************************************************************************** */
     /* SHIELD MANAGEMENT----------------------------------------------------------- */
@@ -119,7 +129,6 @@ public class ShieldController : MonoBehaviour
         {
             playerWeaponController.isFrontShieldEnabled = true;
             frontShieldSpawner = GameObject.Find("front Shield").GetComponent<FrontShieldSpawner>();
-        
         }
         else
         {
@@ -139,15 +148,6 @@ public class ShieldController : MonoBehaviour
         shieldMesh.SetActive(true);
 
         targetMaterial.DOFade(0.8f, 1f);
-    }
-
-    private void OnParticleCollision(GameObject other)
-    {
-        ParticleSystem part = other.GetComponent<ParticleSystem>(); // *** important! Making a variable to acess the particle system of the emmiting object, in this case, the lasers from my player ship.
-        var ps = other.GetComponent<EnemyParticleBullet>();
-
-        if (ps != null)
-            UpdateShieldHealth();
     }
 
     // the shield get an hit from a bullet!
@@ -171,7 +171,7 @@ public class ShieldController : MonoBehaviour
                 // update shield color;
                 shieldMesh.transform.DOKill();
                 shieldMesh.transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0.5f), 0.3f, 5, 0.5f).OnComplete(() => { shieldMesh.transform.localScale = shieldSize; } );
-                UpdateShildColor();
+                UpdateShieldColor();
                 AudioManager.Instance.PlaySFX("ShieldGetHit");
             }
         }
@@ -216,11 +216,28 @@ public class ShieldController : MonoBehaviour
     }
 
     // update the alpha value from the shield material 
-    private void UpdateShildColor()
+    private void UpdateShieldColor()
     {
         float newAlpha = 1f - (0.9f / shieldLife_);
 
         targetMaterial.DOKill();
         targetMaterial.DOFade(newAlpha, 0.5f);
     }
+
+    // shield make damage
+    private void ShieldDamage(GameObject collsion)
+    {
+        if (upgradeChooseList.shieldDamage > 0)
+        {
+            EnemyHealth enH = collsion.GetComponent<EnemyHealth>();
+            Debug.Log("shildStrike");
+
+            if(enH != null)
+            {
+                enH.TakeDamage(upgradeChooseList.shieldDamage);
+                enH.ShowDamageFromObjects(upgradeChooseList.shieldDamage);
+            }
+        }
+    }
+
 }
