@@ -21,6 +21,7 @@ public class ShieldController : MonoBehaviour
 
     public ParticleSystem dieEffect;
     public ParticleSystem hitEffect;
+    public ParticleSystem burnEffect;
     public GameObject shieldMesh;
     private Vector3 shieldSize;
     public BoxCollider shieldCollider;
@@ -119,6 +120,7 @@ public class ShieldController : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("ShieldActivate");
         shieldMesh.transform.DOPunchScale(new Vector3(1f, 1f, 1f), 1f, 5, 0.5f).SetUpdate(true);
+        shieldLife = shildLife;
         shieldLife_ = shildLife;
 
         // reset shild life
@@ -160,6 +162,9 @@ public class ShieldController : MonoBehaviour
             canGetDamage = false;
             Invoke("CanDamageControl", 0.4f);
 
+            CancelInvoke("Shieldregenerate");
+            
+
             // destroy shield
             if (shieldLife_ <= 0)
             {
@@ -172,6 +177,7 @@ public class ShieldController : MonoBehaviour
                 shieldMesh.transform.DOKill();
                 shieldMesh.transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0.5f), 0.3f, 5, 0.5f).OnComplete(() => { shieldMesh.transform.localScale = shieldSize; } );
                 UpdateShieldColor();
+                Invoke("Shieldregenerate", 5f);
                 AudioManager.Instance.PlaySFX("ShieldGetHit");
             }
         }
@@ -206,6 +212,20 @@ public class ShieldController : MonoBehaviour
             }
         }
 
+        // update crit damage
+        if (upgradeChooseList.weaponIndexInstalled[45] == true)
+        {
+            upgradeChooseList.critDamage += 2;
+            burnEffect.Emit(5);
+        }
+
+        // update nova damage
+        if (upgradeChooseList.weaponIndexInstalled[44] == true)
+        {
+      
+            burnEffect.Emit(5);
+        }
+
         // set the shild die Effect
         dieEffect.Play();
 
@@ -227,17 +247,49 @@ public class ShieldController : MonoBehaviour
     // shield make damage
     private void ShieldDamage(GameObject collsion)
     {
+        EnemyHealth enH = null;
+
         if (upgradeChooseList.shieldDamage > 0)
         {
-            EnemyHealth enH = collsion.GetComponent<EnemyHealth>();
-            Debug.Log("shildStrike");
+            enH = collsion.GetComponent<EnemyHealth>();
 
-            if(enH != null)
+            if (enH != null)
             {
                 enH.TakeDamage(upgradeChooseList.shieldDamage);
                 enH.ShowDamageFromObjects(upgradeChooseList.shieldDamage);
+                hitEffect.Emit(30);
             }
+        }
+        if (upgradeChooseList.weaponIndexInstalled[43] == true)
+        {
+            if (enH == null)
+            {
+                enH = collsion.GetComponent<EnemyHealth>();
+            }
+            if (enH != null)
+            {
+                enH.InvokeBurningDamage();
+                burnEffect.Emit(10);
+            }
+
         }
     }
 
+    // shield regenerate life
+    private void Shieldregenerate()
+    {
+        CancelInvoke("Shieldregenerate");
+        if (upgradeChooseList.weaponIndexInstalled[42] == true)
+        {
+            if (shieldLife_ < shieldLife)
+            {
+                AudioManager.Instance.PlaySFX("ShieldRegenerate");
+                shieldLife_ += 1;
+                UpdateShieldColor();
+                Invoke("Shieldregenerate", 8f);
+                hitEffect.Emit(30);
+            }
+        }
+
+    }
 }

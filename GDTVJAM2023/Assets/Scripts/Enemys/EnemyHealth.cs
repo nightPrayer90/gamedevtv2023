@@ -272,7 +272,7 @@ public class EnemyHealth : MonoBehaviour
             if (ran < playerWeaponController.burnDamageChance && isBurning == false)
             {
                 isBurning = true;
-                InvokeRepeating("TakeBurningDamage", .2f, 1f);
+                InvokeBurningDamage();
                 if (burnParticleSystem != null)
                     burnParticleSystem.Play();
             }
@@ -309,6 +309,11 @@ public class EnemyHealth : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void InvokeBurningDamage()
+    {
+        InvokeRepeating("TakeBurningDamage", .2f, 1f);
     }
 
     public void TakeBurningDamage()
