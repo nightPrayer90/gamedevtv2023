@@ -11,6 +11,9 @@ public class PlayerWeaponController : MonoBehaviour
     public int burnDamageChance = 1;
     public float rocketAOERadius = 0;
 
+
+
+
     [Header("Passiv abilitys")]
     public bool isHeadCannon = false;
     public bool isRocketLauncher = false;
@@ -169,7 +172,7 @@ public class PlayerWeaponController : MonoBehaviour
         }
         if (shipData.laserClass > 0)
         {
-            upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.buringChance;
+            upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.burningChance;
         }
         if (shipData.supportClass > 0)
         {
@@ -178,9 +181,6 @@ public class PlayerWeaponController : MonoBehaviour
 
         // Start Values
         WeaponChoose();
-
-        // upgrade Weapon Values
-        UpdateWeaponValues();
     }
     #endregion
 
@@ -263,6 +263,22 @@ public class PlayerWeaponController : MonoBehaviour
     public void UpdateWeaponValues()
     {
         Debug.Log("weapon Upgrade");
+        // main weapon - value in playercontroller = constant -> update only mainWeapon controller
+        if (playerMWController.weaponType == PlayerMWController.MWeapontyp.bullet)  
+        {
+            playerMWController.bulletBaseDamage = Mathf.CeilToInt((playerController.playerBulletBaseDamage) * (1 + upgradeChooseList.percBulletDamage / 100));
+            playerMWController.SetBulletDamage();
+            Debug.Log("bulletUpgrade");
+            Debug.Log(playerMWController.bulletBaseDamage);
+        }
+        else if (playerMWController.weaponType == PlayerMWController.MWeapontyp.rocket)
+        {
+            playerMWController.bulletBaseDamage = Mathf.CeilToInt((playerController.playerBulletBaseDamage) * (1 + upgradeChooseList.percRocketDamage / 100));
+        }
+        else if (playerMWController.weaponType == PlayerMWController.MWeapontyp.laser)
+        {
+            playerMWController.bulletBaseDamage = Mathf.CeilToInt((playerController.playerBulletBaseDamage) * (1 + upgradeChooseList.percLaserDamage / 100));
+        }
 
         // main Class
         bulletCritChance = upgradeChooseList.baseBulletCritChance;
@@ -278,11 +294,12 @@ public class PlayerWeaponController : MonoBehaviour
         int scTargetingLvl_ = upgradeChooseList.scTargetingLvl;
         int scDirectionLvl_ = upgradeChooseList.scDirectionLvl;
 
+        
 
         // Head Cannon - bullet - target
         if (isHeadCannonInstalled != null)
         {
-            isHeadCannonInstalled.bulletDamage = hcBulletDamage + scTargetingLvl_;
+            isHeadCannonInstalled.bulletDamage = Mathf.CeilToInt((hcBulletDamage + scTargetingLvl_) * (1 + upgradeChooseList.percBulletDamage / 100));
             isHeadCannonInstalled.fireSalveMax = hcSalveCount;
             isHeadCannonInstalled.reloadSalveInterval = Mathf.Max(0.1f, (hcReloadTime*suReloadTime));
         }
@@ -290,7 +307,7 @@ public class PlayerWeaponController : MonoBehaviour
         // Rocket Launcher - rocket - target
         if (isRocketLauncherInstalled != null)
         {
-            isRocketLauncherInstalled.rocketDamage = rlDamage + scTargetingLvl_;
+            isRocketLauncherInstalled.rocketDamage = Mathf.CeilToInt((rlDamage + scTargetingLvl_) * (1 + upgradeChooseList.percRocketDamage / 100)) ;
             isRocketLauncherInstalled.lifeTime = rlLifeTime;
             isRocketLauncherInstalled.spawnInterval = Mathf.Max(0.1f, (rlReloadTime*suReloadTime));
         }
@@ -298,7 +315,7 @@ public class PlayerWeaponController : MonoBehaviour
         // Fireflies - bullet - backwards
         if (isFireFliesInstalled != null)
         {
-            isFireFliesInstalled.bulletDamage = ffDamage + scDirectionLvl_;
+            isFireFliesInstalled.bulletDamage = Mathf.CeilToInt((ffDamage + scDirectionLvl_) * (1 + upgradeChooseList.percBulletDamage / 100));
             isFireFliesInstalled.realodInterval = Mathf.Max(0.1f, (ffReloadTime*suReloadTime));
             isFireFliesInstalled.bulletMaxCount = ffbulletCount;
         }
@@ -306,7 +323,7 @@ public class PlayerWeaponController : MonoBehaviour
         // Bullet Wings - bullet - swarm
         if (isBulletWingsInstalled != null)
         {
-            isBulletWingsInstalled.bulletDamage = bwDamage;
+            isBulletWingsInstalled.bulletDamage = Mathf.CeilToInt((bwDamage) * (1 + upgradeChooseList.percBulletDamage / 100));
             isBulletWingsInstalled.realodInterval = Mathf.Max(0.1f, (bwRealoadTime * suReloadTime));
             isBulletWingsInstalled.salveMaxCount = bwSalveCount + scSwarmLvl_;
         }
@@ -321,7 +338,7 @@ public class PlayerWeaponController : MonoBehaviour
         // Spread Gun - bullet - swarm
         if (isSpreadGunInstalled != null)
         {
-            isSpreadGunInstalled.bulletDamage = sgDamage;
+            isSpreadGunInstalled.bulletDamage = Mathf.CeilToInt((sgDamage) * (1 + upgradeChooseList.percBulletDamage / 100));
             isSpreadGunInstalled.realodInterval = Mathf.Max(0.1f, (sgReloadTime * suReloadTime));
             isSpreadGunInstalled.bulletMaxCount = sgBulletCount + scSwarmLvl_;
         }
@@ -343,7 +360,7 @@ public class PlayerWeaponController : MonoBehaviour
         // Nova Explosion - explosion - defence
         if (isNovaExplosionInstalled != null)
         {
-            isNovaExplosionInstalled.novaDamage = neDamage;
+            isNovaExplosionInstalled.novaDamage = Mathf.CeilToInt((neDamage) * (1 + upgradeChooseList.percRocketDamage / 100));
             isNovaExplosionInstalled.spawnInterval = Mathf.Max(0.1f, (neReloadTime*(suReloadTime)));
             isNovaExplosionInstalled.explosionRadius = neRadius * rocketAOERadius;
         }
@@ -351,7 +368,7 @@ public class PlayerWeaponController : MonoBehaviour
         // Rocket Wings - explosion - swarm
         if (isRockedWingsInstalled != null)
         {
-            isRockedWingsInstalled.rocketDamage = rwDamage;
+            isRockedWingsInstalled.rocketDamage = Mathf.CeilToInt((rwDamage) * (1 + upgradeChooseList.percRocketDamage / 100));
             isRockedWingsInstalled.relodInterval = Mathf.Max(0.1f, (rwReloadTime * suReloadTime));
             isRockedWingsInstalled.salveMaxCount = rwSalveCount + scSwarmLvl_;
         }
@@ -359,7 +376,7 @@ public class PlayerWeaponController : MonoBehaviour
         // Front Laser - laser
         if (isFrontLaserInstalled != null)
         {
-            isFrontLaserInstalled.bulletDamage = flDamage;
+            isFrontLaserInstalled.bulletDamage = Mathf.CeilToInt((flDamage) * (1 + upgradeChooseList.percLaserDamage / 100));
             isFrontLaserInstalled.realodInterval = Mathf.Max (1f, (flReloadTime * suReloadTime));
             isFrontLaserInstalled.laserShootTime = flShootingTime;
         }
@@ -367,7 +384,7 @@ public class PlayerWeaponController : MonoBehaviour
         // Orbital Laser - laser - defence
         if (isOrbitalLaserInstalled != null)
         {
-            isOrbitalLaserInstalled.damage = olDamage;
+            isOrbitalLaserInstalled.damage = Mathf.CeilToInt((olDamage) * (1 + upgradeChooseList.percLaserDamage / 100));
             isOrbitalLaserInstalled.realoadTime = Mathf.Max(0.1f,  (olReloadTime* (suReloadTime)));
 
             isOrbitalLaserInstalled.UpdateOrbs();

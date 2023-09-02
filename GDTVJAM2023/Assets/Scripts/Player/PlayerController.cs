@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public float speed;
     [HideInInspector] public float rotateSpeed = 0.25f;
     [HideInInspector] public int playerMaxHealth = 10;
-    [HideInInspector] public int playerBulletBaseDamage = 2;
+    public int playerBulletBaseDamage = 2;
     [HideInInspector] public float playerFireRate = 0.5f;
     [HideInInspector] public float pickupRange = 2f;
     [HideInInspector] public float boostValue = 1f;
@@ -329,7 +329,7 @@ public class PlayerController : MonoBehaviour
                 break;
             case 2:
                 upgradeChooseList.mcLaserLvl++;
-                upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.buringChance;
+                upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.burningChance;
                 floatingText = "+1 laser class";
                 break;
             case 3:
@@ -763,6 +763,7 @@ public class PlayerController : MonoBehaviour
     // set the main weapon particle damage
     public void SetBulletDamage()
     {
+        playerWeaponController.WeaponChoose();
         playerMWController.UpdateBulletValues();
     }
 

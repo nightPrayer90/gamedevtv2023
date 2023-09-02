@@ -40,6 +40,7 @@ public class UpgradePanelController : MonoBehaviour
     private GameManager gameManager;
     private PlayerController playerController;
     private PlayerWeaponController playerWeaponController;
+    private PlayerMWController playerMWController;
     private UpgradeChooseList upgradeChooseList;
 
     public int selectetPanel;
@@ -53,6 +54,7 @@ public class UpgradePanelController : MonoBehaviour
         classColors = new List<Color>(gameManager.globalClassColor);
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
+        playerMWController = GameObject.FindWithTag("Player").GetComponent<PlayerMWController>();
 
         upgradeValue = new float[3];
         headerStr = new string[3];
@@ -258,13 +260,25 @@ public class UpgradePanelController : MonoBehaviour
                     headerColor[i] = gameManager.globalClassColor[3];
                     break;
                 case 43: // Ignition Shield
-                    headerColor[i] = weaponColor;
+                    headerColor[i] = gameManager.globalClassColor[3]; 
                     break;
                 case 44: // Shield Nova
-                    headerColor[i] = weaponColor;
+                    headerColor[i] = gameManager.globalClassColor[3]; 
                     break;
                 case 45: // Shieldbreaker's Might
-                    headerColor[i] = weaponColor;
+                    headerColor[i] = gameManager.globalClassColor[3]; 
+                    break;
+                case 46: // Ballistic Boost
+                    headerColor[i] = gameManager.globalClassColor[0];
+                    break;
+                case 47: // Boom Boom Boost
+                    headerColor[i] = gameManager.globalClassColor[1];
+                    break;
+                case 48: // Beam Boost
+                    headerColor[i] = gameManager.globalClassColor[2];
+                    break;
+                case 49: // Rapid Laser Reload
+                    headerColor[i] = gameManager.globalClassColor[2];
                     break;
                 //----
                 default: //weapon select
@@ -413,9 +427,17 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 43: // Ignition Shield
                 break;
-            case 44: // Shield Nova
+            case 44: // Shieldbreaker's Honor
                 break;
             case 45: // Shieldbreaker's Might
+                break;
+            case 46: // Ballistic Boost
+                break;
+            case 47: // Boom Boom Boost
+                break;
+            case 48: // Beam Boost
+                break;
+            case 49: // Rapid Laser Reload
                 break;
 
             //----
@@ -457,8 +479,8 @@ public class UpgradePanelController : MonoBehaviour
                 gameManager.UpdateUIPlayerHealth(playerController.playerCurrentHealth, playerController.playerMaxHealth);
                 break;
             case 1: //upgrade: main Weapon damage
-                playerController.playerBulletBaseDamage = playerController.playerBulletBaseDamage + Mathf.RoundToInt(upgradeValue[index]);
-                playerController.SetBulletDamage();
+                //playerController.playerBulletBaseDamage = playerController.playerBulletBaseDamage + Mathf.RoundToInt(upgradeValue[index]);
+                //playerController.SetBulletDamage();
                 break;
             case 2: //upgrade: Protection
                 float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + upgradeValue[index]);
@@ -608,19 +630,24 @@ public class UpgradePanelController : MonoBehaviour
                 break;
 
             case 26: // crit damage
-                upgradeChooseList.baseBulletCritDamage += 12;
+                upgradeChooseList.baseBulletCritDamage += 20;
+                playerWeaponController.WeaponChoose();
                 break;
             case 27: // crit chance
                 upgradeChooseList.baseBulletCritChance += 3;
+                playerWeaponController.WeaponChoose();
                 break;
             case 28: // explosion range
                 upgradeChooseList.baseRocketAOERadius += 8;
+                playerWeaponController.WeaponChoose();
                 break;
             case 29: // burning tick damage
-                upgradeChooseList.buringChance += 20;
+                upgradeChooseList.laserBurningTickDamangePercent += 20;
+                playerWeaponController.WeaponChoose();
                 break;
             case 30: // burning chance
                 upgradeChooseList.baseLaserBurnDamageChance += 1;
+                playerWeaponController.WeaponChoose();
                 break;
             case 31: // invulnerability
                 upgradeChooseList.baseBoostInvulnerability += 0.2f;
@@ -633,6 +660,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 34: // rocket life time
                 upgradeChooseList.rocketLifeTime += 0.2f;
+                playerWeaponController.WeaponChoose();
                 break;
             case 35: // Chance to trigger a Nova if u get hit
                 upgradeChooseList.weaponIndexInstalled[number] = true;
@@ -643,14 +671,17 @@ public class UpgradePanelController : MonoBehaviour
             case 37: // Bullet crit chance +10%
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 upgradeChooseList.baseBulletCritChance += 10;
+                playerWeaponController.WeaponChoose();
                 break;
             case 38: // Extended Blast Expansion
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 upgradeChooseList.baseRocketAOERadius += 15;
+                playerWeaponController.WeaponChoose();
                 break;
             case 39: // Ignition Augment
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 upgradeChooseList.baseLaserTickDamage += 3;
+                playerWeaponController.WeaponChoose();
                 break;
             case 40: // Fortified Defense
                 upgradeChooseList.shieldHealth += 1;
@@ -670,7 +701,21 @@ public class UpgradePanelController : MonoBehaviour
             case 45: // Shieldbreaker's Might
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 break;
-
+            case 46: // Ballistic Boost
+                upgradeChooseList.percBulletDamage += 15;
+                playerWeaponController.UpdateWeaponValues();
+                break;
+            case 47: // Boom Boom Boost
+                upgradeChooseList.percRocketDamage += 15;
+                playerWeaponController.UpdateWeaponValues();
+                break;
+            case 48: // Beam Boost
+                upgradeChooseList.percLaserDamage += 15;
+                playerWeaponController.UpdateWeaponValues();
+                break;
+            case 49: // Rapid Laser Reload
+                playerMWController.fireRate = playerMWController.fireRate * 0.9f;
+                break;
         }
     }
 
@@ -710,7 +755,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 2:
                 upgradeChooseList.mcLaserLvl += factor;
-                upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.buringChance;
+                upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.burningChance;
                 break;
             case 3:
                 upgradeChooseList.mcSupportLvl += factor;

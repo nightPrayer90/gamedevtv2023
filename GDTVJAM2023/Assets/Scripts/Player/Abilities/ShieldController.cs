@@ -89,7 +89,7 @@ public class ShieldController : MonoBehaviour
                 hitEffect.Play();
                 
                 // update shield health
-                UpdateShieldHealth();
+                UpdateShieldHealth(0);
             }
             else
             {
@@ -109,7 +109,7 @@ public class ShieldController : MonoBehaviour
         var ps = other.GetComponent<EnemyParticleBullet>();
 
         if (ps != null)
-            UpdateShieldHealth();
+            UpdateShieldHealth(1);
     }
 
     /* **************************************************************************** */
@@ -153,7 +153,7 @@ public class ShieldController : MonoBehaviour
     }
 
     // the shield get an hit from a bullet!
-    public void UpdateShieldHealth()
+    public void UpdateShieldHealth(int damageTyp)
     {
         // Update shield life
         if (canGetDamage == true)
@@ -178,7 +178,8 @@ public class ShieldController : MonoBehaviour
                 shieldMesh.transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0.5f), 0.3f, 5, 0.5f).OnComplete(() => { shieldMesh.transform.localScale = shieldSize; } );
                 UpdateShieldColor();
                 Invoke("Shieldregenerate", 5f);
-                AudioManager.Instance.PlaySFX("ShieldGetHit");
+                if (damageTyp==1) AudioManager.Instance.PlaySFX("ShieldGetHit");
+                else AudioManager.Instance.PlaySFX("ShieldCollision");
             }
         }
      }
@@ -219,10 +220,10 @@ public class ShieldController : MonoBehaviour
             burnEffect.Emit(5);
         }
 
-        // update nova damage
+        // update AOE size
         if (upgradeChooseList.weaponIndexInstalled[44] == true)
         {
-      
+            upgradeChooseList.baseRocketAOERadius += 2;
             burnEffect.Emit(5);
         }
 

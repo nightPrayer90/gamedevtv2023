@@ -132,7 +132,7 @@ public class Laser2 : MonoBehaviour
 
                         hitParticle.transform.position = hit.point;
                         hitParticle.Emit(2);
-                        shield.UpdateShieldHealth();
+                        shield.UpdateShieldHealth(1);
                     }
 
                     break;

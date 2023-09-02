@@ -19,10 +19,13 @@ public class UpgradeChooseList : MonoBehaviour
     public int scDirectionLvl = 0;
 
     [Header("Basic Ability Values")]
+    public float percBulletDamage = 0;
     public int baseBulletCritChance = 0;
     public int baseBulletCritDamage = 100;
+    public float percRocketDamage = 0;
     public float baseRocketAOERadius = 0;
     public int baseLaserBurnDamageChance = 0;
+    public float percLaserDamage = 0;
     public int baseSupportRealoadTime = 0;
     public int baseLaserTicks = 4;
     public int baseLaserTickDamage = 5;
@@ -38,9 +41,9 @@ public class UpgradeChooseList : MonoBehaviour
     public int critChance = 7;
     public int critDamage = 20;
     public float aoeRange = 20;
-    public int buringChance = 2;
+    public int burningChance = 2;
     public int supportRealodTime = 10;
-    public int laserBurningTickDamancePercent = 100;
+    public int laserBurningTickDamangePercent = 100;
     
 
     private void Start()

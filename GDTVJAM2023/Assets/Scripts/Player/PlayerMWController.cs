@@ -14,7 +14,7 @@ public class PlayerMWController : MonoBehaviour
 
     [Header("Main Weapon")]
     public MWeapontyp weaponType;
-    [HideInInspector] public int bulletBaseDamage;
+    public int bulletBaseDamage;
     [HideInInspector] public float fireRate;
     public List<ParticleSystem> mainWeapons = new List<ParticleSystem>();
     public List<ParticleBullet> particleBullets;
@@ -96,7 +96,7 @@ public class PlayerMWController : MonoBehaviour
     // update main Weapon base values from playerController
     public void UpdateBulletValues()
     {
-        bulletBaseDamage = playerController.playerBulletBaseDamage;
+        //bulletBaseDamage = playerController.playerBulletBaseDamage;
 
         // update bullet values
         if (weaponType == MWeapontyp.bullet)

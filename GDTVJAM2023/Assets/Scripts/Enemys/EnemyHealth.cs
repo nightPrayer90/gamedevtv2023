@@ -318,7 +318,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeBurningDamage()
     {
-        int burningDamage = Mathf.CeilToInt( upgradeChooseList.baseLaserTickDamage * (upgradeChooseList.laserBurningTickDamancePercent)/100);
+        int burningDamage = Mathf.CeilToInt( upgradeChooseList.baseLaserTickDamage * (upgradeChooseList.laserBurningTickDamangePercent)/100);
 
         ShowDamageFromObjectsColor(burningDamage, burningColor);
         TakeLaserDamage(burningDamage,0);

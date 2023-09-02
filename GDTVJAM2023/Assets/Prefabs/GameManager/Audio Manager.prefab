@@ -61,13 +61,13 @@ MonoBehaviour:
   - name: MouseNo
     clip: {fileID: 8300000, guid: 0e5f3c87cd59d864081a615463d64ca9, type: 3}
   - name: WindowOpen
-    clip: {fileID: 8300000, guid: 1d5a9af2f4e97da42a9bdb59e9a4a5e7, type: 3}
+    clip: {fileID: 8300000, guid: ba82cf6a3027b0a438d9e1ef1762d4c3, type: 3}
   - name: DimensionSwap
-    clip: {fileID: 8300000, guid: bf443bbffab2c6f4ab0687368da02d52, type: 3}
+    clip: {fileID: 8300000, guid: a0f63362afc4fc94b869aec0c6caa115, type: 3}
   - name: ExperienceOrb
-    clip: {fileID: 8300000, guid: 4644da636780f9d4ead15a611a14d9b6, type: 3}
+    clip: {fileID: 8300000, guid: 61c360367fa32e448b9475b93b79678b, type: 3}
   - name: LevelUp
-    clip: {fileID: 8300000, guid: 2d181c8f97436ea478dd450562b3bd9e, type: 3}
+    clip: {fileID: 8300000, guid: e9b19a1810fac20458093158190b0d02, type: 3}
   - name: PlayerShot
     clip: {fileID: 8300000, guid: 81e60661f9666a54abbdc732e4ea3ffd, type: 3}
   - name: ImpactShot
@@ -120,6 +120,22 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e5de4309042e23b45acbc0dbb4db09a5, type: 3}
   - name: BossExplode
     clip: {fileID: 8300000, guid: 8045518017f6b484299b8cceb9a4e119, type: 3}
+  - name: ViewChange
+    clip: {fileID: 8300000, guid: f17935d11ad3cf84e8d8e0ecdbd31b4b, type: 3}
+  - name: Boss2ShieldBounce
+    clip: {fileID: 8300000, guid: c0f27d76981b0364ca977c50dfae6c86, type: 3}
+  - name: Boss2LaserLoad
+    clip: {fileID: 8300000, guid: 52842dbdbfc455b44b4079ed7683294d, type: 3}
+  - name: Boss2LaserFire
+    clip: {fileID: 8300000, guid: c625b20a1dc556d4e9ac71d666e2b2a7, type: 3}
+  - name: Boss2ShieldSpawn
+    clip: {fileID: 8300000, guid: adbb990df5b9b754c9c2d19682db8903, type: 3}
+  - name: Boss2SmallAlert
+    clip: {fileID: 8300000, guid: 96213f56f617cd946a641ac1ebfe6cf2, type: 3}
+  - name: ShieldRegenerate
+    clip: {fileID: 8300000, guid: 1d5a9af2f4e97da42a9bdb59e9a4a5e7, type: 3}
+  - name: ShieldCollision
+    clip: {fileID: 8300000, guid: 846e03b63d518814783b8ea67e97c251, type: 3}
   musicSource: {fileID: 5360521062723552136}
   sfxSource: {fileID: 6929376283259157201}
   musicVolume: 0.2
