@@ -373,74 +373,11 @@ public class UpgradePanelController : MonoBehaviour
                 break;
 
                 //----
-            case 18: //bullet class  
-                break;
-            case 19: //explosion class
-                break;
-            case 20: //laser class
-                break;
-            case 21: //support class
-                break;
-            case 22: //swarm class
-                break;
-            case 23: //defence class
-                break;
-            case 24: //targeting class
-                break;
-            case 25: //direction class
-                break;
-
-                //----
-            case 26: //crit damage
-                break;
-            case 27: //crit chance
-                break;
-            case 28: //explosion range
-                break;
-            case 29: //burning tick damage
-                break;
-            case 30: //burning chance
-                break;
-            case 31: //invulnerability
-                break;
-            case 32: //chance to get double exp
-                break;
-            case 33: //chance to collect exp
-                break;
-            case 34: //chance to collect exp
-                break;
-            case 35: // Impact Burst
-                break;
-            case 36: // Overdrive
-                break;
-            case 37: // Deadly Focus
-                break;
-            case 38: // Extended Blast Expansion
-                break;
-            case 39: // Ignition Augment
-                break;
-            case 40: // Fortified Defense
-                break;
-            case 41: // Shielded Strike
-                break;
-            case 42: // Lifeflow Shields
-                break;
-            case 43: // Ignition Shield
-                break;
-            case 44: // Shieldbreaker's Honor
-                break;
-            case 45: // Shieldbreaker's Might
-                break;
-            case 46: // Ballistic Boost
-                break;
-            case 47: // Boom Boom Boost
-                break;
-            case 48: // Beam Boost
-                break;
-            case 49: // Rapid Laser Reload
+            case >= 18 and <= 49:
                 break;
 
             //----
+
             default: //weapon select
                 selectedUpgradePanelList[weaponCount].sprite = iconPanel[index];
                 break;
