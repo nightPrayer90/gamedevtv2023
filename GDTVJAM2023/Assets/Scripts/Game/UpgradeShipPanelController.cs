@@ -64,6 +64,8 @@ public class UpgradeShipPanelController : MonoBehaviour
             case GameManager.StartShip.rocket:
                 ShipPanel.sprite = shipImages[2];
                 break;
+
+
         }
     }
 

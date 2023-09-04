@@ -8,6 +8,7 @@ using DG.Tweening;
 public class UpgradPanelIndex : MonoBehaviour
 {
     [Header("Panel Settings")]
+
     public int index;
     public Image panelImage;
 
@@ -22,16 +23,21 @@ public class UpgradPanelIndex : MonoBehaviour
     public TextMeshProUGUI subClass;
     private bool isTweening = true;
     public bool isSelected = false;
+    private UpgradeChooseList upgradeChooseList;
 
     [Header("Requirement System")]
-    public GameObject req1;
-    public GameObject req2;
-    public GameObject req3;
+    public Image req1;
+    public TextMeshProUGUI req1Text;
+    public Image req2;
+    public TextMeshProUGUI req2Text;
+    public Image req3;
+    public TextMeshProUGUI req3Text;
     public GameObject unique;
 
 
     private void OnEnable()
     {
+        upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
         isTweening = true;
         isSelected = false;
         transform.position = new Vector3(transform.position.x, transform.position.y + 400f, transform.position.z);
