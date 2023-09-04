@@ -23,6 +23,12 @@ public class UpgradPanelIndex : MonoBehaviour
     private bool isTweening = true;
     public bool isSelected = false;
 
+    [Header("Requirement System")]
+    public GameObject req1;
+    public GameObject req2;
+    public GameObject req3;
+    public GameObject unique;
+
 
     private void OnEnable()
     {
@@ -151,8 +157,6 @@ public class UpgradPanelIndex : MonoBehaviour
         {
             transform.DOLocalMoveY(855f, .5f, true).SetUpdate(UpdateType.Normal, true).SetEase(Ease.InQuart).SetDelay(0.2f + duration);
         }
-
-
     }
 }
 
