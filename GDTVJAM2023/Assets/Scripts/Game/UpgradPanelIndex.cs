@@ -41,7 +41,7 @@ public class UpgradPanelIndex : MonoBehaviour
         isTweening = true;
         isSelected = false;
         transform.position = new Vector3(transform.position.x, transform.position.y + 400f, transform.position.z);
-      
+
         // fade in
         panelImage.sprite = spPanelDeselcet;
         transform.DOLocalMoveY(55f, .22f, true).SetUpdate(UpdateType.Normal, true).OnComplete(() =>
@@ -70,7 +70,6 @@ public class UpgradPanelIndex : MonoBehaviour
         iconPanel.sprite = upgradePanelController.iconPanel[index];
         headerText.text = upgradePanelController.headerStr[index];
         
-
         descriptionText.text = upgradePanelController.descriptionTextStr[index];
 
         mainClass.text = upgradePanelController.mainClassStr[index];
@@ -79,7 +78,26 @@ public class UpgradPanelIndex : MonoBehaviour
         subClass.color = upgradePanelController.subClassColor[index];
 
         headerText.color = upgradePanelController.headerColor[index];
-        
+
+        // requierments
+        req1.color = upgradePanelController.reqColor[index];
+        req1Text.text = upgradePanelController.reqText[index];
+
+        req2.color = upgradePanelController.reqColor[index+3];
+        req2Text.text = upgradePanelController.reqText[index+3];
+
+        req3.color = upgradePanelController.reqColor3[index];
+        req3Text.text = upgradePanelController.reqText3[index];
+
+
+        if (upgradePanelController.isUnique[index] == true)
+        {
+            unique.SetActive(true);
+        }
+        else
+        {
+            unique.SetActive(false);
+        }
     }
 
 

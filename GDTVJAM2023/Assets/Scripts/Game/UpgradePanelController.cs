@@ -20,6 +20,12 @@ public class UpgradePanelController : MonoBehaviour
     [HideInInspector] public Color[] subClassColor;
     [HideInInspector] public string[] subClassStr;
     [HideInInspector] public Sprite[] iconPanel;
+    [HideInInspector] public Color[] reqColor;
+    [HideInInspector] public string[] reqText;
+    [HideInInspector] public Color[] reqColor3;
+    [HideInInspector] public string[] reqText3;
+    [HideInInspector] public bool[] isUnique;
+
     public Color weaponColor;
 
     [Header("Value Panel")]
@@ -65,6 +71,11 @@ public class UpgradePanelController : MonoBehaviour
         subClassStr = new string[3];
         iconPanel = new Sprite[3];
         headerColor = new Color[3];
+        reqColor = new Color[6];
+        reqText = new string[6];
+        reqColor3 = new Color[3];
+        reqText3 = new string[3];
+        isUnique = new bool[3];
 
         selectetPanel = -1;
         isTweening = true;
@@ -302,6 +313,51 @@ public class UpgradePanelController : MonoBehaviour
             index = (int)uC.subClass;
             subClassStr[i] = uC.subClass.ToString();
             subClassColor[i] = classColors[index];
+
+            // set requerments
+            int count_ = 0;
+            reqColor[i] = gameManager.globalClassColor[8];
+            reqText[i] = "";
+            reqColor[i+3] = gameManager.globalClassColor[8];
+            reqText[i+3] = "";
+
+            if (uC.reqBullet > 0 )
+            {
+                reqColor[i] = gameManager.globalClassColor[0];
+                reqText[i] = uC.reqBullet.ToString();
+                count_ += 3;
+            }
+            if (uC.reqRocket > 0)
+            {
+                reqColor[i+ count_] = gameManager.globalClassColor[1];
+                reqText[i+ count_] = uC.reqRocket.ToString();
+                count_ += 3;
+            }
+            if (uC.reqLaser > 0)
+            {
+                reqColor[i+ count_] = gameManager.globalClassColor[2];
+                reqText[i+ count_] = uC.reqLaser.ToString();
+                count_ += 3;
+            }
+            if (uC.reqSupport > 0)
+            {
+                reqColor[i+ count_] = gameManager.globalClassColor[3];
+                reqText[i+ count_] = uC.reqSupport.ToString();
+            }
+
+            if (uC.reqAbility != "")
+            {
+                reqColor3[i] = gameManager.globalClassColor[uC.colorIndex];
+                reqText3[i] = uC.reqAbility;
+            }
+            else
+            {
+                reqColor3[i] = gameManager.globalClassColor[8];
+                reqText3[i] = "";
+            }
+
+            isUnique[i] = uC.isUnique;
+
 
             panelList[i].SetDescription();        
         }
@@ -653,6 +709,7 @@ public class UpgradePanelController : MonoBehaviour
             case 49: // Rapid Laser Reload
                 playerMWController.fireRate = playerMWController.fireRate * 0.9f;
                 break;
+
         }
     }
 

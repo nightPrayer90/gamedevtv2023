@@ -47,5 +47,8 @@ public class UpgradeContainer
     public int reqRocket;
     public int reqLaser;
     public int reqSupport;
+    public string reqAbility;
+    public int colorIndex;
+    public bool isUnique;
     public UpgradeTyp upgradeTyp;
 }
