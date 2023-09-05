@@ -169,6 +169,7 @@ public class UpgradePanelController : MonoBehaviour
             
 
             int number = gameManager.selectedNumbers_[i];
+            UpgradeContainer uC = upgradeList.weaponUpgrades[number];
 
             // calculate values
             switch (number)
@@ -191,7 +192,7 @@ public class UpgradePanelController : MonoBehaviour
                 case 5: // pickup range
                     upgradeValue[i] = 0.8f;
                     break;
-
+                    /*
                 //----
                 case 18: //bullet class  
                     headerColor[i] = gameManager.globalClassColor[0];
@@ -291,13 +292,14 @@ public class UpgradePanelController : MonoBehaviour
                 case 49: // Rapid Laser Reload
                     headerColor[i] = gameManager.globalClassColor[2];
                     break;
-                //----
+                //----*/
                 default: //weapon select
-                    headerColor[i] = weaponColor;
+                    //headerColor[i] = weaponColor;
+                    headerColor[i] = gameManager.globalClassColor[uC.colorIndex];
                     break;
             }
 
-            UpgradeContainer uC = upgradeList.weaponUpgrades[number];
+           
 
             // set text descriptions
             iconPanel[i] = uC.iconPanel;
