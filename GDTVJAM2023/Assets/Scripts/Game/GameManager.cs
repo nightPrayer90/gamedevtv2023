@@ -78,6 +78,8 @@ public class GameManager : MonoBehaviour
     }
 
     [Header("Player Ship")]
+    public PlayerData playerData;
+    public bool isPlayerData = true;
     public StartShip startShip;
     public Transform playerStartPosition;
     public GameObject playerShip_bullet;
@@ -102,24 +104,48 @@ public class GameManager : MonoBehaviour
     /* **************************************************************************** */
     private void Awake()
     {
-        // create the Playership
-        switch (startShip)
+        if (isPlayerData == false)
         {
-            case StartShip.bullet:
-                var player_b = Instantiate(playerShip_bullet, playerStartPosition.position, playerStartPosition.rotation);
-                player = player_b.GetComponent<PlayerController>();
-                //weaponController = player_b.GetComponent<PlayerWeaponController>();
-                break;
-            case StartShip.rocket:
-                var player_r = Instantiate(playerShip_rocket, playerStartPosition.position, playerStartPosition.rotation);
-                player = player_r.GetComponent<PlayerController>();
-                //weaponController = player_r.GetComponent<PlayerWeaponController>();
-                break;
-            case StartShip.laser:
-                var player_l = Instantiate(playerShip_laser, playerStartPosition.position, playerStartPosition.rotation);
-                player = player_l.GetComponent<PlayerController>();
-                //weaponController = player_l.GetComponent<PlayerWeaponController>();
-                break;
+            // create the Playership
+            switch (startShip)
+            {
+                case StartShip.bullet:
+                    var player_b = Instantiate(playerShip_bullet, playerStartPosition.position, playerStartPosition.rotation);
+                    player = player_b.GetComponent<PlayerController>();
+                    //weaponController = player_b.GetComponent<PlayerWeaponController>();
+                    break;
+                case StartShip.rocket:
+                    var player_r = Instantiate(playerShip_rocket, playerStartPosition.position, playerStartPosition.rotation);
+                    player = player_r.GetComponent<PlayerController>();
+                    //weaponController = player_r.GetComponent<PlayerWeaponController>();
+                    break;
+                case StartShip.laser:
+                    var player_l = Instantiate(playerShip_laser, playerStartPosition.position, playerStartPosition.rotation);
+                    player = player_l.GetComponent<PlayerController>();
+                    //weaponController = player_l.GetComponent<PlayerWeaponController>();
+                    break;
+            }
+        }
+        else
+        {
+            switch (playerData.playerShip)
+            {
+                case 0:
+                    var player_b = Instantiate(playerShip_bullet, playerStartPosition.position, playerStartPosition.rotation);
+                    player = player_b.GetComponent<PlayerController>();
+                    //weaponController = player_b.GetComponent<PlayerWeaponController>();
+                    break;
+                case 1:
+                    var player_r = Instantiate(playerShip_rocket, playerStartPosition.position, playerStartPosition.rotation);
+                    player = player_r.GetComponent<PlayerController>();
+                    //weaponController = player_r.GetComponent<PlayerWeaponController>();
+                    break;
+                case 2:
+                    var player_l = Instantiate(playerShip_laser, playerStartPosition.position, playerStartPosition.rotation);
+                    player = player_l.GetComponent<PlayerController>();
+                    //weaponController = player_l.GetComponent<PlayerWeaponController>();
+                    break;
+            }
         }
     }
 

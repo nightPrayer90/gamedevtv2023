@@ -9,4 +9,6 @@ public class PlayerData : ScriptableObject
     public int expRocket = 0;
     public int expLaser = 0;
 
+    public int playerShip = 0;
+
 }

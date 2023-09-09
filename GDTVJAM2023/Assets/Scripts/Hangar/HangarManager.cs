@@ -10,7 +10,8 @@ public class HangarManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerHangarShip.transform.position = playerStartPoint.transform.position;
+        Vector3 postiionOffset = new Vector3(0f, 0.05f, 0f);
+        playerHangarShip.transform.position = playerStartPoint.transform.position + postiionOffset;
     }
 
     // Update is called once per frame

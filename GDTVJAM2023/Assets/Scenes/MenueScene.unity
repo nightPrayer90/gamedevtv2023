@@ -555,7 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db2949c976a02dd4f87538629c301592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameScene: GameScene
+  gameScene: HangarScene
   _musicSlider: {fileID: 1308511993}
   _sfxSlider: {fileID: 1740239131}
   resolutionDropdrown: {fileID: 0}

@@ -29841,8 +29841,8 @@ MonoBehaviour:
   isBulletWings: 0
   isLifeModul: 0
   isSpreadGun: 0
-  isFrontShield: 1
-  isBackShield: 1
+  isFrontShield: 0
+  isBackShield: 0
   isNovaExplosion: 0
   isRockedWings: 0
   isFrontLaser: 0
@@ -29869,8 +29869,8 @@ MonoBehaviour:
   lmReloadTime: 10
   lifeModul: {fileID: 8459815295507979944, guid: 0bb488a5296b7d34eb8f8afe684ebff5, type: 3}
   sgDamage: 3
-  sgReloadTime: 2.5
-  sgBulletCount: 18
+  sgReloadTime: 3.5
+  sgBulletCount: 12
   spreadGun: {fileID: 7701453864392984337, guid: 104de042193ebb248b57f868f189bcdf, type: 3}
   neDamage: 7
   neReloadTime: 3.2
