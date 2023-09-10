@@ -23,6 +23,7 @@ public class CameraController : MonoBehaviour
     private bool isShake = false;
     private bool toggleSwith = false;
     private PlayerController playerController;
+    public CanvasGroup toggelViewText;
 
     // Start is called before the first frame update
     void Start()
@@ -45,10 +46,18 @@ public class CameraController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (flyModeToggle)
-                flyModeToggle = false;
+            if (isShake == false)
+            {
+                if (flyModeToggle)
+                    flyModeToggle = false;
+                else
+                    flyModeToggle = true;
+            }
             else
-                flyModeToggle = true;
+            {
+                toggelViewText.DOFade(1,0.1f);
+                Invoke("InvokeToggleViewText", 1.0f);
+            }
         }
 
 
@@ -97,6 +106,10 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    private void InvokeToggleViewText()
+    {
+        toggelViewText.DOFade(0,0.5f);
+    }
    
     // TODOO - ScreenShake auf main Camera
     public void ShakeScreen()
@@ -122,7 +135,8 @@ public class CameraController : MonoBehaviour
         if (isShake == false)
         {
             isShake = true;
-            transform.DOShakeRotation(shakeTimer, new Vector3(shakeIntensity, shakeIntensity, shakeIntensity), 30, 90f, true, ShakeRandomnessMode.Full).OnComplete(() => { isShake = false; });
+            if (flyModeToggle == true) mainCameraTr.DOShakeRotation(shakeTimer, new Vector3(shakeIntensity, shakeIntensity, shakeIntensity), 30, 90f, true, ShakeRandomnessMode.Full).OnComplete(() => { isShake = false; });
+            else mainCameraTr.DOShakePosition(shakeTimer, shakeIntensity / 5).OnComplete(() => { isShake = false; });
         }
     }
 
@@ -135,7 +149,8 @@ public class CameraController : MonoBehaviour
         if (isShake == false)
         {
             isShake = true;
-            transform.DOShakeRotation(shakeTimer, new Vector3(shakeIntensity, shakeIntensity, shakeIntensity), 30, 90f, true, ShakeRandomnessMode.Full).OnComplete(() => { isShake = false; });
+            if (flyModeToggle == true) mainCameraTr.DOShakeRotation(shakeTimer, new Vector3(shakeIntensity, shakeIntensity, shakeIntensity), 30, 90f, true, ShakeRandomnessMode.Full).OnComplete(() => { isShake = false; });
+            else mainCameraTr.DOShakePosition(shakeTimer, shakeIntensity / 5).OnComplete(() => { isShake = false; });
         }
     }
 
@@ -148,7 +163,8 @@ public class CameraController : MonoBehaviour
         if (isShake == false)
         {
             isShake = true;
-            transform.DOShakeRotation(shakeTimer, new Vector3(shakeIntensity, shakeIntensity, shakeIntensity), 30, 90f, true, ShakeRandomnessMode.Full).OnComplete(() => { isShake = false; });
+            if (flyModeToggle == true) mainCameraTr.DOShakeRotation(shakeTimer, new Vector3(shakeIntensity, shakeIntensity, shakeIntensity), 30, 90f, true, ShakeRandomnessMode.Full).OnComplete(() => { isShake = false; });
+            else mainCameraTr.DOShakePosition(shakeTimer, shakeIntensity / 5).OnComplete(() => { isShake = false; });
         }
     }
 

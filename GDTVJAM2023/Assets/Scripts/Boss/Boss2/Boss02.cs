@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Boss02 : MonoBehaviour
 {
     [Header("Boss Settings")]
+    public int bossIndex = 0;
     public float followSpeed = 1f;
     private int bossState = 0;
     private int numberOfFightingStates = 3;
@@ -192,7 +193,7 @@ public class Boss02 : MonoBehaviour
         }
         else
         {
-            if (isMinimap == false)
+            if (isMinimap == false && gameManager.districtNumber == bossIndex)
             {
                 minimapIcon.SetActive(true);
 

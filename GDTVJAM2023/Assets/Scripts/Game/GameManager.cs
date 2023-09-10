@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public bool gameIsPlayed = true;
     public bool gameOver = false;
     public bool isPause = false;
-    [HideInInspector] public int districtNumber = 1;
+    public int districtNumber = 1;
     private int enemysToKill;
     private int killCounter;
 
@@ -113,16 +113,20 @@ public class GameManager : MonoBehaviour
                     var player_b = Instantiate(playerShip_bullet, playerStartPosition.position, playerStartPosition.rotation);
                     player = player_b.GetComponent<PlayerController>();
                     //weaponController = player_b.GetComponent<PlayerWeaponController>();
+                    upgradeChooseList.weaponUpgrades[49].reqLaser = 100;
                     break;
                 case StartShip.rocket:
                     var player_r = Instantiate(playerShip_rocket, playerStartPosition.position, playerStartPosition.rotation);
                     player = player_r.GetComponent<PlayerController>();
                     //weaponController = player_r.GetComponent<PlayerWeaponController>();
+                    upgradeChooseList.weaponUpgrades[51].reqBullet = 100;
+                    upgradeChooseList.weaponUpgrades[49].reqLaser = 100;
                     break;
                 case StartShip.laser:
                     var player_l = Instantiate(playerShip_laser, playerStartPosition.position, playerStartPosition.rotation);
                     player = player_l.GetComponent<PlayerController>();
                     //weaponController = player_l.GetComponent<PlayerWeaponController>();
+                    upgradeChooseList.weaponUpgrades[51].reqBullet = 100;
                     break;
             }
         }
@@ -134,16 +138,20 @@ public class GameManager : MonoBehaviour
                     var player_b = Instantiate(playerShip_bullet, playerStartPosition.position, playerStartPosition.rotation);
                     player = player_b.GetComponent<PlayerController>();
                     //weaponController = player_b.GetComponent<PlayerWeaponController>();
+                    upgradeChooseList.weaponUpgrades[49].reqLaser = 100;
                     break;
                 case 1:
                     var player_r = Instantiate(playerShip_rocket, playerStartPosition.position, playerStartPosition.rotation);
                     player = player_r.GetComponent<PlayerController>();
                     //weaponController = player_r.GetComponent<PlayerWeaponController>();
+                    upgradeChooseList.weaponUpgrades[51].reqBullet = 100;
+                    upgradeChooseList.weaponUpgrades[49].reqLaser = 100;
                     break;
                 case 2:
                     var player_l = Instantiate(playerShip_laser, playerStartPosition.position, playerStartPosition.rotation);
                     player = player_l.GetComponent<PlayerController>();
                     //weaponController = player_l.GetComponent<PlayerWeaponController>();
+                    upgradeChooseList.weaponUpgrades[51].reqBullet = 100;
                     break;
             }
         }
