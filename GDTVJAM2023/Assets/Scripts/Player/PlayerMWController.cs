@@ -15,7 +15,7 @@ public class PlayerMWController : MonoBehaviour
     [Header("Main Weapon")]
     public MWeapontyp weaponType;
     public int bulletBaseDamage;
-    [HideInInspector] public float fireRate;
+    public float fireRate;
     public List<ParticleSystem> mainWeapons = new List<ParticleSystem>();
     public List<ParticleBullet> particleBullets;
     public AudioSource mainWeaponSound;
@@ -247,6 +247,8 @@ public class PlayerMWController : MonoBehaviour
                 rocket.damage = bulletBaseDamage;
                 rocket.hitColor = hitColor;
                 rocket.maxLifeTime = lifeTime;
+                rocket.SetDestroyTimer();
+                //Debug.Log(rocket.name);
             }
             else
             {
@@ -256,6 +258,8 @@ public class PlayerMWController : MonoBehaviour
                 rocket.damage = bulletBaseDamage;
                 rocket.hitColor = hitColor;
                 rocket.maxLifeTime = lifeTime;
+                rocket.SetDestroyTimer();
+                //Debug.Log(rocket.name);
             }
 
 

@@ -250,6 +250,7 @@ MonoBehaviour:
   classPickup: {fileID: 5693635298845190373, guid: d8d2b78aecd465f4c84d40add32cceb0, type: 3}
   miniMapIcon: {fileID: 4822797873824776615}
   engineParticle: {fileID: 2979214313493586917}
+  novaOnDie: {fileID: 4303235208557751318, guid: c01ac0e458a23da41aaf1c60e7ee97a7, type: 3}
   enemyHealth: 10
   collisonDamage: 2
   explosionForce: 5
@@ -267,6 +268,7 @@ MonoBehaviour:
   _burnReplacement: {fileID: 3161139216598759944, guid: cd7e2ae33aa90d64ba9fabdedf60f220, type: 3}
   burnParticleSystem: {fileID: 8106171757692569645}
   burningColor: {r: 1, g: 0, b: 0.01, a: 1}
+  canTakeLaserDamage: 0000000000
 --- !u!1 &3687622165181212186
 GameObject:
   m_ObjectHideFlags: 0

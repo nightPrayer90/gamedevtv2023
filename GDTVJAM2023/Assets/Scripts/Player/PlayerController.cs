@@ -802,18 +802,30 @@ public class PlayerController : MonoBehaviour
 
                     // get EnemyHealthscript
                     EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
+                    Color resultColor = enemyHitColor;
 
                     if (eHC != null)
                     {
-                        // calculate enemy damage
-                        eHC.TakeExplosionDamage(adjustedDamage);
+                        if (upgradeChooseList.weaponIndexInstalled[54] == true)
+                        {
+                            int ran = UnityEngine.Random.Range(0, 100);
+                            if (ran < playerWeaponController.bulletCritChance)
+                            {
+                                adjustedDamage = eHC.CritDamage(adjustedDamage);
+                                resultColor = eHC.critColor;
+                            }
+                        }
 
                         // show floating text
                         if (eHC.canTakeDamage == true)
-                            gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), enemyHitColor);
+                            gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), resultColor);
+
+                        // calculate enemy damage
+                        eHC.TakeExplosionDamage(adjustedDamage);
+
                     }
-                }
-                rb.AddExplosionForce(400, pos, explosionRadius);
+                    rb.AddExplosionForce(400, pos, explosionRadius);
+                } 
             }
 
             GameObject go = ObjectPoolManager.SpawnObject(novaOnHit, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);

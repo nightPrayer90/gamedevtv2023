@@ -9,7 +9,7 @@ public class RocketController : MonoBehaviour
     public float startTime = 0.5f; // time until the rocked flys to a target
     private float rotationSpeedtmp = 0;
     public GameObject exposionHitObject;
-    [HideInInspector] public float maxLifeTime;   // time before the rocked get destroyed
+    public float maxLifeTime;   // time before the rocked get destroyed
     [HideInInspector] public Color hitColor;
 
 
@@ -26,7 +26,7 @@ public class RocketController : MonoBehaviour
     private GameManager gameManager;
     private UpgradeChooseList upgradeChooseList;
     private PlayerWeaponController playerWeaponController;
-    
+
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -48,9 +48,7 @@ public class RocketController : MonoBehaviour
         // reset Target
         target = null;
 
-        // destroytime
-        maxLifeTime = Random.Range(maxLifeTime - 0.25f, maxLifeTime + 0.25f) + upgradeChooseList.rocketLifeTime;
-        Invoke("DestroyObject", maxLifeTime);
+       
 
         // Layermask
         layerMask = (1 << 6);
@@ -217,37 +215,30 @@ public class RocketController : MonoBehaviour
                     adjustedDamage = Mathf.CeilToInt(damage * scaleFactor); 
                 }
             }
-           /* else
-            {
-               /* // get EnemyHealthscript
-                EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
-
-                // calculate enemy damage
-                eHC.TakeExplosionDamage(damage);
-
-                // show floating text
-                if (eHC.canTakeDamage == true)
-                    gameManager.DoFloatingText(rb.transform.position, "+" + damage.ToString(), hitColor);
-            }*/
 
             // get EnemyHealthscript
             EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
+            Color resultColor = hitColor;
 
-            Debug.Log(eHC.canTakeDamage);
-            // show floating text
-            if (eHC.canTakeDamage == true)
+            if (eHC != null)
             {
-                Debug.Log("can take damage");
-                gameManager.DoFloatingText(obj.transform.position, "+" + adjustedDamage.ToString(), hitColor);
+                if (upgradeChooseList.weaponIndexInstalled[54] == true)
+                {
+                    int ran = UnityEngine.Random.Range(0, 100);
+                    if (ran < playerWeaponController.bulletCritChance)
+                    {
+                        adjustedDamage = eHC.CritDamage(adjustedDamage);
+                        resultColor = eHC.critColor;
+                    }
+                }
+
+                // show floating text
+                if (eHC.canTakeDamage == true)
+                    gameManager.DoFloatingText(obj.transform.position, "+" + adjustedDamage.ToString(), resultColor);
+
+                // calculate enemy damage
+                eHC.TakeExplosionDamage(adjustedDamage);
             }
-
-
-            // calculate enemy damage
-            eHC.TakeExplosionDamage(adjustedDamage);
-
-
-           
-
             rb.AddExplosionForce(explosionForce, pos, explosionRadius);
         }
 
@@ -272,4 +263,12 @@ public class RocketController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
+
+    public void SetDestroyTimer()
+    {
+        // destroytime
+        maxLifeTime = Random.Range(maxLifeTime - 0.05f, maxLifeTime + 0.05f) + upgradeChooseList.rocketLifeTime;
+        Invoke("DestroyObject", maxLifeTime); //can not be in enable - because lifetime comes from another object
+    }
 }
+

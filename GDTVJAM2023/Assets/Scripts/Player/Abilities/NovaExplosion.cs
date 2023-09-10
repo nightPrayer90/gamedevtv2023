@@ -16,6 +16,7 @@ public class NovaExplosion : MonoBehaviour
     public Color hitColor = new Color(1f, 0.6f, 0.0f, 1f);
     private PlayerWeaponController weaponController;
     public ParticleSystem loadParticle;
+    private UpgradeChooseList upgradeChooseList;
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -25,6 +26,7 @@ public class NovaExplosion : MonoBehaviour
         StartValues();
         InvokeRepeating("SpawnloadEffect", spawnInterval, spawnInterval);
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
     }
 
 
@@ -76,22 +78,32 @@ public class NovaExplosion : MonoBehaviour
                 float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius), 1f);
                 int adjustedDamage = Mathf.CeilToInt(novaDamage * scaleFactor);
 
+
                 // get EnemyHealthscript
-              
                 EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
+                Color resultColor = hitColor;
 
                 if (eHC != null)
                 {
-                    // calculate enemy damage
-                    eHC.TakeExplosionDamage(adjustedDamage);
+                    if (upgradeChooseList.weaponIndexInstalled[54] == true)
+                    {
+                        int ran = UnityEngine.Random.Range(0, 100);
+                        if (ran < weaponController.bulletCritChance)
+                        {
+                            adjustedDamage = eHC.CritDamage(adjustedDamage);
+                            resultColor = eHC.critColor;
+                        }
+                    }
 
                     // show floating text
                     if (eHC.canTakeDamage == true)
-                        gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), hitColor);
-                }
-            }
+                        gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), resultColor);
 
-            rb.AddExplosionForce(explosionForce, pos, explosionRadius);
+                    // calculate enemy damage
+                    eHC.TakeExplosionDamage(adjustedDamage);
+                }
+                rb.AddExplosionForce(explosionForce, pos, explosionRadius);
+            }
         }
 
 

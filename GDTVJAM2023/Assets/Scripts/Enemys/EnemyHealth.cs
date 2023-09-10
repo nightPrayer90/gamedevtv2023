@@ -13,6 +13,7 @@ public class EnemyHealth : MonoBehaviour
     public GameObject miniMapIcon;
     public ParticleSystem engineParticle;
     private Collider enemyCollider;
+    public GameObject novaOnDie;
 
     [Header("Enemy Settings")]
     public float enemyHealth = 2.0f;
@@ -153,11 +154,12 @@ public class EnemyHealth : MonoBehaviour
                 int ran = UnityEngine.Random.Range(0, 100);
                 if (ran < playerWeaponController.bulletCritChance)
                 {
-                    damage = Mathf.CeilToInt(damage * playerWeaponController.bulletCritDamage / 100);
+                    damage = CritDamage(damage);
                     resultColor = critColor;
+                    NovaOnDie(1);
                 }
 
-                TakeDamage(damage);
+                TakeDamage(damage, 1); //damagetyp = 1 = bullet Damage
             }
 
             
@@ -176,7 +178,7 @@ public class EnemyHealth : MonoBehaviour
     /* **************************************************************************** */
 
     // take damage from a bullet
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, int damageTyp = 0)
     {
         AudioManager.Instance.PlaySFX("ImpactShot");
 
@@ -193,6 +195,9 @@ public class EnemyHealth : MonoBehaviour
 
                 // drop an Item
                 Drop();
+
+                // calculate chance of explosion
+                NovaOnDie(0);
 
                 // update player UI
                 if (secondDimensionEnemy == false)
@@ -257,7 +262,6 @@ public class EnemyHealth : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         canTakeLaserDamage[index] = true;
     }
-
 
     public void TakeLaserDamage(int damage, int index)
     {
@@ -360,6 +364,110 @@ public class EnemyHealth : MonoBehaviour
         else
             Destroy(gameObject);
     }
+
+    // nova on die Ability
+    private void NovaOnDie(int novaTyp) //0=die 1=crit
+    {
+        if (novaOnDie != null && (upgradeChooseList.weaponIndexInstalled[52] == true || upgradeChooseList.weaponIndexInstalled[23] == true))
+        {
+            Vector3 pos = new Vector3(0,0,0);
+            float explosionRadius = 0;
+            int novaDamage = 0;
+
+            switch (novaTyp)
+            {
+                case 0: // Nova triggert from die
+                    if (UnityEngine.Random.Range(0, 100) > 10)
+                    {
+                        return;
+                    }
+                    pos = transform.position;
+
+                    explosionRadius = 1.5f + playerWeaponController.rocketAOERadius;
+                    novaDamage = 10;
+
+                    break;
+
+                case 1: // Nova triggert from crit
+                    if (UnityEngine.Random.Range(0, 100) > 5)
+                    {
+                        return;
+                    }
+                    pos = transform.position;
+
+                    explosionRadius = 0.5f + playerWeaponController.rocketAOERadius;
+                    novaDamage = 6;
+
+                    break;
+            }
+
+            LayerMask layerMask = (1 << 6);
+            if (gameManager.dimensionShift == true)
+            {
+                layerMask = (1 << 9);
+            }
+
+            // Audio
+            AudioManager.Instance.PlaySFX("Playernova");
+
+
+            // array of all Objects in the explosionRadius
+            var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius, layerMask);
+
+            foreach (var obj in surroundingObjects)
+            {
+                // get rigidbodys from all objects in range
+                var rb = obj.GetComponent<Rigidbody>();
+                if (rb == null) continue;
+
+                // calculate distance between explosioncenter and objects in Range
+                float distance = Vector3.Distance(pos, rb.transform.position);
+
+                if (distance < explosionRadius)
+                {
+                    resultColor = hitColor;
+                    float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius), 1f);
+                    int adjustedDamage = Mathf.CeilToInt(novaDamage * scaleFactor);
+
+                    if (upgradeChooseList.weaponIndexInstalled[54] == true)
+                    {
+                        int ran = UnityEngine.Random.Range(0, 100);
+                        if (ran < playerWeaponController.bulletCritChance)
+                        {
+                            adjustedDamage = CritDamage(adjustedDamage);
+                            resultColor = critColor;
+                        }
+                    }
+
+                    // get EnemyHealthscript
+                    EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
+
+                    if (eHC != null)
+                    {
+                        // show floating text
+                        if (eHC.canTakeDamage == true)
+                        gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), resultColor);
+
+                        // calculate enemy damage
+                        eHC.TakeExplosionDamage(adjustedDamage);
+                    }
+                }
+            rb.AddExplosionForce(400, pos, explosionRadius);
+            }
+
+            GameObject go = ObjectPoolManager.SpawnObject(novaOnDie, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
+            go.GetComponent<ParticleSystemDestroy>().rippleParicleSize = explosionRadius;
+        }
+    }
+
+    public int CritDamage(int damage)
+    {
+        damage = Mathf.CeilToInt(damage * playerWeaponController.bulletCritDamage / 100);
+        //resultColor = critColor;
+        return damage;
+    }
+
+
 
     /* **************************************************************************** */
     /* SHOOTING CONTROL------------------------------------------------------------ */

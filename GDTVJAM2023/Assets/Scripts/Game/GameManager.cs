@@ -557,6 +557,7 @@ public class GameManager : MonoBehaviour
         // activate the next district 
         //Debug.Log(districtNumber);
         districtNumber++;
+        Debug.Log(districtNumber);
         Invoke("UpdateDistrictText", 0.5f);
         //UpdateDistrictText(districtNumber);
 

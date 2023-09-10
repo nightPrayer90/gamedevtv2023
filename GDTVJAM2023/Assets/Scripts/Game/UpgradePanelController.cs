@@ -330,7 +330,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
 
                 //----
-            case >= 18 and <= 49:
+            case >= 18 and <= 54:
                 break;
 
             //----
@@ -433,6 +433,7 @@ public class UpgradePanelController : MonoBehaviour
             case 11: //weapon: spread gun
                 playerWeaponController.isSpreadGun = true;
                 upgradeChooseList.weaponIndexInstalled[number] = true;
+                upgradeChooseList.weaponUpgrades[50].reqBullet = 2;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 weaponCount++;
@@ -596,7 +597,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 break;
             case 46: // Ballistic Boost
-                upgradeChooseList.percBulletDamage += 15;
+                upgradeChooseList.percBulletDamage += 12;
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 47: // Boom Boom Boost
@@ -610,7 +611,21 @@ public class UpgradePanelController : MonoBehaviour
             case 49: // Rapid Laser Reload
                 playerMWController.fireRate = playerMWController.fireRate * 0.9f;
                 break;
-
+            case 50: // Wide Spray Expansion
+                playerWeaponController.sgBulletCount += 2;
+                break;
+            case 51: // Lightning Reload
+                playerMWController.fireRate = playerMWController.fireRate*0.9f;
+                break;
+            case 52: // Kaboomed Targets
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                break;
+            case 53: // Critical Explosion
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                break;
+            case 54: // Detonation Crits
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                break;
         }
     }
 

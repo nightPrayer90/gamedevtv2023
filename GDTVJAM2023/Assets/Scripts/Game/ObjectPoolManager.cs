@@ -110,8 +110,9 @@ public class ObjectPoolManager : MonoBehaviour
     public static GameObject SpawnObject(GameObject objectToSpawn, Vector3 spawnPosition, Quaternion spawnRotation, PoolType poolType = PoolType.None)
     {
         PooledObjectInfo pool = ObjectPools.Find(p => p.LookupString == objectToSpawn.name);
+        //Debug.Log("Pool " + objectToSpawn.name);
 
-        // If the pool dosn't exist, creat it
+        // If the pool dosn't exist, create it
         if (pool == null)
         {
             pool = new PooledObjectInfo() { LookupString = objectToSpawn.name };

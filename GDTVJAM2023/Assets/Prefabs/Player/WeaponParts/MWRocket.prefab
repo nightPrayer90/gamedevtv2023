@@ -82,7 +82,7 @@ MonoBehaviour:
   rotationSpeed: 10
   startTime: 0.4
   exposionHitObject: {fileID: 4303235208557751318, guid: eb9d00288658133488952b36c49aca32, type: 3}
-  maxLifeTime: 4
+  maxLifeTime: 0.1
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
   explosionRadius: 0.7
   explosionForce: 80

@@ -85,6 +85,7 @@ public class PeriodSpawner : MonoBehaviour
             rocket.damage = rocketDamage;
             rocket.hitColor = hitColor;
             rocket.maxLifeTime = lifeTime;
+            rocket.SetDestroyTimer();
 
             // spwan rocket two
             go = ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint2.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
@@ -92,6 +93,7 @@ public class PeriodSpawner : MonoBehaviour
             rocket.damage = rocketDamage;
             rocket.hitColor = hitColor;
             rocket.maxLifeTime = lifeTime;
+            rocket.SetDestroyTimer();
 
             AudioManager.Instance.PlaySFX("PlayerRocketStart");
 

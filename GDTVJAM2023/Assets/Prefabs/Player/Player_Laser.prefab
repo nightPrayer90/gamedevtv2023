@@ -15137,7 +15137,7 @@ MonoBehaviour:
   hcReloadTime: 2.5
   headCannon: {fileID: 6259656975113115787, guid: 28380b77c519d364f86c7806b2b37858, type: 3}
   rlDamage: 14
-  rlLifeTime: 4
+  rlLifeTime: 3
   rlReloadTime: 5
   rocketLauncher: {fileID: 7608659782651776090, guid: f8a12e7bd2c5605449b3f598e8eb6886, type: 3}
   ffDamage: 10
