@@ -26,18 +26,12 @@ public class UpgradePanelController : MonoBehaviour
     [HideInInspector] public string[] reqText3;
     [HideInInspector] public bool[] isUnique;
 
-    public Color weaponColor;
+    //public Color weaponColor;
 
     [Header("Value Panel")]
-    public TextMeshProUGUI lifeText;
-    public TextMeshProUGUI damageText;
-    public TextMeshProUGUI protectionText;
-    public TextMeshProUGUI boostText;
-    public TextMeshProUGUI agilityText;
-    public TextMeshProUGUI pickupText;
     public Image bkImage;
     [HideInInspector] public List<Color> classColors;
-    public List<Image> classPanels = new List<Image>();
+    /*public List<Image> classPanels = new List<Image>();*/
 
     public List<Image> selectedUpgradePanelList = new List<Image>();
     private int weaponCount = 0;
@@ -270,17 +264,11 @@ public class UpgradePanelController : MonoBehaviour
     {
   
         // update main weapon valuesText
-        lifeText.text = playerController.playerMaxHealth.ToString();
-        damageText.text = playerController.playerBulletBaseDamage.ToString();
-        protectionText.text = playerController.protectionPerc.ToString() + "%";
-        boostText.text = (gameManager.boostSlider.maxValue).ToString() + "s";
-        agilityText.text = playerController.rotateSpeed.ToString();
-        pickupText.text =playerController.pickupRange.ToString();
 
         Color defaultColor = new Color(0.2f, 0.2f, 0.2f, 0.5f);
 
         // update class colors
-        if (upgradeChooseList.mcBulletLvl > 0) { classPanels[0].color = classColors[0]; } else { classPanels[0].color = defaultColor; }
+        /*if (upgradeChooseList.mcBulletLvl > 0) { classPanels[0].color = classColors[0]; } else { classPanels[0].color = defaultColor; }
         if (upgradeChooseList.mcExplosionLvl > 0) { classPanels[1].color = classColors[1]; } else { classPanels[1].color = defaultColor; }
         if (upgradeChooseList.mcLaserLvl > 0) { classPanels[2].color = classColors[2]; } else { classPanels[2].color = defaultColor; }
         if (upgradeChooseList.mcSupportLvl > 0) { classPanels[3].color = classColors[3]; } else { classPanels[3].color = defaultColor; }
@@ -288,7 +276,7 @@ public class UpgradePanelController : MonoBehaviour
         if (upgradeChooseList.scSwarmLvl > 0) { classPanels[4].color = classColors[4]; } else { classPanels[4].color = defaultColor; }
         if (upgradeChooseList.scDefenceLvl > 0) { classPanels[5].color = classColors[5]; } else { classPanels[5].color = defaultColor; }
         if (upgradeChooseList.scTargetingLvl > 0) { classPanels[6].color = classColors[6]; } else { classPanels[6].color = defaultColor; }
-        if (upgradeChooseList.scDirectionLvl > 0) { classPanels[7].color = classColors[7]; } else { classPanels[7].color = defaultColor; }
+        if (upgradeChooseList.scDirectionLvl > 0) { classPanels[7].color = classColors[7]; } else { classPanels[7].color = defaultColor; }*/
 
     }
     
@@ -309,24 +297,24 @@ public class UpgradePanelController : MonoBehaviour
         switch (number)
         {
             case 0:
-                lifeText.text = (playerController.playerMaxHealth + upgradeValue[index]).ToString();
+                //lifeText.text = (playerController.playerMaxHealth + upgradeValue[index]).ToString();
                 break;
             case 1:
-                damageText.text = (playerController.playerBulletBaseDamage + upgradeValue[index]).ToString();
+                ///damageText.text = (playerController.playerBulletBaseDamage + upgradeValue[index]).ToString();
                 break;
             case 2:
                 float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + upgradeValue[index]);
                 float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
-                protectionText.text = targetPercentage.ToString() + "%";
+                //protectionText.text = targetPercentage.ToString() + "%";
                 break;
             case 3:
-                boostText.text = (gameManager.boostSlider.maxValue + upgradeValue[index]).ToString() + "s";
+                //boostText.text = (gameManager.boostSlider.maxValue + upgradeValue[index]).ToString() + "s";
                 break;
             case 4:
-                agilityText.text = (playerController.rotateSpeed + upgradeValue[index]).ToString();
+                //agilityText.text = (playerController.rotateSpeed + upgradeValue[index]).ToString();
                 break;
             case 5:
-                pickupText.text = (playerController.pickupRange + upgradeValue[index]).ToString();
+                //pickupText.text = (playerController.pickupRange + upgradeValue[index]).ToString();
                 break;
 
                 //----
@@ -345,7 +333,7 @@ public class UpgradePanelController : MonoBehaviour
 
         // update class colors
         int index_ = (int)uC.mainClass;
-        if (index_ == 0) { classPanels[0].color = classColors[0]; }
+        /*if (index_ == 0) { classPanels[0].color = classColors[0]; }
         if (index_ == 1) { classPanels[1].color = classColors[1]; }
         if (index_ == 2) { classPanels[2].color = classColors[2]; }
         if (index_ == 3) { classPanels[3].color = classColors[3]; }
@@ -354,7 +342,7 @@ public class UpgradePanelController : MonoBehaviour
         if (index_ == 4) { classPanels[4].color = classColors[4]; }
         if (index_ == 5) { classPanels[5].color = classColors[5]; }
         if (index_ == 6) { classPanels[6].color = classColors[6]; }
-        if (index_ == 7) { classPanels[7].color = classColors[7]; }
+        if (index_ == 7) { classPanels[7].color = classColors[7]; }*/
     }
 
 

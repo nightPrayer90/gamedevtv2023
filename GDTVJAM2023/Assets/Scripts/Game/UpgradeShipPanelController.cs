@@ -7,24 +7,18 @@ using UnityEngine.UI;
 public class UpgradeShipPanelController : MonoBehaviour
 {
     private Vector3 localPositon;
-    public TextMeshProUGUI lifeText;
-    public TextMeshProUGUI damageText;
-    public TextMeshProUGUI protectionText;
-    public TextMeshProUGUI boostText;
-    public TextMeshProUGUI agilityText;
-    public TextMeshProUGUI pickupText;
 
     [HideInInspector] public List<Color> classColors;
-    public List<Image> classPanels = new List<Image>();
+    //public List<Image> classPanels = new List<Image>();//
 
     //public List<Image> selectedUpgradePanelList = new List<Image>();
 
 
     //Objects
     private GameManager gameManager;
-    private UpgradeChooseList upgradeChooseList;
-    private PlayerController playerController;
-    private PlayerWeaponController playerWeaponController;
+    //private UpgradeChooseList upgradeChooseList;
+    //private PlayerController playerController;
+    //private PlayerWeaponController playerWeaponController;
 
     public Image ShipPanel;
     public List<Sprite> shipImages = new List<Sprite>();
@@ -36,14 +30,14 @@ public class UpgradeShipPanelController : MonoBehaviour
 
         // set Objects
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
+        //upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
         classColors = new List<Color>(gameManager.globalClassColor);
     }
     private void OnEnable()
     {
         // set Objects
-        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
-        playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
+        //playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        //playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
 
         // Update content
         UpdateValuePanel();
@@ -79,17 +73,11 @@ public class UpgradeShipPanelController : MonoBehaviour
     public void UpdateValuePanel()
     {
         // update main weapon valuesText
-        lifeText.text = playerController.playerMaxHealth.ToString();
-        damageText.text = playerController.playerBulletBaseDamage.ToString();
-        protectionText.text = playerController.protectionPerc.ToString() + "%";
-        boostText.text = (gameManager.boostSlider.maxValue).ToString() +"s";
-        agilityText.text = playerController.rotateSpeed.ToString();
-        pickupText.text = playerController.pickupRange.ToString();
 
         Color defaultColor = new Color(0.2f, 0.2f, 0.2f, 0.5f);
 
         // update class colors
-        if (upgradeChooseList.mcBulletLvl > 0) { classPanels[0].color = classColors[0]; } else { classPanels[0].color = defaultColor; }
+        /*if (upgradeChooseList.mcBulletLvl > 0) { classPanels[0].color = classColors[0]; } else { classPanels[0].color = defaultColor; }
         if (upgradeChooseList.mcExplosionLvl > 0) { classPanels[1].color = classColors[1]; } else { classPanels[1].color = defaultColor; }
         if (upgradeChooseList.mcLaserLvl > 0) { classPanels[2].color = classColors[2]; } else { classPanels[2].color = defaultColor; }
         if (upgradeChooseList.mcSupportLvl > 0) { classPanels[3].color = classColors[3]; } else { classPanels[3].color = defaultColor; }
@@ -97,7 +85,7 @@ public class UpgradeShipPanelController : MonoBehaviour
         if (upgradeChooseList.scSwarmLvl > 0) { classPanels[4].color = classColors[4]; } else { classPanels[4].color = defaultColor; }
         if (upgradeChooseList.scDefenceLvl > 0) { classPanels[5].color = classColors[5]; } else { classPanels[5].color = defaultColor; }
         if (upgradeChooseList.scTargetingLvl > 0) { classPanels[6].color = classColors[6]; } else { classPanels[6].color = defaultColor; }
-        if (upgradeChooseList.scDirectionLvl > 0) { classPanels[7].color = classColors[7]; } else { classPanels[7].color = defaultColor; }
+        if (upgradeChooseList.scDirectionLvl > 0) { classPanels[7].color = classColors[7]; } else { classPanels[7].color = defaultColor; }*/
     }
 
 }
