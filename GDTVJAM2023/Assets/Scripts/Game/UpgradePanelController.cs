@@ -25,7 +25,12 @@ public class UpgradePanelController : MonoBehaviour
     [HideInInspector] public Color[] reqColor3;
     [HideInInspector] public string[] reqText3;
     [HideInInspector] public bool[] isUnique;
-
+    public Image[] classPointsBullets;
+    public Image[] classPointsAOE;
+    public Image[] classPointsLaser;
+    public Image[] classPointsSupport;
+    public Image[] classUpImage;
+    public Sprite[] classUpSprite;
     //public Color weaponColor;
 
     [Header("Value Panel")]
@@ -258,28 +263,11 @@ public class UpgradePanelController : MonoBehaviour
         }
     }
 
-
     // Update Values in Panel 4
     public void UpdateValuePanel()
     {
-  
-        // update main weapon valuesText
-
-        Color defaultColor = new Color(0.2f, 0.2f, 0.2f, 0.5f);
-
-        // update class colors
-        /*if (upgradeChooseList.mcBulletLvl > 0) { classPanels[0].color = classColors[0]; } else { classPanels[0].color = defaultColor; }
-        if (upgradeChooseList.mcExplosionLvl > 0) { classPanels[1].color = classColors[1]; } else { classPanels[1].color = defaultColor; }
-        if (upgradeChooseList.mcLaserLvl > 0) { classPanels[2].color = classColors[2]; } else { classPanels[2].color = defaultColor; }
-        if (upgradeChooseList.mcSupportLvl > 0) { classPanels[3].color = classColors[3]; } else { classPanels[3].color = defaultColor; }
-
-        if (upgradeChooseList.scSwarmLvl > 0) { classPanels[4].color = classColors[4]; } else { classPanels[4].color = defaultColor; }
-        if (upgradeChooseList.scDefenceLvl > 0) { classPanels[5].color = classColors[5]; } else { classPanels[5].color = defaultColor; }
-        if (upgradeChooseList.scTargetingLvl > 0) { classPanels[6].color = classColors[6]; } else { classPanels[6].color = defaultColor; }
-        if (upgradeChooseList.scDirectionLvl > 0) { classPanels[7].color = classColors[7]; } else { classPanels[7].color = defaultColor; }*/
-
+        ClassBarFiller();
     }
-    
     
     // Part of the Mouse HoverEvent
     public void UpdateValuePanelOnMouseEnter(int index)
@@ -681,4 +669,40 @@ public class UpgradePanelController : MonoBehaviour
 
         playerWeaponController.UpdateWeaponValues();
     }
+
+    void ClassBarFiller()
+    {
+        for(int i=0; i<8 ; i++) //classPointsBullets.Length
+        {
+            if (!DisplayClassPoints(upgradeList.mcBulletLvl, i))
+            { classPointsBullets[i].color = Color.white; Debug.Log("Bullets " + i); }
+
+            if (!DisplayClassPoints(upgradeList.mcExplosionLvl, i))
+            { classPointsAOE[i].color = Color.white; }
+
+            if (!DisplayClassPoints(upgradeList.mcLaserLvl, i))
+            { classPointsLaser[i].color = Color.white; }
+
+            if (!DisplayClassPoints(upgradeList.mcSupportLvl, i))
+            { classPointsSupport[i].color = Color.white; }
+        }
+
+        if (upgradeList.mcBulletLvl > 0)
+        { classUpImage[0].sprite = classUpSprite[0]; }
+
+        if (upgradeList.mcExplosionLvl > 0)
+        { classUpImage[1].sprite = classUpSprite[1]; }
+
+        if (upgradeList.mcLaserLvl > 0)
+        { classUpImage[2].sprite = classUpSprite[2]; }
+
+        if (upgradeList.mcSupportLvl > 0)
+        { classUpImage[3].sprite = classUpSprite[3]; }
+    }
+
+    bool DisplayClassPoints(int _class, int pointNumber)
+    {
+        return ((pointNumber) >= _class);
+    }
+
 }

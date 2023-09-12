@@ -31,7 +31,7 @@ public class UpgradeShipPanelController : MonoBehaviour
         // set Objects
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         //upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
-        classColors = new List<Color>(gameManager.globalClassColor);
+        //classColors = new List<Color>(gameManager.globalClassColor);
     }
     private void OnEnable()
     {
@@ -40,7 +40,7 @@ public class UpgradeShipPanelController : MonoBehaviour
         //playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
 
         // Update content
-        UpdateValuePanel();
+        //UpdateValuePanel();
 
         // FadeIn Tween
         transform.position = localPositon;
