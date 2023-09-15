@@ -19,15 +19,16 @@ public class UpgradeShipPanelController : MonoBehaviour
     private void Awake()
     {
         // save the first local position
-        localPositon = gameObject.transform.position;
+        localPositon = transform.localPosition;
 
         // set Objects
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
     private void OnEnable()
     {
+        transform.localPosition = localPositon;//new Vector3(0, -211.2f, 0);
+
         // FadeIn Tween
-        transform.position = localPositon;
         transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.6f, 8, 1).SetUpdate(true);
 
         // set Ship Panel Image
