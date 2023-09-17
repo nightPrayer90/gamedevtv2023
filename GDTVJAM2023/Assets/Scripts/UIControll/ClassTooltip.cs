@@ -12,7 +12,6 @@ public class ClassTooltipC
     public string header;
     [Multiline]
     public string content;
-    public string contentvalue;
 }
 
 
@@ -20,7 +19,6 @@ public class ClassTooltip : MonoBehaviour
 {
     public TextMeshProUGUI headerField;
     public TextMeshProUGUI contentField;
-    public TextMeshProUGUI contentvalueField;
     public LayoutElement layoutElement;
     public GameManager gameManager;
     public int characterWarpLimit;
@@ -39,7 +37,7 @@ public class ClassTooltip : MonoBehaviour
 
         if (triggerPosition_ != null)
         {
-            transform.position = triggerPosition_;
+            transform.position = triggerPosition_ + new Vector2(0f, 20f);
         }
         // FadeIn
         cg.alpha = 0;
@@ -58,50 +56,34 @@ public class ClassTooltip : MonoBehaviour
         // set tooltip content
         headerField.text = tooltipContent[contentType].header;
         headerField.color = gameManager.globalClassColor[contentType];
-        contentField.text = tooltipContent[contentType].content;
+
+       
 
         float contentvaluefloat = 0;
-        float contentvaluefloat2 = 0;
-        string contentvalue_ = "0";
+        string content_ = tooltipContent[contentType].content;
 
         switch (contentType)
         {
             case 0: // bullet
-                contentvaluefloat = upgradeChooseList.baseBulletCritChance;
-                contentvaluefloat2 = upgradeChooseList.baseBulletCritDamage;
-                contentvalue_ = "Level: " + upgradeChooseList.mcBulletLvl +  " + " + contentvaluefloat.ToString() + "% to crit with " + contentvaluefloat2.ToString() + "% damage";
+                content_.Replace("XXX", upgradeChooseList.percBulletDamage.ToString());
+                content_.Replace("YYY", upgradeChooseList.baseBulletCritChance.ToString());
+                content_.Replace("ZZZ", upgradeChooseList.baseBulletCritDamage.ToString());
                 break;
             case 1: // explosion
-                contentvaluefloat = upgradeChooseList.baseRocketAOERadius;
-                contentvalue_ = "Level: " + upgradeChooseList.mcExplosionLvl + "+ " + contentvaluefloat.ToString() + "% more explosion range";
+
                 break;
             case 2: // laser
-                contentvaluefloat = upgradeChooseList.baseLaserBurnDamageChance;
-                contentvalue_ = "Level: " + upgradeChooseList.mcLaserLvl + "+ " + contentvaluefloat.ToString() + " % burning chance";
+
                 break;
             case 3: // support
-                contentvaluefloat = upgradeChooseList.baseSupportRealoadTime;
-                contentvalue_ = "Level: " + upgradeChooseList.mcSupportLvl + "- " + contentvaluefloat.ToString() + "% reload time for all weapons";
-                break;
-            case 4: // swarm
-                contentvaluefloat = upgradeChooseList.scSwarmLvl;
-                contentvalue_ = "+ " + contentvaluefloat.ToString() + " projectiles";
-                break;
-            case 5: // defense
-                contentvaluefloat = upgradeChooseList.scDefenceLvl * 10;
-                contentvalue_ = "- " + contentvaluefloat.ToString() + "%";
-                break;
-            case 6: // targeting
-                contentvaluefloat = upgradeChooseList.scTargetingLvl;
-                contentvalue_ = "+ " + contentvaluefloat.ToString() + " damage";
-                break;
-            case 7: // backwards
-                contentvaluefloat = upgradeChooseList.scDirectionLvl;
-                contentvalue_ = "+ " + contentvaluefloat.ToString() + " damage";
+                //contentvaluefloat = upgradeChooseList.baseSupportRealoadTime;
+                //contentvalue_ = "Level: " + upgradeChooseList.mcSupportLvl + "- " + contentvaluefloat.ToString() + "% reload time for all weapons";
                 break;
         }
-        contentvalueField.text = tooltipContent[contentType].contentvalue.Replace("XXX", contentvalue_);
-        contentvalueField.color = (contentvaluefloat != 0) ? contentTextValueenabled : contentTextValuenull;
+
+        contentField.text = content_;
+        //contentvalueField.text = tooltipContent[contentType].contentvalue.Replace("XXX", contentvalue_);
+        //contentvalueField.color = (contentvaluefloat != 0) ? contentTextValueenabled : contentTextValuenull;
 
 
         // layout Element
