@@ -112,11 +112,11 @@ public class UpgradeChooseList : MonoBehaviour
         
         if (oldNC < normalUpgradeCount)
         {
-            returnString = "You unlock " + (normalUpgradeCount - oldNC).ToString() + " new Update(s).";
+            returnString = "You unlocked " + (normalUpgradeCount - oldNC).ToString() + " new upgrade(s).";
         }
         if (oldWC < weaponUpgradeCount)
         {
-            returnString += " You unlock " + (weaponUpgradeCount - oldWC).ToString() + " new Weapon upgrade(s).";
+            returnString += " You unlocked " + (weaponUpgradeCount - oldWC).ToString() + " new weapon upgrade(s).";
         }
 
         return returnString;

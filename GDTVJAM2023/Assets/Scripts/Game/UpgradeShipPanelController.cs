@@ -32,15 +32,15 @@ public class UpgradeShipPanelController : MonoBehaviour
         transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.6f, 8, 1).SetUpdate(true);
 
         // set Ship Panel Image
-        switch (gameManager.startShip)
+        switch (gameManager.ship)
         {
-            case GameManager.StartShip.bullet:
+            case 0:
                 ShipPanel.sprite = shipImages[0];
                 break;
-            case GameManager.StartShip.laser:
+            case 1:
                 ShipPanel.sprite = shipImages[1];
                 break;
-            case GameManager.StartShip.rocket:
+            case 2:
                 ShipPanel.sprite = shipImages[2];
                 break;
 

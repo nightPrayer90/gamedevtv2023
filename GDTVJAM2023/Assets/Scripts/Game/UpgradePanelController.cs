@@ -272,65 +272,57 @@ public class UpgradePanelController : MonoBehaviour
     // Part of the Mouse HoverEvent
     public void UpdateValuePanelOnMouseEnter(int index)
     {
-        int number = gameManager.selectedNumbers_[index];
-
-        panelList[0].DeselectPanel();
-        panelList[1].DeselectPanel();
-        panelList[2].DeselectPanel();
-
-        // on mouse exit
-        if (selectetPanel != -1)
-            panelList[index].SelectPanel();
-
-        switch (number)
+        if (isTweening == false)
         {
-            case 0:
-                //lifeText.text = (playerController.playerMaxHealth + upgradeValue[index]).ToString();
-                break;
-            case 1:
-                ///damageText.text = (playerController.playerBulletBaseDamage + upgradeValue[index]).ToString();
-                break;
-            case 2:
-                float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + upgradeValue[index]);
-                float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
-                //protectionText.text = targetPercentage.ToString() + "%";
-                break;
-            case 3:
-                //boostText.text = (gameManager.boostSlider.maxValue + upgradeValue[index]).ToString() + "s";
-                break;
-            case 4:
-                //agilityText.text = (playerController.rotateSpeed + upgradeValue[index]).ToString();
-                break;
-            case 5:
-                //pickupText.text = (playerController.pickupRange + upgradeValue[index]).ToString();
-                break;
+            int number = gameManager.selectedNumbers_[index];
+
+            panelList[0].DeselectPanel();
+            panelList[1].DeselectPanel();
+            panelList[2].DeselectPanel();
+
+            // on mouse exit
+            if (selectetPanel != -1)
+                panelList[index].SelectPanel();
+
+            switch (number)
+            {
+                case 0:
+                    //lifeText.text = (playerController.playerMaxHealth + upgradeValue[index]).ToString();
+                    break;
+                case 1:
+                    ///damageText.text = (playerController.playerBulletBaseDamage + upgradeValue[index]).ToString();
+                    break;
+                case 2:
+                    float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + upgradeValue[index]);
+                    float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
+                    //protectionText.text = targetPercentage.ToString() + "%";
+                    break;
+                case 3:
+                    //boostText.text = (gameManager.boostSlider.maxValue + upgradeValue[index]).ToString() + "s";
+                    break;
+                case 4:
+                    //agilityText.text = (playerController.rotateSpeed + upgradeValue[index]).ToString();
+                    break;
+                case 5:
+                    //pickupText.text = (playerController.pickupRange + upgradeValue[index]).ToString();
+                    break;
 
                 //----
-            case >= 18 and <= 54:
-                break;
+                case >= 18 and <= 54:
+                    break;
 
-            //----
+                //----
+                default: //weapon select
+                    selectedUpgradePanelList[weaponCount].sprite = iconPanel[index];
+                    selectedUpgradePanelList[weaponCount].gameObject.GetComponent<ClassTooltipTrigger>().contentType = number;
+                    break;
+            }
 
-            default: //weapon select
-                selectedUpgradePanelList[weaponCount].sprite = iconPanel[index];
-                break;
+            UpgradeContainer uC = upgradeList.weaponUpgrades[number];
+
+            // update class colors
+            int index_ = (int)uC.mainClass;
         }
-
-        UpgradeContainer uC = upgradeList.weaponUpgrades[number];
-
-
-        // update class colors
-        int index_ = (int)uC.mainClass;
-        /*if (index_ == 0) { classPanels[0].color = classColors[0]; }
-        if (index_ == 1) { classPanels[1].color = classColors[1]; }
-        if (index_ == 2) { classPanels[2].color = classColors[2]; }
-        if (index_ == 3) { classPanels[3].color = classColors[3]; }
-
-        index_ = (int)uC.subClass;
-        if (index_ == 4) { classPanels[4].color = classColors[4]; }
-        if (index_ == 5) { classPanels[5].color = classColors[5]; }
-        if (index_ == 6) { classPanels[6].color = classColors[6]; }
-        if (index_ == 7) { classPanels[7].color = classColors[7]; }*/
     }
 
 

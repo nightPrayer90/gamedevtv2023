@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
     public PlayerData playerData;
     public bool isPlayerData = true;
     public StartShip startShip;
+    [HideInInspector] public int ship;
     public Transform playerStartPosition;
     public GameObject playerShip_bullet;
     public GameObject playerShip_rocket;
@@ -116,6 +117,7 @@ public class GameManager : MonoBehaviour
                     player = player_b.GetComponent<PlayerController>();
                     //weaponController = player_b.GetComponent<PlayerWeaponController>();
                     upgradeChooseList.weaponUpgrades[49].reqLaser = 100;
+                    ship = 0;
                     break;
                 case StartShip.rocket:
                     var player_r = Instantiate(playerShip_rocket, playerStartPosition.position, playerStartPosition.rotation);
@@ -123,12 +125,14 @@ public class GameManager : MonoBehaviour
                     //weaponController = player_r.GetComponent<PlayerWeaponController>();
                     upgradeChooseList.weaponUpgrades[51].reqBullet = 100;
                     upgradeChooseList.weaponUpgrades[49].reqLaser = 100;
+                    ship = 1;
                     break;
                 case StartShip.laser:
                     var player_l = Instantiate(playerShip_laser, playerStartPosition.position, playerStartPosition.rotation);
                     player = player_l.GetComponent<PlayerController>();
                     //weaponController = player_l.GetComponent<PlayerWeaponController>();
                     upgradeChooseList.weaponUpgrades[51].reqBullet = 100;
+                    ship = 2;
                     break;
             }
         }
@@ -141,6 +145,7 @@ public class GameManager : MonoBehaviour
                     player = player_b.GetComponent<PlayerController>();
                     //weaponController = player_b.GetComponent<PlayerWeaponController>();
                     upgradeChooseList.weaponUpgrades[49].reqLaser = 100;
+                    ship = 0;
                     break;
                 case 1:
                     var player_r = Instantiate(playerShip_rocket, playerStartPosition.position, playerStartPosition.rotation);
@@ -148,12 +153,14 @@ public class GameManager : MonoBehaviour
                     //weaponController = player_r.GetComponent<PlayerWeaponController>();
                     upgradeChooseList.weaponUpgrades[51].reqBullet = 100;
                     upgradeChooseList.weaponUpgrades[49].reqLaser = 100;
+                    ship = 1;
                     break;
                 case 2:
                     var player_l = Instantiate(playerShip_laser, playerStartPosition.position, playerStartPosition.rotation);
                     player = player_l.GetComponent<PlayerController>();
                     //weaponController = player_l.GetComponent<PlayerWeaponController>();
                     upgradeChooseList.weaponUpgrades[51].reqBullet = 100;
+                    ship = 2;
                     break;
             }
         }

@@ -17,10 +17,13 @@ public class ClassTooltipTrigger : MonoBehaviour
 
     public void TooltipShow()
     {
-        triggerPosition = transform.position + toolTipOffset;
-        tooltip.Show(triggerPosition, contentType);
-        goTooltip.SetActive(true);
-        AudioManager.Instance.PlaySFX("MouseHover");
+        if (contentType != -1)
+        {
+            triggerPosition = transform.position + toolTipOffset;
+            tooltip.Show(triggerPosition, contentType);
+            goTooltip.SetActive(true);
+            AudioManager.Instance.PlaySFX("MouseHover");
+        }
     }
 
 
