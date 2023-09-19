@@ -262,7 +262,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 1
   - headerStr: Boost Duration
-    descriptionStr: Increase your the boost duration by XX.
+    descriptionStr: Increase your boost duration by XX.
     iconPanel: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
     mainClass: 8
     subClass: 8
@@ -289,7 +289,7 @@ MonoBehaviour:
     colorIndex: 9
     isUnique: 0
     upgradeTyp: 1
-  - headerStr: Pickup range
+  - headerStr: Pickup Range
     descriptionStr: Increase your pickup range by XX.
     iconPanel: {fileID: 21300000, guid: ca41a70726d6ed84da8ea7d1000633f3, type: 3}
     mainClass: 8
@@ -359,7 +359,7 @@ MonoBehaviour:
     colorIndex: 10
     isUnique: 1
     upgradeTyp: 0
-  - headerStr: Life Modul
+  - headerStr: Life Module
     descriptionStr: The life module regenerates life over time.
     iconPanel: {fileID: 21300000, guid: 1a9c2c2a4a64e944eb9944340feb3595, type: 3}
     mainClass: 3
@@ -373,8 +373,8 @@ MonoBehaviour:
     colorIndex: 10
     isUnique: 1
     upgradeTyp: 0
-  - headerStr: Spread gun
-    descriptionStr: ' Fires periodic bursts of short-range bullets from the center.'
+  - headerStr: Spread Gun
+    descriptionStr: Fires periodic bursts of short-range bullets from the center.
     iconPanel: {fileID: 21300000, guid: cfa1d4ae5cbde234c855a1d8c18577e9, type: 3}
     mainClass: 0
     subClass: 7
@@ -388,7 +388,7 @@ MonoBehaviour:
     isUnique: 1
     upgradeTyp: 0
   - headerStr: Front Shield
-    descriptionStr: Regenerating shield on the front of the ship.
+    descriptionStr: Regenerating shield at the front of the ship.
     iconPanel: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
     mainClass: 3
     subClass: 5
@@ -402,7 +402,7 @@ MonoBehaviour:
     isUnique: 1
     upgradeTyp: 0
   - headerStr: Back Shield
-    descriptionStr: Regenerating shield on the back of the ship.
+    descriptionStr: Regenerating shield at the back of the ship.
     iconPanel: {fileID: 21300000, guid: a7a01ead83f63fa44a6141650e1add89, type: 3}
     mainClass: 3
     subClass: 5
@@ -430,7 +430,7 @@ MonoBehaviour:
     isUnique: 1
     upgradeTyp: 0
   - headerStr: Rocket Wings
-    descriptionStr: Sends out a batterie of homing missiles.
+    descriptionStr: Sends out a battery of homing missiles.
     iconPanel: {fileID: 21300000, guid: 88f631d3dd40cd24585c3384e7bedd70, type: 3}
     mainClass: 1
     subClass: 4
@@ -475,7 +475,7 @@ MonoBehaviour:
     upgradeTyp: 0
   - headerStr: Bullet Class
     descriptionStr: 'Each level increases the crit chance by 7% and crit damage by
-      20% for all bullet Weapons. '
+      20% for all bullet weapons. '
     iconPanel: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
     mainClass: 0
     subClass: 8
@@ -533,7 +533,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 2
   - headerStr: Swarm Class
-    descriptionStr: Increase your swarm class Level by 1.
+    descriptionStr: Increase your swarm class level by 1.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 4
@@ -547,7 +547,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 3
   - headerStr: Defence Class
-    descriptionStr: Increase your defense class Level by 1.
+    descriptionStr: Increase your defense class level by 1.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 5
@@ -561,7 +561,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 3
   - headerStr: Targeting Class
-    descriptionStr: Increase your targeting class Level by 1.
+    descriptionStr: Increase your targeting class level by 1.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 6
@@ -575,7 +575,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 3
   - headerStr: Direction Class
-    descriptionStr: Increase your direction class Level by 1.
+    descriptionStr: Increase your direction class level by 1.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 7
@@ -617,7 +617,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 1
   - headerStr: Blast Expansion
-    descriptionStr: Increases AOE from all ur Explosions by 8%.
+    descriptionStr: Increases AOE from all explosions by 8%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -659,7 +659,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 1
   - headerStr: Fortified Overdrive
-    descriptionStr: Increases the time an power boost makes your ship Invulnerability
+    descriptionStr: Increases the time a power boost makes your ship invulnerable
       by 0.2s.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
@@ -688,7 +688,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 1
   - headerStr: Vitality Infusion
-    descriptionStr: +2% chance to get 1 life if u collect an exp orb
+    descriptionStr: +2% chance to get 1 life if you collect an exp orb.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -716,7 +716,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 1
   - headerStr: Impact Burst
-    descriptionStr: Triggers a Nova when an opponent collides with you.
+    descriptionStr: Triggers a nova when an opponent collides with you.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -730,7 +730,7 @@ MonoBehaviour:
     isUnique: 1
     upgradeTyp: 1
   - headerStr: Boosted Nova Impact
-    descriptionStr: Trigger a nova when you hit an enemy with your power boost.
+    descriptionStr: Triggers a nova when you hit an enemy with your power boost.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -758,7 +758,7 @@ MonoBehaviour:
     isUnique: 1
     upgradeTyp: 1
   - headerStr: Extended Blast Expansion
-    descriptionStr: Increases AOE from all ur Explosions by 15%.
+    descriptionStr: Increases AOE from all your explosions by 15%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -786,7 +786,7 @@ MonoBehaviour:
     isUnique: 1
     upgradeTyp: 1
   - headerStr: Fortified Defense
-    descriptionStr: Increase Shield health by +1.
+    descriptionStr: Increases shield health by +1.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -800,7 +800,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 1
   - headerStr: Shielded Strike
-    descriptionStr: 'Shields makes +5 Damage on Collision '
+    descriptionStr: Shield deals +5 damage on collision.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -814,7 +814,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 1
   - headerStr: Lifeflow Shields
-    descriptionStr: Shields regenerate life over time
+    descriptionStr: Shields regenerate life over time.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -828,7 +828,7 @@ MonoBehaviour:
     isUnique: 1
     upgradeTyp: 1
   - headerStr: Ignition Shield
-    descriptionStr: Shields inflict colliding enemies with burning damage
+    descriptionStr: Shields inflict colliding enemies with burning damage.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -842,8 +842,8 @@ MonoBehaviour:
     isUnique: 1
     upgradeTyp: 1
   - headerStr: Shieldbreaker's Honor
-    descriptionStr: Increase the AOE size of all explosions by 2% each time a shield
-      is broken
+    descriptionStr: Increases the AOE size of all explosions by 2% each time a shield
+      is broken.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -857,7 +857,7 @@ MonoBehaviour:
     isUnique: 1
     upgradeTyp: 1
   - headerStr: Shieldbreaker's Might
-    descriptionStr: Increases your critical damage by 2% each time a shield is broken
+    descriptionStr: Increases your critical damage by 2% each time a shield is broken.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -871,7 +871,7 @@ MonoBehaviour:
     isUnique: 1
     upgradeTyp: 1
   - headerStr: Ballistic Boost
-    descriptionStr: ' Increase all bullet damage by +12%'
+    descriptionStr: Increases all bullet damage by +12%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -885,7 +885,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 1
   - headerStr: Boom Boom Boost
-    descriptionStr: Increase all explosion damage by +15%
+    descriptionStr: Increases all explosion damage by +15%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -899,7 +899,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 1
   - headerStr: Beam Boost
-    descriptionStr: Increase all Laser damage by +15%
+    descriptionStr: Increases all laser damage by +15%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -913,7 +913,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 1
   - headerStr: Rapid Laser Reload
-    descriptionStr: Reduce the main Laser reload time by 10%
+    descriptionStr: Reduces the main laser reload time by 10%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -927,7 +927,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 1
   - headerStr: Wide Spray Expansion
-    descriptionStr: Increase the number of bullets for the Spreadgun by 2
+    descriptionStr: Increases the number of bullets for the spread gun by 2.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -941,7 +941,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 1
   - headerStr: Lightning Reload
-    descriptionStr: Increase Main Weapon fire rate by 7%
+    descriptionStr: Increases main weapon fire rate by 7%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -955,7 +955,7 @@ MonoBehaviour:
     isUnique: 0
     upgradeTyp: 1
   - headerStr: Kaboomed Targets
-    descriptionStr: 10% chance Enemies killed by bullets create an Nova
+    descriptionStr: 10% chance enemies killed by bullets create a nova.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -969,7 +969,7 @@ MonoBehaviour:
     isUnique: 1
     upgradeTyp: 1
   - headerStr: Critical Explosion
-    descriptionStr: 5% chance that critical damage from bullets will trigger a nova
+    descriptionStr: 5% chance that critical damage from bullets will trigger a nova.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -983,7 +983,7 @@ MonoBehaviour:
     isUnique: 1
     upgradeTyp: 1
   - headerStr: Detonation Crits
-    descriptionStr: Chance that AOE damage will cause critical damage
+    descriptionStr: Chance that AOE damage will cause critical damage.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
