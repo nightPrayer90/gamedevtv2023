@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     public Transform outsideBorderTextTweenTarget;
     [HideInInspector] public float curretEnemyCounter;
     public GameObject miniMap;
+    public CanvasGroup upgradeTextCG;
+    public TextMeshProUGUI upgradeText;
 
     [Header("Dimension Shift")]
     public Texture firstDimensionTexture1;
@@ -302,6 +304,10 @@ public class GameManager : MonoBehaviour
     public void UpgradeGet()
     {
         Time.timeScale = 1;
+        upgradeText.text = upgradeChooseList.buildlistCountAfterUpdate();
+        upgradeTextCG.DOFade(1, 0.5f);
+        Invoke("InvokeupgradeText", 2f);
+
         gameIsPlayed = true;
 
         playerUI.SetActive(true);
@@ -313,7 +319,10 @@ public class GameManager : MonoBehaviour
         }); ;
     }
 
-
+    private void InvokeupgradeText()
+    {
+        upgradeTextCG.DOFade(0, 0.5f);
+    }
 
 
     /* **************************************************************************** */

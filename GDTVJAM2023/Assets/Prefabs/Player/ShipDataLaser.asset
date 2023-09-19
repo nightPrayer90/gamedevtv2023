@@ -16,7 +16,7 @@ MonoBehaviour:
   rotateSpeed: 3.5
   health: 10
   baseDamage: 3
-  fireRate: 2.5
+  fireRate: 1.5
   PickupRange: 0.8
   boostPower: 2
   boostDuration: 0.5

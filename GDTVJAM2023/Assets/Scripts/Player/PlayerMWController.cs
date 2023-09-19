@@ -53,8 +53,8 @@ public class PlayerMWController : MonoBehaviour
     private Color whiteEnd = new Color(1f, 1f, 1f, 0.3f);
 
     //private Objects
-    private PlayerController playerController;
     private GameManager gameManager;
+    private PlayerController playerController;
 
 
     /* **************************************************************************** */

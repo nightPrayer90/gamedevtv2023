@@ -528,7 +528,7 @@ public class EnemyHealth : MonoBehaviour
         {
             int ran = UnityEngine.Random.Range(0, 100);
 
-            if (ran >= 3 || classPickup == null)
+            if (ran >= 0 || classPickup == null)
             {
                 ObjectPoolManager.SpawnObject(expOrb, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
             }

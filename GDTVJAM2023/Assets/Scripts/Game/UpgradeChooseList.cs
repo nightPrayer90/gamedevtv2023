@@ -44,7 +44,10 @@ public class UpgradeChooseList : MonoBehaviour
     public int burningChance = 2;
     public int supportRealodTime = 10;
     public int laserBurningTickDamangePercent = 100;
-    
+
+    public int normalUpgradeCount = 0;
+    public int weaponUpgradeCount = 0;
+
 
     private void Start()
     {
@@ -53,6 +56,7 @@ public class UpgradeChooseList : MonoBehaviour
         {
             weaponIndexInstalled.Add(false);
         }
+        buildlistCountAfterUpdate();
     }
 
     public List<int> BuildUpgradeList(UpgradeTyp upgradeTyp)
@@ -68,7 +72,53 @@ public class UpgradeChooseList : MonoBehaviour
             }
         }
 
-        //Debug.Log(buildList.Count);
+        if (upgradeTyp == UpgradeTyp.NormalUpgrade) normalUpgradeCount = buildList.Count;
+        if (upgradeTyp == UpgradeTyp.WeaponUpgrade) weaponUpgradeCount = buildList.Count;
+
+        Debug.Log("buildListcount befor update " + buildList.Count);
         return buildList;
+    }
+
+
+    public string buildlistCountAfterUpdate()
+    {
+        // save old values
+        int oldNC = normalUpgradeCount;
+        int oldWC = weaponUpgradeCount;
+
+        // reset
+        normalUpgradeCount = 0;
+        weaponUpgradeCount = 0;
+
+        // count new
+        for (int i = 0; i < weaponUpgrades.Length; i++)
+        {
+            if (weaponIndexInstalled[i] == false &&
+               mcBulletLvl >= weaponUpgrades[i].reqBullet && mcExplosionLvl >= weaponUpgrades[i].reqRocket && mcLaserLvl >= weaponUpgrades[i].reqLaser && mcSupportLvl >= weaponUpgrades[i].reqSupport)
+            {
+                if (weaponUpgrades[i].upgradeTyp == UpgradeTyp.NormalUpgrade)
+                {
+                    normalUpgradeCount++;
+                }
+                if (weaponUpgrades[i].upgradeTyp == UpgradeTyp.WeaponUpgrade)
+                {
+                    weaponUpgradeCount++;
+                }
+            }
+        }
+
+        // build the new values
+        string returnString = " ";
+        
+        if (oldNC < normalUpgradeCount)
+        {
+            returnString = "You unlock " + (normalUpgradeCount - oldNC).ToString() + " new Update(s).";
+        }
+        if (oldWC < weaponUpgradeCount)
+        {
+            returnString += " You unlock " + (weaponUpgradeCount - oldWC).ToString() + " new Weapon upgrade(s).";
+        }
+
+        return returnString;
     }
 }

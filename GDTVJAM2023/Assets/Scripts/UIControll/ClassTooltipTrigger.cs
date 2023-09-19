@@ -8,6 +8,7 @@ public class ClassTooltipTrigger : MonoBehaviour
     public ClassTooltip tooltip;
     public GameObject goTooltip;
     public int contentType = 0;
+    public Vector3 toolTipOffset;
 
     private void Start()
     {
@@ -16,7 +17,7 @@ public class ClassTooltipTrigger : MonoBehaviour
 
     public void TooltipShow()
     {
-        triggerPosition = transform.position;
+        triggerPosition = transform.position + toolTipOffset;
         tooltip.Show(triggerPosition, contentType);
         goTooltip.SetActive(true);
         AudioManager.Instance.PlaySFX("MouseHover");
