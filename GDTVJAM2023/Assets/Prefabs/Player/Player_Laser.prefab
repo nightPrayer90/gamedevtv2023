@@ -15133,43 +15133,71 @@ MonoBehaviour:
   frontShield: {fileID: 4831901517162404820, guid: 120689e8e5b520d439a8645f1b1162d9, type: 3}
   backShield: {fileID: 3147124995608451256, guid: 6da4992dab9d49646be6b65d0388b3e4, type: 3}
   hcBulletDamage: 4
-  hcSalveCount: 6
-  hcReloadTime: 2.5
+  hcSalveCount: 5
+  hcReloadTime: 4
   headCannon: {fileID: 6259656975113115787, guid: 28380b77c519d364f86c7806b2b37858, type: 3}
+  hcBulletDamage_: 0
+  hcSalveCount_: 0
+  hcReloadTime_: 0
   rlDamage: 14
   rlLifeTime: 3
   rlReloadTime: 5
   rocketLauncher: {fileID: 7608659782651776090, guid: f8a12e7bd2c5605449b3f598e8eb6886, type: 3}
+  rlDamage_: 0
+  rlLifeTime_: 0
+  rlReloadTime_: 0
   ffDamage: 10
   ffReloadTime: 6
   ffbulletCount: 16
   fireFlys: {fileID: 5998184823411945893, guid: 28e4039d445b9d84fa06f83e4b212d06, type: 3}
+  ffDamage_: 0
+  ffReloadTime_: 0
+  ffbulletCount_: 0
   bwDamage: 6
   bwRealoadTime: 4.5
   bwSalveCount: 7
   bulletWings: {fileID: 8390656690878353693, guid: 0aaf90ad2cd0d844397b6d95f3b62d12, type: 3}
+  bwDamage_: 0
+  bwRealoadTime_: 0
+  bwSalveCount_: 0
   lmLifePerTick: 1
   lmReloadTime: 10
   lifeModul: {fileID: 8459815295507979944, guid: 0bb488a5296b7d34eb8f8afe684ebff5, type: 3}
+  lmLifePerTick_: 0
+  lmReloadTime_: 0
   sgDamage: 3
   sgReloadTime: 3.5
   sgBulletCount: 12
   spreadGun: {fileID: 7701453864392984337, guid: 104de042193ebb248b57f868f189bcdf, type: 3}
+  sgDamage_: 0
+  sgReloadTime_: 0
+  sgBulletCount_: 0
   neDamage: 7
   neReloadTime: 3.2
   neRadius: 2
   novaExplosion: {fileID: 5372979302712396976, guid: 1881bb6667bcf7140b96c38cd7cd297b, type: 3}
+  neDamage_: 0
+  neReloadTime_: 0
+  neRadius_: 0
   rwDamage: 2
   rwReloadTime: 5
   rwSalveCount: 3
   rocketWings: {fileID: 8390656690878353693, guid: 8634b4018809df54b87676107fad22f7, type: 3}
+  rwDamage_: 0
+  rwReloadTime_: 0
+  rwSalveCount_: 0
   flDamage: 3
   flReloadTime: 4.5
   flShootingTime: 3
   frontLaser: {fileID: 8635275999776491353, guid: 750e087bff3860840ad534f2097f41f6, type: 3}
+  flDamage_: 0
+  flReloadTime_: 0
+  flShootingTime_: 0
   olDamage: 8
   olReloadTime: 7
   orbitalLaser: {fileID: 7601612212577922131, guid: 9bcf5e0e76ce98b44a72e49fe758b485, type: 3}
+  olDamage_: 0
+  olReloadTime_: 0
   passivParentContainer: {fileID: 2604307836560290830}
   fsSpawnTime: 8
   fsShieldLife: 3
@@ -15178,6 +15206,10 @@ MonoBehaviour:
   isFrontShieldEnabled: 0
   isBackShieldLeft: 0
   isBackShieldRight: 0
+  fsSpawnTime_: 0
+  fsShieldLife_: 0
+  bsSpawnTime_: 0
+  bsShildLife_: 0
 --- !u!82 &2559130692153237150
 AudioSource:
   m_ObjectHideFlags: 0

@@ -462,7 +462,7 @@ public class EnemyHealth : MonoBehaviour
 
     public int CritDamage(int damage)
     {
-        damage = Mathf.CeilToInt(damage * playerWeaponController.bulletCritDamage / 100);
+        damage = Mathf.CeilToInt(damage * ((float)playerWeaponController.bulletCritDamage / 100));
         //resultColor = critColor;
         return damage;
     }

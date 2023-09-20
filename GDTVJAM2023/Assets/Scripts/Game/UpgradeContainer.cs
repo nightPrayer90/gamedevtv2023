@@ -51,4 +51,5 @@ public class UpgradeContainer
     public int colorIndex;
     public bool isUnique;
     public UpgradeTyp upgradeTyp;
+    public string passivUpgrades;
 }
