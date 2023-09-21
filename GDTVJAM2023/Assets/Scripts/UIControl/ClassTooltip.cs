@@ -51,7 +51,7 @@ public class ClassTooltip : MonoBehaviour
 
     public void Show(Vector2 triggerPosition, int contentType)
     {
-        Debug.Log("contentType " + contentType);
+        //Debug.Log("contentType " + contentType);
 
         if (player == null)
         {
@@ -128,8 +128,8 @@ public class ClassTooltip : MonoBehaviour
                         headerField.text = "Rocket Ship";
                         headerField.color = gameManager.globalClassColor[1];
                         content_ = content_.Replace("MAINWEAPON", "Auto Rockets");
-                        content_ = content_.Replace("XXX", "Rocket damage");
-                        content_ = content_.Replace("YYY", "Fire rate");
+                        content_ = content_.Replace("XXX", "Rocket damage: " + playerMWController.bulletBaseDamage.ToString());
+                        content_ = content_.Replace("YYY", "Fire rate " + playerMWController.fireRate.ToString() + " s" + Environment.NewLine + "Extra boss damage: " + upgradeChooseList.bossBonusDamage.ToString() + " %" );
                         break;
                     case 2:
                         headerField.text = "Laser Ship";

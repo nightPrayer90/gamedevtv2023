@@ -25,6 +25,7 @@ public class EnemyHealth : MonoBehaviour
     public bool canTakeDamage = true;
     public bool canPoolObject = true;
     public event EventHandler DieEvent;
+    public bool isBoss = false;
 
 
     [Header("Enemy Weapons")]

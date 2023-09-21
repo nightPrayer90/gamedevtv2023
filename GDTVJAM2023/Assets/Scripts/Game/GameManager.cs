@@ -117,6 +117,7 @@ public class GameManager : MonoBehaviour
                     player = player_b.GetComponent<PlayerController>();
                     //weaponController = player_b.GetComponent<PlayerWeaponController>();
                     upgradeChooseList.weaponUpgrades[49].reqLaser = 100;
+                    upgradeChooseList.weaponUpgrades[55].reqRocket = 100;
                     ship = 0;
                     break;
                 case StartShip.rocket:
@@ -132,6 +133,7 @@ public class GameManager : MonoBehaviour
                     player = player_l.GetComponent<PlayerController>();
                     //weaponController = player_l.GetComponent<PlayerWeaponController>();
                     upgradeChooseList.weaponUpgrades[51].reqBullet = 100;
+                    upgradeChooseList.weaponUpgrades[55].reqRocket = 100;
                     ship = 2;
                     break;
             }
@@ -145,6 +147,7 @@ public class GameManager : MonoBehaviour
                     player = player_b.GetComponent<PlayerController>();
                     //weaponController = player_b.GetComponent<PlayerWeaponController>();
                     upgradeChooseList.weaponUpgrades[49].reqLaser = 100;
+                    upgradeChooseList.weaponUpgrades[55].reqRocket = 100;
                     ship = 0;
                     break;
                 case 1:
@@ -160,6 +163,7 @@ public class GameManager : MonoBehaviour
                     player = player_l.GetComponent<PlayerController>();
                     //weaponController = player_l.GetComponent<PlayerWeaponController>();
                     upgradeChooseList.weaponUpgrades[51].reqBullet = 100;
+                    upgradeChooseList.weaponUpgrades[55].reqRocket = 100;
                     ship = 2;
                     break;
             }
@@ -311,7 +315,7 @@ public class GameManager : MonoBehaviour
     public void UpgradeGet()
     {
         Time.timeScale = 1;
-        upgradeText.text = upgradeChooseList.buildlistCountAfterUpdate();
+        upgradeText.text = upgradeChooseList.BuildlistCountAfterUpdate();
         upgradeTextCG.DOFade(1, 0.5f);
         Invoke("InvokeupgradeText", 2f);
 
@@ -634,7 +638,7 @@ public class GameManager : MonoBehaviour
 
         // create temporary list from weapons or normal upgrades - depends on the player level
         if (playerLevel == -1) // new weapon
-            valueList.AddRange( upgradeChooseList.BuildUpgradeList(UpgradeTyp.WeaponUpgrade) );
+            valueList.AddRange(upgradeChooseList.BuildUpgradeList(UpgradeTyp.WeaponUpgrade)); 
         else if ((playerLevel % 5) == 0) // class update
             valueList.AddRange(upgradeChooseList.BuildUpgradeList(UpgradeTyp.ClassUpgrade));
         else

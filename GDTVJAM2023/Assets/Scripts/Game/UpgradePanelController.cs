@@ -10,7 +10,6 @@ public class UpgradePanelController : MonoBehaviour
     //public UpgradeContainer[] upgradeIndex;
     public List<UpgradPanelIndex> panelList;
     public UpgradeShipPanelController shipPanalController;
-    public UpgradeChooseList upgradeList;
     [HideInInspector] public float[] upgradeValue;
     [HideInInspector] public string[] headerStr;
     [HideInInspector] public string[] descriptionTextStr;
@@ -168,7 +167,7 @@ public class UpgradePanelController : MonoBehaviour
             
 
             int number = gameManager.selectedNumbers_[i];
-            UpgradeContainer uC = upgradeList.weaponUpgrades[number];
+            UpgradeContainer uC = upgradeChooseList.weaponUpgrades[number];
 
             // calculate values
             switch (number)
@@ -308,7 +307,7 @@ public class UpgradePanelController : MonoBehaviour
                     break;
 
                 //----
-                case >= 18 and <= 54:
+                case >= 18 and <= 55:
                     break;
 
                 //----
@@ -318,7 +317,7 @@ public class UpgradePanelController : MonoBehaviour
                     break;
             }
 
-            UpgradeContainer uC = upgradeList.weaponUpgrades[number];
+            UpgradeContainer uC = upgradeChooseList.weaponUpgrades[number];
 
             // update class colors
             int index_ = (int)uC.mainClass;
@@ -594,6 +593,10 @@ public class UpgradePanelController : MonoBehaviour
             case 54: // Detonation Crits
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 break;
+            case 55: // Titan Slayer
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                upgradeChooseList.bossBonusDamage = 35;
+                break;
         }
     }
 
@@ -616,49 +619,45 @@ public class UpgradePanelController : MonoBehaviour
     // update classlevel in player weapon controller
     private void UpdateClass(int number, int factor = 1)
     {
-        UpgradeContainer uC = upgradeList.weaponUpgrades[number];
+        UpgradeContainer uC = upgradeChooseList.weaponUpgrades[number];
 
         // update mainClass level
         int index = (int)uC.mainClass;
+
+        //Debug.Log(number + " - index " + index + " - " + upgradeChooseList.weaponUpgrades[index + 17].maxSkillCount);
+
         switch (index)
         {
             case 0:
-                upgradeChooseList.mcBulletLvl += factor;
-                upgradeChooseList.baseBulletCritChance += upgradeChooseList.critChance;
-                upgradeChooseList.baseBulletCritDamage += upgradeChooseList.critDamage;
+                if (upgradeChooseList.mcBulletLvl < upgradeChooseList.weaponUpgrades[index + 18].maxSkillCount)
+                {
+                    upgradeChooseList.mcBulletLvl += factor;
+                    upgradeChooseList.baseBulletCritChance += upgradeChooseList.critChance;
+                    upgradeChooseList.baseBulletCritDamage += upgradeChooseList.critDamage;
+                }
                 break;
             case 1:
-                upgradeChooseList.mcExplosionLvl += factor;
-                upgradeChooseList.baseRocketAOERadius += upgradeChooseList.aoeRange;
+                if (upgradeChooseList.mcExplosionLvl < upgradeChooseList.weaponUpgrades[index + 18].maxSkillCount)
+                {
+                    upgradeChooseList.mcExplosionLvl += factor;
+                    upgradeChooseList.baseRocketAOERadius += upgradeChooseList.aoeRange;
+                }
                 break;
             case 2:
-                upgradeChooseList.mcLaserLvl += factor;
-                upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.burningChance;
+                if (upgradeChooseList.mcLaserLvl < upgradeChooseList.weaponUpgrades[index + 18].maxSkillCount)
+                {
+                    upgradeChooseList.mcLaserLvl += factor;
+                    upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.burningChance;
+                }
                 break;
             case 3:
-                upgradeChooseList.mcSupportLvl += factor;
-                upgradeChooseList.baseSupportRealoadTime += upgradeChooseList.supportRealodTime;
+                if (upgradeChooseList.mcSupportLvl < upgradeChooseList.weaponUpgrades[index + 18].maxSkillCount)
+                {
+                    upgradeChooseList.mcSupportLvl += factor;
+                    upgradeChooseList.baseSupportRealoadTime += upgradeChooseList.supportRealodTime;
+                }
                 break;
         }
-
-        // update subClass level
-        index = (int)uC.subClass;
-        switch (index)
-        {
-            case 4:
-                upgradeChooseList.scSwarmLvl += factor;
-                break;
-            case 5:
-                upgradeChooseList.scDefenceLvl += factor;
-                break;
-            case 6:
-                upgradeChooseList.scTargetingLvl += factor;
-                break;
-            case 7:
-                upgradeChooseList.scDirectionLvl += factor;
-                break;
-        }
-
         playerWeaponController.UpdateWeaponValues();
     }
 
@@ -666,29 +665,29 @@ public class UpgradePanelController : MonoBehaviour
     {
         for(int i=0; i<8 ; i++) //classPointsBullets.Length
         {
-            if (!DisplayClassPoints(upgradeList.mcBulletLvl, i))
+            if (!DisplayClassPoints(upgradeChooseList.mcBulletLvl, i))
             { classPointsBullets[i].color = Color.white; Debug.Log("Bullets " + i); }
 
-            if (!DisplayClassPoints(upgradeList.mcExplosionLvl, i))
+            if (!DisplayClassPoints(upgradeChooseList.mcExplosionLvl, i))
             { classPointsAOE[i].color = Color.white; }
 
-            if (!DisplayClassPoints(upgradeList.mcLaserLvl, i))
+            if (!DisplayClassPoints(upgradeChooseList.mcLaserLvl, i))
             { classPointsLaser[i].color = Color.white; }
 
-            if (!DisplayClassPoints(upgradeList.mcSupportLvl, i))
+            if (!DisplayClassPoints(upgradeChooseList.mcSupportLvl, i))
             { classPointsSupport[i].color = Color.white; }
         }
 
-        if (upgradeList.mcBulletLvl > 0)
+        if (upgradeChooseList.mcBulletLvl > 0)
         { classUpImage[0].sprite = classUpSprite[0]; }
 
-        if (upgradeList.mcExplosionLvl > 0)
+        if (upgradeChooseList.mcExplosionLvl > 0)
         { classUpImage[1].sprite = classUpSprite[1]; }
 
-        if (upgradeList.mcLaserLvl > 0)
+        if (upgradeChooseList.mcLaserLvl > 0)
         { classUpImage[2].sprite = classUpSprite[2]; }
 
-        if (upgradeList.mcSupportLvl > 0)
+        if (upgradeChooseList.mcSupportLvl > 0)
         { classUpImage[3].sprite = classUpSprite[3]; }
     }
 

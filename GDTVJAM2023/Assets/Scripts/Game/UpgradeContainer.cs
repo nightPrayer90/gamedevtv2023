@@ -8,8 +8,8 @@ public enum UpgradeTyp
     WeaponUpgrade,
     NormalUpgrade,
     ClassUpgrade,
-    SubClassUpgrade,
-    SpecialUpgrade
+    SpecialUpgrade,
+    OverflowUpgrade
 }
 
 
@@ -50,6 +50,7 @@ public class UpgradeContainer
     public string reqAbility;
     public int colorIndex;
     public bool isUnique;
+    public int maxSkillCount;
     public UpgradeTyp upgradeTyp;
     public string passivUpgrades;
 }

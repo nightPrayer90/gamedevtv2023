@@ -54,6 +54,7 @@ public class PlayerMWController : MonoBehaviour
 
     //private Objects
     private GameManager gameManager;
+    private UpgradeChooseList upgradeChooseList;
     private PlayerController playerController;
 
 
@@ -63,6 +64,7 @@ public class PlayerMWController : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
         playerController = GetComponent<PlayerController>();
         shipData = playerController.shipData;
         laserShootTime = shipData.laserShooingTime;
@@ -248,6 +250,7 @@ public class PlayerMWController : MonoBehaviour
                 rocket.hitColor = hitColor;
                 rocket.maxLifeTime = lifeTime;
                 rocket.SetDestroyTimer();
+                rocket.isMainWeapon = true;
                 //Debug.Log(rocket.name);
             }
             else
@@ -259,6 +262,7 @@ public class PlayerMWController : MonoBehaviour
                 rocket.hitColor = hitColor;
                 rocket.maxLifeTime = lifeTime;
                 rocket.SetDestroyTimer();
+                rocket.isMainWeapon = true;
                 //Debug.Log(rocket.name);
             }
 

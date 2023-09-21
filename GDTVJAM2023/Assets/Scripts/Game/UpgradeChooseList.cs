@@ -36,6 +36,7 @@ public class UpgradeChooseList : MonoBehaviour
     public float rocketLifeTime = 0;
     public int shieldHealth = 0;
     public int shieldDamage = 0;
+    public int bossBonusDamage = 0;
 
     [Header("Class Upgrade Values")]
     public int critChance = 7;
@@ -56,7 +57,7 @@ public class UpgradeChooseList : MonoBehaviour
         {
             weaponIndexInstalled.Add(false);
         }
-        buildlistCountAfterUpdate();
+        BuildlistCountAfterUpdate();
     }
 
     public List<int> BuildUpgradeList(UpgradeTyp upgradeTyp)
@@ -72,15 +73,33 @@ public class UpgradeChooseList : MonoBehaviour
             }
         }
 
+        //Debug.Log("buildListcount" + buildList.Count);
+
+        // Overflow
+        if (buildList.Count < 3)
+        {
+            buildList.Add(0);
+        }
+
+        if (buildList.Count < 3)
+        {
+            buildList.Add(1);
+        }
+
+        if (buildList.Count < 3)
+        {
+            buildList.Add(2);
+        }
+
         if (upgradeTyp == UpgradeTyp.NormalUpgrade) normalUpgradeCount = buildList.Count;
         if (upgradeTyp == UpgradeTyp.WeaponUpgrade) weaponUpgradeCount = buildList.Count;
 
-        Debug.Log("buildListcount befor update " + buildList.Count);
+        //Debug.Log("buildListcount befor update " + buildList.Count);
         return buildList;
     }
 
 
-    public string buildlistCountAfterUpdate()
+    public string BuildlistCountAfterUpdate()
     {
         // save old values
         int oldNC = normalUpgradeCount;

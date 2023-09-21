@@ -288,7 +288,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     public void UpdateWeaponValues()
     {
-        Debug.Log("weapon Upgrade");
+        //Debug.Log("weapon Upgrade");
         // main weapon - value in playercontroller = constant -> update only mainWeapon controller
         if (playerMWController.weaponType == PlayerMWController.MWeapontyp.bullet)  
         {
@@ -325,7 +325,7 @@ public class PlayerWeaponController : MonoBehaviour
         // Head Cannon - bullet - target
         hcBulletDamage_ = Mathf.CeilToInt((hcBulletDamage + scTargetingLvl_) * (1 + upgradeChooseList.percBulletDamage / 100));
 
-        Debug.Log(hcBulletDamage_ + " upgradeChooseList.percBulletDamage " + upgradeChooseList.baseBulletCritDamage + "-" + Mathf.CeilToInt(((float)upgradeChooseList.baseBulletCritDamage/100)* hcBulletDamage_));
+        //Debug.Log(hcBulletDamage_ + " upgradeChooseList.percBulletDamage " + upgradeChooseList.baseBulletCritDamage + "-" + Mathf.CeilToInt(((float)upgradeChooseList.baseBulletCritDamage/100)* hcBulletDamage_));
 
         hcSalveCount_ = hcSalveCount;
         hcReloadTime_ = Mathf.Max(0.1f, (hcReloadTime * suReloadTime));

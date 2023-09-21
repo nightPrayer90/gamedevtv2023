@@ -11,6 +11,7 @@ public class RocketController : MonoBehaviour
     public GameObject exposionHitObject;
     public float maxLifeTime;   // time before the rocked get destroyed
     [HideInInspector] public Color hitColor;
+    public bool isMainWeapon = false;
 
 
     [Header("Explosion Control")]
@@ -48,7 +49,8 @@ public class RocketController : MonoBehaviour
         // reset Target
         target = null;
 
-       
+        // is main weapon flag=
+        isMainWeapon = false; // flag set from mwController
 
         // Layermask
         layerMask = (1 << 6);
@@ -65,7 +67,6 @@ public class RocketController : MonoBehaviour
 
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
 
             if (!target.activeSelf)
             {
@@ -96,7 +97,6 @@ public class RocketController : MonoBehaviour
 
         GameObject go = other.gameObject;
         
-
         // enemy target tag compare only than destroy the rocked
         if (other.gameObject.CompareTag(tagStr))
         {
@@ -156,7 +156,6 @@ public class RocketController : MonoBehaviour
 
 
 
-
     /* **************************************************************************** */
     /* FUNCTIONS TO RUN------------------------------------------------------------ */
     /* **************************************************************************** */
@@ -201,27 +200,31 @@ public class RocketController : MonoBehaviour
             if (rb == null) continue;
 
            
-
             // calculate distance between explosioncenter and objects in Range
             float distance = Vector3.Distance(pos, rb.transform.position);
 
-            int adjustedDamage = damage;
-
-            if (obj.gameObject != collisionTarget)
-            {
-                if (distance < explosionRadius_)
-                {
-                    float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius_), 1f);
-                    adjustedDamage = Mathf.CeilToInt(damage * scaleFactor); 
-                }
-            }
 
             // get EnemyHealthscript
             EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
             Color resultColor = hitColor;
+            int adjustedDamage = damage;
+
+            if (eHC.isBoss == true && isMainWeapon == true)
+            {
+                adjustedDamage = Mathf.CeilToInt((float)damage * (1+(float)upgradeChooseList.bossBonusDamage / 100));
+            }
 
             if (eHC != null)
             {
+                if (obj.gameObject != collisionTarget)
+                {
+                    if (distance < explosionRadius_)
+                    {
+                        float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius_), 1f);
+                        adjustedDamage = Mathf.CeilToInt(adjustedDamage * scaleFactor); 
+                    }
+                }
+            
                 if (upgradeChooseList.weaponIndexInstalled[54] == true)
                 {
                     int ran = UnityEngine.Random.Range(0, 100);
