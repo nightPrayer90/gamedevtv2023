@@ -337,22 +337,6 @@ public class PlayerController : MonoBehaviour
                 floatingText = "+1 support class";
                 upgradeChooseList.baseSupportRealoadTime += upgradeChooseList.supportRealodTime;
                 break;
-            case 4:
-                upgradeChooseList.scSwarmLvl++;
-                floatingText = "+1 swarm class";
-                break;
-            case 5:
-                upgradeChooseList.scDefenceLvl++;
-                floatingText = "+1 defense class";
-                break;
-            case 6:
-                upgradeChooseList.scTargetingLvl++;
-                floatingText = "+1 targeting class";
-                break;
-            case 7:
-                upgradeChooseList.scDirectionLvl++;
-                floatingText = "+1 direction class";
-                break;
         }
 
         gameManager.DoFloatingText(transform.position, floatingText, gameManager.globalClassColor[input]);

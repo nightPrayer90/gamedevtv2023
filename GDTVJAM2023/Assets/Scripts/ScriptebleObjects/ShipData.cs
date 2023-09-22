@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "ShipData", menuName = "Scriptable Objects/ShipData")]
 
@@ -26,9 +27,14 @@ public class ShipData : ScriptableObject
     public int explosionClass = 0;
     public int laserClass = 0;
     public int supportClass = 0;
-    public int swarmClass = 0;
-    public int defenseClass = 0;
-    public int targetClass = 0;
-    public int directionClass = 0;
+
+    // Hangar
+    public Color mainClassColor;
+    public Sprite shipIcon;
+    public Sprite shipWeaponImage;
+    public string shipName;
+    public string shipWeaponStr;
+    public string shipDescription;
+    public string shipWeaponDescription;
 
 }

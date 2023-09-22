@@ -445,7 +445,7 @@ public class GameManager : MonoBehaviour
         //wird bei jedem districtwechsel ausgelöst
         killCounter = 0;
         enemysToKill = spawnDistrictList.waveKillList[districtNumber - 1];
-        enemyToKillText.text = "Enemys to defeat: " + enemysToKill.ToString();
+        enemyToKillText.text = "Enemies to defeat: " + enemysToKill.ToString();
 
         if (isIntro == false)
         {

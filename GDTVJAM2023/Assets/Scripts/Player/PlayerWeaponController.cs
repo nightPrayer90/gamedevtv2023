@@ -181,10 +181,7 @@ public class PlayerWeaponController : MonoBehaviour
         upgradeChooseList.mcExplosionLvl = shipData.explosionClass;
         upgradeChooseList.mcLaserLvl = shipData.laserClass;
         upgradeChooseList.mcSupportLvl = shipData.supportClass;
-        upgradeChooseList.scSwarmLvl = shipData.swarmClass;
-        upgradeChooseList.scDefenceLvl = shipData.defenseClass;
-        upgradeChooseList.scTargetingLvl = shipData.targetClass;
-        upgradeChooseList.scDirectionLvl = shipData.directionClass;
+
 
         // set start class upgrades
         if (shipData.bulletClass > 0)

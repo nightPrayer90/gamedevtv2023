@@ -13,10 +13,7 @@ public class UpgradeChooseList : MonoBehaviour
     public int mcExplosionLvl = 0;
     public int mcLaserLvl = 0;
     public int mcSupportLvl = 0;
-    public int scSwarmLvl = 0;
-    public int scDefenceLvl = 0;
-    public int scTargetingLvl = 0;
-    public int scDirectionLvl = 0;
+ 
 
     [Header("Basic Ability Values")]
     public float percBulletDamage = 0;

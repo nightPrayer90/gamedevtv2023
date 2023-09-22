@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class HangarManager : MonoBehaviour
 {
     public GameObject playerStartPoint;
@@ -14,9 +15,5 @@ public class HangarManager : MonoBehaviour
         playerHangarShip.transform.position = playerStartPoint.transform.position + postiionOffset;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
