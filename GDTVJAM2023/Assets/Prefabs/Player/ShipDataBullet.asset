@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd6faff630936f40a2920f37d27073e, type: 3}
   m_Name: ShipDataBullet
   m_EditorClassIdentifier: 
-  speed: 11
+  speed: 11.1
   rotateSpeed: 3.5
-  health: 10
+  health: 8
   baseDamage: 4
   fireRate: 0.4
   PickupRange: 0.8
-  boostPower: 2
-  boostDuration: 0.5
+  boostPower: 2.1
+  boostDuration: 0.4
   protectionLevel: 0
   rocketLifeTime: 0
   laserShooingTime: 0
@@ -32,5 +32,6 @@ MonoBehaviour:
   shipWeaponImage: {fileID: 21300000, guid: af664e4b95c42b849a80d06e118e6a54, type: 3}
   shipName: Bullet Ship
   shipWeaponStr: Bullet Shooter
-  shipDescription: Beschreibung
+  shipDescription: Old worn out war ship from two generations ago. my grandfather
+    flew this ship.
   shipWeaponDescription: Fire two Bullets at the same Time. Can make crit damage.

@@ -22,8 +22,15 @@ public class HangerUIController : MonoBehaviour
     public Image weaponImage;
     public TextMeshProUGUI weaponDescription;
 
+    public TextMeshProUGUI damageValue;
+    public TextMeshProUGUI healthValue;
+    public TextMeshProUGUI speedValue;
+    public TextMeshProUGUI boostValue;
+    public TextMeshProUGUI boostDuration;
+
     private int shipIndex=0;
     public TextMeshProUGUI shipNameText;
+    public TextMeshProUGUI shipDescriptionText;
     public ParticleSystem particleChooseEffect;
     public PlayerData playerData;
 
@@ -65,6 +72,14 @@ public class HangerUIController : MonoBehaviour
                 bkHeader.color = bulletShipData.mainClassColor;
                 bkHeaderShipIcon.sprite = bulletShipData.shipIcon;
 
+                shipDescriptionText.text = bulletShipData.shipDescription;
+
+                damageValue.text = bulletShipData.baseDamage.ToString();
+                healthValue.text = bulletShipData.health.ToString();
+                speedValue.text = bulletShipData.speed.ToString();
+                boostValue.text = bulletShipData.boostPower.ToString();
+                boostDuration.text = bulletShipData.boostDuration.ToString();
+
                 weaponHeader.text = bulletShipData.shipWeaponStr;
                 weaponHeader.color = bulletShipData.mainClassColor;
                 weaponImage.sprite = bulletShipData.shipWeaponImage;
@@ -86,6 +101,14 @@ public class HangerUIController : MonoBehaviour
                 bkHeader.color = rocketShipData.mainClassColor;
                 bkHeaderShipIcon.sprite = rocketShipData.shipIcon;
 
+                shipDescriptionText.text = rocketShipData.shipDescription;
+
+                damageValue.text = rocketShipData.baseDamage.ToString();
+                healthValue.text = rocketShipData.health.ToString();
+                speedValue.text = rocketShipData.speed.ToString();
+                boostValue.text = rocketShipData.boostPower.ToString();
+                boostDuration.text = rocketShipData.boostDuration.ToString();
+
                 weaponHeader.text = rocketShipData.shipWeaponStr;
                 weaponHeader.color = rocketShipData.mainClassColor;
                 weaponImage.sprite = rocketShipData.shipWeaponImage;
@@ -106,6 +129,14 @@ public class HangerUIController : MonoBehaviour
                 shipNameText.text = laserShipData.shipName;
                 bkHeader.color = laserShipData.mainClassColor;
                 bkHeaderShipIcon.sprite = laserShipData.shipIcon;
+
+                shipDescriptionText.text = laserShipData.shipDescription;
+
+                damageValue.text = laserShipData.baseDamage.ToString();
+                healthValue.text = laserShipData.health.ToString();
+                speedValue.text = laserShipData.speed.ToString();
+                boostValue.text = laserShipData.boostPower.ToString();
+                boostDuration.text = laserShipData.boostDuration.ToString();
 
                 weaponHeader.text = laserShipData.shipWeaponStr;
                 weaponHeader.color = laserShipData.mainClassColor;
