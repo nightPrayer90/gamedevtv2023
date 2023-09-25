@@ -117,10 +117,10 @@ MonoBehaviour:
   - {r: 0.9607843, g: 0.4392157, b: 0, a: 1}
   - {r: 0.3726415, g: 0.6042445, b: 1, a: 1}
   - {r: 0.6745098, g: 0, b: 1, a: 1}
-  - {r: 1, g: 0.9529412, b: 0.7019608, a: 1}
-  - {r: 0.69411767, g: 0.7176471, b: 1, a: 1}
-  - {r: 1, g: 0.7019608, b: 0.8745098, a: 1}
-  - {r: 0.68235296, g: 1, b: 0.72156864, a: 1}
+  - {r: 1, g: 0.9529412, b: 0.7019608, a: 0}
+  - {r: 0.69411767, g: 0.7176471, b: 1, a: 0}
+  - {r: 1, g: 0.7019608, b: 0.8745098, a: 0}
+  - {r: 0.68235296, g: 1, b: 0.72156864, a: 0}
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.9137255, g: 0.7254902, b: 0.21960784, a: 1}
@@ -149,6 +149,7 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   isPlayerData: 1
   startShip: 2
+  ship: 0
   playerStartPosition: {fileID: 0}
   playerShip_bullet: {fileID: 2604307836790789309, guid: bca8a1f1b6f8d3049ad5e562a3b30554, type: 3}
   playerShip_rocket: {fileID: 2604307836790789309, guid: 68fed91363a46834bbf35f39e1d73891, type: 3}
@@ -225,28 +226,32 @@ MonoBehaviour:
     mainClass: 8
     subClass: 8
     upgradeIndex: 0
-    reqBullet: 100
-    reqRocket: 100
-    reqLaser: 100
-    reqSupport: 100
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
     reqAbility: 
     colorIndex: 9
     isUnique: 0
-    upgradeTyp: 1
+    maxSkillCount: -1
+    upgradeTyp: 4
+    passivUpgrades: 
   - headerStr: Damage
     descriptionStr: Increase your main weapon damage by XX.
     iconPanel: {fileID: 21300000, guid: d717766fd39692e47bc9e10ac04ab6dc, type: 3}
     mainClass: 8
     subClass: 8
     upgradeIndex: 1
-    reqBullet: 100
-    reqRocket: 100
-    reqLaser: 100
-    reqSupport: 100
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
     reqAbility: 
     colorIndex: 9
     isUnique: 0
-    upgradeTyp: 1
+    maxSkillCount: -1
+    upgradeTyp: 4
+    passivUpgrades: 
   - headerStr: Protection
     descriptionStr: Increase your protection level by XX.
     iconPanel: {fileID: 21300000, guid: 0ed2cb74a7f3ebb479bdc536ce9e1422, type: 3}
@@ -260,7 +265,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 9
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Boost Duration
     descriptionStr: Increase your boost duration by XX.
     iconPanel: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
@@ -274,7 +281,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 9
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Agility
     descriptionStr: Increase your agility by XX.
     iconPanel: {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
@@ -288,7 +297,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 9
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Pickup Range
     descriptionStr: Increase your pickup range by XX.
     iconPanel: {fileID: 21300000, guid: ca41a70726d6ed84da8ea7d1000633f3, type: 3}
@@ -302,7 +313,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 9
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Head Cannon
     descriptionStr: Fires a targeted volley of shots at nearby enemies.
     iconPanel: {fileID: 21300000, guid: eddf778d779dd2e46a84c198e40ecab5, type: 3}
@@ -316,7 +329,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 10
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 0
+    passivUpgrades: 
   - headerStr: Rocket Launcher
     descriptionStr: Fires homing missiles at nearby enemies.
     iconPanel: {fileID: 21300000, guid: 1cdaf286f8e1ff047879fc7c76debb9a, type: 3}
@@ -330,7 +345,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 10
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 0
+    passivUpgrades: 
   - headerStr: Fireflies
     descriptionStr: Releases a swarm of slowly spreading projectiles.
     iconPanel: {fileID: 21300000, guid: b248b2b0686619a4cae68905c3e43676, type: 3}
@@ -344,7 +361,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 10
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 0
+    passivUpgrades: 
   - headerStr: Bullet Wings
     descriptionStr: Fires a volley of spreading projectiles from the wings.
     iconPanel: {fileID: 21300000, guid: dff2809d972cbaf448e7a1888f1d01ea, type: 3}
@@ -358,7 +377,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 10
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 0
+    passivUpgrades: 
   - headerStr: Life Module
     descriptionStr: The life module regenerates life over time.
     iconPanel: {fileID: 21300000, guid: 1a9c2c2a4a64e944eb9944340feb3595, type: 3}
@@ -372,7 +393,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 10
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 0
+    passivUpgrades: 
   - headerStr: Spread Gun
     descriptionStr: Fires periodic bursts of short-range bullets from the center.
     iconPanel: {fileID: 21300000, guid: cfa1d4ae5cbde234c855a1d8c18577e9, type: 3}
@@ -386,7 +409,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 10
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 0
+    passivUpgrades: 
   - headerStr: Front Shield
     descriptionStr: Regenerating shield at the front of the ship.
     iconPanel: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
@@ -400,7 +425,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 10
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 0
+    passivUpgrades: 
   - headerStr: Back Shield
     descriptionStr: Regenerating shield at the back of the ship.
     iconPanel: {fileID: 21300000, guid: a7a01ead83f63fa44a6141650e1add89, type: 3}
@@ -414,7 +441,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 10
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 0
+    passivUpgrades: 
   - headerStr: Shock Nova
     descriptionStr: Creates a nova around the ship that knocks back enemies.
     iconPanel: {fileID: 21300000, guid: b5adefc2f49023b4e9917d4e5664ed8c, type: 3}
@@ -428,7 +457,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 10
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 0
+    passivUpgrades: 
   - headerStr: Rocket Wings
     descriptionStr: Sends out a battery of homing missiles.
     iconPanel: {fileID: 21300000, guid: 88f631d3dd40cd24585c3384e7bedd70, type: 3}
@@ -442,7 +473,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 10
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 0
+    passivUpgrades: 
   - headerStr: Front Laser
     descriptionStr: Fires a laser beam in the direction of flight that burns enemies
       on contact.
@@ -457,7 +490,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 10
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 0
+    passivUpgrades: 
   - headerStr: Orbital Laser
     descriptionStr: Creates three laser spheres that orbit the player and burn enemies
       on contact.
@@ -472,7 +507,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 10
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 0
+    passivUpgrades: 
   - headerStr: Bullet Class
     descriptionStr: 'Each level increases the crit chance by 7% and crit damage by
       20% for all bullet weapons. '
@@ -487,7 +524,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 0
     isUnique: 0
+    maxSkillCount: 8
     upgradeTyp: 2
+    passivUpgrades: 
   - headerStr: Explosion Class
     descriptionStr: Each level in this class increases the AOE size by 20% for all
       explosions.
@@ -502,7 +541,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 1
     isUnique: 0
+    maxSkillCount: 8
     upgradeTyp: 2
+    passivUpgrades: 
   - headerStr: Laser Class
     descriptionStr: Increases the chance of enemies burning from laser damage by
       2%.
@@ -517,7 +558,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 2
     isUnique: 0
+    maxSkillCount: 8
     upgradeTyp: 2
+    passivUpgrades: 
   - headerStr: Support Class
     descriptionStr: Improves the reload time of all weapon systems by 10%.
     iconPanel: {fileID: 21300000, guid: d77731612a405b64eb61fe076a3f4fb2, type: 3}
@@ -531,8 +574,10 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 3
     isUnique: 0
+    maxSkillCount: 8
     upgradeTyp: 2
-  - headerStr: Swarm Class
+    passivUpgrades: 
+  - headerStr: Swarm Class_
     descriptionStr: Increase your swarm class level by 1.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
@@ -545,8 +590,10 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 4
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 3
-  - headerStr: Defence Class
+    passivUpgrades: 
+  - headerStr: Defence Class_
     descriptionStr: Increase your defense class level by 1.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
@@ -559,8 +606,10 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 5
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 3
-  - headerStr: Targeting Class
+    passivUpgrades: 
+  - headerStr: Targeting Class_
     descriptionStr: Increase your targeting class level by 1.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
@@ -573,8 +622,10 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 6
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 3
-  - headerStr: Direction Class
+    passivUpgrades: 
+  - headerStr: Direction Class_
     descriptionStr: Increase your direction class level by 1.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
@@ -587,7 +638,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 7
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 3
+    passivUpgrades: 
   - headerStr: Critical Impact
     descriptionStr: Increases the bullet crit damage by 20%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -601,7 +654,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 0
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Critical Ammo
     descriptionStr: Increases the bullet crit chance by 3%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -615,7 +670,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 0
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Blast Expansion
     descriptionStr: Increases AOE from all explosions by 8%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -629,7 +686,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 1
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Searing Focus
     descriptionStr: Increases the laser burning damage per tick by 20%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -643,7 +702,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 2
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Scorching Potential
     descriptionStr: Increases the laser burning chance by 1%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -657,7 +718,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 2
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Fortified Overdrive
     descriptionStr: Increases the time a power boost makes your ship invulnerable
       by 0.2s.
@@ -672,7 +735,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 3
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Expansion Fortuity
     descriptionStr: +5% chance to get double exp if u collect an exp orb
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -686,7 +751,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 3
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Vitality Infusion
     descriptionStr: +2% chance to get 1 life if you collect an exp orb.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -700,7 +767,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 3
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Rocket Mastery
     descriptionStr: Increase the rocket lifetime by + 0.2s
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -714,7 +783,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 1
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Impact Burst
     descriptionStr: Triggers a nova when an opponent collides with you.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -728,7 +799,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 1
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Boosted Nova Impact
     descriptionStr: Triggers a nova when you hit an enemy with your power boost.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -742,7 +815,9 @@ MonoBehaviour:
     reqAbility: Shock Nova
     colorIndex: 1
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Deadly Focus
     descriptionStr: Increases the bullet crit chance by 10%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -756,7 +831,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 0
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Extended Blast Expansion
     descriptionStr: Increases AOE from all your explosions by 15%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -770,7 +847,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 1
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Ignition Augment
     descriptionStr: Increases the base laser burning damage per tick by 3.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -784,7 +863,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 2
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Fortified Defense
     descriptionStr: Increases shield health by +1.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -798,7 +879,9 @@ MonoBehaviour:
     reqAbility: Shield
     colorIndex: 3
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Shielded Strike
     descriptionStr: Shield deals +5 damage on collision.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -812,7 +895,9 @@ MonoBehaviour:
     reqAbility: Shield
     colorIndex: 3
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Lifeflow Shields
     descriptionStr: Shields regenerate life over time.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -826,7 +911,9 @@ MonoBehaviour:
     reqAbility: Shield
     colorIndex: 3
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Ignition Shield
     descriptionStr: Shields inflict colliding enemies with burning damage.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -840,7 +927,9 @@ MonoBehaviour:
     reqAbility: Shield
     colorIndex: 3
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Shieldbreaker's Honor
     descriptionStr: Increases the AOE size of all explosions by 2% each time a shield
       is broken.
@@ -855,7 +944,9 @@ MonoBehaviour:
     reqAbility: Shield
     colorIndex: 3
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Shieldbreaker's Might
     descriptionStr: Increases your critical damage by 2% each time a shield is broken.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -869,7 +960,9 @@ MonoBehaviour:
     reqAbility: Shield
     colorIndex: 3
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Ballistic Boost
     descriptionStr: Increases all bullet damage by +12%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -883,7 +976,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 0
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Boom Boom Boost
     descriptionStr: Increases all explosion damage by +15%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -897,7 +992,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 1
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Beam Boost
     descriptionStr: Increases all laser damage by +15%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -911,7 +1008,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 2
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Rapid Laser Reload
     descriptionStr: Reduces the main laser reload time by 10%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -925,7 +1024,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 2
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Wide Spray Expansion
     descriptionStr: Increases the number of bullets for the spread gun by 2.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -939,7 +1040,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 0
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Lightning Reload
     descriptionStr: Increases main weapon fire rate by 7%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -953,7 +1056,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 0
     isUnique: 0
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Kaboomed Targets
     descriptionStr: 10% chance enemies killed by bullets create a nova.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -967,7 +1072,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 10
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Critical Explosion
     descriptionStr: 5% chance that critical damage from bullets will trigger a nova.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -981,7 +1088,9 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 10
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
   - headerStr: Detonation Crits
     descriptionStr: Chance that AOE damage will cause critical damage.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
@@ -995,16 +1104,30 @@ MonoBehaviour:
     reqAbility: 
     colorIndex: 10
     isUnique: 1
+    maxSkillCount: -1
     upgradeTyp: 1
+    passivUpgrades: 
+  - headerStr: Titan Slayer
+    descriptionStr: Increase main weapon damage agist bosses by 35%.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    subClass: 8
+    upgradeIndex: 55
+    reqBullet: 0
+    reqRocket: 1
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    colorIndex: 1
+    isUnique: 1
+    maxSkillCount: -1
+    upgradeTyp: 1
+    passivUpgrades: 
   weaponIndexInstalled: 
   mcBulletLvl: 0
   mcExplosionLvl: 0
   mcLaserLvl: 0
   mcSupportLvl: 0
-  scSwarmLvl: 0
-  scDefenceLvl: 0
-  scTargetingLvl: 0
-  scDirectionLvl: 0
   percBulletDamage: 0
   baseBulletCritChance: 0
   baseBulletCritDamage: 100
@@ -1022,6 +1145,7 @@ MonoBehaviour:
   rocketLifeTime: 0
   shieldHealth: 0
   shieldDamage: 0
+  bossBonusDamage: 0
   critChance: 7
   critDamage: 20
   aoeRange: 20

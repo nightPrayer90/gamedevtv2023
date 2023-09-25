@@ -309,58 +309,154 @@ MonoBehaviour:
   cg: {fileID: 204466386}
   tooltipContent:
   - header: Bullet
-    content: 'XXX % more Bullet damage
+    content: 'XXX % more bullet damage
 
-      YYY % Crit chance
+      YYY % crit chance
 
-      ZZZ % Crit
+      ZZZ % crit
       damage'
   - header: Explosion
-    content: 'XXX % more Explosion damage
+    content: 'XXX % more explosion damage
 
       YYY % AOE size
 
       ZZZ s more
-      Rocket life time'
+      rocket life time'
   - header: Laser
-    content: 'XXX % more Laser damage
+    content: 'XXX % more laser damage
 
-      YYY % chance of burn enemys
+      YYY % chance to burn enemies
 
       ZZZ
       burning damage
 
       AAA % more burning damage'
   - header: Support
-    content: 'XXX % less reaload Time for all wepons
+    content: 'XXX % less reload time for all wepons
 
       YYY % chance to get 2
-      exp per Orb
+      exp per orb
 
-      ZZZ % chance to regenerate 1 HP per Orb
+      ZZZ % chance to regenerate 1 hp per orb
 
-      AAA s Boost
-      Invulnerability '
+      AAA s boost
+      invulnerability '
   - header: Ship
-    content: 'Mainweapon: MAINWEAPON
+    content: 'Main weapon: MAINWEAPON
 
       XXX
 
-      YYY s
+      YYY
 
       --------------------
 
       ZZZ
-      Ship Health
+      ship health
 
-      AAA % chance to get less bullet damage (Protection)
+      AAA % chance to get less bullet damage (protection)
 
       BBB
-      s Boost duration
+      s boost duration
 
-      CCC rotate Speed (Agility)
+      CCC rotate speed (agility)
 
-      DDD m Pickup range'
+      DDD m pickup range'
+  - header: Head Cannon
+    content: 'XXX bullet damage
+
+      YYY s reload time
+
+      ZZZ shoots per savle
+
+      AAA
+      crit chance/ damage'
+  - header: Rocket Launcher
+    content: 'XXX explosion damage
+
+      YYY s reload time
+
+      ZZZ s rocket lifetime
+
+      AAA
+      m rocket AOE size'
+  - header: Fire Flies
+    content: 'XXX bullet damage
+
+      YYY s reload time
+
+      ZZZ shoots per savle
+
+      AAA
+      crit chance/ damage'
+  - header: Bullet Wings
+    content: 'XXX bullet damage
+
+      YYY s reload time
+
+      ZZZ shoots per savle
+
+      AAA
+      crit chance/ damage'
+  - header: Life Modul
+    content: 'XXX life per tick
+
+      YYY s reload time'
+  - header: Spread Gun
+    content: 'XXX bullet damage
+
+      YYY s reload time
+
+      ZZZ shoots per savle
+
+      AAA
+      crit chance/ damage'
+  - header: Front Shield
+    content: 'XXX shield health
+
+      YYY s reload time
+
+      ZZZ shield damage'
+  - header: Back Shield
+    content: 'XXX shield health
+
+      YYY reload time
+
+      ZZZ shield damage'
+  - header: Shock Nova
+    content: 'XXX explosion damage
+
+      YYY s reload time
+
+      ZZZ m AOE size'
+  - header: Rocket Wings
+    content: 'XXX explosion damage
+
+      YYY s reload time
+
+      ZZZ shoots per
+      savle
+
+      AAA rocket AOE size
+
+      AAA m crit chance/ damage'
+  - header: Front Laser
+    content: 'XXX laser damage
+
+      YYY s reload time
+
+      ZZZ s shooting time
+
+      AAA
+      % chance to burn enemies'
+  - header: Orbital Laser
+    content: 'XXX laser damage
+
+      YYY s reload time
+
+      3 orbs
+
+      AAA
+      % chance to burn enemies'
   contentTextValueenabled: {r: 1, g: 0, b: 0.9830489, a: 1}
   contentTextValuenull: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
   upgradeChooseList: {fileID: 0}
@@ -1612,7 +1708,7 @@ GameObject:
   - component: {fileID: 8693543831765722618}
   - component: {fileID: 3606983603601317185}
   m_Layer: 5
-  m_Name: OutsideBorderText
+  m_Name: NewUpgradesText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1635,9 +1731,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 100, y: 25}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 10, y: 10}
+  m_SizeDelta: {x: 450, y: 50}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &8693543831765722618
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1675,8 +1771,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4293322483
-  m_fontColor: {r: 0.9528302, g: 0.9033909, b: 0.9033909, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1693,14 +1789,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 17.6
   m_fontSizeBase: 18
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 10
+  m_fontSizeMax: 18
   m_fontStyle: 17
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1709,7 +1805,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -2721,7 +2817,7 @@ GameObject:
   - component: {fileID: 1264452896547556332}
   - component: {fileID: 1414301304161110921}
   m_Layer: 5
-  m_Name: ViewChanceMassage (1)
+  m_Name: NewUpgradesMassage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9782,7 +9878,6 @@ MonoBehaviour:
   - {fileID: 2313738799206915577}
   - {fileID: 2845793643762768895}
   shipPanalController: {fileID: 665995005372648457}
-  upgradeList: {fileID: 0}
   upgradeValue: []
   headerStr: []
   descriptionTextStr: []
@@ -11647,6 +11742,8 @@ GameObject:
   - component: {fileID: 6883646670644120662}
   - component: {fileID: 6883646670644120680}
   - component: {fileID: 6883646670644120663}
+  - component: {fileID: 368200069}
+  - component: {fileID: 368200070}
   m_Layer: 5
   m_Name: Weapon Panel 3
   m_TagString: Untagged
@@ -11712,6 +11809,67 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &368200069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883646670644120661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 368200070}
+          m_TargetAssemblyTypeName: ClassTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipShow
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 368200070}
+          m_TargetAssemblyTypeName: ClassTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipHide
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &368200070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883646670644120661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b1306f95a6d8949be0038bb79bdf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltip: {fileID: 204466385}
+  goTooltip: {fileID: 204466383}
+  contentType: -1
+  toolTipOffset: {x: 0, y: 20, z: 0}
 --- !u!1 &6883646671053179997
 GameObject:
   m_ObjectHideFlags: 0
@@ -11723,6 +11881,8 @@ GameObject:
   - component: {fileID: 6883646671053179998}
   - component: {fileID: 6883646671053179984}
   - component: {fileID: 6883646671053179999}
+  - component: {fileID: 770991261}
+  - component: {fileID: 770991262}
   m_Layer: 5
   m_Name: Weapon Panel 5
   m_TagString: Untagged
@@ -11788,6 +11948,67 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &770991261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883646671053179997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 770991262}
+          m_TargetAssemblyTypeName: ClassTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipShow
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 770991262}
+          m_TargetAssemblyTypeName: ClassTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipHide
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &770991262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883646671053179997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b1306f95a6d8949be0038bb79bdf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltip: {fileID: 204466385}
+  goTooltip: {fileID: 204466383}
+  contentType: -1
+  toolTipOffset: {x: 0, y: 20, z: 0}
 --- !u!1 &6883646671132443773
 GameObject:
   m_ObjectHideFlags: 0
@@ -11799,6 +12020,8 @@ GameObject:
   - component: {fileID: 6883646671132443774}
   - component: {fileID: 6883646671132443760}
   - component: {fileID: 6883646671132443775}
+  - component: {fileID: 870301351}
+  - component: {fileID: 870301352}
   m_Layer: 5
   m_Name: Weapon Panel 8
   m_TagString: Untagged
@@ -11864,6 +12087,67 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &870301351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883646671132443773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 870301352}
+          m_TargetAssemblyTypeName: ClassTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipShow
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 870301352}
+          m_TargetAssemblyTypeName: ClassTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipHide
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &870301352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883646671132443773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b1306f95a6d8949be0038bb79bdf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltip: {fileID: 204466385}
+  goTooltip: {fileID: 204466383}
+  contentType: -1
+  toolTipOffset: {x: 0, y: 20, z: 0}
 --- !u!1 &6883646671291751368
 GameObject:
   m_ObjectHideFlags: 0
@@ -11971,8 +12255,8 @@ MonoBehaviour:
   ShipPanel: {fileID: 6883646672668333046}
   shipImages:
   - {fileID: 21300000, guid: 1e1ffa433f68c644c9a4da3169d71e46, type: 3}
-  - {fileID: 21300000, guid: 89bc8a0a72f977d46a49801366a9a807, type: 3}
   - {fileID: 21300000, guid: a234fb4dc61c9c44da3e6ae32922551f, type: 3}
+  - {fileID: 21300000, guid: 89bc8a0a72f977d46a49801366a9a807, type: 3}
 --- !u!1 &6883646671633778747
 GameObject:
   m_ObjectHideFlags: 0
@@ -11984,6 +12268,8 @@ GameObject:
   - component: {fileID: 6883646671633778748}
   - component: {fileID: 6883646671633778750}
   - component: {fileID: 6883646671633778749}
+  - component: {fileID: 1670442278}
+  - component: {fileID: 1670442279}
   m_Layer: 5
   m_Name: Weapon Panel 4
   m_TagString: Untagged
@@ -12049,6 +12335,67 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1670442278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883646671633778747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1670442279}
+          m_TargetAssemblyTypeName: ClassTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipShow
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1670442279}
+          m_TargetAssemblyTypeName: ClassTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipHide
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1670442279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883646671633778747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b1306f95a6d8949be0038bb79bdf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltip: {fileID: 204466385}
+  goTooltip: {fileID: 204466383}
+  contentType: -1
+  toolTipOffset: {x: 0, y: 20, z: 0}
 --- !u!1 &6883646671709620004
 GameObject:
   m_ObjectHideFlags: 0
@@ -12060,6 +12407,8 @@ GameObject:
   - component: {fileID: 6883646671709620005}
   - component: {fileID: 6883646671709620007}
   - component: {fileID: 6883646671709620006}
+  - component: {fileID: 1061348834}
+  - component: {fileID: 1061348835}
   m_Layer: 5
   m_Name: Weapon Panel 1
   m_TagString: Untagged
@@ -12125,6 +12474,67 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1061348834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883646671709620004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b1306f95a6d8949be0038bb79bdf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltip: {fileID: 204466385}
+  goTooltip: {fileID: 204466383}
+  contentType: -1
+  toolTipOffset: {x: 0, y: 20, z: 0}
+--- !u!114 &1061348835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883646671709620004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1061348834}
+          m_TargetAssemblyTypeName: ClassTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipShow
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1061348834}
+          m_TargetAssemblyTypeName: ClassTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipHide
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &6883646671935061495
 GameObject:
   m_ObjectHideFlags: 0
@@ -12136,6 +12546,8 @@ GameObject:
   - component: {fileID: 6883646671935061384}
   - component: {fileID: 6883646671935061386}
   - component: {fileID: 6883646671935061385}
+  - component: {fileID: 1815303409}
+  - component: {fileID: 1815303410}
   m_Layer: 5
   m_Name: Weapon Panel 7
   m_TagString: Untagged
@@ -12201,6 +12613,67 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1815303409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883646671935061495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1815303410}
+          m_TargetAssemblyTypeName: ClassTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipShow
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1815303410}
+          m_TargetAssemblyTypeName: ClassTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipHide
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1815303410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883646671935061495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b1306f95a6d8949be0038bb79bdf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltip: {fileID: 204466385}
+  goTooltip: {fileID: 204466383}
+  contentType: -1
+  toolTipOffset: {x: 0, y: 20, z: 0}
 --- !u!1 &6883646672366913919
 GameObject:
   m_ObjectHideFlags: 0
@@ -12212,6 +12685,8 @@ GameObject:
   - component: {fileID: 6883646672366913904}
   - component: {fileID: 6883646672366913906}
   - component: {fileID: 6883646672366913905}
+  - component: {fileID: 1853441661}
+  - component: {fileID: 1853441662}
   m_Layer: 5
   m_Name: Weapon Panel 6
   m_TagString: Untagged
@@ -12277,6 +12752,67 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1853441661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883646672366913919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1853441662}
+          m_TargetAssemblyTypeName: ClassTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipShow
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1853441662}
+          m_TargetAssemblyTypeName: ClassTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipHide
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1853441662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883646672366913919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b1306f95a6d8949be0038bb79bdf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltip: {fileID: 204466385}
+  goTooltip: {fileID: 204466383}
+  contentType: -1
+  toolTipOffset: {x: 0, y: 20, z: 0}
 --- !u!1 &6883646672628958851
 GameObject:
   m_ObjectHideFlags: 0
@@ -12288,6 +12824,8 @@ GameObject:
   - component: {fileID: 6883646672628958852}
   - component: {fileID: 6883646672628958854}
   - component: {fileID: 6883646672628958853}
+  - component: {fileID: 823959500}
+  - component: {fileID: 823959501}
   m_Layer: 5
   m_Name: Weapon Panel 2
   m_TagString: Untagged
@@ -12353,6 +12891,67 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &823959500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883646672628958851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 823959501}
+          m_TargetAssemblyTypeName: ClassTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipShow
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 823959501}
+          m_TargetAssemblyTypeName: ClassTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipHide
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &823959501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883646672628958851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b1306f95a6d8949be0038bb79bdf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltip: {fileID: 204466385}
+  goTooltip: {fileID: 204466383}
+  contentType: -1
+  toolTipOffset: {x: 0, y: 20, z: 0}
 --- !u!1 &6883646672668333044
 GameObject:
   m_ObjectHideFlags: 0
@@ -12446,7 +13045,7 @@ MonoBehaviour:
   tooltip: {fileID: 204466385}
   goTooltip: {fileID: 204466383}
   contentType: 4
-  toolTipOffset: {x: 0, y: 125, z: 0}
+  toolTipOffset: {x: 0, y: 200, z: 0}
 --- !u!114 &733367098
 MonoBehaviour:
   m_ObjectHideFlags: 0
