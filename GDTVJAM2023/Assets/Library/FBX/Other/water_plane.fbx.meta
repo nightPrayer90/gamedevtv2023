@@ -3,9 +3,14 @@ guid: 475e864667a442841839036eff59bdd4
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: buildings
+    second: {fileID: -6253268659915273264, guid: 849ac85cf4a5c3c41ad8a9ec9648b4f3, type: 3}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -88,7 +93,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 10
+    globalScale: 1000
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
