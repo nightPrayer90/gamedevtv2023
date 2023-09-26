@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 
 public class SaveLoadTest : MonoBehaviour
 {
-    [Header("All Panel")]
+    [Header("All Panels")]
     public List<Sprite> sprShipPanels;
     public bool canChoose = true;
 
@@ -43,29 +43,172 @@ public class SaveLoadTest : MonoBehaviour
     private bool isLoad3 = false;
 
     private int index;
+
+    [Header("Player Data")]
     public PlayerData playerData;
 
+
+    /* **************************************************************************** */
+    /* SAVE AN LOAD SYSTEM--------------------------------------------------------- */
+    /* **************************************************************************** */
+
+    // *** if the scene starts - load all existing profiles ***
+    private void Awake()
+    {
+        LoadAllPlayerProfiles();
+    }
+
+
+    // *** serialize profile Panels - load all existing profiles ***
+    public void LoadAllPlayerProfiles()
+    {
+        // Load profil one
+        try
+        {
+            playerStats01 = DataService.LoadData<PlayerStats>("/player-stats01.json", encriptionEnabled);
+
+            inputField01.gameObject.SetActive(false);
+            playerName01Text.gameObject.SetActive(true);
+            deleteButton01.gameObject.SetActive(true);
+            playerName01Text.text = playerStats01.playerName.ToString();
+            shipPane01.gameObject.SetActive(true);
+            shipPane01.sprite = sprShipPanels[playerStats01.shipPanelIndex];
+            isLoad1 = true;
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"Could not read file 01!");
+            playerName01Text.gameObject.SetActive(false);
+            deleteButton01.gameObject.SetActive(false);
+            shipPane01.gameObject.SetActive(false);
+            inputField01.text = "";
+            isLoad1 = false;
+        }
+
+        // Load profil two
+        try
+        {
+            playerStats02 = DataService.LoadData<PlayerStats>("/player-stats02.json", encriptionEnabled);
+
+            inputField02.gameObject.SetActive(false);
+            playerName02Text.gameObject.SetActive(true);
+            deleteButton02.gameObject.SetActive(true);
+            playerName02Text.text = playerStats02.playerName.ToString();
+            shipPane02.gameObject.SetActive(true);
+            shipPane02.sprite = sprShipPanels[playerStats02.shipPanelIndex];
+            isLoad2 = true;
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"Could not read file 02!");
+            playerName02Text.gameObject.SetActive(false);
+            deleteButton02.gameObject.SetActive(false);
+            shipPane02.gameObject.SetActive(false);
+            inputField02.text = "";
+            isLoad2 = false;
+        }
+
+        // Load profil three
+        try
+        {
+            playerStats03 = DataService.LoadData<PlayerStats>("/player-stats03.json", encriptionEnabled);
+
+            inputField03.gameObject.SetActive(false);
+            playerName03Text.gameObject.SetActive(true);
+            deleteButton03.gameObject.SetActive(true);
+            playerName03Text.text = playerStats03.playerName.ToString();
+            shipPane03.gameObject.SetActive(true);
+            shipPane03.sprite = sprShipPanels[playerStats03.shipPanelIndex];
+            isLoad3 = true;
+        }
+        catch (Exception e)
+        {
+            Debug.Log($"Could not read file 03!");
+            playerName03Text.gameObject.SetActive(false);
+            deleteButton03.gameObject.SetActive(false);
+            shipPane03.gameObject.SetActive(false);
+            inputField03.text = "";
+            isLoad3 = false;
+        }
+    }
+
+   
+    // *** clear Player profile 01 ***
+    public void ClearData01()
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        string path = Application.persistentDataPath + "/player-stats01.json";
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            inputField01.gameObject.SetActive(true);
+            playerName01Text.gameObject.SetActive(false);
+            deleteButton01.gameObject.SetActive(false);
+            shipPane01.gameObject.SetActive(false);
+            inputField01.text = "";
+            isLoad1 = false;
+        }
+    }
+
+    // *** clear Player profile 02 ***
+    public void ClearData02()
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        string path = Application.persistentDataPath + "/player-stats02.json";
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            inputField02.gameObject.SetActive(true);
+            playerName02Text.gameObject.SetActive(false);
+            deleteButton02.gameObject.SetActive(false);
+            shipPane02.gameObject.SetActive(false);
+            inputField02.text = "";
+            isLoad2 = false;
+        }
+    }
+
+    // *** clear Player profile 03 ***
+    public void ClearData03()
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        string path = Application.persistentDataPath + "/player-stats03.json";
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            inputField03.gameObject.SetActive(true);
+            playerName03Text.gameObject.SetActive(false);
+            deleteButton03.gameObject.SetActive(false);
+            shipPane03.gameObject.SetActive(false);
+            inputField03.text = "";
+            isLoad3 = false;
+        }
+    }
+
+
+    // *** function create a new profile and/or fills die PlayerData Object and goes to the next scene ***
+    // *** function is triggert by ProfilePanel class - player click at one panel ***
     public void SetIndex(int index_)
     {
-        Debug.Log(index);
         index = index_;
-        int shipIndex = UnityEngine.Random.Range(0,3);
+        int shipIndex = UnityEngine.Random.Range(0, 3);
         bool noSound = false;
         float delayTime = 0.3f;
 
-        switch(index_)
+        // only the current Profil is not exist - create a new Profile
+        switch (index_)
         {
             case 0:
                 if (isLoad1 == false && inputField01.text != "")
-                {  
+                {
                     // Save new Profile
                     playerStats01.playerName = inputField01.text;
                     playerStats01.shipPanelIndex = shipIndex;
-                    DataService.SaveData("/player-stats01.json", playerStats01, encriptionEnabled);
+                    playerStats01.savePath = "/player-stats01.json";
+                    DataService.SaveData(playerStats01.savePath, playerStats01, encriptionEnabled);
 
                     shipPane01.gameObject.SetActive(true);
                     shipPane01.sprite = sprShipPanels[shipIndex];
-                    
+
 
                     playerName01Text.text = inputField01.text;
                     playerName01Text.gameObject.SetActive(true);
@@ -92,7 +235,8 @@ public class SaveLoadTest : MonoBehaviour
                     // Save new Profile
                     playerStats02.playerName = inputField02.text;
                     playerStats02.shipPanelIndex = shipIndex;
-                    DataService.SaveData("/player-stats02.json", playerStats02, encriptionEnabled);
+                    playerStats02.savePath = "/player-stats02.json";
+                    DataService.SaveData(playerStats02.savePath, playerStats02, encriptionEnabled);
 
                     shipPane02.gameObject.SetActive(true);
                     shipPane02.sprite = sprShipPanels[shipIndex];
@@ -122,7 +266,8 @@ public class SaveLoadTest : MonoBehaviour
                     // Save new Profile
                     playerStats03.playerName = inputField03.text;
                     playerStats03.shipPanelIndex = shipIndex;
-                    DataService.SaveData("/player-stats03.json", playerStats03, encriptionEnabled);
+                    playerStats03.savePath = "/player-stats03.json";
+                    DataService.SaveData(playerStats03.savePath, playerStats03, encriptionEnabled);
 
                     shipPane03.gameObject.SetActive(true);
                     shipPane03.sprite = sprShipPanels[shipIndex];
@@ -147,6 +292,8 @@ public class SaveLoadTest : MonoBehaviour
                 break;
         }
 
+
+        // write Profile Data from the PlayerStats to the PlayerData Object
         if (noSound == true)
         {
             AudioManager.Instance.PlaySFX("MouseNo");
@@ -156,7 +303,7 @@ public class SaveLoadTest : MonoBehaviour
             if (delayTime == 0.3f)
                 AudioManager.Instance.PlaySFX("MouseKlick");
             else
-                AudioManager.Instance.PlaySFX("WindowOpen"); 
+                AudioManager.Instance.PlaySFX("WindowOpen");
 
             switch (index_)
             {
@@ -178,145 +325,13 @@ public class SaveLoadTest : MonoBehaviour
         }
     }
 
-    // write all loaded values in the PlayerData Object 
+
+    // *** write all loaded values in the PlayerData object *** 
     public void WriteOnPlayerData(PlayerStats playerStats)
     {
         playerData.playerName = playerStats.playerName;
+        playerData.savePath = playerStats.savePath;
+        playerData.playerShipIcon = playerStats.shipPanelIndex;
     }
 
-
-    /* **************************************************************************** */
-    /* SAVE AN LOAD SYSTEM--------------------------------------------------------- */
-    /* **************************************************************************** */
-    private void Awake()
-    {
-        SerializePlayer01();
-        SerializePlayer02();
-        SerializePlayer03();
-    }
-
-   
-
-    public void SerializePlayer01()
-    {
-        try
-        {
-            playerStats01 = DataService.LoadData<PlayerStats>("/player-stats01.json", encriptionEnabled);
-
-            inputField01.gameObject.SetActive(false);
-            playerName01Text.gameObject.SetActive(true);
-            deleteButton01.gameObject.SetActive(true);
-            playerName01Text.text = playerStats01.playerName.ToString();
-            shipPane01.gameObject.SetActive(true);
-            shipPane01.sprite = sprShipPanels[playerStats01.shipPanelIndex];
-            isLoad1 = true;
-        }
-        catch (Exception e)
-        {
-            Debug.Log($"Could not read file!");
-            playerName01Text.gameObject.SetActive(false);
-            deleteButton01.gameObject.SetActive(false);
-            shipPane01.gameObject.SetActive(false);
-            inputField01.text = "";
-            isLoad1 = false;
-        }
-    }
-
-    public void SerializePlayer02()
-    {
-        try
-        {
-            PlayerStats data = DataService.LoadData<PlayerStats>("/player-stats02.json", encriptionEnabled);
-
-            inputField02.gameObject.SetActive(false);
-            playerName02Text.gameObject.SetActive(true);
-            deleteButton02.gameObject.SetActive(true);
-            playerName02Text.text = data.playerName.ToString();
-            shipPane02.gameObject.SetActive(true);
-            shipPane02.sprite = sprShipPanels[data.shipPanelIndex];
-            isLoad2 = true;
-        }
-        catch (Exception e)
-        {
-            Debug.Log($"Could not read file!");
-            playerName02Text.gameObject.SetActive(false);
-            deleteButton02.gameObject.SetActive(false);
-            shipPane02.gameObject.SetActive(false);
-            inputField02.text = "";
-            isLoad2 = false;
-        }
-    }
-
-    public void SerializePlayer03()
-    {
-        try
-        {
-            PlayerStats data = DataService.LoadData<PlayerStats>("/player-stats03.json", encriptionEnabled);
-
-            inputField03.gameObject.SetActive(false);
-            playerName03Text.gameObject.SetActive(true);
-            deleteButton03.gameObject.SetActive(true);
-            playerName03Text.text = data.playerName.ToString();
-            shipPane03.gameObject.SetActive(true);
-            shipPane03.sprite = sprShipPanels[data.shipPanelIndex];
-            isLoad3 = true;
-        }
-        catch (Exception e)
-        {
-            Debug.Log($"Could not read file!");
-            playerName03Text.gameObject.SetActive(false);
-            deleteButton03.gameObject.SetActive(false);
-            shipPane03.gameObject.SetActive(false);
-            inputField03.text = "";
-            isLoad3 = false;
-        }
-    }
-
-    public void ClearData01()
-    {
-        AudioManager.Instance.PlaySFX("MouseKlick");
-        string path = Application.persistentDataPath + "/player-stats01.json";
-        if (File.Exists(path))
-        {
-            File.Delete(path);
-            inputField01.gameObject.SetActive(true);
-            playerName01Text.gameObject.SetActive(false);
-            deleteButton01.gameObject.SetActive(false);
-            shipPane01.gameObject.SetActive(false);
-            inputField01.text = "";
-            isLoad1 = false;
-        }
-    }
-
-    public void ClearData02()
-    {
-        AudioManager.Instance.PlaySFX("MouseKlick");
-        string path = Application.persistentDataPath + "/player-stats02.json";
-        if (File.Exists(path))
-        {
-            File.Delete(path);
-            inputField02.gameObject.SetActive(true);
-            playerName02Text.gameObject.SetActive(false);
-            deleteButton02.gameObject.SetActive(false);
-            shipPane02.gameObject.SetActive(false);
-            inputField02.text = "";
-            isLoad2 = false;
-        }
-    }
-
-    public void ClearData03()
-    {
-        AudioManager.Instance.PlaySFX("MouseKlick");
-        string path = Application.persistentDataPath + "/player-stats03.json";
-        if (File.Exists(path))
-        {
-            File.Delete(path);
-            inputField03.gameObject.SetActive(true);
-            playerName03Text.gameObject.SetActive(false);
-            deleteButton03.gameObject.SetActive(false);
-            shipPane03.gameObject.SetActive(false);
-            inputField03.text = "";
-            isLoad3 = false;
-        }
-    }
 }
