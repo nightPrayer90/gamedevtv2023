@@ -10,6 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52a4ecad2af0e324ca61106d9a2bd9e3, type: 3}
-  m_Name: PlayerData
+  m_Name: default-player
   m_EditorClassIdentifier: 
-  playerName: 
+  playerName: default-player
+  savePath: /player-statsDefault.json
+  playerShipIcon: 0
+  playerShip: 2
+  playerShipCount: 1
+  expBullet: 0
+  expRocket: 0
+  expLaser: 0

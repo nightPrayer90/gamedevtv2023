@@ -9,9 +9,9 @@ public class PlayerStats
     // *** PlayerStats -> for save and load -> convert to PlayerData for runtime ***
 
     // player profile
-    public string playerName = "player";
+    public string playerName = "default-player";
     public int shipPanelIndex = 0;
-    public string savePath = "/ player - stats01.json";
+    public string savePath = "/player-statsDefault.json";
 
     // Hangar
     public int playerShip = 0;

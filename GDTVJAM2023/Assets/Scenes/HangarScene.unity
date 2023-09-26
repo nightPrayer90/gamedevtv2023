@@ -14089,7 +14089,7 @@ RectTransform:
   - {fileID: 6197180220891180456}
   - {fileID: 9034559183714503967}
   m_Father: {fileID: 6510802611325757938}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -31447,7 +31447,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6510802611325757938}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -31466,6 +31466,8 @@ GameObject:
   - component: {fileID: 928500985323684429}
   - component: {fileID: 928500985323684434}
   - component: {fileID: 928500985323684435}
+  - component: {fileID: 928500985323684437}
+  - component: {fileID: 928500985323684436}
   m_Layer: 5
   m_Name: GameStart
   m_TagString: Untagged
@@ -31547,8 +31549,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6510802611325757942}
-        m_TargetAssemblyTypeName: MenuButtonController, Assembly-CSharp
+      - m_Target: {fileID: 928500985323684437}
+        m_TargetAssemblyTypeName: SaveAndStart, Assembly-CSharp
         m_MethodName: GameStart
         m_Mode: 1
         m_Arguments:
@@ -31559,6 +31561,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &928500985323684436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928500985323684433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2285e7845890f9b498c8dbd242592c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &928500985323684437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928500985323684433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58fccdd3ed4d09c4fb4c6f26e6babccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameScene: GameScene
+  encriptionEnabled: 1
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!224 &928500985335658129
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34273,7 +34302,7 @@ RectTransform:
   - {fileID: 4011206778468553868}
   - {fileID: 1349518587933466248}
   m_Father: {fileID: 6510802611325757938}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -35333,9 +35362,9 @@ RectTransform:
   - {fileID: 928500986469581744}
   - {fileID: 928500986806238231}
   - {fileID: 928500987189838740}
-  - {fileID: 928500985323684432}
   - {fileID: 1471039709}
   - {fileID: 1236608548070883335}
+  - {fileID: 928500985323684432}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0.999, y: 0, z: -0.045}
@@ -35365,24 +35394,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &6510802611325757942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6510802611325757943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db2949c976a02dd4f87538629c301592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameScene: GameScene
-  _musicSlider: {fileID: 0}
-  _sfxSlider: {fileID: 0}
-  resolutionDropdrown: {fileID: 0}
-  qualityDropdown: {fileID: 0}
-  fullScreenBtn: {fileID: 0}
 --- !u!1 &6510802611325757943
 GameObject:
   m_ObjectHideFlags: 0
@@ -35395,7 +35406,6 @@ GameObject:
   - component: {fileID: 6510802611325757939}
   - component: {fileID: 6510802611325757936}
   - component: {fileID: 6510802611325757937}
-  - component: {fileID: 6510802611325757942}
   - component: {fileID: 800665620}
   m_Layer: 5
   m_Name: Canvas

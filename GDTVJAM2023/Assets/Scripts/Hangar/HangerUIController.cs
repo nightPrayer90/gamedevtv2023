@@ -36,7 +36,8 @@ public class HangerUIController : MonoBehaviour
 
     private void Start()
     {
-        ShipChange(playerData.playerShip); // todo Playerdate save and load
+        shipIndex = playerData.playerShip;
+        ShipChange(shipIndex, false); 
     }
 
     //shipToggle
@@ -54,9 +55,10 @@ public class HangerUIController : MonoBehaviour
         if (shipIndex == -1) shipIndex = 2;
         ShipChange(shipIndex);
     }
-    private void ShipChange(int shipIndex)
+    private void ShipChange(int shipIndex, bool startEffect = true)
     {
-        particleChooseEffect.Play();
+        if (startEffect == true) particleChooseEffect.Play();
+
         switch (shipIndex)
         {
             case 0: // bullet ship
