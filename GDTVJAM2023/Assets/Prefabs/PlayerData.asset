@@ -17,6 +17,6 @@ MonoBehaviour:
   playerShipIcon: 0
   playerShip: 2
   playerShipCount: 1
-  expBullet: 0
-  expRocket: 0
-  expLaser: 0
+  expBullet: 3
+  expRocket: 4
+  expLaser: 5

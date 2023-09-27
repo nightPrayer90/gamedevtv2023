@@ -7,6 +7,7 @@ public class HangarManager : MonoBehaviour
 {
     public GameObject playerStartPoint;
     public GameObject playerHangarShip;
+    public List<Color> classColors;
 
     // Start is called before the first frame update
     void Start()

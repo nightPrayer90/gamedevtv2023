@@ -8,31 +8,43 @@ using DG.Tweening;
 
 public class HangerUIController : MonoBehaviour
 {
-    public GameObject bulletShip;
-    public GameObject laserShip;
-    public GameObject rocketShip;
+    [Header("All Panels")] 
+    public PlayerData playerData;
     public ShipData bulletShipData;
     public ShipData rocketShipData;
     public ShipData laserShipData;
+    public GameObject bulletShip;
+    public GameObject laserShip;
+    public GameObject rocketShip;
+    public ParticleSystem particleChooseEffect;
 
+    [Header("Ship Panel")]
+    public Transform shipValuePanel;
     public Image bkHeader;
     public Image bkHeaderShipIcon;
-
-    public TextMeshProUGUI weaponHeader;
-    public Image weaponImage;
-    public TextMeshProUGUI weaponDescription;
-
+    public TextMeshProUGUI shipNameText;
+    public TextMeshProUGUI shipDescriptionText;
     public TextMeshProUGUI damageValue;
     public TextMeshProUGUI healthValue;
     public TextMeshProUGUI speedValue;
     public TextMeshProUGUI boostValue;
     public TextMeshProUGUI boostDuration;
 
-    private int shipIndex=0;
-    public TextMeshProUGUI shipNameText;
-    public TextMeshProUGUI shipDescriptionText;
-    public ParticleSystem particleChooseEffect;
-    public PlayerData playerData;
+    [Header("Weapon Panel")]
+    public Transform shipWeaponPanel;
+    public TextMeshProUGUI weaponHeader;
+    public Image weaponImage;
+    public TextMeshProUGUI weaponDescription;
+
+    [Header("Upgrade Panel")]
+    public Transform shipUpgradePanel;
+    public TextMeshProUGUI upgradePointsText;
+    public GameObject bulletUpgrades;
+    public GameObject rocketUpgrades;
+    public GameObject laserObjects;
+
+    private int shipIndex = 0;
+
 
     private void Start()
     {
@@ -70,6 +82,8 @@ public class HangerUIController : MonoBehaviour
                 rocketShip.transform.DOComplete();
                 laserShip.transform.DOComplete();
 
+                if (startEffect == true) TweenPanels();
+
                 shipNameText.text = bulletShipData.shipName;
                 bkHeader.color = bulletShipData.mainClassColor;
                 bkHeaderShipIcon.sprite = bulletShipData.shipIcon;
@@ -87,6 +101,11 @@ public class HangerUIController : MonoBehaviour
                 weaponImage.sprite = bulletShipData.shipWeaponImage;
                 weaponDescription.text = bulletShipData.shipWeaponDescription;
 
+                upgradePointsText.text = "Upgrade points: " + playerData.expBullet;
+                bulletUpgrades.SetActive(true);
+                rocketUpgrades.SetActive(false);
+                laserObjects.SetActive(false);
+
                 playerData.playerShip = 0;
                 break;
 
@@ -98,6 +117,8 @@ public class HangerUIController : MonoBehaviour
                 bulletShip.transform.DOComplete();
                 rocketShip.transform.DOPunchScale(new Vector3(0.15f, 0.15f, 0.15f), 0.5f, 10, 1);
                 laserShip.transform.DOComplete();
+
+                if (startEffect == true) TweenPanels();
 
                 shipNameText.text = rocketShipData.shipName;
                 bkHeader.color = rocketShipData.mainClassColor;
@@ -116,6 +137,11 @@ public class HangerUIController : MonoBehaviour
                 weaponImage.sprite = rocketShipData.shipWeaponImage;
                 weaponDescription.text = rocketShipData.shipWeaponDescription;
 
+                upgradePointsText.text = "Upgrade points: " + playerData.expRocket;
+                bulletUpgrades.SetActive(false);
+                rocketUpgrades.SetActive(true);
+                laserObjects.SetActive(false);
+
                 playerData.playerShip = 1;
                 break;
 
@@ -127,6 +153,8 @@ public class HangerUIController : MonoBehaviour
                 bulletShip.transform.DOComplete();
                 rocketShip.transform.DOComplete();
                 laserShip.transform.DOPunchScale(new Vector3(0.15f, 0.15f, 0.15f), 0.5f, 10, 1);
+
+                if (startEffect == true) TweenPanels();
 
                 shipNameText.text = laserShipData.shipName;
                 bkHeader.color = laserShipData.mainClassColor;
@@ -145,9 +173,26 @@ public class HangerUIController : MonoBehaviour
                 weaponImage.sprite = laserShipData.shipWeaponImage;
                 weaponDescription.text = laserShipData.shipWeaponDescription;
 
+                upgradePointsText.text = "Upgrade points: " + playerData.expLaser;
+                bulletUpgrades.SetActive(false);
+                rocketUpgrades.SetActive(false);
+                laserObjects.SetActive(true);
+
                 playerData.playerShip = 2;
                 break;
         }
     }
 
+    private void TweenPanels()
+    {
+        float tweenvalue = 0.012f;
+
+        shipValuePanel.DOComplete();
+        shipWeaponPanel.DOComplete();
+        shipUpgradePanel.DOComplete();
+
+        shipValuePanel.DOPunchScale(new Vector3(tweenvalue, tweenvalue, tweenvalue), 0.35f, 12, 1);
+        shipWeaponPanel.DOPunchScale(new Vector3(tweenvalue, tweenvalue, tweenvalue), 0.35f, 12, 1);
+        shipUpgradePanel.DOPunchScale(new Vector3(tweenvalue, tweenvalue, tweenvalue), 0.35f, 12, 1);
+    }
 }
