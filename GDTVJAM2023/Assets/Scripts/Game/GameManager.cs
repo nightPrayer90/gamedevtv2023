@@ -3,6 +3,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
+/*using Newtonsoft.Json;
+using System.IO;
+using System;*/
+
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +17,7 @@ public class GameManager : MonoBehaviour
     public int districtNumber = 1;
     private int enemysToKill;
     private int killCounter;
+    private int expCollected;
 
 
     [Header("Time for one Round")]
@@ -44,6 +49,8 @@ public class GameManager : MonoBehaviour
     public GameObject miniMap;
     public CanvasGroup upgradeTextCG;
     public TextMeshProUGUI upgradeText;
+    public TextMeshProUGUI expGameOverText;
+    public TextMeshProUGUI expGameVictoryText;
 
     [Header("Dimension Shift")]
     public Texture firstDimensionTexture1;
@@ -189,7 +196,7 @@ public class GameManager : MonoBehaviour
 
         // Initialze HUD Values
         //UpdateUIPlayerHealth(10,10);
-        UpdateUIPlayerExperience(false, 1, 10, 0);
+        UpdateUIPlayerExperience(false, 1, 10, 0, 0);
         UpdateTimerText();
         UpdateDistrictText();
         UpdateEnemyToKill(0);
@@ -246,8 +253,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-
-
     /* **************************************************************************** */
     /* Manage Menu Panels---------------------------------------------------------- */
     /* **************************************************************************** */
@@ -257,6 +262,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         gameOver = true;
         gameIsPlayed = false;
+
+        expGameOverText.text = "you have earned: " + CalculateGlobalPlayerExp(0.1f) + " upgrade points (10% exp) for your ship";
 
         gameOverUI.SetActive(true);
         playerUI.SetActive(false);
@@ -270,6 +277,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         gameOver = true;
         gameIsPlayed = false;
+
+        expGameVictoryText.text = "you have earned: " + CalculateGlobalPlayerExp(0.5f) + " upgrade points (50% exp) for your ship";
 
         gameOverUI.SetActive(false);
         playerUI.SetActive(false);
@@ -362,10 +371,11 @@ public class GameManager : MonoBehaviour
     }
 
     // update the player experience bar - PlayerUI
-    public void UpdateUIPlayerExperience(bool isLevelUp, int playerLevel, int playerExperienceToLevelUp, int playerCurrentExperience)
+    public void UpdateUIPlayerExperience(bool isLevelUp, int playerLevel, int playerExperienceToLevelUp, int playerCurrentExperience, int experienceGet)
     {
         experienceSlider.maxValue = playerExperienceToLevelUp;
-
+        expCollected += experienceGet;
+        
         // Levelup
         if (isLevelUp)
         {
@@ -750,6 +760,27 @@ public class GameManager : MonoBehaviour
         });
     }
 
+    // write earned exp in playerData
+    private int CalculateGlobalPlayerExp(float percent)
+    {
+        expCollected = Mathf.RoundToInt((float)expCollected * percent);
+
+        switch (startShip)
+        {
+            case StartShip.bullet:
+                playerData.expBullet += expCollected;
+                break;
+            case StartShip.rocket:
+                playerData.expRocket += expCollected;
+                break;
+            case StartShip.laser:
+                playerData.expLaser += expCollected;
+                break;
+        }
+        // TODO: Speichern!
+
+        return expCollected;
+    }
 }
 
 

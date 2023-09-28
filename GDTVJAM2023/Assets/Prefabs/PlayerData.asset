@@ -15,8 +15,11 @@ MonoBehaviour:
   playerName: default-player
   savePath: /player-statsDefault.json
   playerShipIcon: 0
-  playerShip: 2
+  playerShip: 0
   playerShipCount: 1
-  expBullet: 3
+  expBullet: 1
   expRocket: 4
   expLaser: 5
+  globalUpgradeCountBullet: 1
+  globalUpgradeCountRocket: 0
+  globalUpgradeCountLaser: 0

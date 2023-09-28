@@ -696,7 +696,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // refresh player UI
-        gameManager.UpdateUIPlayerExperience(isLevelUp, playerLevel, playerExperienceToLevelUp, playerCurrentExperience);
+        gameManager.UpdateUIPlayerExperience(isLevelUp, playerLevel, playerExperienceToLevelUp, playerCurrentExperience, exp);
     }
 
     public void PlayerWeaponUpdatePickup()

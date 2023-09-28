@@ -19,5 +19,7 @@ public class PlayerStats
     public int expBullet = 0;
     public int expRocket = 0;
     public int expLaser = 0;
-
+    public int globalUpgradeCountBullet = 0;
+    public int globalUpgradeCountRocket = 0;
+    public int globalUpgradeCountLaser = 0;
 }

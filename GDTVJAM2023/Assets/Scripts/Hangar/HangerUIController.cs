@@ -101,7 +101,7 @@ public class HangerUIController : MonoBehaviour
                 weaponImage.sprite = bulletShipData.shipWeaponImage;
                 weaponDescription.text = bulletShipData.shipWeaponDescription;
 
-                upgradePointsText.text = "Upgrade points: " + playerData.expBullet;
+                SetUpgradePointText(playerData.expBullet);
                 bulletUpgrades.SetActive(true);
                 rocketUpgrades.SetActive(false);
                 laserObjects.SetActive(false);
@@ -137,7 +137,7 @@ public class HangerUIController : MonoBehaviour
                 weaponImage.sprite = rocketShipData.shipWeaponImage;
                 weaponDescription.text = rocketShipData.shipWeaponDescription;
 
-                upgradePointsText.text = "Upgrade points: " + playerData.expRocket;
+                SetUpgradePointText(playerData.expRocket);
                 bulletUpgrades.SetActive(false);
                 rocketUpgrades.SetActive(true);
                 laserObjects.SetActive(false);
@@ -173,7 +173,7 @@ public class HangerUIController : MonoBehaviour
                 weaponImage.sprite = laserShipData.shipWeaponImage;
                 weaponDescription.text = laserShipData.shipWeaponDescription;
 
-                upgradePointsText.text = "Upgrade points: " + playerData.expLaser;
+                SetUpgradePointText(playerData.expLaser);
                 bulletUpgrades.SetActive(false);
                 rocketUpgrades.SetActive(false);
                 laserObjects.SetActive(true);
@@ -194,5 +194,10 @@ public class HangerUIController : MonoBehaviour
         shipValuePanel.DOPunchScale(new Vector3(tweenvalue, tweenvalue, tweenvalue), 0.35f, 12, 1);
         shipWeaponPanel.DOPunchScale(new Vector3(tweenvalue, tweenvalue, tweenvalue), 0.35f, 12, 1);
         shipUpgradePanel.DOPunchScale(new Vector3(tweenvalue, tweenvalue, tweenvalue), 0.35f, 12, 1);
+    }
+
+    public void SetUpgradePointText(int value)
+    {
+        upgradePointsText.text = "Upgrade points: " + value;
     }
 }
