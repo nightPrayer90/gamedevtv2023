@@ -2,16 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Newtonsoft.Json;
-using System.IO;
-using System;
+
 
 public class SaveAndStart : MonoBehaviour
 {
     public string gameScene;
-    private PlayerStats playerStats = new PlayerStats();
-    private IDataService DataService = new JsonDataService();
-    public bool encriptionEnabled = true;
     public PlayerData playerData;
     private AsyncOperation asyncLoad;
 
@@ -23,7 +18,7 @@ public class SaveAndStart : MonoBehaviour
         // load playerData (only for Editorusing)
         if (playerData.savePath == "") 
         {
-            LoadPlayerData();
+            //LoadPlayerData();
         }
     }
 
@@ -52,14 +47,14 @@ public class SaveAndStart : MonoBehaviour
     // Save Player Data while the Game Starts
     public void SavePlayerData()
     {
-        DataService.SaveData(playerData.savePath, playerStats, encriptionEnabled);
+        AudioManager.Instance.SavePlayerData();
     }
 
     // only for Editor Runtime
     private void LoadPlayerData()
     {
-        playerData.savePath = playerStats.savePath;
-        Debug.Log(playerStats.playerName);
-        playerData.playerName = playerStats.playerName;
+        playerData.savePath = AudioManager.Instance.playerStats.savePath;
+        Debug.Log(AudioManager.Instance.playerStats.playerName);
+        playerData.playerName = AudioManager.Instance.playerStats.playerName;
     }
 }

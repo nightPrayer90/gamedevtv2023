@@ -36,6 +36,7 @@ public class UpgradeButton : MonoBehaviour
 
         RequirementSet();
 
+        
         if (isComplete == true)
         {
             btnImage.color = gameManager.classColors[Colorindex];
@@ -44,32 +45,19 @@ public class UpgradeButton : MonoBehaviour
         }
         else
         {
-            if (otherUpgradesValue >= otherUpgrades)
-            {
-                if (upgradePointValue >= upgradePoint)
-                {
-                    btnImage.color = Color.white;
-                    canUpgrade = true;
-                    tooltipTrigger.content = "cost " + upgradePoint + " upgrade points";
-                }
-                else
-                {
-                    btnImage.color = Color.gray;
-                    canUpgrade = false;
-                    tooltipTrigger.content = "cost " + upgradePoint + " upgrade points";
-                }
-            }
-            else
-            {
-                btnImage.color = Color.gray;
-                canUpgrade = false;
-                tooltipTrigger.content = "need " + (otherUpgrades - otherUpgradesValue).ToString() + " other upgrades";
-            }
+            RequirementContol();
         }
     }
 
-    
+    private void Update()
+    {
+        if (isComplete == false && canUpgrade == false)
+        {
+            RequirementContol();
+        }
+    }
 
+    // player press the upgrade button
     public void UpgradeAbility()
     {
         if (canUpgrade == true)
@@ -85,6 +73,7 @@ public class UpgradeButton : MonoBehaviour
         }
     }
 
+    // skill would be upgradet
     public void UpgradeControl()
     {
         switch (upgradePanelIndex)
@@ -93,44 +82,75 @@ public class UpgradeButton : MonoBehaviour
                 playerData.expBullet -= upgradePoint;
                 hangerUIController.SetUpgradePointText(playerData.expBullet);
                 playerData.globalUpgradeCountBullet += 1;
+                playerData.bulletResearchedSkills[upgradeButtonIndex] = true;
+                isComplete = true;
                 break;
 
             case 1: // rocket
                 playerData.expRocket -= upgradePoint;
                 hangerUIController.SetUpgradePointText(playerData.expRocket);
                 playerData.globalUpgradeCountRocket += 1;
+                playerData.rocketResearchedSkills[upgradeButtonIndex] = true;
+                isComplete = true;
                 break;
 
             case 2: // laser
                 playerData.expLaser -= upgradePoint;
                 hangerUIController.SetUpgradePointText(playerData.expLaser);
                 playerData.globalUpgradeCountLaser += 1;
+                playerData.laserResearchedSkills[upgradeButtonIndex] = true;
+                isComplete = true;
                 break;
         }
-
-        RequirementSet();
-
-
     }
 
+    // can the skill be upgradet?
     public void RequirementSet()
     {
         switch (upgradePanelIndex)
         {
             case 0: // bullet
+                isComplete = playerData.bulletResearchedSkills[upgradeButtonIndex];
                 otherUpgradesValue = playerData.globalUpgradeCountBullet;
                 upgradePointValue = playerData.expBullet;
                 break;
 
             case 1: // rocket
+                isComplete = playerData.rocketResearchedSkills[upgradeButtonIndex];
                 otherUpgradesValue = playerData.globalUpgradeCountRocket;
                 upgradePointValue = playerData.expRocket;
                 break;
 
             case 2: // laser
+                isComplete = playerData.laserResearchedSkills[upgradeButtonIndex];
                 otherUpgradesValue = playerData.globalUpgradeCountLaser;
                 upgradePointValue = playerData.expLaser;
                 break;
+        }
+    }
+
+    public void RequirementContol()
+    {
+        if (otherUpgradesValue >= otherUpgrades)
+        {
+            if (upgradePointValue >= upgradePoint)
+            {
+                btnImage.color = Color.white;
+                canUpgrade = true;
+                tooltipTrigger.content = "cost " + upgradePoint + " upgrade points";
+            }
+            else
+            {
+                btnImage.color = Color.gray;
+                canUpgrade = false;
+                tooltipTrigger.content = "cost " + upgradePoint + " upgrade points";
+            }
+        }
+        else
+        {
+            btnImage.color = Color.gray;
+            canUpgrade = false;
+            tooltipTrigger.content = "need " + (otherUpgrades - otherUpgradesValue).ToString() + " other upgrades";
         }
     }
 }

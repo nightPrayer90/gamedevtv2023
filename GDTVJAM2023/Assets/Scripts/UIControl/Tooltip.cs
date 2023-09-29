@@ -23,7 +23,7 @@ public class Tooltip : MonoBehaviour
     {
         if (triggerPosition_ != null)
         {
-            transform.position = triggerPosition_;
+            transform.position = triggerPosition_ + new Vector2(0,-25f);
         }
         // FadeIn
         cg.alpha = 0;

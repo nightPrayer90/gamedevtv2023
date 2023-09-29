@@ -3,9 +3,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
-/*using Newtonsoft.Json;
-using System.IO;
-using System;*/
 
 
 public class GameManager : MonoBehaviour
@@ -765,19 +762,21 @@ public class GameManager : MonoBehaviour
     {
         expCollected = Mathf.RoundToInt((float)expCollected * percent);
 
-        switch (startShip)
+        switch (playerData.playerShip)
         {
-            case StartShip.bullet:
+            case 0:
                 playerData.expBullet += expCollected;
                 break;
-            case StartShip.rocket:
+            case 1:
                 playerData.expRocket += expCollected;
                 break;
-            case StartShip.laser:
+            case 2:
                 playerData.expLaser += expCollected;
                 break;
         }
+
         // TODO: Speichern!
+        AudioManager.Instance.SavePlayerData();
 
         return expCollected;
     }

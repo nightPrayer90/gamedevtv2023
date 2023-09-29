@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Scriptable Objects/PlayerData")]
 public class PlayerData : ScriptableObject
@@ -22,6 +24,7 @@ public class PlayerData : ScriptableObject
     public int globalUpgradeCountBullet = 0;
     public int globalUpgradeCountRocket = 0;
     public int globalUpgradeCountLaser = 0;
-
-
+    public List<bool> bulletResearchedSkills;
+    public List<bool> rocketResearchedSkills;
+    public List<bool> laserResearchedSkills;
 }

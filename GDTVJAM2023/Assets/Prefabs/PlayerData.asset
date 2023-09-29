@@ -12,14 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a4ecad2af0e324ca61106d9a2bd9e3, type: 3}
   m_Name: default-player
   m_EditorClassIdentifier: 
-  playerName: default-player
-  savePath: /player-statsDefault.json
-  playerShipIcon: 0
+  playerName: test
+  savePath: /player-stats01.json
+  playerShipIcon: 2
   playerShip: 0
   playerShipCount: 1
-  expBullet: 1
-  expRocket: 4
-  expLaser: 5
+  expBullet: 6
+  expRocket: 7
+  expLaser: 0
   globalUpgradeCountBullet: 1
   globalUpgradeCountRocket: 0
   globalUpgradeCountLaser: 0
+  bulletResearchedSkills: 01000000000000000000
+  rocketResearchedSkills: 00000000000000000000
+  laserResearchedSkills: 00000000000000000000

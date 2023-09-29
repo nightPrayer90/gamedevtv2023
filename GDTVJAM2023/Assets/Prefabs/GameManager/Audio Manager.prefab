@@ -140,6 +140,7 @@ MonoBehaviour:
   sfxSource: {fileID: 6929376283259157201}
   musicVolume: 0.2
   sfxVolume: 0.5
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!1 &5013503996951810301
 GameObject:
   m_ObjectHideFlags: 0

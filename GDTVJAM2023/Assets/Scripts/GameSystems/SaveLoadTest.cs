@@ -201,6 +201,7 @@ public class SaveLoadTest : MonoBehaviour
                 if (isLoad1 == false && inputField01.text != "")
                 {
                     // Save new Profile
+                    playerStats01 = new PlayerStats();
                     playerStats01.playerName = inputField01.text;
                     playerStats01.shipPanelIndex = shipIndex;
                     playerStats01.savePath = "/player-stats01.json";
@@ -233,6 +234,7 @@ public class SaveLoadTest : MonoBehaviour
                 if (isLoad2 == false && inputField02.text != "")
                 {
                     // Save new Profile
+                    playerStats02 = new PlayerStats();
                     playerStats02.playerName = inputField02.text;
                     playerStats02.shipPanelIndex = shipIndex;
                     playerStats02.savePath = "/player-stats02.json";
@@ -264,6 +266,7 @@ public class SaveLoadTest : MonoBehaviour
                 if (isLoad3 == false && inputField03.text != "")
                 {
                     // Save new Profile
+                    playerStats03 = new PlayerStats();
                     playerStats03.playerName = inputField03.text;
                     playerStats03.shipPanelIndex = shipIndex;
                     playerStats03.savePath = "/player-stats03.json";
@@ -329,9 +332,56 @@ public class SaveLoadTest : MonoBehaviour
     // *** write all loaded values in the PlayerData object *** 
     public void WriteOnPlayerData(PlayerStats playerStats)
     {
+        // Player Profile
         playerData.playerName = playerStats.playerName;
         playerData.savePath = playerStats.savePath;
         playerData.playerShipIcon = playerStats.shipPanelIndex;
+
+        // Hangar
+        playerData.playerShip = playerStats.playerShip;
+        playerData.playerShipCount = playerStats.playerShipCount;
+        playerData.expBullet = playerStats.expBullet;
+        playerData.expRocket = playerStats.expRocket;
+        playerData.expLaser = playerStats.expLaser;
+        playerData.globalUpgradeCountBullet = playerStats.globalUpgradeCountBullet;
+        playerData.globalUpgradeCountRocket = playerStats.globalUpgradeCountRocket;
+        playerData.globalUpgradeCountLaser = playerStats.globalUpgradeCountLaser;
+
+        playerData.bulletResearchedSkills.Clear();
+        playerData.bulletResearchedSkills.Add(playerStats.bulletRS_1);
+        playerData.bulletResearchedSkills.Add(playerStats.bulletRS_2);
+        playerData.bulletResearchedSkills.Add(playerStats.bulletRS_3);
+        playerData.bulletResearchedSkills.Add(playerStats.bulletRS_4);
+        playerData.bulletResearchedSkills.Add(playerStats.bulletRS_5);
+        playerData.bulletResearchedSkills.Add(playerStats.bulletRS_6);
+        playerData.bulletResearchedSkills.Add(playerStats.bulletRS_7);
+        playerData.bulletResearchedSkills.Add(playerStats.bulletRS_8);
+        playerData.bulletResearchedSkills.Add(playerStats.bulletRS_9);
+        playerData.bulletResearchedSkills.Add(playerStats.bulletRS_10);
+
+        playerData.rocketResearchedSkills.Clear();
+        playerData.rocketResearchedSkills.Add(playerStats.rocketRS_1);
+        playerData.rocketResearchedSkills.Add(playerStats.rocketRS_2);
+        playerData.rocketResearchedSkills.Add(playerStats.rocketRS_3);
+        playerData.rocketResearchedSkills.Add(playerStats.rocketRS_4);
+        playerData.rocketResearchedSkills.Add(playerStats.rocketRS_5);
+        playerData.rocketResearchedSkills.Add(playerStats.rocketRS_6);
+        playerData.rocketResearchedSkills.Add(playerStats.rocketRS_7);
+        playerData.rocketResearchedSkills.Add(playerStats.rocketRS_8);
+        playerData.rocketResearchedSkills.Add(playerStats.rocketRS_9);
+        playerData.rocketResearchedSkills.Add(playerStats.rocketRS_10);
+
+        playerData.laserResearchedSkills.Clear();
+        playerData.laserResearchedSkills.Add(playerStats.laserRS_1);
+        playerData.laserResearchedSkills.Add(playerStats.laserRS_2);
+        playerData.laserResearchedSkills.Add(playerStats.laserRS_3);
+        playerData.laserResearchedSkills.Add(playerStats.laserRS_4);
+        playerData.laserResearchedSkills.Add(playerStats.laserRS_5);
+        playerData.laserResearchedSkills.Add(playerStats.laserRS_6);
+        playerData.laserResearchedSkills.Add(playerStats.laserRS_7);
+        playerData.laserResearchedSkills.Add(playerStats.laserRS_8);
+        playerData.laserResearchedSkills.Add(playerStats.laserRS_9);
+        playerData.laserResearchedSkills.Add(playerStats.laserRS_10);
     }
 
 }
