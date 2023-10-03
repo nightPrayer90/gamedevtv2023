@@ -2,17 +2,16 @@ using UnityEngine;
 
 public class RocketController : MonoBehaviour
 {
-    [Header("Rocked Settings")]
+    [Header("Rocket Settings")]
     [HideInInspector] public int damage; // rocked damage
     public float speed = 10f; // rocked Speed
     public float rotationSpeed = 5f; // rotation speed
     public float startTime = 0.5f; // time until the rocked flys to a target
-    private float rotationSpeedtmp = 0;
+    protected float rotationSpeedtmp = 0;
     public GameObject exposionHitObject;
     public float maxLifeTime;   // time before the rocked get destroyed
     [HideInInspector] public Color hitColor;
     public bool isMainWeapon = false;
-
 
     [Header("Explosion Control")]
     public float explosionRadius = 5f;
@@ -23,10 +22,10 @@ public class RocketController : MonoBehaviour
     [Header("Game Objects")]
     public GameObject trail;
     private GameObject target;
-   // private Rigidbody rbRocket;
-    private GameManager gameManager;
+    // private Rigidbody rbRocket;
+    protected GameManager gameManager;
     private UpgradeChooseList upgradeChooseList;
-    private PlayerWeaponController playerWeaponController;
+    protected PlayerWeaponController playerWeaponController;
 
 
     /* **************************************************************************** */
@@ -34,12 +33,7 @@ public class RocketController : MonoBehaviour
     /* **************************************************************************** */
     private void OnEnable()
     {
-        rotationSpeedtmp = rotationSpeed;
-        rotationSpeed = 0;
-        Invoke("SetRotateSpeed", startTime);
-
-        if (trail != null)
-            Invoke("ActivateTrail", 0.2f);
+        InitRocket();
 
         // set Game Objects
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -56,12 +50,21 @@ public class RocketController : MonoBehaviour
         layerMask = (1 << 6);
     }
 
+    protected void InitRocket()
+    {
+        rotationSpeedtmp = rotationSpeed;
+        rotationSpeed = 0;
+        Invoke(nameof(SetRotateSpeed), startTime);
+
+        if (trail != null)
+            Invoke(nameof(ActivateTrail), 0.2f);
+    }
+
     private void FixedUpdate()
     {
-        // rocked movement
+        // rocket movement
         if (target != null)
         {
-
             Vector3 direction = (target.transform.position - transform.position).normalized;
             transform.position += transform.forward * speed * Time.deltaTime;
 
@@ -104,7 +107,7 @@ public class RocketController : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    protected void OnDisable()
     {
         if (trail != null)
             trail.SetActive(false);
@@ -271,7 +274,7 @@ public class RocketController : MonoBehaviour
     {
         // destroytime
         maxLifeTime = Random.Range(maxLifeTime - 0.05f, maxLifeTime + 0.05f) + upgradeChooseList.rocketLifeTime;
-        Invoke("DestroyObject", maxLifeTime); //can not be in enable - because lifetime comes from another object
+        Invoke(nameof(DestroyObject), maxLifeTime); //can not be in enable - because lifetime comes from another object
     }
 }
 

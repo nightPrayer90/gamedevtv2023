@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: test
   savePath: /player-stats01.json
-  playerShipIcon: 2
+  playerShipIcon: 0
   playerShip: 0
   playerShipCount: 1
-  expBullet: 6
-  expRocket: 7
+  expBullet: 9999999
+  expRocket: 0
   expLaser: 0
-  globalUpgradeCountBullet: 1
-  globalUpgradeCountRocket: 0
+  globalUpgradeCountBullet: 50
+  globalUpgradeCountRocket: 2
   globalUpgradeCountLaser: 0
-  bulletResearchedSkills: 01000000000000000000
-  rocketResearchedSkills: 00000000000000000000
-  laserResearchedSkills: 00000000000000000000
+  bulletResearchedSkills: 01000000010000003000000000000000000000000000000000000000000000000000000000000000
+  rocketResearchedSkills: 01000000010000000000000000000000000000000000000000000000000000000000000000000000
+  laserResearchedSkills: 00000000000000000000000000000000000000000000000000000000000000000000000000000000

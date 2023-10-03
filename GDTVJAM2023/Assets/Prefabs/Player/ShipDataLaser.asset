@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd6faff630936f40a2920f37d27073e, type: 3}
   m_Name: ShipDataLaser
   m_EditorClassIdentifier: 
-  speed: 10.3
+  speed: 9.5
   rotateSpeed: 3.5
   health: 10
   baseDamage: 3

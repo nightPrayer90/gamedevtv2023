@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("Enemy Settings")]
     public float enemyHealth = 2.0f;
-    private float enemyHealthTemp;
+    [HideInInspector]public float enemyStartHealth;
     public int collisonDamage = 1;
     public float explosionForce = 5.0f;
     public bool expOrbSpawn = false;
@@ -78,7 +78,7 @@ public class EnemyHealth : MonoBehaviour
         if (bulletDamage != 0) audioSource = GetComponent<AudioSource>();
 
         collisionMultiplier += startCollisionMultiplier + UnityEngine.Random.Range(-16, 128);
-        enemyHealthTemp = enemyHealth;
+        enemyStartHealth = enemyHealth;
 
         enemyCollider = GetComponent<Collider>();
     }
@@ -87,7 +87,7 @@ public class EnemyHealth : MonoBehaviour
     {
         collisionEvents = new List<ParticleCollisionEvent>();
         isShooting = false;
-        enemyHealth = enemyHealthTemp;
+        enemyHealth = enemyStartHealth;
         isBurning = false;
         if (canPoolObject == true)
             canTakeDamage = true;

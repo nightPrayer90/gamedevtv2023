@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UpgradeButton : MonoBehaviour
 {
@@ -10,9 +11,11 @@ public class UpgradeButton : MonoBehaviour
     public int upgradePanelIndex; // 0=bullet; 1=rocket; 2=laser
     public int upgradeButtonIndex;
     public int Colorindex;
+    public int maxValue;
     public Image btnImage;
     public HangarManager gameManager;
     public HangerUIController hangerUIController;
+    public TextMeshProUGUI btnLevelText;
 
     [Header("Requirements")]
     public int otherUpgrades;
@@ -24,10 +27,10 @@ public class UpgradeButton : MonoBehaviour
     public string tooltipHeaderString;
 
     //privates
-    private bool isComplete = false;
+    private int isComplete = 0;
     private TooltipTrigger tooltipTrigger;
     private bool canUpgrade = false;
-
+    
 
     private void OnEnable()
     {
@@ -37,7 +40,7 @@ public class UpgradeButton : MonoBehaviour
         RequirementSet();
 
         
-        if (isComplete == true)
+        if (isComplete > 0)
         {
             btnImage.color = gameManager.classColors[Colorindex];
             canUpgrade = false;
@@ -51,7 +54,7 @@ public class UpgradeButton : MonoBehaviour
 
     private void Update()
     {
-        if (isComplete == false && canUpgrade == false)
+        if (isComplete < maxValue && canUpgrade == false)
         {
             RequirementContol();
         }
@@ -63,7 +66,6 @@ public class UpgradeButton : MonoBehaviour
         if (canUpgrade == true)
         {
             AudioManager.Instance.PlaySFX("MouseKlick");
-            isComplete = true;
             btnImage.color = gameManager.classColors[Colorindex];
             UpgradeControl();
         }
@@ -82,26 +84,27 @@ public class UpgradeButton : MonoBehaviour
                 playerData.expBullet -= upgradePoint;
                 hangerUIController.SetUpgradePointText(playerData.expBullet);
                 playerData.globalUpgradeCountBullet += 1;
-                playerData.bulletResearchedSkills[upgradeButtonIndex] = true;
-                isComplete = true;
+                playerData.bulletResearchedSkills[upgradeButtonIndex] += 1;
                 break;
 
             case 1: // rocket
                 playerData.expRocket -= upgradePoint;
                 hangerUIController.SetUpgradePointText(playerData.expRocket);
                 playerData.globalUpgradeCountRocket += 1;
-                playerData.rocketResearchedSkills[upgradeButtonIndex] = true;
-                isComplete = true;
+                playerData.rocketResearchedSkills[upgradeButtonIndex] += 1;
                 break;
 
             case 2: // laser
                 playerData.expLaser -= upgradePoint;
                 hangerUIController.SetUpgradePointText(playerData.expLaser);
                 playerData.globalUpgradeCountLaser += 1;
-                playerData.laserResearchedSkills[upgradeButtonIndex] = true;
-                isComplete = true;
+                playerData.laserResearchedSkills[upgradeButtonIndex] += 1;
                 break;
         }
+
+        isComplete += 1;
+        buildUpgradeText();
+
     }
 
     // can the skill be upgradet?
@@ -113,23 +116,27 @@ public class UpgradeButton : MonoBehaviour
                 isComplete = playerData.bulletResearchedSkills[upgradeButtonIndex];
                 otherUpgradesValue = playerData.globalUpgradeCountBullet;
                 upgradePointValue = playerData.expBullet;
+                buildUpgradeText();
                 break;
 
             case 1: // rocket
                 isComplete = playerData.rocketResearchedSkills[upgradeButtonIndex];
                 otherUpgradesValue = playerData.globalUpgradeCountRocket;
                 upgradePointValue = playerData.expRocket;
+                buildUpgradeText();
                 break;
 
             case 2: // laser
                 isComplete = playerData.laserResearchedSkills[upgradeButtonIndex];
                 otherUpgradesValue = playerData.globalUpgradeCountLaser;
                 upgradePointValue = playerData.expLaser;
+                buildUpgradeText();
                 break;
         }
     }
 
     public void RequirementContol()
+
     {
         if (otherUpgradesValue >= otherUpgrades)
         {
@@ -152,5 +159,10 @@ public class UpgradeButton : MonoBehaviour
             canUpgrade = false;
             tooltipTrigger.content = "need " + (otherUpgrades - otherUpgradesValue).ToString() + " other upgrades";
         }
+    }
+
+    public void buildUpgradeText()
+    {
+        btnLevelText.text = isComplete.ToString() + "/" + maxValue.ToString();
     }
 }

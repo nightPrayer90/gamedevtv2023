@@ -9,7 +9,8 @@ public class Boss03 : MonoBehaviour
     public float followSpeed = 1f;
     private int bossState = 0;
     private int numberOfFightingStates = 3;
-    private float fightingStatesStepSize = 0;
+    private float[] fightingStatesSteps = { 0.8f, 0.3f, 0f }; // percentages, one less because last one is always 0
+    private int currentState = 0;
     private bool[] isState;
     private float dieRotation = 0;
     private bool isMinimap = false;
@@ -31,8 +32,8 @@ public class Boss03 : MonoBehaviour
     public MeshRenderer bossMeshRenderer;
     public ParticleSystem rippleParticle;
     public ParticleSystem rippleParticleDie;
-    public List<ParticleSystem> particleWeapons = new List<ParticleSystem>();
-    public List<ParticleSystem> particleWeapons2 = new List<ParticleSystem>();
+    public List<ParticleSystem> particleWeapons = new();
+    public List<ParticleSystem> particleWeapons2 = new();
     public GameObject explosionObject;
     public GameObject minimapIcon;
     public SpriteRenderer minimapSpR;
@@ -42,13 +43,15 @@ public class Boss03 : MonoBehaviour
     public AudioSource bossChanceState;
     public AudioSource shootSound;
     public GameObject itemDrop;
-    public RipplePostProcessor mainCamera;
     private Material[] materialList;
     private EnemyHealth enemyHealthScr;
     private Transform playerTr;
     private Rigidbody playerRb;
     private GameManager gameManager;
-    
+    public List<GameObject> verticalRocketSpawner = new();
+    public List<GameObject> verticalRocketSpawner2 = new();
+    public List<GameObject> horizontalRocketSpawner = new();
+    public List<GameObject> horizontalRocketSpawner2 = new();
 
 
 
@@ -74,12 +77,14 @@ public class Boss03 : MonoBehaviour
         bossMeshRenderer.materials = materialList;
 
         // fighting steps
-        fightingStatesStepSize = enemyHealthScr.enemyHealth / numberOfFightingStates;
         isState = new bool[numberOfFightingStates];
         for (int i = 0; i < numberOfFightingStates; i++)
         {
             isState[i] = false;
+
         }
+
+        
 
         // healthbar controll
         bossHudCg.alpha = 0;
@@ -132,7 +137,7 @@ public class Boss03 : MonoBehaviour
     private void SleepState()
     {
         float distanceToPlayer = DistanceToPlayer();
-        if (distanceToPlayer <= 5f)
+        if (distanceToPlayer <= 9f) // TODO FIX ME
         {
             bossState = 1;
             damageArea.SetActive(true);
@@ -204,8 +209,11 @@ public class Boss03 : MonoBehaviour
 
     private void FightingState()
     {
-        int currentState = Mathf.CeilToInt(enemyHealthScr.enemyHealth / fightingStatesStepSize);
-        currentState = numberOfFightingStates - currentState;
+        //Debug.Log(fightingStatesSteps[currentState]);
+        if(enemyHealthScr.enemyHealth < fightingStatesSteps[currentState] * enemyHealthScr.enemyStartHealth)
+        {
+            currentState++;
+        }
 
         bossHealthSlider.value = enemyHealthScr.enemyHealth;
 
@@ -217,9 +225,8 @@ public class Boss03 : MonoBehaviour
                 {
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
-                    //Debug.Log("state0 @ " + enemyHealthScr.enemyHealth);
-                    InvokeRepeating("Shooting1",0.5f,0.5f);
-                    InvokeRepeating("InvokeShootSound", 0.5f, 0.5f);
+                    verticalRocketSpawner[currentState].SetActive(true);
+                    InvokeRepeating("Shooting1", 0.5f, 4f);
                     isState[0] = true;
                 }
 
@@ -231,18 +238,30 @@ public class Boss03 : MonoBehaviour
                 // turns only one time per state
                 if (isState[1] == false)
                 {
+                    CancelInvoke();
                     bossChanceState.Play();
+                    verticalRocketSpawner[currentState-1].SetActive(false);
+                    
+                    horizontalRocketSpawner[0].SetActive(true);
+                    horizontalRocketSpawner[1].SetActive(true);
+                    horizontalRocketSpawner[2].SetActive(true);
+                    Invoke("HorizontalRocketsOff", 5f);
+
+                    horizontalRocketSpawner2[0].SetActive(true);
+                    horizontalRocketSpawner2[1].SetActive(true);
+                    horizontalRocketSpawner2[2].SetActive(true);
+
                     enemyHealthScr.canTakeDamage = false;
                     bossHealthForeground.color = Color.red;
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
-                    //Debug.Log("state1 @ " + enemyHealthScr.enemyHealth);
-                    CancelInvoke();
+                    
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
-                        InvokeRepeating("Shooting2", 3f, 0.5f);
-                        InvokeRepeating("InvokeShootSound", 3f, 0.5f);
+                        verticalRocketSpawner[currentState].SetActive(true);
+                        InvokeRepeating("Shooting1", 0.5f, 3f);
+
                         transform.DOShakePosition(3f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
                             enemyHealthScr.canTakeDamage = true;
@@ -260,20 +279,26 @@ public class Boss03 : MonoBehaviour
                 // turns only one time per state
                 if (isState[2] == false)
                 {
+                    CancelInvoke();
                     bossChanceState.Play( );
                     enemyHealthScr.canTakeDamage = false;
+                    verticalRocketSpawner[currentState-1].SetActive(false);
+
+                    horizontalRocketSpawner[0].SetActive(true);
+                    horizontalRocketSpawner[1].SetActive(true);
+                    horizontalRocketSpawner[2].SetActive(true);
+                    //Invoke("HorizontalRocketsOff", 5f);
+
                     bossHealthForeground.color = Color.red;
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
-
-                    //Debug.Log("state2 @ " + enemyHealthScr.enemyHealth);
-                    CancelInvoke();
+                    
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
-                        InvokeRepeating("Shooting1", 4f, 0.5f);
-                        InvokeRepeating("Shooting2", 4f, 0.5f);
-                        InvokeRepeating("InvokeShootSound", 4f, 0.5f);
+                        verticalRocketSpawner[currentState].SetActive(true);
+                        InvokeRepeating("Shooting1", 0.5f, 2f);
+
                         transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
                             enemyHealthScr.canTakeDamage = true;
@@ -291,11 +316,25 @@ public class Boss03 : MonoBehaviour
 
     private void DieState()
     {
+        verticalRocketSpawner[0].SetActive(false);
+        verticalRocketSpawner[1].SetActive(false);
+        verticalRocketSpawner[2].SetActive(false);
+        horizontalRocketSpawner[0].SetActive(false);
+        horizontalRocketSpawner[1].SetActive(false);
+        horizontalRocketSpawner[2].SetActive(false);
+        horizontalRocketSpawner2[0].SetActive(false);
+        horizontalRocketSpawner2[1].SetActive(false);
+        horizontalRocketSpawner2[2].SetActive(false);
+
+
+
         bossHudCg.DOFade(0f, 0.5f).OnComplete(()=> { bossHud.SetActive(false); });
 
-        InvokeRepeating("InvokeSpawnExplosion", 0.5f, 1f);
+        //InvokeRepeating("InvokeSpawnExplosion", 0.5f, 1f);
+        verticalRocketSpawner2[0].SetActive(true);
         transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
         {
+            verticalRocketSpawner[0].SetActive(false);
             CancelInvoke();
             rippleParticle.Play();
             PushThePlayer(2.5f, 5f);
@@ -393,20 +432,6 @@ public class Boss03 : MonoBehaviour
             weapon.Emit(1);
 
         }
-    }
-
-    // invoke - shoot attack 2
-    private void Shooting2()
-    {
-        foreach (ParticleSystem weapon in particleWeapons2)
-        {
-            weapon.Emit(1);
-        }
-    }
-
-    // invoke - shoot sound
-    private void InvokeShootSound()
-    {
         shootSound.Play();
     }
 
@@ -420,5 +445,12 @@ public class Boss03 : MonoBehaviour
         dieRotation = dieRotation + 15;
         // instanstiate explosion
         ObjectPoolManager.SpawnObject(explosionObject, transform.position, Quaternion.Euler(0f, dieRotation, 0f), ObjectPoolManager.PoolType.ParticleSystem);
+    }
+
+    private void HorizontalRocketsOff()
+    {
+        horizontalRocketSpawner[0].SetActive(false);
+        horizontalRocketSpawner[1].SetActive(false);
+        horizontalRocketSpawner[2].SetActive(false);
     }
 }

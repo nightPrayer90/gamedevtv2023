@@ -42,7 +42,6 @@ public class Boss01 : MonoBehaviour
     public AudioSource bossChanceState;
     public AudioSource shootSound;
     public GameObject itemDrop;
-    public RipplePostProcessor mainCamera;
     private Material[] materialList;
     private EnemyHealth enemyHealthScr;
     private Transform playerTr;
@@ -132,7 +131,7 @@ public class Boss01 : MonoBehaviour
     private void SleepState()
     {
         float distanceToPlayer = DistanceToPlayer();
-        if (distanceToPlayer <= 5f)
+        if (distanceToPlayer <= 6f)
         {
             bossState = 1;
             damageArea.SetActive(true);

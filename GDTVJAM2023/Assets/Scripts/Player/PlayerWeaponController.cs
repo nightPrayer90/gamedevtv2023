@@ -44,6 +44,9 @@ public class PlayerWeaponController : MonoBehaviour
     [Header("Objects")]
     public GameObject frontShield;
     public GameObject backShield;
+    [HideInInspector] public GameObject frontShield_;
+    [HideInInspector] public GameObject backShieldLeft_;
+    [HideInInspector] public GameObject backShieldRight_;
 
 
     [Header("Head Cannon")]

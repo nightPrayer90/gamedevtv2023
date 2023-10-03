@@ -27,6 +27,7 @@ public class FrontShieldSpawner : MonoBehaviour
         if (enabledShieldController == null)
         {
             GameObject enabledShieldObject = Instantiate(shieldObject, gameObject.transform.position, Quaternion.Euler(0f, 0f, 0f) * gameObject.transform.rotation);
+            playerWaeponController.frontShield_ = enabledShieldObject;
             enabledShieldController = enabledShieldObject.GetComponent<ShieldController>();
             enabledShieldController.ShieldEnable(playerWaeponController.fsShieldLife);
         }

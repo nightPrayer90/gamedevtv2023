@@ -41,6 +41,7 @@ public class BackShieldSpawner : MonoBehaviour
         if (leftShieldController == null)
         {
             GameObject enabledShieldObject = Instantiate(leftShieldObject, gameObject.transform.position, Quaternion.Euler(0f, 0f, 0f) * gameObject.transform.rotation);
+            playerWaeponController.backShieldLeft_ = enabledShieldObject;
             leftShieldController = enabledShieldObject.GetComponent<ShieldController>();
             leftShieldController.ShieldEnable(playerWaeponController.bsShildLife);
         }
@@ -59,6 +60,7 @@ public class BackShieldSpawner : MonoBehaviour
         if (rightShieldContoller == null)
         {
             GameObject enabledShieldObject = Instantiate(rightShieldObject, gameObject.transform.position, Quaternion.Euler(0f, 0f, 0f) * gameObject.transform.rotation);
+            playerWaeponController.backShieldRight_ = enabledShieldObject;
             rightShieldContoller = enabledShieldObject.GetComponent<ShieldController>();
             rightShieldContoller.ShieldEnable(playerWaeponController.bsShildLife);
             randomSpawntime = 0;
