@@ -78435,8 +78435,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9286804, y: 1.2015479, z: 0.74191284}
-  m_Center: {x: 0.03565979, y: 0.3282467, z: -0.04932022}
+  m_Size: {x: 0.9286804, y: 1.2015479, z: 0.8495388}
+  m_Center: {x: 0.03565979, y: 0.3282467, z: 0.0044927597}
 --- !u!114 &2612099823075403954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78476,7 +78476,6 @@ MonoBehaviour:
   bossChanceState: {fileID: 8845505522494420829}
   shootSound: {fileID: 8845505523345361355}
   itemDrop: {fileID: 5693635298845190373, guid: 00cc8e65f8dbca04caeb026d9a1b5de9, type: 3}
-  mainCamera: {fileID: 0}
   verticalRocketSpawner:
   - {fileID: 377957612215117282}
   - {fileID: 377957613198180100}
