@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
         playerCurrentHealth = playerMaxHealth;
         playerBulletBaseDamage = shipData.baseDamage;
         playerFireRate = shipData.fireRate;
-        pickupRange = shipData.PickupRange;
+        pickupRange = shipData.pickupRange;
         boostValue = shipData.boostDuration;
         boostPower = shipData.boostPower;
         protectionLvl = shipData.protectionLevel;

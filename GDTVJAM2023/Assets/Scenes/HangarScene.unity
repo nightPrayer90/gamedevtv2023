@@ -755,7 +755,7 @@ GameObject:
   - component: {fileID: 59020839}
   - component: {fileID: 59020838}
   m_Layer: 5
-  m_Name: Laser Ship Upgrade Button 9
+  m_Name: G4 - special 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -779,8 +779,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 522.7001, y: -159.69995}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchoredPosition: {x: 522.1, y: -175.79994}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &59020838
 MonoBehaviour:
@@ -821,18 +821,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 2
   upgradeButtonIndex: 8
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 3
+  otherUpgradesCosts: 000000000800000012000000
+  upgradePointCosts: 3200000096000000c2010000
+  tooltipHeaderString: +1 burning damage per tick
   btnImage: {fileID: 59020842}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 1768543941}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &59020841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1192,7 +1189,7 @@ GameObject:
   - component: {fileID: 84667461}
   - component: {fileID: 84667460}
   m_Layer: 5
-  m_Name: Rocket Ship Upgrade Button 3
+  m_Name: G2 - chance to get double exp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1216,7 +1213,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 138.79996, y: -85.999985}
+  m_AnchoredPosition: {x: 152.60002, y: -144.29999}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &84667460
@@ -1258,18 +1255,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 1
   upgradeButtonIndex: 2
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 5
+  otherUpgradesCosts: 00000000050000000a0000000f00000014000000
+  upgradePointCosts: 3200000096000000fa0000009001000026020000
+  tooltipHeaderString: 3% chance to get double exp if you collect an exp orb for
+    all ships
   btnImage: {fileID: 84667464}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 1049378141}
-  otherUpgrades: 2
-  upgradePoint: 5
-  tooltipHeaderString: Amazing Upgrade 3
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &84667463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1544,7 +1539,7 @@ GameObject:
   - component: {fileID: 96852807}
   - component: {fileID: 96852806}
   m_Layer: 5
-  m_Name: Rocket Ship Upgrade Button 1
+  m_Name: G1 - class update
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1568,8 +1563,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.200134, y: -60.09999}
-  m_SizeDelta: {x: 60, y: 60}
+  m_AnchoredPosition: {x: 15.000096, y: -99.99998}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &96852806
 MonoBehaviour:
@@ -1610,18 +1605,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 1
   upgradeButtonIndex: 0
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 2
+  otherUpgradesCosts: 050000001e000000
+  upgradePointCosts: 2c01000084030000
+  tooltipHeaderString: +1 level to rocket class
   btnImage: {fileID: 96852810}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 469143185}
-  otherUpgrades: 0
-  upgradePoint: 2
-  tooltipHeaderString: Amazing Upgrade 1
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &96852809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1652,9 +1644,9 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 1a9c2c2a4a64e944eb9944340feb3595, type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: 1a9c2c2a4a64e944eb9944340feb3595, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 1a9c2c2a4a64e944eb9944340feb3595, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: c55d6069c3e51184d99a1dec6fb22688, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: c55d6069c3e51184d99a1dec6fb22688, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: c55d6069c3e51184d99a1dec6fb22688, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1698,7 +1690,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c55d6069c3e51184d99a1dec6fb22688, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2172,7 +2164,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6510802611325757938}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &132909943
 PrefabInstance:
@@ -3274,7 +3266,7 @@ GameObject:
   - component: {fileID: 214651132}
   - component: {fileID: 214651131}
   m_Layer: 5
-  m_Name: Rocket Ship Upgrade Button 9
+  m_Name: G4 - special 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3298,8 +3290,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 522.7001, y: -159.69995}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchoredPosition: {x: 522.1, y: -175.79994}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &214651131
 MonoBehaviour:
@@ -3340,18 +3332,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 1
   upgradeButtonIndex: 8
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 3
+  otherUpgradesCosts: 000000000800000012000000
+  upgradePointCosts: 3200000096000000c2010000
+  tooltipHeaderString: +0.1s more rocket life time
   btnImage: {fileID: 214651135}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 873211106}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &214651134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3532,6 +3521,141 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bb533c24711315141adbcfb6444ef6d1, type: 3}
   m_PrefabInstance: {fileID: 214922081}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &242959003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 242959004}
+  - component: {fileID: 242959006}
+  - component: {fileID: 242959005}
+  m_Layer: 5
+  m_Name: Panel Caption
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &242959004
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242959003}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1335642801}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 43, y: -35}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &242959005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242959003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: prepare your ship
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 3fdd72a181942bb4fb04ebfc88484f3b, type: 2}
+  m_sharedMaterial: {fileID: 3584385154073877098, guid: 3fdd72a181942bb4fb04ebfc88484f3b, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 20
+  m_fontSizeBase: 20
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 17
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &242959006
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242959003}
+  m_CullTransparentMesh: 1
 --- !u!1001 &250977285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3962,7 +4086,7 @@ GameObject:
   - component: {fileID: 278138638}
   - component: {fileID: 278138637}
   m_Layer: 5
-  m_Name: Laser Ship Upgrade Button 3
+  m_Name: G2 - chance to get double exp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3986,7 +4110,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 138.79996, y: -85.999985}
+  m_AnchoredPosition: {x: 152.59998, y: -144.29996}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &278138637
@@ -4028,18 +4152,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 2
   upgradeButtonIndex: 2
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 5
+  otherUpgradesCosts: 00000000050000000a0000000f00000014000000
+  upgradePointCosts: 3200000096000000fa0000009001000026020000
+  tooltipHeaderString: 3% chance to get double exp if you collect an exp orb for
+    all ships
   btnImage: {fileID: 278138641}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 1716411417}
-  otherUpgrades: 2
-  upgradePoint: 5
-  tooltipHeaderString: Amazing Upgrade 3
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &278138640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4367,7 +4489,7 @@ GameObject:
   - component: {fileID: 289180393}
   - component: {fileID: 289180392}
   m_Layer: 5
-  m_Name: Laser Ship Upgrade Button 2
+  m_Name: G2 - more exp on game over
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4391,7 +4513,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 65.99988, y: -151.59996}
+  m_AnchoredPosition: {x: 134.99995, y: -70.59997}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &289180392
@@ -4433,18 +4555,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 2
   upgradeButtonIndex: 1
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 5
+  otherUpgradesCosts: 00000000050000000a0000000f00000014000000
+  upgradePointCosts: 3200000096000000fa0000009001000026020000
+  tooltipHeaderString: 2% more upgrade points on game over for all ships
   btnImage: {fileID: 289180396}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 1338050240}
-  otherUpgrades: 1
-  upgradePoint: 3
-  tooltipHeaderString: Amazing Upgrade 2
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &289180395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4845,7 +4964,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2604307836790789305, guid: 8912c6e90d86b8d459fccaf985e9717d, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2604307836790789305, guid: 8912c6e90d86b8d459fccaf985e9717d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6833,6 +6952,8 @@ MonoBehaviour:
   bulletShipData: {fileID: 11400000, guid: ca72bdbeb1c84f140a8ba1e41a89d229, type: 2}
   rocketShipData: {fileID: 11400000, guid: fd4dec7417175864e8b8eaac6cc2ee8a, type: 2}
   laserShipData: {fileID: 11400000, guid: 52927d1ce5cbcfc4e86da972b68d7b94, type: 2}
+  hangarUIController: {fileID: 800665620}
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!4 &505398685
 Transform:
   m_ObjectHideFlags: 0
@@ -7570,7 +7691,7 @@ GameObject:
   - component: {fileID: 565138531}
   - component: {fileID: 565138530}
   m_Layer: 5
-  m_Name: 'Rocket Ship Upgrade Button 5 '
+  m_Name: G3 - protection level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7594,8 +7715,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 248.99988, y: -79.59998}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchoredPosition: {x: 314, y: -156.99997}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &565138530
 MonoBehaviour:
@@ -7636,18 +7757,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 1
   upgradeButtonIndex: 4
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 2
+  otherUpgradesCosts: 000000000f000000
+  upgradePointCosts: 640000002c010000
+  tooltipHeaderString: +1 protection level
   btnImage: {fileID: 565138534}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 170223829}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &565138533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8010,7 +8128,7 @@ GameObject:
   - component: {fileID: 594922946}
   - component: {fileID: 594922945}
   m_Layer: 5
-  m_Name: Laser Ship Upgrade Button 1
+  m_Name: G1 - class update
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8034,8 +8152,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.200134, y: -60.09999}
-  m_SizeDelta: {x: 60, y: 60}
+  m_AnchoredPosition: {x: 15.000096, y: -99.99998}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &594922945
 MonoBehaviour:
@@ -8076,18 +8194,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 2
   upgradeButtonIndex: 0
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 2
+  otherUpgradesCosts: 050000001e000000
+  upgradePointCosts: 2c01000084030000
+  tooltipHeaderString: +1 level to laser class
   btnImage: {fileID: 594922949}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 31967523}
-  otherUpgrades: 0
-  upgradePoint: 2
-  tooltipHeaderString: Amazing Upgrade 1
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &594922948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8118,9 +8233,9 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 1a9c2c2a4a64e944eb9944340feb3595, type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: 1a9c2c2a4a64e944eb9944340feb3595, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 1a9c2c2a4a64e944eb9944340feb3595, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: e33e7de7e4aa41c48b6f5e23934b99b9, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: e33e7de7e4aa41c48b6f5e23934b99b9, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: e33e7de7e4aa41c48b6f5e23934b99b9, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -8164,7 +8279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e33e7de7e4aa41c48b6f5e23934b99b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8435,12 +8550,12 @@ GameObject:
   m_Component:
   - component: {fileID: 613965394}
   m_Layer: 5
-  m_Name: BulletUpgrades
+  m_Name: Bullet Upgrades Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &613965394
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8464,7 +8579,7 @@ RectTransform:
   - {fileID: 660324730}
   - {fileID: 755749255}
   m_Father: {fileID: 1335642801}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9288,7 +9403,7 @@ GameObject:
   - component: {fileID: 660324732}
   - component: {fileID: 660324731}
   m_Layer: 5
-  m_Name: Bullet Ship Upgrade Button 9
+  m_Name: G4 - special 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9312,8 +9427,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 522.7, y: -159.7}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchoredPosition: {x: 522.1, y: -175.79996}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &660324731
 MonoBehaviour:
@@ -9354,18 +9469,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 0
   upgradeButtonIndex: 8
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 3
+  otherUpgradesCosts: 000000000800000012000000
+  upgradePointCosts: 3200000096000000c2010000
+  tooltipHeaderString: +10% more bullet crit damage
   btnImage: {fileID: 660324735}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 194507679}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &660324734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9472,7 +9584,7 @@ GameObject:
   - component: {fileID: 663222994}
   - component: {fileID: 663222993}
   m_Layer: 5
-  m_Name: UpgradePoints text
+  m_Name: Upgrade Points text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9491,12 +9603,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1335642801}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 43, y: -35}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: 660, y: -35}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &663222993
 MonoBehaviour:
@@ -9551,8 +9663,8 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 17
-  m_HorizontalAlignment: 1
+  m_fontStyle: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -9876,7 +9988,7 @@ GameObject:
   - component: {fileID: 709143673}
   - component: {fileID: 709143672}
   m_Layer: 5
-  m_Name: Bullet Ship Upgrade Button 4
+  m_Name: G3 - pickup range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9900,7 +10012,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 232.5, y: -162}
+  m_AnchoredPosition: {x: 271.30014, y: -88}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &709143672
@@ -9942,18 +10054,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 0
   upgradeButtonIndex: 3
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 5
+  otherUpgradesCosts: 00000000050000000a0000000f00000014000000
+  upgradePointCosts: 1e00000064000000aa000000f000000036010000
+  tooltipHeaderString: +0.2 m pickup range
   btnImage: {fileID: 709143676}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 2065549619}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &709143675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10384,7 +10493,7 @@ GameObject:
   - component: {fileID: 755749257}
   - component: {fileID: 755749256}
   m_Layer: 5
-  m_Name: Bullet Ship Upgrade Button 10
+  m_Name: G4 - special 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10408,7 +10517,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 546.6, y: -16.7}
+  m_AnchoredPosition: {x: 550.10004, y: -88.69997}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &755749256
@@ -10450,18 +10559,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 0
   upgradeButtonIndex: 9
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 3
+  otherUpgradesCosts: 000000000800000012000000
+  upgradePointCosts: 3200000096000000c2010000
+  tooltipHeaderString: 7% main weapon fire rate
   btnImage: {fileID: 755749260}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 634740796}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &755749259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10925,6 +11031,8 @@ MonoBehaviour:
   shipValuePanel: {fileID: 1471039709}
   bkHeader: {fileID: 351187866207046923}
   bkHeaderShipIcon: {fileID: 1702097525984919525}
+  controlHeader: {fileID: 935547505}
+  upgradePanelHeader: {fileID: 242959005}
   shipNameText: {fileID: 928500985240867512}
   shipDescriptionText: {fileID: 1736962021905734781}
   damageValue: {fileID: 283028620}
@@ -11777,7 +11885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 843475232}
   m_Layer: 5
-  m_Name: LaserUpgrades
+  m_Name: Laser Upgrades Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11806,7 +11914,7 @@ RectTransform:
   - {fileID: 59020837}
   - {fileID: 1387140280}
   m_Father: {fileID: 1335642801}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12315,7 +12423,7 @@ GameObject:
   - component: {fileID: 876127727}
   - component: {fileID: 876127726}
   m_Layer: 5
-  m_Name: Bullet Ship Upgrade Button 3
+  m_Name: G2 - chance to get double exp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12339,7 +12447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 138.8, y: -86}
+  m_AnchoredPosition: {x: 152.60004, y: -144.29999}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &876127726
@@ -12381,18 +12489,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 0
   upgradeButtonIndex: 2
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 5
+  otherUpgradesCosts: 00000000050000000a0000000f00000014000000
+  upgradePointCosts: 3200000096000000fa0000009001000026020000
+  tooltipHeaderString: 3% chance to get double exp if you collect an exp orb for
+    all ships
   btnImage: {fileID: 876127730}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 389474717}
-  otherUpgrades: 2
-  upgradePoint: 5
-  tooltipHeaderString: Amazing Upgrade 3
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &876127729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13191,7 +13297,7 @@ GameObject:
   - component: {fileID: 916993337}
   - component: {fileID: 916993336}
   m_Layer: 5
-  m_Name: Bullet Ship Upgrade Button 8
+  m_Name: G4 - special 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13215,7 +13321,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 432.6, y: -55.7}
+  m_AnchoredPosition: {x: 480, y: -37.69996}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &916993336
@@ -13257,18 +13363,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 0
   upgradeButtonIndex: 7
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 3
+  otherUpgradesCosts: 000000000800000012000000
+  upgradePointCosts: 3200000096000000c2010000
+  tooltipHeaderString: +1% bullet crit chance
   btnImage: {fileID: 916993340}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 876697765}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &916993339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13449,6 +13552,141 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bb533c24711315141adbcfb6444ef6d1, type: 3}
   m_PrefabInstance: {fileID: 933487145}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &935547503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 935547504}
+  - component: {fileID: 935547506}
+  - component: {fileID: 935547505}
+  m_Layer: 5
+  m_Name: Panel Caption
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &935547504
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935547503}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1583082211}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 45, y: -34}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &935547505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935547503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: controls
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 3fdd72a181942bb4fb04ebfc88484f3b, type: 2}
+  m_sharedMaterial: {fileID: 3584385154073877098, guid: 3fdd72a181942bb4fb04ebfc88484f3b, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 20
+  m_fontSizeBase: 20
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 17
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &935547506
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935547503}
+  m_CullTransparentMesh: 1
 --- !u!1001 &939304093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14475,7 +14713,7 @@ GameObject:
   - component: {fileID: 1005796961}
   - component: {fileID: 1005796960}
   m_Layer: 5
-  m_Name: Bullet Ship Upgrade Button 2
+  m_Name: G2 - more exp on game over
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14499,7 +14737,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 66, y: -151.6}
+  m_AnchoredPosition: {x: 135.00008, y: -70.6}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1005796960
@@ -14541,18 +14779,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 0
   upgradeButtonIndex: 1
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 5
+  otherUpgradesCosts: 00000000050000000a0000000f00000014000000
+  upgradePointCosts: 3200000096000000fa0000009001000026020000
+  tooltipHeaderString: 2% more upgrade points on game over for all ships
   btnImage: {fileID: 1005796964}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 641810095}
-  otherUpgrades: 1
-  upgradePoint: 3
-  tooltipHeaderString: Amazing Upgrade 2
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &1005796963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14744,7 +14979,7 @@ GameObject:
   - component: {fileID: 1008204842}
   - component: {fileID: 1008204841}
   m_Layer: 5
-  m_Name: Rocket Ship Upgrade Button 10
+  m_Name: G4 - special 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14768,7 +15003,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 546.6, y: -16.700005}
+  m_AnchoredPosition: {x: 550.10004, y: -88.7}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1008204841
@@ -14810,18 +15045,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 1
   upgradeButtonIndex: 9
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 3
+  otherUpgradesCosts: 000000000800000012000000
+  upgradePointCosts: 3200000096000000c2010000
+  tooltipHeaderString: 5% main weapon damage agist bosses
   btnImage: {fileID: 1008204845}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 540441111}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &1008204844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14945,48 +15177,84 @@ MonoBehaviour:
     health: 8
     baseDamage: 4
     fireRate: 0.4
-    PickupRange: 0.8
+    pickupRange: 0.8
     boostPower: 2.1
     boostDuration: 0.4
     protectionLevel: 0
-    rocketLifeTime: 0
-    laserShooingTime: 0
     bulletClass: 1
     explosionClass: 0
     laserClass: 0
     supportClass: 0
+    moreUpgradePoints: 0
+    chanceToDoubleExp: 0
+    pecBulletDamage: 0
+    pecExplosionDamage: 0
+    pecLaserDamage: 0
+    pecCritChance: 0
+    pecAOE: 0
+    pecBurningChance: 0
+    pecBulletCritDamage: 0
+    rocketLifeTime: 0
+    burningDamagePerTick: 0
+    pecMainWeaponFireRate: 0
+    pecMainWeaponDamageBoss: 0
+    laserShootingTime: 0
   - shipName: Rocket Ship
     speed: 11.6
     rotateSpeed: 3.5
     health: 7
     baseDamage: 6
     fireRate: 1.1
-    PickupRange: 0.8
+    pickupRange: 0.8
     boostPower: 1.5
     boostDuration: 0.2
     protectionLevel: 0
-    rocketLifeTime: 1
-    laserShooingTime: 0
     bulletClass: 0
     explosionClass: 1
     laserClass: 0
     supportClass: 0
+    moreUpgradePoints: 0
+    chanceToDoubleExp: 0
+    pecBulletDamage: 0
+    pecExplosionDamage: 0
+    pecLaserDamage: 0
+    pecCritChance: 0
+    pecAOE: 0
+    pecBurningChance: 0
+    pecBulletCritDamage: 0
+    rocketLifeTime: 1
+    burningDamagePerTick: 0
+    pecMainWeaponFireRate: 0
+    pecMainWeaponDamageBoss: 0
+    laserShootingTime: 0
   - shipName: Laser Ship
     speed: 9.5
     rotateSpeed: 3.5
     health: 10
     baseDamage: 3
     fireRate: 1.5
-    PickupRange: 0.8
+    pickupRange: 0.8
     boostPower: 2.5
     boostDuration: 0.6
     protectionLevel: 0
-    rocketLifeTime: 0
-    laserShooingTime: 3
     bulletClass: 0
     explosionClass: 0
     laserClass: 1
     supportClass: 0
+    moreUpgradePoints: 0
+    chanceToDoubleExp: 0
+    pecBulletDamage: 0
+    pecExplosionDamage: 0
+    pecLaserDamage: 0
+    pecCritChance: 0
+    pecAOE: 0
+    pecBurningChance: 0
+    pecBulletCritDamage: 0
+    rocketLifeTime: 0
+    burningDamagePerTick: 0
+    pecMainWeaponFireRate: 0
+    pecMainWeaponDamageBoss: 0
+    laserShootingTime: 3
 --- !u!1 &1012378938
 GameObject:
   m_ObjectHideFlags: 0
@@ -16055,7 +16323,7 @@ GameObject:
   - component: {fileID: 1071176996}
   - component: {fileID: 1071176995}
   m_Layer: 5
-  m_Name: Bullet Ship Upgrade Button 6
+  m_Name: G3 - perc damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16079,7 +16347,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 326.2, y: -25.4}
+  m_AnchoredPosition: {x: 335.30014, y: -45.699966}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1071176995
@@ -16121,18 +16389,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 0
   upgradeButtonIndex: 5
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 5
+  otherUpgradesCosts: 00000000050000000a0000000f00000014000000
+  upgradePointCosts: 3200000064000000fa0000009001000026020000
+  tooltipHeaderString: 5% increased bullet damage
   btnImage: {fileID: 1071176999}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 1905789893}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &1071176998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17747,7 +18012,7 @@ GameObject:
   - component: {fileID: 1181848493}
   - component: {fileID: 1181848492}
   m_Layer: 5
-  m_Name: 'Bullet Ship Upgrade Button 5 '
+  m_Name: G3 - protection level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17771,8 +18036,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 249, y: -79.6}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchoredPosition: {x: 314.0001, y: -157}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1181848492
 MonoBehaviour:
@@ -17813,18 +18078,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 0
   upgradeButtonIndex: 4
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 2
+  otherUpgradesCosts: 000000000f000000
+  upgradePointCosts: 640000002c010000
+  tooltipHeaderString: +1 protection level
   btnImage: {fileID: 1181848496}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 1160189304}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &1181848495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18194,7 +18456,7 @@ Transform:
   - {fileID: 346818413}
   - {fileID: 1015439116}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1251523378
 PrefabInstance:
@@ -18562,7 +18824,7 @@ GameObject:
   - component: {fileID: 1277993670}
   - component: {fileID: 1277993669}
   m_Layer: 5
-  m_Name: Bullet Ship Upgrade Button 7
+  m_Name: G4 - movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18586,7 +18848,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 377.5, y: -144.9}
+  m_AnchoredPosition: {x: 457, y: -113.69996}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1277993669
@@ -18628,18 +18890,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 0
   upgradeButtonIndex: 6
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 3
+  otherUpgradesCosts: 000000000800000012000000
+  upgradePointCosts: 3200000096000000c2010000
+  tooltipHeaderString: +7% more boost power
   btnImage: {fileID: 1277993673}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 2135056547}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &1277993672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18803,7 +19062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1155334098305777634, guid: c5923c420fc066543994ec44bf775367, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1155334098305777634, guid: c5923c420fc066543994ec44bf775367, type: 3}
       propertyPath: m_AnchorMax.x
@@ -19511,13 +19770,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 242959004}
   - {fileID: 663222992}
   - {fileID: 613965394}
   - {fileID: 2000633981}
   - {fileID: 843475232}
   - {fileID: 141511849}
   m_Father: {fileID: 6510802611325757938}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -20345,7 +20605,7 @@ GameObject:
   - component: {fileID: 1387140282}
   - component: {fileID: 1387140281}
   m_Layer: 5
-  m_Name: Laser Ship Upgrade Button 10
+  m_Name: G4 - special 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20369,7 +20629,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 546.6, y: -16.700005}
+  m_AnchoredPosition: {x: 550.10004, y: -88.69998}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1387140281
@@ -20411,18 +20671,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 2
   upgradeButtonIndex: 9
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 3
+  otherUpgradesCosts: 000000000800000012000000
+  upgradePointCosts: 3200000096000000c2010000
+  tooltipHeaderString: '+0,3s laser shooting time  '
   btnImage: {fileID: 1387140285}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 1367062199}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &1387140284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20718,7 +20975,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1432229933
 PrefabInstance:
@@ -21229,7 +21486,7 @@ RectTransform:
   - {fileID: 6197180220891180456}
   - {fileID: 9034559183714503967}
   m_Father: {fileID: 6510802611325757938}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -22150,7 +22407,7 @@ GameObject:
   - component: {fileID: 1536487098}
   - component: {fileID: 1536487099}
   m_Layer: 5
-  m_Name: Bullet Ship Upgrade Button 1
+  m_Name: G1-class update
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22174,8 +22431,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.2, y: -60.1}
-  m_SizeDelta: {x: 60, y: 60}
+  m_AnchoredPosition: {x: 15, y: -100}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1536487095
 MonoBehaviour:
@@ -22207,9 +22464,9 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 1a9c2c2a4a64e944eb9944340feb3595, type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: 1a9c2c2a4a64e944eb9944340feb3595, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 1a9c2c2a4a64e944eb9944340feb3595, type: 3}
-    m_DisabledSprite: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -22253,7 +22510,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -22310,18 +22567,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 0
   upgradeButtonIndex: 0
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 2
+  otherUpgradesCosts: 050000001e000000
+  upgradePointCosts: 2c01000084030000
+  tooltipHeaderString: +1 level to bullet class
   btnImage: {fileID: 1536487096}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 1529873336}
-  otherUpgrades: 0
-  upgradePoint: 2
-  tooltipHeaderString: 
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!1 &1553708609
 GameObject:
   m_ObjectHideFlags: 0
@@ -22338,7 +22592,7 @@ GameObject:
   - component: {fileID: 1553708612}
   - component: {fileID: 1553708611}
   m_Layer: 5
-  m_Name: Laser Ship Upgrade Button 6
+  m_Name: G3 - perc damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22362,7 +22616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 326.2001, y: -25.400017}
+  m_AnchoredPosition: {x: 335.30008, y: -45.699986}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1553708611
@@ -22404,18 +22658,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 2
   upgradeButtonIndex: 5
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 5
+  otherUpgradesCosts: 00000000050000000a0000000f00000014000000
+  upgradePointCosts: 3200000064000000fa0000009001000026020000
+  tooltipHeaderString: 5% increased laser damage
   btnImage: {fileID: 1553708615}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 1050861698}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &1553708614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22920,6 +23171,83 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 661d012a5d52a1b46aaefd20fcfdde1e, type: 3}
+--- !u!1 &1583082210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1583082211}
+  - component: {fileID: 1583082213}
+  - component: {fileID: 1583082212}
+  m_Layer: 5
+  m_Name: Control Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1583082211
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583082210}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 935547504}
+  m_Father: {fileID: 6510802611325757938}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -472, y: -22.5}
+  m_SizeDelta: {x: 300, y: 736}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1583082212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583082210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 75e23e5d806fbda429f883675b55254e, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1583082213
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583082210}
+  m_CullTransparentMesh: 1
 --- !u!1 &1586661538
 GameObject:
   m_ObjectHideFlags: 0
@@ -22936,7 +23264,7 @@ GameObject:
   - component: {fileID: 1586661541}
   - component: {fileID: 1586661540}
   m_Layer: 5
-  m_Name: Rocket Ship Upgrade Button 2
+  m_Name: G2 - more exp on game over
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22960,7 +23288,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 65.99988, y: -151.59996}
+  m_AnchoredPosition: {x: 135, y: -70.59997}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1586661540
@@ -23002,18 +23330,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 1
   upgradeButtonIndex: 1
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 5
+  otherUpgradesCosts: 00000000050000000a0000000f00000014000000
+  upgradePointCosts: 3200000096000000fa0000009001000026020000
+  tooltipHeaderString: 2% more upgrade points on game over for all ships
   btnImage: {fileID: 1586661544}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 976493292}
-  otherUpgrades: 1
-  upgradePoint: 3
-  tooltipHeaderString: Amazing Upgrade 2
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &1586661543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31058,7 +31383,7 @@ GameObject:
   - component: {fileID: 1845299641}
   - component: {fileID: 1845299640}
   m_Layer: 5
-  m_Name: Laser Ship Upgrade Button 8
+  m_Name: G4 - special 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31082,7 +31407,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 432.6, y: -55.69999}
+  m_AnchoredPosition: {x: 479.99994, y: -37.69995}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1845299640
@@ -31124,18 +31449,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 2
   upgradeButtonIndex: 7
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 3
+  otherUpgradesCosts: 000000000800000012000000
+  upgradePointCosts: 3200000096000000c2010000
+  tooltipHeaderString: +1% chance to make burning damage
   btnImage: {fileID: 1845299644}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 894381809}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &1845299643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36187,6 +36509,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bb533c24711315141adbcfb6444ef6d1, type: 3}
   m_PrefabInstance: {fileID: 1865321673}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1871213020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1871213021}
+  m_Layer: 0
+  m_Name: '---------------------------- '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1871213021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871213020}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1887600365
 GameObject:
   m_ObjectHideFlags: 0
@@ -37177,7 +37530,7 @@ GameObject:
   - component: {fileID: 1957622812}
   - component: {fileID: 1957622811}
   m_Layer: 5
-  m_Name: Rocket Ship Upgrade Button 4
+  m_Name: G3 - pickup range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37201,7 +37554,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 232.49997, y: -162}
+  m_AnchoredPosition: {x: 271.30008, y: -87.99997}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1957622811
@@ -37243,18 +37596,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 1
   upgradeButtonIndex: 3
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 5
+  otherUpgradesCosts: 00000000050000000a0000000f00000014000000
+  upgradePointCosts: 1e00000064000000aa000000f000000036010000
+  tooltipHeaderString: +0.2 m pickup range
   btnImage: {fileID: 1957622815}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 1126360}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &1957622814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37365,7 +37715,7 @@ GameObject:
   - component: {fileID: 1958785695}
   - component: {fileID: 1958785694}
   m_Layer: 5
-  m_Name: Rocket Ship Upgrade Button 7
+  m_Name: G4 - movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37389,7 +37739,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 377.49997, y: -144.89996}
+  m_AnchoredPosition: {x: 457, y: -113.699936}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1958785694
@@ -37431,18 +37781,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 1
   upgradeButtonIndex: 6
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 3
+  otherUpgradesCosts: 000000000800000012000000
+  upgradePointCosts: 3200000096000000c2010000
+  tooltipHeaderString: +0.1s boost duration
   btnImage: {fileID: 1958785698}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 1286492592}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &1958785697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38059,7 +38406,7 @@ GameObject:
   - component: {fileID: 2000002794}
   - component: {fileID: 2000002793}
   m_Layer: 5
-  m_Name: Rocket Ship Upgrade Button 6
+  m_Name: G3 - perc damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38083,7 +38430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 326.2001, y: -25.400017}
+  m_AnchoredPosition: {x: 335.30008, y: -45.7}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2000002793
@@ -38125,18 +38472,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 1
   upgradeButtonIndex: 5
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 5
+  otherUpgradesCosts: 00000000050000000a0000000f00000014000000
+  upgradePointCosts: 3200000064000000fa0000009001000026020000
+  tooltipHeaderString: 5% increased explosion damage
   btnImage: {fileID: 2000002797}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 1599831294}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &2000002796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38241,12 +38585,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2000633981}
   m_Layer: 5
-  m_Name: RocketUpgrades
+  m_Name: Rocket Upgrades Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2000633981
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38270,7 +38614,7 @@ RectTransform:
   - {fileID: 214651130}
   - {fileID: 1008204840}
   m_Father: {fileID: 1335642801}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -38876,7 +39220,7 @@ GameObject:
   - component: {fileID: 2035650623}
   - component: {fileID: 2035650622}
   m_Layer: 5
-  m_Name: Rocket Ship Upgrade Button 8
+  m_Name: G4 - special 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38900,7 +39244,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 432.6, y: -55.69999}
+  m_AnchoredPosition: {x: 479.99994, y: -37.69996}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2035650622
@@ -38942,18 +39286,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 1
   upgradeButtonIndex: 7
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 3
+  otherUpgradesCosts: 000000000800000012000000
+  upgradePointCosts: 3200000096000000c2010000
+  tooltipHeaderString: +5% more AOE (area of effect)
   btnImage: {fileID: 2035650626}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 1933516843}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &2035650625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39769,7 +40110,7 @@ GameObject:
   - component: {fileID: 2072591939}
   - component: {fileID: 2072591938}
   m_Layer: 5
-  m_Name: 'Laser Ship Upgrade Button 5 '
+  m_Name: G3 - protection level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39793,8 +40134,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 248.99988, y: -79.59998}
-  m_SizeDelta: {x: 80, y: 80}
+  m_AnchoredPosition: {x: 314, y: -156.99997}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2072591938
 MonoBehaviour:
@@ -39835,18 +40176,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 2
   upgradeButtonIndex: 4
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 2
+  otherUpgradesCosts: 000000000f000000
+  upgradePointCosts: 640000002c010000
+  tooltipHeaderString: +1 protection level
   btnImage: {fileID: 2072591942}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 425391707}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &2072591941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40254,7 +40592,7 @@ GameObject:
   - component: {fileID: 2117875777}
   - component: {fileID: 2117875776}
   m_Layer: 5
-  m_Name: Laser Ship Upgrade Button 4
+  m_Name: G3 - pickup range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40278,7 +40616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 232.49997, y: -162}
+  m_AnchoredPosition: {x: 271.30008, y: -87.99997}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2117875776
@@ -40320,18 +40658,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 2
   upgradeButtonIndex: 3
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 5
+  otherUpgradesCosts: 00000000050000000a0000000f00000014000000
+  upgradePointCosts: 1e00000064000000aa000000f000000036010000
+  tooltipHeaderString: +0.2 m pickup range
   btnImage: {fileID: 2117875780}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 1437506509}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &2117875779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40523,7 +40858,7 @@ GameObject:
   - component: {fileID: 2125602447}
   - component: {fileID: 2125602446}
   m_Layer: 5
-  m_Name: Laser Ship Upgrade Button 7
+  m_Name: G4 - movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40547,7 +40882,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 377.49997, y: -144.89996}
+  m_AnchoredPosition: {x: 457, y: -113.699936}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2125602446
@@ -40589,18 +40924,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba236d4083bb04b43b2100423038966d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   upgradePanelIndex: 2
   upgradeButtonIndex: 6
-  Colorindex: 0
-  maxValue: 1
+  maxButtonLevel: 3
+  otherUpgradesCosts: 000000000800000012000000
+  upgradePointCosts: 3200000096000000c2010000
+  tooltipHeaderString: 10% ship gets more speed
   btnImage: {fileID: 2125602450}
-  gameManager: {fileID: 505398684}
-  hangerUIController: {fileID: 800665620}
   btnLevelText: {fileID: 845166185}
-  otherUpgrades: 3
-  upgradePoint: 10
-  tooltipHeaderString: Amazing Upgrade 4
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!114 &2125602449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41581,7 +41913,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6510802611325757938}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -41670,7 +42002,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 5ee76fb8c477c954cb93742abf725fb3, type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 5ee76fb8c477c954cb93742abf725fb3, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: 5ee76fb8c477c954cb93742abf725fb3, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: c2a818b8aa5832646bf2a0204e406670, type: 3}
     m_DisabledSprite: {fileID: 21300000, guid: c2a818b8aa5832646bf2a0204e406670, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -42631,7 +42963,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 170, y: 0}
-  m_SizeDelta: {x: 26, y: 27}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &928500985843145424
 RectTransform:
@@ -43666,7 +43998,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: prepare your ship
+  m_text: Hangar
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3fdd72a181942bb4fb04ebfc88484f3b, type: 2}
   m_sharedMaterial: {fileID: 3584385154073877098, guid: 3fdd72a181942bb4fb04ebfc88484f3b, type: 2}
@@ -43766,7 +44098,7 @@ RectTransform:
   - {fileID: 928500986806904282}
   - {fileID: 928500985842636435}
   m_Father: {fileID: 6510802611325757938}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -43885,7 +44217,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -170, y: 0}
-  m_SizeDelta: {x: 26, y: 27}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &928500986806904283
 GameObject:
@@ -44117,7 +44449,7 @@ RectTransform:
   - {fileID: 928500985393916535}
   - {fileID: 928500985478938889}
   m_Father: {fileID: 6510802611325757938}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -44193,7 +44525,7 @@ RectTransform:
   - {fileID: 4011206778468553868}
   - {fileID: 1349518587933466248}
   m_Father: {fileID: 6510802611325757938}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -45251,6 +45583,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 928500986469581744}
+  - {fileID: 1583082211}
   - {fileID: 928500986806238231}
   - {fileID: 928500987189838740}
   - {fileID: 1471039709}

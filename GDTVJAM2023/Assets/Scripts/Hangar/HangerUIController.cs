@@ -22,6 +22,8 @@ public class HangerUIController : MonoBehaviour
     public Transform shipValuePanel;
     public Image bkHeader;
     public Image bkHeaderShipIcon;
+    public TextMeshProUGUI controlHeader;
+    public TextMeshProUGUI upgradePanelHeader;
     public TextMeshProUGUI shipNameText;
     public TextMeshProUGUI shipDescriptionText;
     public TextMeshProUGUI damageValue;
@@ -86,15 +88,13 @@ public class HangerUIController : MonoBehaviour
 
                 shipNameText.text = bulletShipData.shipName;
                 bkHeader.color = bulletShipData.mainClassColor;
+                controlHeader.color = bulletShipData.mainClassColor;
+                upgradePanelHeader.color = bulletShipData.mainClassColor;
                 bkHeaderShipIcon.sprite = bulletShipData.shipIcon;
 
                 shipDescriptionText.text = bulletShipData.shipDescription;
 
-                damageValue.text = bulletShipData.baseDamage.ToString();
-                healthValue.text = bulletShipData.health.ToString();
-                speedValue.text = bulletShipData.speed.ToString();
-                boostValue.text = bulletShipData.boostPower.ToString();
-                boostDuration.text = bulletShipData.boostDuration.ToString();
+                UpdateShipUIValues(shipIndex);
 
                 weaponHeader.text = bulletShipData.shipWeaponStr;
                 weaponHeader.color = bulletShipData.mainClassColor;
@@ -122,15 +122,13 @@ public class HangerUIController : MonoBehaviour
 
                 shipNameText.text = rocketShipData.shipName;
                 bkHeader.color = rocketShipData.mainClassColor;
+                controlHeader.color = rocketShipData.mainClassColor;
+                upgradePanelHeader.color = rocketShipData.mainClassColor;
                 bkHeaderShipIcon.sprite = rocketShipData.shipIcon;
 
                 shipDescriptionText.text = rocketShipData.shipDescription;
 
-                damageValue.text = rocketShipData.baseDamage.ToString();
-                healthValue.text = rocketShipData.health.ToString();
-                speedValue.text = rocketShipData.speed.ToString();
-                boostValue.text = rocketShipData.boostPower.ToString();
-                boostDuration.text = rocketShipData.boostDuration.ToString();
+                UpdateShipUIValues(shipIndex);
 
                 weaponHeader.text = rocketShipData.shipWeaponStr;
                 weaponHeader.color = rocketShipData.mainClassColor;
@@ -158,15 +156,13 @@ public class HangerUIController : MonoBehaviour
 
                 shipNameText.text = laserShipData.shipName;
                 bkHeader.color = laserShipData.mainClassColor;
+                controlHeader.color = laserShipData.mainClassColor;
+                upgradePanelHeader.color = laserShipData.mainClassColor;
                 bkHeaderShipIcon.sprite = laserShipData.shipIcon;
 
                 shipDescriptionText.text = laserShipData.shipDescription;
 
-                damageValue.text = laserShipData.baseDamage.ToString();
-                healthValue.text = laserShipData.health.ToString();
-                speedValue.text = laserShipData.speed.ToString();
-                boostValue.text = laserShipData.boostPower.ToString();
-                boostDuration.text = laserShipData.boostDuration.ToString();
+                UpdateShipUIValues(shipIndex);
 
                 weaponHeader.text = laserShipData.shipWeaponStr;
                 weaponHeader.color = laserShipData.mainClassColor;
@@ -182,6 +178,37 @@ public class HangerUIController : MonoBehaviour
                 break;
         }
     }
+
+    public void UpdateShipUIValues(int shipIndex)
+    {
+        switch (shipIndex)
+        {
+            case 0: // bullet ship
+                damageValue.text = rocketShipData.baseDamage.ToString();
+                healthValue.text = rocketShipData.health.ToString();
+                speedValue.text = rocketShipData.speed.ToString();
+                boostValue.text = rocketShipData.boostPower.ToString();
+                boostDuration.text = rocketShipData.boostDuration.ToString();
+                break;
+
+           case 1: // rocket ship
+                damageValue.text = rocketShipData.baseDamage.ToString();
+                healthValue.text = rocketShipData.health.ToString();
+                speedValue.text = rocketShipData.speed.ToString();
+                boostValue.text = rocketShipData.boostPower.ToString();
+                boostDuration.text = rocketShipData.boostDuration.ToString();
+                break;
+
+           case 2: // laser ship
+                damageValue.text = laserShipData.baseDamage.ToString();
+                healthValue.text = laserShipData.health.ToString();
+                speedValue.text = laserShipData.speed.ToString();
+                boostValue.text = laserShipData.boostPower.ToString();
+                boostDuration.text = laserShipData.boostDuration.ToString();
+                break;
+        }
+    }
+
 
     private void TweenPanels()
     {

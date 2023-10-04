@@ -67,7 +67,7 @@ public class PlayerMWController : MonoBehaviour
         upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
         playerController = GetComponent<PlayerController>();
         shipData = playerController.shipData;
-        laserShootTime = shipData.laserShooingTime;
+        laserShootTime = shipData.laserShootingTime;
         lifeTime = shipData.rocketLifeTime;
 
         // bullet

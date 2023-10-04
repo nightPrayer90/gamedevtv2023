@@ -12,7 +12,12 @@ public class HangarManager : MonoBehaviour
     public ShipData bulletShipData;
     public ShipData rocketShipData;
     public ShipData laserShipData;
+    public HangerUIController hangarUIController;
+    public PlayerData playerData;
 
+    /* **************************************************************************** */
+    /* Lifecycle-Methoden---------------------------------------------------------- */
+    /* **************************************************************************** */
 
     // Start is called before the first frame update
     void Start()
@@ -21,65 +26,112 @@ public class HangarManager : MonoBehaviour
         playerHangarShip.transform.position = playerStartPoint.transform.position + positionOffset;
 
         // Build Ship Values
-        BuildShipValues();
+        SetShipDataValues(0);
+        SetShipDataValues(1);
+        SetShipDataValues(2);
     }
 
-    // Build ship values - default ship Stats + Upgrades = shipData Object
-    private void BuildShipValues()
+    // set shipData values - default ship Stats + Upgrades = shipData Object
+    public void SetShipDataValues(int shipIndex)
     {
-        // bullet ship -------------
-        bulletShipData.speed = defalutValues.shipStats[0].speed;
-        bulletShipData.rotateSpeed = defalutValues.shipStats[0].rotateSpeed;
-        bulletShipData.health = defalutValues.shipStats[0].health;
-        bulletShipData.baseDamage = defalutValues.shipStats[0].baseDamage;
-        bulletShipData.fireRate = defalutValues.shipStats[0].fireRate;
-        bulletShipData.PickupRange = defalutValues.shipStats[0].PickupRange;
-        bulletShipData.boostPower = defalutValues.shipStats[0].boostPower;
-        bulletShipData.boostDuration = defalutValues.shipStats[0].boostDuration;
-        bulletShipData.protectionLevel = defalutValues.shipStats[0].protectionLevel;
-        bulletShipData.rocketLifeTime = defalutValues.shipStats[0].rocketLifeTime;
-        bulletShipData.laserShooingTime = defalutValues.shipStats[0].laserShooingTime;
-        bulletShipData.bulletClass = defalutValues.shipStats[0].bulletClass;
-        bulletShipData.explosionClass = defalutValues.shipStats[0].explosionClass;
-        bulletShipData.laserClass = defalutValues.shipStats[0].laserClass;
-        bulletShipData.supportClass = defalutValues.shipStats[0].supportClass;
+        switch (shipIndex)
+        {
+            case 0: // bullet ship -------------
+                bulletShipData.speed = defalutValues.shipStats[shipIndex].speed  ;
+                bulletShipData.rotateSpeed = defalutValues.shipStats[shipIndex].rotateSpeed;
+                bulletShipData.health = defalutValues.shipStats[shipIndex].health;
+                bulletShipData.baseDamage = defalutValues.shipStats[shipIndex].baseDamage;
+                bulletShipData.fireRate = defalutValues.shipStats[shipIndex].fireRate + (defalutValues.shipStats[shipIndex].fireRate * (playerData.bulletResearchedSkills[9] * 0.07f));
+                bulletShipData.pickupRange = defalutValues.shipStats[shipIndex].pickupRange + (playerData.bulletResearchedSkills[3] * 0.2f);
+                bulletShipData.boostPower = defalutValues.shipStats[shipIndex].boostPower + (defalutValues.shipStats[shipIndex].boostPower * (playerData.bulletResearchedSkills[6] * 0.07f));
+                bulletShipData.boostDuration = defalutValues.shipStats[shipIndex].boostDuration;
+                bulletShipData.protectionLevel = defalutValues.shipStats[shipIndex].protectionLevel + (playerData.bulletResearchedSkills[4] * 1);
 
+                bulletShipData.bulletClass = defalutValues.shipStats[shipIndex].bulletClass + playerData.bulletResearchedSkills[0];
+                bulletShipData.explosionClass = defalutValues.shipStats[shipIndex].explosionClass;
+                bulletShipData.laserClass = defalutValues.shipStats[shipIndex].laserClass;
+                bulletShipData.supportClass = defalutValues.shipStats[shipIndex].supportClass;
 
-        // rocket ship -------------
-        rocketShipData.speed = defalutValues.shipStats[1].speed;
-        rocketShipData.rotateSpeed = defalutValues.shipStats[1].rotateSpeed;
-        rocketShipData.health = defalutValues.shipStats[1].health;
-        rocketShipData.baseDamage = defalutValues.shipStats[1].baseDamage;
-        rocketShipData.fireRate = defalutValues.shipStats[1].fireRate;
-        rocketShipData.PickupRange = defalutValues.shipStats[1].PickupRange;
-        rocketShipData.boostPower = defalutValues.shipStats[1].boostPower;
-        rocketShipData.boostDuration = defalutValues.shipStats[1].boostDuration;
-        rocketShipData.protectionLevel = defalutValues.shipStats[1].protectionLevel;
-        rocketShipData.rocketLifeTime = defalutValues.shipStats[1].rocketLifeTime;
-        rocketShipData.laserShooingTime = defalutValues.shipStats[1].laserShooingTime;
-        rocketShipData.bulletClass = defalutValues.shipStats[1].bulletClass;
-        rocketShipData.explosionClass = defalutValues.shipStats[1].explosionClass;
-        rocketShipData.laserClass = defalutValues.shipStats[1].laserClass;
-        rocketShipData.supportClass = defalutValues.shipStats[1].supportClass;
+                bulletShipData.moreUpgradePoints = defalutValues.shipStats[shipIndex].moreUpgradePoints + (playerData.bulletResearchedSkills[1] * 2);
+                bulletShipData.chanceToDoubleExp = defalutValues.shipStats[shipIndex].chanceToDoubleExp + (playerData.bulletResearchedSkills[2] * 3);
+                bulletShipData.pecBulletDamage = defalutValues.shipStats[shipIndex].pecBulletDamage + (playerData.bulletResearchedSkills[5] * 3);
+                bulletShipData.pecExplosionDamage = defalutValues.shipStats[shipIndex].pecExplosionDamage;
+                bulletShipData.pecLaserDamage = defalutValues.shipStats[shipIndex].pecLaserDamage;
+                bulletShipData.pecCritChance = defalutValues.shipStats[shipIndex].pecCritChance + (playerData.bulletResearchedSkills[7] * 1); ;
+                bulletShipData.pecAOE = defalutValues.shipStats[shipIndex].pecAOE;
+                bulletShipData.pecBurningChance = defalutValues.shipStats[shipIndex].pecBurningChance;
+                bulletShipData.pecBulletCritDamage = defalutValues.shipStats[shipIndex].pecBulletCritDamage + (playerData.bulletResearchedSkills[8] * 10);
+                bulletShipData.rocketLifeTime = defalutValues.shipStats[shipIndex].rocketLifeTime;
+                bulletShipData.burningDamagePerTick = defalutValues.shipStats[shipIndex].burningDamagePerTick;
+                bulletShipData.pecMainWeaponDamageBoss = defalutValues.shipStats[shipIndex].pecMainWeaponDamageBoss;
+                bulletShipData.laserShootingTime = defalutValues.shipStats[shipIndex].laserShootingTime;
+                break;
 
+            case 1: // rocket ship -------------
+                rocketShipData.speed = defalutValues.shipStats[shipIndex].speed;
+                rocketShipData.rotateSpeed = defalutValues.shipStats[shipIndex].rotateSpeed;
+                rocketShipData.health = defalutValues.shipStats[shipIndex].health;
+                rocketShipData.baseDamage = defalutValues.shipStats[shipIndex].baseDamage;
+                rocketShipData.fireRate = defalutValues.shipStats[shipIndex].fireRate;
+                rocketShipData.pickupRange = defalutValues.shipStats[shipIndex].pickupRange;
+                rocketShipData.boostPower = defalutValues.shipStats[shipIndex].boostPower;
+                rocketShipData.boostDuration = defalutValues.shipStats[shipIndex].boostDuration;
+                rocketShipData.protectionLevel = defalutValues.shipStats[shipIndex].protectionLevel;
 
-        // laser ship --------------
-        laserShipData.speed = defalutValues.shipStats[2].speed;
-        laserShipData.rotateSpeed = defalutValues.shipStats[2].rotateSpeed;
-        laserShipData.health = defalutValues.shipStats[2].health;
-        laserShipData.baseDamage = defalutValues.shipStats[2].baseDamage;
-        laserShipData.fireRate = defalutValues.shipStats[2].fireRate;
-        laserShipData.PickupRange = defalutValues.shipStats[2].PickupRange;
-        laserShipData.boostPower = defalutValues.shipStats[2].boostPower;
-        laserShipData.boostDuration = defalutValues.shipStats[2].boostDuration;
-        laserShipData.protectionLevel = defalutValues.shipStats[2].protectionLevel;
-        laserShipData.rocketLifeTime = defalutValues.shipStats[2].rocketLifeTime;
-        laserShipData.laserShooingTime = defalutValues.shipStats[2].laserShooingTime;
-        laserShipData.bulletClass = defalutValues.shipStats[2].bulletClass;
-        laserShipData.explosionClass = defalutValues.shipStats[2].explosionClass;
-        laserShipData.laserClass = defalutValues.shipStats[2].laserClass;
-        laserShipData.supportClass = defalutValues.shipStats[2].supportClass;
+                rocketShipData.bulletClass = defalutValues.shipStats[shipIndex].bulletClass;
+                rocketShipData.explosionClass = defalutValues.shipStats[shipIndex].explosionClass;
+                rocketShipData.laserClass = defalutValues.shipStats[shipIndex].laserClass;
+                rocketShipData.supportClass = defalutValues.shipStats[shipIndex].supportClass;
 
+                rocketShipData.moreUpgradePoints = defalutValues.shipStats[shipIndex].moreUpgradePoints;
+                rocketShipData.chanceToDoubleExp = defalutValues.shipStats[shipIndex].chanceToDoubleExp;
+                rocketShipData.pecBulletDamage = defalutValues.shipStats[shipIndex].pecBulletDamage;
+                rocketShipData.pecExplosionDamage = defalutValues.shipStats[shipIndex].pecExplosionDamage;
+                rocketShipData.pecLaserDamage = defalutValues.shipStats[shipIndex].pecLaserDamage;
+                rocketShipData.pecCritChance = defalutValues.shipStats[shipIndex].pecCritChance;
+                rocketShipData.pecAOE = defalutValues.shipStats[shipIndex].pecAOE;
+                rocketShipData.pecBurningChance = defalutValues.shipStats[shipIndex].pecBurningChance;
+                rocketShipData.pecBulletCritDamage = defalutValues.shipStats[shipIndex].pecBulletCritDamage;
+                rocketShipData.rocketLifeTime = defalutValues.shipStats[shipIndex].rocketLifeTime;
+                rocketShipData.burningDamagePerTick = defalutValues.shipStats[shipIndex].burningDamagePerTick;
+                rocketShipData.pecMainWeaponDamageBoss = defalutValues.shipStats[shipIndex].pecMainWeaponDamageBoss;
+                rocketShipData.laserShootingTime = defalutValues.shipStats[shipIndex].laserShootingTime;
+                break;
+
+            case 2: // laser ship --------------
+                laserShipData.speed = defalutValues.shipStats[shipIndex].speed;
+                laserShipData.rotateSpeed = defalutValues.shipStats[shipIndex].rotateSpeed;
+                laserShipData.health = defalutValues.shipStats[shipIndex].health;
+                laserShipData.baseDamage = defalutValues.shipStats[shipIndex].baseDamage;
+                laserShipData.fireRate = defalutValues.shipStats[shipIndex].fireRate;
+                laserShipData.pickupRange = defalutValues.shipStats[shipIndex].pickupRange;
+                laserShipData.boostPower = defalutValues.shipStats[shipIndex].boostPower;
+                laserShipData.boostDuration = defalutValues.shipStats[shipIndex].boostDuration;
+                laserShipData.protectionLevel = defalutValues.shipStats[shipIndex].protectionLevel;
+
+                laserShipData.bulletClass = defalutValues.shipStats[shipIndex].bulletClass;
+                laserShipData.explosionClass = defalutValues.shipStats[shipIndex].explosionClass;
+                laserShipData.laserClass = defalutValues.shipStats[shipIndex].laserClass;
+                laserShipData.supportClass = defalutValues.shipStats[shipIndex].supportClass;
+
+                laserShipData.moreUpgradePoints = defalutValues.shipStats[shipIndex].moreUpgradePoints;
+                laserShipData.chanceToDoubleExp = defalutValues.shipStats[shipIndex].chanceToDoubleExp;
+                laserShipData.pecBulletDamage = defalutValues.shipStats[shipIndex].pecBulletDamage;
+                laserShipData.pecExplosionDamage = defalutValues.shipStats[shipIndex].pecExplosionDamage;
+                laserShipData.pecLaserDamage = defalutValues.shipStats[shipIndex].pecLaserDamage;
+                laserShipData.pecCritChance = defalutValues.shipStats[shipIndex].pecCritChance;
+                laserShipData.pecAOE = defalutValues.shipStats[shipIndex].pecAOE;
+                laserShipData.pecBurningChance = defalutValues.shipStats[shipIndex].pecBurningChance;
+                laserShipData.pecBulletCritDamage = defalutValues.shipStats[shipIndex].pecBulletCritDamage;
+                laserShipData.rocketLifeTime = defalutValues.shipStats[shipIndex].rocketLifeTime;
+                laserShipData.burningDamagePerTick = defalutValues.shipStats[shipIndex].burningDamagePerTick;
+                laserShipData.pecMainWeaponDamageBoss = defalutValues.shipStats[shipIndex].pecMainWeaponDamageBoss;
+                laserShipData.laserShootingTime = defalutValues.shipStats[shipIndex].laserShootingTime;
+                break;
+
+        }
+
+        // TODO Upgrade UI VALUES
+        hangarUIController.UpdateShipUIValues(shipIndex);
     }
-
 }

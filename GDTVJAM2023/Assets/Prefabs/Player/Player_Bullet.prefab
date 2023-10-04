@@ -29841,7 +29841,7 @@ MonoBehaviour:
   isBulletWings: 0
   isLifeModul: 0
   isSpreadGun: 0
-  isFrontShield: 1
+  isFrontShield: 0
   isBackShield: 0
   isNovaExplosion: 0
   isRockedWings: 0
