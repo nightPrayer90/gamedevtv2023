@@ -121,29 +121,30 @@ public class ClassTooltip : MonoBehaviour
                         headerField.color = gameManager.globalClassColor[0];
                         headerField.text = "Bullet Ship";
                         content_ = content_.Replace("MAINWEAPON", "Bullet Shooter");
-                        content_ = content_.Replace("XXX", "Bullet damage: " + playerMWController.bulletBaseDamage.ToString());
-                        content_ = content_.Replace("YYY", "Fire rate: " + playerMWController.fireRate.ToString());
+                        content_ = content_.Replace("XXX", "Bullet damage: " + playerMWController.bulletBaseDamage.ToString() + " - (" + gameManager.bulletShipData.baseDamage.ToString() + "+ " +  upgradeChooseList.percBulletDamage.ToString() + "%)");
+                        content_ = content_.Replace("YYY", "Fire rate: " + playerMWController.fireRate.ToString() + " 1/s");
                         break;
                     case 1:
                         headerField.text = "Rocket Ship";
                         headerField.color = gameManager.globalClassColor[1];
                         content_ = content_.Replace("MAINWEAPON", "Auto Rockets");
-                        content_ = content_.Replace("XXX", "Rocket damage: " + playerMWController.bulletBaseDamage.ToString());
-                        content_ = content_.Replace("YYY", "Fire rate " + playerMWController.fireRate.ToString() + " s" + Environment.NewLine + "Extra boss damage: " + upgradeChooseList.bossBonusDamage.ToString() + " %" );
+                        content_ = content_.Replace("XXX", "Rocket damage: " + playerMWController.bulletBaseDamage.ToString() + " - (" + gameManager.rocketShipData.baseDamage.ToString() + "+ " + upgradeChooseList.percRocketDamage.ToString() + "%)");
+                        content_ = content_.Replace("YYY", "Fire rate " + playerMWController.fireRate.ToString() + " rockets/s" + Environment.NewLine + "Extra boss damage: " + upgradeChooseList.bossBonusDamage.ToString() + " %" );
                         break;
                     case 2:
                         headerField.text = "Laser Ship";
                         headerField.color = gameManager.globalClassColor[2];
                         content_ = content_.Replace("MAINWEAPON", "Twin Laser");
-                        content_ = content_.Replace("XXX", "Laser damage: " + playerMWController.bulletBaseDamage.ToString());
-                        content_ = content_.Replace("YYY", "Laser reload time: " + playerMWController.fireRate.ToString() + " s / shooting time: " + playerMWController.laserShootTime.ToString());
+                        content_ = content_.Replace("XXX", "Laser damage: " + playerMWController.bulletBaseDamage.ToString() + " - (" + gameManager.laserShipData.baseDamage.ToString() + "+ " + upgradeChooseList.percLaserDamage.ToString() + "%)");
+                        content_ = content_.Replace("YYY", "Laser reload time: " + playerMWController.fireRate.ToString() + " s" + Environment.NewLine + "Shooting time: " + playerMWController.laserShootTime.ToString() + " s");
                         break;
                 }
 
                 content_ = content_.Replace("ZZZ", playerController.playerCurrentHealth.ToString() + " / " + playerController.playerMaxHealth.ToString());
-                content_ = content_.Replace("AAA", "(" + playerController.protectionLvl.ToString() + ") " + playerController.protectionPerc.ToString());
+                content_ = content_.Replace("AAA", playerController.protectionLvl.ToString() + " protection - " + playerController.protectionPerc.ToString());
                 content_ = content_.Replace("BBB", gameManager.boostSlider.maxValue.ToString());
                 content_ = content_.Replace("CCC", playerController.rotateSpeed.ToString());
+                content_ = content_.Replace("EEE", playerController.speed.ToString());
                 content_ = content_.Replace("DDD", playerController.pickupRange.ToString());
                 break;
             // Weapon-------------------------------------------------------------------------------------------------

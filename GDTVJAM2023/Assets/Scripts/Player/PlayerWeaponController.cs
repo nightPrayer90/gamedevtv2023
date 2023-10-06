@@ -6,9 +6,9 @@ public class PlayerWeaponController : MonoBehaviour
 {
     [Header("Weapon buffs")]
     private ShipData shipData;
-    public int bulletCritChance = 5;
-    public int bulletCritDamage = 125;
-    public int burnDamageChance = 1;
+    public int bulletCritChance = 0;
+    public int bulletCritDamage = 0;
+    public int burnDamageChance = 0;
     public float rocketAOERadius = 0;
 
 
@@ -180,30 +180,27 @@ public class PlayerWeaponController : MonoBehaviour
         // copy ship Data
         shipData = playerController.shipData;
 
+
+        // set upgradeListData from shipData
         upgradeChooseList.mcBulletLvl = shipData.bulletClass;
         upgradeChooseList.mcExplosionLvl = shipData.explosionClass;
         upgradeChooseList.mcLaserLvl = shipData.laserClass;
         upgradeChooseList.mcSupportLvl = shipData.supportClass;
 
+        upgradeChooseList.baseBulletCritChance += upgradeChooseList.critChance * shipData.bulletClass + shipData.pecCritChance;
+        upgradeChooseList.baseBulletCritDamage += upgradeChooseList.critDamage * shipData.bulletClass + shipData.pecBulletCritDamage;
+        upgradeChooseList.baseRocketAOERadius += upgradeChooseList.aoeRange * shipData.explosionClass + shipData.pecAOE;
+        upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.burningChance * shipData.laserClass + shipData.pecBurningChance;
+        upgradeChooseList.baseSupportRealoadTime += upgradeChooseList.supportRealodTime * shipData.supportClass;
 
-        // set start class upgrades
-        if (shipData.bulletClass > 0)
-        {
-            upgradeChooseList.baseBulletCritChance += upgradeChooseList.critChance;
-            upgradeChooseList.baseBulletCritDamage += upgradeChooseList.critDamage;
-        }
-        if (shipData.explosionClass > 0)
-        {
-            upgradeChooseList.baseRocketAOERadius += upgradeChooseList.aoeRange;
-        }
-        if (shipData.laserClass > 0)
-        {
-            upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.burningChance;
-        }
-        if (shipData.supportClass > 0)
-        {
-            upgradeChooseList.baseSupportRealoadTime += upgradeChooseList.supportRealodTime;
-        }
+        upgradeChooseList.percBulletDamage = shipData.pecBulletDamage;
+        upgradeChooseList.percRocketDamage = shipData.pecExplosionDamage;
+        upgradeChooseList.percLaserDamage = shipData.pecLaserDamage;
+
+        upgradeChooseList.rocketLifeTime = shipData.rocketLifeTime;
+        upgradeChooseList.baseLaserTickDamage = shipData.burningDamagePerTick;
+
+        upgradeChooseList.bossBonusDamage = shipData.pecMainWeaponDamageBoss;
 
         // Start Values
         WeaponChoose();

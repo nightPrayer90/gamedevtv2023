@@ -15054,6 +15054,7 @@ MonoBehaviour:
   isOutsideBorder: 0
   hitColor: {r: 1, g: 0, b: 0, a: 1}
   enemyHitColor: {r: 1, g: 0.6, b: 0, a: 1}
+  enemyHitColorProtected: {r: 0, g: 0.5594592, b: 1, a: 1}
   navigationController: {fileID: 318727567431198199}
   engineAudioSource: {fileID: 2559130692153237150}
   boostParticle: {fileID: 8376203913604718620}

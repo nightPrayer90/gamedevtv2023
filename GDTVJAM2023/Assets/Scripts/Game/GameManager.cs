@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public Slider healthBar;
     public Slider experienceSlider;
     public Slider boostSlider;
+    public Image boostFillArea;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI expText;
     public TextMeshProUGUI timerText;
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI upgradeText;
     public TextMeshProUGUI expGameOverText;
     public TextMeshProUGUI expGameVictoryText;
+
 
     [Header("Dimension Shift")]
     public Texture firstDimensionTexture1;
@@ -85,6 +87,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Ship")]
     public PlayerData playerData;
+    public ShipData bulletShipData;
+    public ShipData rocketShipData;
+    public ShipData laserShipData;
     public bool isPlayerData = true;
     public StartShip startShip;
     [HideInInspector] public int ship;
@@ -94,12 +99,14 @@ public class GameManager : MonoBehaviour
     public GameObject playerShip_laser;
     private float _boostTimer;
     private float _boostIntervall = 0.01f;
-
+    public Color boostColor;
+    public Color powerBoostColor;
+    private bool boostIsReload = false;
 
     // Objects
     public CameraController mainCamera;
     private PlayerController player;
-    private PlayerWeaponController weaponController;
+   // private PlayerWeaponController weaponController;
     private Light directionalLight;
     private GameObject currentSpawnManager;
     private bool isIntro = true;
@@ -181,6 +188,9 @@ public class GameManager : MonoBehaviour
         upgradeChooseList = GetComponent<UpgradeChooseList>();
         spawnDistrictList = GetComponent<SpawnDistrictList>();
 
+        // upgrades form all ships
+        upgradeChooseList.chanceToGetTwoExp = bulletShipData.chanceToDoubleExp + rocketShipData.chanceToDoubleExp + laserShipData.chanceToDoubleExp;
+
         // Initialize timer
         currentTime = totalTime + 1;
         InvokeRepeating("UpdateTimerText", 3f, 1f);
@@ -247,6 +257,19 @@ public class GameManager : MonoBehaviour
         {
             PauseMenue();
         }
+
+        // boost color control
+        if (boostIsReload == true)
+        {
+            if (boostSlider.value > boostSlider.maxValue * 0.9f)
+            {
+                boostFillArea.color = powerBoostColor;
+            }
+            else
+            {
+                boostFillArea.color = boostColor;
+            }
+        }
     }
 
 
@@ -260,7 +283,9 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         gameIsPlayed = false;
 
-        expGameOverText.text = "you have earned: " + CalculateGlobalPlayerExp(0.1f) + " upgrade points (10% exp) for your ship";
+        float perc_ = 0.1f +  ((float)bulletShipData.moreUpgradePoints + (float)rocketShipData.moreUpgradePoints + (float)laserShipData.moreUpgradePoints)/100;
+
+        expGameOverText.text = "you have earned: " + CalculateGlobalPlayerExp(perc_) + " upgrade points (" + (perc_*100).ToString()  +  "% collected exp) for your ship";
 
         gameOverUI.SetActive(true);
         playerUI.SetActive(false);
@@ -275,7 +300,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         gameIsPlayed = false;
 
-        expGameVictoryText.text = "you have earned: " + CalculateGlobalPlayerExp(0.5f) + " upgrade points (50% exp) for your ship";
+        expGameVictoryText.text = "you have earned: " + CalculateGlobalPlayerExp(0.5f) + " upgrade points (50% collected exp) for your ship";
 
         gameOverUI.SetActive(false);
         playerUI.SetActive(false);
@@ -423,7 +448,8 @@ public class GameManager : MonoBehaviour
     {
         boostValue = boostSlider.value;
         _boostTimer += Time.deltaTime;
-
+   
+       
         if (_boostTimer > _boostIntervall)
         {
             boostValue -= _boostIntervall;
@@ -438,7 +464,8 @@ public class GameManager : MonoBehaviour
     // Reaload Boost
     public void BoostReload()
     {
-        boostSlider.DOValue(boostSlider.maxValue, 3f, false).SetEase(Ease.OutSine); 
+        boostIsReload = true;
+        boostSlider.DOValue(boostSlider.maxValue, 3f, false).SetEase(Ease.OutSine).OnComplete(() => { boostIsReload = false; } ); 
     }
 
     // update district text - PlayerUI

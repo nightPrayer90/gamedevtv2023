@@ -56,7 +56,9 @@ public class PlayerController : MonoBehaviour
     [Header("Floating Text")]
     public List<ParticleCollisionEvent> collisionEvents; // creating a list to store the collision events
     public Color hitColor = new Color(1f, 0.0f, 0.0f, 1f);
+    private Color hitColorTemp;
     public Color enemyHitColor = new Color(1f, 0.0f, 0.0f, 1f);
+    public Color enemyHitColorProtected = new Color(1f, 0.0f, 0.0f, 1f);
 
     [Header("Game Objects")]
     public NavigationController navigationController;
@@ -79,6 +81,16 @@ public class PlayerController : MonoBehaviour
     #region lifecycle
     void Start()
     {
+        // set game objects
+        playerRb = GetComponent<Rigidbody>();
+        playerMWController = GetComponent<PlayerMWController>();
+        playerWeaponController = GetComponent<PlayerWeaponController>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
+        previousRotation = transform.rotation;
+        cameraController = GameObject.Find("Camera Controller").GetComponent<CameraController>();
+        hitColorTemp = hitColor; 
+
         // get Data from shipDataObject
         speed = shipData.speed;
         rotateSpeed = shipData.rotateSpeed;
@@ -91,16 +103,10 @@ public class PlayerController : MonoBehaviour
         boostPower = shipData.boostPower;
         protectionLvl = shipData.protectionLevel;
 
-
-        // set game objects
-        playerRb = GetComponent<Rigidbody>();
-        playerMWController = GetComponent<PlayerMWController>();
-        playerWeaponController = GetComponent<PlayerWeaponController>();
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
-        previousRotation = transform.rotation;
-        cameraController = GameObject.Find("Camera Controller").GetComponent<CameraController>();
-
+        // calculate Protection perc
+        float normalizedLvl = Mathf.InverseLerp(0, 10, protectionLvl);
+        float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
+        protectionPerc = targetPercentage;
 
         // intro starting sound
         AudioManager.Instance.PlaySFX("LiftUPBoss");
@@ -111,8 +117,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-
         if (isIntro = true && transform.position.y < introTargetY)
         {
             // Intro
@@ -254,26 +258,6 @@ public class PlayerController : MonoBehaviour
                 UpdateClassLevel(3);
                 break;
 
-            case "SwarmPickup":
-                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
-                UpdateClassLevel(4);
-                break;
-
-            case "DefensePickup":
-                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
-                UpdateClassLevel(5);
-                break;
-
-            case "TargetingPickup":
-                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
-                UpdateClassLevel(6);
-                break;
-
-            case "DirectionPickup":
-                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
-                UpdateClassLevel(7);
-                break;
-
             case "UpgradePickup":
                 ObjectPoolManager.ReturnObjectToPool(other.gameObject);
                 PlayerWeaponUpdatePickup();
@@ -404,15 +388,15 @@ public class PlayerController : MonoBehaviour
                 // if the player is invulnerability 
                 if (canTakeDamge == true || enemyHealth.canPoolObject == false)
                 {
-                    // trigger the damage floating text
-                    gameManager.DoFloatingText(transform.position, "+" + enemyHealth.collisonDamage.ToString(), hitColor);
-
                     // add a force after the collision to the player
                     playerRb.AddForce(explosionDirection * -1f * enemyHealth.explosionForce, ForceMode.Impulse);
 
                     // calculate player health
-                    int damage = Mathf.Max(enemyHealth.collisonDamage - Mathf.RoundToInt(enemyHealth.collisonDamage * protectionPerc / 100), 1);
+                    int damage = Protection(enemyHealth.collisonDamage);
                     UpdatePlayerHealth(damage);
+
+                    // trigger the damage floating text
+                    gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
 
                     if (upgradeChooseList.weaponIndexInstalled[35] == true)  NovaOnHit(2f, 8);
                 }
@@ -456,7 +440,7 @@ public class PlayerController : MonoBehaviour
             var ps = other.GetComponent<EnemyParticleBullet>();
             int damage = ps.bulletDamage;
 
-            damage = Mathf.Max(damage - Mathf.RoundToInt(damage * protectionPerc / 100), 1);
+            damage = Protection(damage);
             UpdatePlayerHealth(damage);
 
             gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
@@ -468,6 +452,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canGetLaserDamage == true && canTakeDamge == true)
         {
+            damage = Protection(damage);
             UpdatePlayerHealth(damage);
             gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
 
@@ -483,6 +468,24 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    // recalculated incoming damage with the protection value - Player get 50% damage
+    private int Protection(int damage)
+    {
+        int adjustedDamge = damage;
+        int ran = Random.Range(0, 99);
+
+        if (ran <= protectionPerc)
+        {
+            adjustedDamge = Mathf.RoundToInt((float)damage*0.5f);
+            hitColor = enemyHitColorProtected;
+        }
+        else
+        {
+            hitColor = hitColorTemp;
+        }
+
+        return adjustedDamge;
+    }
 
     /* **************************************************************************** */
     /* Movement Stuff-------------------------------------------------------------- */
@@ -528,9 +531,11 @@ public class PlayerController : MonoBehaviour
                 {
                     if (isBoost == false)
                     {
-                        if (boostValue >= gameManager.boostSlider.maxValue * 0.9)
+                        // power Boost
+                        if (boostValue >= gameManager.boostSlider.maxValue * 0.90f)
                         {
                             AudioManager.Instance.PlaySFX("PlayerBoostKick");
+                            gameManager.boostFillArea.color = gameManager.boostColor;
                             playerMesh.DOLocalMoveZ(-0.1f, 0.1f);
                             boostParticle.Emit(80);
                             playerRb.AddForce(transform.forward * -speed * 30, ForceMode.Force);

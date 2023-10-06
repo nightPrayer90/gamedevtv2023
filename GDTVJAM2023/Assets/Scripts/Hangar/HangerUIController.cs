@@ -184,11 +184,11 @@ public class HangerUIController : MonoBehaviour
         switch (shipIndex)
         {
             case 0: // bullet ship
-                damageValue.text = rocketShipData.baseDamage.ToString();
-                healthValue.text = rocketShipData.health.ToString();
-                speedValue.text = rocketShipData.speed.ToString();
-                boostValue.text = rocketShipData.boostPower.ToString();
-                boostDuration.text = rocketShipData.boostDuration.ToString();
+                damageValue.text = bulletShipData.baseDamage.ToString();
+                healthValue.text = bulletShipData.health.ToString();
+                speedValue.text = bulletShipData.speed.ToString();
+                boostValue.text = bulletShipData.boostPower.ToString();
+                boostDuration.text = bulletShipData.boostDuration.ToString();
                 break;
 
            case 1: // rocket ship

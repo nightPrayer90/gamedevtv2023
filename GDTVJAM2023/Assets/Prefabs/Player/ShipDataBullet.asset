@@ -16,17 +16,28 @@ MonoBehaviour:
   rotateSpeed: 3.5
   health: 8
   baseDamage: 4
-  fireRate: 0.4
-  PickupRange: 0.8
-  boostPower: 2.1
+  fireRate: 0.32
+  pickupRange: 1.8000001
+  boostPower: 2.73
   boostDuration: 0.4
-  protectionLevel: 0
-  rocketLifeTime: 0
-  laserShooingTime: 0
-  bulletClass: 1
+  protectionLevel: 2
+  bulletClass: 3
   explosionClass: 0
   laserClass: 0
   supportClass: 0
+  moreUpgradePoints: 10
+  chanceToDoubleExp: 15
+  pecBulletDamage: 15
+  pecExplosionDamage: 0
+  pecLaserDamage: 0
+  pecCritChance: 3
+  pecAOE: 0
+  pecBurningChance: 0
+  pecBulletCritDamage: 30
+  rocketLifeTime: 0
+  burningDamagePerTick: 0
+  pecMainWeaponDamageBoss: 0
+  laserShootingTime: 0
   mainClassColor: {r: 1, g: 0, b: 0, a: 1}
   shipIcon: {fileID: 21300000, guid: 1e1ffa433f68c644c9a4da3169d71e46, type: 3}
   shipWeaponImage: {fileID: 21300000, guid: af664e4b95c42b849a80d06e118e6a54, type: 3}

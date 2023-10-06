@@ -5,9 +5,8 @@ public class DropRocketController : RocketController
     private Transform player;
 
     private const string playerTag = "Player";
-    private Vector3 target;
+    private Vector3 targetV3;
     private PlayerController playerController;
-    private PlayerWeaponController playerWeaponController;
     private Rigidbody playerRigidBody;
 
     public float rocketScattering = 1f;
@@ -34,11 +33,11 @@ public class DropRocketController : RocketController
     private void FixedUpdate()
     {
         // rocket movement
-        Vector3 direction = (target - transform.position).normalized;
+        Vector3 direction = (targetV3 - transform.position).normalized;
         transform.position += transform.forward * speed * Time.deltaTime;
 
         // did we cross play level?
-        if (Vector3.Distance(transform.position, target) < 0.3f)
+        if (Vector3.Distance(transform.position, targetV3) < 0.3f)
         {
             //rotationSpeed = 0; // fall down
             Explode();
@@ -62,8 +61,8 @@ public class DropRocketController : RocketController
     // find and set the next target position
     private void FindNextTarget()
     {
-        target = player.position + new Vector3(Random.Range(-rocketScattering, rocketScattering), 0, Random.Range(-rocketScattering, rocketScattering));
-        damageMarkerRadius.transform.position = target;
+        targetV3 = player.position + new Vector3(Random.Range(-rocketScattering, rocketScattering), 0, Random.Range(-rocketScattering, rocketScattering));
+        damageMarkerRadius.transform.position = targetV3;
         damageMarkerRadius.SetActive(true);
     }
 

@@ -129,6 +129,8 @@ MonoBehaviour:
   miniMap: {fileID: 0}
   upgradeTextCG: {fileID: 0}
   upgradeText: {fileID: 0}
+  expGameOverText: {fileID: 0}
+  expGameVictoryText: {fileID: 0}
   firstDimensionTexture1: {fileID: 2800000, guid: be79e60dd524c474687d15fd6f717937, type: 3}
   secondDimenionTexture2: {fileID: 2800000, guid: 549d44c9f0cd81a4a8c407c3cdb97d4c, type: 3}
   buildingMaterial: {fileID: 2100000, guid: 79850a606d718c2409405aff6ffe6887, type: 2}
@@ -147,6 +149,9 @@ MonoBehaviour:
   selectedNumbers_: 000000000000000000000000
   textPrefab: {fileID: 6659134210364813471, guid: 1ea4671065afbe240815deb035cf6c70, type: 3}
   playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
+  bulletShipData: {fileID: 11400000, guid: ca72bdbeb1c84f140a8ba1e41a89d229, type: 2}
+  rocketShipData: {fileID: 11400000, guid: fd4dec7417175864e8b8eaac6cc2ee8a, type: 2}
+  laserShipData: {fileID: 11400000, guid: 52927d1ce5cbcfc4e86da972b68d7b94, type: 2}
   isPlayerData: 1
   startShip: 2
   ship: 0
@@ -280,7 +285,7 @@ MonoBehaviour:
     reqSupport: 0
     reqAbility: 
     colorIndex: 9
-    isUnique: 0
+    isUnique: 1
     maxSkillCount: -1
     upgradeTyp: 1
     passivUpgrades: 
@@ -312,7 +317,7 @@ MonoBehaviour:
     reqSupport: 0
     reqAbility: 
     colorIndex: 9
-    isUnique: 0
+    isUnique: 1
     maxSkillCount: -1
     upgradeTyp: 1
     passivUpgrades: 

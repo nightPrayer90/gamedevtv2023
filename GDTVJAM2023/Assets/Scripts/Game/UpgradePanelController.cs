@@ -292,8 +292,8 @@ public class UpgradePanelController : MonoBehaviour
                     ///damageText.text = (playerController.playerBulletBaseDamage + upgradeValue[index]).ToString();
                     break;
                 case 2:
-                    float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + upgradeValue[index]);
-                    float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
+                    //float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + upgradeValue[index]);
+                    //float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
                     //protectionText.text = targetPercentage.ToString() + "%";
                     break;
                 case 3:
@@ -307,7 +307,7 @@ public class UpgradePanelController : MonoBehaviour
                     break;
 
                 //----
-                case >= 18 and <= 55:
+                case >= 18 and <= 80: //TODOOOOOO
                     break;
 
                 //----
@@ -359,6 +359,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 4: //upgrade: rotate speed
                 playerController.rotateSpeed = playerController.rotateSpeed + upgradeValue[index];
+                playerController.speed = Mathf.Round((playerController.speed + playerController.speed * 0.07f) * 100) / 100;
                 break;
             case 5: //upgrade: pickup Range
                 upgradeChooseList.weaponIndexInstalled[number] = true;

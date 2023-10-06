@@ -160,6 +160,7 @@ public class Boss02 : MonoBehaviour
             // open bosshud
             bossHud.SetActive(true);
             bossHudCg.DOFade(1f, 0.2f);
+            bossHealthForeground.sprite = bossHealthForgroundSp;
             bossHealthSlider.maxValue = enemyHealthScr.enemyHealth;
             bossHealthSlider.value = 0;
             bossHealthSlider.DOValue(enemyHealthScr.enemyHealth, 5.2f).OnComplete(() =>
