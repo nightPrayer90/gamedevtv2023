@@ -5073,13 +5073,13 @@ MonoBehaviour:
   damage: 0
   speed: 8
   rotationSpeed: 7
-  startTime: 0.7
+  startTime: 0.6
   exposionHitObject: {fileID: 4303235208557751318, guid: eb9d00288658133488952b36c49aca32, type: 3}
-  maxLifeTime: 5
+  iniLifeTime: 5
   hitColor: {r: 0, g: 0, b: 0, a: 0}
   isMainWeapon: 0
-  explosionRadius: 1.4
+  explosionRadius: 1.5
   explosionForce: 500
   trail: {fileID: 5808729678433142212}
-  rocketScattering: 1
+  rocketScattering: 1.3
   damageMarkerRadius: {fileID: 3576844707949921183}

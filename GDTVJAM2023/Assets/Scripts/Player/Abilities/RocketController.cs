@@ -9,7 +9,8 @@ public class RocketController : MonoBehaviour
     public float startTime = 0.5f; // time until the rocked flys to a target
     protected float rotationSpeedtmp = 0;
     public GameObject exposionHitObject;
-    public float maxLifeTime;   // time before the rocked get destroyed
+    public float iniLifeTime;
+    private float maxLifeTime;   // time before the rocked get destroyed
     [HideInInspector] public Color hitColor;
     public bool isMainWeapon = false;
 
@@ -273,7 +274,7 @@ public class RocketController : MonoBehaviour
     public void SetDestroyTimer()
     {
         // destroytime
-        maxLifeTime = Random.Range(maxLifeTime - 0.05f, maxLifeTime + 0.05f) + upgradeChooseList.rocketLifeTime;
+        maxLifeTime = Random.Range(iniLifeTime - 0.05f, iniLifeTime + 0.05f) + upgradeChooseList.rocketLifeTime;
         Invoke(nameof(DestroyObject), maxLifeTime); //can not be in enable - because lifetime comes from another object
     }
 }

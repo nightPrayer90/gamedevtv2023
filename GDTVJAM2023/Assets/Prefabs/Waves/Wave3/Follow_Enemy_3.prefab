@@ -252,18 +252,20 @@ MonoBehaviour:
   engineParticle: {fileID: 2979214313493586917}
   novaOnDie: {fileID: 4303235208557751318, guid: c01ac0e458a23da41aaf1c60e7ee97a7, type: 3}
   enemyHealth: 10
+  enemyStartHealth: 0
   collisonDamage: 2
   explosionForce: 5
   expOrbSpawn: 1
   secondDimensionEnemy: 0
   canTakeDamage: 1
   canPoolObject: 1
+  isBoss: 0
   enemyWeapons: []
   enemyWeaponParticles: []
   bulletDamage: 0
   fireRate: 0
   hitColor: {r: 1, g: 0.5998216, b: 0, a: 1}
-  critColor: {r: 1, g: 0.6, b: 0, a: 1}
+  critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
   _replacement: {fileID: 1380446238132243176, guid: 1889541fec859cb41bcfbf836cdd7fd4, type: 3}
   _burnReplacement: {fileID: 3161139216598759944, guid: cd7e2ae33aa90d64ba9fabdedf60f220, type: 3}
   burnParticleSystem: {fileID: 8106171757692569645}

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Boss03 : MonoBehaviour
 {
     [Header("Boss Settings")]
+    public int bossIndex = 0;
     public float followSpeed = 1f;
     private int bossState = 0;
     private int numberOfFightingStates = 3;
@@ -32,8 +33,8 @@ public class Boss03 : MonoBehaviour
     public MeshRenderer bossMeshRenderer;
     public ParticleSystem rippleParticle;
     public ParticleSystem rippleParticleDie;
-    public List<ParticleSystem> particleWeapons = new();
-    public List<ParticleSystem> particleWeapons2 = new();
+    public List<ParticleSystem> particleWeapons = new List<ParticleSystem>();
+    public List<ParticleSystem> particleWeapons2 = new List<ParticleSystem>();
     public GameObject explosionObject;
     public GameObject minimapIcon;
     public SpriteRenderer minimapSpR;
@@ -48,10 +49,10 @@ public class Boss03 : MonoBehaviour
     private Transform playerTr;
     private Rigidbody playerRb;
     private GameManager gameManager;
-    public List<GameObject> verticalRocketSpawner = new();
-    public List<GameObject> verticalRocketSpawner2 = new();
-    public List<GameObject> horizontalRocketSpawner = new();
-    public List<GameObject> horizontalRocketSpawner2 = new();
+    public List<GameObject> verticalRocketSpawner = new List<GameObject>();
+    public List<GameObject> verticalRocketSpawner2 = new List<GameObject>();
+    public List<GameObject> horizontalRocketSpawner = new List<GameObject>();
+    public List<GameObject> horizontalRocketSpawner2 = new List<GameObject>();
 
 
 
@@ -176,7 +177,7 @@ public class Boss03 : MonoBehaviour
         }
         else
         {
-            if (isMinimap == false)
+            if (isMinimap == false && gameManager.districtNumber == bossIndex)
             {
                 minimapIcon.SetActive(true);
 

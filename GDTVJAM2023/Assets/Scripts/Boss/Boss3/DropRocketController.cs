@@ -1,7 +1,35 @@
 using UnityEngine;
 
-public class DropRocketController : RocketController
+public class DropRocketController : MonoBehaviour
 {
+    [Header("Rocket Settings")]
+    [HideInInspector] public int damage; // rocked damage
+    public float speed = 10f; // rocked Speed
+    public float rotationSpeed = 5f; // rotation speed
+    public float startTime = 0.5f; // time until the rocked flys to a target
+    protected float rotationSpeedtmp = 0;
+    public GameObject exposionHitObject;
+    public float iniLifeTime;
+    private float maxLifeTime;   // time before the rocked get destroyed
+    [HideInInspector] public Color hitColor;
+    public bool isMainWeapon = false;
+
+    [Header("Explosion Control")]
+    public float explosionRadius = 5f;
+    public float explosionForce = 500f;
+    private LayerMask layerMask;
+
+
+    [Header("Game Objects")]
+    public GameObject trail;
+    protected GameManager gameManager;
+    private UpgradeChooseList upgradeChooseList;
+    protected PlayerWeaponController playerWeaponController;
+
+
+    [Header("Enemy RocketController")]
+    public float rocketScattering = 1f;
+    public GameObject damageMarkerRadius;
     private Transform player;
 
     private const string playerTag = "Player";
@@ -9,8 +37,7 @@ public class DropRocketController : RocketController
     private PlayerController playerController;
     private Rigidbody playerRigidBody;
 
-    public float rocketScattering = 1f;
-    public GameObject damageMarkerRadius;
+    
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -26,10 +53,22 @@ public class DropRocketController : RocketController
         playerWeaponController = player.GetComponent<PlayerWeaponController>();
         playerRigidBody = player.GetComponent<Rigidbody>();
 
+        maxLifeTime = iniLifeTime; 
         Invoke("DestroyObject", maxLifeTime);
 
         FindNextTarget(); // only once for this rocket
     }
+
+    private void InitRocket()
+    {
+        rotationSpeedtmp = rotationSpeed;
+        rotationSpeed = 0;
+        Invoke(nameof(SetRotateSpeed), startTime);
+
+        if (trail != null)
+            Invoke(nameof(ActivateTrail), 0.2f);
+    }
+
     private void FixedUpdate()
     {
         // rocket movement
@@ -53,6 +92,12 @@ public class DropRocketController : RocketController
         {
             Explode();
         }
+    }
+
+    protected void OnDisable()
+    {
+        if (trail != null)
+            trail.SetActive(false);
     }
 
     /* **************************************************************************** */
@@ -138,5 +183,12 @@ public class DropRocketController : RocketController
         // object goes back to the pool
         ObjectPoolManager.ReturnObjectToPool(gameObject);
     }
+
+    private void ActivateTrail()
+    {
+        if (trail != null)
+            trail.SetActive(true);
+    }
+
 }
 

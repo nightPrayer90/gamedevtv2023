@@ -483,6 +483,10 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
+
+                upgradeChooseList.weaponUpgrades[56].reqLaser = 2; // Laser Orbit Accelerator
+                upgradeChooseList.weaponUpgrades[57].reqLaser = 3; // Orbital Laser Guard
+
                 weaponCount++;
                 break;
             case 18: //bullet class
@@ -613,6 +617,16 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 break;
             case 55: // Titan Slayer
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                upgradeChooseList.bossBonusDamage = 35;
+                break;
+            case 56: // Laser Orbit Accelerator
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                playerWeaponController.olRotationSpeed = Mathf.Round(playerWeaponController.olRotationSpeed * 1.2f);
+                playerWeaponController.olReloadTime = Mathf.Round(playerWeaponController.olReloadTime * 0.93f);
+                playerWeaponController.UpdateWeaponValues();
+                break;
+            case 57: // Orbital Laser Guard
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 upgradeChooseList.bossBonusDamage = 35;
                 break;

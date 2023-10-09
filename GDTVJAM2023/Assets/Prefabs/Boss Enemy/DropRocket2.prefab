@@ -5065,9 +5065,9 @@ MonoBehaviour:
   damage: 0
   speed: 8
   rotationSpeed: 7
-  startTime: 0.8
+  startTime: 0.6
   exposionHitObject: {fileID: 4303235208557751318, guid: eb9d00288658133488952b36c49aca32, type: 3}
-  maxLifeTime: 5
+  iniLifeTime: 5
   hitColor: {r: 0, g: 0, b: 0, a: 0}
   isMainWeapon: 0
   explosionRadius: 0.7

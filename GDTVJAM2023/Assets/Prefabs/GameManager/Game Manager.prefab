@@ -105,6 +105,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   experienceSlider: {fileID: 0}
   boostSlider: {fileID: 0}
+  boostFillArea: {fileID: 0}
   healthText: {fileID: 0}
   expText: {fileID: 0}
   timerText: {fileID: 0}
@@ -159,6 +160,8 @@ MonoBehaviour:
   playerShip_bullet: {fileID: 2604307836790789309, guid: bca8a1f1b6f8d3049ad5e562a3b30554, type: 3}
   playerShip_rocket: {fileID: 2604307836790789309, guid: 68fed91363a46834bbf35f39e1d73891, type: 3}
   playerShip_laser: {fileID: 2604307836790789309, guid: 65bf2a34d60d5d846b014b28f4d18d26, type: 3}
+  boostColor: {r: 0, g: 1, b: 0.93333334, a: 1}
+  powerBoostColor: {r: 1, g: 0.4838554, b: 0, a: 1}
   mainCamera: {fileID: 0}
 --- !u!114 &904126870923933655
 MonoBehaviour:
@@ -258,7 +261,8 @@ MonoBehaviour:
     upgradeTyp: 4
     passivUpgrades: 
   - headerStr: Protection
-    descriptionStr: Increase your protection level by XX.
+    descriptionStr: Increases your chance of blocking 50% incoming damage up to XX
+      %.
     iconPanel: {fileID: 21300000, guid: 0ed2cb74a7f3ebb479bdc536ce9e1422, type: 3}
     mainClass: 8
     subClass: 8
@@ -290,7 +294,7 @@ MonoBehaviour:
     upgradeTyp: 1
     passivUpgrades: 
   - headerStr: Agility
-    descriptionStr: Increase your agility by XX.
+    descriptionStr: Increase your agility by XX and our speed by 7%.
     iconPanel: {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
     mainClass: 8
     subClass: 8

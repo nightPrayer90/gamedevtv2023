@@ -53,6 +53,18 @@ public class OrbitalLaserOrb : MonoBehaviour
         }
     }
 
+    private void OnParticleCollision(GameObject other)
+    {
+
+        Debug.Log("Collision");
+        /*if (upgradeChooseList.weaponIndexInstalled[57] == false) //todo to true
+        {
+            ParticleSystem part = other.GetComponent<ParticleSystem>(); // *** important! Making a variable to acess the particle system of the emmiting object, in this case, the lasers from my player ship.
+
+
+        }*/
+    }
+
     // if the Orb Collide with an Enemy laser2
     public void DestroyOrb()
     {

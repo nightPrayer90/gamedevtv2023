@@ -4911,7 +4911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6251079685854276720}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Orb_03
   m_TagString: PlayerLaser
   m_Icon: {fileID: 0}
@@ -39856,7 +39856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362fedf87d3667e42b17936cacb942a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 450
+  rotationSpeed: 0
   damage: 0
   realoadTime: 0
   orbitalLaserOrbs:

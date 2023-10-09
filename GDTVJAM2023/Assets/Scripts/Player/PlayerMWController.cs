@@ -68,7 +68,7 @@ public class PlayerMWController : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         shipData = playerController.shipData;
         laserShootTime = shipData.laserShootingTime;
-        lifeTime = shipData.rocketLifeTime;
+        //lifeTime = shipData.rocketLifeTime;
 
         // bullet
         fireRate = playerController.playerFireRate;
@@ -248,7 +248,7 @@ public class PlayerMWController : MonoBehaviour
                 RocketController rocket = go.GetComponent<RocketController>();
                 rocket.damage = bulletBaseDamage;
                 rocket.hitColor = hitColor;
-                rocket.maxLifeTime = lifeTime;
+                //rocket.maxLifeTime = lifeTime;
                 rocket.SetDestroyTimer();
                 rocket.isMainWeapon = true;
                 //Debug.Log(rocket.name);
@@ -260,7 +260,7 @@ public class PlayerMWController : MonoBehaviour
                 RocketController rocket = go.GetComponent<RocketController>();
                 rocket.damage = bulletBaseDamage;
                 rocket.hitColor = hitColor;
-                rocket.maxLifeTime = lifeTime;
+                //rocket.maxLifeTime = lifeTime;
                 rocket.SetDestroyTimer();
                 rocket.isMainWeapon = true;
                 //Debug.Log(rocket.name);

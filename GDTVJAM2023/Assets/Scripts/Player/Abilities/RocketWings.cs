@@ -13,7 +13,7 @@ public class RocketWings : MonoBehaviour
     public int salveMaxCount = 10;
     public float spawnInterval = 0.1f;
     public string audioClip = "";
-    public float rocketLifetime = 2f;
+    //public float rocketLifetime = 2f;
     private float nextSpawnTime = 0f;
     private int salveCount = 0;
     public GameObject rockedToLaunch;
@@ -72,13 +72,13 @@ public class RocketWings : MonoBehaviour
                 RocketController rocket = go.GetComponent<RocketController>();
                 rocket.damage = rocketDamage;
                 //rocket.hitColor = hitColor;
-                rocket.maxLifeTime = rocketLifetime;
+                //rocket.maxLifeTime = rocketLifetime;
 
 
                 go = ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint2.position, Quaternion.Euler(0f, 180f, 0f) * spawnPoint2.rotation, ObjectPoolManager.PoolType.Gameobject);
                 rocket = go.GetComponent<RocketController>();
                 rocket.damage = rocketDamage;
-                rocket.maxLifeTime = rocketLifetime;
+                //rocket.maxLifeTime = rocketLifetime;
 
 
                 salveCount++;

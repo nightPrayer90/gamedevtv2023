@@ -6,7 +6,7 @@ public class PeriodSpawner : MonoBehaviour
 {
     [Header("Rocked Settings")]
     public int rocketDamage = 5;
-    public float lifeTime = 10f;
+    //public float lifeTime = 10f;
     public float spawnInterval = 4f;
     public float detectionRange = 10f;
     public GameObject rockedToLaunch;
@@ -40,7 +40,7 @@ public class PeriodSpawner : MonoBehaviour
     {
         PlayerWeaponController weaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         rocketDamage = weaponController.rlDamage;
-        lifeTime = weaponController.rlLifeTime;
+        //lifeTime = weaponController.rlLifeTime;
         spawnInterval = weaponController.rlReloadTime;
     }
 
@@ -84,7 +84,7 @@ public class PeriodSpawner : MonoBehaviour
             RocketController rocket = go.GetComponent<RocketController>();
             rocket.damage = rocketDamage;
             rocket.hitColor = hitColor;
-            rocket.maxLifeTime = lifeTime;
+            //rocket.maxLifeTime = lifeTime;
             rocket.SetDestroyTimer();
 
             // spwan rocket two
@@ -92,7 +92,7 @@ public class PeriodSpawner : MonoBehaviour
             rocket = go.GetComponent<RocketController>();
             rocket.damage = rocketDamage;
             rocket.hitColor = hitColor;
-            rocket.maxLifeTime = lifeTime;
+            //rocket.maxLifeTime = lifeTime;
             rocket.SetDestroyTimer();
 
             AudioManager.Instance.PlaySFX("PlayerRocketStart");

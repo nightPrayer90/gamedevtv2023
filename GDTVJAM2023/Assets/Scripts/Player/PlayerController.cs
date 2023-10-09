@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem boostParticle;
     public Transform playerMesh;
     public GameObject novaOnHit;
+    public GameObject powerBoostMarker;
     private Rigidbody playerRb;
     private GameManager gameManager;
     private UpgradeChooseList upgradeChooseList;
@@ -89,7 +90,9 @@ public class PlayerController : MonoBehaviour
         upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
         previousRotation = transform.rotation;
         cameraController = GameObject.Find("Camera Controller").GetComponent<CameraController>();
-        hitColorTemp = hitColor; 
+        hitColorTemp = hitColor;
+        powerBoostMarker.SetActive(false);
+        
 
         // get Data from shipDataObject
         speed = shipData.speed;
@@ -534,6 +537,7 @@ public class PlayerController : MonoBehaviour
                         // power Boost
                         if (boostValue >= gameManager.boostSlider.maxValue * 0.90f)
                         {
+                            powerBoostMarker.SetActive(true);
                             AudioManager.Instance.PlaySFX("PlayerBoostKick");
                             gameManager.boostFillArea.color = gameManager.boostColor;
                             playerMesh.DOLocalMoveZ(-0.1f, 0.1f);
@@ -592,6 +596,7 @@ public class PlayerController : MonoBehaviour
     private void Invulnerability()
     {
         canTakeDamge = true;
+        powerBoostMarker.SetActive(false);
     }
     // Invoke to aktivate the BoostReaload()
     private void BoostReload()

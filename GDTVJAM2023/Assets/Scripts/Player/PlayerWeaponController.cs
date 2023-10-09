@@ -61,7 +61,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     [Header("Rocket Launcher")]
     public int rlDamage = 20;
-    public float rlLifeTime;
+    //public float rlLifeTime;
     public float rlReloadTime = 5f;
     public GameObject rocketLauncher;
     [HideInInspector] public int rlDamage_;
@@ -136,6 +136,7 @@ public class PlayerWeaponController : MonoBehaviour
     [Header("Orbital Laser")]
     public int olDamage = 10;
     public float olReloadTime = 3f;
+    public float olRotationSpeed = 450;
     public GameObject orbitalLaser;
     [HideInInspector] public int olDamage_;
     [HideInInspector] public float olReloadTime_;
@@ -336,12 +337,12 @@ public class PlayerWeaponController : MonoBehaviour
 
         // Rocket Launcher - rocket - target
         rlDamage_ = Mathf.CeilToInt((rlDamage + scTargetingLvl_) * (1 + upgradeChooseList.percRocketDamage / 100));
-        rlLifeTime_ = rlLifeTime;
+        //rlLifeTime_ = rlLifeTime;
         rlReloadTime_ = Mathf.Max(0.1f, (rlReloadTime * suReloadTime));
         if (isRocketLauncherInstalled != null)
         {
             isRocketLauncherInstalled.rocketDamage = rlDamage_;
-            isRocketLauncherInstalled.lifeTime = rlLifeTime_;
+            //isRocketLauncherInstalled.lifeTime = rlLifeTime_;
             isRocketLauncherInstalled.spawnInterval = rlReloadTime_;
         }
 
@@ -448,10 +449,12 @@ public class PlayerWeaponController : MonoBehaviour
         // Orbital Laser - laser - defence
         olDamage_ = Mathf.CeilToInt((olDamage) * (1 + upgradeChooseList.percLaserDamage / 100));
         olReloadTime_ = Mathf.Max(0.1f, (olReloadTime * (suReloadTime)));
+        //olRotationSpeed = olRotationSpeed;
         if (isOrbitalLaserInstalled != null)
         {
             isOrbitalLaserInstalled.damage = olDamage_;
             isOrbitalLaserInstalled.realoadTime = olReloadTime_;
+            isOrbitalLaserInstalled.rotationSpeed = olRotationSpeed;
 
             isOrbitalLaserInstalled.UpdateOrbs();
         }

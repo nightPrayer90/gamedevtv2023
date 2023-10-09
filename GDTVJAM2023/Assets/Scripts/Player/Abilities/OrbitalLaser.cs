@@ -12,12 +12,14 @@ public class OrbitalLaser : MonoBehaviour
     private Transform playerTransform;
     private PlayerWeaponController playerWeaponController;
     public List<OrbitalLaserOrb> orbitalLaserOrbs;
+    private UpgradeChooseList upgradeChooseList;
     
 
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
         playerWeaponController = player.GetComponent<PlayerWeaponController>();
+        upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
         playerTransform = player.transform;
         UpdateOrbs();
     }
@@ -34,7 +36,7 @@ public class OrbitalLaser : MonoBehaviour
         {
             foreach (OrbitalLaserOrb orb in orbitalLaserOrbs)
             {
-                orb.damage = playerWeaponController.olDamage;
+                orb.damage = Mathf.CeilToInt((float)playerWeaponController.olDamage *  (1+ ((float)upgradeChooseList.percLaserDamage / 100)) );
                 orb.realoadTime = playerWeaponController.olReloadTime;
             }
         }
