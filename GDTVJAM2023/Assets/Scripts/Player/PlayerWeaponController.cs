@@ -291,8 +291,8 @@ public class PlayerWeaponController : MonoBehaviour
         {
             playerMWController.bulletBaseDamage = Mathf.CeilToInt((playerController.playerBulletBaseDamage) * (1 + upgradeChooseList.percBulletDamage / 100));
             playerMWController.SetBulletDamage();
-            Debug.Log("bulletUpgrade");
-            Debug.Log(playerMWController.bulletBaseDamage);
+            //Debug.Log("bulletUpgrade");
+            //Debug.Log(playerMWController.bulletBaseDamage);
         }
         else if (playerMWController.weaponType == PlayerMWController.MWeapontyp.rocket)
         {
@@ -313,7 +313,7 @@ public class PlayerWeaponController : MonoBehaviour
 
         // sub class
         int scSwarmLvl_ = 0; //upgradeChooseList.scSwarmLvl;
-        float scDefenceLvl_ = 0; // upgradeChooseList.scDefenceLvl * 0.1f;
+        //float scDefenceLvl_ = 0; // upgradeChooseList.scDefenceLvl * 0.1f;
         int scTargetingLvl_ = 0; //upgradeChooseList.scTargetingLvl;
         int scDirectionLvl_ = 0; // upgradeChooseList.scDirectionLvl;
 

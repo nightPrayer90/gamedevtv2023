@@ -96,7 +96,7 @@ public class AudioManager : MonoBehaviour
     // this function move all data in form the playerData to the playerStats and saves this data
     public void SavePlayerData()
     {
-        Debug.Log("SaveDataStart---- " + playerData.name);
+        //Debug.Log("SaveDataStart---- " + playerData.name);
         // PlayerProfil
         playerStats.playerName = playerData.playerName;
         playerStats.savePath = playerData.savePath;
@@ -147,7 +147,7 @@ public class AudioManager : MonoBehaviour
 
       
         DataService.SaveData(playerData.savePath, playerStats, encriptionEnabled);
-        Debug.Log("SaveDataEnd---- " + playerStats.playerName);
+        //Debug.Log("SaveDataEnd---- " + playerStats.playerName);
     }
 
 

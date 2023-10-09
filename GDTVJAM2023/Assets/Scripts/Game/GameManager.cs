@@ -196,7 +196,7 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("UpdateTimerText", 3f, 1f);
 
         // Initialize Bgm
-        AudioManager.Instance.PlayMusic("InGameMusic");
+        AudioManager.Instance.PlayMusic("Dystrict1");
 
         // Set World Start Valus
         StartDimensionValues();
@@ -596,9 +596,6 @@ public class GameManager : MonoBehaviour
     // player goes back into the first dimension
     public void GoBackDimension()
     {
-        // chance the bgm to the level bgm
-        AudioManager.Instance.PlayMusic("InGameMusic");
-        
         // swap materials
         buildingMaterial.SetTexture("_MainTex", firstDimensionTexture1);
         emissionMaterial.SetTexture("_MainTex", firstDimensionTexture1);
@@ -623,6 +620,9 @@ public class GameManager : MonoBehaviour
         Invoke("UpdateDistrictText", 0.5f);
         //UpdateDistrictText(districtNumber);
 
+        // chance the bgm to the level bgm
+        AudioManager.Instance.PlayMusic("Dystrict" + districtNumber.ToString());
+        
         spawnDistrictList.districtList[districtNumber - 1].GrowUP();
         foreach (GroundBaseUp district in spawnDistrictList.districtList)
         {

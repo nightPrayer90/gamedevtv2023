@@ -179,7 +179,10 @@ public class UpgradePanelController : MonoBehaviour
                     upgradeValue[i] = 1;
                     break;
                 case 2: //Protection
-                    upgradeValue[i] = 1;
+                    float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + 1);
+                    float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
+
+                    upgradeValue[i] = targetPercentage;
                     break;
                 case 3: // boost
                     upgradeValue[i] = 0.4f;
@@ -283,39 +286,52 @@ public class UpgradePanelController : MonoBehaviour
             if (selectetPanel != -1)
                 panelList[index].SelectPanel();
 
-            switch (number)
+            // weapon Upgrades
+            if (number > 5 && number <= 17)
             {
-                case 0:
-                    //lifeText.text = (playerController.playerMaxHealth + upgradeValue[index]).ToString();
-                    break;
-                case 1:
-                    ///damageText.text = (playerController.playerBulletBaseDamage + upgradeValue[index]).ToString();
-                    break;
-                case 2:
-                    //float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + upgradeValue[index]);
-                    //float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
-                    //protectionText.text = targetPercentage.ToString() + "%";
-                    break;
-                case 3:
-                    //boostText.text = (gameManager.boostSlider.maxValue + upgradeValue[index]).ToString() + "s";
-                    break;
-                case 4:
-                    //agilityText.text = (playerController.rotateSpeed + upgradeValue[index]).ToString();
-                    break;
-                case 5:
-                    //pickupText.text = (playerController.pickupRange + upgradeValue[index]).ToString();
-                    break;
-
-                //----
-                case >= 18 and <= 80: //TODOOOOOO
-                    break;
-
-                //----
-                default: //weapon select
-                    selectedUpgradePanelList[weaponCount].sprite = iconPanel[index];
-                    selectedUpgradePanelList[weaponCount].gameObject.GetComponent<ClassTooltipTrigger>().contentType = number;
-                    break;
+                selectedUpgradePanelList[weaponCount].sprite = iconPanel[index];
+                selectedUpgradePanelList[weaponCount].gameObject.GetComponent<ClassTooltipTrigger>().contentType = number;
             }
+
+            // protection 
+            /*if (number == 2)
+            {
+                float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + upgradeValue[index]);
+                float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
+            }*/
+
+            /* switch (number)
+             {
+                 case 0:
+                     //lifeText.text = (playerController.playerMaxHealth + upgradeValue[index]).ToString();
+                     break;
+                 case 1:
+                     ///damageText.text = (playerController.playerBulletBaseDamage + upgradeValue[index]).ToString();
+                     break;
+                 case 2:
+                     //float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + upgradeValue[index]);
+                     //float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
+                     //protectionText.text = targetPercentage.ToString() + "%";
+                     break;
+                 case 3:
+                     //boostText.text = (gameManager.boostSlider.maxValue + upgradeValue[index]).ToString() + "s";
+                     break;
+                 case 4:
+                     //agilityText.text = (playerController.rotateSpeed + upgradeValue[index]).ToString();
+                     break;
+                 case 5:
+                     //pickupText.text = (playerController.pickupRange + upgradeValue[index]).ToString();
+                     break;
+
+                 //----
+                 case >= 18 and <= 80: //TODOOOOOO
+                     break;
+
+                 //----
+                 default: //weapon select
+
+                     break;
+             }*/
 
             UpgradeContainer uC = upgradeChooseList.weaponUpgrades[number];
 
@@ -340,11 +356,11 @@ public class UpgradePanelController : MonoBehaviour
                 gameManager.UpdateUIPlayerHealth(playerController.playerCurrentHealth, playerController.playerMaxHealth);
                 break;
             case 1: //upgrade: main Weapon damage
-                //playerController.playerBulletBaseDamage = playerController.playerBulletBaseDamage + Mathf.RoundToInt(upgradeValue[index]);
-                //playerController.SetBulletDamage();
+                playerController.playerBulletBaseDamage = playerController.playerBulletBaseDamage + Mathf.RoundToInt(upgradeValue[index]);
+                playerController.SetBulletDamage();
                 break;
             case 2: //upgrade: Protection
-                float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + upgradeValue[index]);
+                float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + 1);
                 float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
 
                 playerController.protectionPerc = targetPercentage;
@@ -669,7 +685,7 @@ public class UpgradePanelController : MonoBehaviour
         for(int i=0; i<8 ; i++) //classPointsBullets.Length
         {
             if (!DisplayClassPoints(upgradeChooseList.mcBulletLvl, i))
-            { classPointsBullets[i].color = Color.white; Debug.Log("Bullets " + i); }
+            { classPointsBullets[i].color = Color.white; /*Debug.Log("Bullets " + i);*/ }
 
             if (!DisplayClassPoints(upgradeChooseList.mcExplosionLvl, i))
             { classPointsAOE[i].color = Color.white; }

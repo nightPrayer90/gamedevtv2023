@@ -49,10 +49,26 @@ MonoBehaviour:
   musicSounds:
   - name: MenuMusic
     clip: {fileID: 8300000, guid: bcd21abab9041a94fb0ec4df316d14da, type: 3}
-  - name: InGameMusic
-    clip: {fileID: 8300000, guid: 9bf1e2364de4b3e488fc463206b89e75, type: 3}
   - name: BossMusic
-    clip: {fileID: 8300000, guid: dba58d470d2c7e5409cf5afaf2725947, type: 3}
+    clip: {fileID: 8300000, guid: 552db057a4c83994cbdae83ac7e6bb71, type: 3}
+  - name: Dystrict1
+    clip: {fileID: 8300000, guid: 7a6d144aee55b614c9284a31c1a884bb, type: 3}
+  - name: Dystrict2
+    clip: {fileID: 8300000, guid: 372e6eaee7011bc4eaeda894ec0f3ea9, type: 3}
+  - name: Dystrict3
+    clip: {fileID: 8300000, guid: 40021b8d2b51eea4c9b39a11b61a83ff, type: 3}
+  - name: Dystrict4
+    clip: {fileID: 8300000, guid: 505fe08202035b0419681e548af24879, type: 3}
+  - name: Dystrict5
+    clip: {fileID: 8300000, guid: bae686d4aa558da42a2a0f431f2ddbb6, type: 3}
+  - name: Dystrict6
+    clip: {fileID: 8300000, guid: 35cb91d18b78cff4bae1fead04e4689c, type: 3}
+  - name: Dystrict7
+    clip: {fileID: 8300000, guid: ae1361d499661ec438e1cbad993306b8, type: 3}
+  - name: Dystrict8
+    clip: {fileID: 8300000, guid: 7a45a361f5762074ea90ed889ada17b8, type: 3}
+  - name: Dystrict9
+    clip: {fileID: 8300000, guid: 4e6c4418a6adf004db8947c5dbac8ab4, type: 3}
   sfxSounds:
   - name: MouseHover
     clip: {fileID: 8300000, guid: cd054736a6d18c14e999e86139a35e57, type: 3}
@@ -141,6 +157,48 @@ MonoBehaviour:
   musicVolume: 0.2
   sfxVolume: 0.5
   playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
+  playerStats:
+    playerName: default-player
+    shipPanelIndex: 0
+    savePath: /player-statsDefault.json
+    playerShip: 0
+    playerShipCount: 1
+    expBullet: 0
+    expRocket: 0
+    expLaser: 0
+    globalUpgradeCountBullet: 0
+    globalUpgradeCountRocket: 0
+    globalUpgradeCountLaser: 0
+    bulletRS_1: 0
+    bulletRS_2: 0
+    bulletRS_3: 0
+    bulletRS_4: 0
+    bulletRS_5: 0
+    bulletRS_6: 0
+    bulletRS_7: 0
+    bulletRS_8: 0
+    bulletRS_9: 0
+    bulletRS_10: 0
+    rocketRS_1: 0
+    rocketRS_2: 0
+    rocketRS_3: 0
+    rocketRS_4: 0
+    rocketRS_5: 0
+    rocketRS_6: 0
+    rocketRS_7: 0
+    rocketRS_8: 0
+    rocketRS_9: 0
+    rocketRS_10: 0
+    laserRS_1: 0
+    laserRS_2: 0
+    laserRS_3: 0
+    laserRS_4: 0
+    laserRS_5: 0
+    laserRS_6: 0
+    laserRS_7: 0
+    laserRS_8: 0
+    laserRS_9: 0
+    laserRS_10: 0
 --- !u!1 &5013503996951810301
 GameObject:
   m_ObjectHideFlags: 0

@@ -8834,7 +8834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &613965394
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12169,7 +12169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &843475232
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19471,6 +19471,10 @@ PrefabInstance:
     - target: {fileID: 8150116731402745557, guid: c5923c420fc066543994ec44bf775367, type: 3}
       propertyPath: m_Name
       value: Tooltip Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150116731402745557, guid: c5923c420fc066543994ec44bf775367, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5923c420fc066543994ec44bf775367, type: 3}
@@ -39217,7 +39221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2000633981
 RectTransform:
   m_ObjectHideFlags: 0
