@@ -29924,7 +29924,7 @@ MonoBehaviour:
   rocketAOERadius: 0
   isHeadCannon: 0
   isRocketLauncher: 0
-  isFireFlies: 1
+  isFireFlies: 0
   isBulletWings: 0
   isLifeModul: 0
   isSpreadGun: 0

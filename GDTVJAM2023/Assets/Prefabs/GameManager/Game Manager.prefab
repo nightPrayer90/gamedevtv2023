@@ -571,7 +571,7 @@ MonoBehaviour:
     upgradeTyp: 2
     passivUpgrades: 
   - headerStr: Support Class
-    descriptionStr: Improves the reload time of all weapon systems by 10%.
+    descriptionStr: Improves reload time of all weapon systems by 10%.
     iconPanel: {fileID: 21300000, guid: d77731612a405b64eb61fe076a3f4fb2, type: 3}
     mainClass: 3
     subClass: 8
@@ -587,7 +587,7 @@ MonoBehaviour:
     upgradeTyp: 2
     passivUpgrades: 
   - headerStr: Swarm Class_
-    descriptionStr: Increase your swarm class level by 1.
+    descriptionStr: Increases your swarm class level by 1.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 4
@@ -603,7 +603,7 @@ MonoBehaviour:
     upgradeTyp: 3
     passivUpgrades: 
   - headerStr: Defence Class_
-    descriptionStr: Increase your defense class level by 1.
+    descriptionStr: Increases your defense class level by 1.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 5
@@ -619,7 +619,7 @@ MonoBehaviour:
     upgradeTyp: 3
     passivUpgrades: 
   - headerStr: Targeting Class_
-    descriptionStr: Increase your targeting class level by 1.
+    descriptionStr: Increases your targeting class level by 1.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 6
@@ -635,7 +635,7 @@ MonoBehaviour:
     upgradeTyp: 3
     passivUpgrades: 
   - headerStr: Direction Class_
-    descriptionStr: Increase your direction class level by 1.
+    descriptionStr: Increases your direction class level by 1.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 7
@@ -651,7 +651,7 @@ MonoBehaviour:
     upgradeTyp: 3
     passivUpgrades: 
   - headerStr: Critical Impact
-    descriptionStr: Increases the bullet crit damage by 20%.
+    descriptionStr: Increases bullet crit damage by 20%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -667,7 +667,7 @@ MonoBehaviour:
     upgradeTyp: 1
     passivUpgrades: 
   - headerStr: Critical Ammo
-    descriptionStr: Increases the bullet crit chance by 3%.
+    descriptionStr: Increases bullet crit chance by 3%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -715,7 +715,7 @@ MonoBehaviour:
     upgradeTyp: 1
     passivUpgrades: 
   - headerStr: Scorching Potential
-    descriptionStr: Increases the laser burning chance by 1%.
+    descriptionStr: Increases laser burning chance by 1%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -748,7 +748,7 @@ MonoBehaviour:
     upgradeTyp: 1
     passivUpgrades: 
   - headerStr: Expansion Fortuity
-    descriptionStr: +5% chance to get double exp if u collect an exp orb
+    descriptionStr: +5% chance to get double exp if you collect an exp orb.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -780,7 +780,7 @@ MonoBehaviour:
     upgradeTyp: 1
     passivUpgrades: 
   - headerStr: Rocket Mastery
-    descriptionStr: Increase the rocket lifetime by + 0.2s
+    descriptionStr: Increases rocket lifetime by + 0.2s.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -828,7 +828,7 @@ MonoBehaviour:
     upgradeTyp: 1
     passivUpgrades: 
   - headerStr: Deadly Focus
-    descriptionStr: Increases the bullet crit chance by 10%.
+    descriptionStr: Increases bullet crit chance by 10%
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -860,7 +860,7 @@ MonoBehaviour:
     upgradeTyp: 1
     passivUpgrades: 
   - headerStr: Ignition Augment
-    descriptionStr: Increases the base laser burning damage per tick by 3.
+    descriptionStr: Increases base laser burning damage per tick by 3.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -892,7 +892,7 @@ MonoBehaviour:
     upgradeTyp: 1
     passivUpgrades: 
   - headerStr: Shielded Strike
-    descriptionStr: Shield deals +5 damage on collision.
+    descriptionStr: Shields deal +5 damage on collision.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -940,7 +940,7 @@ MonoBehaviour:
     upgradeTyp: 1
     passivUpgrades: 
   - headerStr: Shieldbreaker's Honor
-    descriptionStr: Increases the AOE size of all explosions by 2% each time a shield
+    descriptionStr: Increases AOE size of all explosions by 2% each time a shield
       is broken.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
@@ -957,7 +957,7 @@ MonoBehaviour:
     upgradeTyp: 1
     passivUpgrades: 
   - headerStr: Shieldbreaker's Might
-    descriptionStr: Increases your critical damage by 2% each time a shield is broken.
+    descriptionStr: Increases critical damage by 2% each time a shield is broken.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -1021,7 +1021,7 @@ MonoBehaviour:
     upgradeTyp: 1
     passivUpgrades: 
   - headerStr: Rapid Laser Reload
-    descriptionStr: Reduces the main laser reload time by 10%.
+    descriptionStr: Reduces main laser reload time by 10%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -1117,7 +1117,7 @@ MonoBehaviour:
     upgradeTyp: 1
     passivUpgrades: 
   - headerStr: Titan Slayer
-    descriptionStr: Increase main weapon damage agist bosses by 35%.
+    descriptionStr: Increases main weapon damage against bosses by 35%.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     subClass: 8
@@ -1127,6 +1127,55 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 0
     reqAbility: 
+    colorIndex: 1
+    isUnique: 1
+    maxSkillCount: -1
+    upgradeTyp: 1
+    passivUpgrades: 
+  - headerStr: Laser Orbit Accelerator
+    descriptionStr: Increases Orbital Laser rotation speed by 20% and decreases reload
+      time by 7%.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    subClass: 8
+    upgradeIndex: 56
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 2000
+    reqSupport: 0
+    reqAbility: Orbital Laser
+    colorIndex: 2
+    isUnique: 0
+    maxSkillCount: -1
+    upgradeTyp: 1
+    passivUpgrades: 
+  - headerStr: Explosive Impact
+    descriptionStr: Increased the AOE size of Rocked Launcher rockets by 20%.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    subClass: 8
+    upgradeIndex: 57
+    reqBullet: 0
+    reqRocket: 2000
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: Rocket Launcher
+    colorIndex: 1
+    isUnique: 1
+    maxSkillCount: -1
+    upgradeTyp: 1
+    passivUpgrades: 
+  - headerStr: Luminous Growth
+    descriptionStr: Increases the life and size of your Fireflies.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    subClass: 8
+    upgradeIndex: 58
+    reqBullet: 2000
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: Fireflies
     colorIndex: 1
     isUnique: 1
     maxSkillCount: -1
