@@ -522,7 +522,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
 
             case 26: // crit damage
-                upgradeChooseList.baseBulletCritDamage += 20;
+                upgradeChooseList.baseBulletCritDamage += 7;
                 playerWeaponController.WeaponChoose();
                 break;
             case 27: // crit chance

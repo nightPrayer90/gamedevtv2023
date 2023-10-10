@@ -5440,7 +5440,7 @@ MonoBehaviour:
   burnDamageChance: 1
   rocketAOERadius: 0
   isHeadCannon: 0
-  isRocketLauncher: 1
+  isRocketLauncher: 0
   isFireFlies: 0
   isBulletWings: 0
   isLifeModul: 0

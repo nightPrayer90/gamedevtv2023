@@ -660,7 +660,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Random.Range(0, 100) <= upgradeChooseList.chanceToGetTwoExp)
             {
-                gameManager.DoFloatingText(transform.position, "+", Color.green);
+                gameManager.DoFloatingText(transform.position, "+", Color.white);
                 exp = 2;
             }
         }
