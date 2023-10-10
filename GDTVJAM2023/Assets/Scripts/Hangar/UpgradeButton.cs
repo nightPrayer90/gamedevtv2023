@@ -201,20 +201,20 @@ public class UpgradeButton : MonoBehaviour
                 if (upgradePointValue >= upgradePointCosts[currentButtonLevel])
                 {
                     btnImage.color = Color.white;
-                    tooltipTrigger.content = "cost " + upgradePointCosts[currentButtonLevel] + " upgrade points";
+                    tooltipTrigger.content = "costs " + upgradePointCosts[currentButtonLevel] + " upgrade points";
                     canUpgrade_ = true;
                 }
                 else
                 {
                     btnImage.color = Color.gray;
-                    tooltipTrigger.content = "cost " + upgradePointCosts[currentButtonLevel] + " upgrade points";
+                    tooltipTrigger.content = "costs " + upgradePointCosts[currentButtonLevel] + " upgrade points";
                     canUpgrade_ = false;
                 }
             }
             else
             {
                 btnImage.color = Color.gray;
-                tooltipTrigger.content = "need " + (otherUpgradesCosts[currentButtonLevel] - otherUpgradesValue).ToString() + " other upgrades";
+                tooltipTrigger.content = "needs " + (otherUpgradesCosts[currentButtonLevel] - otherUpgradesValue).ToString() + " other upgrades";
                 canUpgrade_ = false;
             }
         }
