@@ -44,7 +44,7 @@ public class CameraController : MonoBehaviour
     {
         // position emptys
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetButtonDown("SwitchView"))
         {
             if (isShake == false)
             {
