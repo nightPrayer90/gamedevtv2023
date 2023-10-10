@@ -15,7 +15,7 @@ public class PeriodSpawner : MonoBehaviour
     private bool enemyDetected = false;
     private GameManager gameManager;
     public Color hitColor = new Color(1f, 0.6f, 0.0f, 1f);
-
+    public float explosionRadius = 1.1f;
 
 
 
@@ -84,7 +84,7 @@ public class PeriodSpawner : MonoBehaviour
             RocketController rocket = go.GetComponent<RocketController>();
             rocket.damage = rocketDamage;
             rocket.hitColor = hitColor;
-            //rocket.maxLifeTime = lifeTime;
+            rocket.explosionRadius = explosionRadius;
             rocket.SetDestroyTimer();
 
             // spwan rocket two
@@ -92,7 +92,7 @@ public class PeriodSpawner : MonoBehaviour
             rocket = go.GetComponent<RocketController>();
             rocket.damage = rocketDamage;
             rocket.hitColor = hitColor;
-            //rocket.maxLifeTime = lifeTime;
+            rocket.explosionRadius = explosionRadius;
             rocket.SetDestroyTimer();
 
             AudioManager.Instance.PlaySFX("PlayerRocketStart");

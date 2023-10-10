@@ -61,11 +61,11 @@ public class PlayerWeaponController : MonoBehaviour
 
     [Header("Rocket Launcher")]
     public int rlDamage = 20;
-    //public float rlLifeTime;
+    public float rlAOERange = 1.1f;
     public float rlReloadTime = 5f;
     public GameObject rocketLauncher;
     [HideInInspector] public int rlDamage_;
-    [HideInInspector] public float rlLifeTime_;
+    [HideInInspector] public float rlAOERange_;
     [HideInInspector] public float rlReloadTime_;
 
     [Header("Fireflies")]
@@ -337,12 +337,12 @@ public class PlayerWeaponController : MonoBehaviour
 
         // Rocket Launcher - rocket - target
         rlDamage_ = Mathf.CeilToInt((rlDamage + scTargetingLvl_) * (1 + upgradeChooseList.percRocketDamage / 100));
-        //rlLifeTime_ = rlLifeTime;
+        rlAOERange_ = rlAOERange;
         rlReloadTime_ = Mathf.Max(0.1f, (rlReloadTime * suReloadTime));
         if (isRocketLauncherInstalled != null)
         {
             isRocketLauncherInstalled.rocketDamage = rlDamage_;
-            //isRocketLauncherInstalled.lifeTime = rlLifeTime_;
+            isRocketLauncherInstalled.explosionRadius = rlAOERange_;
             isRocketLauncherInstalled.spawnInterval = rlReloadTime_;
         }
 
@@ -356,6 +356,7 @@ public class PlayerWeaponController : MonoBehaviour
             isFireFliesInstalled.bulletDamage = ffDamage_;
             isFireFliesInstalled.realodInterval = ffReloadTime_;
             isFireFliesInstalled.bulletMaxCount = ffbulletCount_;
+            isFireFliesInstalled.ChangeParticleSystem();
         }
 
 

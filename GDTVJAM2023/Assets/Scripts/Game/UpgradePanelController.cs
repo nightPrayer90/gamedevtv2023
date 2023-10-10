@@ -393,6 +393,9 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
+
+                upgradeChooseList.weaponUpgrades[57].reqRocket = 3; // Explosive Impact
+
                 weaponCount++;
                 break;
             case 8: //weapon: fire flys
@@ -400,6 +403,9 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
+
+                upgradeChooseList.weaponUpgrades[58].reqBullet = 4; // Explosive Impact
+
                 weaponCount++;
                 break;
             case 9: //weapon: bullet wings
@@ -419,9 +425,11 @@ public class UpgradePanelController : MonoBehaviour
             case 11: //weapon: spread gun
                 playerWeaponController.isSpreadGun = true;
                 upgradeChooseList.weaponIndexInstalled[number] = true;
-                upgradeChooseList.weaponUpgrades[50].reqBullet = 2;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
+
+                upgradeChooseList.weaponUpgrades[50].reqBullet = 2;  // Wide Spray Expansion
+
                 weaponCount++;
                 break;
             case 12: //weapon: front shield
@@ -625,6 +633,20 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.olReloadTime = Mathf.Round(playerWeaponController.olReloadTime * 0.93f);
                 playerWeaponController.UpdateWeaponValues();
                 break;
+            case 57: // Explosive Impact
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                playerWeaponController.rlAOERange = Mathf.Round(playerWeaponController.rlAOERange * 1.2f * 10) / 10;
+                playerWeaponController.UpdateWeaponValues();
+                break;
+            case 58: // Luminous Growth
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                playerWeaponController.UpdateWeaponValues();
+                break;
+
+
+
+
+
         }
     }
 

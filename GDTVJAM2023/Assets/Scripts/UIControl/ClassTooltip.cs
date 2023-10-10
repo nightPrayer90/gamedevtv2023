@@ -165,8 +165,7 @@ public class ClassTooltip : MonoBehaviour
                 content_ += tooltipContent[6].content;
                 content_ = content_.Replace("XXX", playerWeaponController.rlDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.rlReloadTime_.ToString());
-                content_ = content_.Replace("ZZZ", playerWeaponController.rlLifeTime_.ToString());
-                content_ = content_.Replace("AAA", (1.2 * (1 + upgradeChooseList.baseRocketAOERadius / 100)).ToString());
+                content_ = content_.Replace("AAA", (playerWeaponController.rlAOERange_ * (1 + upgradeChooseList.baseRocketAOERadius / 100)).ToString());
                 break;
             case 8: // Fire Flies
                 headerField.text = tooltipContent[7].header;

@@ -79,13 +79,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rocketDamage: 25
-  lifeTime: 2.5
   spawnInterval: 6
   detectionRange: 8
   rockedToLaunch: {fileID: 667735904795272308, guid: a6d86ef9fcb3b084fae049be9d2a24b8, type: 3}
   spawnPoint: {fileID: 7608659783266222577}
   spawnPoint2: {fileID: 7608659782591145633}
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
+  explosionRadius: 1.1
 --- !u!1 &7608659783266222577
 GameObject:
   m_ObjectHideFlags: 0

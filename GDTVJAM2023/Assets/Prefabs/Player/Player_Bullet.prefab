@@ -29924,7 +29924,7 @@ MonoBehaviour:
   rocketAOERadius: 0
   isHeadCannon: 0
   isRocketLauncher: 0
-  isFireFlies: 0
+  isFireFlies: 1
   isBulletWings: 0
   isLifeModul: 0
   isSpreadGun: 0
@@ -29946,11 +29946,12 @@ MonoBehaviour:
   hcBulletDamage_: 0
   hcSalveCount_: 0
   hcReloadTime_: 0
-  rlDamage: 14
+  rlDamage: 12
+  rlAOERange: 1.2
   rlReloadTime: 5
   rocketLauncher: {fileID: 7608659782651776090, guid: f8a12e7bd2c5605449b3f598e8eb6886, type: 3}
   rlDamage_: 0
-  rlLifeTime_: 0
+  rlAOERange_: 0
   rlReloadTime_: 0
   ffDamage: 10
   ffReloadTime: 6

@@ -15122,7 +15122,7 @@ MonoBehaviour:
   burnDamageChance: 1
   rocketAOERadius: 0
   isHeadCannon: 0
-  isRocketLauncher: 0
+  isRocketLauncher: 1
   isFireFlies: 0
   isBulletWings: 0
   isLifeModul: 0
@@ -15145,12 +15145,12 @@ MonoBehaviour:
   hcBulletDamage_: 0
   hcSalveCount_: 0
   hcReloadTime_: 0
-  rlDamage: 14
-  rlLifeTime: 3
+  rlDamage: 12
+  rlAOERange: 1.2
   rlReloadTime: 5
   rocketLauncher: {fileID: 7608659782651776090, guid: f8a12e7bd2c5605449b3f598e8eb6886, type: 3}
   rlDamage_: 0
-  rlLifeTime_: 0
+  rlAOERange_: 0
   rlReloadTime_: 0
   ffDamage: 10
   ffReloadTime: 6
@@ -15201,6 +15201,7 @@ MonoBehaviour:
   flShootingTime_: 0
   olDamage: 8
   olReloadTime: 7
+  olRotationSpeed: 450
   orbitalLaser: {fileID: 7601612212577922131, guid: 9bcf5e0e76ce98b44a72e49fe758b485, type: 3}
   olDamage_: 0
   olReloadTime_: 0

@@ -5,7 +5,9 @@ using UnityEngine;
 public class Fireflies : MonoBehaviour
 {
     [Header("Bullet Particle")]
-    public ParticleSystem particleSystems;
+    public ParticleSystem particleSystem_;
+    public ParticleSystem particleSystem1;
+    public ParticleSystem particleSystem2;
     private ParticleBullet particleBullet;
 
     [Header("Weapon Settings")]
@@ -16,7 +18,7 @@ public class Fireflies : MonoBehaviour
     public string audioClip = "";
     private float nextSpawnTime = 0f;
     private int bulletCount = 0;
-
+    private UpgradeChooseList upgradeChooseList;
 
 
 
@@ -25,13 +27,15 @@ public class Fireflies : MonoBehaviour
     /* **************************************************************************** */
     private void Start()
     {
+        upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
+
         //StartValues();
         bulletCount = bulletMaxCount;
 
         // set damage to particle system
+        ChangeParticleSystem();
 
-        particleBullet = particleSystems.GetComponent<ParticleBullet>();
-      
+
     }
 
     // Update is called once per frame
@@ -55,6 +59,19 @@ public class Fireflies : MonoBehaviour
         realodInterval = weaponController.ffReloadTime;
     }
 
+    public void ChangeParticleSystem()
+    {
+        if (upgradeChooseList.weaponIndexInstalled[58] == true)
+        {
+            particleSystem_ = particleSystem2;
+        }
+        else
+        {
+            particleSystem_ = particleSystem1;
+        }
+        particleBullet = particleSystem_.GetComponent<ParticleBullet>();
+    }
+
     // shooting controller
     void Shooting()
     {
@@ -73,7 +90,7 @@ public class Fireflies : MonoBehaviour
                 AudioManager.Instance.PlaySFX(audioClip);
 
                 // emit 1 particle of each weapon
-                particleSystems.Emit(1);
+                particleSystem_.Emit(1);
                 bulletCount++;
 
                 nextSpawnTime = Time.time + spawnInterval;
