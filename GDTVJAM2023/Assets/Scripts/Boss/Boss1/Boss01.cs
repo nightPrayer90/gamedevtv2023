@@ -47,7 +47,7 @@ public class Boss01 : MonoBehaviour
     private Transform playerTr;
     private Rigidbody playerRb;
     private GameManager gameManager;
-    
+    public PlayerData playerData;
 
 
 
@@ -62,6 +62,13 @@ public class Boss01 : MonoBehaviour
         playerRb = GameObject.FindWithTag("Player").GetComponent<Rigidbody>();
         enemyHealthScr = gameObject.GetComponent<EnemyHealth>();
         enemyHealthScr.DieEvent += EnemyHealthScr_DieEvent;
+
+        // TODOO MESSE - rocketship hat boss 1 weniger leben
+        if (playerData.playerShip == 1) //rocketship
+        {
+            enemyHealthScr.enemyHealth = Mathf.CeilToInt(enemyHealthScr.enemyHealth * 0.70f);
+            enemyHealthScr.enemyStartHealth = enemyHealthScr.enemyHealth;
+        }
 
         // set values
         enemyHealthScr.canTakeDamage = false;

@@ -44,14 +44,41 @@ public class HangerUIController : MonoBehaviour
     public GameObject bulletUpgrades;
     public GameObject rocketUpgrades;
     public GameObject laserObjects;
+    public SaveAndStart saveAndStartButton;
 
     private int shipIndex = 0;
-
+    private bool joystickIsPressed = false;
 
     private void Start()
     {
         shipIndex = playerData.playerShip;
         ShipChange(shipIndex, false); 
+    }
+
+    private void Update()
+    {
+        int horizontalInput = Mathf.CeilToInt(Input.GetAxis("Horizontal"));
+        Debug.Log(horizontalInput);
+
+        if (joystickIsPressed == false && horizontalInput == 1)
+        {
+            PosShipToggle();
+            joystickIsPressed = true;
+        }
+        else if (joystickIsPressed == false && horizontalInput == -1)
+        {
+            negShipToggle();
+            joystickIsPressed = true;
+        }
+        else if (horizontalInput == 0)
+        {
+            joystickIsPressed = false;
+        }
+
+        if (Input.GetButtonDown("Boost"))
+        {
+            saveAndStartButton.GameStart();
+        }
     }
 
     //shipToggle

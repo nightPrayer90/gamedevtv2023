@@ -111,6 +111,7 @@ public class GameManager : MonoBehaviour
     private GameObject currentSpawnManager;
     private bool isIntro = true;
     private bool canSpawnNextDimention = true;
+    public MenuButtonController menuButtonController;
 
 
     /* **************************************************************************** */
@@ -256,6 +257,19 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && !gameOver && gameIsPlayed)
         {
             PauseMenue();
+        }
+
+        // TODDOOO nur für die Messe
+        if (gameOver == true)
+        {
+            if (Input.GetButtonDown("Boost"))
+            {
+                menuButtonController.LevelRestart();
+            }
+            if (Input.GetButtonDown("SwitchView"))
+            {
+                menuButtonController.BacktoMainMenue();
+            }
         }
 
         // boost color control

@@ -523,7 +523,7 @@ public class PlayerController : MonoBehaviour
             // fly backwards
             if (forwardInput < 0)
             {
-                forwardInput *= 0.25f;
+                forwardInput *= 0.4f;
             }
             // boost
             else if (Input.GetButton("Boost"))
