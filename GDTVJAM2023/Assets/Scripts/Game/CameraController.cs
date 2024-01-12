@@ -22,14 +22,14 @@ public class CameraController : MonoBehaviour
 
     private bool isShake = false;
     private bool toggleSwith = false;
-    private PlayerController playerController;
+    private NewPlayerController playerController;
     public CanvasGroup toggelViewText;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        playerController = player.GetComponent<PlayerController>();
+        playerController = player.GetComponent<NewPlayerController>();
 
         shakeIntensity_ = shakeIntensity;
 
@@ -82,13 +82,13 @@ public class CameraController : MonoBehaviour
         else // first person view
         {
             mainCamera.farClipPlane = 1000f;
-            transform.position = player.transform.position;
+            transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
 
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, player.transform.rotation, Time.deltaTime * 150f);
 
-            var rotationZ =  (playerController.currentRotationX + 90)*0.2f;
-            mainCameraTr.localRotation = Quaternion.Euler(30, 180, rotationZ);  
+            //var rotationZ =  (playerController.transform.rotation.y + 90)*0.2f;
+            mainCameraTr.localRotation = Quaternion.Euler(20, 0, 0);  
 
             if (toggleSwith == false)
             {
@@ -101,7 +101,7 @@ public class CameraController : MonoBehaviour
 
                 mainCameraTr.localRotation = Quaternion.Euler(30, 180, 0);
 
-                toggleSwith = true;
+                toggleSwith = true;   
             }
         }
     }

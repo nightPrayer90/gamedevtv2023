@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
         bullet,
         rocket,
         laser,
+        custom
     }
 
     [Header("Player Ship")]
@@ -119,10 +120,15 @@ public class GameManager : MonoBehaviour
     /* **************************************************************************** */
     private void Awake()
     {
+        //debug
+        isPlayerData = false;
+
         if (isPlayerData == false)
         {
             // create the Playership
-            switch (startShip)
+            
+
+            /*switch (startShip)
             {
                 case StartShip.bullet:
                     var player_b = Instantiate(playerShip_bullet, playerStartPosition.position, playerStartPosition.rotation);
@@ -148,6 +154,7 @@ public class GameManager : MonoBehaviour
                     upgradeChooseList.weaponUpgrades[55].reqRocket = 100;
                     ship = 2;
                     break;
+      
             }
         }
         else
@@ -178,7 +185,7 @@ public class GameManager : MonoBehaviour
                     upgradeChooseList.weaponUpgrades[55].reqRocket = 100;
                     ship = 2;
                     break;
-            }
+            }*/
         }
     }
 
@@ -235,8 +242,8 @@ public class GameManager : MonoBehaviour
         directionalLight.color = firstDimensionColor;
 
         // instantiate the right Spawner
-        currentSpawnManager = Instantiate(spawnDistrictList.spawnManagerList[districtNumber - 1], transform.position, transform.rotation);
-        currentSpawnManager.transform.SetParent(gameObject.transform);
+       /* currentSpawnManager = Instantiate(spawnDistrictList.spawnManagerList[districtNumber - 1], transform.position, transform.rotation);
+        currentSpawnManager.transform.SetParent(gameObject.transform);*/
 
         // set UI sights
         gameOverUI.SetActive(false);
