@@ -5,17 +5,19 @@ using UnityEngine;
 public class MinimapController : MonoBehaviour
 {
     private Vector3 startTransform;
+    private Transform playerController;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         startTransform = transform.position;
+        transform.rotation = Quaternion.Euler(90, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //transform.localPosition = startTransform;
-        transform.rotation = Quaternion.Euler(90, 0, 0);
+        transform.position = new Vector3(playerController.position.x, 10, playerController.position.z);
     }
 }

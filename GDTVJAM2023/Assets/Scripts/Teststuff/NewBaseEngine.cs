@@ -68,7 +68,7 @@ public class NewBaseEngine : MonoBehaviour
 
         if (playerController.horizontalInput2 > 0.1)
         {
-            if (engine_side == Side.strafingRight)
+            if (engine_side == Side.strafingLeft)
             {
 
                 // Berechne die Kraft basierend auf dem horizontalen Input
@@ -85,7 +85,7 @@ public class NewBaseEngine : MonoBehaviour
 
         if (playerController.horizontalInput2 < -0.1)
         {
-            if (engine_side == Side.strafingLeft)
+            if (engine_side == Side.strafingRight)
             {
 
                 // Berechne die Kraft basierend auf dem horizontalen Input
