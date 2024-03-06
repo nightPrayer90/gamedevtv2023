@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerWeaponController : MonoBehaviour
 {
     [Header("Weapon buffs")]
-    private ShipData shipData;
+    public ShipData shipData;
     public int bulletCritChance = 0;
     public int bulletCritDamage = 0;
     public int burnDamageChance = 0;
@@ -161,7 +161,7 @@ public class PlayerWeaponController : MonoBehaviour
 
 
     //private Objects
-    private PlayerController playerController;
+    private NewPlayerController playerController;
     private PlayerMWController playerMWController;
     private UpgradeChooseList upgradeChooseList;
 
@@ -173,13 +173,13 @@ public class PlayerWeaponController : MonoBehaviour
     #region lifecycle
     void Start()
     {
-        playerController = gameObject.GetComponent<PlayerController>();
+        playerController = gameObject.GetComponent<NewPlayerController>();
         playerMWController = gameObject.GetComponent<PlayerMWController>();
         upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
 
 
         // copy ship Data
-        shipData = playerController.shipData;
+        //shipData = playerController.shipData;
 
 
         // set upgradeListData from shipData
@@ -287,22 +287,10 @@ public class PlayerWeaponController : MonoBehaviour
     public void UpdateWeaponValues()
     {
         //Debug.Log("weapon Upgrade");
-        // main weapon - value in playercontroller = constant -> update only mainWeapon controller
-        if (playerMWController.weaponType == PlayerMWController.MWeapontyp.bullet)  
-        {
-            playerMWController.bulletBaseDamage = Mathf.CeilToInt((playerController.playerBulletBaseDamage) * (1 + upgradeChooseList.percBulletDamage / 100));
-            playerMWController.SetBulletDamage();
-            //Debug.Log("bulletUpgrade");
-            //Debug.Log(playerMWController.bulletBaseDamage);
-        }
-        else if (playerMWController.weaponType == PlayerMWController.MWeapontyp.rocket)
-        {
-            playerMWController.bulletBaseDamage = Mathf.CeilToInt((playerController.playerBulletBaseDamage) * (1 + upgradeChooseList.percRocketDamage / 100));
-        }
-        else if (playerMWController.weaponType == PlayerMWController.MWeapontyp.laser)
-        {
-            playerMWController.bulletBaseDamage = Mathf.CeilToInt((playerController.playerBulletBaseDamage) * (1 + upgradeChooseList.percLaserDamage / 100));
-        }
+        // main weapon - value in playercontroller = constant -> update only mainWeapon controlle
+        //playerMWController.bulletBaseDamage = Mathf.CeilToInt((playerController.playerBulletBaseDamage) * (1 + upgradeChooseList.percBulletDamage / 100));
+        //playerMWController.SetBulletDamage();
+
 
         // main Class
         bulletCritChance = upgradeChooseList.baseBulletCritChance;

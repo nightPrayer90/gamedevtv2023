@@ -104,9 +104,11 @@ public class GameManager : MonoBehaviour
     public Color powerBoostColor;
     private bool boostIsReload = false;
 
-    // Objects
-    public CameraController mainCamera;
-    private PlayerController player;
+    [Header("Objects")]
+    public CameraShake topShake;
+    public CameraShake backShake;
+    public CinemachineSwitcher cinemachineSwitcher;
+    public NewPlayerController player;
    // private PlayerWeaponController weaponController;
     private Light directionalLight;
     private GameObject currentSpawnManager;
@@ -191,7 +193,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //mainCamera = GameObject.Find("Main Camera").GetComponent<CameraController>();
         directionalLight = GameObject.Find("Directional Light").GetComponent<Light>();
         upgradeChooseList = GetComponent<UpgradeChooseList>();
         spawnDistrictList = GetComponent<SpawnDistrictList>();
@@ -242,8 +243,8 @@ public class GameManager : MonoBehaviour
         directionalLight.color = firstDimensionColor;
 
         // instantiate the right Spawner
-       /* currentSpawnManager = Instantiate(spawnDistrictList.spawnManagerList[districtNumber - 1], transform.position, transform.rotation);
-        currentSpawnManager.transform.SetParent(gameObject.transform);*/
+        currentSpawnManager = Instantiate(spawnDistrictList.spawnManagerList[districtNumber - 1], transform.position, transform.rotation);
+        currentSpawnManager.transform.SetParent(gameObject.transform);
 
         // set UI sights
         gameOverUI.SetActive(false);
@@ -527,7 +528,7 @@ public class GameManager : MonoBehaviour
                 canSpawnNextDimention = false;
 
                 // activate the navigation controler
-                player.SetNavigationController();
+//                player.SetNavigationController();
 
                 // activate a camera shake
                 ScreenShake(2);
@@ -719,19 +720,22 @@ public class GameManager : MonoBehaviour
         switch(shakeIndex)
         {
             case 1:
-                mainCamera.ShakeScreen();
+                if (cinemachineSwitcher.topCamera_flag == true)
+                    topShake.ShakeCamera(1f, 0.3f);
+                else
+                    backShake.ShakeCamera(0.5f, 0.3f);
                 break;
 
             case 2:
-                mainCamera.BigShakeScreen();
+                //mainCamera.BigShakeScreen();
                 break;
 
             case 3:
-                mainCamera.BigShortShakeScreen();
+                //mainCamera.BigShortShakeScreen();
                 break;
 
             case 4:
-                mainCamera.LongShakeScreen();
+                //mainCamera.LongShakeScreen();
                 break;
         }
     }

@@ -125,13 +125,12 @@ public class PlayerController : MonoBehaviour
             // Intro
             Vector3 movement = new Vector3(0f, 2f, 0f) * Time.deltaTime;
             transform.Translate(movement);
-            isIntro = true;
         }
         else
         {
             if (isStartSound == false)
             {
-                AudioManager.Instance.PlaySFX("ShortAlert");
+               
                 isStartSound = true;
                 foreach (ParticleSystem ep in engineParticles)
                 {

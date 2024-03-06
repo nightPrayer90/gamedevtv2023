@@ -5,7 +5,7 @@ public class EnemyExp : MonoBehaviour
     public float moveSpeed = 1f;
     public float detectionRange = 0.5f;
 
-    private PlayerController playercontroller;
+    private NewPlayerController playercontroller;
     private Transform playerTransform;
     private bool ifcollect = false;
 
@@ -17,7 +17,7 @@ public class EnemyExp : MonoBehaviour
 
         if (player != null)
         {
-            playercontroller = player.GetComponent<PlayerController>();
+            playercontroller = player.GetComponent<NewPlayerController>();
             playerTransform = player.GetComponent<Transform>();
             
         }
