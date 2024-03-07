@@ -29,8 +29,6 @@ public class RotateToTarget : MonoBehaviour
         eulerRotation.z = 0f; // Setze die Z-Komponente auf 0 (keine Drehung um die Z-Achse)
         targetRotation = Quaternion.Euler(eulerRotation);
 
-        //transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationStep * rotationSpeed * Time.deltaTime);
-       
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationStep * rotationSpeed * Time.deltaTime);  
     }
 }

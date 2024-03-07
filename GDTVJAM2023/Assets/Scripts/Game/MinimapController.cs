@@ -19,5 +19,6 @@ public class MinimapController : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(playerController.position.x, 10, playerController.position.z);
+        transform.rotation = Quaternion.Euler(90f, playerController.rotation.eulerAngles.y, 0f);
     }
 }

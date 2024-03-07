@@ -528,7 +528,7 @@ public class GameManager : MonoBehaviour
                 canSpawnNextDimention = false;
 
                 // activate the navigation controler
-//                player.SetNavigationController();
+                player.SetNavigationController();
 
                 // activate a camera shake
                 ScreenShake(2);
@@ -727,15 +727,25 @@ public class GameManager : MonoBehaviour
                 break;
 
             case 2:
-                //mainCamera.BigShakeScreen();
+                if (cinemachineSwitcher.topCamera_flag == true)
+                    topShake.ShakeCamera(2f, 0.5f);
+                else
+                    backShake.ShakeCamera(1f, 0.5f);
                 break;
 
             case 3:
-                //mainCamera.BigShortShakeScreen();
+                if (cinemachineSwitcher.topCamera_flag == true)
+                    topShake.ShakeCamera(1f, 1f);
+                else
+                    backShake.ShakeCamera(1.5f, 1f);
                 break;
 
             case 4:
-                //mainCamera.LongShakeScreen();
+                if (cinemachineSwitcher.topCamera_flag == true)
+                    topShake.ShakeCamera(0.5f, 10f);
+                else
+                    backShake.ShakeCamera(0.25f, 10f);
+                break;
                 break;
         }
     }

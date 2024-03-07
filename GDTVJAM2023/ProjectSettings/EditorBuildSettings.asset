@@ -30,6 +30,6 @@ EditorBuildSettings:
     path: Assets/Scenes/LoadScene.unity
     guid: 94439a28f0c904d49b5d92e7e606e0f9
   - enabled: 1
-    path: Assets/Scenes/HangarScene.unity
+    path: Assets/Scenes/HangarScene2.unity
     guid: 1af2d95417abb7f418905c8d096bfd36
   m_configObjects: {}

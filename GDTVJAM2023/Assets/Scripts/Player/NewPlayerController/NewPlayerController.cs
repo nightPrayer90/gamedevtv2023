@@ -31,12 +31,13 @@ public class NewPlayerController : MonoBehaviour
     private float playerLevelUpFactor = 1.2f;
 
     [Header("Game Objects")]
+    [SerializeField] private NavigationController navigationController;
     [SerializeField] private GameObject centerOfMass;
     [SerializeField] private Rigidbody playerRigidbody;
     [SerializeField] private GameManager gameManager;
     public List<ParticleCollisionEvent> collisionEvents;
     private UpgradeChooseList upgradeChooseList;
-
+    private PlayerWeaponController playerWeaponController;
 
     [Header("Outside Border")]
     public float damageInterval = 1f;
@@ -62,7 +63,7 @@ public class NewPlayerController : MonoBehaviour
         playerRigidbody.centerOfMass = new Vector3(0f, 0f, 0f);
         hitColorTemp = hitColor;
         upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
-
+        playerWeaponController = GetComponent<PlayerWeaponController>();
 
         // intro starting sound
         AudioManager.Instance.PlaySFX("LiftUPBoss");
@@ -126,7 +127,7 @@ public class NewPlayerController : MonoBehaviour
                 UpdatePlayerExperience();
                 break;
 
-            /*case "BulletPickup":
+            case "BulletPickup":
                 ObjectPoolManager.ReturnObjectToPool(other.gameObject);
                 UpdateClassLevel(0);
                 break;
@@ -146,7 +147,7 @@ public class NewPlayerController : MonoBehaviour
                 UpdateClassLevel(3);
                 break;
 
-            /*case "UpgradePickup":
+            case "UpgradePickup":
                 ObjectPoolManager.ReturnObjectToPool(other.gameObject);
                 PlayerWeaponUpdatePickup();
                 break;
@@ -156,7 +157,7 @@ public class NewPlayerController : MonoBehaviour
                 navigationController.DeactivateNavigatorMesh();
                 gameManager.GoToDimension();
                 AudioManager.Instance.PlaySFX("DimensionSwap");
-                break;*/
+                break;
 
             case "DimensionPickUpGoBack":
                 other.gameObject.SetActive(false);
@@ -182,7 +183,7 @@ public class NewPlayerController : MonoBehaviour
         }
     }
 
-    /*private void UpdateClassLevel(int input)
+    private void UpdateClassLevel(int input)
     {
         AudioManager.Instance.PlaySFX("WindowOpen");
         string floatingText = "";
@@ -213,7 +214,21 @@ public class NewPlayerController : MonoBehaviour
 
         gameManager.DoFloatingText(transform.position, floatingText, gameManager.globalClassColor[input]);
         playerWeaponController.UpdateWeaponValues();
-    }*/
+    }
+
+    public void PlayerWeaponUpdatePickup()
+    {
+
+        Time.timeScale = 0;
+        AudioManager.Instance.PlaySFX("LevelUp");
+        //engineAudioSource.Stop();
+
+        int temphealth = playerMaxHealth - playerCurrentHealth;
+        UpdatePlayerHealth(-temphealth);
+
+        // refresh player UI
+        gameManager.PlayerWeaponUpdatePickup();
+    }
 
     // activate if trigger stay - border control
     private void OnTriggerStay(Collider other)
@@ -297,12 +312,12 @@ public class NewPlayerController : MonoBehaviour
                         NovaOnHit(1.2f, 6);
                         playerRigidbody.AddForce(explosionDirection * 1.4f * enemyHealth.explosionForce, ForceMode.Impulse);
                     }
-                    else*/
+                    else
                     {
                         gameManager.DoFloatingText(collision.transform.position, "+" + enemyHealth.enemyHealth, enemyHitColor);
                         playerRigidbody.AddForce(explosionDirection * 1f * enemyHealth.explosionForce, ForceMode.Impulse);
                     }
-
+                    */
 
                 }
 
@@ -444,19 +459,6 @@ public class NewPlayerController : MonoBehaviour
         gameManager.UpdateUIPlayerExperience(isLevelUp, playerLevel, playerExperienceToLevelUp, playerCurrentExperience, exp);
     }
 
-    /*public void PlayerWeaponUpdatePickup()
-    {
-
-        Time.timeScale = 0;
-        AudioManager.Instance.PlaySFX("LevelUp");
-        engineAudioSource.Stop();
-
-        int temphealth = playerMaxHealth - playerCurrentHealth;
-        UpdatePlayerHealth(-temphealth);
-
-        // refresh player UI
-        gameManager.PlayerWeaponUpdatePickup();
-    }*/
 
     // update player life after get damage, heal or level up
     public void UpdatePlayerHealth(int decHealth)
@@ -522,9 +524,10 @@ public class NewPlayerController : MonoBehaviour
     }
 
     // activate the navigation controller
-    /*public void SetNavigationController()
+    public void SetNavigationController()
     {
+        AudioManager.Instance.PlaySFX("ShortAlert");
         navigationController.SetTargetPosition();
-    }*/
+    }
     #endregion
 }

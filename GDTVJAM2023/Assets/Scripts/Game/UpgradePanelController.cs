@@ -42,9 +42,8 @@ public class UpgradePanelController : MonoBehaviour
 
     //Objects
     private GameManager gameManager;
-    private PlayerController playerController;
+    private NewPlayerController playerController;
     private PlayerWeaponController playerWeaponController;
-    private PlayerMWController playerMWController;
     private UpgradeChooseList upgradeChooseList;
 
     public int selectetPanel;
@@ -56,9 +55,8 @@ public class UpgradePanelController : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
         classColors = new List<Color>(gameManager.globalClassColor);
-        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        playerController = GameObject.FindWithTag("Player").GetComponent<NewPlayerController>();
         playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
-        playerMWController = GameObject.FindWithTag("Player").GetComponent<PlayerMWController>();
 
         upgradeValue = new float[3];
         headerStr = new string[3];
@@ -89,7 +87,7 @@ public class UpgradePanelController : MonoBehaviour
     {
         if (isTweening == false)
         {
-            if (Input.GetAxisRaw("Horizontal") >= 0.5 && !isButtonPressed)
+            if (Input.GetAxisRaw("Horizontal") <= -0.5 && !isButtonPressed)
             {
                 switch (selectetPanel)
                 {
@@ -112,7 +110,7 @@ public class UpgradePanelController : MonoBehaviour
                 isButtonPressed = true;
                 Debug.Log(selectetPanel);
             }
-            else if (Input.GetAxisRaw("Horizontal") <= -0.5 && !isButtonPressed)
+            else if (Input.GetAxisRaw("Horizontal") >= 0.5 && !isButtonPressed)
             {
                 switch (selectetPanel)
                 {
@@ -356,8 +354,8 @@ public class UpgradePanelController : MonoBehaviour
                 gameManager.UpdateUIPlayerHealth(playerController.playerCurrentHealth, playerController.playerMaxHealth);
                 break;
             case 1: //upgrade: main Weapon damage
-                playerController.playerBulletBaseDamage = playerController.playerBulletBaseDamage + Mathf.RoundToInt(upgradeValue[index]);
-                playerController.SetBulletDamage();
+                //playerController.playerBulletBaseDamage = playerController.playerBulletBaseDamage + Mathf.RoundToInt(upgradeValue[index]);
+                //playerController.SetBulletDamage();
                 break;
             case 2: //upgrade: Protection
                 float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + 1);
@@ -374,8 +372,8 @@ public class UpgradePanelController : MonoBehaviour
                 gameManager.boostSlider.value = gameManager.boostSlider.maxValue;
                 break;
             case 4: //upgrade: rotate speed
-                playerController.rotateSpeed = playerController.rotateSpeed + upgradeValue[index];
-                playerController.speed = Mathf.Round((playerController.speed + playerController.speed * 0.07f) * 100) / 100;
+                //playerController.rotateSpeed = playerController.rotateSpeed + upgradeValue[index];
+                //playerController.speed = Mathf.Round((playerController.speed + playerController.speed * 0.07f) * 100) / 100;
                 break;
             case 5: //upgrade: pickup Range
                 upgradeChooseList.weaponIndexInstalled[number] = true;
@@ -606,13 +604,13 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 49: // Rapid Laser Reload
-                playerMWController.fireRate = playerMWController.fireRate * 0.9f;
+                //playerMWController.fireRate = playerMWController.fireRate * 0.9f;
                 break;
             case 50: // Wide Spray Expansion
                 playerWeaponController.sgBulletCount += 2;
                 break;
             case 51: // Lightning Reload
-                playerMWController.fireRate = playerMWController.fireRate*0.9f;
+                //playerMWController.fireRate = playerMWController.fireRate*0.9f;
                 break;
             case 52: // Kaboomed Targets
                 upgradeChooseList.weaponIndexInstalled[number] = true;

@@ -4,22 +4,28 @@ using UnityEngine;
 
 public class NewBaseEngine : MonoBehaviour
 {
+    // Objects
     private NewPlayerController playerController;
-    [SerializeField] private ParticleSystem ps_engine;
     private Rigidbody playerRigidbody;
+
+    [Header("Forward Engine")]
+    [SerializeField] private ParticleSystem ps_engine;
+    [SerializeField] private ParticleSystem ps_boostEngine;
+    [SerializeField] private ParticleSystem ps_boostParticle;
     public float thrustForce = 1f;
+    private float totalThrustForce = 0;
+    public bool hasFontBoost = true;
+    public float FrontboostPower;
 
 
-    private enum Side
-    {
-        forward,
-        backward,
-        strafingLeft,
-        strafingRight
-    }
+    [Header("Backwards Engine")]
+    [SerializeField] private ParticleSystem[] ps_backEngines;
+    [SerializeField] private ParticleSystem[] ps_backBoostEngines;
+    public float backForce = 1f;
+    private float totalBackForce = 0;
+    public bool hasBackBoost = true;
+    public float BackBoostPower;
 
-    [SerializeField]
-    private Side engine_side;
 
     // Start is called before the first frame update
     void Start()
@@ -31,82 +37,65 @@ public class NewBaseEngine : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        // Particel Effect
-        if (playerController.verticalInput > 0.1)
+        // Forwards
+        if (playerController.verticalInput > 0.5)
         {
-            if (engine_side == Side.forward)
+            
+            // boost
+            if (hasFontBoost == true && Input.GetButton("Boost"))
             {
-
-                // Berechne die Kraft basierend auf dem horizontalen Input
-                Vector3 thrust = transform.forward * playerController.verticalInput * thrustForce;
-
-
-                // Wende die Kraft auf das Raumschiff an
-                playerRigidbody.AddForce(thrust);
-
-
-                ps_engine.Emit(1);
+                totalThrustForce = thrustForce + FrontboostPower;
+                ps_boostParticle.Emit(1);
+                ps_boostEngine.Emit(1);
             }
+            else
+            {
+                totalThrustForce = thrustForce;
+            }
+
+            // Berechne die Kraft basierend auf dem horizontalen Input
+            Vector3 thrust = transform.forward * playerController.verticalInput * totalThrustForce;
+
+            // Wende die Kraft auf das Raumschiff an
+            playerRigidbody.AddForce(thrust);
+
+            ps_engine.Emit(1);
         }
 
-        if (playerController.verticalInput < -0.1)
+        // Backwards
+        if (playerController.verticalInput < -0.5)
         {
-            if (engine_side == Side.backward)
+            // boost
+            if (hasBackBoost == true && Input.GetButton("Boost"))
             {
-
-                // Berechne die Kraft basierend auf dem horizontalen Input
-                Vector3 thrust = transform.forward * -playerController.verticalInput * thrustForce;
-
-
-                // Wende die Kraft auf das Raumschiff an
-                playerRigidbody.AddForce(thrust);
-
-
-                ps_engine.Emit(1);
+                totalBackForce = backForce + BackBoostPower;
+                foreach (ParticleSystem ps in ps_backBoostEngines)
+                {
+                    ps.Emit(1);
+                }
             }
-        }
-
-        if (playerController.horizontalInput2 > 0.1)
-        {
-            if (engine_side == Side.strafingLeft)
+            else
             {
-
-                // Berechne die Kraft basierend auf dem horizontalen Input
-                Vector3 thrust = transform.forward * playerController.horizontalInput2 * thrustForce;
-
-
-                // Wende die Kraft auf das Raumschiff an
-                playerRigidbody.AddForce(thrust);
-
-
-                ps_engine.Emit(1);
+                totalBackForce = backForce;
+                foreach (ParticleSystem ps in ps_backEngines)
+                {
+                    ps.Emit(1);
+                }
             }
-        }
 
-        if (playerController.horizontalInput2 < -0.1)
-        {
-            if (engine_side == Side.strafingRight)
-            {
+            // Berechne die Kraft basierend auf dem horizontalen Input
+            Vector3 thrust = transform.forward * playerController.verticalInput * totalBackForce;
 
-                // Berechne die Kraft basierend auf dem horizontalen Input
-                Vector3 thrust = transform.forward * -playerController.horizontalInput2 * thrustForce;
+            // Wende die Kraft auf das Raumschiff an
+            playerRigidbody.AddForce(thrust);
 
-
-                // Wende die Kraft auf das Raumschiff an
-                playerRigidbody.AddForce(thrust);
-
-
-                ps_engine.Emit(1);
-            }
+            
         }
     }
 
     public void StartBoost()
     {
-        if (engine_side == Side.forward)
-        {
-            ps_engine.Play();
-            playerRigidbody.AddForce(transform.forward * thrustForce * 80, ForceMode.Force);
-        }
+        ps_engine.Play();
+        playerRigidbody.AddForce(transform.forward * thrustForce * 80, ForceMode.Force);
     }
 }

@@ -12,6 +12,8 @@ public class CameraShake : MonoBehaviour
     private void Awake()
     {
         cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
+        CinemachineBasicMultiChannelPerlin _cbmcp = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        _cbmcp.m_AmplitudeGain = 0f;
     }
 
     public void ShakeCamera(float shakeIntensity, float shakeTime)
