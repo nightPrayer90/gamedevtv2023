@@ -14,6 +14,8 @@ public class NewStrafeEngine : MonoBehaviour
     public bool hasStrafeBoost = true;
     [SerializeField] private ParticleSystem ps_leftBoost;
     [SerializeField] private ParticleSystem ps_rigtBoost;
+    private bool useBoost = false;
+    public float boostCost = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,15 +30,23 @@ public class NewStrafeEngine : MonoBehaviour
  
         if (playerController.horizontalInput2 > 0.5)
         {
-            if (hasStrafeBoost == true && Input.GetButton("Boost"))
+
+            // boost
+            if (hasStrafeBoost == true && Input.GetButton("Boost") && (playerController.energieCurrent > 1 || useBoost == true))
             {
                 totalStrafeForce = strafeForce + strafeBoostforce;
                 ps_leftBoost.Emit(1);
+
+                playerController.energieCurrent -= boostCost;
+                useBoost = true;
+
+                if (playerController.energieCurrent < boostCost) useBoost = false;
             }
             else
             {
                 totalStrafeForce = strafeForce;
                 ps_leftEngine.Emit(1);
+                useBoost = false;
             }
 
             // Berechne die Kraft basierend auf dem horizontalen Input
@@ -48,15 +58,21 @@ public class NewStrafeEngine : MonoBehaviour
 
         if (playerController.horizontalInput2 < -0.5)
         {
-            if (hasStrafeBoost == true && Input.GetButton("Boost"))
+            if (hasStrafeBoost == true && Input.GetButton("Boost") && (playerController.energieCurrent > 1 || useBoost == true))
             {
                 totalStrafeForce = strafeForce + strafeBoostforce;
                 ps_rigtBoost.Emit(1);
+
+                playerController.energieCurrent -= boostCost;
+                useBoost = true;
+
+                if (playerController.energieCurrent < boostCost) useBoost = false;
             }
             else
             {
                 totalStrafeForce = strafeForce;
                 ps_rigtEngine.Emit(1);
+                useBoost = false;
             }
 
             // Berechne die Kraft basierend auf dem horizontalen Input

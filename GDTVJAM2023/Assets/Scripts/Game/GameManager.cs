@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     private bool isGameOverUI_, isPlayerUI_, isBossUI_, isVictoryUI;
     public Slider healthBar;
     public Slider experienceSlider;
-    public Slider boostSlider;
+    public Slider energieSlider;
     public Image boostFillArea;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI expText;
@@ -98,11 +98,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerShip_bullet;
     public GameObject playerShip_rocket;
     public GameObject playerShip_laser;
-    private float _boostTimer;
-    private float _boostIntervall = 0.01f;
-    public Color boostColor;
-    public Color powerBoostColor;
-    private bool boostIsReload = false;
+
 
     [Header("Objects")]
     public CameraShake topShake;
@@ -279,19 +275,6 @@ public class GameManager : MonoBehaviour
                 menuButtonController.BacktoMainMenue();
             }
         }
-
-        // boost color control
-        if (boostIsReload == true)
-        {
-            if (boostSlider.value > boostSlider.maxValue * 0.9f)
-            {
-                boostFillArea.color = powerBoostColor;
-            }
-            else
-            {
-                boostFillArea.color = boostColor;
-            }
-        }
     }
 
 
@@ -465,29 +448,11 @@ public class GameManager : MonoBehaviour
         spawnDistrictList.goBackDimensionPickup[districtNumber - 1].SetActive(true);
     }
 
-    // updade Player Boost slider
-    public float UpdateBoostSlider(float boostValue)
+    // updade Player Energie slider
+    public void UpdateEnergieSlider(float energieValue)
     {
-        boostValue = boostSlider.value;
-        _boostTimer += Time.deltaTime;
-   
-       
-        if (_boostTimer > _boostIntervall)
-        {
-            boostValue -= _boostIntervall;
-            boostSlider.DOKill();
-            boostSlider.value = boostValue;
-            _boostTimer = 0f;
-        }
-
-        return boostValue;
-    }
-
-    // Reaload Boost
-    public void BoostReload()
-    {
-        boostIsReload = true;
-        boostSlider.DOValue(boostSlider.maxValue, 3f, false).SetEase(Ease.OutSine).OnComplete(() => { boostIsReload = false; } ); 
+        energieSlider.DOKill();
+        energieSlider.DOValue(energieValue, 0.1f, false);
     }
 
     // update district text - PlayerUI
@@ -723,28 +688,28 @@ public class GameManager : MonoBehaviour
                 if (cinemachineSwitcher.topCamera_flag == true)
                     topShake.ShakeCamera(1f, 0.3f);
                 else
-                    backShake.ShakeCamera(0.5f, 0.3f);
+                    backShake.ShakeCamera(0.4f, 0.3f);
                 break;
 
             case 2:
                 if (cinemachineSwitcher.topCamera_flag == true)
                     topShake.ShakeCamera(2f, 0.5f);
                 else
-                    backShake.ShakeCamera(1f, 0.5f);
+                    backShake.ShakeCamera(0.4f, 0.5f);
                 break;
 
             case 3:
                 if (cinemachineSwitcher.topCamera_flag == true)
                     topShake.ShakeCamera(1f, 1f);
                 else
-                    backShake.ShakeCamera(1.5f, 1f);
+                    backShake.ShakeCamera(0.4f, 1f);
                 break;
 
             case 4:
                 if (cinemachineSwitcher.topCamera_flag == true)
                     topShake.ShakeCamera(0.5f, 10f);
                 else
-                    backShake.ShakeCamera(0.25f, 10f);
+                    backShake.ShakeCamera(0.4f, 10f);
                 break;
                 break;
         }
@@ -780,14 +745,13 @@ public class GameManager : MonoBehaviour
         //AudioManager.Instance.PlaySFX("WindowOpen");
         experienceSlider.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 0.4f, 5, 1).SetDelay(0.2f).OnComplete(() =>
         {
-            AudioManager.Instance.PlaySFX("PlayerLaserDie");
+           AudioManager.Instance.PlaySFX("PlayerLaserDie");
 
-            healthBar.maxValue = player.playerMaxHealth;
-            boostSlider.maxValue = player.boostValue;
+           healthBar.maxValue = player.playerMaxHealth;
+           energieSlider.maxValue = player.energieMax;
            healthBar.DOValue(healthBar.maxValue, 0.6f, false).SetEase(Ease.InExpo).OnComplete(() => 
             { 
                 healthText.text = player.playerCurrentHealth + "/" + player.playerMaxHealth;
-                boostSlider.DOValue(boostSlider.maxValue, 0.3f, false).SetEase(Ease.InExpo);
             });
             healthBar.transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1).SetDelay(0.55f);
         }); 

@@ -142,7 +142,7 @@ public class ClassTooltip : MonoBehaviour
 
                 content_ = content_.Replace("ZZZ", playerController.playerCurrentHealth.ToString() + " / " + playerController.playerMaxHealth.ToString());
                 content_ = content_.Replace("AAA", playerController.protectionLvl.ToString() + " protection - " + playerController.protectionPerc.ToString());
-                content_ = content_.Replace("BBB", gameManager.boostSlider.maxValue.ToString());
+                content_ = content_.Replace("BBB", gameManager.energieSlider.maxValue.ToString());
                 content_ = content_.Replace("CCC", playerController.rotateSpeed.ToString());
                 content_ = content_.Replace("EEE", playerController.speed.ToString());
                 content_ = content_.Replace("DDD", playerController.pickupRange.ToString());

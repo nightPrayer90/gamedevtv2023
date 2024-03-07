@@ -527,22 +527,22 @@ public class PlayerController : MonoBehaviour
             // boost
             else if (Input.GetButton("Boost"))
             {
-                boostValue = gameManager.UpdateBoostSlider(boostValue);
+               // boostValue = gameManager.UpdateEnergieSlider(boostValue);
 
                 if (boostValue > 0)
                 {
                     if (isBoost == false)
                     {
                         // power Boost
-                        if (boostValue >= gameManager.boostSlider.maxValue * 0.90f)
+                        if (boostValue >= gameManager.energieSlider.maxValue * 0.90f)
                         {
                             powerBoostMarker.SetActive(true);
                             AudioManager.Instance.PlaySFX("PlayerBoostKick");
-                            gameManager.boostFillArea.color = gameManager.boostColor;
+                       //     gameManager.boostFillArea.color = gameManager.boostColor;
                             playerMesh.DOLocalMoveZ(-0.1f, 0.1f);
                             boostParticle.Emit(80);
                             playerRb.AddForce(transform.forward * -speed * 30, ForceMode.Force);
-                            gameManager.boostSlider.value = boostValue * 0.75f;
+                            gameManager.energieSlider.value = boostValue * 0.75f;
                             canTakeDamge = false;
                             Invoke("Invulnerability", upgradeChooseList.baseBoostInvulnerability);
                         }
@@ -600,7 +600,7 @@ public class PlayerController : MonoBehaviour
     // Invoke to aktivate the BoostReaload()
     private void BoostReload()
     {
-        gameManager.BoostReload();
+        //gameManager.BoostReload();
         boostParticle.Emit(20);
     }
 

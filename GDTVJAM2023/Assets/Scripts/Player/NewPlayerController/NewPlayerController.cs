@@ -11,9 +11,9 @@ public class NewPlayerController : MonoBehaviour
     private float introTargetY = 6f;
 
     [Header("Player Movement")]
-    public float horizontalInput;
-    public float verticalInput;
-    public float horizontalInput2;
+    [HideInInspector] public float horizontalInput;
+    [HideInInspector] public float verticalInput;
+    [HideInInspector] public float horizontalInput2;
 
     [Header("Player Stats")]
     [SerializeField] private bool canTakeDamge = true;
@@ -21,6 +21,9 @@ public class NewPlayerController : MonoBehaviour
     public int playerCurrentHealth = 10;
     public float boostValue = 1;
     public float pickupRange = 5;
+    public float energieProduction = 1f;
+    public float energieMax = 10f;
+    public float energieCurrent = 0f;
     [HideInInspector] public float protectionPerc = 0;
     [HideInInspector] public int protectionLvl = 0;
 
@@ -35,9 +38,11 @@ public class NewPlayerController : MonoBehaviour
     [SerializeField] private GameObject centerOfMass;
     [SerializeField] private Rigidbody playerRigidbody;
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private GameObject powerBoostMarker;
     public List<ParticleCollisionEvent> collisionEvents;
     private UpgradeChooseList upgradeChooseList;
     private PlayerWeaponController playerWeaponController;
+    
 
     [Header("Outside Border")]
     public float damageInterval = 1f;
@@ -67,7 +72,13 @@ public class NewPlayerController : MonoBehaviour
 
         // intro starting sound
         AudioManager.Instance.PlaySFX("LiftUPBoss");
+
+        // starting Energie System
+        InvokeRepeating("EnergieRegen", 2f, 0.1f);
+        
     }
+
+  
 
     // Update is called once per frame
     void Update()
@@ -252,7 +263,6 @@ public class NewPlayerController : MonoBehaviour
         {
             if (isOutsideBorder == false && isIntro == false)
             {
-                Debug.Log("outsideBorder");
                 InvokeRepeating("PlayerIsOutsideBorder", 2.2f, 1f);// damageInterval);
                 Invoke("PlayerIsOutsideBorderWarning", 0.1f);
 
@@ -289,7 +299,7 @@ public class NewPlayerController : MonoBehaviour
                 // trigger a Explosion on the Enemy
                 ObjectPoolManager.SpawnObject(enemyHealth.collisionExplosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
 
-                // if the player is invulnerability 
+                // if the player is not invulnerability 
                 if (canTakeDamge == true || enemyHealth.canPoolObject == false)
                 {
                     // add a force after the collision to the player
@@ -312,13 +322,11 @@ public class NewPlayerController : MonoBehaviour
                         NovaOnHit(1.2f, 6);
                         playerRigidbody.AddForce(explosionDirection * 1.4f * enemyHealth.explosionForce, ForceMode.Impulse);
                     }
-                    else
+                    else*/
                     {
                         gameManager.DoFloatingText(collision.transform.position, "+" + enemyHealth.enemyHealth, enemyHitColor);
-                        playerRigidbody.AddForce(explosionDirection * 1f * enemyHealth.explosionForce, ForceMode.Impulse);
+                        playerRigidbody.AddForce(explosionDirection * 0.5f * enemyHealth.explosionForce, ForceMode.Impulse);
                     }
-                    */
-
                 }
 
                 // refresh the UI
@@ -390,6 +398,25 @@ public class NewPlayerController : MonoBehaviour
         flySpeed = playerRigidbody.velocity.magnitude;
         Debug.Log("Speed: " + flySpeed);
     }
+    #endregion
+
+
+    /* **************************************************************************** */
+    /* EnergySystem---------------------------------------------------------------- */
+    /* **************************************************************************** */
+    #region energie System
+    //InvokeRepeating - Awake
+    private void EnergieRegen()
+    {
+        if(energieCurrent < energieMax)
+        {
+            energieCurrent = Mathf.Min(energieMax, energieCurrent + energieProduction / 10);
+            gameManager.UpdateEnergieSlider(Mathf.Max(0,energieCurrent));
+        }
+        Debug.Log(energieCurrent);
+    }
+
+
     #endregion
 
 
@@ -529,5 +556,21 @@ public class NewPlayerController : MonoBehaviour
         AudioManager.Instance.PlaySFX("ShortAlert");
         navigationController.SetTargetPosition();
     }
+
+    // player can take damage
+    private void Invulnerability()
+    {
+        canTakeDamge = true;
+        powerBoostMarker.SetActive(false);
+    }
+
+    // player can take damage
+    public void GetInvulnerability()
+    {
+        canTakeDamge = false;
+        powerBoostMarker.SetActive(true);
+        Invoke("Invulnerability", upgradeChooseList.baseBoostInvulnerability);
+    }
+
     #endregion
 }

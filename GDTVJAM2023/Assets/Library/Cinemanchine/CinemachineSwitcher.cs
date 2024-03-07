@@ -25,10 +25,12 @@ public class CinemachineSwitcher : MonoBehaviour
         if (!topCamera_flag)
         {
             animator.Play("TopCamera");
+            AudioManager.Instance.PlaySFX("ViewChange");
         }
         else
         {
             animator.Play("FollowCamera");
+            AudioManager.Instance.PlaySFX("ViewChange");
         }
         topCamera_flag = !topCamera_flag;
     }

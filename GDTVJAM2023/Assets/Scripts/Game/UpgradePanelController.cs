@@ -367,9 +367,9 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 3: //upgrade: boost
                 upgradeChooseList.weaponIndexInstalled[number] = true;
-                gameManager.boostSlider.maxValue = gameManager.boostSlider.maxValue + upgradeValue[index];
-                playerController.boostValue = gameManager.boostSlider.maxValue + upgradeValue[index];
-                gameManager.boostSlider.value = gameManager.boostSlider.maxValue;
+                gameManager.energieSlider.maxValue = gameManager.energieSlider.maxValue + upgradeValue[index];
+                playerController.boostValue = gameManager.energieSlider.maxValue + upgradeValue[index];
+                gameManager.energieSlider.value = gameManager.energieSlider.maxValue;
                 break;
             case 4: //upgrade: rotate speed
                 //playerController.rotateSpeed = playerController.rotateSpeed + upgradeValue[index];
