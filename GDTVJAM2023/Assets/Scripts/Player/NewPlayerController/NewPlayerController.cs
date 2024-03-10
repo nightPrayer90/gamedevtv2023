@@ -325,7 +325,7 @@ public class NewPlayerController : MonoBehaviour
                     else*/
                     {
                         gameManager.DoFloatingText(collision.transform.position, "+" + enemyHealth.enemyHealth, enemyHitColor);
-                        playerRigidbody.AddForce(explosionDirection * 0.5f * enemyHealth.explosionForce, ForceMode.Impulse);
+                        playerRigidbody.AddForce(transform.forward * 2.5f , ForceMode.Impulse);
                     }
                 }
 
@@ -413,7 +413,6 @@ public class NewPlayerController : MonoBehaviour
             energieCurrent = Mathf.Min(energieMax, energieCurrent + energieProduction / 10);
             gameManager.UpdateEnergieSlider(Mathf.Max(0,energieCurrent));
         }
-        Debug.Log(energieCurrent);
     }
 
 
