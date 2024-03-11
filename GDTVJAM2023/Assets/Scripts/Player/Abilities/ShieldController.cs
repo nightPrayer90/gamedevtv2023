@@ -55,7 +55,7 @@ public class ShieldController : MonoBehaviour
         if (playerTr != null)
         {
             transform.position = playerTr.position;
-            transform.rotation = playerTr.rotation;
+            transform.rotation = Quaternion.Euler(0f, playerTr.rotation.eulerAngles.y + 180f, 0f); ;
         }
     }
 

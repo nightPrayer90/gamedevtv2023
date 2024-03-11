@@ -9,13 +9,16 @@ public class NewBulletMainWeapon : MonoBehaviour
     //private Objects
     private GameManager gameManager;
     private UpgradeChooseList upgradeChooseList;
-    private NewPlayerController playerController;
 
     public int bulletBaseDamage;
+    private int bulletResouldDamage;
     public float fireRate;
     public AudioSource WeaponSound;
     public ParticleSystem bulletParticalSystem;
     public ParticleBullet particelBullet;
+    private NewPlayerController playerController;
+    private PlayerWeaponController playerWeaponController;
+
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -26,13 +29,34 @@ public class NewBulletMainWeapon : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
         playerController = GetComponentInParent<NewPlayerController>();
+        playerController.OnIntroOver += HandleStartShooting;
+        playerWeaponController = GetComponentInParent<PlayerWeaponController>();
+        playerWeaponController.OnMWDamage += HandleDamageUpdate;
+        playerWeaponController.ONUpdateBulletRealodTime += HandleFireRateUpdate;
 
         // bullet
         UpdateBulletValues();
-
-        // To do
-        Invoke("StartShooting", 2.5f);
     }
+
+    public void HandleDamageUpdate(int damageToUpdate)
+    {
+        bulletBaseDamage = (bulletBaseDamage + damageToUpdate);
+        SetBulletDamage();
+    }
+
+    private void HandleStartShooting()
+    {
+        Invoke("StartShooting", 0.2f);
+    }
+
+    private void HandleFireRateUpdate(float fireRateUpdate)
+    {
+        fireRate = fireRate * fireRateUpdate;
+        CancelInvoke("BulletShotEmit");
+        InvokeRepeating("BulletShotEmit", 0.3f, fireRate);
+    }
+
+
     #endregion
 
 
@@ -90,7 +114,8 @@ public class NewBulletMainWeapon : MonoBehaviour
     // set the main weapon particle damage
     public void SetBulletDamage()
     {
-        particelBullet.BulletSetDamage(bulletBaseDamage);
+        bulletResouldDamage = bulletBaseDamage + Mathf.RoundToInt((float)bulletBaseDamage * (upgradeChooseList.percBulletDamage / 100));
+        particelBullet.BulletSetDamage(bulletResouldDamage);
     }
     #endregion
 }

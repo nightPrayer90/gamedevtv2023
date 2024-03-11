@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class NewPlayerController : MonoBehaviour
 {
@@ -19,7 +20,6 @@ public class NewPlayerController : MonoBehaviour
     [SerializeField] private bool canTakeDamge = true;
     public int playerMaxHealth = 10;
     public int playerCurrentHealth = 10;
-    public float boostValue = 1;
     public float pickupRange = 5;
     public float energieProduction = 1f;
     public float energieMax = 10f;
@@ -34,6 +34,7 @@ public class NewPlayerController : MonoBehaviour
     private float playerLevelUpFactor = 1.2f;
 
     [Header("Game Objects")]
+    public GameObject novaOnHit;
     [SerializeField] private NavigationController navigationController;
     [SerializeField] private GameObject centerOfMass;
     [SerializeField] private Rigidbody playerRigidbody;
@@ -57,6 +58,10 @@ public class NewPlayerController : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private float flySpeed;
+
+    // Events
+    public event Action OnIntroOver;
+    public event Action<float> OnUpdateRotateSpeed;
 
     /* **************************************************************************** */
     /* Lifecycle-Methoden---------------------------------------------------------- */
@@ -97,14 +102,8 @@ public class NewPlayerController : MonoBehaviour
             {
                 // Startboost in allen Engines auslösen
                 AudioManager.Instance.PlaySFX("ShortAlert");
-                foreach (Transform child in transform)
-                {
-                    if (child.GetComponent<NewBaseEngine>() != null)
-                    {
-                        child.GetComponent<NewBaseEngine>().StartBoost();
-                    }
-                }
 
+                OnIntroOver?.Invoke();
                 isIntro = false;
             }
 
@@ -312,17 +311,17 @@ public class NewPlayerController : MonoBehaviour
                     // trigger the damage floating text
                     gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
                     
-                    /*if (upgradeChooseList.weaponIndexInstalled[35] == true) NovaOnHit(2f, 8);*/
+                    if (upgradeChooseList.weaponIndexInstalled[35] == true) NovaOnHit(2f, 8);
                 }
                 else
                 {
                     // add a force after the collision to the player
-                    /*if (upgradeChooseList.weaponIndexInstalled[36] == true)
+                    if (upgradeChooseList.weaponIndexInstalled[36] == true)
                     {
                         NovaOnHit(1.2f, 6);
                         playerRigidbody.AddForce(explosionDirection * 1.4f * enemyHealth.explosionForce, ForceMode.Impulse);
                     }
-                    else*/
+                    else
                     {
                         gameManager.DoFloatingText(collision.transform.position, "+" + enemyHealth.enemyHealth, enemyHitColor);
                         playerRigidbody.AddForce(transform.forward * 2.5f , ForceMode.Impulse);
@@ -434,7 +433,7 @@ public class NewPlayerController : MonoBehaviour
         // chance to get double exp
         if (upgradeChooseList.chanceToGetTwoExp > 0)
         {
-            if (Random.Range(0, 100) <= upgradeChooseList.chanceToGetTwoExp)
+            if (UnityEngine.Random.Range(0, 100) <= upgradeChooseList.chanceToGetTwoExp)
             {
                 gameManager.DoFloatingText(transform.position, "+", Color.white);
                 exp = 2;
@@ -444,7 +443,7 @@ public class NewPlayerController : MonoBehaviour
         //chance to get one health
         if (upgradeChooseList.chanceToGet1Health > 0)
         {
-            if (Random.Range(0, 100) <= upgradeChooseList.chanceToGet1Health)
+            if (UnityEngine.Random.Range(0, 100) <= upgradeChooseList.chanceToGet1Health)
             {
                 gameManager.DoFloatingText(transform.position, "+1", Color.green);
                 UpdatePlayerHealth(-1);
@@ -514,7 +513,7 @@ public class NewPlayerController : MonoBehaviour
     private int Protection(int damage)
     {
         int adjustedDamge = damage;
-        int ran = Random.Range(0, 99);
+        int ran = UnityEngine.Random.Range(0, 99);
 
         if (ran <= protectionPerc)
         {
@@ -555,6 +554,79 @@ public class NewPlayerController : MonoBehaviour
         AudioManager.Instance.PlaySFX("ShortAlert");
         navigationController.SetTargetPosition();
     }
+    #endregion
+
+
+
+    /* **************************************************************************** */
+    /* MISC------------------------------------------------------------------------ */
+    /* **************************************************************************** */
+    #region MISC
+    // trigger a nova on Hit
+    public void NovaOnHit(float explosionRadius, int NovaDamage)
+    {
+        // Audio
+        AudioManager.Instance.PlaySFX("Playernova");
+
+        Vector3 pos = transform.position;
+        LayerMask layerMask = (1 << 6);
+        explosionRadius = explosionRadius + playerWeaponController.rocketAOERadius;
+        NovaDamage = 6;
+
+        if (gameManager.dimensionShift == true)
+        {
+            layerMask = (1 << 9);
+        }
+
+        // array of all Objects in the explosionRadius
+        var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius, layerMask);
+
+        foreach (var obj in surroundingObjects)
+        {
+            // get rigidbodys from all objects in range
+            var rb = obj.GetComponent<Rigidbody>();
+            if (rb == null) continue;
+
+            // calculate distance between explosioncenter and objects in Range
+            float distance = Vector3.Distance(pos, rb.transform.position);
+
+            if (distance < explosionRadius)
+            {
+                float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius), 1f);
+                int adjustedDamage = Mathf.CeilToInt(NovaDamage * scaleFactor);
+
+                // get EnemyHealthscript
+                EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
+                Color resultColor = enemyHitColor;
+
+                if (eHC != null)
+                {
+                    if (upgradeChooseList.weaponIndexInstalled[54] == true)
+                    {
+                        int ran = UnityEngine.Random.Range(0, 100);
+                        if (ran < playerWeaponController.bulletCritChance)
+                        {
+                            adjustedDamage = eHC.CritDamage(adjustedDamage);
+                            resultColor = eHC.critColor;
+                        }
+                    }
+
+                    // show floating text
+                    if (eHC.canTakeDamage == true)
+                        gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), resultColor);
+
+                    // calculate enemy damage
+                    eHC.TakeExplosionDamage(adjustedDamage);
+
+                }
+                rb.AddExplosionForce(400, pos, explosionRadius);
+            }
+        }
+
+        GameObject go = ObjectPoolManager.SpawnObject(novaOnHit, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
+        go.GetComponent<ParticleSystemDestroy>().rippleParicleSize = explosionRadius;
+
+    }
 
     // player can take damage
     private void Invulnerability()
@@ -571,5 +643,9 @@ public class NewPlayerController : MonoBehaviour
         Invoke("Invulnerability", upgradeChooseList.baseBoostInvulnerability);
     }
 
+    public void UpdateAgility(float updateSpeed)
+    {
+        OnUpdateRotateSpeed?.Invoke(updateSpeed);
+    }
     #endregion
 }

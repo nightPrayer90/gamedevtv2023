@@ -41,7 +41,9 @@ public class NewBaseEngine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<NewPlayerController>();
+        playerController = GetComponentInParent<NewPlayerController>();
+        playerController.OnIntroOver += HandleStartBoost;
+        playerController.OnUpdateRotateSpeed += HandleSpeedUpdate;
         playerRigidbody = playerController.GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
@@ -135,10 +137,16 @@ public class NewBaseEngine : MonoBehaviour
         }
     }
 
-    public void StartBoost()
+    private void HandleStartBoost()
     {
         ps_engine.Play();
-        playerRigidbody.AddForce(transform.forward * thrustForce * 80, ForceMode.Force);
+        playerRigidbody.AddForce(transform.forward * thrustForce * 160, ForceMode.Force);
+    }
+
+    private void HandleSpeedUpdate(float flyspeed)
+    {
+        thrustForce = thrustForce * (1 + (flyspeed/100));
+        backForce = backForce * (1 + (flyspeed / 100));
     }
 
     private void ShowEnergie()

@@ -20,8 +20,8 @@ public class NewRocketMainWeapon : MonoBehaviour
     //private Objects
     private GameManager gameManager;
     private UpgradeChooseList upgradeChooseList;
-
-
+    private PlayerWeaponController playerWeaponController;
+    private NewPlayerController playerController;
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -31,9 +31,21 @@ public class NewRocketMainWeapon : MonoBehaviour
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
+        playerController = GetComponentInParent<NewPlayerController>();
+        playerController.OnIntroOver += HandleStartShooting;
+        playerWeaponController = GetComponentInParent<PlayerWeaponController>();
+        playerWeaponController.OnMWDamage += HandleDamageUpdate;
+    }
 
-        // rocket
-        InvokeRepeating("SpawnRocked", fireRate, fireRate);    }
+    public void HandleDamageUpdate(int damageToUpdate)
+    {
+        rockedBaseDamage += damageToUpdate;
+    }
+
+    private void HandleStartShooting()
+    {
+        InvokeRepeating("SpawnRocked", fireRate, fireRate);
+    }
     #endregion
 
 

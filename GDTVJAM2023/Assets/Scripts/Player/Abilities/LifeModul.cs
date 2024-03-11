@@ -10,14 +10,14 @@ public class LifeModul : MonoBehaviour
     public ParticleSystem healParticleEffect;
     public string audioClip = "";
     private GameManager gameManager;
-    private PlayerController playerController;
+    private NewPlayerController playerController;
     
 
     // Update is called once per frame
     private void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        playerController = GameObject.FindWithTag("Player").GetComponent<NewPlayerController>();
 
         Invoke("Heal", nextHealTick);
     }

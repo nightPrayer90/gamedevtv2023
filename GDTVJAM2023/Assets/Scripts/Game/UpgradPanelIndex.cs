@@ -74,8 +74,8 @@ public class UpgradPanelIndex : MonoBehaviour
 
         mainClass.text = upgradePanelController.mainClassStr[index];
         mainClass.color = upgradePanelController.mainClassColor[index];
-        subClass.text = upgradePanelController.subClassStr[index];
-        subClass.color = upgradePanelController.subClassColor[index];
+        //subClass.text = upgradePanelController.subClassStr[index];
+       // subClass.color = upgradePanelController.subClassColor[index];
 
         headerText.color = upgradePanelController.headerColor[index];
 

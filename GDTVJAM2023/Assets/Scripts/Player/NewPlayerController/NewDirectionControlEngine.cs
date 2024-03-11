@@ -25,7 +25,8 @@ public class NewDirectionControlEngine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<NewPlayerController>();
+        playerController = GetComponentInParent<NewPlayerController>();
+        playerController.OnUpdateRotateSpeed += HandleRotateSpeed;
         playerRigidbody = playerController.GetComponent<Rigidbody>();
         engineUPPos = transform.up;
 
@@ -109,5 +110,10 @@ public class NewDirectionControlEngine : MonoBehaviour
                 ps_engine.Emit(1);
             }
         }
+    }
+
+    private void HandleRotateSpeed(float RotateSpeed)
+    {
+        torqueForce = torqueForce * (1 + (RotateSpeed/100));
     }
 }

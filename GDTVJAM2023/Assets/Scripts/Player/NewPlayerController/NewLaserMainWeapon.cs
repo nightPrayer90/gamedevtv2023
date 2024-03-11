@@ -5,16 +5,14 @@ using UnityEngine;
 
 public class NewLaserMainWeapon : MonoBehaviour
 {
-    [Header("Main Weapon")]
-    public int bulletBaseDamage;
-    public float fireRate;
-
     [Header("Laser Settings")]
-    public float spawnInterval = 0.1f;
+    public int laserBaseDamage;
+    public float fireRate;
     public float laserRange = 5f;
     public float laserShootTime = 3f;
     public string audioClip = "";
-    private float nextSpawnTime = 0f;
+    public float soundCastInterval = 0.25f;
+    private float nextSoundCastTime = 0f;
     public LineRenderer lr;
     public ParticleSystem hitParticle;
     public ParticleSystem muzzleParticle;
@@ -28,19 +26,30 @@ public class NewLaserMainWeapon : MonoBehaviour
     //private Objects
     private GameManager gameManager;
     private UpgradeChooseList upgradeChooseList;
-
+    private PlayerWeaponController playerWeaponController;
+    private NewPlayerController playerController;
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
     /* **************************************************************************** */
+    #region lifecycle Methoden
+
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
+        playerController = GetComponentInParent<NewPlayerController>();
+        playerController.OnIntroOver += HandleStartShooting;
+
+        playerWeaponController = GetComponentInParent<PlayerWeaponController>();
+        playerWeaponController.OnMWDamage += HandleDamageUpdate;
+        playerWeaponController.ONUpdateLaserReloadTime += HandleLaserReloadTime;
+
         laserShootTime = 3f; //shipData.laserShootingTime;
 
+
         lr.enabled = false;
-        Invoke("StartLaserShooting", 3);
+        
     }
 
     private void Update()
@@ -48,10 +57,30 @@ public class NewLaserMainWeapon : MonoBehaviour
         LaserShooting();
     }
 
+    private void HandleDamageUpdate(int damageToUpdate)
+    {
+        laserBaseDamage += damageToUpdate;
+    }
+
+    private void HandleStartShooting()
+    {
+        Invoke("StartLaserShooting", 0.5f);
+    }
+
+    private void HandleLaserReloadTime(float updateRealodeTime)
+    {
+        fireRate = fireRate * updateRealodeTime;
+        CancelInvoke("LaserShooting");
+        Invoke("StartLaserShooting", fireRate);
+    }
+    #endregion
+
+
 
     /* **************************************************************************** */
     /* LASER ---------------------------------------------------------------------- */
     /* **************************************************************************** */
+    #region Laser
     // shooting controller
     void LaserShooting()
     {
@@ -61,11 +90,11 @@ public class NewLaserMainWeapon : MonoBehaviour
         {
             LaserRaycast();
 
-            if (Time.time >= nextSpawnTime)
+            // shooting sound
+            if (Time.time >= nextSoundCastTime)
             {
-                // shooting sound
                 AudioManager.Instance.PlaySFX(audioClip);
-                nextSpawnTime = Time.time + spawnInterval;
+                nextSoundCastTime = Time.time + soundCastInterval;
             }
 
         }
@@ -117,8 +146,8 @@ public class NewLaserMainWeapon : MonoBehaviour
 
                 if (collidedObject.canTakeLaserDamage[1] == true && collidedObject.canTakeDamage == true)
                 {
-                    collidedObject.TakeLaserDamage(bulletBaseDamage, 1);
-                    collidedObject.ShowDamageFromPosition(hit.point, bulletBaseDamage);
+                    collidedObject.TakeLaserDamage(laserBaseDamage, 1);
+                    collidedObject.ShowDamageFromPosition(hit.point, laserBaseDamage);
                     collisionParticle.transform.position = hit.point;
                     collisionParticle.Play();
                 }
@@ -155,4 +184,5 @@ public class NewLaserMainWeapon : MonoBehaviour
         lr.SetPosition(0, LaserSpawnPoint1.position);
         lr.SetPosition(1, LaserSpawnPoint1.position - LaserSpawnPoint1.forward * laserRange);
     }
+    #endregion
 }

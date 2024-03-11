@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections.Generic;
 using DG.Tweening;
 
+
 public class UpgradePanelController : MonoBehaviour
 {
     [Header("Main Panel")]
@@ -16,8 +17,8 @@ public class UpgradePanelController : MonoBehaviour
     [HideInInspector] public Color[] headerColor;
     [HideInInspector] public Color[] mainClassColor;
     [HideInInspector] public string[] mainClassStr;
-    [HideInInspector] public Color[] subClassColor;
-    [HideInInspector] public string[] subClassStr;
+    /*[HideInInspector] public Color[] subClassColor = new Color[3];
+    [HideInInspector] public string[] subClassStr = new string[3];*/
     [HideInInspector] public Sprite[] iconPanel;
     [HideInInspector] public Color[] reqColor;
     [HideInInspector] public string[] reqText;
@@ -40,7 +41,7 @@ public class UpgradePanelController : MonoBehaviour
     public List<Image> selectedUpgradePanelList = new List<Image>();
     private int weaponCount = 0;
 
-    //Objects
+    // Objects
     private GameManager gameManager;
     private NewPlayerController playerController;
     private PlayerWeaponController playerWeaponController;
@@ -49,6 +50,7 @@ public class UpgradePanelController : MonoBehaviour
     public int selectetPanel;
     private bool isButtonPressed = false;
     public bool isTweening = true;
+
 
     void OnEnable()
     {
@@ -63,8 +65,8 @@ public class UpgradePanelController : MonoBehaviour
         descriptionTextStr = new string[3];
         mainClassColor = new Color[3];
         mainClassStr = new string[3];
-        subClassColor = new Color[3];
-        subClassStr = new string[3];
+        //subClassColor = new Color[3];
+        //subClassStr = new string[3];
         iconPanel = new Sprite[3];
         headerColor = new Color[3];
         reqColor = new Color[6];
@@ -183,10 +185,10 @@ public class UpgradePanelController : MonoBehaviour
                     upgradeValue[i] = targetPercentage;
                     break;
                 case 3: // boost
-                    upgradeValue[i] = 0.4f;
+                    upgradeValue[i] = 15f; // 10%
                     break;
                 case 4: // agility
-                    upgradeValue[i] = 0.3f;
+                    upgradeValue[i] = 10f; // 10%
                     break;
                 case 5: // pickup range
                     upgradeValue[i] = 0.8f;
@@ -210,9 +212,9 @@ public class UpgradePanelController : MonoBehaviour
             mainClassColor[i] = classColors[index];
 
             // subClass
-            index = (int)uC.subClass;
+            /*index = (int)uC.subClass;
             subClassStr[i] = uC.subClass.ToString();
-            subClassColor[i] = classColors[index];
+            subClassColor[i] = classColors[index];*/
 
             // set requerments
             int count_ = 0;
@@ -291,46 +293,6 @@ public class UpgradePanelController : MonoBehaviour
                 selectedUpgradePanelList[weaponCount].gameObject.GetComponent<ClassTooltipTrigger>().contentType = number;
             }
 
-            // protection 
-            /*if (number == 2)
-            {
-                float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + upgradeValue[index]);
-                float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
-            }*/
-
-            /* switch (number)
-             {
-                 case 0:
-                     //lifeText.text = (playerController.playerMaxHealth + upgradeValue[index]).ToString();
-                     break;
-                 case 1:
-                     ///damageText.text = (playerController.playerBulletBaseDamage + upgradeValue[index]).ToString();
-                     break;
-                 case 2:
-                     //float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + upgradeValue[index]);
-                     //float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
-                     //protectionText.text = targetPercentage.ToString() + "%";
-                     break;
-                 case 3:
-                     //boostText.text = (gameManager.boostSlider.maxValue + upgradeValue[index]).ToString() + "s";
-                     break;
-                 case 4:
-                     //agilityText.text = (playerController.rotateSpeed + upgradeValue[index]).ToString();
-                     break;
-                 case 5:
-                     //pickupText.text = (playerController.pickupRange + upgradeValue[index]).ToString();
-                     break;
-
-                 //----
-                 case >= 18 and <= 80: //TODOOOOOO
-                     break;
-
-                 //----
-                 default: //weapon select
-
-                     break;
-             }*/
-
             UpgradeContainer uC = upgradeChooseList.weaponUpgrades[number];
 
             // update class colors
@@ -354,26 +316,22 @@ public class UpgradePanelController : MonoBehaviour
                 gameManager.UpdateUIPlayerHealth(playerController.playerCurrentHealth, playerController.playerMaxHealth);
                 break;
             case 1: //upgrade: main Weapon damage
-                //playerController.playerBulletBaseDamage = playerController.playerBulletBaseDamage + Mathf.RoundToInt(upgradeValue[index]);
-                //playerController.SetBulletDamage();
+                playerWeaponController.UpdateMWDamage(Mathf.RoundToInt(upgradeValue[index]));
                 break;
             case 2: //upgrade: Protection
                 float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + 1);
                 float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
-
                 playerController.protectionPerc = targetPercentage;
                 playerController.protectionLvl ++;
-
                 break;
             case 3: //upgrade: boost
                 upgradeChooseList.weaponIndexInstalled[number] = true;
-                gameManager.energieSlider.maxValue = gameManager.energieSlider.maxValue + upgradeValue[index];
-                playerController.boostValue = gameManager.energieSlider.maxValue + upgradeValue[index];
-                gameManager.energieSlider.value = gameManager.energieSlider.maxValue;
+                playerController.energieMax = playerController.energieMax * (1 + upgradeValue[index] / 100);
+                gameManager.energieSlider.maxValue = playerController.energieMax;
+                gameManager.energieSlider.value = playerController.energieMax;
                 break;
             case 4: //upgrade: rotate speed
-                //playerController.rotateSpeed = playerController.rotateSpeed + upgradeValue[index];
-                //playerController.speed = Mathf.Round((playerController.speed + playerController.speed * 0.07f) * 100) / 100;
+                playerController.UpdateAgility(upgradeValue[index]);
                 break;
             case 5: //upgrade: pickup Range
                 upgradeChooseList.weaponIndexInstalled[number] = true;
@@ -506,16 +464,16 @@ public class UpgradePanelController : MonoBehaviour
             case 21: //support class
                 UpdateClass(number, 1);
                 break;
-            case 22: //spwarm class
+            case 22: //spwarm class - useless
                 UpdateClass(number, 1);
                 break;
-            case 23: //Defense class
+            case 23: //Defense class - useless
                 UpdateClass(number, 1);
                 break;
-            case 24: //Targeting class
+            case 24: //Targeting class - useless
                 UpdateClass(number, 1);
                 break;
-            case 25: //Backwards class
+            case 25: //Backwards class - useless
                 UpdateClass(number, 1);
                 break;
 
@@ -594,6 +552,7 @@ public class UpgradePanelController : MonoBehaviour
             case 46: // Ballistic Boost
                 upgradeChooseList.percBulletDamage += 12;
                 playerWeaponController.UpdateWeaponValues();
+                playerWeaponController.UpdateMWDamage(0);
                 break;
             case 47: // Boom Boom Boost
                 upgradeChooseList.percRocketDamage += 15;
@@ -604,13 +563,14 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 49: // Rapid Laser Reload
-                //playerMWController.fireRate = playerMWController.fireRate * 0.9f;
+                playerWeaponController.UpdateMWLaserReloadTime(0.9f);
+
                 break;
             case 50: // Wide Spray Expansion
                 playerWeaponController.sgBulletCount += 2;
                 break;
             case 51: // Lightning Reload
-                //playerMWController.fireRate = playerMWController.fireRate*0.9f;
+                playerWeaponController.UpdateMWBulletFireRate(0.93f);
                 break;
             case 52: // Kaboomed Targets
                 upgradeChooseList.weaponIndexInstalled[number] = true;
@@ -640,11 +600,13 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.UpdateWeaponValues();
                 break;
-
-
-
-
-
+            case 59: // Engine boost
+                playerController.energieProduction = playerController.energieProduction * (1 + (0.2f));
+                break;
+            case 60: // Engine Overload
+                upgradeChooseList.weaponIndexInstalled[number] = true;
+                playerController.energieProduction = playerController.energieProduction * (1 + (0.6f));
+                break;
         }
     }
 

@@ -711,7 +711,6 @@ public class GameManager : MonoBehaviour
                 else
                     backShake.ShakeCamera(0.4f, 10f);
                 break;
-                break;
         }
     }
 
