@@ -34,7 +34,7 @@ public class DropRocketController : MonoBehaviour
 
     private const string playerTag = "Player";
     private Vector3 targetV3;
-    private PlayerController playerController;
+    private NewPlayerController playerController;
     private Rigidbody playerRigidBody;
 
     
@@ -49,7 +49,7 @@ public class DropRocketController : MonoBehaviour
         // set Game Objects
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         player = GameObject.FindGameObjectWithTag(playerTag).transform;
-        playerController = player.GetComponent<PlayerController>();
+        playerController = player.GetComponent<NewPlayerController>();
         playerWeaponController = player.GetComponent<PlayerWeaponController>();
         playerRigidBody = player.GetComponent<Rigidbody>();
 

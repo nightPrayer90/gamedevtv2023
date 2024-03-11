@@ -557,10 +557,12 @@ public class UpgradePanelController : MonoBehaviour
             case 47: // Boom Boom Boost
                 upgradeChooseList.percRocketDamage += 15;
                 playerWeaponController.UpdateWeaponValues();
+                playerWeaponController.UpdateMWDamage(0);
                 break;
             case 48: // Beam Boost
                 upgradeChooseList.percLaserDamage += 15;
                 playerWeaponController.UpdateWeaponValues();
+                playerWeaponController.UpdateMWDamage(0);
                 break;
             case 49: // Rapid Laser Reload
                 playerWeaponController.UpdateMWLaserReloadTime(0.9f);

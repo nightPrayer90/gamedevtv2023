@@ -1,15 +1,11 @@
-using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NewRocketMainWeapon : MonoBehaviour
 {
-    [Header("Main Weapon")]
+    [Header("Rocked Settings")]
     public float fireRate;
     public int rockedBaseDamage;
-
-    [Header("Rocked Settings")]
+    private int rockedResultDamage;
     public float detectionRange = 10f;
     [HideInInspector] public float lifeTime = 10f;
     public GameObject rockedToLaunch;
@@ -35,11 +31,14 @@ public class NewRocketMainWeapon : MonoBehaviour
         playerController.OnIntroOver += HandleStartShooting;
         playerWeaponController = GetComponentInParent<PlayerWeaponController>();
         playerWeaponController.OnMWDamage += HandleDamageUpdate;
+
+        HandleDamageUpdate(0);
     }
 
     public void HandleDamageUpdate(int damageToUpdate)
     {
         rockedBaseDamage += damageToUpdate;
+        rockedResultDamage = Mathf.RoundToInt((float)rockedBaseDamage * (1 + (upgradeChooseList.percRocketDamage / 100)));
     }
 
     private void HandleStartShooting()
@@ -131,7 +130,7 @@ public class NewRocketMainWeapon : MonoBehaviour
         {
             GameObject go = ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint.transform.position, Quaternion.Euler(0f, 0f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
             RocketController rocket = go.GetComponent<RocketController>();
-            rocket.damage = rockedBaseDamage;
+            rocket.damage = rockedResultDamage;
             rocket.hitColor = hitColor;
             rocket.SetDestroyTimer();
             rocket.isMainWeapon = true;

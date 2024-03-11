@@ -7,6 +7,7 @@ public class NewLaserMainWeapon : MonoBehaviour
 {
     [Header("Laser Settings")]
     public int laserBaseDamage;
+    private int resultLaserDamage;
     public float fireRate;
     public float laserRange = 5f;
     public float laserShootTime = 3f;
@@ -49,7 +50,7 @@ public class NewLaserMainWeapon : MonoBehaviour
 
 
         lr.enabled = false;
-        
+        HandleDamageUpdate(0);
     }
 
     private void Update()
@@ -60,6 +61,7 @@ public class NewLaserMainWeapon : MonoBehaviour
     private void HandleDamageUpdate(int damageToUpdate)
     {
         laserBaseDamage += damageToUpdate;
+        resultLaserDamage = Mathf.RoundToInt((float)laserBaseDamage * ( 1+ (upgradeChooseList.percLaserDamage/100)));
     }
 
     private void HandleStartShooting()
@@ -146,8 +148,8 @@ public class NewLaserMainWeapon : MonoBehaviour
 
                 if (collidedObject.canTakeLaserDamage[1] == true && collidedObject.canTakeDamage == true)
                 {
-                    collidedObject.TakeLaserDamage(laserBaseDamage, 1);
-                    collidedObject.ShowDamageFromPosition(hit.point, laserBaseDamage);
+                    collidedObject.TakeLaserDamage(resultLaserDamage, 1);
+                    collidedObject.ShowDamageFromPosition(hit.point, resultLaserDamage);
                     collisionParticle.transform.position = hit.point;
                     collisionParticle.Play();
                 }

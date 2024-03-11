@@ -26,6 +26,7 @@ public class NewPlayerController : MonoBehaviour
     public float energieCurrent = 0f;
     [HideInInspector] public float protectionPerc = 0;
     [HideInInspector] public int protectionLvl = 0;
+    private bool canGetLaserDamage = true;
 
     [Header("Player Level Properties")]
     private int playerCurrentExperience;
@@ -359,7 +360,6 @@ public class NewPlayerController : MonoBehaviour
     }
 
     // player get damage vom a laserpointer
-    /*
     public void GetLaserDamage(int damage)
     {
         if (canGetLaserDamage == true && canTakeDamge == true)
@@ -377,7 +377,7 @@ public class NewPlayerController : MonoBehaviour
     private void InvokeLaserDamage()
     {
         canGetLaserDamage = true;
-    }*/
+    }
     #endregion
 
 
