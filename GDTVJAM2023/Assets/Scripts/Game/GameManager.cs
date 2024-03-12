@@ -688,28 +688,35 @@ public class GameManager : MonoBehaviour
                 if (cinemachineSwitcher.topCamera_flag == true)
                     topShake.ShakeCamera(1f, 0.3f);
                 else
-                    backShake.ShakeCamera(0.4f, 0.3f);
+                    backShake.ShakeCamera(0.3f, 0.3f);
                 break;
 
             case 2:
                 if (cinemachineSwitcher.topCamera_flag == true)
                     topShake.ShakeCamera(2f, 0.5f);
                 else
-                    backShake.ShakeCamera(0.4f, 0.5f);
+                    backShake.ShakeCamera(0.3f, 0.5f);
                 break;
 
             case 3:
                 if (cinemachineSwitcher.topCamera_flag == true)
                     topShake.ShakeCamera(1f, 1f);
                 else
-                    backShake.ShakeCamera(0.4f, 1f);
+                    backShake.ShakeCamera(0.3f, 1f);
                 break;
 
             case 4:
                 if (cinemachineSwitcher.topCamera_flag == true)
-                    topShake.ShakeCamera(0.5f, 10f);
+                    topShake.ShakeCamera(0.4f, 10f);
                 else
-                    backShake.ShakeCamera(0.4f, 10f);
+                    backShake.ShakeCamera(0.25f, 10f);
+                break;
+
+            case 5:
+                if (cinemachineSwitcher.topCamera_flag == true)
+                    topShake.ShakeCamera(0.3f, 0.2f);
+                else
+                    backShake.ShakeCamera(0.1f, 0.2f);
                 break;
         }
     }

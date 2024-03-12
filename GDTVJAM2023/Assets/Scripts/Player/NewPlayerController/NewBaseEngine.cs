@@ -64,7 +64,7 @@ public class NewBaseEngine : MonoBehaviour
                 // powerboost
                 if (hasPowerBoost == true && playerController.energieCurrent >= playerController.energieMax*0.90f)
                 {
-                    gameManager.ScreenShake(1);
+                    gameManager.ScreenShake(5);
                     AudioManager.Instance.PlaySFX("PlayerBoostKick");
                     ps_boostParticle.Emit(80);
                     ps_boostEngine.Emit(30);
