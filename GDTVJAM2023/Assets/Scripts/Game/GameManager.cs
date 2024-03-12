@@ -445,7 +445,7 @@ public class GameManager : MonoBehaviour
         bossUI.SetActive(false);
 
         // spawn the district dimension item
-        spawnDistrictList.goBackDimensionPickup[districtNumber - 1].SetActive(true);
+        //spawnDistrictList.goBackDimensionPickup[districtNumber - 1].SetActive(true);
     }
 
     // updade Player Energie slider

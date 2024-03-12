@@ -170,12 +170,6 @@ public class NewPlayerController : MonoBehaviour
                 AudioManager.Instance.PlaySFX("DimensionSwap");
                 break;
 
-            case "DimensionPickUpGoBack":
-                other.gameObject.SetActive(false);
-                gameManager.GoBackDimension();
-                AudioManager.Instance.PlaySFX("DimensionSwap");
-                break;
-
             case "VictoryPickup":
                 other.gameObject.SetActive(false);
                 gameManager.Victory();

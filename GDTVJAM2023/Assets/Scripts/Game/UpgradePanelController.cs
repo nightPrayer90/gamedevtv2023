@@ -342,6 +342,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
+                GoBockToDimension();
                 weaponCount++;
                 break;
             case 7: //weapon: rocket launcher
@@ -349,7 +350,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
-
+                GoBockToDimension();
                 upgradeChooseList.weaponUpgrades[57].reqRocket = 3; // Explosive Impact
 
                 weaponCount++;
@@ -359,7 +360,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
-
+                GoBockToDimension();
                 upgradeChooseList.weaponUpgrades[58].reqBullet = 4; // Explosive Impact
 
                 weaponCount++;
@@ -369,6 +370,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
+                GoBockToDimension();
                 weaponCount++;
                 break;
             case 10: //weapon: life modul
@@ -376,6 +378,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
+                GoBockToDimension();
                 weaponCount++;
                 break;
             case 11: //weapon: spread gun
@@ -383,7 +386,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
-
+                GoBockToDimension();
                 upgradeChooseList.weaponUpgrades[50].reqBullet = 2;  // Wide Spray Expansion
 
                 weaponCount++;
@@ -400,7 +403,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponUpgrades[43].reqSupport = 2; // Ignition Shield
                 upgradeChooseList.weaponUpgrades[44].reqSupport = 2; // Shield Nova
                 upgradeChooseList.weaponUpgrades[45].reqSupport = 2; // Shieldbreaker's Might
-
+                GoBockToDimension();
                 weaponCount++;
                 break;
             case 13: //weapon: back shield
@@ -415,7 +418,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponUpgrades[43].reqSupport = 2; // Ignition Shield
                 upgradeChooseList.weaponUpgrades[44].reqSupport = 2; // Shield Nova
                 upgradeChooseList.weaponUpgrades[45].reqSupport = 2; // Shieldbreaker's Might
-
+                GoBockToDimension();
                 weaponCount++;
                 break;
             case 14: //weapon: schock nova
@@ -423,7 +426,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
-
+                GoBockToDimension();
                 upgradeChooseList.weaponUpgrades[36].reqRocket = 2; // Boosted Nova Impact
 
                 weaponCount++;
@@ -433,6 +436,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
+                GoBockToDimension();
                 weaponCount++;
                 break;
             case 16: //weapon: front laser
@@ -440,6 +444,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
+                GoBockToDimension();
                 weaponCount++;
                 break;
             case 17: //weapon: orbital laser
@@ -447,7 +452,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
-
+                GoBockToDimension();
                 upgradeChooseList.weaponUpgrades[56].reqLaser = 2; // Laser Orbit Accelerator
   
                 weaponCount++;
@@ -708,4 +713,9 @@ public class UpgradePanelController : MonoBehaviour
         return ((pointNumber) >= _class);
     }
 
+    private void GoBockToDimension()
+    {
+        gameManager.GoBackDimension();
+        AudioManager.Instance.PlaySFX("DimensionSwap");
+    }
 }

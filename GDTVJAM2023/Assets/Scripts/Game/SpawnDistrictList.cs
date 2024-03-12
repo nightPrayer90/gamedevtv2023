@@ -7,7 +7,7 @@ public class SpawnDistrictList : MonoBehaviour
     public List<int> waveKillList = new List<int>();
     public List<GroundBaseUp> districtList = new List<GroundBaseUp>();
     public List<GameObject> goToDimensionPickup = new List<GameObject>();
-    public List<GameObject> goBackDimensionPickup = new List<GameObject>();
+    //public List<GameObject> goBackDimensionPickup = new List<GameObject>();
 
     public void Start()
     {
