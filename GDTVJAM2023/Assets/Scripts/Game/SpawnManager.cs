@@ -1,11 +1,14 @@
 using System;
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
+using UnityEngine.XR;
 
 [Serializable]
 public class WaveData
 {
-    public GameObject flyingEnemey;
+    public GameObject enemyToSpawn;
     public int spawnProbabilities;
+    public bool isGroundEnemy = false;
 }
 
 
@@ -39,7 +42,7 @@ public class SpawnManager : MonoBehaviour
 
     private GameManager gameManager;
     private Transform playerTransform;
-
+    private SpawnDistrictList spawnDistrictList;
 
 
     /* **************************************************************************** */
@@ -49,6 +52,8 @@ public class SpawnManager : MonoBehaviour
     {
         // find gameobjects
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        spawnDistrictList = gameManager.GetComponent<SpawnDistrictList>();
+
         playerTransform = GameObject.Find("NewPlayer").GetComponent<Transform>();
         playerTransform = GameObject.Find("NewPlayer").GetComponent<Transform>();
 
@@ -74,10 +79,25 @@ public class SpawnManager : MonoBehaviour
         {
             // Randomly select an object to spawn based on probabilities
             int randomIndex = GetRandomWeightedIndex();
-            GameObject objectToSpawn = waveData[randomIndex].flyingEnemey;
+            GameObject objectToSpawn = waveData[randomIndex].enemyToSpawn;
+            Vector3 spawnPosition = new Vector3(0, 0, 0);
 
             // Generate a random position outside the camera's view
-            Vector3 spawnPosition = GetRandomSpawnPositionFromPlayer();
+            if (waveData[randomIndex].isGroundEnemy == false)
+            {
+                spawnPosition = GetRandomSpawnPositionFromPlayer();
+                gameManager.UpdateEnemyCounter(1);
+            }
+            else
+            {
+                // Choose a District
+                int i = 0;
+                i = UnityEngine.Random.Range(0, gameManager.districtNumber);
+
+                // Spawn in District X
+                spawnPosition = GetRandomSpawnPointOverDistrict(spawnDistrictList.districtList[i].transform, 18f);
+            }
+            
 
             // Spawn the object at the generated position
             switch (wave)
@@ -110,8 +130,6 @@ public class SpawnManager : MonoBehaviour
                     ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave9);
                     break;
             }
-
-            gameManager.UpdateEnemyCounter(1);
         }
     }
 
@@ -149,7 +167,16 @@ public class SpawnManager : MonoBehaviour
         Vector3 spawnDirection = UnityEngine.Random.onUnitSphere;
         float spawnDistance = UnityEngine.Random.Range(minSpawnDistance, maxSpawnDistance);
         Vector3 spawnPosition = playerTransform.position + spawnDirection * spawnDistance;
+        spawnPosition.y = 6f;
+        return spawnPosition;
+    }
 
+    private Vector3 GetRandomSpawnPointOverDistrict(Transform centerObject, float maxDistance)
+    {
+        // Zufällig wähle einen Punkt innerhalb eines Sphärenbereichs um das Zentrum des Objekts
+        Vector3 spawnDirection = UnityEngine.Random.onUnitSphere;
+        float spawnDistance = UnityEngine.Random.Range(4f, maxDistance); 
+        Vector3 spawnPosition = centerObject.position + spawnDirection * spawnDistance;
         spawnPosition.y = 6f;
 
         return spawnPosition;

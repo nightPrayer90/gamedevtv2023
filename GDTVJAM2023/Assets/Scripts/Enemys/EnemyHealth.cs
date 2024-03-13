@@ -26,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
     public bool canPoolObject = true;
     public event EventHandler DieEvent;
     public bool isBoss = false;
-
+    public bool isMine = false;
 
     [Header("Enemy Weapons")]
     public List<EnemyParticleBullet> enemyWeapons;
@@ -201,7 +201,7 @@ public class EnemyHealth : MonoBehaviour
                 NovaOnDie(0);
 
                 // update player UI
-                if (secondDimensionEnemy == false)
+                if (secondDimensionEnemy == false && isMine == false)
                 {
                     gameManager.UpdateEnemyCounter(-1);
                     gameManager.UpdateEnemyToKill(1);
@@ -356,7 +356,7 @@ public class EnemyHealth : MonoBehaviour
             ObjectPoolManager.SpawnObject(explosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
 
         // stop EngineParticleEffect
-        if (engineParticle == null)
+        if (engineParticle != null)
             engineParticle.Stop();
 
         // pool (destroy) enemy object
@@ -494,8 +494,11 @@ public class EnemyHealth : MonoBehaviour
         {
             particle.Emit(1);
         }
-        audioSource.volume = AudioManager.Instance.sfxVolume;
-        audioSource.Play();
+        if (audioSource != null)
+        {
+            audioSource.volume = AudioManager.Instance.sfxVolume;
+            audioSource.Play();
+        }
     }
 
     // stop shooting
