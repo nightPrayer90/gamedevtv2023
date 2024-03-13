@@ -148,8 +148,10 @@ public class NewLaserMainWeapon : MonoBehaviour
 
                 if (collidedObject.canTakeLaserDamage[1] == true && collidedObject.canTakeDamage == true)
                 {
-                    collidedObject.TakeLaserDamage(resultLaserDamage, 1);
-                    collidedObject.ShowDamageFromPosition(hit.point, resultLaserDamage);
+                    
+
+                    collidedObject.TakeLaserDamage(EnergieDamageDebuff(resultLaserDamage), 1);
+                    collidedObject.ShowDamageFromPosition(hit.point, EnergieDamageDebuff(resultLaserDamage));
                     collisionParticle.transform.position = hit.point;
                     collisionParticle.Play();
                 }
@@ -185,6 +187,17 @@ public class NewLaserMainWeapon : MonoBehaviour
     {
         lr.SetPosition(0, LaserSpawnPoint1.position);
         lr.SetPosition(1, LaserSpawnPoint1.position - LaserSpawnPoint1.forward * laserRange);
+    }
+
+    // Debuff is EnergieProduction < 0
+    private int EnergieDamageDebuff(int damage)
+    {
+        int debuffResult = damage;
+
+        if (playerController.energieProduction < 0)
+            debuffResult = Mathf.RoundToInt((float)damage * 0.5f);
+
+        return debuffResult;
     }
     #endregion
 }

@@ -130,7 +130,7 @@ public class NewRocketMainWeapon : MonoBehaviour
         {
             GameObject go = ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint.transform.position, Quaternion.Euler(0f, 0f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
             RocketController rocket = go.GetComponent<RocketController>();
-            rocket.damage = rockedResultDamage;
+            rocket.damage = EnergieDamageDebuff(rockedResultDamage);
             rocket.hitColor = hitColor;
             rocket.SetDestroyTimer();
             rocket.isMainWeapon = true;
@@ -139,6 +139,17 @@ public class NewRocketMainWeapon : MonoBehaviour
 
             enemyDetected = false;
         }
+    }
+
+    // Debuff is EnergieProduction < 0
+    private int EnergieDamageDebuff(int damage)
+    {
+        int debuffResult = damage;
+
+        if (playerController.energieProduction < 0)
+            debuffResult = Mathf.RoundToInt((float)damage * 0.5f);
+        
+        return debuffResult;
     }
     #endregion
 }

@@ -6,7 +6,6 @@ using System;
 public class PlayerWeaponController : MonoBehaviour
 {
     [Header("Weapon buffs")]
-    public ShipData shipData;
     public int bulletCritChance = 0;
     public int bulletCritDamage = 0;
     public int burnDamageChance = 0;
@@ -181,32 +180,6 @@ public class PlayerWeaponController : MonoBehaviour
         playerController = gameObject.GetComponent<NewPlayerController>();
         playerMWController = gameObject.GetComponent<PlayerMWController>();
         upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
-
-
-        // copy ship Data
-        //shipData = playerController.shipData;
-
-
-        // set upgradeListData from shipData
-        upgradeChooseList.mcBulletLvl = shipData.bulletClass;
-        upgradeChooseList.mcExplosionLvl = shipData.explosionClass;
-        upgradeChooseList.mcLaserLvl = shipData.laserClass;
-        upgradeChooseList.mcSupportLvl = shipData.supportClass;
-
-        upgradeChooseList.baseBulletCritChance += upgradeChooseList.critChance * shipData.bulletClass + shipData.pecCritChance;
-        upgradeChooseList.baseBulletCritDamage += upgradeChooseList.critDamage * shipData.bulletClass + shipData.pecBulletCritDamage;
-        upgradeChooseList.baseRocketAOERadius += upgradeChooseList.aoeRange * shipData.explosionClass + shipData.pecAOE;
-        upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.burningChance * shipData.laserClass + shipData.pecBurningChance;
-        upgradeChooseList.baseSupportRealoadTime += upgradeChooseList.supportRealodTime * shipData.supportClass;
-
-        upgradeChooseList.percBulletDamage = shipData.pecBulletDamage;
-        upgradeChooseList.percRocketDamage = shipData.pecExplosionDamage;
-        upgradeChooseList.percLaserDamage = shipData.pecLaserDamage;
-
-        upgradeChooseList.rocketLifeTime = shipData.rocketLifeTime;
-        upgradeChooseList.baseLaserTickDamage = shipData.burningDamagePerTick;
-
-        upgradeChooseList.bossBonusDamage = shipData.pecMainWeaponDamageBoss;
 
         // Start Values
         WeaponChoose();

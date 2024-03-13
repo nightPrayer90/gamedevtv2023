@@ -106,6 +106,7 @@ public class NewBulletMainWeapon : MonoBehaviour
     {
         // shooting sound
         //WeaponSound.Play();
+        EnergieDamageDebuff();
 
         // emit 1 particle of each mainweapon
         bulletParticalSystem.Emit(1);
@@ -118,4 +119,15 @@ public class NewBulletMainWeapon : MonoBehaviour
         particelBullet.BulletSetDamage(bulletResouldDamage);
     }
     #endregion
+
+    // Debuff is EnergieProduction < 0
+    private void EnergieDamageDebuff()
+    {
+        if (playerController.energieProduction < 0)
+        {
+            bulletResouldDamage = bulletBaseDamage + Mathf.RoundToInt((float)bulletBaseDamage * (upgradeChooseList.percBulletDamage / 100) * 0.5f);
+            particelBullet.BulletSetDamage(bulletResouldDamage);
+
+        }
+    }
 }

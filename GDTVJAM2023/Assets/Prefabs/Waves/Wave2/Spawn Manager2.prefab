@@ -45,14 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wave: 1
-  objectsToSpawn:
-  - {fileID: 3161139216598759944, guid: c17e130ec8192f4498529e4a72302832, type: 3}
-  - {fileID: 3161139216598759944, guid: a9fa050fa009ffc48856765e684daaa7, type: 3}
-  - {fileID: 3161139216598759944, guid: 6d469d6883c58404396780d375200d39, type: 3}
-  spawnProbabilities:
-  - 75
-  - 10
-  - 15
+  waveData:
+  - flyingEnemey: {fileID: 3161139216598759944, guid: c17e130ec8192f4498529e4a72302832, type: 3}
+    spawnProbabilities: 75
+  - flyingEnemey: {fileID: 3161139216598759944, guid: a9fa050fa009ffc48856765e684daaa7, type: 3}
+    spawnProbabilities: 10
+  - flyingEnemey: {fileID: 3161139216598759944, guid: 6d469d6883c58404396780d375200d39, type: 3}
+    spawnProbabilities: 15
   maxWaveEnemys: 12
-  maxSpawnDistance: 10
+  minSpawnDistance: 12
+  maxSpawnDistance: 16
   spawnInterval: 2

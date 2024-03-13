@@ -111,6 +111,7 @@ public class NewPlayerController : MonoBehaviour
         }
         else
         {
+            //Gameplay Loop
             HandleInput();
         }
 
@@ -507,16 +508,20 @@ public class NewPlayerController : MonoBehaviour
     private int Protection(int damage)
     {
         int adjustedDamge = damage;
-        int ran = UnityEngine.Random.Range(0, 99);
 
-        if (ran <= protectionPerc)
+        if (damage > 1)
         {
-            adjustedDamge = Mathf.RoundToInt((float)damage * 0.5f);
-            hitColor = enemyHitColorProtected;
-        }
-        else
-        {
-            hitColor = hitColorTemp;
+            int ran = UnityEngine.Random.Range(0, 99);
+
+            if (ran <= protectionPerc)
+            {
+                adjustedDamge = Mathf.RoundToInt((float)damage * 0.5f);
+                hitColor = enemyHitColorProtected;
+            }
+            else
+            {
+                hitColor = hitColorTemp;
+            }
         }
 
         return adjustedDamge;

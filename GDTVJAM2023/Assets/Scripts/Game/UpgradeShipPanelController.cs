@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using TMPro;
 using UnityEngine.UI;
 
 public class UpgradeShipPanelController : MonoBehaviour
@@ -32,20 +31,7 @@ public class UpgradeShipPanelController : MonoBehaviour
         transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.6f, 8, 1).SetUpdate(true);
 
         // set Ship Panel Image
-        switch (gameManager.ship)
-        {
-            case 0:
-                ShipPanel.sprite = shipImages[0];
-                break;
-            case 1:
-                ShipPanel.sprite = shipImages[1];
-                break;
-            case 2:
-                ShipPanel.sprite = shipImages[2];
-                break;
-
-
-        }
+        ShipPanel.sprite = shipImages[1];
     }
 
     // FadeOut Tween

@@ -1,9 +1,17 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+
+[Serializable]
+public class WaveData
+{
+    public GameObject flyingEnemey;
+    public int spawnProbabilities;
+}
+
 
 public class SpawnManager : MonoBehaviour
 {
-    
+
     public enum Wave
     {
         Wave1,
@@ -21,18 +29,16 @@ public class SpawnManager : MonoBehaviour
     public Wave wave;
 
     [Header("Spawn Elements")]
-    public List<GameObject> objectsToSpawn;
-    public List<float> spawnProbabilities;
+    public WaveData[] waveData;
 
     [Header("Spawn Settings")]
     public int maxWaveEnemys;
+    public float minSpawnDistance = 8f;
     public float maxSpawnDistance = 10f;
     public float spawnInterval = 2f;
 
-
-    private Camera mainCamera;
     private GameManager gameManager;
-
+    private Transform playerTransform;
 
 
 
@@ -43,7 +49,8 @@ public class SpawnManager : MonoBehaviour
     {
         // find gameobjects
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        mainCamera = Camera.main;
+        playerTransform = GameObject.Find("NewPlayer").GetComponent<Transform>();
+        playerTransform = GameObject.Find("NewPlayer").GetComponent<Transform>();
 
         // start spawning
         InvokeRepeating("SpawnObject", 3f, spawnInterval);
@@ -57,7 +64,6 @@ public class SpawnManager : MonoBehaviour
 
 
 
-
     /* **************************************************************************** */
     /* Runtime Funcions------------------------------------------------------------ */
     /* **************************************************************************** */
@@ -67,11 +73,11 @@ public class SpawnManager : MonoBehaviour
         if (!gameManager.dimensionShift && gameManager.curretEnemyCounter < maxWaveEnemys)
         {
             // Randomly select an object to spawn based on probabilities
-            int randomIndex = GetRandomWeightedIndex(spawnProbabilities);
-            GameObject objectToSpawn = objectsToSpawn[randomIndex];
+            int randomIndex = GetRandomWeightedIndex();
+            GameObject objectToSpawn = waveData[randomIndex].flyingEnemey;
 
             // Generate a random position outside the camera's view
-            Vector3 spawnPosition = GetRandomSpawnPosition();
+            Vector3 spawnPosition = GetRandomSpawnPositionFromPlayer();
 
             // Spawn the object at the generated position
             switch (wave)
@@ -109,23 +115,24 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private int GetRandomWeightedIndex(List<float> probabilities)
+    private int GetRandomWeightedIndex()
     {
         // Calculate the total weight of all probabilities
-        float totalWeight = 0f;
-        foreach (float probability in probabilities)
+        int totalWeight = 0;
+
+        for (int i = 0; i < waveData.Length; i++)
         {
-            totalWeight += probability;
+            totalWeight += waveData[i].spawnProbabilities;
         }
 
         // Generate a random value between 0 and the total weight
-        float randomValue = Random.Range(0f, totalWeight);
+        float randomValue = UnityEngine.Random.Range(0f, totalWeight);
 
         // Iterate through the probabilities and find the corresponding index based on the random value
         float cumulativeWeight = 0f;
-        for (int i = 0; i < probabilities.Count; i++)
+        for (int i = 0; i < waveData.Length; i++)
         {
-            cumulativeWeight += probabilities[i];
+            cumulativeWeight += waveData[i].spawnProbabilities;
             if (randomValue <= cumulativeWeight)
             {
                 return i;
@@ -133,70 +140,18 @@ public class SpawnManager : MonoBehaviour
         }
 
         // Default to the last index if no valid index is found
-        return probabilities.Count - 1;
+        return 0;
     }
 
-    private Vector3 GetRandomSpawnPosition()
+    private Vector3 GetRandomSpawnPositionFromPlayer()
     {
-        // Get the camera's viewport bounds
-        Bounds viewportBounds = GetViewportBounds();
+        // Zufällig wähle einen Punkt innerhalb eines Sphärenbereichs um den Spieler
+        Vector3 spawnDirection = UnityEngine.Random.onUnitSphere;
+        float spawnDistance = UnityEngine.Random.Range(minSpawnDistance, maxSpawnDistance);
+        Vector3 spawnPosition = playerTransform.position + spawnDirection * spawnDistance;
 
-        // Calculate the random spawn position outside the camera's view on the Y-axis 6
-        Vector3 spawnPosition = Vector3.zero;
-        do
-        {
-            spawnPosition = RandomPointOutsideViewport(viewportBounds);
-            spawnPosition.y = 6f;
-        } while (Vector3.Distance(mainCamera.transform.position, spawnPosition) < maxSpawnDistance);
+        spawnPosition.y = 6f;
 
         return spawnPosition;
-    }
-
-    private Bounds GetViewportBounds()
-    {
-        Bounds bounds = new Bounds(Vector3.zero, Vector3.zero);
-        if (mainCamera != null)
-        {
-            bounds = new Bounds(mainCamera.transform.position, Vector3.zero);
-            Vector3 cameraBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
-            bounds.Encapsulate(cameraBounds);
-        }
-        return bounds;
-    }
-
-    private Vector3 RandomPointOutsideViewport(Bounds viewportBounds)
-    {
-        Vector3 randomPoint = Vector3.zero;
-        float x, z;
-
-        // Randomly choose a side of the viewport
-        int side = Random.Range(0, 4);
-
-        // Generate a random point outside the chosen side of the viewport
-        switch (side)
-        {
-            case 0: // Top side
-                x = Random.Range(viewportBounds.min.x, viewportBounds.max.x);
-                z = viewportBounds.max.z + maxSpawnDistance;
-                randomPoint = new Vector3(x, 6f, z);
-                break;
-            case 1: // Right side
-                x = viewportBounds.max.x + maxSpawnDistance;
-                z = Random.Range(viewportBounds.min.z, viewportBounds.max.z);
-                randomPoint = new Vector3(x, 6f, z);
-                break;
-            case 2: // Bottom side
-                x = Random.Range(viewportBounds.min.x, viewportBounds.max.x);
-                z = viewportBounds.min.z - maxSpawnDistance;
-                randomPoint = new Vector3(x, 6f, z);
-                break;
-            case 3: // Left side
-                x = viewportBounds.min.x - maxSpawnDistance;
-                z = Random.Range(viewportBounds.min.z, viewportBounds.max.z);
-                randomPoint = new Vector3(x, 6f, z);
-                break;
-        }
-
-        return randomPoint;
     }
 }

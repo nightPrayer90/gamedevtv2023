@@ -17,8 +17,8 @@ public class UpgradePanelController : MonoBehaviour
     [HideInInspector] public Color[] headerColor;
     [HideInInspector] public Color[] mainClassColor;
     [HideInInspector] public string[] mainClassStr;
-    /*[HideInInspector] public Color[] subClassColor = new Color[3];
-    [HideInInspector] public string[] subClassStr = new string[3];*/
+    [HideInInspector] public Color[] subClassColor = new Color[3];
+    [HideInInspector] public string[] subClassStr = new string[3];
     [HideInInspector] public Sprite[] iconPanel;
     [HideInInspector] public Color[] reqColor;
     [HideInInspector] public string[] reqText;
@@ -36,7 +36,7 @@ public class UpgradePanelController : MonoBehaviour
     [Header("Value Panel")]
     public Image bkImage;
     [HideInInspector] public List<Color> classColors;
-    /*public List<Image> classPanels = new List<Image>();*/
+    public List<Image> classPanels = new List<Image>();
 
     public List<Image> selectedUpgradePanelList = new List<Image>();
     private int weaponCount = 0;
@@ -65,8 +65,8 @@ public class UpgradePanelController : MonoBehaviour
         descriptionTextStr = new string[3];
         mainClassColor = new Color[3];
         mainClassStr = new string[3];
-        //subClassColor = new Color[3];
-        //subClassStr = new string[3];
+        subClassColor = new Color[3];
+        subClassStr = new string[3];
         iconPanel = new Sprite[3];
         headerColor = new Color[3];
         reqColor = new Color[6];
@@ -212,9 +212,9 @@ public class UpgradePanelController : MonoBehaviour
             mainClassColor[i] = classColors[index];
 
             // subClass
-            /*index = (int)uC.subClass;
+            index = (int)uC.subClass;
             subClassStr[i] = uC.subClass.ToString();
-            subClassColor[i] = classColors[index];*/
+            subClassColor[i] = classColors[index];
 
             // set requerments
             int count_ = 0;

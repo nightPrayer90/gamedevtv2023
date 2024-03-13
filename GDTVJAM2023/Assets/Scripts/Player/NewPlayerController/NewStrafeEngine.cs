@@ -44,7 +44,7 @@ public class NewStrafeEngine : MonoBehaviour
             }
             else
             {
-                totalStrafeForce = strafeForce;
+                totalStrafeForce = strafeForce * EnergieDebuffForce();
                 ps_leftEngine.Emit(1);
                 useBoost = false;
             }
@@ -70,7 +70,7 @@ public class NewStrafeEngine : MonoBehaviour
             }
             else
             {
-                totalStrafeForce = strafeForce;
+                totalStrafeForce = strafeForce * EnergieDebuffForce();
                 ps_rigtEngine.Emit(1);
                 useBoost = false;
             }
@@ -81,5 +81,15 @@ public class NewStrafeEngine : MonoBehaviour
             // Wende die Kraft auf das Raumschiff an
             playerRigidbody.AddForce(thrust);   
         }
+    }
+
+    private float EnergieDebuffForce()
+    {
+        float debuffForce = 1;
+        if (playerController.energieProduction < 0)
+        {
+            debuffForce = 0.7f;
+        }
+        return debuffForce;
     }
 }

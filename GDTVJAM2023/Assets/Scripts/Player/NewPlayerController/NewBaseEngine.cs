@@ -1,6 +1,3 @@
-using DG.Tweening.Core.Easing;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NewBaseEngine : MonoBehaviour
@@ -87,7 +84,9 @@ public class NewBaseEngine : MonoBehaviour
             }
             else
             {
-                totalThrustForce = thrustForce;
+                
+
+                totalThrustForce = thrustForce * EnergieDebuffForce();
                 ps_engine.Emit(1);
                 useBoost = false;
             }
@@ -120,7 +119,7 @@ public class NewBaseEngine : MonoBehaviour
             }
             else
             {
-                totalBackForce = backForce;
+                totalBackForce = backForce * EnergieDebuffForce();
                 foreach (ParticleSystem ps in ps_backEngines)
                 {
                     ps.Emit(1);
@@ -186,5 +185,15 @@ public class NewBaseEngine : MonoBehaviour
                 boostMeshRenderer.materials = materials;
             }
         }
+    }
+
+    private float EnergieDebuffForce()
+    {
+        float debuffForce = 1;
+        if (playerController.energieProduction < 0)
+        {
+            debuffForce = 0.7f;
+        }
+        return debuffForce;
     }
 }
