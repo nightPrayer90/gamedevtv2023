@@ -66,7 +66,7 @@ public class Fireflies : MonoBehaviour
             upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
         }
 
-        if (upgradeChooseList.weaponIndexInstalled[58] == true)
+        if (upgradeChooseList.weaponIndexInstalled[58] == 1)
         {
             particleSystem_ = particleSystem2;
         }

@@ -85,7 +85,7 @@ public class NovaExplosion : MonoBehaviour
 
                 if (eHC != null)
                 {
-                    if (upgradeChooseList.weaponIndexInstalled[54] == true)
+                    if (upgradeChooseList.weaponIndexInstalled[54] == 1)
                     {
                         int ran = UnityEngine.Random.Range(0, 100);
                         if (ran < weaponController.bulletCritChance)

@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetMaterial: {fileID: 2100000, guid: e9faa18243b0ad44d976b0eff6dfd348, type: 2}
+  novaOnDeath: {fileID: 4303235208557751318, guid: c01ac0e458a23da41aaf1c60e7ee97a7, type: 3}
   shieldLife: 2
   isBackShield: 0
   isBackShieldLeft: 0

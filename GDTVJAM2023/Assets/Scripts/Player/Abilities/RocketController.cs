@@ -229,7 +229,7 @@ public class RocketController : MonoBehaviour
                     }
                 }
             
-                if (upgradeChooseList.weaponIndexInstalled[54] == true)
+                if (upgradeChooseList.weaponIndexInstalled[54] == 1)
                 {
                     int ran = UnityEngine.Random.Range(0, 100);
                     if (ran < playerWeaponController.bulletCritChance)

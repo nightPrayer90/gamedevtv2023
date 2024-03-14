@@ -9,7 +9,7 @@ public class Laser2 : MonoBehaviour
     public float laserDistance = 10;
     public int laserDamage = 3;
 
-    private PlayerController player;
+    private NewPlayerController player;
     private GameManager gameManager;
     private string tagStr;
     private LayerMask layerMask;
@@ -37,7 +37,7 @@ public class Laser2 : MonoBehaviour
         GameObject playerOb = GameObject.FindWithTag("Player");
         if (playerOb != null)
         {
-            player = playerOb.GetComponent<PlayerController>();
+            player = playerOb.GetComponent<NewPlayerController>();
         }
 
         muzzleParticle.Play();
@@ -52,7 +52,7 @@ public class Laser2 : MonoBehaviour
     {
         if (player == null)
         {
-            player = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+            player = GameObject.FindWithTag("Player").GetComponent<NewPlayerController>();
             Debug.Log("playerget");
         }
     }

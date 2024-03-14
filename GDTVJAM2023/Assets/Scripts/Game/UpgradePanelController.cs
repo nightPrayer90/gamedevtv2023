@@ -11,6 +11,7 @@ public class UpgradePanelController : MonoBehaviour
     //public UpgradeContainer[] upgradeIndex;
     public List<UpgradPanelIndex> panelList;
     public UpgradeShipPanelController shipPanalController;
+    [HideInInspector] public int[] upgradeIndex;
     [HideInInspector] public float[] upgradeValue;
     [HideInInspector] public string[] headerStr;
     [HideInInspector] public string[] descriptionTextStr;
@@ -25,6 +26,7 @@ public class UpgradePanelController : MonoBehaviour
     [HideInInspector] public Color[] reqColor3;
     [HideInInspector] public string[] reqText3;
     [HideInInspector] public bool[] isUnique;
+    [HideInInspector] public int[] upgradeCount;
     public Image[] classPointsBullets;
     public Image[] classPointsAOE;
     public Image[] classPointsLaser;
@@ -60,6 +62,7 @@ public class UpgradePanelController : MonoBehaviour
         playerController = GameObject.FindWithTag("Player").GetComponent<NewPlayerController>();
         playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
 
+        upgradeIndex = new int[3];
         upgradeValue = new float[3];
         headerStr = new string[3];
         descriptionTextStr = new string[3];
@@ -74,6 +77,7 @@ public class UpgradePanelController : MonoBehaviour
         reqColor3 = new Color[3];
         reqText3 = new string[3];
         isUnique = new bool[3];
+        upgradeCount = new int[3];
 
         selectetPanel = -1;
         isTweening = true;
@@ -110,7 +114,6 @@ public class UpgradePanelController : MonoBehaviour
                 UpdateValuePanelOnMouseEnter(selectetPanel);
 
                 isButtonPressed = true;
-                Debug.Log(selectetPanel);
             }
             else if (Input.GetAxisRaw("Horizontal") >= 0.5 && !isButtonPressed)
             {
@@ -133,7 +136,6 @@ public class UpgradePanelController : MonoBehaviour
                 UpdateValuePanelOnMouseEnter(selectetPanel);
 
                 isButtonPressed = true;
-                Debug.Log(selectetPanel);
             }
 
             if (selectetPanel != -1 && Input.GetAxisRaw("SubmitEnter") >= 0.5 && isButtonPressed == false)
@@ -198,8 +200,8 @@ public class UpgradePanelController : MonoBehaviour
                     headerColor[i] = gameManager.globalClassColor[uC.colorIndex];
                     break;
             }
+            upgradeIndex[i] = number;
 
-           
 
             // set text descriptions
             iconPanel[i] = uC.iconPanel;
@@ -259,7 +261,7 @@ public class UpgradePanelController : MonoBehaviour
             }
 
             isUnique[i] = uC.isUnique;
-
+            upgradeCount[i] = uC.UpgradeCount;
 
             panelList[i].SetDescription();        
         }
@@ -306,7 +308,7 @@ public class UpgradePanelController : MonoBehaviour
     {
         int number = gameManager.selectedNumbers_[index];
         isTweening = true;
-        
+        upgradeChooseList.weaponIndexInstalled[number] += 1;
 
         switch (number)
         {
@@ -325,7 +327,7 @@ public class UpgradePanelController : MonoBehaviour
                 playerController.protectionLvl ++;
                 break;
             case 3: //upgrade: boost
-                upgradeChooseList.weaponIndexInstalled[number] = true;
+                
                 playerController.energieMax = playerController.energieMax * (1 + upgradeValue[index] / 100);
                 gameManager.energieSlider.maxValue = playerController.energieMax;
                 gameManager.energieSlider.value = playerController.energieMax;
@@ -334,20 +336,20 @@ public class UpgradePanelController : MonoBehaviour
                 playerController.UpdateAgility(upgradeValue[index]);
                 break;
             case 5: //upgrade: pickup Range
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerController.pickupRange = playerController.pickupRange + upgradeValue[index];
                 break;
             case 6: //weapon: headgun
                 playerWeaponController.isHeadCannon = true;
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 GoBockToDimension();
                 weaponCount++;
+
+                upgradeChooseList.weaponUpgrades[64].reqBullet = 2; // Fast Head Cannon
+                upgradeChooseList.weaponUpgrades[65].reqBullet = 2; // Big Head Cannon
                 break;
             case 7: //weapon: rocket launcher
                 playerWeaponController.isRocketLauncher = true;
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 GoBockToDimension();
@@ -357,7 +359,6 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 8: //weapon: fire flys
                 playerWeaponController.isFireFlies = true;
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 GoBockToDimension();
@@ -367,23 +368,25 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 9: //weapon: bullet wings
                 playerWeaponController.isBulletWings = true;
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 GoBockToDimension();
                 weaponCount++;
                 break;
-            case 10: //weapon: life modul
+            case 10: //weapon: supoort Modul
                 playerWeaponController.isLifeModul = true;
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 GoBockToDimension();
                 weaponCount++;
+
+                upgradeChooseList.weaponUpgrades[63].reqSupport = 2; // Natural Energy
+                upgradeChooseList.weaponUpgrades[32].reqSupport = 2; // Expansion Fortuity
+                upgradeChooseList.weaponUpgrades[33].reqSupport = 3; // Vitality Infusion
+
                 break;
             case 11: //weapon: spread gun
                 playerWeaponController.isSpreadGun = true;
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 GoBockToDimension();
@@ -393,37 +396,25 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 12: //weapon: front shield
                 playerWeaponController.isFrontShield = true;
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
 
                 upgradeChooseList.weaponUpgrades[40].reqSupport = 1; // Fortified Defense
-                upgradeChooseList.weaponUpgrades[41].reqSupport = 2; // Shielded Strike
-                upgradeChooseList.weaponUpgrades[42].reqSupport = 3; // Lifeflow Shields
-                upgradeChooseList.weaponUpgrades[43].reqSupport = 2; // Ignition Shield
-                upgradeChooseList.weaponUpgrades[44].reqSupport = 2; // Shield Nova
-                upgradeChooseList.weaponUpgrades[45].reqSupport = 2; // Shieldbreaker's Might
+                upgradeChooseList.weaponUpgrades[41].reqSupport = 1; // Shielded Strike
+                upgradeChooseList.weaponUpgrades[13].reqSupport = 2; // Back Shield
                 GoBockToDimension();
                 weaponCount++;
                 break;
             case 13: //weapon: back shield
                 playerWeaponController.isBackShield = true;
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
 
-                upgradeChooseList.weaponUpgrades[40].reqSupport = 1; // Fortified Defense
-                upgradeChooseList.weaponUpgrades[41].reqSupport = 2; // Shielded Strike
-                upgradeChooseList.weaponUpgrades[42].reqSupport = 3; // Lifeflow Shields
-                upgradeChooseList.weaponUpgrades[43].reqSupport = 2; // Ignition Shield
-                upgradeChooseList.weaponUpgrades[44].reqSupport = 2; // Shield Nova
-                upgradeChooseList.weaponUpgrades[45].reqSupport = 2; // Shieldbreaker's Might
                 GoBockToDimension();
                 weaponCount++;
                 break;
             case 14: //weapon: schock nova
                 playerWeaponController.isNovaExplosion = true;
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 GoBockToDimension();
@@ -433,7 +424,6 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 15: //weapon: rocket wings
                 playerWeaponController.isRockedWings = true;
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 GoBockToDimension();
@@ -441,7 +431,6 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 16: //weapon: front laser
                 playerWeaponController.isFrontLaser = true;
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 GoBockToDimension();
@@ -449,7 +438,6 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 17: //weapon: orbital laser
                 playerWeaponController.isOrbitalLaser = true;
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 GoBockToDimension();
@@ -516,43 +504,46 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.WeaponChoose();
                 break;
             case 35: // Chance to trigger a Nova if u get hit
-                upgradeChooseList.weaponIndexInstalled[number] = true;
+                     // upgradeChooseList.weaponIndexInstalled[number] += 1;
                 break;
             case 36: // Chance to trigger a Nova if u dash Enemys
-                upgradeChooseList.weaponIndexInstalled[number] = true;
+
                 break;
             case 37: // Bullet crit chance +10%
-                upgradeChooseList.weaponIndexInstalled[number] = true;
+               
                 upgradeChooseList.baseBulletCritChance += 10;
                 playerWeaponController.WeaponChoose();
                 break;
             case 38: // Extended Blast Expansion
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 upgradeChooseList.baseRocketAOERadius += 15;
                 playerWeaponController.WeaponChoose();
                 break;
             case 39: // Ignition Augment
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 upgradeChooseList.baseLaserTickDamage += 3;
                 playerWeaponController.WeaponChoose();
                 break;
             case 40: // Fortified Defense
                 upgradeChooseList.shieldHealth += 1;
+                upgradeChooseList.weaponUpgrades[41].reqSupport = 99; // Shielded Strike
+                upgradeChooseList.weaponUpgrades[42].reqSupport = 2; // Lifeflow Shields
+
                 break;
             case 41: // Shielded Strike
                 upgradeChooseList.shieldDamage += 5;
+                upgradeChooseList.weaponUpgrades[40].reqSupport = 99; // Fortified Defense
+                upgradeChooseList.weaponUpgrades[61].reqSupport = 2; // Shieldbreaker's Might
                 break;
             case 42: // Lifeflow Shields
-                upgradeChooseList.weaponIndexInstalled[number] = true;
+                upgradeChooseList.weaponUpgrades[43].reqSupport = 3; // Ignition Shield
                 break;
             case 43: // Ignition Shield
-                upgradeChooseList.weaponIndexInstalled[number] = true;
+
                 break;
             case 44: // Shield Nova
-                upgradeChooseList.weaponIndexInstalled[number] = true;
+
                 break;
             case 45: // Shieldbreaker's Might
-                upgradeChooseList.weaponIndexInstalled[number] = true;
+
                 break;
             case 46: // Ballistic Boost
                 upgradeChooseList.percBulletDamage += 12;
@@ -574,45 +565,83 @@ public class UpgradePanelController : MonoBehaviour
 
                 break;
             case 50: // Wide Spray Expansion
+                upgradeChooseList.weaponUpgrades[68].reqBullet = 3;  // fast Spread gun
                 playerWeaponController.sgBulletCount += 2;
                 break;
             case 51: // Lightning Reload
                 playerWeaponController.UpdateMWBulletFireRate(0.93f);
                 break;
             case 52: // Kaboomed Targets
-                upgradeChooseList.weaponIndexInstalled[number] = true;
+               
                 break;
             case 53: // Critical Explosion
-                upgradeChooseList.weaponIndexInstalled[number] = true;
+          
                 break;
             case 54: // Detonation Crits
-                upgradeChooseList.weaponIndexInstalled[number] = true;
+                
                 break;
             case 55: // Titan Slayer
-                upgradeChooseList.weaponIndexInstalled[number] = true;
+            
                 upgradeChooseList.bossBonusDamage = 35;
                 break;
             case 56: // Laser Orbit Accelerator
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.olRotationSpeed = Mathf.Round(playerWeaponController.olRotationSpeed * 1.2f);
                 playerWeaponController.olReloadTime = Mathf.Round(playerWeaponController.olReloadTime * 0.93f);
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 57: // Explosive Impact
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.rlAOERange = Mathf.Round(playerWeaponController.rlAOERange * 1.2f * 10) / 10;
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 58: // Luminous Growth
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 59: // Engine boost
                 playerController.energieProduction = playerController.energieProduction * (1 + (0.2f));
                 break;
             case 60: // Engine Overload
-                upgradeChooseList.weaponIndexInstalled[number] = true;
                 playerController.energieProduction = playerController.energieProduction * (1 + (0.6f));
+                break;
+            case 61: // Continuous shield 
+                upgradeChooseList.weaponUpgrades[62].reqSupport = 3; // Explosiv Shild
+                break;
+            case 62: // Explosiv Shield 
+                upgradeChooseList.weaponUpgrades[44].reqSupport = 4; // Shield Nova
+                upgradeChooseList.weaponUpgrades[45].reqSupport = 4; // Shieldbreaker's Might
+                break;
+            case 63: // Natural energie
+                upgradeChooseList.chanceToGetfullEnergy += 5;
+                break;
+            case 64: // Fast Head Cannon
+                playerWeaponController.hcBulletDamage = 1;
+                playerWeaponController.hcSalveCount = 4;
+                playerWeaponController.hcReloadTime = 1f;
+                playerWeaponController.UpdateWeaponValues();
+
+                upgradeChooseList.weaponUpgrades[65].reqBullet = 99; // Big Head Cannon
+                upgradeChooseList.weaponUpgrades[67].reqBullet = 3; // Gatlin Head Cannon
+                break;
+            case 65: // Big Head Cannon
+                playerWeaponController.hcBulletDamage = 20;
+                playerWeaponController.hcSalveCount = 1;
+                playerWeaponController.hcReloadTime = 5f;
+                playerWeaponController.UpdateWeaponValues();
+
+                upgradeChooseList.weaponUpgrades[64].reqBullet = 99; // Fast Head Cannon
+                upgradeChooseList.weaponUpgrades[66].reqBullet = 3; // Sniper Head Cannon
+                break;
+            case 66: // Sniper Head Cannon
+                playerWeaponController.hcBulletDamage = 25;
+                playerWeaponController.UpdateWeaponValues();
+                break;
+            case 67: // Gatlin Head Cannon
+                playerWeaponController.hcReloadTime = 0.25f;
+                playerWeaponController.hcSalveCount = 3;
+                playerWeaponController.UpdateWeaponValues();
+                break;
+            case 68: // fast Spread gun
+                playerWeaponController.sgReloadTime -= 0.5f;
+                playerWeaponController.UpdateWeaponValues();
                 break;
         }
     }

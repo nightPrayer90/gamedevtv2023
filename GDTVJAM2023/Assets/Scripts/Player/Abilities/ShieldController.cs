@@ -5,6 +5,7 @@ public class ShieldController : MonoBehaviour
 {
     private Transform playerTr;
     private PlayerWeaponController playerWeaponController;
+    private NewPlayerController playerController;
     private GameManager gameManager;
     private UpgradeChooseList upgradeChooseList;
     private Rigidbody playerRb;
@@ -12,6 +13,7 @@ public class ShieldController : MonoBehaviour
     private BackShieldSpawner backShieldSpawner;
 
     public Material targetMaterial;
+    public GameObject novaOnDeath;
 
     public int shieldLife = 10;
     private int shieldLife_;
@@ -38,6 +40,7 @@ public class ShieldController : MonoBehaviour
         var player = GameObject.FindWithTag("Player");
         playerTr = player.GetComponent<Transform>();
         playerRb = player.GetComponent<Rigidbody>();
+        playerController = player.GetComponent<NewPlayerController>();
         playerWeaponController = player.GetComponent<PlayerWeaponController>();
 
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -214,18 +217,25 @@ public class ShieldController : MonoBehaviour
         }
 
         // update crit damage
-        if (upgradeChooseList.weaponIndexInstalled[45] == true)
+        if (upgradeChooseList.weaponIndexInstalled[45] == 1)
         {
             upgradeChooseList.critDamage += 2;
             burnEffect.Emit(5);
         }
 
         // update AOE size
-        if (upgradeChooseList.weaponIndexInstalled[44] == true)
+        if (upgradeChooseList.weaponIndexInstalled[44] == 1)
         {
             upgradeChooseList.baseRocketAOERadius += 2;
             burnEffect.Emit(5);
         }
+
+        // trigger Nova
+        if (upgradeChooseList.weaponIndexInstalled[62] == 1)
+        {
+            NovaOnDeath(5,10);
+        }
+        
 
         // set the shild die Effect
         dieEffect.Play();
@@ -261,7 +271,7 @@ public class ShieldController : MonoBehaviour
                 hitEffect.Emit(30);
             }
         }
-        if (upgradeChooseList.weaponIndexInstalled[43] == true)
+        if (upgradeChooseList.weaponIndexInstalled[43] == 1)
         {
             if (enH == null)
             {
@@ -280,7 +290,7 @@ public class ShieldController : MonoBehaviour
     private void Shieldregenerate()
     {
         CancelInvoke("Shieldregenerate");
-        if (upgradeChooseList.weaponIndexInstalled[42] == true)
+        if (upgradeChooseList.weaponIndexInstalled[42] == 1)
         {
             if (shieldLife_ < shieldLife)
             {
@@ -291,6 +301,71 @@ public class ShieldController : MonoBehaviour
                 hitEffect.Emit(30);
             }
         }
+
+    }
+
+    // trigger a nova on Hit
+    public void NovaOnDeath(float explosionRadius, int NovaDamage)
+    {
+        // Audio
+        AudioManager.Instance.PlaySFX("Playernova");
+
+        Vector3 pos = transform.position;
+        LayerMask layerMask = (1 << 6);
+        explosionRadius = explosionRadius + playerWeaponController.rocketAOERadius;
+
+        if (gameManager.dimensionShift == true)
+        {
+            layerMask = (1 << 9);
+        }
+
+        // array of all Objects in the explosionRadius
+        var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius, layerMask);
+
+        foreach (var obj in surroundingObjects)
+        {
+            // get rigidbodys from all objects in range
+            var rb = obj.GetComponent<Rigidbody>();
+            if (rb == null) continue;
+
+            // calculate distance between explosioncenter and objects in Range
+            float distance = Vector3.Distance(pos, rb.transform.position);
+
+            if (distance < explosionRadius)
+            {
+                float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius), 1f);
+                int adjustedDamage = Mathf.CeilToInt(NovaDamage * scaleFactor);
+
+                // get EnemyHealthscript
+                EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
+                Color resultColor = playerController.enemyHitColor;
+
+                if (eHC != null)
+                {
+                    if (upgradeChooseList.weaponIndexInstalled[54] == 1)
+                    {
+                        int ran = Random.Range(0, 100);
+                        if (ran < playerWeaponController.bulletCritChance)
+                        {
+                            adjustedDamage = eHC.CritDamage(adjustedDamage);
+                            resultColor = eHC.critColor;
+                        }
+                    }
+
+                    // show floating text
+                    if (eHC.canTakeDamage == true)
+                        gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), resultColor);
+
+                    // calculate enemy damage
+                    eHC.TakeExplosionDamage(adjustedDamage);
+
+                }
+                rb.AddExplosionForce(400, pos, explosionRadius);
+            }
+        }
+
+        GameObject go = ObjectPoolManager.SpawnObject(novaOnDeath, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
+        go.GetComponent<ParticleSystemDestroy>().rippleParicleSize = explosionRadius;
 
     }
 }

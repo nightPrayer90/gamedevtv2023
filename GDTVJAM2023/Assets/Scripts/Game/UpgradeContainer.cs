@@ -53,4 +53,5 @@ public class UpgradeContainer
     public int maxSkillCount;
     public UpgradeTyp upgradeTyp;
     public string passivUpgrades;
+    public int UpgradeCount;
 }

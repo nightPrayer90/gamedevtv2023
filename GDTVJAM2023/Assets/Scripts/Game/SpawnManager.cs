@@ -166,7 +166,7 @@ public class SpawnManager : MonoBehaviour
         // Zufällig wähle einen Punkt innerhalb eines Sphärenbereichs um den Spieler
         Vector3 spawnDirection = UnityEngine.Random.onUnitSphere;
         float spawnDistance = UnityEngine.Random.Range(minSpawnDistance, maxSpawnDistance);
-        Vector3 spawnPosition = playerTransform.position + spawnDirection * spawnDistance;
+        Vector3 spawnPosition = playerTransform.position + (spawnDirection * spawnDistance) + new Vector3(5,0,5);
         spawnPosition.y = 6f;
         return spawnPosition;
     }

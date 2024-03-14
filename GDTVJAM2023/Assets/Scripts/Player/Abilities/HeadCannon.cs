@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HeadCannon : MonoBehaviour
@@ -12,12 +13,12 @@ public class HeadCannon : MonoBehaviour
 
 
     [Header("Game Objects")]
-    public ParticleSystem bulletParticleSystem;
-    private ParticleBullet particleBullet;
+    public List<ParticleSystem> bulletParticleSystem;
+    public List<ParticleBullet> particleBullet;
     private GameObject nearestEnemy = null;
     private GameManager gameManager;
     private GameObject player;
-    
+    private UpgradeChooseList upgradeChooseList;
 
     // other stuff
     private Quaternion targetRotation;
@@ -38,13 +39,13 @@ public class HeadCannon : MonoBehaviour
         // find Objects
         player = GameObject.FindWithTag("Player");
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        particleBullet = bulletParticleSystem.GetComponent<ParticleBullet>();
+        upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
 
-        // set start values from the weapon Controller
-        // StartValues();
+            // set start values from the weapon Controller
+            // StartValues();
 
-        //set first reload time
-        nextSalveTime = Time.time + reloadSalveInterval;
+            //set first reload time
+            nextSalveTime = Time.time + reloadSalveInterval;
     }
 
     private void Update()
@@ -148,7 +149,7 @@ public class HeadCannon : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
         // rotation is complete, fire
-        if (Quaternion.Angle(transform.rotation, targetRotation) < 0.1f)
+        if (Quaternion.Angle(transform.rotation, targetRotation) < 0.05f)
         {
             ShotAferRotation();
 
@@ -161,15 +162,21 @@ public class HeadCannon : MonoBehaviour
     {
         if (fireSalveCount < fireSalveMax && nearestEnemy != null && canFire == true)
         {
+            int psIndex = 0;
+            if (upgradeChooseList.weaponIndexInstalled[65] == 1 || upgradeChooseList.weaponIndexInstalled[66] == 1)
+            {
+                detectionRange = 12f;
+                psIndex = 1;
+            }
+
             // set damage to particle
-            
-            particleBullet.bulletDamage = bulletDamage;
+            particleBullet[psIndex].bulletDamage = bulletDamage;
 
             // trigger the head cannon audio
             AudioManager.Instance.PlaySFX("PlayerHeadCannon");
 
             // trigger 1 particle shot
-            bulletParticleSystem.Emit(1);
+            bulletParticleSystem[psIndex].Emit(1);
             fireSalveCount ++;
 
             // reset timer

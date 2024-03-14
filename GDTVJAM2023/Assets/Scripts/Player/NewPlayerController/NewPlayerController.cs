@@ -307,12 +307,12 @@ public class NewPlayerController : MonoBehaviour
                     // trigger the damage floating text
                     gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
                     
-                    if (upgradeChooseList.weaponIndexInstalled[35] == true) NovaOnHit(2f, 8);
+                    if (upgradeChooseList.weaponIndexInstalled[35] == 1) NovaOnHit(2f, 8);
                 }
                 else
                 {
                     // add a force after the collision to the player
-                    if (upgradeChooseList.weaponIndexInstalled[36] == true)
+                    if (upgradeChooseList.weaponIndexInstalled[36] == 1)
                     {
                         NovaOnHit(1.2f, 6);
                         playerRigidbody.AddForce(explosionDirection * 1.4f * enemyHealth.explosionForce, ForceMode.Impulse);
@@ -396,7 +396,7 @@ public class NewPlayerController : MonoBehaviour
 
 
     /* **************************************************************************** */
-    /* EnergySystem---------------------------------------------------------------- */
+    /* Energy System--------------------------------------------------------------- */
     /* **************************************************************************** */
     #region energie System
     //InvokeRepeating - Awake
@@ -435,7 +435,7 @@ public class NewPlayerController : MonoBehaviour
             }
         }
 
-        //chance to get one health
+        // chance to get one health
         if (upgradeChooseList.chanceToGet1Health > 0)
         {
             if (UnityEngine.Random.Range(0, 100) <= upgradeChooseList.chanceToGet1Health)
@@ -444,6 +444,17 @@ public class NewPlayerController : MonoBehaviour
                 UpdatePlayerHealth(-1);
             }
         }
+
+        // chance to get full energie
+        if (upgradeChooseList.chanceToGetfullEnergy > 0 && energieCurrent < energieMax)
+        {
+            if (UnityEngine.Random.Range(0, 100) <= upgradeChooseList.chanceToGetfullEnergy)
+            {
+                gameManager.DoFloatingText(transform.position, "E", Color.magenta);
+                energieCurrent = energieMax;
+            }
+        }
+        
 
         playerCurrentExperience += exp;
         bool isLevelUp;
@@ -600,7 +611,7 @@ public class NewPlayerController : MonoBehaviour
 
                 if (eHC != null)
                 {
-                    if (upgradeChooseList.weaponIndexInstalled[54] == true)
+                    if (upgradeChooseList.weaponIndexInstalled[54] == 1)
                     {
                         int ran = UnityEngine.Random.Range(0, 100);
                         if (ran < playerWeaponController.bulletCritChance)

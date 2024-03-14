@@ -166,7 +166,6 @@ public class PlayerWeaponController : MonoBehaviour
 
     // private Objects
     private NewPlayerController playerController;
-    private PlayerMWController playerMWController;
     private UpgradeChooseList upgradeChooseList;
 
 
@@ -178,7 +177,6 @@ public class PlayerWeaponController : MonoBehaviour
     void Start()
     {
         playerController = gameObject.GetComponent<NewPlayerController>();
-        playerMWController = gameObject.GetComponent<PlayerMWController>();
         upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
 
         // Start Values

@@ -6,7 +6,7 @@ public class UpgradeChooseList : MonoBehaviour
 {
     [Header("Upgrade System")]
     public UpgradeContainer[] weaponUpgrades;
-    public List<bool> weaponIndexInstalled = new List<bool>();
+    public List<int> weaponIndexInstalled = new List<int>();
 
     [Header("Class level")]
     public int mcBulletLvl = 0;
@@ -30,6 +30,7 @@ public class UpgradeChooseList : MonoBehaviour
     public float baseBoostInvulnerability = 0.5f;
     public float chanceToGetTwoExp = 0;
     public float chanceToGet1Health = 0;
+    public float chanceToGetfullEnergy = 0;
     public float rocketLifeTime = 0;
     public int shieldHealth = 0;
     public int shieldDamage = 0;
@@ -52,7 +53,7 @@ public class UpgradeChooseList : MonoBehaviour
         // this list was filled fom playerWeaponController
         for (int i = 0; i < weaponUpgrades.Length; i++)
         {
-            weaponIndexInstalled.Add(false);
+            weaponIndexInstalled.Add(0);
         }
         BuildlistCountAfterUpdate();
     }
@@ -63,7 +64,7 @@ public class UpgradeChooseList : MonoBehaviour
 
         for( int i=0; i < weaponUpgrades.Length; i++ )
         {
-            if (weaponUpgrades[i].upgradeTyp == upgradeTyp && weaponIndexInstalled[i] == false &&
+            if (weaponUpgrades[i].upgradeTyp == upgradeTyp && weaponIndexInstalled[i] < weaponUpgrades[i].UpgradeCount &&
                mcBulletLvl >= weaponUpgrades[i].reqBullet && mcExplosionLvl >= weaponUpgrades[i].reqRocket && mcLaserLvl >= weaponUpgrades[i].reqLaser && mcSupportLvl >= weaponUpgrades[i].reqSupport )   
             {
                 buildList.Add(i);
@@ -109,7 +110,7 @@ public class UpgradeChooseList : MonoBehaviour
         // count new
         for (int i = 0; i < weaponUpgrades.Length; i++)
         {
-            if (weaponIndexInstalled[i] == false &&
+            if (weaponIndexInstalled[i] < weaponUpgrades[i].UpgradeCount &&
                mcBulletLvl >= weaponUpgrades[i].reqBullet && mcExplosionLvl >= weaponUpgrades[i].reqRocket && mcLaserLvl >= weaponUpgrades[i].reqLaser && mcSupportLvl >= weaponUpgrades[i].reqSupport)
             {
                 if (weaponUpgrades[i].upgradeTyp == UpgradeTyp.NormalUpgrade)

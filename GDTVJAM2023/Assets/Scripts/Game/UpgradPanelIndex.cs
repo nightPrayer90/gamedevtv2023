@@ -33,6 +33,7 @@ public class UpgradPanelIndex : MonoBehaviour
     public Image req3;
     public TextMeshProUGUI req3Text;
     public GameObject unique;
+    public TextMeshProUGUI uniqueText;
 
 
     private void OnEnable()
@@ -74,8 +75,8 @@ public class UpgradPanelIndex : MonoBehaviour
 
         mainClass.text = upgradePanelController.mainClassStr[index];
         mainClass.color = upgradePanelController.mainClassColor[index];
-        //subClass.text = upgradePanelController.subClassStr[index];
-       // subClass.color = upgradePanelController.subClassColor[index];
+        subClass.text = upgradePanelController.subClassStr[index];
+        subClass.color = upgradePanelController.subClassColor[index];
 
         headerText.color = upgradePanelController.headerColor[index];
 
@@ -93,6 +94,13 @@ public class UpgradPanelIndex : MonoBehaviour
         if (upgradePanelController.isUnique[index] == true)
         {
             unique.SetActive(true);
+
+            if (upgradeChooseList == null)
+            {
+                upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
+            }
+
+            uniqueText.text = (upgradePanelController.upgradeCount[index] - upgradeChooseList.weaponIndexInstalled[upgradePanelController.upgradeIndex[index]]).ToString();
         }
         else
         {
