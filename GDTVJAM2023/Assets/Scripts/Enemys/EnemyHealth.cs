@@ -270,7 +270,8 @@ public class EnemyHealth : MonoBehaviour
         {
             AudioManager.Instance.PlaySFX("PlayerLaserHit");
             canTakeLaserDamage[index] = false;
-            StartCoroutine(InvokeCanGetLaserDamage(index));
+            if (gameObject.activeSelf)
+                StartCoroutine(InvokeCanGetLaserDamage(index));
 
             // calculate burning damage
             int ran = UnityEngine.Random.Range(0, 100);
@@ -278,8 +279,6 @@ public class EnemyHealth : MonoBehaviour
             {
                 isBurning = true;
                 InvokeBurningDamage();
-                if (burnParticleSystem != null)
-                    burnParticleSystem.Play();
             }
 
             //if (canTakeDamage)
@@ -318,6 +317,8 @@ public class EnemyHealth : MonoBehaviour
 
     public void InvokeBurningDamage()
     {
+        if (burnParticleSystem != null)
+            burnParticleSystem.Play();
         InvokeRepeating("TakeBurningDamage", .2f, 1f);
     }
 

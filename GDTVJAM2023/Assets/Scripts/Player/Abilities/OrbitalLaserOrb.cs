@@ -1,3 +1,4 @@
+using DG.Tweening.Core.Easing;
 using UnityEngine;
 
 public class OrbitalLaserOrb : MonoBehaviour
@@ -23,6 +24,8 @@ public class OrbitalLaserOrb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
+
         if (other.CompareTag("Enemy") || other.CompareTag("secondDimensionEnemy"))
         {
             EnemyHealth eh = other.GetComponent<EnemyHealth>();

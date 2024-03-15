@@ -24,6 +24,7 @@ public class PlayerWeaponController : MonoBehaviour
     public bool isRockedWings = false;
     public bool isFrontLaser = false;
     public bool isOrbitalLaser = false;
+    public bool isThermalSpheres = false;
 
     private HeadCannon isHeadCannonInstalled;
     private PeriodSpawner isRocketLauncherInstalled;
@@ -37,10 +38,10 @@ public class PlayerWeaponController : MonoBehaviour
     private RocketWings isRockedWingsInstalled;
     private FrontLaser isFrontLaserInstalled;
     private OrbitalLaser isOrbitalLaserInstalled;
+    private ThermalSpheres isThermalSpheresInstalled;
 
 
-
-    [Header("Objects")]
+    [Header("Shields")]
     public GameObject frontShield;
     public GameObject backShield;
     [HideInInspector] public GameObject frontShield_;
@@ -140,6 +141,15 @@ public class PlayerWeaponController : MonoBehaviour
     [HideInInspector] public int olDamage_;
     [HideInInspector] public float olReloadTime_;
 
+    [Header("Thermal Sphere")]
+    public int tsDamage = 4;
+    public int tsSalveCount = 6;
+    public float tsReloadTime = 2.5f;
+    public GameObject thermalSphere;
+    [HideInInspector] public int tsDamage_;
+    [HideInInspector] public int tsSalveCount_;
+    [HideInInspector] public float tsReloadTime_;
+
 
     [Header("Container")]
     public Transform passivParentContainer;
@@ -196,7 +206,6 @@ public class PlayerWeaponController : MonoBehaviour
         {
             go = Instantiate(headCannon, passivParentContainer);
             isHeadCannonInstalled = go.GetComponent<HeadCannon>();
-            
         }
         if (isRocketLauncher == true && isRocketLauncherInstalled == null)
         {
@@ -254,6 +263,11 @@ public class PlayerWeaponController : MonoBehaviour
         {
             go = Instantiate(orbitalLaser);
             isOrbitalLaserInstalled = go.GetComponent<OrbitalLaser>();
+        }
+        if (isThermalSpheres == true && isThermalSpheresInstalled == null)
+        {
+            go = Instantiate(thermalSphere, passivParentContainer);
+            isThermalSpheresInstalled = go.GetComponent<ThermalSpheres>();
         }
 
         Invoke("UpdateWeaponValues", 0.1f);
