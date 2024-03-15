@@ -6,16 +6,25 @@ public class SphereController : MonoBehaviour
     [HideInInspector] public int damage;
     [HideInInspector] public Color hitColor;
     private GameManager gameManager;
-    [HideInInspector] public float detectRange;
-    [HideInInspector] public float forcePower;
+    private UpgradeChooseList upgradeChooseList;
+    public float detectRange;
+    public float forcePower;
+    public float sphereForceTime = 0.5f;
+    private float shereForceTime_;
     public ParticleSystem hitParticle;
-    public ParticleSystem particleSystem;
+    public ParticleSystem spawnParticle;
+    public Vector3 initalScale;
 
     private void OnEnable()
     {
-        transform.DOScale(new Vector3(0.065f, 0.065f, 0.065f), 0.5f).SetUpdate(true);
-        InvokeRepeating("CheckForEnemy", 1, 0.5f);
+
+        transform.DOScale(initalScale, 0.5f).SetUpdate(true);
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
+
+        shereForceTime_ = sphereForceTime - (upgradeChooseList.weaponIndexInstalled[73] / 10);
+
+        InvokeRepeating("CheckForEnemy", 1, shereForceTime_);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,11 +44,19 @@ public class SphereController : MonoBehaviour
             {
                 if (eh.canTakeDamage == true)
                 {
-                    //eh.TakeLaserDamage(damage, 4);
+                    
                     AudioManager.Instance.PlaySFX("PlayerLaserHit");
                     hitParticle.Emit(15);
-                    //eh.ShowDamageFromObjects(damage);
-                    eh.InvokeBurningDamage();
+
+                    if (upgradeChooseList.weaponIndexInstalled[70] == 1)
+                    {
+                        eh.TakeLaserDamage(damage, 4);
+                        eh.ShowDamageFromObjects(damage);
+                    }
+                    else
+                    {
+                        eh.InvokeBurningDamage();
+                    }
                 }
             }
             else
@@ -91,12 +108,11 @@ public class SphereController : MonoBehaviour
     public void SetDestroyTimer(float lifetime)
     {
         Invoke("DestroyOrb", lifetime);
-        Debug.Log(lifetime);
     }
 
     public void DestroyOrb()
     {
-        particleSystem.Stop();
+        spawnParticle.Stop();
         CancelInvoke();
         transform.DOScale(new Vector3(0, 0, 0), 0.5f).SetUpdate(true).OnComplete(() => { ObjectPoolManager.ReturnObjectToPool(gameObject); }) ;
     }

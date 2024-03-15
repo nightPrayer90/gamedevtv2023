@@ -289,7 +289,7 @@ public class UpgradePanelController : MonoBehaviour
                 panelList[index].SelectPanel();
 
             // weapon Upgrades
-            if (number > 5 && number <= 17)
+            if ((number > 5 && number <= 17) || number == 69)
             {
                 selectedUpgradePanelList[weaponCount].sprite = iconPanel[index];
                 selectedUpgradePanelList[weaponCount].gameObject.GetComponent<ClassTooltipTrigger>().contentType = number;
@@ -494,7 +494,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.baseBoostInvulnerability += 0.2f;
                 break;
             case 32: // chance to get douple exp
-                upgradeChooseList.chanceToGetTwoExp += 5;
+                upgradeChooseList.chanceToGetTwoExp += 10;
                 break;
             case 33: // 1 life to collect exp
                 upgradeChooseList.chanceToGet1Health += 2;
@@ -643,6 +643,45 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.sgReloadTime -= 0.5f;
                 playerWeaponController.UpdateWeaponValues();
                 break;
+            case 69: // therminal Spheres
+                upgradeChooseList.weaponUpgrades[70].reqLaser = 3; // Chaotic Shperes
+                upgradeChooseList.weaponUpgrades[73].reqLaser = 4; // Dynamic Spheres
+                upgradeChooseList.weaponUpgrades[74].reqLaser = 3; // Enhanced Plasma Spheres
+                upgradeChooseList.weaponUpgrades[75].reqLaser = 4; // Big Photon Spheres
+                playerWeaponController.isThermalSpheres = true;
+                playerWeaponController.WeaponChoose();
+                UpdateClass(number, 2);
+                GoBockToDimension();
+                weaponCount++;
+                break;
+            case 70: // therminal Spheres
+                upgradeChooseList.weaponUpgrades[71].reqLaser = 3; // Power Spheres
+                upgradeChooseList.weaponUpgrades[74].reqLaser = 99; // Enhanced Plasma Spheres
+                playerWeaponController.tsDamage = 2;
+                playerWeaponController.tsLifetime = 2f;
+                playerWeaponController.tsReloadTime = 0.5f;
+                playerWeaponController.UpdateWeaponValues();
+                break;
+            case 71: // Power Spheres
+                upgradeChooseList.weaponUpgrades[72].reqLaser = 3; // Creazy Spheres
+                playerWeaponController.tsDamage += 2;
+                playerWeaponController.UpdateWeaponValues();
+                break;
+            case 72: // Creazy Spheres
+                break;
+            case 73: // Dynamic Spheres
+                break;
+            case 74: // Enhanced Plasma  Spheres
+                upgradeChooseList.weaponUpgrades[70].reqLaser = 99; // Chaotic Shperes
+                playerWeaponController.tsLifetime += 1;
+                playerWeaponController.UpdateWeaponValues();
+                break;
+            case 75: // Enhanced Plasma  Spheres
+                playerWeaponController.tsLifetime += 3;
+                playerWeaponController.tsReloadTime += 0.5f;
+                playerWeaponController.UpdateWeaponValues();
+                break;
+
         }
     }
 

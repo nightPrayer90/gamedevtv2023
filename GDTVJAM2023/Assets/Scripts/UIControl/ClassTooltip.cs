@@ -233,6 +233,11 @@ public class ClassTooltip : MonoBehaviour
                 content_ = content_.Replace("YYY", playerWeaponController.olReloadTime_.ToString());
                 content_ = content_.Replace("AAA", upgradeChooseList.baseLaserBurnDamageChance.ToString());
                 break;
+            case 69: // Thermal Sphere
+                headerField.text = tooltipContent[17].header;
+                headerField.color = gameManager.globalClassColor[2];
+                content_ = "Work in Progress";
+                break;
 
             default:
                 break;

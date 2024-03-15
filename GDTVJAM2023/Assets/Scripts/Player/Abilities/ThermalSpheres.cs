@@ -10,10 +10,10 @@ public class ThermalSpheres : MonoBehaviour
     public float spawnInterval = 1f;
     public float detectRange = 1f;
     public float forcePower = 0.4f;
-    public GameObject sphereToLaunch;
+    public GameObject[] spheresToLaunch;
     public GameObject spawnPoint;
     public Color hitColor = new Color(1f, 0.6f, 0.0f, 1f);
-
+    private UpgradeChooseList upgradeChooseList;
 
 
     /* **************************************************************************** */
@@ -21,8 +21,9 @@ public class ThermalSpheres : MonoBehaviour
     /* **************************************************************************** */
     private void Start()
     {
+        upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
         StartValues();
-        InvokeRepeating("SpawnSphere", spawnInterval, spawnInterval);
+
     }
 
 
@@ -32,28 +33,89 @@ public class ThermalSpheres : MonoBehaviour
     /* FUNCTIONS TO RUN------------------------------------------------------------ */
     /* **************************************************************************** */
     // set start values fom the weaponController
-    private void StartValues()
+    public void StartValues()
     {
         PlayerWeaponController weaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         baseDamage = weaponController.tsDamage;
-        //lifeTime = weaponController.tsDamage;
+        lifeTime = weaponController.tsLifetime;
         spawnInterval = weaponController.tsReloadTime;
+        UpdateInvoke();
+    }
+
+    public void UpdateInvoke()
+    {
+        CancelInvoke();
+        InvokeRepeating("SpawnSphere", spawnInterval, spawnInterval);
     }
 
 
     // Invoke, spawns a rocked after spawnInterval sec
     private void SpawnSphere()
     {
-        GameObject go = ObjectPoolManager.SpawnObject(sphereToLaunch, spawnPoint.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
+        int sphereIndex = 0;
+        if (upgradeChooseList.weaponIndexInstalled[70] == 1)
+            sphereIndex = 1;
+        if (upgradeChooseList.weaponIndexInstalled[75] == 1)
+            sphereIndex = 2;
+
+        GameObject go = ObjectPoolManager.SpawnObject(spheresToLaunch[sphereIndex], spawnPoint.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
         Rigidbody rb = go.GetComponent<Rigidbody>();
         SphereController sphere = go.GetComponent<SphereController>();
         sphere.damage = baseDamage;
         sphere.hitColor = hitColor;
         sphere.SetDestroyTimer(lifeTime);
         sphere.detectRange = detectRange;
-        sphere.forcePower = forcePower; ;
+        sphere.forcePower = forcePower;
 
-        AudioManager.Instance.PlaySFX("PlayerRocketStart");
+        
+
+        if (upgradeChooseList.weaponIndexInstalled[72] > 0)
+        {
+            int random = Random.Range(0, 100);
+            if (random < 25)
+            {
+                go = ObjectPoolManager.SpawnObject(spheresToLaunch[sphereIndex], spawnPoint.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
+                rb = go.GetComponent<Rigidbody>();
+                sphere = go.GetComponent<SphereController>();
+                sphere.damage = baseDamage;
+                sphere.hitColor = hitColor;
+                sphere.SetDestroyTimer(lifeTime);
+                //sphere.detectRange = detectRange;
+                //sphere.forcePower = forcePower;
+            }
+        }
+        if (upgradeChooseList.weaponIndexInstalled[72] >= 1)
+        {
+            int random = Random.Range(0, 100);
+            if (random < 25)
+            {
+                go = ObjectPoolManager.SpawnObject(spheresToLaunch[sphereIndex], spawnPoint.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
+                rb = go.GetComponent<Rigidbody>();
+                sphere = go.GetComponent<SphereController>();
+                sphere.damage = baseDamage;
+                sphere.hitColor = hitColor;
+                sphere.SetDestroyTimer(lifeTime);
+                //sphere.detectRange = detectRange;
+                //sphere.forcePower = forcePower;
+            }
+        }
+        if (upgradeChooseList.weaponIndexInstalled[72] >= 2)
+        {
+            int random = Random.Range(0, 100);
+            if (random < 25)
+            {
+                go = ObjectPoolManager.SpawnObject(spheresToLaunch[sphereIndex], spawnPoint.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
+                rb = go.GetComponent<Rigidbody>();
+                sphere = go.GetComponent<SphereController>();
+                sphere.damage = baseDamage;
+                sphere.hitColor = hitColor;
+                sphere.SetDestroyTimer(lifeTime);
+                //sphere.detectRange = detectRange;
+                //sphere.forcePower = forcePower;
+            }
+        }
+
+        AudioManager.Instance.PlaySFX("PlayerFireFlies");
         if (rb != null)
         {
             Vector3 randomDirection = Random.onUnitSphere;

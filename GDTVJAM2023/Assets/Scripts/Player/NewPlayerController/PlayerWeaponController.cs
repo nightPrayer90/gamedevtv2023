@@ -143,12 +143,12 @@ public class PlayerWeaponController : MonoBehaviour
 
     [Header("Thermal Sphere")]
     public int tsDamage = 4;
-    public int tsSalveCount = 6;
+    public float tsLifetime = 3;
     public float tsReloadTime = 2.5f;
     public GameObject thermalSphere;
     [HideInInspector] public int tsDamage_;
-    [HideInInspector] public int tsSalveCount_;
-    [HideInInspector] public float tsReloadTime_;
+    [HideInInspector] public float tsLifetime_;
+    [HideInInspector] public float tsRelaodTime_;
 
 
     [Header("Container")]
@@ -422,6 +422,18 @@ public class PlayerWeaponController : MonoBehaviour
             isOrbitalLaserInstalled.rotationSpeed = olRotationSpeed;
 
             isOrbitalLaserInstalled.UpdateOrbs();
+        }
+
+        // Thermal Spheres - laser
+        tsDamage_ = Mathf.CeilToInt((tsDamage) * (1 + upgradeChooseList.percLaserDamage / 100));
+        tsRelaodTime_ = Mathf.Max(0.1f, (tsReloadTime * suReloadTime));
+        tsLifetime_ = tsLifetime;
+        if (isThermalSpheresInstalled != null)
+        {
+            isThermalSpheresInstalled.baseDamage = tsDamage_;
+            isThermalSpheresInstalled.spawnInterval = tsRelaodTime_;
+            isThermalSpheresInstalled.lifeTime = tsLifetime_;
+            isThermalSpheresInstalled.UpdateInvoke();
         }
     }
     #endregion

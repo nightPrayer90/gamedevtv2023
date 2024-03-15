@@ -50,7 +50,10 @@ MonoBehaviour:
   spawnInterval: 0.25
   detectRange: 2
   forcePower: 0.4
-  sphereToLaunch: {fileID: 6305817358091521982, guid: 66618212781c0fc4bb428169322d9975, type: 3}
+  spheresToLaunch:
+  - {fileID: 6305817358091521982, guid: 66618212781c0fc4bb428169322d9975, type: 3}
+  - {fileID: 6305817358091521982, guid: 17bd03863bca18b4685f5d8f5452c634, type: 3}
+  - {fileID: 6305817358091521982, guid: 544675af322576a41b9c581514379f4f, type: 3}
   spawnPoint: {fileID: 7608659783266222577}
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
 --- !u!1 &7608659783266222577
