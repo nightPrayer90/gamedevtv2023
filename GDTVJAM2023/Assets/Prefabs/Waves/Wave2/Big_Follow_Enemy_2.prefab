@@ -5002,18 +5002,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionObject: {fileID: 0}
   collisionExplosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
-  expOrb: {fileID: 5693635298845190373, guid: 5ca91630af6a61c4f99d7279b939e976, type: 3}
+  expOrb: {fileID: 5693635298845190373, guid: 8e3f78fb04e545a4c918a6cb8835ac0a, type: 3}
   classPickup: {fileID: 5693635298845190373, guid: d8d2b78aecd465f4c84d40add32cceb0, type: 3}
   miniMapIcon: {fileID: 276777249927020237}
   engineParticle: {fileID: 272690642285751827}
   novaOnDie: {fileID: 4303235208557751318, guid: c01ac0e458a23da41aaf1c60e7ee97a7, type: 3}
   enemyHealth: 40
+  enemyStartHealth: 0
   collisonDamage: 3
   explosionForce: 10
   expOrbSpawn: 1
   secondDimensionEnemy: 0
   canTakeDamage: 1
   canPoolObject: 1
+  isBoss: 0
+  isMine: 0
   enemyWeapons: []
   enemyWeaponParticles: []
   bulletDamage: 0

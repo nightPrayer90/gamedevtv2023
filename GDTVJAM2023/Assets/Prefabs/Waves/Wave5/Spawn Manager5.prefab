@@ -44,11 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae10b7fda37e5541814feb27e411e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToSpawn:
-  - {fileID: 3161139216598759944, guid: 83cae9fdc6a0c5e428018e7be8cf6e08, type: 3}
-  spawnProbabilities:
-  - 100
-  maxSpawnDistance: 10
-  spawnInterval: 2
-  maxWaveEnemys: 25
   wave: 4
+  waveData: []
+  maxWaveEnemys: 25
+  minSpawnDistance: 11
+  maxSpawnDistance: 16
+  spawnInterval: 2

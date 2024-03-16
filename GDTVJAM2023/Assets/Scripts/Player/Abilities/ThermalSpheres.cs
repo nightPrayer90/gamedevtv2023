@@ -64,12 +64,9 @@ public class ThermalSpheres : MonoBehaviour
         sphere.damage = baseDamage;
         sphere.hitColor = hitColor;
         sphere.SetDestroyTimer(lifeTime);
-        sphere.detectRange = detectRange;
-        sphere.forcePower = forcePower;
 
-        
 
-        if (upgradeChooseList.weaponIndexInstalled[72] > 0)
+        for (int i = 0; i <= upgradeChooseList.weaponIndexInstalled[72]; i++)
         {
             int random = Random.Range(0, 100);
             if (random < 25)
@@ -80,40 +77,9 @@ public class ThermalSpheres : MonoBehaviour
                 sphere.damage = baseDamage;
                 sphere.hitColor = hitColor;
                 sphere.SetDestroyTimer(lifeTime);
-                //sphere.detectRange = detectRange;
-                //sphere.forcePower = forcePower;
             }
         }
-        if (upgradeChooseList.weaponIndexInstalled[72] >= 1)
-        {
-            int random = Random.Range(0, 100);
-            if (random < 25)
-            {
-                go = ObjectPoolManager.SpawnObject(spheresToLaunch[sphereIndex], spawnPoint.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
-                rb = go.GetComponent<Rigidbody>();
-                sphere = go.GetComponent<SphereController>();
-                sphere.damage = baseDamage;
-                sphere.hitColor = hitColor;
-                sphere.SetDestroyTimer(lifeTime);
-                //sphere.detectRange = detectRange;
-                //sphere.forcePower = forcePower;
-            }
-        }
-        if (upgradeChooseList.weaponIndexInstalled[72] >= 2)
-        {
-            int random = Random.Range(0, 100);
-            if (random < 25)
-            {
-                go = ObjectPoolManager.SpawnObject(spheresToLaunch[sphereIndex], spawnPoint.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
-                rb = go.GetComponent<Rigidbody>();
-                sphere = go.GetComponent<SphereController>();
-                sphere.damage = baseDamage;
-                sphere.hitColor = hitColor;
-                sphere.SetDestroyTimer(lifeTime);
-                //sphere.detectRange = detectRange;
-                //sphere.forcePower = forcePower;
-            }
-        }
+
 
         AudioManager.Instance.PlaySFX("PlayerFireFlies");
         if (rb != null)

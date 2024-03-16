@@ -43,7 +43,7 @@ public class SpawnManager : MonoBehaviour
     private GameManager gameManager;
     private Transform playerTransform;
     private SpawnDistrictList spawnDistrictList;
-
+    private ParticleSystem spawnParticle;
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -56,6 +56,8 @@ public class SpawnManager : MonoBehaviour
 
         playerTransform = GameObject.Find("NewPlayer").GetComponent<Transform>();
         playerTransform = GameObject.Find("NewPlayer").GetComponent<Transform>();
+
+        spawnParticle = GetComponentInChildren<ParticleSystem>();
 
         // start spawning
         InvokeRepeating("SpawnObject", 3f, spawnInterval);
@@ -95,11 +97,16 @@ public class SpawnManager : MonoBehaviour
                 i = UnityEngine.Random.Range(0, gameManager.districtNumber);
 
                 // Spawn in District X
-                spawnPosition = GetRandomSpawnPointOverDistrict(spawnDistrictList.districtList[i].transform, 18f);
+                spawnPosition = GetRandomSpawnPointOverDistrict(spawnDistrictList.districtList[i].transform, 14f);
             }
-            
+
 
             // Spawn the object at the generated position
+            if (spawnParticle != null)
+            {
+                spawnParticle.transform.position = spawnPosition;
+                spawnParticle.Emit(50);
+            }
             switch (wave)
             {
                 case Wave.Wave1:
@@ -163,21 +170,31 @@ public class SpawnManager : MonoBehaviour
 
     private Vector3 GetRandomSpawnPositionFromPlayer()
     {
-        // Zufällig wähle einen Punkt innerhalb eines Sphärenbereichs um den Spieler
         Vector3 spawnDirection = UnityEngine.Random.onUnitSphere;
-        float spawnDistance = UnityEngine.Random.Range(minSpawnDistance, maxSpawnDistance);
-        Vector3 spawnPosition = playerTransform.position + (spawnDirection * spawnDistance) + new Vector3(5,0,5);
-        spawnPosition.y = 6f;
+        Vector3 adjustedSpawnDirection = spawnDirection.normalized * minSpawnDistance;
+        float spawnDistance = UnityEngine.Random.Range(1f, maxSpawnDistance - minSpawnDistance);
+        Vector3 spawnPosition = playerTransform.position + (adjustedSpawnDirection * spawnDistance);
+        spawnPosition.y = 6f; // Y-Koordinate auf 0 setzen
         return spawnPosition;
     }
 
-    private Vector3 GetRandomSpawnPointOverDistrict(Transform centerObject, float maxDistance)
+    private Vector3 GetRandomSpawnPointOverDistrict(Transform centerObject, float halfSize)
     {
-        // Zufällig wähle einen Punkt innerhalb eines Sphärenbereichs um das Zentrum des Objekts
-        Vector3 spawnDirection = UnityEngine.Random.onUnitSphere;
-        float spawnDistance = UnityEngine.Random.Range(4f, maxDistance); 
-        Vector3 spawnPosition = centerObject.position + spawnDirection * spawnDistance;
-        spawnPosition.y = 6f;
+        Vector3 spawnPosition;
+
+        do
+        {
+            float minX = centerObject.position.x - halfSize;
+            float maxX = centerObject.position.x + halfSize;
+            float minZ = centerObject.position.z - halfSize;
+            float maxZ = centerObject.position.z + halfSize;
+
+            float randomX = UnityEngine.Random.Range(minX, maxX);
+            float randomZ = UnityEngine.Random.Range(minZ, maxZ);
+
+            spawnPosition = new Vector3(randomX, 6f, randomZ);
+
+        } while (Vector3.Distance(spawnPosition, playerTransform.position) < 5f);
 
         return spawnPosition;
     }

@@ -4923,7 +4923,7 @@ MonoBehaviour:
   miniMapIcon: {fileID: 6299930010074552408}
   engineParticle: {fileID: 756974547268019128}
   novaOnDie: {fileID: 4303235208557751318, guid: c01ac0e458a23da41aaf1c60e7ee97a7, type: 3}
-  enemyHealth: 80
+  enemyHealth: 60
   enemyStartHealth: 0
   collisonDamage: 4
   explosionForce: 10
@@ -4932,6 +4932,7 @@ MonoBehaviour:
   canTakeDamage: 1
   canPoolObject: 1
   isBoss: 0
+  isMine: 0
   enemyWeapons: []
   enemyWeaponParticles: []
   bulletDamage: 0

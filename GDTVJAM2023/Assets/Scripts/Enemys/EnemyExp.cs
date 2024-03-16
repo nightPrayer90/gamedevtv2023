@@ -4,6 +4,7 @@ public class EnemyExp : MonoBehaviour
 {
     public float moveSpeed = 1f;
     public float detectionRange = 0.5f;
+    public int expValue = 1;
 
     private NewPlayerController playercontroller;
     private Transform playerTransform;

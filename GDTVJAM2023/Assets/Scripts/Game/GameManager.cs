@@ -194,7 +194,7 @@ public class GameManager : MonoBehaviour
         spawnDistrictList = GetComponent<SpawnDistrictList>();
 
         // upgrades form all ships
-        upgradeChooseList.chanceToGetTwoExp = bulletShipData.chanceToDoubleExp + rocketShipData.chanceToDoubleExp + laserShipData.chanceToDoubleExp;
+        //upgradeChooseList.chanceToGetTwoExp = bulletShipData.chanceToDoubleExp + rocketShipData.chanceToDoubleExp + laserShipData.chanceToDoubleExp;
 
         // Initialize timer
         currentTime = totalTime + 1;

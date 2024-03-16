@@ -136,7 +136,8 @@ public class NewPlayerController : MonoBehaviour
         {
             case "Exp":
                 ObjectPoolManager.ReturnObjectToPool(other.gameObject);
-                UpdatePlayerExperience();
+                int expValue = other.GetComponent<EnemyExp>().expValue;
+                UpdatePlayerExperience(expValue);
                 break;
 
             case "BulletPickup":
@@ -420,9 +421,9 @@ public class NewPlayerController : MonoBehaviour
     #region health and experience
 
     // update the player experience
-    private void UpdatePlayerExperience()
+    private void UpdatePlayerExperience(int expValue)
     {
-        int exp = 1;
+        int exp = expValue;
         // get + 1 experience
 
         // chance to get double exp
@@ -431,7 +432,7 @@ public class NewPlayerController : MonoBehaviour
             if (UnityEngine.Random.Range(0, 100) <= upgradeChooseList.chanceToGetTwoExp)
             {
                 gameManager.DoFloatingText(transform.position, "+", Color.white);
-                exp = 2;
+                exp += 1;
             }
         }
 
@@ -548,7 +549,6 @@ public class NewPlayerController : MonoBehaviour
     // the player take damage after he is outside the border
     private void PlayerIsOutsideBorder()
     {
-        Debug.Log("invoke");
         UpdatePlayerHealth(damageTaken);
         gameManager.outsideBorderTextTweenTarget.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.6f, 15, 0.5f);
     }

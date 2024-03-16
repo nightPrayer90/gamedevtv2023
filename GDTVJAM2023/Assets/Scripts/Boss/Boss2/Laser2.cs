@@ -126,6 +126,15 @@ public class Laser2 : MonoBehaviour
                         orb.DestroyOrb();
                     }
 
+                    if (hit.transform.tag == "Sphere")
+                    {
+                        SphereController sphere = hit.transform.GetComponent<SphereController>();
+
+                        hitParticle.transform.position = hit.point;
+                        hitParticle.Emit(2);
+                        sphere.DestroyOrb();
+                    }
+
                     if (hit.transform.tag == "Shield")
                     {
                         ShieldController shield = hit.transform.GetComponent<ShieldController>();

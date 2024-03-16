@@ -110,6 +110,7 @@ public class NovaExplosion : MonoBehaviour
         // spawn the explosion object
         GameObject go = ObjectPoolManager.SpawnObject(explosionFX, pos, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
         go.GetComponent<ParticleSystemDestroy>().rippleParicleSize = explosionRadius;
+        go.transform.SetParent(gameObject.transform);
     }
 
     private void SpawnloadEffect()

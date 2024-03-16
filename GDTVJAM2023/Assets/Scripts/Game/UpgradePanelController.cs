@@ -374,8 +374,10 @@ public class UpgradePanelController : MonoBehaviour
                 weaponCount++;
                 break;
             case 10: //weapon: supoort Modul
+                upgradeChooseList.chanceToGetTwoExp += 15;
                 playerWeaponController.isLifeModul = true;
                 playerWeaponController.WeaponChoose();
+                
                 UpdateClass(number,1);
                 GoBockToDimension();
                 weaponCount++;
@@ -418,8 +420,10 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 GoBockToDimension();
+                upgradeChooseList.weaponUpgrades[77].reqRocket = 2; // Fury Nova
+                upgradeChooseList.weaponUpgrades[78].reqRocket = 2; // Nuclear Nova
                 upgradeChooseList.weaponUpgrades[36].reqRocket = 2; // Boosted Nova Impact
-
+                upgradeChooseList.weaponUpgrades[79].reqRocket = 3; // Power Nova
                 weaponCount++;
                 break;
             case 15: //weapon: rocket wings
@@ -620,6 +624,7 @@ public class UpgradePanelController : MonoBehaviour
 
                 upgradeChooseList.weaponUpgrades[65].reqBullet = 99; // Big Head Cannon
                 upgradeChooseList.weaponUpgrades[67].reqBullet = 3; // Gatlin Head Cannon
+                upgradeChooseList.weaponUpgrades[76].reqBullet = 4; // Cannon Power
                 break;
             case 65: // Big Head Cannon
                 playerWeaponController.hcBulletDamage = 20;
@@ -647,7 +652,6 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponUpgrades[70].reqLaser = 3; // Chaotic Shperes
                 upgradeChooseList.weaponUpgrades[73].reqLaser = 4; // Dynamic Spheres
                 upgradeChooseList.weaponUpgrades[74].reqLaser = 3; // Enhanced Plasma Spheres
-                upgradeChooseList.weaponUpgrades[75].reqLaser = 4; // Big Photon Spheres
                 playerWeaponController.isThermalSpheres = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number, 2);
@@ -655,15 +659,15 @@ public class UpgradePanelController : MonoBehaviour
                 weaponCount++;
                 break;
             case 70: // therminal Spheres
-                upgradeChooseList.weaponUpgrades[71].reqLaser = 3; // Power Spheres
+                upgradeChooseList.weaponUpgrades[71].reqLaser = 4; // Power Spheres
                 upgradeChooseList.weaponUpgrades[74].reqLaser = 99; // Enhanced Plasma Spheres
+                upgradeChooseList.weaponUpgrades[72].reqLaser = 3; // Creazy Spheres
                 playerWeaponController.tsDamage = 2;
                 playerWeaponController.tsLifetime = 2f;
                 playerWeaponController.tsReloadTime = 0.5f;
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 71: // Power Spheres
-                upgradeChooseList.weaponUpgrades[72].reqLaser = 3; // Creazy Spheres
                 playerWeaponController.tsDamage += 2;
                 playerWeaponController.UpdateWeaponValues();
                 break;
@@ -673,6 +677,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 74: // Enhanced Plasma  Spheres
                 upgradeChooseList.weaponUpgrades[70].reqLaser = 99; // Chaotic Shperes
+                upgradeChooseList.weaponUpgrades[75].reqLaser = 4; // Big Photon Sphere
                 playerWeaponController.tsLifetime += 1;
                 playerWeaponController.UpdateWeaponValues();
                 break;
@@ -681,7 +686,26 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.tsReloadTime += 0.5f;
                 playerWeaponController.UpdateWeaponValues();
                 break;
-
+            case 76: // Cannon Power
+                playerWeaponController.hcBulletDamage += 1;
+                playerWeaponController.UpdateWeaponValues();
+                break;
+            case 77: // Fury Novas
+                upgradeChooseList.weaponUpgrades[78].reqRocket = 99; // Nuclear Nova
+                playerWeaponController.neRadius -= 0.15f;
+                playerWeaponController.neReloadTime -= 0.8f;
+                playerWeaponController.UpdateWeaponValues();
+                break;
+            case 78: // Nuclear Novas
+                upgradeChooseList.weaponUpgrades[77].reqRocket = 99; // Fury Nova
+                playerWeaponController.neRadius += 0.12f;
+                playerWeaponController.neReloadTime += 0.3f;
+                playerWeaponController.UpdateWeaponValues();
+                break;
+            case 79: // Power Nova
+                playerWeaponController.neDamage += 2;
+                playerWeaponController.UpdateWeaponValues();
+                break;
         }
     }
 

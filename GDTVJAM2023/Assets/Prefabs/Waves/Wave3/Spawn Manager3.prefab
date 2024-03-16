@@ -55,7 +55,10 @@ MonoBehaviour:
   - enemyToSpawn: {fileID: 3161139216598759944, guid: e0836ddfab5c1a34ca76613c8efa92ad, type: 3}
     spawnProbabilities: 20
     isGroundEnemy: 0
+  - enemyToSpawn: {fileID: 3161139216598759944, guid: 93be1c6e1f60e804d90a3822976b9f1a, type: 3}
+    spawnProbabilities: 7
+    isGroundEnemy: 1
   maxWaveEnemys: 20
-  minSpawnDistance: 12
+  minSpawnDistance: 11
   maxSpawnDistance: 16
   spawnInterval: 1.5
