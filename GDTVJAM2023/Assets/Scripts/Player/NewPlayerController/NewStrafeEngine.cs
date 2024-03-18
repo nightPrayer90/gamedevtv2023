@@ -27,7 +27,9 @@ public class NewStrafeEngine : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
- 
+        if (playerController == null)
+            return; // TODO: schön machen
+
         if (playerController.horizontalInput2 > 0.5)
         {
 

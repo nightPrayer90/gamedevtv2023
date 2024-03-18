@@ -38,16 +38,22 @@ public class NewBaseEngine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GetComponentInParent<NewPlayerController>();
-        playerController.OnIntroOver += HandleStartBoost;
-        playerController.OnUpdateRotateSpeed += HandleSpeedUpdate;
-        playerRigidbody = playerController.GetComponent<Rigidbody>();
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        GameObject go = GameObject.Find("Game Manager");
+        if (go != null) {
+            gameManager = go.GetComponent<GameManager>();
+            playerController = GetComponentInParent<NewPlayerController>();
+            playerController.OnIntroOver += HandleStartBoost;
+            playerController.OnUpdateRotateSpeed += HandleSpeedUpdate;
+            playerRigidbody = playerController.GetComponent<Rigidbody>();
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (playerController == null)
+            return; // TODO: schön machen
+
         ShowEnergie();
 
         // Forwards
