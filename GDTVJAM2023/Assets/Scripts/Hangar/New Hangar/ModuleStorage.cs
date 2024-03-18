@@ -17,7 +17,7 @@ public class ModuleStorage : MonoBehaviour
     public List<ModuleInstance> baseModules;
     JsonDataService dataService;
     private const float moduleEdgeLength = 1;
-    public HangarController hangarController;
+    public ModuleList moduleList;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +26,7 @@ public class ModuleStorage : MonoBehaviour
         dataService = new();
         baseModules = dataService.LoadData<List<ModuleInstance>>("modules.json", false);
         foreach(ModuleInstance instance in baseModules) {
-            Instantiate(hangarController.modulePrefabs[instance.moduleIndex], new Vector3(instance.x, transform.position.y, instance.y), Quaternion.Euler(0, instance.rotation, 0), gameObject.transform);
+            Instantiate(moduleList.modulePrefabs[instance.moduleIndex], new Vector3(instance.x, transform.position.y, instance.y), Quaternion.Euler(0, instance.rotation, 0), gameObject.transform);
         }
     }
 
