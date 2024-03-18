@@ -39,21 +39,16 @@ public class NewBaseEngine : MonoBehaviour
     void Start()
     {
         GameObject go = GameObject.Find("Game Manager");
-        if (go != null) {
-            gameManager = go.GetComponent<GameManager>();
-            playerController = GetComponentInParent<NewPlayerController>();
-            playerController.OnIntroOver += HandleStartBoost;
-            playerController.OnUpdateRotateSpeed += HandleSpeedUpdate;
-            playerRigidbody = playerController.GetComponent<Rigidbody>();
-        }
+        gameManager = go.GetComponent<GameManager>();
+        playerController = GetComponentInParent<NewPlayerController>();
+        playerController.OnIntroOver += HandleStartBoost;
+        playerController.OnUpdateRotateSpeed += HandleSpeedUpdate;
+        playerRigidbody = playerController.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (playerController == null)
-            return; // TODO: schön machen
-
         ShowEnergie();
 
         // Forwards
@@ -65,7 +60,7 @@ public class NewBaseEngine : MonoBehaviour
                 totalThrustForce = thrustForce + FrontBoostPower;
 
                 // powerboost
-                if (hasPowerBoost == true && playerController.energieCurrent >= playerController.energieMax*0.90f)
+                if (hasPowerBoost == true && playerController.energieCurrent >= playerController.energieMax * 0.90f)
                 {
                     gameManager.ScreenShake(5);
                     AudioManager.Instance.PlaySFX("PlayerBoostKick");
@@ -83,14 +78,14 @@ public class NewBaseEngine : MonoBehaviour
                 totalThrustForce = thrustForce + FrontBoostPower;
                 ps_boostParticle.Emit(1);
                 ps_boostEngine.Emit(1);
-                
+
                 useBoost = true;
-                
+
                 if (playerController.energieCurrent < FrontBoostCost) useBoost = false;
             }
             else
             {
-                
+
 
                 totalThrustForce = thrustForce * EnergieDebuffForce();
                 ps_engine.Emit(1);
@@ -103,7 +98,7 @@ public class NewBaseEngine : MonoBehaviour
             // Wende die Kraft auf das Raumschiff an
             playerRigidbody.AddForce(thrust);
 
-            
+
         }
 
         // Backwards
@@ -138,7 +133,7 @@ public class NewBaseEngine : MonoBehaviour
             // Wende die Kraft auf das Raumschiff an
             playerRigidbody.AddForce(thrust);
 
-            
+
         }
     }
 
@@ -150,7 +145,7 @@ public class NewBaseEngine : MonoBehaviour
 
     private void HandleSpeedUpdate(float flyspeed)
     {
-        thrustForce = thrustForce * (1 + (flyspeed/100));
+        thrustForce = thrustForce * (1 + (flyspeed / 100));
         backForce = backForce * (1 + (flyspeed / 100));
     }
 
@@ -161,7 +156,7 @@ public class NewBaseEngine : MonoBehaviour
         if (canShowEnergie == true)
         {
             if (playerController.energieCurrent >= playerController.energieMax * 0.90f)
-            { 
+            {
                 material = 1;
             }
             else if (playerController.energieCurrent <= 0.5f)

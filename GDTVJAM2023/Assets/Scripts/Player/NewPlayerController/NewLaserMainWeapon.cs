@@ -38,22 +38,22 @@ public class NewLaserMainWeapon : BaseModule
     void Start()
     {
         GameObject go = GameObject.Find("Game Manager");
-        if (go != null) {
-            gameManager = go.GetComponent<GameManager>();
-            upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
-            playerController = GetComponentInParent<NewPlayerController>();
-            playerController.OnIntroOver += HandleStartShooting;
 
-            playerWeaponController = GetComponentInParent<PlayerWeaponController>();
-            playerWeaponController.OnMWDamage += HandleDamageUpdate;
-            playerWeaponController.ONUpdateLaserReloadTime += HandleLaserReloadTime;
+        gameManager = go.GetComponent<GameManager>();
+        upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
+        playerController = GetComponentInParent<NewPlayerController>();
+        playerController.OnIntroOver += HandleStartShooting;
 
-            laserShootTime = 3f; //shipData.laserShootingTime;
+        playerWeaponController = GetComponentInParent<PlayerWeaponController>();
+        playerWeaponController.OnMWDamage += HandleDamageUpdate;
+        playerWeaponController.ONUpdateLaserReloadTime += HandleLaserReloadTime;
+
+        laserShootTime = 3f; //shipData.laserShootingTime;
 
 
-            lr.enabled = false;
-            HandleDamageUpdate(0);
-        }
+        lr.enabled = false;
+        HandleDamageUpdate(0);
+
     }
 
     private void Update()
@@ -64,7 +64,7 @@ public class NewLaserMainWeapon : BaseModule
     private void HandleDamageUpdate(int damageToUpdate)
     {
         laserBaseDamage += damageToUpdate;
-        resultLaserDamage = Mathf.RoundToInt((float)laserBaseDamage * ( 1+ (upgradeChooseList.percLaserDamage/100)));
+        resultLaserDamage = Mathf.RoundToInt((float)laserBaseDamage * (1 + (upgradeChooseList.percLaserDamage / 100)));
     }
 
     private void HandleStartShooting()
@@ -151,7 +151,7 @@ public class NewLaserMainWeapon : BaseModule
 
                 if (collidedObject.canTakeLaserDamage[1] == true && collidedObject.canTakeDamage == true)
                 {
-                    
+
 
                     collidedObject.TakeLaserDamage(EnergieDamageDebuff(resultLaserDamage), 1);
                     collidedObject.ShowDamageFromPosition(hit.point, EnergieDamageDebuff(resultLaserDamage));
