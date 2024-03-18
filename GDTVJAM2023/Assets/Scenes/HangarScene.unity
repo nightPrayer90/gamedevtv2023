@@ -680,6 +680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseModules: []
   moduleList: {fileID: 11400000, guid: 0cbbf3c8352d3e449baf78feda11ae88, type: 2}
+  transformParent: {fileID: 1761201647}
 --- !u!4 &1761201647
 Transform:
   m_ObjectHideFlags: 0

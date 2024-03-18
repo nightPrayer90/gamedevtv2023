@@ -18,6 +18,7 @@ public class ModuleStorage : MonoBehaviour
     JsonDataService dataService;
     private const float moduleEdgeLength = 1;
     public ModuleList moduleList;
+    public Transform transformParent;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +27,10 @@ public class ModuleStorage : MonoBehaviour
         dataService = new();
         baseModules = dataService.LoadData<List<ModuleInstance>>("modules.json", false);
         foreach(ModuleInstance instance in baseModules) {
-            Instantiate(moduleList.modulePrefabs[instance.moduleIndex], new Vector3(transform.position.x + instance.x * transform.localScale.x, transform.position.y, transform.position.z + instance.z * transform.localScale.z), Quaternion.Euler(0, instance.rotation, 0), gameObject.transform);
+            //Instantiate(moduleList.modulePrefabs[instance.moduleIndex], new Vector3(transform.position.x + instance.x * transform.localScale.x, transform.position.y, transform.position.z + instance.z * transform.localScale.z), Quaternion.Euler(0, instance.rotation, 0), transformParent);            
+            GameObject go = Instantiate(moduleList.modulePrefabs[instance.moduleIndex], transformParent, false);
+            go.transform.localPosition = new Vector3(instance.x, 0, instance.z);
+            go.transform.localRotation = Quaternion.Euler(0, instance.rotation, 0);
         }
     }
 
