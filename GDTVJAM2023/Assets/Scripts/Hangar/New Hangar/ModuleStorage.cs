@@ -7,7 +7,7 @@ using UnityEngine;
 public struct ModuleInstance
 {
     public float x;
-    public float y;
+    public float z;
     public float rotation;
     public int moduleIndex;
 }
@@ -26,7 +26,7 @@ public class ModuleStorage : MonoBehaviour
         dataService = new();
         baseModules = dataService.LoadData<List<ModuleInstance>>("modules.json", false);
         foreach(ModuleInstance instance in baseModules) {
-            Instantiate(moduleList.modulePrefabs[instance.moduleIndex], new Vector3(instance.x, transform.position.y, instance.y), Quaternion.Euler(0, instance.rotation, 0), gameObject.transform);
+            Instantiate(moduleList.modulePrefabs[instance.moduleIndex], new Vector3(transform.position.x + instance.x * transform.localScale.x, transform.position.y, transform.position.z + instance.z * transform.localScale.z), Quaternion.Euler(0, instance.rotation, 0), gameObject.transform);
         }
     }
 
