@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewLaserMainWeapon : MonoBehaviour
+public class NewLaserMainWeapon : BaseModule
 {
     [Header("Laser Settings")]
     public int laserBaseDamage;
@@ -37,20 +37,23 @@ public class NewLaserMainWeapon : MonoBehaviour
 
     void Start()
     {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
-        playerController = GetComponentInParent<NewPlayerController>();
-        playerController.OnIntroOver += HandleStartShooting;
+        GameObject go = GameObject.Find("Game Manager");
+        if (go != null) {
+            gameManager = go.GetComponent<GameManager>();
+            upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
+            playerController = GetComponentInParent<NewPlayerController>();
+            playerController.OnIntroOver += HandleStartShooting;
 
-        playerWeaponController = GetComponentInParent<PlayerWeaponController>();
-        playerWeaponController.OnMWDamage += HandleDamageUpdate;
-        playerWeaponController.ONUpdateLaserReloadTime += HandleLaserReloadTime;
+            playerWeaponController = GetComponentInParent<PlayerWeaponController>();
+            playerWeaponController.OnMWDamage += HandleDamageUpdate;
+            playerWeaponController.ONUpdateLaserReloadTime += HandleLaserReloadTime;
 
-        laserShootTime = 3f; //shipData.laserShootingTime;
+            laserShootTime = 3f; //shipData.laserShootingTime;
 
 
-        lr.enabled = false;
-        HandleDamageUpdate(0);
+            lr.enabled = false;
+            HandleDamageUpdate(0);
+        }
     }
 
     private void Update()

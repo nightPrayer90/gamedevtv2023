@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static PlayerMWController;
 
-public class NewBulletMainWeapon : MonoBehaviour
+public class NewBulletMainWeapon : BaseModule
 {
     //private Objects
     private GameManager gameManager;
@@ -26,16 +26,19 @@ public class NewBulletMainWeapon : MonoBehaviour
     #region lifecycle
     void Start()
     {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
-        playerController = GetComponentInParent<NewPlayerController>();
-        playerController.OnIntroOver += HandleStartShooting;
-        playerWeaponController = GetComponentInParent<PlayerWeaponController>();
-        playerWeaponController.OnMWDamage += HandleDamageUpdate;
-        playerWeaponController.ONUpdateBulletRealodTime += HandleFireRateUpdate;
+        GameObject go = GameObject.Find("Game Manager");
+        if (go != null) {
+            gameManager = go.GetComponent<GameManager>();
+            upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
+            playerController = GetComponentInParent<NewPlayerController>();
+            playerController.OnIntroOver += HandleStartShooting;
+            playerWeaponController = GetComponentInParent<PlayerWeaponController>();
+            playerWeaponController.OnMWDamage += HandleDamageUpdate;
+            playerWeaponController.ONUpdateBulletRealodTime += HandleFireRateUpdate;
 
-        // bullet
-        UpdateBulletValues();
+            // bullet
+            UpdateBulletValues();
+        }
     }
 
     public void HandleDamageUpdate(int damageToUpdate)
@@ -71,8 +74,7 @@ public class NewBulletMainWeapon : MonoBehaviour
         float temp_fireRate = fireRate;
 
         // restart Invoke
-        if (fireRate != temp_fireRate)
-        {
+        if (fireRate != temp_fireRate) {
             CancelInvoke("BulletShotEmit");
             InvokeRepeating("BulletShotEmit", 0.3f, fireRate);
         }
@@ -123,8 +125,7 @@ public class NewBulletMainWeapon : MonoBehaviour
     // Debuff is EnergieProduction < 0
     private void EnergieDamageDebuff()
     {
-        if (playerController.energieProduction < 0)
-        {
+        if (playerController.energieProduction < 0) {
             bulletResouldDamage = bulletBaseDamage + Mathf.RoundToInt((float)bulletBaseDamage * (upgradeChooseList.percBulletDamage / 100) * 0.5f);
             particelBullet.BulletSetDamage(bulletResouldDamage);
 
