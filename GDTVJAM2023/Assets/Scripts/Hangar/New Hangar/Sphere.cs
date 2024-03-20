@@ -14,6 +14,10 @@ public class Sphere : MonoBehaviour
     public float spawnPositionX;
     public float spawnPositionZ;
     private MeshRenderer meshRenderer;
+    private ModuleList moduleList;
+    private GameObject ship;
+    private Collider meshCollider;
+    public List<Modules> availableModuls;
 
     public enum SphereSide
     {
@@ -23,20 +27,19 @@ public class Sphere : MonoBehaviour
         back,
         strafe
     }
-
     public SphereSide sphereSide;
 
     private void Awake()
     {
         selectionController = GameObject.Find("SelectionController").GetComponent<Selection>();
         selectionController.OnDeselect += HandleSetDeselect;
-        moduleStorage = GameObject.Find("Ship").GetComponent<ModuleStorage>();
+        ship = GameObject.Find("Ship");
+        moduleStorage = ship.GetComponent<ModuleStorage>();
+        moduleList = moduleStorage.moduleList;
+
         moduleInstances = moduleStorage.baseModules;
-
-        spawnPositionX = parentTransform.localPosition.x;
-        spawnPositionZ = parentTransform.localPosition.z;
-
         meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        meshCollider = gameObject.GetComponent<Collider>();
     }
 
     private void Start()
@@ -44,6 +47,7 @@ public class Sphere : MonoBehaviour
         spawnPositionX = parentTransform.localPosition.x;
         spawnPositionZ = parentTransform.localPosition.z;
         ControllSpheres();
+        CreateModulList();
     }
 
     public void HandleSetDeselect()
@@ -51,14 +55,42 @@ public class Sphere : MonoBehaviour
         if (isActiv == true)
         {
             isActiv = false;
-            Debug.Log(isActiv);
         }
     }
 
     public void SetActive()
     {
         isActiv = true;
-        Debug.Log("isActiv");
+    }
+
+    public void CreateModulList()
+    {
+        foreach (Modules module in moduleList.moduls)
+        {
+            switch (sphereSide)
+            {
+                case SphereSide.left:
+                    if (module.canLeft == true)
+                        availableModuls.Add(module);
+                    break;
+                case SphereSide.right:
+                    if (module.canRight == true)
+                        availableModuls.Add(module);
+                    break;
+                case SphereSide.front:
+                    if (module.canFront == true)
+                        availableModuls.Add(module);
+                    break;
+                case SphereSide.back:
+                    if (module.canBack == true)
+                        availableModuls.Add(module);
+                    break;
+                case SphereSide.strafe:
+                    if (module.myEnumVariable == Modules.ModulTyp.StrafeEngine)
+                        availableModuls.Add(module);
+                    break;
+            }
+        }
     }
 
     public void ControllSpheres()
@@ -73,11 +105,13 @@ public class Sphere : MonoBehaviour
                         if (module.x == spawnPositionX && module.z == spawnPositionZ - 1)
                         {
                             meshRenderer.enabled = false;
+                            meshCollider.enabled = false;
                             isModulSet = true;
                             return;
                         }
                         else
                         {
+                            meshCollider.enabled = true;
                             meshRenderer.enabled = true;
                             isModulSet = false;
                         }
@@ -90,12 +124,14 @@ public class Sphere : MonoBehaviour
                         if (module.x == spawnPositionX && module.z == spawnPositionZ + 1)
                         {
                             meshRenderer.enabled = false;
+                            meshCollider.enabled = false;
                             isModulSet = true;
                             return;
                         }
                         else
                         {
                             meshRenderer.enabled = true;
+                            meshCollider.enabled = true;
                             isModulSet = false;
                         }
                     }
@@ -106,6 +142,7 @@ public class Sphere : MonoBehaviour
                     {
                         if (module.x == spawnPositionX + 1 && module.z == spawnPositionZ)
                         {
+                            meshCollider.enabled = false;
                             meshRenderer.enabled = false;
                             isModulSet = true;
                             return;
@@ -113,6 +150,7 @@ public class Sphere : MonoBehaviour
                         else
                         {
                             meshRenderer.enabled = true;
+                            meshCollider.enabled = true;
                             isModulSet = false;
                         }
                     }
@@ -124,12 +162,14 @@ public class Sphere : MonoBehaviour
                         if (module.x == spawnPositionX - 1 && module.z == spawnPositionZ)
                         {
                             meshRenderer.enabled = false;
+                            meshCollider.enabled = false;
                             isModulSet = true;
                             return;
                         }
                         else
                         {
                             meshRenderer.enabled = true;
+                            meshCollider.enabled = true;
                             isModulSet = false;
                         }
                     }
@@ -141,12 +181,14 @@ public class Sphere : MonoBehaviour
                         if (module.x == -1 && module.z == 0)
                         {
                             meshRenderer.enabled = false;
+                            meshCollider.enabled = false;
                             isModulSet = true;
                             return;
                         }
                         else
                         {
                             meshRenderer.enabled = true;
+                            meshCollider.enabled = true;
                             isModulSet = false;
                         }
                     }

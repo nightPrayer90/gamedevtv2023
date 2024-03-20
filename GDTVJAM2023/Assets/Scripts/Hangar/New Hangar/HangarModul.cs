@@ -7,8 +7,7 @@ public class HangarModul : MonoBehaviour
 {
     public bool isActiv = false;
     private Selection selectionController;
-
-    public List<GameObject> Spheres;
+    public ModuleList moduleList;
 
     private void Start()
     {

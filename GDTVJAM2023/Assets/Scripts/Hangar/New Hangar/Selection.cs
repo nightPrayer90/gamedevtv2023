@@ -10,8 +10,8 @@ public class Selection : MonoBehaviour
     public Material highligtSphereMaterial;
     public Material selectionSphereMaterial;
 
-    private Material originalMaterial;
-    private Material originalMaterialSelectet;
+    public Material originalMaterial;
+    public Material originalMaterialSelectet;
     private Transform highlight;
     private Transform selection;
     private RaycastHit raycastHit;
@@ -37,10 +37,10 @@ public class Selection : MonoBehaviour
             {
                 if (highlight.CompareTag("Selectable"))
                 {
-                    if (highlight.GetComponentInChildren<MeshRenderer>().material != highligtMaterial)
+                    if (highlight.GetComponent<MeshRenderer>().material != highligtMaterial)
                     {
-                        originalMaterial = highlight.GetComponentInChildren<MeshRenderer>().material;
-                        highlight.GetComponentInChildren<MeshRenderer>().material = highligtMaterial;
+                        originalMaterial = highlight.GetComponent<MeshRenderer>().material;
+                        highlight.GetComponent<MeshRenderer>().material = highligtMaterial;
                     }
                 }
                 else if (highlight.CompareTag("Sphere"))
@@ -71,7 +71,7 @@ public class Selection : MonoBehaviour
                     Debug.Log(selection);
 
                     originalMaterialSelectet = originalMaterial;
-                    selection.GetComponentInChildren<MeshRenderer>().material = selectionMaterial;
+                    selection.GetComponent<MeshRenderer>().material = selectionMaterial;
                     selection.GetComponentInParent<HangarModul>().SetActive();
                 }
                 else if (selection.CompareTag("Sphere"))

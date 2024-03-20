@@ -43,7 +43,7 @@ MonoBehaviour:
     myEnumVariable: 3
     canLeft: 0
     canRight: 0
-    canFront: 1
+    canFront: 0
     canBack: 1
   - moduleName: Strafe Engine
     modulePrefabs: {fileID: 7337684759434239658, guid: 9c7457030927679498ecc18f972067c3, type: 3}
@@ -57,8 +57,8 @@ MonoBehaviour:
     modulePrefabs: {fileID: 5320222491944983181, guid: e8568299a8cef5b459f2152b7e17b8bb, type: 3}
     hangarPrefab: {fileID: 5320222491944983181, guid: 421154c17452542499d6be8edd596b14, type: 3}
     myEnumVariable: 5
-    canLeft: 0
-    canRight: 0
+    canLeft: 1
+    canRight: 1
     canFront: 1
     canBack: 1
   - moduleName: Rocket Shooter
@@ -73,7 +73,7 @@ MonoBehaviour:
     modulePrefabs: {fileID: 253641423190805723, guid: 3e70d801e71d7e24abfa31e2aa2b5f1a, type: 3}
     hangarPrefab: {fileID: 253641423190805723, guid: d4ea42eee5ad3fe4e972e621f9a54bf7, type: 3}
     myEnumVariable: 5
-    canLeft: 0
-    canRight: 0
+    canLeft: 1
+    canRight: 1
     canFront: 1
     canBack: 1
