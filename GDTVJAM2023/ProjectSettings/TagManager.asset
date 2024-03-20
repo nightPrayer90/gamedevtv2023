@@ -26,6 +26,7 @@ TagManager:
   - UpgradePickup
   - PlayerLaser
   - Sphere
+  - Selectable
   layers:
   - Default
   - TransparentFX
