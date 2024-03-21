@@ -27,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017240586079332737}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0.5}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 0.50501996, y: 0.50501996, z: 0.50501996}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3509744163337706343}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &8918708499087064760
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -112,6 +112,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isModulSet: 0
   parentTransform: {fileID: 3509744163337706343}
+  spawnPositionX: 0
+  spawnPositionZ: 0
+  availableModuls: []
   sphereSide: 1
 --- !u!1 &3509744163337706340
 GameObject:
@@ -163,7 +166,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActiv: 0
-  Spheres: []
+  listPosition: -1
+  spheres:
+  - {fileID: 5872688959393544380}
+  - {fileID: 6168035925865155795}
+  - {fileID: 6088721573271605775}
+  - {fileID: 991828140487834224}
 --- !u!1 &3509744164497189554
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,14 +198,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3509744164497189554}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3509744163337706343}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!33 &3509744164497189558
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -288,14 +296,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5517166144056173382}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.1, z: 0}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 0.50501996, y: 0.50501996, z: 0.50501996}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3509744163337706343}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
 --- !u!33 &8030430210147353217
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -373,6 +381,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isModulSet: 0
   parentTransform: {fileID: 3509744163337706343}
+  spawnPositionX: 0
+  spawnPositionZ: 0
+  availableModuls: []
   sphereSide: 3
 --- !u!1 &6716806666393411686
 GameObject:
@@ -401,14 +412,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6716806666393411686}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.1, z: 0}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 0.50501996, y: 0.50501996, z: 0.50501996}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3509744163337706343}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
 --- !u!33 &5033280265854143670
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -486,6 +497,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isModulSet: 0
   parentTransform: {fileID: 3509744163337706343}
+  spawnPositionX: 0
+  spawnPositionZ: 0
+  availableModuls: []
   sphereSide: 2
 --- !u!1 &6745363519627158789
 GameObject:
@@ -514,14 +528,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6745363519627158789}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: -0.5}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.50501996, y: 0.50501996, z: 0.50501996}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3509744163337706343}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: -180, z: 0}
 --- !u!33 &3573218019108760737
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -599,4 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isModulSet: 0
   parentTransform: {fileID: 3509744163337706343}
+  spawnPositionX: 0
+  spawnPositionZ: 0
+  availableModuls: []
   sphereSide: 0

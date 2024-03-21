@@ -1,18 +1,30 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class HangarModul : MonoBehaviour
 {
     public bool isActiv = false;
     private Selection selectionController;
-    public ModuleList moduleList;
+    private ModuleStorage moduleStorage;
+
+    private float startX;
+    private float startZ;
+
+    public int listPosition = -1;
+
+    public List<Sphere> spheres;
 
     private void Start()
     {
+        startX = transform.position.x;
+        startZ = transform.position.z;
+
         selectionController = GameObject.Find("SelectionController").GetComponent<Selection>();
         selectionController.OnDeselect += HandleSetDeselect;
+
+        moduleStorage = gameObject.GetComponentInParent<ModuleStorage>();
+
+        // find Position in List
     }
 
     public void HandleSetDeselect()
@@ -20,13 +32,23 @@ public class HangarModul : MonoBehaviour
         if (isActiv == true)
         {
             isActiv = false;
-            Debug.Log(isActiv);
+
         }
     }
 
     public void SetActive()
     {
         isActiv = true;
-        Debug.Log(isActiv);
+
     }
+
+    // Controll function, if an installed Modul was deleted
+   public void ControllDelete()
+    {
+        foreach (Sphere sph in spheres)
+        {
+            sph.ControllSpheres();
+        }
+    }
+
 }

@@ -19,11 +19,14 @@ public class Modules
     public string moduleName;
     public GameObject modulePrefabs;
     public GameObject hangarPrefab;
+    public Mesh modulMesh;
+    public Sprite modulSprite;
     public ModulTyp myEnumVariable;
     public bool canLeft = false;
     public bool canRight = false;
     public bool canFront = false;
     public bool canBack = false;
+
 }
 
 

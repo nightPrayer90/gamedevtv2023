@@ -20,6 +20,7 @@ public class ModuleStorage : MonoBehaviour
     private GameObject gameManager;
 
     public ShipPreset shipPreset;
+    public List<GameObject> installedModules;
 
     // Start is called before the first frame update
     void Start()
@@ -36,13 +37,17 @@ public class ModuleStorage : MonoBehaviour
             Debug.Log("LoadPreset");
         }
         foreach (ModuleInstance instance in baseModules) {
-            //Instantiate(moduleList.moduls[instance.moduleIndex].modulePrefabs, new Vector3(transform.position.x + instance.x * transform.localScale.x, transform.position.y, transform.position.z + instance.z * transform.localScale.z), Quaternion.Euler(0, instance.rotation, 0), transformParent);            
+                       
+            // Hangar
             if (gameManager == null)
             {
                 GameObject go = Instantiate(moduleList.moduls[instance.moduleIndex].hangarPrefab, transformParent, false);
                 go.transform.localPosition = new Vector3(instance.x, 0, instance.z);
                 go.transform.localRotation = Quaternion.Euler(0, instance.rotation, 0);
+                installedModules.Add(go);
             }
+
+            // Level
             else
             {
                 GameObject go = Instantiate(moduleList.moduls[instance.moduleIndex].modulePrefabs, transformParent, false);
@@ -52,7 +57,35 @@ public class ModuleStorage : MonoBehaviour
         }
     }
 
- 
+    public void HangarRemoveModule()
+    {
+        // delete the right Modul
+        for (int i = 0; i < installedModules.Count; i++)
+        {
+            HangarModul hM = installedModules[i].GetComponent<HangarModul>();
+            if (hM.isActiv == true)
+            {
+                // destroy gameObject
+                Destroy(installedModules[i]);
+
+                // delete GameObject from List
+                installedModules.RemoveAt(i);
+
+                // delete GameObject from savelist
+                baseModules.RemoveAt(i);
+
+                // exit For
+                break;
+            }
+        }
+
+        // Refresh all other Moduls
+        for (int i = 0; i < installedModules.Count; i++)
+        {
+            HangarModul hM = installedModules[i].GetComponent<HangarModul>();
+            hM.ControllDelete();
+        }
+    }
 
     private void OnDestroy()
     {

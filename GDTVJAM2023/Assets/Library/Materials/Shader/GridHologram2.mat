@@ -145,10 +145,10 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
-    - _BaseEmissionColor: {r: 0, g: 0.2624263, b: 0.7490196, a: 1}
+    - _BaseEmissionColor: {r: 0.034264866, g: 0.12949708, b: 0.6603774, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _FresnelColor: {r: 0, g: 0.34688613, b: 1.5058823, a: 1}
+    - _FresnelColor: {r: 0.09870633, g: 0.3384217, b: 2.6932728, a: 1}
     - _GridOffset: {r: 0, g: 0, b: 0, a: 0}
     - _Grid_Velocity: {r: 0, g: 0.1, b: 0, a: 0}
     - _PerAxisStrength: {r: 1, g: 1, b: 0, a: 0}

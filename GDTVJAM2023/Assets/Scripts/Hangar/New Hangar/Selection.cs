@@ -15,8 +15,16 @@ public class Selection : MonoBehaviour
     private Transform highlight;
     private Transform selection;
     private RaycastHit raycastHit;
+    private HangarUIController hangarUIController;
+    private Transform lastSelection;
 
     public event Action OnDeselect;
+    
+
+    private void Start()
+    {
+        hangarUIController = gameObject.GetComponent<HangarUIController>();
+    }
 
     private void Update()
     {
@@ -28,7 +36,7 @@ public class Selection : MonoBehaviour
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-
+        // handle mouse over
         if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
         {
             highlight = raycastHit.transform;
@@ -58,47 +66,69 @@ public class Selection : MonoBehaviour
             }
         }
 
+        // hanle Mouse klick
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-            ObjectDeselect();
-
-            if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
+            if (Physics.Raycast(ray, out raycastHit))
             {
                 selection = raycastHit.transform;
-               
-                if (selection.CompareTag("Selectable"))
+              
+                //ObjectDeselect();
+                if (selection != lastSelection || lastSelection == null)
                 {
-                    Debug.Log(selection);
+                    // select a part of a ship
+                    if (selection.CompareTag("Selectable"))
+                    {
+                        // deselect the old Object
+                        ObjectDeselect();
 
-                    originalMaterialSelectet = originalMaterial;
-                    selection.GetComponent<MeshRenderer>().material = selectionMaterial;
-                    selection.GetComponentInParent<HangarModul>().SetActive();
-                }
-                else if (selection.CompareTag("Sphere"))
-                {
-                    originalMaterialSelectet = originalMaterial;
-                    selection.GetComponent<MeshRenderer>().material = selectionSphereMaterial;
-                    selection.GetComponentInParent<Sphere>().SetActive();
-                }
-                else
-                {
-                    selection = null;
-                    OnDeselect?.Invoke();
+                        // select the new Object
+                        originalMaterialSelectet = originalMaterial;
+                        selection.GetComponent<MeshRenderer>().material = selectionMaterial;
+                        selection.GetComponentInParent<HangarModul>().SetActive();
+                        hangarUIController.HandleModulSelect(selection);
+                        lastSelection = selection;
+                    }
+
+                    // select a part modul sphere
+                    else if (selection.CompareTag("Sphere"))
+                    {
+                        // deselect the old Object
+                        ObjectDeselect();
+
+                        // select the new Object
+                        originalMaterialSelectet = originalMaterial;
+                        selection.GetComponent<MeshRenderer>().material = selectionSphereMaterial;
+                        selection.GetComponentInParent<Sphere>().SetActive();
+                        hangarUIController.HandleShpereSelect(selection);
+                        lastSelection = selection;
+                    }
+
+                    // klick at a free space
+                    else
+                    {
+                        DeselectAll();
+                    }
                 }
             }
 
-           
-        }
 
+        }
+    }
+
+    public void DeselectAll()
+    {
+        if (lastSelection != null)
+            lastSelection.GetComponentInChildren<MeshRenderer>().material = originalMaterialSelectet;
+        selection = null;
+        lastSelection = null;
+        OnDeselect?.Invoke();
     }
 
     public void ObjectDeselect()
     {
-        if (selection != null)
-        {
-            selection.GetComponentInChildren<MeshRenderer>().material = originalMaterialSelectet;
-            selection = null;
-            OnDeselect?.Invoke();
-        }
+        if (lastSelection != null)
+            lastSelection.GetComponentInChildren<MeshRenderer>().material = originalMaterialSelectet;
+        OnDeselect?.Invoke();
     }
 }

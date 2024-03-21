@@ -66,7 +66,7 @@ public class NewBaseEngine : MonoBehaviour
                     AudioManager.Instance.PlaySFX("PlayerBoostKick");
                     ps_boostParticle.Emit(80);
                     ps_boostEngine.Emit(30);
-                    playerRigidbody.AddForce(transform.forward * totalThrustForce * 25, ForceMode.Force);
+                    playerRigidbody.AddForce(-transform.right * totalThrustForce * 25, ForceMode.Force);
                     playerController.GetInvulnerability();
                     playerController.energieCurrent -= playerController.energieMax * 0.25f;
                 }
@@ -93,7 +93,7 @@ public class NewBaseEngine : MonoBehaviour
             }
 
             // Berechne die Kraft basierend auf dem horizontalen Input
-            Vector3 thrust = transform.forward * playerController.verticalInput * totalThrustForce;
+            Vector3 thrust = -transform.right * playerController.verticalInput * totalThrustForce;
 
             // Wende die Kraft auf das Raumschiff an
             playerRigidbody.AddForce(thrust);
@@ -128,7 +128,7 @@ public class NewBaseEngine : MonoBehaviour
             }
 
             // Berechne die Kraft basierend auf dem horizontalen Input
-            Vector3 thrust = transform.forward * playerController.verticalInput * totalBackForce;
+            Vector3 thrust = -transform.right * playerController.verticalInput * totalBackForce;
 
             // Wende die Kraft auf das Raumschiff an
             playerRigidbody.AddForce(thrust);
@@ -140,7 +140,7 @@ public class NewBaseEngine : MonoBehaviour
     private void HandleStartBoost()
     {
         ps_engine.Play();
-        playerRigidbody.AddForce(transform.forward * thrustForce * 160, ForceMode.Force);
+        playerRigidbody.AddForce(-transform.right * thrustForce * 160, ForceMode.Force);
     }
 
     private void HandleSpeedUpdate(float flyspeed)
