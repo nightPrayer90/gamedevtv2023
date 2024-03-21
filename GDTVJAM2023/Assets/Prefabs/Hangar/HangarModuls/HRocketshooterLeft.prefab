@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8822405608560347170}
   - component: {fileID: -4040257021538848736}
   m_Layer: 7
-  m_Name: HRocketshooter
+  m_Name: HRocketshooterLeft
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8822405608560347169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e0e4dceaa7675f458abad4f3ff309d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
+  isActiv: 0
+  listPosition: -1
+  spheres: []
 --- !u!1 &8822405608639048629
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,14 +74,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8822405608639048629}
-  m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.7071079}
-  m_LocalPosition: {x: -0.316, y: 0.145, z: 0}
+  m_LocalRotation: {x: 0.0000010207295, y: -0.7071068, z: 0.7071068, w: 0.0000010207295}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0.38}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8822405608560347170}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: -180, z: 0}
 --- !u!33 &8822405608639048624
 MeshFilter:
   m_ObjectHideFlags: 0

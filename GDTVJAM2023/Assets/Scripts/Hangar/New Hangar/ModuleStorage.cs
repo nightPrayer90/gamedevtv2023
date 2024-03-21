@@ -79,6 +79,12 @@ public class ModuleStorage : MonoBehaviour
             }
         }
 
+        // Refresh all Shperes
+        RefreshModulSpheres();
+    }
+
+    public void RefreshModulSpheres()
+    {
         // Refresh all other Moduls
         for (int i = 0; i < installedModules.Count; i++)
         {

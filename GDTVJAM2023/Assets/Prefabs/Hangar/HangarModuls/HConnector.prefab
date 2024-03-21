@@ -114,7 +114,7 @@ MonoBehaviour:
   parentTransform: {fileID: 3509744163337706343}
   spawnPositionX: 0
   spawnPositionZ: 0
-  availableModuls: []
+  availableModuls: 
   sphereSide: 1
 --- !u!1 &3509744163337706340
 GameObject:
@@ -141,7 +141,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3509744163337706340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -383,7 +383,7 @@ MonoBehaviour:
   parentTransform: {fileID: 3509744163337706343}
   spawnPositionX: 0
   spawnPositionZ: 0
-  availableModuls: []
+  availableModuls: 
   sphereSide: 3
 --- !u!1 &6716806666393411686
 GameObject:
@@ -499,7 +499,7 @@ MonoBehaviour:
   parentTransform: {fileID: 3509744163337706343}
   spawnPositionX: 0
   spawnPositionZ: 0
-  availableModuls: []
+  availableModuls: 
   sphereSide: 2
 --- !u!1 &6745363519627158789
 GameObject:
@@ -615,5 +615,5 @@ MonoBehaviour:
   parentTransform: {fileID: 3509744163337706343}
   spawnPositionX: 0
   spawnPositionZ: 0
-  availableModuls: []
+  availableModuls: 
   sphereSide: 0

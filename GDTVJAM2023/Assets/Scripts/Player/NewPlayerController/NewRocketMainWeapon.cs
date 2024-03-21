@@ -128,7 +128,7 @@ public class NewRocketMainWeapon : MonoBehaviour
         // if an anemy detected
         if (enemyDetected == true)
         {
-            GameObject go = ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint.transform.position, Quaternion.Euler(0f, 0f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
+            GameObject go = ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint.transform.position, spawnPoint.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
             RocketController rocket = go.GetComponent<RocketController>();
             rocket.damage = EnergieDamageDebuff(rockedResultDamage);
             rocket.hitColor = hitColor;

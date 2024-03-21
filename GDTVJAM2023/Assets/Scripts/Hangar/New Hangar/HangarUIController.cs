@@ -3,6 +3,7 @@ using DG.Tweening;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 public class HangarUIController : MonoBehaviour
 {
@@ -48,11 +49,10 @@ public class HangarUIController : MonoBehaviour
                 go.transform.SetParent(contentParent);
                 go.transform.localScale = new Vector3(1, 1, 1);
 
-                mCPM.SetText(sph.availableModuls[i].moduleName);
+                mCPM.modulIndex = sph.availableModuls[i];
                 mCPM.selectedSphere = mRSph;
-                mCPM.modulMesh = sph.availableModuls[i].modulMesh;
-
-                // to do set Sprite mCPM.SetText(sph.availableModuls[i].moduleSprite);
+                
+                mCPM.UpdatePanel();
 
                 goContentPanels.Add(go);
             }

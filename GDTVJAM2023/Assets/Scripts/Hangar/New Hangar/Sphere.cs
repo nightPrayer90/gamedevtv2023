@@ -17,7 +17,7 @@ public class Sphere : MonoBehaviour
     private ModuleList moduleList;
     private GameObject ship;
     private Collider meshCollider;
-    public List<Modules> availableModuls;
+    public List<int> availableModuls;
 
     public enum SphereSide
     {
@@ -71,23 +71,23 @@ public class Sphere : MonoBehaviour
             {
                 case SphereSide.left:
                     if (module.canLeft == true)
-                        availableModuls.Add(module);
+                        availableModuls.Add(moduleList.moduls.IndexOf(module));
                     break;
                 case SphereSide.right:
                     if (module.canRight == true)
-                        availableModuls.Add(module);
+                        availableModuls.Add(moduleList.moduls.IndexOf(module));
                     break;
                 case SphereSide.front:
                     if (module.canFront == true)
-                        availableModuls.Add(module);
+                        availableModuls.Add(moduleList.moduls.IndexOf(module));
                     break;
                 case SphereSide.back:
                     if (module.canBack == true)
-                        availableModuls.Add(module);
+                        availableModuls.Add(moduleList.moduls.IndexOf(module));
                     break;
                 case SphereSide.strafe:
                     if (module.myEnumVariable == Modules.ModulTyp.StrafeEngine)
-                        availableModuls.Add(module);
+                        availableModuls.Add(moduleList.moduls.IndexOf(module));
                     break;
             }
         }
@@ -140,7 +140,7 @@ public class Sphere : MonoBehaviour
                 case SphereSide.front:
                     foreach (ModuleInstance module in moduleInstances)
                     {
-                        if (module.x == spawnPositionX + 1 && module.z == spawnPositionZ)
+                        if (module.x == spawnPositionX - 1 && module.z == spawnPositionZ)
                         {
                             meshCollider.enabled = false;
                             meshRenderer.enabled = false;
@@ -159,7 +159,7 @@ public class Sphere : MonoBehaviour
                 case SphereSide.back:
                     foreach (ModuleInstance module in moduleInstances)
                     {
-                        if (module.x == spawnPositionX - 1 && module.z == spawnPositionZ)
+                        if (module.x == spawnPositionX + 1 && module.z == spawnPositionZ)
                         {
                             meshRenderer.enabled = false;
                             meshCollider.enabled = false;

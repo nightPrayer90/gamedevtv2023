@@ -96,6 +96,9 @@ MonoBehaviour:
   modulMesh: {fileID: 0}
   baseSphereMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   selectedSphere: {fileID: 0}
+  modulToCreate: {fileID: 0}
+  modulIndex: 0
+  moduleList: {fileID: 11400000, guid: 0cbbf3c8352d3e449baf78feda11ae88, type: 2}
 --- !u!1 &7393697056782118651
 GameObject:
   m_ObjectHideFlags: 0
