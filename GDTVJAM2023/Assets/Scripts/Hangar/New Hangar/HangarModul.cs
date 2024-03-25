@@ -1,53 +1,76 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HangarModul : MonoBehaviour
 {
-    public bool isActiv = false;
+    public bool isSelected = false;
+    public bool hasNoParentControll = false; // only ture on Cockpit or Strafe modules
+    public bool haveParent = false;
+
     private Selection selectionController;
     private ModuleStorage moduleStorage;
-
-    private float startX;
-    private float startZ;
-
-    public int listPosition = -1;
-
+    
     public List<Sphere> spheres;
+    public ModuleDataRuntime moduleData;
 
-    private void Start()
+    private void Awake()
     {
-        startX = transform.position.x;
-        startZ = transform.position.z;
-
         selectionController = GameObject.Find("SelectionController").GetComponent<Selection>();
         selectionController.OnDeselect += HandleSetDeselect;
 
-        moduleStorage = gameObject.GetComponentInParent<ModuleStorage>();
+        moduleStorage = GameObject.Find("Ship").GetComponentInParent<ModuleStorage>();
 
-        // find Position in List
+        // only for Cockpit or Strafe
+        if (hasNoParentControll == true) 
+            haveParent = true;
+
     }
 
     public void HandleSetDeselect()
     {
-        if (isActiv == true)
+        if (isSelected == true)
         {
-            isActiv = false;
-
+            isSelected = false;
         }
     }
 
     public void SetActive()
     {
-        isActiv = true;
-
+        isSelected = true;
+        if (moduleData.parentModule == null)
+        {
+            Debug.Log("I have no Parent (select)");
+        }
+        else
+        {
+            Debug.Log("level Parent Modul " + moduleData.parentModule.level);
+        }
     }
 
-    // Controll function, if an installed Modul was deleted
+    // control function, if an installed Modul was deleted
    public void ControllDelete()
     {
+      
+        // turn Shperes on or off
         foreach (Sphere sph in spheres)
         {
             sph.ControllSpheres();
+        }
+    }
+
+    // TODO - just temporary
+    public void ParentControl()
+    {
+        if (moduleData.parentModule == null && hasNoParentControll == false)
+        {
+            haveParent = false;
+            Debug.Log("i have no Parent (ParentControl)");
+            moduleStorage.canGameStart = false;
+        }
+        else
+        {
+            haveParent = true;
         }
     }
 

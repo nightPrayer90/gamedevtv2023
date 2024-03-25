@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838498783314160847}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0.5}
   m_LocalScale: {x: 0.50502, y: 0.50502, z: 0.50502}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -114,7 +114,7 @@ MonoBehaviour:
   parentTransform: {fileID: 8919917907132705990}
   spawnPositionX: 0
   spawnPositionZ: 0
-  availableModuls: []
+  availableModuls: 
   sphereSide: 1
 --- !u!1 &2656536673753194904
 GameObject:
@@ -144,7 +144,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2656536673753194904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0.15, z: -0.5}
   m_LocalScale: {x: 0.50502, y: 0.50502, z: 0.50502}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -230,7 +230,7 @@ MonoBehaviour:
   parentTransform: {fileID: 8919917907132705990}
   spawnPositionX: 0
   spawnPositionZ: 0
-  availableModuls: []
+  availableModuls: 
   sphereSide: 0
 --- !u!1 &4414343976567350225
 GameObject:
@@ -260,7 +260,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4414343976567350225}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.15, z: 0}
   m_LocalScale: {x: 0.50502, y: 0.50502, z: 0.50502}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -346,7 +346,7 @@ MonoBehaviour:
   parentTransform: {fileID: 8919917907132705990}
   spawnPositionX: 0
   spawnPositionZ: 0
-  availableModuls: []
+  availableModuls: 
   sphereSide: 3
 --- !u!1 &6077310890446786635
 GameObject:
@@ -462,7 +462,7 @@ MonoBehaviour:
   parentTransform: {fileID: 8919917907132705990}
   spawnPositionX: 0
   spawnPositionZ: 0
-  availableModuls: []
+  availableModuls: 
   sphereSide: 4
 --- !u!1 &7057816587558836830
 GameObject:
@@ -611,10 +611,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e0e4dceaa7675f458abad4f3ff309d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActiv: 0
-  listPosition: -1
+  isSelected: 0
+  hasNoParentControll: 1
+  haveParent: 0
   spheres:
   - {fileID: 3509476493671714399}
   - {fileID: 7332740674630181823}
   - {fileID: 8030305223953988058}
   - {fileID: 8924670335123359178}
+  moduleData:
+    level: 0
+    x: 0
+    z: 0
+    moduleTypeIndex: 0

@@ -60,14 +60,14 @@ public class JsonDataService : IDataService
 
 
 
-    public T LoadData<T>(string RelativePath, bool Encrypted)
+    public T LoadData<T>(string RelativePath, bool Encrypted) where T : new()
     {
         string path = Application.persistentDataPath + Path.DirectorySeparatorChar + RelativePath;
 
         if (File.Exists(path) == false)
         {
-            Debug.Log($"Cannot load file at {path}. File does not exist!");
-            throw new FileNotFoundException($"{path} does not exist!");
+            Debug.Log($"Cannot load file at {path}. File does not exist! Assuming empty data.");
+            return new T();
         }
 
         try

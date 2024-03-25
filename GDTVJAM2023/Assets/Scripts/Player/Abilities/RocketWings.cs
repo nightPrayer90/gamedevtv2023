@@ -71,6 +71,8 @@ public class RocketWings : MonoBehaviour
                 GameObject go = ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint1.position, Quaternion.Euler(0f, 180f, 0f) * spawnPoint1.rotation, ObjectPoolManager.PoolType.Gameobject);
                 RocketController rocket = go.GetComponent<RocketController>();
                 rocket.damage = rocketDamage;
+                rocket.SetDestroyTimer();
+                rocket.isMainWeapon = false;
                 //rocket.hitColor = hitColor;
                 //rocket.maxLifeTime = rocketLifetime;
 
@@ -78,6 +80,8 @@ public class RocketWings : MonoBehaviour
                 go = ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint2.position, Quaternion.Euler(0f, 180f, 0f) * spawnPoint2.rotation, ObjectPoolManager.PoolType.Gameobject);
                 rocket = go.GetComponent<RocketController>();
                 rocket.damage = rocketDamage;
+                rocket.SetDestroyTimer();
+                rocket.isMainWeapon = false;
                 //rocket.maxLifeTime = rocketLifetime;
 
 

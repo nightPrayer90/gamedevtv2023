@@ -335,7 +335,6 @@ GameObject:
   - component: {fileID: 65029654}
   - component: {fileID: 65029653}
   - component: {fileID: 65029652}
-  - component: {fileID: 65029651}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -343,24 +342,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &65029651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 65029650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db2949c976a02dd4f87538629c301592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameScene: GameScene
-  _musicSlider: {fileID: 0}
-  _sfxSlider: {fileID: 0}
-  resolutionDropdrown: {fileID: 0}
-  qualityDropdown: {fileID: 0}
-  fullScreenBtn: {fileID: 0}
 --- !u!114 &65029652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,8 +729,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 65029651}
-        m_TargetAssemblyTypeName: MenuButtonController, Assembly-CSharp
+      - m_Target: {fileID: 388692330}
+        m_TargetAssemblyTypeName: HangarUIController, Assembly-CSharp
         m_MethodName: GameStart
         m_Mode: 1
         m_Arguments:
@@ -861,10 +842,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc2c8caf9b485d478cf261005a1e850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameScene: GameScene
   modulPanel: {fileID: 2038161172}
   removePanel: {fileID: 15677863}
   modulContentPanel: {fileID: 7393697055927682587, guid: 7c78940b21f8ebc4588dfe687b477e89, type: 3}
   contentParent: {fileID: 1795571762}
+  modulStorage: {fileID: 1761201646}
 --- !u!1 &606577784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,11 +1870,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6d25aba3e2bfbc428d469d3b7ad92ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseModules: []
+  installedModuleData: []
   moduleList: {fileID: 11400000, guid: 0cbbf3c8352d3e449baf78feda11ae88, type: 2}
   transformParent: {fileID: 1761201647}
   shipPreset: {fileID: 11400000, guid: e93667cf205e6a3498705483f2b1e49c, type: 2}
-  installedModules: []
+  installedModulesGameobjects: []
+  canGameStart: 1
 --- !u!4 &1761201647
 Transform:
   m_ObjectHideFlags: 0

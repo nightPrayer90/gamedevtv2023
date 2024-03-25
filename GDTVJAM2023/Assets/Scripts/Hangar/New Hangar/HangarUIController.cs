@@ -1,18 +1,18 @@
 using UnityEngine;
 using DG.Tweening;
-using NUnit.Framework;
 using System.Collections.Generic;
-using System.Collections;
-using System;
+using UnityEngine.SceneManagement;
 
 public class HangarUIController : MonoBehaviour
 {
+    public string gameScene = "GameScene";
     public CanvasGroup modulPanel;
     public CanvasGroup removePanel;
     private Selection selectionController;
     public GameObject modulContentPanel;
     public Transform contentParent;
     private List<GameObject> goContentPanels = new List<GameObject>();
+    public ModuleStorage modulStorage;
 
     private void Start()
     {
@@ -62,8 +62,10 @@ public class HangarUIController : MonoBehaviour
     // handle Module selection
     public void HandleModulSelect(Transform selection)
     {
+        HangarModul selectedModul = selection.GetComponentInParent<HangarModul>();
+
         removePanel.DOKill();
-        if (removePanel.alpha != 1)
+        if (removePanel.alpha != 1 && selectedModul.hasNoParentControll == false) //TODO hasNoParentControll - cant delete Cockpit or StrafeEngine
         {
             removePanel.DOFade(1, 0.2f);
         }
@@ -81,5 +83,14 @@ public class HangarUIController : MonoBehaviour
             Destroy(goContentPanels[i]);
         }
         goContentPanels.Clear();
+    }
+
+    public void GameStart()
+    {
+        if (modulStorage.canGameStart == true)
+        {
+            AudioManager.Instance.PlaySFX("MouseKlick");
+            SceneManager.LoadScene(gameScene);
+        }
     }
 }

@@ -275,6 +275,7 @@ public class RocketController : MonoBehaviour
     {
         // destroytime
         maxLifeTime = Random.Range(iniLifeTime - 0.05f, iniLifeTime + 0.05f) + upgradeChooseList.rocketLifeTime;
+        Debug.Log(maxLifeTime);
         Invoke(nameof(DestroyObject), maxLifeTime); //can not be in enable - because lifetime comes from another object
     }
 }

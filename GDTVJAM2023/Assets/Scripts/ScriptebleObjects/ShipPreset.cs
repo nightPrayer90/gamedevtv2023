@@ -6,5 +6,5 @@ using UnityEngine;
 public class ShipPreset : ScriptableObject
 {
     // Class Module Storage
-    public List<ModuleInstance> baseModules;
+    public List<ModuleData> baseModules;
 }

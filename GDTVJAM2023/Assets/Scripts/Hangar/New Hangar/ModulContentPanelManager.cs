@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.EventSystems;
+using static Sphere;
 
 public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -18,17 +19,21 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
     public ModuleList moduleList;
     private ModuleStorage moduleStorage;
     private Selection selection;
+    private Sphere sph;
+    private HangarModul parentHangarModule;
 
     private void Start()
     {
         shipParent = GameObject.Find("Ship").GetComponent<Transform>();
         moduleStorage = shipParent.GetComponent<ModuleStorage>();
         selection = GameObject.Find("SelectionController").GetComponent<Selection>();
+        sph = selectedSphere.GetComponent<Sphere>();
+        parentHangarModule = sph.parentTransform.gameObject.GetComponent<HangarModul>();
     }
 
     public void UpdatePanel()
     {
-       SetText( moduleList.moduls[modulIndex].moduleName);
+        SetText(moduleList.moduls[modulIndex].moduleName);
 
         modulToCreate = moduleList.moduls[modulIndex].hangarPrefab;
     }
@@ -73,41 +78,54 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Sphere Sph = selectedSphere.GetComponent<Sphere>();
-        Quaternion rotation = Quaternion.Euler(0f, 0f, 0f);
+        float spawnpos_x = 0;
+        float spawnpos_z = 0;
 
-        switch (Sph.sphereSide)
+        switch (sph.sphereSide)
         {
-            case Sphere.SphereSide.left:
-                rotation = Quaternion.Euler(0f, 0f, 0f);
+            case SphereSide.left:
+                spawnpos_x = sph.spawnPositionX;
+                spawnpos_z = sph.spawnPositionZ - 1;
                 break;
-            case Sphere.SphereSide.right:
-                rotation = Quaternion.Euler(0f, 0f, 0f);
+
+            case SphereSide.right:
+                spawnpos_x = sph.spawnPositionX;
+                spawnpos_z = sph.spawnPositionZ + 1;
                 break;
-            case Sphere.SphereSide.front:
-                rotation = Quaternion.Euler(0f, 0f, 0f);
+
+            case SphereSide.front:
+                spawnpos_x = sph.spawnPositionX - 1;
+                spawnpos_z = sph.spawnPositionZ;
                 break;
-            case Sphere.SphereSide.back:
-                rotation = Quaternion.Euler(0f, 0f, 0f);
+
+            case SphereSide.back:
+                spawnpos_x = sph.spawnPositionX + 1;
+                spawnpos_z = sph.spawnPositionZ;
+
                 break;
-            case Sphere.SphereSide.strafe:
-                rotation = Quaternion.Euler(0f, 0f, 0f);
+            case SphereSide.strafe:
+                spawnpos_x = sph.spawnPositionX - 1 ;
+                spawnpos_z = sph.spawnPositionZ;
                 break;
         }
 
-        GameObject go = Instantiate(modulToCreate, selectedSphere.transform.position, rotation);
+        GameObject go = Instantiate(modulToCreate, new Vector3(spawnpos_x, sph.parentTransform.position.y, spawnpos_z), Quaternion.Euler(0f, 0f, 0f));
         go.transform.SetParent(shipParent);
+        HangarModul newHangarModule = go.GetComponent<HangarModul>();
 
-        selectedSphere.GetComponent<Sphere>().ControllSpheres();
 
-        ModuleInstance newModuleInstance = new ModuleInstance();
-        newModuleInstance.x = selectedSphere.transform.position.x;
-        newModuleInstance.z = selectedSphere.transform.position.z;
-        newModuleInstance.rotation = 0;
-        newModuleInstance.moduleIndex = modulIndex;
+        //sph.ControllSpheres();
 
-        moduleStorage.baseModules.Add(newModuleInstance);
-        moduleStorage.installedModules.Add(go);
+        ModuleDataRuntime newModuleData = new();
+        newModuleData.x = spawnpos_x;
+        newModuleData.z = spawnpos_z;
+        newModuleData.moduleTypeIndex = modulIndex;
+        newModuleData.parentModule = parentHangarModule.moduleData;
+        newModuleData.level = parentHangarModule.moduleData.level + 1;
+        newHangarModule.moduleData = newModuleData;
+
+        moduleStorage.installedModuleData.Add(newModuleData);
+        moduleStorage.installedModulesGameobjects.Add(go);
         moduleStorage.RefreshModulSpheres();
 
         selection.DeselectAll();

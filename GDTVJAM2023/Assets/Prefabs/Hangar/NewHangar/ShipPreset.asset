@@ -13,39 +13,8 @@ MonoBehaviour:
   m_Name: ShipPreset
   m_EditorClassIdentifier: 
   baseModules:
-  - x: 0
+  - level: 0
+    x: 0
     z: 0
     rotation: 0
-    moduleIndex: 0
-  - x: -1
-    z: 0
-    rotation: 0
-    moduleIndex: 4
-  - x: 0
-    z: 1
-    rotation: 0
-    moduleIndex: 1
-  - x: 0
-    z: -1
-    rotation: 0
-    moduleIndex: 1
-  - x: 1
-    z: 0
-    rotation: -90
-    moduleIndex: 2
-  - x: 1
-    z: 1
-    rotation: 0
-    moduleIndex: 3
-  - x: 1
-    z: -1
-    rotation: 0
-    moduleIndex: 3
-  - x: -1
-    z: -1
-    rotation: 0
-    moduleIndex: 5
-  - x: -1
-    z: 1
-    rotation: 0
-    moduleIndex: 5
+    moduleTypeIndex: 0

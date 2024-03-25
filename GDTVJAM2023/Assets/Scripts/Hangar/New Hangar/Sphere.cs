@@ -9,8 +9,9 @@ public class Sphere : MonoBehaviour
     private bool isActiv = false;
     private Selection selectionController;
     public  Transform parentTransform;
+    private HangarModul parentModul; //TODO
     private ModuleStorage moduleStorage;
-    private List<ModuleInstance> moduleInstances;
+//    private List<ModuleData> moduleInstances;
     public float spawnPositionX;
     public float spawnPositionZ;
     private MeshRenderer meshRenderer;
@@ -36,8 +37,9 @@ public class Sphere : MonoBehaviour
         ship = GameObject.Find("Ship");
         moduleStorage = ship.GetComponent<ModuleStorage>();
         moduleList = moduleStorage.moduleList;
+        parentModul = parentTransform.gameObject.GetComponent<HangarModul>();
 
-        moduleInstances = moduleStorage.baseModules;
+        //moduleInstances = moduleStorage.installedModuleData;
         meshRenderer = gameObject.GetComponent<MeshRenderer>();
         meshCollider = gameObject.GetComponent<Collider>();
     }
@@ -61,6 +63,7 @@ public class Sphere : MonoBehaviour
     public void SetActive()
     {
         isActiv = true;
+        Debug.Log(parentModul.haveParent);
     }
 
     public void CreateModulList()
@@ -95,14 +98,14 @@ public class Sphere : MonoBehaviour
 
     public void ControllSpheres()
     {
-        if (moduleInstances.Count > 0)
+        if (moduleStorage.installedModuleData.Count > 0)
         {
             switch (sphereSide)
             {
                 case SphereSide.left:
-                    foreach (ModuleInstance module in moduleInstances)
+                    foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
-                        if (module.x == spawnPositionX && module.z == spawnPositionZ - 1)
+                        if ((module.x == spawnPositionX && module.z == spawnPositionZ - 1) || parentModul.haveParent == false)
                         {
                             meshRenderer.enabled = false;
                             meshCollider.enabled = false;
@@ -119,9 +122,9 @@ public class Sphere : MonoBehaviour
                     break;
 
                 case SphereSide.right:
-                    foreach (ModuleInstance module in moduleInstances)
+                    foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
-                        if (module.x == spawnPositionX && module.z == spawnPositionZ + 1)
+                        if ((module.x == spawnPositionX && module.z == spawnPositionZ + 1) || parentModul.haveParent == false)
                         {
                             meshRenderer.enabled = false;
                             meshCollider.enabled = false;
@@ -138,9 +141,9 @@ public class Sphere : MonoBehaviour
                     break;
 
                 case SphereSide.front:
-                    foreach (ModuleInstance module in moduleInstances)
+                    foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
-                        if (module.x == spawnPositionX - 1 && module.z == spawnPositionZ)
+                        if ((module.x == spawnPositionX - 1 && module.z == spawnPositionZ) || parentModul.haveParent == false)
                         {
                             meshCollider.enabled = false;
                             meshRenderer.enabled = false;
@@ -157,9 +160,9 @@ public class Sphere : MonoBehaviour
                     break;
 
                 case SphereSide.back:
-                    foreach (ModuleInstance module in moduleInstances)
+                    foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
-                        if (module.x == spawnPositionX + 1 && module.z == spawnPositionZ)
+                        if ((module.x == spawnPositionX + 1 && module.z == spawnPositionZ) || parentModul.haveParent == false)
                         {
                             meshRenderer.enabled = false;
                             meshCollider.enabled = false;
@@ -176,7 +179,7 @@ public class Sphere : MonoBehaviour
 
                     break;
                 case SphereSide.strafe:
-                    foreach (ModuleInstance module in moduleInstances)
+                    foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
                         if (module.x == -1 && module.z == 0)
                         {
@@ -192,6 +195,24 @@ public class Sphere : MonoBehaviour
                             isModulSet = false;
                         }
                     }
+                    break;
+            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (CompareTag(collision.transform.tag))
+        {
+            switch (sphereSide)
+            {
+                case SphereSide.back:
+                case SphereSide.front:
+                    
+                    break;
+                case SphereSide.left:
+                case SphereSide.right:
+                    
                     break;
             }
         }

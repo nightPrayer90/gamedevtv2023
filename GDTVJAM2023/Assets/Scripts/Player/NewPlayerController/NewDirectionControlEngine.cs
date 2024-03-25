@@ -37,7 +37,6 @@ public class NewDirectionControlEngine : MonoBehaviour
         float x_Position = Mathf.Sign(playerRigidbody.centerOfMass.x + transform.localPosition.x);
         engine_side = (z_Position == -1) ? Side.right : Side.left;
         int engineRotation = Mathf.RoundToInt(transform.localRotation.eulerAngles.y);
-        Debug.Log(engineRotation);
 
         switch (engineRotation)
         {
