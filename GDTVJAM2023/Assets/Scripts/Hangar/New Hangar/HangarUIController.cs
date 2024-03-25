@@ -32,6 +32,7 @@ public class HangarUIController : MonoBehaviour
         modulPanel.DOKill();
         if (modulPanel.alpha != 1)
         {
+            modulPanel.blocksRaycasts = true;
             modulPanel.DOFade(1, 0.2f);
         }
 
@@ -51,8 +52,6 @@ public class HangarUIController : MonoBehaviour
 
                 mCPM.modulIndex = sph.availableModuls[i];
                 mCPM.selectedSphere = mRSph;
-                
-                mCPM.UpdatePanel();
 
                 goContentPanels.Add(go);
             }
@@ -67,6 +66,7 @@ public class HangarUIController : MonoBehaviour
         removePanel.DOKill();
         if (removePanel.alpha != 1 && selectedModul.hasNoParentControll == false) //TODO hasNoParentControll - cant delete Cockpit or StrafeEngine
         {
+            removePanel.blocksRaycasts = true;
             removePanel.DOFade(1, 0.2f);
         }
     }
@@ -74,8 +74,8 @@ public class HangarUIController : MonoBehaviour
     // deselect all
     public void HandleDeselect()
     {
-        modulPanel.DOFade(0, 0.2f);
-        removePanel.DOFade(0, 0.2f);
+        modulPanel.DOFade(0, 0.2f).OnComplete(() => { modulPanel.blocksRaycasts = false; });
+        removePanel.DOFade(0, 0.2f).OnComplete(() => { removePanel.blocksRaycasts = false; });
 
         // delete all Panels
         for (int i = 0; i < goContentPanels.Count; i++)

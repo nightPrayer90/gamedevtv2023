@@ -49,8 +49,7 @@ MonoBehaviour:
   isSelected: 0
   hasNoParentControll: 0
   haveParent: 0
-  spheres:
-  - {fileID: 0}
+  spheres: []
   moduleData:
     level: 0
     x: 0

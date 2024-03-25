@@ -17,7 +17,7 @@ MonoBehaviour:
     modulePrefabs: {fileID: 8919917907132705989, guid: bf45f026dcfb8fe48be46de0f2a1a408, type: 3}
     hangarPrefab: {fileID: 8919917907132705989, guid: 5073fba1e0babe74b91895200a7e6fbc, type: 3}
     modulMesh: {fileID: 2262303240563668989, guid: f6abe699e9fe38c428fffd3fce822217, type: 3}
-    modulSprite: {fileID: 0}
+    modulSprite: {fileID: 21300000, guid: 9689a6e207a49ab4eac8dbb4698edb25, type: 3}
     myEnumVariable: 4
     canLeft: 0
     canRight: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
     modulePrefabs: {fileID: 3509744163337706340, guid: ba0aaec002e01f940907b4f1f3314ad8, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: df5162d8499e99841b16e16369eb2382, type: 3}
     modulMesh: {fileID: 5381851483039465521, guid: b3192c72fd7e1a3408ab3d853b5c6e19, type: 3}
-    modulSprite: {fileID: 0}
+    modulSprite: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     myEnumVariable: 0
     canLeft: 1
     canRight: 1
@@ -37,7 +37,7 @@ MonoBehaviour:
     modulePrefabs: {fileID: 6234797105683024306, guid: db1dafc08107f8e40b58d894a7a4fa5b, type: 3}
     hangarPrefab: {fileID: 6234797105683024306, guid: bca6781ce9bcc264a9282a2f6034c3fa, type: 3}
     modulMesh: {fileID: -5266563423701852545, guid: a0ab44b2f76a2b54bbb8d3564c1c34b4, type: 3}
-    modulSprite: {fileID: 0}
+    modulSprite: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
     myEnumVariable: 1
     canLeft: 0
     canRight: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
     modulePrefabs: {fileID: 3538126319694765833, guid: 432ae4b429e793a459cf133cde93e210, type: 3}
     hangarPrefab: {fileID: 3538126319694765833, guid: 4cbd91a62b37e7e4e935da2973e04073, type: 3}
     modulMesh: {fileID: -8900698535846258394, guid: 0e3fe0757c6e93f43a1e71ded91d51a4, type: 3}
-    modulSprite: {fileID: 0}
+    modulSprite: {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
     myEnumVariable: 3
     canLeft: 0
     canRight: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
     modulePrefabs: {fileID: 7337684759434239658, guid: 9c7457030927679498ecc18f972067c3, type: 3}
     hangarPrefab: {fileID: 7337684759434239658, guid: 80edf329a6db7f340a4a6457885cc012, type: 3}
     modulMesh: {fileID: 3388978981983429597, guid: bbf8f0dd7de848f429d13aadde62b633, type: 3}
-    modulSprite: {fileID: 0}
+    modulSprite: {fileID: 21300000, guid: f2a3444a22688804a856c2dbc72a0f88, type: 3}
     myEnumVariable: 2
     canLeft: 0
     canRight: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
     modulePrefabs: {fileID: 5320222491944983181, guid: e8568299a8cef5b459f2152b7e17b8bb, type: 3}
     hangarPrefab: {fileID: 5320222491944983181, guid: 421154c17452542499d6be8edd596b14, type: 3}
     modulMesh: {fileID: 4493585093827132993, guid: b377123a5c84e8a498a41254ce94ff73, type: 3}
-    modulSprite: {fileID: 0}
+    modulSprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
     myEnumVariable: 5
     canLeft: 0
     canRight: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
     modulePrefabs: {fileID: 8822405608560347169, guid: 2162f41ade93f1e499eca5ee53e6140b, type: 3}
     hangarPrefab: {fileID: 8822405608560347169, guid: 5472a73a34a548b4cac2162482de8d0e, type: 3}
     modulMesh: {fileID: 0}
-    modulSprite: {fileID: 0}
+    modulSprite: {fileID: 21300000, guid: 85b8d66edb138b643a0fb5de213b1813, type: 3}
     myEnumVariable: 5
     canLeft: 1
     canRight: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
     modulePrefabs: {fileID: 8822405608560347169, guid: 6ae7da83b0521134d8a0008ba76c4971, type: 3}
     hangarPrefab: {fileID: 8822405608560347169, guid: 921cab49f21656a4893a7648d9179b06, type: 3}
     modulMesh: {fileID: 1378968506556707602, guid: 4deaef3f99a93304683fcb4009f62e6d, type: 3}
-    modulSprite: {fileID: 0}
+    modulSprite: {fileID: 21300000, guid: 85b8d66edb138b643a0fb5de213b1813, type: 3}
     myEnumVariable: 5
     canLeft: 0
     canRight: 1
@@ -97,7 +97,7 @@ MonoBehaviour:
     modulePrefabs: {fileID: 253641423190805723, guid: 3e70d801e71d7e24abfa31e2aa2b5f1a, type: 3}
     hangarPrefab: {fileID: 253641423190805723, guid: d4ea42eee5ad3fe4e972e621f9a54bf7, type: 3}
     modulMesh: {fileID: 0}
-    modulSprite: {fileID: 0}
+    modulSprite: {fileID: 21300000, guid: 6dc4799b581d432469bebeed9e1a48e0, type: 3}
     myEnumVariable: 5
     canLeft: 0
     canRight: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
     modulePrefabs: {fileID: 3509744163337706340, guid: dae7987f8c9aba84f815972cbbdf6040, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 47520f6c06f5e5946870f84e6f0352b3, type: 3}
     modulMesh: {fileID: 2733448660354597953, guid: 37717c90f5202c0478a4305a2e05a058, type: 3}
-    modulSprite: {fileID: 0}
+    modulSprite: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
     myEnumVariable: 0
     canLeft: 0
     canRight: 1
@@ -117,7 +117,7 @@ MonoBehaviour:
     modulePrefabs: {fileID: 3509744163337706340, guid: 77c508665db59114b870912fa86b52df, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 3074fa7045d4bc3438ec839f3782fb40, type: 3}
     modulMesh: {fileID: 1378968506556707602, guid: 4deaef3f99a93304683fcb4009f62e6d, type: 3}
-    modulSprite: {fileID: 0}
+    modulSprite: {fileID: 21300000, guid: a7a01ead83f63fa44a6141650e1add89, type: 3}
     myEnumVariable: 0
     canLeft: 1
     canRight: 0

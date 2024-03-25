@@ -4,78 +4,92 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.EventSystems;
 using static Sphere;
+using Unity.VisualScripting;
+using UnityEngine.Rendering.PostProcessing;
 
 public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    [Header("UI Controls")]
     public TextMeshProUGUI nameText;
-    public Image imagePanel;
-    public Mesh modulMesh;
-    public Mesh baseSphereMesh;
-    public MeshFilter selectedSphere;
-    private Vector3 sphereStartSize;
-    [HideInInspector] public GameObject modulToCreate;
-    [HideInInspector] public int modulIndex;
-    private Transform shipParent;
-    public ModuleList moduleList;
-    private ModuleStorage moduleStorage;
-    private Selection selection;
-    private Sphere sph;
-    private HangarModul parentHangarModule;
+    public Image moduleImagePanel;
+    public Image modulContentPanel;
 
+    [Header("Selection Controls")]
+    public Color32 baseColor = new Color32(8,57,156,255);
+    public Color32 selectionColor = new Color32(124,124,255,255);
+    public MeshFilter selectedSphere;
+    private Selection selectionManager;
+    private Sphere sph;
+
+    [Header("Create new Mesh Controls")]
+    public int modulIndex;
+    private GameObject modulToCreate;
+    private Transform shipParent;
+    private ModuleStorage moduleStorage;
+    private HangarModul parentHangarModule;
+    private ModuleList moduleList;
+
+
+    /* **************************************************************************** */
+    /* LIFECYCLE------------------------------------------------------------------- */
+    /* **************************************************************************** */
+    #region Lifecycle
     private void Start()
     {
+        // find GameObjects
         shipParent = GameObject.Find("Ship").GetComponent<Transform>();
-        moduleStorage = shipParent.GetComponent<ModuleStorage>();
-        selection = GameObject.Find("SelectionController").GetComponent<Selection>();
+        selectionManager = GameObject.Find("SelectionController").GetComponent<Selection>();
+
         sph = selectedSphere.GetComponent<Sphere>();
         parentHangarModule = sph.parentTransform.gameObject.GetComponent<HangarModul>();
+
+        moduleStorage = shipParent.GetComponent<ModuleStorage>();
+        moduleList = moduleStorage.moduleList;
+
+        // Update the Panel view
+        UpdatePanel();
     }
 
     public void UpdatePanel()
     {
-        SetText(moduleList.moduls[modulIndex].moduleName);
+        // Header
+        nameText.text = moduleList.moduls[modulIndex].moduleName;
 
+        // Modul Sprite
+        if (moduleList.moduls[modulIndex].modulSprite != null)
+        moduleImagePanel.sprite = moduleList.moduls[modulIndex].modulSprite;
+
+        // Hangar Modul Prefab
         modulToCreate = moduleList.moduls[modulIndex].hangarPrefab;
-    }
 
-    public void SetText(string text)
-    {
-        nameText.text = text;
     }
+    #endregion
 
-    public void SetPanel(Sprite sprite)
-    {
-        imagePanel.sprite = sprite;
-    }
 
+
+    /* **************************************************************************** */
+    /* INTERFACES------------------------------------------------------------------ */
+    /* **************************************************************************** */
+    #region Interfaces
+    // Handle Mouse over UI
     public void OnPointerEnter(PointerEventData eventData)
     {
         gameObject.transform.DOComplete();
-        gameObject.transform.DOScale(new Vector3(1.05f, 1.05f, 1.05f), 0.1f);
+        gameObject.transform.DOScale(new Vector3(1.01f, 1.01f, 1.01f), 0.1f);
 
-        sphereStartSize = selectedSphere.transform.localScale;
-
-        if (selectedSphere != null && modulMesh != null)
-        {
-            selectedSphere.transform.localScale = new Vector3(1f, 1f, 1f);
-            selectedSphere.mesh = modulMesh;
-        }
+        modulContentPanel.color = selectionColor;
     }
 
-
+    // Handle Mouse exit UI
     public void OnPointerExit(PointerEventData eventData)
     {
         gameObject.transform.DOComplete();
         gameObject.transform.DOScale(new Vector3(1.0f, 1.0f, 1.0f), 0.05f);
 
-        if (selectedSphere != null && modulMesh != null)
-        {
-            selectedSphere.transform.localScale = sphereStartSize;
-            selectedSphere.mesh = baseSphereMesh;
-        }
+        modulContentPanel.color = baseColor;
     }
 
-
+    // Handle Mouse klick on UI
     public void OnPointerClick(PointerEventData eventData)
     {
         float spawnpos_x = 0;
@@ -113,9 +127,6 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         go.transform.SetParent(shipParent);
         HangarModul newHangarModule = go.GetComponent<HangarModul>();
 
-
-        //sph.ControllSpheres();
-
         ModuleDataRuntime newModuleData = new();
         newModuleData.x = spawnpos_x;
         newModuleData.z = spawnpos_z;
@@ -128,7 +139,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         moduleStorage.installedModulesGameobjects.Add(go);
         moduleStorage.RefreshModulSpheres();
 
-        selection.DeselectAll();
-
+        selectionManager.DeselectAll();
     }
+    #endregion
 }

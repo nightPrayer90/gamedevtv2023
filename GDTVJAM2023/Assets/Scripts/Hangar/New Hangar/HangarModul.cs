@@ -51,7 +51,6 @@ public class HangarModul : MonoBehaviour
     // control function, if an installed Modul was deleted
    public void ControllDelete()
     {
-      
         // turn Shperes on or off
         foreach (Sphere sph in spheres)
         {

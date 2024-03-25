@@ -66,7 +66,7 @@ public class Selection : MonoBehaviour
             }
         }
 
-        // hanle Mouse klick
+        // handle Mouse klick
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (Physics.Raycast(ray, out raycastHit))
