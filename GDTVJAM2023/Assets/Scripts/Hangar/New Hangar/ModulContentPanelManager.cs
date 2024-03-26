@@ -4,8 +4,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.EventSystems;
 using static Sphere;
-using Unity.VisualScripting;
-using UnityEngine.Rendering.PostProcessing;
+
 
 public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -62,6 +61,11 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         // Hangar Modul Prefab
         modulToCreate = moduleList.moduls[modulIndex].hangarPrefab;
 
+    }
+
+    private void OnDestroy()
+    {
+        gameObject.transform.DOComplete();
     }
     #endregion
 
@@ -134,6 +138,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         newModuleData.parentModule = parentHangarModule.moduleData;
         newModuleData.level = parentHangarModule.moduleData.level + 1;
         newHangarModule.moduleData = newModuleData;
+        newHangarModule.moduleValues.moduleName = moduleList.moduls[modulIndex].moduleName;
 
         moduleStorage.installedModuleData.Add(newModuleData);
         moduleStorage.installedModulesGameobjects.Add(go);

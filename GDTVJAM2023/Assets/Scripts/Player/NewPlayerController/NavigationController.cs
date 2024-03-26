@@ -4,7 +4,7 @@ public class NavigationController : MonoBehaviour
 {
     private GameManager gameManager;
     private SpawnDistrictList spawnDoistrictList;
-    public GameObject navigatorMesh;
+    public GameObject navigatorPivot;
     public Vector3 targetPosition;
 
     private void Start()
@@ -17,12 +17,12 @@ public class NavigationController : MonoBehaviour
     {
         // Position des GoToDimensionPickups
         targetPosition = spawnDoistrictList.goToDimensionPickup[gameManager.districtNumber - 1].transform.position;
-        navigatorMesh.SetActive(true);
+        navigatorPivot.SetActive(true);
     }
 
     public void DeactivateNavigatorMesh()
     {
-        navigatorMesh.SetActive(false);
+        navigatorPivot.SetActive(false);
     }
   
 }

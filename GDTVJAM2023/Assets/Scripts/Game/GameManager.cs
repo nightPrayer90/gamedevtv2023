@@ -118,6 +118,9 @@ public class GameManager : MonoBehaviour
     /* **************************************************************************** */
     private void Awake()
     {
+
+        DOTween.KillAll();
+
         //debug
         isPlayerData = false;
 

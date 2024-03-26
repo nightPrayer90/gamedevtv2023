@@ -18,6 +18,10 @@ public class RotateToTarget : MonoBehaviour
         transform.DOKill(true);
     }
 
+    private void OnDestroy()
+    {
+        transform.DOKill(true);
+    }
 
     private void Update()
     {

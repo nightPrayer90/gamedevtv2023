@@ -10,8 +10,8 @@ public class Selection : MonoBehaviour
     public Material highligtSphereMaterial;
     public Material selectionSphereMaterial;
 
-    public Material originalMaterial;
-    public Material originalMaterialSelectet;
+    private Material originalMaterial;
+    private Material originalMaterialSelectet;
     private Transform highlight;
     private Transform selection;
     private RaycastHit raycastHit;

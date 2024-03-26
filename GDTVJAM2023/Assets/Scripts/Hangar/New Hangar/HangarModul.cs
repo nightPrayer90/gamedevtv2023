@@ -1,18 +1,39 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+[Serializable]
+public class ModuleValues
+{
+    public string moduleName; // set from other objects (create)
+    [TextArea]
+    public string modulDescription_multiLineText;
+    public float costMass;
+    public float costEnergie;
+}
+
+
 public class HangarModul : MonoBehaviour
 {
+    [Header("Management")]
     public bool isSelected = false;
     public bool hasNoParentControll = false; // only ture on Cockpit or Strafe modules
     public bool haveParent = false;
 
+    [Header("GameObjects")]
+    public List<Sphere> spheres;
     private Selection selectionController;
     private ModuleStorage moduleStorage;
-    
-    public List<Sphere> spheres;
+
+    [Header("Module Data")]
     public ModuleDataRuntime moduleData;
+
+    [Header("Module Values")]
+    public ModuleValues moduleValues;
+    
+
 
     private void Awake()
     {
@@ -24,8 +45,8 @@ public class HangarModul : MonoBehaviour
         // only for Cockpit or Strafe
         if (hasNoParentControll == true) 
             haveParent = true;
-
     }
+
 
     public void HandleSetDeselect()
     {

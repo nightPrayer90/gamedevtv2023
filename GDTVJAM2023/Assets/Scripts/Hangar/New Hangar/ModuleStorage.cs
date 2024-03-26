@@ -90,6 +90,8 @@ public class ModuleStorage : MonoBehaviour
                 GameObject go = Instantiate(moduleList.moduls[instance.moduleTypeIndex].hangarPrefab, transformParent, false);
                 go.transform.localPosition = new Vector3(instance.x, 0, instance.z);
                 go.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                HangarModul hangarModul = go.GetComponent<HangarModul>();
+                hangarModul.moduleValues.moduleName = moduleList.moduls[instance.moduleTypeIndex].moduleName;
                 installedModulesGameobjects.Add(go);
             }
 

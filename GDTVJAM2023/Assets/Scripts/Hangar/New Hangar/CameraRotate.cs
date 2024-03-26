@@ -7,6 +7,9 @@ public class CameraRotate : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] float MouseSpeed = 3;
     [SerializeField] float orbitDampig = 10;
+    [SerializeField] Camera mainCamera;
+    [SerializeField] float minZoom;
+    [SerializeField] float maxZoom;
 
     Vector3 localRot;
 
@@ -25,6 +28,16 @@ public class CameraRotate : MonoBehaviour
 
             Quaternion QT = Quaternion.Euler(localRot.x, localRot.y, 0f);
             transform.rotation = Quaternion.Lerp(transform.rotation, QT, Time.deltaTime * orbitDampig);
+        }
+
+        if (Input.GetAxisRaw("Mouse ScrollWheel") != 0)
+        {
+            float scroll = mainCamera.fieldOfView  + Input.GetAxisRaw("Mouse ScrollWheel")*80f;
+            scroll = Mathf.Clamp(scroll, minZoom, maxZoom);
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, scroll, Time.deltaTime * 4f); ;
+
+            //mainCamera.fieldOfView = Mathf.Max(minZoom, Mathf.Min(maxZoom, mainCamera.fieldOfView + scroll));
+
         }
     }
 }
