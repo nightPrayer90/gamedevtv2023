@@ -57,7 +57,8 @@ MonoBehaviour:
     moduleTypeIndex: 0
   moduleValues:
     moduleName: 
-    modulDescription_multiLineText: 
+    modulDescription_multiLineText: "<color=#FFBF00>You need two direction engines
+      to \nbe able to turn your ship in space.</color>\nTorque force: 0.27 TNm"
     costMass: 0.05
     costEnergie: 0.2
     energieProduction: 0
@@ -67,6 +68,12 @@ MonoBehaviour:
     mainEngine: 0
     directionEngine: 0.27
     strafeEngine: 0
+    boostEngine: 0
+    boostStrafeEngine: 0
+    bulletClass: 0
+    rocketClass: 0
+    laserClass: 0
+    supportClass: 0
 --- !u!1 &4834224030632902957
 GameObject:
   m_ObjectHideFlags: 0

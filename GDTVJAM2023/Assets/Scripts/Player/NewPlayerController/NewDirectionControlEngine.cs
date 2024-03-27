@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NewDirectionControlEngine : MonoBehaviour
@@ -35,12 +33,13 @@ public class NewDirectionControlEngine : MonoBehaviour
 
         float z_Position = Mathf.Sign(playerRigidbody.centerOfMass.z + transform.localPosition.z);
         float x_Position = Mathf.Sign(playerRigidbody.centerOfMass.x + transform.localPosition.x);
-        engine_side = (z_Position == -1) ? Side.right : Side.left;
+
+        engine_side = (z_Position == 1) ? Side.right : Side.left;
         int engineRotation = Mathf.RoundToInt(transform.localRotation.eulerAngles.y);
 
         switch (engineRotation)
         {
-            case 90:
+            /*case 90:
                 if (x_Position == -1)
                 {
                     engineUPPos = -transform.up;
@@ -52,11 +51,11 @@ public class NewDirectionControlEngine : MonoBehaviour
                 break;
 
             case 180:
-                if (z_Position == -1)
+                if (z_Position == 1)
                 {
                     engineUPPos = transform.up;
                 }
-                if (z_Position == 1)
+                if (z_Position == -1)
                 {
                     engineUPPos = -transform.up;
                 }
@@ -71,15 +70,15 @@ public class NewDirectionControlEngine : MonoBehaviour
                 {
                     engineUPPos = -transform.up;
                 }
-                break;
+                break;*/
             case 0:
-                if (z_Position == -1)
-                {
-                    engineUPPos = -transform.up;
-                }
                 if (z_Position == 1)
                 {
                     engineUPPos = transform.up;
+                }
+                if (z_Position == -1)
+                {
+                    engineUPPos = -transform.up;
                 }
                 break;
         }
@@ -94,7 +93,7 @@ public class NewDirectionControlEngine : MonoBehaviour
         {
             if (engine_side == Side.right)
             {
-                Vector3 torque = engineUPPos * playerController.horizontalInput * torqueForce;
+                Vector3 torque = engineUPPos * -playerController.horizontalInput * torqueForce;
 
                 playerRigidbody.AddTorque(torque);
 
@@ -106,7 +105,7 @@ public class NewDirectionControlEngine : MonoBehaviour
         {
             if (engine_side == Side.left)
             {
-                Vector3 torque = engineUPPos * -playerController.horizontalInput * torqueForce;
+                Vector3 torque = engineUPPos * playerController.horizontalInput * torqueForce;
 
                 playerRigidbody.AddTorque(torque);
 

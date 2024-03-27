@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
@@ -9,17 +10,25 @@ public class HangarUIController : MonoBehaviour
     [Header("Scene Management")]
     public string gameScene = "GameScene";
     public string MenueScene = "MenueScene";
+    public string ShopScene = "ShopScene";
 
     [Header("UI Controls")]
     public CanvasGroup modulePanel;
     public CanvasGroup removePanel;
     public CanvasGroup selectionContentPanel;
+    public CanvasGroup mouseOverPanel;
 
     [Header("Selection Content Panel")]
     public TextMeshProUGUI scpHeader;
     public TextMeshProUGUI scpDescription;
     public TextMeshProUGUI scpCostMassValue;
     public TextMeshProUGUI scpCostEnergieValue;
+
+    [Header("Mouse Over Panal")]
+    public TextMeshProUGUI mopHeader;
+    public TextMeshProUGUI mopDescription;
+    public TextMeshProUGUI mopCostMassValue;
+    public TextMeshProUGUI mopCostEnergieValue;
 
     [Header("Ship Panel")]
     public TextMeshProUGUI spMassValue;
@@ -31,6 +40,16 @@ public class HangarUIController : MonoBehaviour
     public TextMeshProUGUI spMainEngine;
     public TextMeshProUGUI spDirectionEngine;
     public TextMeshProUGUI spStrafeEngine;
+
+    [Header("Class Panel")]
+    public Image cpBulletImage;
+    public Image cpRocketImage;
+    public Image cpLaserImage;
+    public Image cpSupportImage;
+    public TextMeshProUGUI cpBulletText;
+    public TextMeshProUGUI cpRocketText;
+    public TextMeshProUGUI cpLaserText;
+    public TextMeshProUGUI cpSupportText;
 
     [Header("Game Objects")]
     public ModuleStorage moduleStorage;
@@ -52,6 +71,12 @@ public class HangarUIController : MonoBehaviour
         modulePanel.alpha = 0;
         removePanel.alpha = 0;
         selectionContentPanel.alpha = 0;
+        mouseOverPanel.alpha = 0;
+
+        cpBulletImage.enabled = false;
+        cpRocketImage.enabled = false;
+        cpLaserImage.enabled = false;
+        cpSupportImage.enabled = false;
     }
 
     // handle Sphere selection
@@ -120,7 +145,7 @@ public class HangarUIController : MonoBehaviour
         scpHeader.text = selectedModul.moduleValues.moduleName;
         scpDescription.text = selectedModul.moduleValues.modulDescription_multiLineText;
         scpCostMassValue.text = selectedModul.moduleValues.costMass.ToString() + " t";
-        scpCostEnergieValue.text = selectedModul.moduleValues.costEnergie.ToString() + " 1/s";
+        scpCostEnergieValue.text = selectedModul.moduleValues.costEnergie.ToString() + " TJ/s";
 
     }
 
@@ -142,9 +167,46 @@ public class HangarUIController : MonoBehaviour
 
 
     /* **************************************************************************** */
+    /* Mouse Over Panel------------------------------------------------------------ */
+    /* **************************************************************************** */
+    #region mouse over Panel
+    public void MouseOverModulePanel(GameObject modulToCreate, string modulName)
+    {
+        HangarModul selectedModul = modulToCreate.GetComponent<HangarModul>();
+
+
+        mouseOverPanel.DOKill();
+        if (mouseOverPanel.alpha != 1)
+        {
+            mouseOverPanel.blocksRaycasts = true;
+            mouseOverPanel.DOFade(1, 0.2f);
+        }
+
+        // set content Mouse over Panel
+        mopHeader.text = modulName;
+        mopDescription.text = selectedModul.moduleValues.modulDescription_multiLineText;
+        mopCostMassValue.text = selectedModul.moduleValues.costMass.ToString() + " t";
+        mopCostEnergieValue.text = selectedModul.moduleValues.costEnergie.ToString() + " TJ/s";
+    }
+
+    public void MouseExitModulePanel(float delay)
+    {
+        mouseOverPanel.DOKill();
+        if (mouseOverPanel.alpha != 0)
+        {
+            mouseOverPanel.blocksRaycasts = false;
+            mouseOverPanel.DOFade(0, 0.2f).SetDelay(delay);
+        }
+    }
+
+    #endregion
+
+
+
+    /* **************************************************************************** */
     /* SHIP PANEL------------------------------------------------------------------ */
     /* **************************************************************************** */
-    #region SHIP PANEL
+    #region Ship Panel
     public void SetShipPanel()
     {
         float massResult = 0f;
@@ -156,7 +218,14 @@ public class HangarUIController : MonoBehaviour
         float mainEngine = 0;
         float strafeEngine = 0;
         float directionEngine = 0;
+        float boostEngine = 0;
+        float boostStrafe = 0;
+        int bulletClass = 0;
+        int rocketClass = 0;
+        int laserClass = 0;
+        int supportClass = 0;
 
+        // get Data
         foreach(HangarModul modul in moduleStorage.installedHangarModules)
         {
             massResult += modul.moduleValues.costMass;
@@ -168,7 +237,15 @@ public class HangarUIController : MonoBehaviour
             mainEngine += modul.moduleValues.mainEngine;
             strafeEngine += modul.moduleValues.strafeEngine;
             directionEngine += modul.moduleValues.directionEngine;
+            boostEngine += modul.moduleValues.boostEngine;
+            boostStrafe += modul.moduleValues.boostStrafeEngine;
+            bulletClass += modul.moduleValues.bulletClass;
+            rocketClass += modul.moduleValues.rocketClass;
+            laserClass += modul.moduleValues.laserClass;
+            supportClass += modul.moduleValues.supportClass;
         }
+
+        // Ship Panel
         spMassValue.text = massResult.ToString() + " t";
         spEnergieProduction.text = energieProductionResult.ToString() + " TW/s";
         energieRegenResult =   Mathf.Round((energieProductionResult - energieRegenResult)*100)/100;
@@ -176,13 +253,20 @@ public class HangarUIController : MonoBehaviour
         spEnergieStorage.text = energieStorage.ToString() + " TW";
         spHealth.text = health.ToString() + " TP";
         spProtection.text = protection.ToString() + " %";
-        spMainEngine.text = mainEngine.ToString() + " TJ";
-        Debug.Log(directionEngine);
+        spMainEngine.text = mainEngine.ToString() + " /<color=#00FFFF>" + boostEngine.ToString() + "</color> TN";
         directionEngine = Mathf.Round((directionEngine / 2) * 100) / 100;
-        spDirectionEngine.text = directionEngine.ToString() + " TJ";
-        spStrafeEngine.text = strafeEngine.ToString() + " TJ";
-        // boost!
-        // klassen
+        spDirectionEngine.text = directionEngine.ToString() + " TNm";
+        spStrafeEngine.text = strafeEngine.ToString() + " /<color=#00FFFF>" + boostStrafe.ToString() + "</color> TN";
+
+        //Class Panel
+        cpBulletImage.enabled = (bulletClass > 0) ? true : false;
+        cpBulletText.text = bulletClass.ToString();
+        cpRocketImage.enabled = (rocketClass > 0) ? true : false;
+        cpRocketText.text = rocketClass.ToString();
+        cpLaserImage.enabled = (laserClass > 0) ? true : false;
+        cpLaserText.text = laserClass.ToString();
+        cpSupportImage.enabled = (supportClass > 0) ? true : false;
+        cpSupportText.text = supportClass.ToString();
     }
 
     #endregion
@@ -203,6 +287,12 @@ public class HangarUIController : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
         SceneManager.LoadScene(MenueScene);
+    }
+
+    public void GoToShop()
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        SceneManager.LoadScene(ShopScene);
     }
     #endregion
 }

@@ -68,6 +68,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
 
     private void OnDestroy()
     {
+        hangarUIController.MouseExitModulePanel(0f);
         gameObject.transform.DOComplete();
     }
     #endregion
@@ -85,6 +86,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         gameObject.transform.DOScale(new Vector3(1.01f, 1.01f, 1.01f), 0.1f);
 
         modulContentPanel.color = selectionColor;
+        hangarUIController.MouseOverModulePanel(modulToCreate, moduleList.moduls[modulIndex].moduleName);
     }
 
     // Handle Mouse exit UI
@@ -94,6 +96,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         gameObject.transform.DOScale(new Vector3(1.0f, 1.0f, 1.0f), 0.05f);
 
         modulContentPanel.color = baseColor;
+        hangarUIController.MouseExitModulePanel(0.2f);
     }
 
     // Handle Mouse klick on UI

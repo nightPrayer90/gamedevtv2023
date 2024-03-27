@@ -11,7 +11,6 @@ public class Sphere : MonoBehaviour
     public  Transform parentTransform;
     private HangarModul parentModul; //TODO
     private ModuleStorage moduleStorage;
-//    private List<ModuleData> moduleInstances;
     public float spawnPositionX;
     public float spawnPositionZ;
     private MeshRenderer meshRenderer;

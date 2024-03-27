@@ -626,7 +626,26 @@ MonoBehaviour:
     moduleTypeIndex: 0
   moduleValues:
     moduleName: 
-    modulDescription_multiLineText: "Standard Cockpit \nEnergie Production 1.0 1/s"
+    modulDescription_multiLineText: 'Energie Production: 2.5 TJ/s
+
+      Energie
+      Storage: 10 TJ
+
+      Health: 10 TP
+
+      <color="red">Bullet class: +1 </color>'
     costMass: 1
     costEnergie: 0
     energieProduction: 2.5
+    energieStorage: 10
+    health: 10
+    protection: 0
+    mainEngine: 0
+    directionEngine: 0
+    strafeEngine: 0
+    boostEngine: 0
+    boostStrafeEngine: 0
+    bulletClass: 1
+    rocketClass: 0
+    laserClass: 0
+    supportClass: 0

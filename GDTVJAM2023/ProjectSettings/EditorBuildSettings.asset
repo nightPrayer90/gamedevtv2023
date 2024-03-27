@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HangarScene.unity
     guid: a21c2f0477f353245ba84ab1793cff3f
+  - enabled: 1
+    path: Assets/Scenes/ShopScene.unity
+    guid: 5935a4e59be1cf04e9e53c464ba3de3b
   m_configObjects: {}

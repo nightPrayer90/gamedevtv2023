@@ -170,9 +170,11 @@ MonoBehaviour:
     moduleTypeIndex: 0
   moduleValues:
     moduleName: 
-    modulDescription_multiLineText: 
+    modulDescription_multiLineText: "<color=#FFBF00>The Strafe engine allows you
+      \nto strafe left and right.</color>\nStrafe force: 2 TJ\nBoost force: <color=#00FFFF>5
+      TJ </color>"
     costMass: 0.05
-    costEnergie: 0.2
+    costEnergie: 0.1
     energieProduction: 0
     energieStorage: 0
     health: 0
@@ -180,6 +182,12 @@ MonoBehaviour:
     mainEngine: 0
     directionEngine: 0
     strafeEngine: 2
+    boostEngine: 0
+    boostStrafeEngine: 5
+    bulletClass: 0
+    rocketClass: 0
+    laserClass: 0
+    supportClass: 0
 --- !u!1 &9137083369483460279
 GameObject:
   m_ObjectHideFlags: 0

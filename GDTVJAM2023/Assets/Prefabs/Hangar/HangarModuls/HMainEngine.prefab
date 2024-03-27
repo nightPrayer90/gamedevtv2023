@@ -156,16 +156,24 @@ MonoBehaviour:
     moduleTypeIndex: 0
   moduleValues:
     moduleName: 
-    modulDescription_multiLineText: 
-    costMass: 0.05
-    costEnergie: 0.3
+    modulDescription_multiLineText: "<color=#FFBF00>You need one main engine to fly
+      \nforwards or backwards.</color>\nThrust force: 4 TJ\nBoost force: <color=#00FFFF>5
+      TJ </color>\nYou get the Ability  <color=#00FFFF>Power Boost</color>"
+    costMass: 0.11
+    costEnergie: 0.5
     energieProduction: 0
     energieStorage: 0
     health: 0
     protection: 0
-    mainEngine: 5
+    mainEngine: 4
     directionEngine: 0
     strafeEngine: 0
+    boostEngine: 5
+    boostStrafeEngine: 0
+    bulletClass: 0
+    rocketClass: 0
+    laserClass: 0
+    supportClass: 0
 --- !u!1001 &1055919474027847746
 PrefabInstance:
   m_ObjectHideFlags: 0

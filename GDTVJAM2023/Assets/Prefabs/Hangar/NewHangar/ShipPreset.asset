@@ -16,5 +16,36 @@ MonoBehaviour:
   - level: 0
     x: 0
     z: 0
-    rotation: 0
     moduleTypeIndex: 0
+  - level: 1
+    x: 0
+    z: 1
+    moduleTypeIndex: 1
+  - level: 1
+    x: 0
+    z: -1
+    moduleTypeIndex: 1
+  - level: 1
+    x: -1
+    z: 0
+    moduleTypeIndex: 4
+  - level: 2
+    x: -1
+    z: 1
+    moduleTypeIndex: 5
+  - level: 2
+    x: -1
+    z: -1
+    moduleTypeIndex: 5
+  - level: 2
+    x: 1
+    z: 1
+    moduleTypeIndex: 3
+  - level: 2
+    x: 1
+    z: -1
+    moduleTypeIndex: 3
+  - level: 1
+    x: 1
+    z: 0
+    moduleTypeIndex: 2

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 [Serializable]
 public class ModuleDataRuntime : ModuleData
@@ -69,11 +70,7 @@ public class ModuleStorage : MonoBehaviour
         List<ModuleData> loadedModules = dataService.LoadData<List<ModuleData>>("modules.json", false);
         if (loadedModules.Count <= 0)
         {
-            foreach (ModuleData item in shipPreset.baseModules)
-            {
-                installedModuleData.Add(new ModuleDataRuntime(item));
-            }
-            Debug.Log("LoadPreset");
+            LoadPreset();
         }
         else
         {
@@ -82,26 +79,8 @@ public class ModuleStorage : MonoBehaviour
                 installedModuleData.Add(new ModuleDataRuntime(item));
             }
         }
-        foreach (ModuleDataRuntime instance in installedModuleData) {
-            // Hangar
-            if (gameManager == null)
-            {
-                GameObject go = Instantiate(moduleList.moduls[instance.moduleTypeIndex].hangarPrefab, transformParent, false);
-                go.transform.localPosition = new Vector3(instance.x, 0, instance.z);
-                go.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                HangarModul hangarModul = go.GetComponent<HangarModul>();
-                hangarModul.moduleValues.moduleName = moduleList.moduls[instance.moduleTypeIndex].moduleName;
-                installedHangarModules.Add(hangarModul);
-            }
+        BuildShipFromModuleData();
 
-            // Level
-            else
-            {
-                GameObject go = Instantiate(moduleList.moduls[instance.moduleTypeIndex].modulePrefabs, transformParent, false);
-                go.transform.localPosition = new Vector3(instance.x, 0, instance.z);
-                go.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            }
-        }
         if (gameManager == null)
         {
             // find selection manager
@@ -112,7 +91,7 @@ public class ModuleStorage : MonoBehaviour
 
             // set ShipPanel
             hangarUIController = selectionManager.gameObject.GetComponent<HangarUIController>();
-            hangarUIController.SetShipPanel(); 
+            hangarUIController.SetShipPanel();
         }
     }
 
@@ -167,7 +146,7 @@ public class ModuleStorage : MonoBehaviour
                         Debug.Log(child.moduleTypeIndex);   
                     }
                 }*/
-                
+
                 // destroy gameObject
                 Destroy(installedHangarModules[i].gameObject);
 
@@ -212,7 +191,7 @@ public class ModuleStorage : MonoBehaviour
 
     private void OnDestroy()
     {
-        List <ModuleData> moduleDataSave = new();
+        List<ModuleData> moduleDataSave = new();
         foreach (ModuleDataRuntime item in installedModuleData)
         {
             ModuleData moduleData = new();
@@ -231,11 +210,73 @@ public class ModuleStorage : MonoBehaviour
         // TODO temporary helper function
         foreach (ModuleDataRuntime item in installedModuleData)
         {
-            if(item.level == level)
+            if (item.level == level)
             {
                 result.Add(item);
             }
         }
         return result;
+    }
+
+    public void NewShip()
+    {
+        installedModuleData.Add(new ModuleDataRuntime());
+    }
+
+    public void LoadPreset()
+    {
+        foreach (ModuleData item in shipPreset.baseModules)
+        {
+            installedModuleData.Add(new ModuleDataRuntime(item));
+        }
+        Debug.Log("LoadPreset");
+    }
+
+    public void BuildShipFromModuleData()
+    {
+        foreach (ModuleDataRuntime instance in installedModuleData)
+        {
+            // Hangar
+            if (gameManager == null)
+            {
+                GameObject go = Instantiate(moduleList.moduls[instance.moduleTypeIndex].hangarPrefab, transformParent, false);
+                go.transform.localPosition = new Vector3(instance.x, 0, instance.z);
+                go.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                HangarModul hangarModul = go.GetComponent<HangarModul>();
+                hangarModul.moduleValues.moduleName = moduleList.moduls[instance.moduleTypeIndex].moduleName;
+                installedHangarModules.Add(hangarModul);
+            }
+
+            // Level
+            else
+            {
+                GameObject go = Instantiate(moduleList.moduls[instance.moduleTypeIndex].modulePrefabs, transformParent, false);
+                go.transform.localPosition = new Vector3(instance.x, 0, instance.z);
+                go.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
+        }
+    }
+
+    public void RemoveAllModule()
+    {
+        // deselsect
+        selectionManager.DeselectAll();
+
+        for (int i = 0; i < installedHangarModules.Count; i++)
+        {
+            // destroy gameObject
+            Destroy(installedHangarModules[i].gameObject);
+
+           
+        }
+
+        // delete GameObject from List
+        installedHangarModules.Clear();
+
+        // delete GameObject from savelist
+        installedModuleData.Clear();
+
+        // reset ship ui panel
+        hangarUIController.SetShipPanel();
     }
 }

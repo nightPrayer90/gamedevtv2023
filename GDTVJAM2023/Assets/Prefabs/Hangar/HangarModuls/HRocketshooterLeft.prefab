@@ -57,10 +57,24 @@ MonoBehaviour:
     moduleTypeIndex: 0
   moduleValues:
     moduleName: 
-    modulDescription_multiLineText: 
+    modulDescription_multiLineText: "<color=#FFBF00>Short range rocket attack. Fire
+      \nhoming rockets with explosion AOE</color>\nDamage: 6 TP/hit\nFirerate: 1
+      rocked/s\n"
     costMass: 0
     costEnergie: 0.2
     energieProduction: 0
+    energieStorage: 0
+    health: 0
+    protection: 0
+    mainEngine: 0
+    directionEngine: 0
+    strafeEngine: 0
+    boostEngine: 0
+    boostStrafeEngine: 0
+    bulletClass: 0
+    rocketClass: 0
+    laserClass: 0
+    supportClass: 0
 --- !u!1 &8822405608639048629
 GameObject:
   m_ObjectHideFlags: 0

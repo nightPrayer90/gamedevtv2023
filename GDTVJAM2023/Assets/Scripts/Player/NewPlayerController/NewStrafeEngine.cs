@@ -52,7 +52,7 @@ public class NewStrafeEngine : MonoBehaviour
             }
 
             // Berechne die Kraft basierend auf dem horizontalen Input
-            Vector3 thrust = playerRigidbody.transform.right * playerController.horizontalInput2 * totalStrafeForce;
+            Vector3 thrust = playerRigidbody.transform.right * playerController.horizontalInput2 * -totalStrafeForce;
 
             // Wende die Kraft auf das Raumschiff an
             playerRigidbody.AddForce(thrust);
@@ -78,7 +78,7 @@ public class NewStrafeEngine : MonoBehaviour
             }
 
             // Berechne die Kraft basierend auf dem horizontalen Input
-            Vector3 thrust = playerRigidbody.transform.right * playerController.horizontalInput2 * totalStrafeForce;
+            Vector3 thrust = playerRigidbody.transform.right * playerController.horizontalInput2 * -totalStrafeForce;
 
             // Wende die Kraft auf das Raumschiff an
             playerRigidbody.AddForce(thrust);   
