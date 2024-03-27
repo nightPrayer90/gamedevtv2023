@@ -192,7 +192,7 @@ public class SpawnManager : MonoBehaviour
             float randomX = UnityEngine.Random.Range(minX, maxX);
             float randomZ = UnityEngine.Random.Range(minZ, maxZ);
 
-            spawnPosition = new Vector3(randomX, 6f, randomZ);
+            spawnPosition = new Vector3(randomX, 6.2f, randomZ);
 
         } while (Vector3.Distance(spawnPosition, playerTransform.position) < 5f);
 

@@ -55,6 +55,12 @@ MonoBehaviour:
     x: 0
     z: 0
     moduleTypeIndex: 0
+  moduleValues:
+    moduleName: 
+    modulDescription_multiLineText: 
+    costMass: 0
+    costEnergie: 0.2
+    energieProduction: 0
 --- !u!1 &5320222492401051534
 GameObject:
   m_ObjectHideFlags: 0

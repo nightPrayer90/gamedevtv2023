@@ -182,8 +182,9 @@ MonoBehaviour:
   moduleValues:
     moduleName: 
     modulDescription_multiLineText: 
-    costMass: 0.1
-    costEnergie: -0.1
+    costMass: 0.2
+    costEnergie: 0.1
+    energieProduction: 0
 --- !u!1 &3509744164497189554
 GameObject:
   m_ObjectHideFlags: 0

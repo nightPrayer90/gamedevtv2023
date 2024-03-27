@@ -154,6 +154,18 @@ MonoBehaviour:
     x: 0
     z: 0
     moduleTypeIndex: 0
+  moduleValues:
+    moduleName: 
+    modulDescription_multiLineText: 
+    costMass: 0.05
+    costEnergie: 0.3
+    energieProduction: 0
+    energieStorage: 0
+    health: 0
+    protection: 0
+    mainEngine: 5
+    directionEngine: 0
+    strafeEngine: 0
 --- !u!1001 &1055919474027847746
 PrefabInstance:
   m_ObjectHideFlags: 0

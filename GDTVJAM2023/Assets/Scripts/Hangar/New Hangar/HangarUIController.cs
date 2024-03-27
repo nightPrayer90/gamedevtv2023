@@ -11,7 +11,7 @@ public class HangarUIController : MonoBehaviour
     public string MenueScene = "MenueScene";
 
     [Header("UI Controls")]
-    public CanvasGroup modulPanel;
+    public CanvasGroup modulePanel;
     public CanvasGroup removePanel;
     public CanvasGroup selectionContentPanel;
 
@@ -21,10 +21,21 @@ public class HangarUIController : MonoBehaviour
     public TextMeshProUGUI scpCostMassValue;
     public TextMeshProUGUI scpCostEnergieValue;
 
+    [Header("Ship Panel")]
+    public TextMeshProUGUI spMassValue;
+    public TextMeshProUGUI spEnergieProduction;
+    public TextMeshProUGUI spEnergieRegen;
+    public TextMeshProUGUI spEnergieStorage;
+    public TextMeshProUGUI spHealth;
+    public TextMeshProUGUI spProtection;
+    public TextMeshProUGUI spMainEngine;
+    public TextMeshProUGUI spDirectionEngine;
+    public TextMeshProUGUI spStrafeEngine;
+
     [Header("Game Objects")]
-    public ModuleStorage modulStorage;
+    public ModuleStorage moduleStorage;
     public Transform contentParent;
-    public GameObject modulContentPanelPrefab;
+    public GameObject moduleContentPanelPrefab;
     private Selection selectionController;
     private List<GameObject> goContentPanels = new List<GameObject>();
 
@@ -38,7 +49,7 @@ public class HangarUIController : MonoBehaviour
     {
         selectionController = gameObject.GetComponent<Selection>();
         selectionController.OnDeselect += HandleDeselect;
-        modulPanel.alpha = 0;
+        modulePanel.alpha = 0;
         removePanel.alpha = 0;
         selectionContentPanel.alpha = 0;
     }
@@ -49,28 +60,29 @@ public class HangarUIController : MonoBehaviour
         // cash selectet Sphere Controller
         Sphere sph = selection.gameObject.GetComponent<Sphere>();
 
+            
         // open Panel
-        modulPanel.DOKill();
-        if (modulPanel.alpha != 1)
+        modulePanel.DOKill();
+        if (modulePanel.alpha != 1)
         {
-            modulPanel.blocksRaycasts = true;
-            modulPanel.DOFade(1, 0.2f);
+            modulePanel.blocksRaycasts = true;
+            modulePanel.DOFade(1, 0.2f);
         }
-
+    
         // load Content Panel
         if (sph != null)
         {
             int moduls = sph.availableModuls.Count;
             MeshFilter mRSph = selection.GetComponent<MeshFilter>();
-
+            
             // duplicate Content Moduls
             for (int i = 0; i < moduls; i++)
             {
-                GameObject go = Instantiate(modulContentPanelPrefab);
+                GameObject go = Instantiate(moduleContentPanelPrefab);
                 ModulContentPanelManager mCPM = go.GetComponent<ModulContentPanelManager>();
                 go.transform.SetParent(contentParent);
                 go.transform.localScale = new Vector3(1, 1, 1);
-
+                
                 mCPM.modulIndex = sph.availableModuls[i];
                 mCPM.selectedSphere = mRSph;
 
@@ -107,14 +119,15 @@ public class HangarUIController : MonoBehaviour
         // set content selectionPanel
         scpHeader.text = selectedModul.moduleValues.moduleName;
         scpDescription.text = selectedModul.moduleValues.modulDescription_multiLineText;
-        scpCostMassValue.text = selectedModul.moduleValues.costMass.ToString();
-        scpCostEnergieValue.text = selectedModul.moduleValues.costEnergie.ToString();
+        scpCostMassValue.text = selectedModul.moduleValues.costMass.ToString() + " t";
+        scpCostEnergieValue.text = selectedModul.moduleValues.costEnergie.ToString() + " 1/s";
+
     }
 
     // deselect all
     public void HandleDeselect()
     {
-        modulPanel.DOFade(0, 0.2f).OnComplete(() => { modulPanel.blocksRaycasts = false; });
+        modulePanel.DOFade(0, 0.2f).OnComplete(() => { modulePanel.blocksRaycasts = false; });
         removePanel.DOFade(0, 0.2f).OnComplete(() => { removePanel.blocksRaycasts = false; });
         selectionContentPanel.DOFade(0, 0.2f).OnComplete(() => { selectionContentPanel.blocksRaycasts = true; });
 
@@ -129,12 +142,58 @@ public class HangarUIController : MonoBehaviour
 
 
     /* **************************************************************************** */
+    /* SHIP PANEL------------------------------------------------------------------ */
+    /* **************************************************************************** */
+    #region SHIP PANEL
+    public void SetShipPanel()
+    {
+        float massResult = 0f;
+        float energieProductionResult = 0f;
+        float energieRegenResult = 0f;
+        int energieStorage = 0;
+        int health = 0;
+        float protection = 0;
+        float mainEngine = 0;
+        float strafeEngine = 0;
+        float directionEngine = 0;
+
+        foreach(HangarModul modul in moduleStorage.installedHangarModules)
+        {
+            massResult += modul.moduleValues.costMass;
+            energieProductionResult += modul.moduleValues.energieProduction;
+            energieRegenResult += modul.moduleValues.costEnergie;
+            energieStorage += modul.moduleValues.energieStorage;
+            health += modul.moduleValues.health;
+            protection += modul.moduleValues.protection;
+            mainEngine += modul.moduleValues.mainEngine;
+            strafeEngine += modul.moduleValues.strafeEngine;
+            directionEngine += modul.moduleValues.directionEngine;
+        }
+        spMassValue.text = massResult.ToString() + " t";
+        spEnergieProduction.text = energieProductionResult.ToString() + " TW/s";
+        energieRegenResult =   Mathf.Round((energieProductionResult - energieRegenResult)*100)/100;
+        spEnergieRegen.text = (energieRegenResult).ToString() + " TW/s"; // TODO: do it red if it is smaller than 0
+        spEnergieStorage.text = energieStorage.ToString() + " TW";
+        spHealth.text = health.ToString() + " TP";
+        spProtection.text = protection.ToString() + " %";
+        spMainEngine.text = mainEngine.ToString() + " TJ";
+        Debug.Log(directionEngine);
+        directionEngine = Mathf.Round((directionEngine / 2) * 100) / 100;
+        spDirectionEngine.text = directionEngine.ToString() + " TJ";
+        spStrafeEngine.text = strafeEngine.ToString() + " TJ";
+        // boost!
+        // klassen
+    }
+
+    #endregion
+
+    /* **************************************************************************** */
     /* BUTTON CONTOLS-------------------------------------------------------------- */
     /* **************************************************************************** */
     #region Button Controls
     public void GameStart()
     {
-        if (modulStorage.canGameStart == true)
+        if (moduleStorage.canGameStart == true)
         {
             AudioManager.Instance.PlaySFX("MouseKlick");
             SceneManager.LoadScene(gameScene);

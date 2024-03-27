@@ -626,6 +626,7 @@ MonoBehaviour:
     moduleTypeIndex: 0
   moduleValues:
     moduleName: 
-    modulDescription_multiLineText: "Standard Cockpit \nEnergieProduction 1.0 1/s"
+    modulDescription_multiLineText: "Standard Cockpit \nEnergie Production 1.0 1/s"
     costMass: 1
     costEnergie: 0
+    energieProduction: 2.5

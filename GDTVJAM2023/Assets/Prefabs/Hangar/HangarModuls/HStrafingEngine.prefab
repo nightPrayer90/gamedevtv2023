@@ -168,6 +168,18 @@ MonoBehaviour:
     x: 0
     z: 0
     moduleTypeIndex: 0
+  moduleValues:
+    moduleName: 
+    modulDescription_multiLineText: 
+    costMass: 0.05
+    costEnergie: 0.2
+    energieProduction: 0
+    energieStorage: 0
+    health: 0
+    protection: 0
+    mainEngine: 0
+    directionEngine: 0
+    strafeEngine: 2
 --- !u!1 &9137083369483460279
 GameObject:
   m_ObjectHideFlags: 0

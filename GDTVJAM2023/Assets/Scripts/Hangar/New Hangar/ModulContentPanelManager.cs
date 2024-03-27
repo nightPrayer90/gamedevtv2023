@@ -27,6 +27,8 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
     private ModuleStorage moduleStorage;
     private HangarModul parentHangarModule;
     private ModuleList moduleList;
+    private HangarUIController hangarUIController;
+
 
 
     /* **************************************************************************** */
@@ -38,6 +40,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         // find GameObjects
         shipParent = GameObject.Find("Ship").GetComponent<Transform>();
         selectionManager = GameObject.Find("SelectionController").GetComponent<Selection>();
+        hangarUIController = selectionManager.gameObject.GetComponent<HangarUIController>();
 
         sph = selectedSphere.GetComponent<Sphere>();
         parentHangarModule = sph.parentTransform.gameObject.GetComponent<HangarModul>();
@@ -141,8 +144,10 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         newHangarModule.moduleValues.moduleName = moduleList.moduls[modulIndex].moduleName;
 
         moduleStorage.installedModuleData.Add(newModuleData);
-        moduleStorage.installedModulesGameobjects.Add(go);
+        moduleStorage.installedHangarModules.Add(newHangarModule);
         moduleStorage.RefreshModulSpheres();
+
+        hangarUIController.SetShipPanel();
 
         selectionManager.DeselectAll();
     }

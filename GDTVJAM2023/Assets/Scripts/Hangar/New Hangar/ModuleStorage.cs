@@ -1,7 +1,5 @@
-using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 
 [Serializable]
@@ -52,10 +50,11 @@ public class ModuleStorage : MonoBehaviour
     public Transform transformParent;
     private GameObject gameManager;
     private Selection selectionManager;
+    private HangarUIController hangarUIController;
 
     public ShipPreset shipPreset;
     // TODO can be replaced by List<HangarModule> to get rid of GetComponent<HangarModule>
-    public List<GameObject> installedModulesGameobjects;
+    public List<HangarModul> installedHangarModules;
 
     // TODO just temporary
     public bool canGameStart = true;
@@ -92,7 +91,7 @@ public class ModuleStorage : MonoBehaviour
                 go.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 HangarModul hangarModul = go.GetComponent<HangarModul>();
                 hangarModul.moduleValues.moduleName = moduleList.moduls[instance.moduleTypeIndex].moduleName;
-                installedModulesGameobjects.Add(go);
+                installedHangarModules.Add(hangarModul);
             }
 
             // Level
@@ -110,7 +109,10 @@ public class ModuleStorage : MonoBehaviour
 
             // rebuild parents
             RebuildParents();
-            
+
+            // set ShipPanel
+            hangarUIController = selectionManager.gameObject.GetComponent<HangarUIController>();
+            hangarUIController.SetShipPanel(); 
         }
     }
 
@@ -118,7 +120,7 @@ public class ModuleStorage : MonoBehaviour
     {
         for (int i = 0; i < installedModuleData.Count; i++)
         {
-            HangarModul hgm = installedModulesGameobjects[i].GetComponent<HangarModul>();
+            HangarModul hgm = installedHangarModules[i].GetComponent<HangarModul>();
             // load base data
             hgm.moduleData = new(installedModuleData[i]);
             // get all modules in level below
@@ -145,9 +147,9 @@ public class ModuleStorage : MonoBehaviour
     public void HangarRemoveModule()
     {
         // delete the correct module
-        for (int i = 0; i < installedModulesGameobjects.Count; i++)
+        for (int i = 0; i < installedHangarModules.Count; i++)
         {
-            HangarModul hgm = installedModulesGameobjects[i].GetComponent<HangarModul>();
+            HangarModul hgm = installedHangarModules[i].GetComponent<HangarModul>();
             if (hgm.isSelected == true)
             {
                 // clean up depending modules
@@ -167,13 +169,16 @@ public class ModuleStorage : MonoBehaviour
                 }*/
                 
                 // destroy gameObject
-                Destroy(installedModulesGameobjects[i]);
+                Destroy(installedHangarModules[i].gameObject);
 
                 // delete GameObject from List
-                installedModulesGameobjects.RemoveAt(i);
+                installedHangarModules.RemoveAt(i);
 
                 // delete GameObject from savelist
                 installedModuleData.RemoveAt(i);
+
+                // reset ship ui panel
+                hangarUIController.SetShipPanel();
 
                 // deselsect
                 selectionManager.DeselectAll();
@@ -195,9 +200,9 @@ public class ModuleStorage : MonoBehaviour
         RebuildParents();
 
         // Refresh all other Moduls
-        for (int i = 0; i < installedModulesGameobjects.Count; i++)
+        for (int i = 0; i < installedHangarModules.Count; i++)
         {
-            HangarModul hgm = installedModulesGameobjects[i].GetComponent<HangarModul>();
+            HangarModul hgm = installedHangarModules[i].GetComponent<HangarModul>();
             hgm.ControllDelete();
         }
 
