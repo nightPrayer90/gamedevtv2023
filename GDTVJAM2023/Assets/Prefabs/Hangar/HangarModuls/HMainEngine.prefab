@@ -108,6 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6234797105683024307}
+  - component: {fileID: -7892678384788389400}
   - component: {fileID: -5567571524683966717}
   m_Layer: 7
   m_Name: HMainEngine
@@ -133,6 +134,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7892678384788389400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6234797105683024306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee87beadea4c1d40aa4b43c2c37e002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moduleName: 
+  modulDescription_multiLineText: "<color=#FFBF00>You need one main engine to fly
+    \r\nforwards or backwards.</color>\r\nThrust force: 4 TJ\r\nBoost force: <color=#00FFFF>5
+    TJ </color>\r\nYou get the Ability  <color=#00FFFF>Power Boost</color>"
+  costMass: 0.15
+  costEnergie: 0.5
+  energieProduction: 0
+  energieStorage: 0
+  health: 0
+  protection: 0
+  mainEngine: 4
+  directionEngine: 0
+  strafeEngine: 0
+  boostEngine: 5
+  boostStrafeEngine: 0
+  bulletClass: 0
+  rocketClass: 0
+  laserClass: 0
+  supportClass: 0
 --- !u!114 &-5567571524683966717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,26 +186,7 @@ MonoBehaviour:
     x: 0
     z: 0
     moduleTypeIndex: 0
-  moduleValues:
-    moduleName: 
-    modulDescription_multiLineText: "<color=#FFBF00>You need one main engine to fly
-      \nforwards or backwards.</color>\nThrust force: 4 TJ\nBoost force: <color=#00FFFF>5
-      TJ </color>\nYou get the Ability  <color=#00FFFF>Power Boost</color>"
-    costMass: 0.11
-    costEnergie: 0.5
-    energieProduction: 0
-    energieStorage: 0
-    health: 0
-    protection: 0
-    mainEngine: 4
-    directionEngine: 0
-    strafeEngine: 0
-    boostEngine: 5
-    boostStrafeEngine: 0
-    bulletClass: 0
-    rocketClass: 0
-    laserClass: 0
-    supportClass: 0
+  moduleValues: {fileID: -7892678384788389400}
 --- !u!1001 &1055919474027847746
 PrefabInstance:
   m_ObjectHideFlags: 0

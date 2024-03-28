@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3509744163337706343}
+  - component: {fileID: -7223927652900603745}
   - component: {fileID: 8099496030707116036}
   m_Layer: 7
   m_Name: HWingRight
@@ -34,6 +35,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7223927652900603745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3509744163337706340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee87beadea4c1d40aa4b43c2c37e002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moduleName: 
+  modulDescription_multiLineText: 
+  costMass: 0.1
+  costEnergie: 0
+  energieProduction: 0
+  energieStorage: 0
+  health: 0
+  protection: 1
+  mainEngine: 0
+  directionEngine: 0
+  strafeEngine: 0
+  boostEngine: 0
+  boostStrafeEngine: 0
+  bulletClass: 0
+  rocketClass: 0
+  laserClass: 0
+  supportClass: 0
 --- !u!114 &8099496030707116036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,12 +85,7 @@ MonoBehaviour:
     x: 0
     z: 0
     moduleTypeIndex: 0
-  moduleValues:
-    moduleName: 
-    modulDescription_multiLineText: 
-    costMass: 0.1
-    costEnergie: 0.05
-    energieProduction: 0
+  moduleValues: {fileID: -7223927652900603745}
 --- !u!1 &3509744164497189554
 GameObject:
   m_ObjectHideFlags: 0

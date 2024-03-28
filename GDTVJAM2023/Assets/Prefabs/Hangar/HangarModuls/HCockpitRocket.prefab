@@ -505,7 +505,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7057816587558836830}
-  m_Mesh: {fileID: 2262303240563668989, guid: f6abe699e9fe38c428fffd3fce822217, type: 3}
+  m_Mesh: {fileID: -4828619841648143887, guid: 4dc46bbb892ac0541b325da773710856, type: 3}
 --- !u!23 &5582534510747539000
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -571,9 +571,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8919917907132705990}
+  - component: {fileID: 5361166310108107299}
   - component: {fileID: -5058857993275173830}
   m_Layer: 7
-  m_Name: HCockpit
+  m_Name: HCockpitRocket
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -599,6 +600,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5361166310108107299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8919917907132705989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee87beadea4c1d40aa4b43c2c37e002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moduleName: 
+  modulDescription_multiLineText: 'Energie Production: 2.3 TJ/s
+
+    Energie Storage:
+    10 TJ
+
+    Health: 10 TP
+
+    <color="orange">Laser class: +1 </color>'
+  costMass: 0.9
+  costEnergie: 0
+  energieProduction: 2.3
+  energieStorage: 10
+  health: 10
+  protection: 0
+  mainEngine: 0
+  directionEngine: 0
+  strafeEngine: 0
+  boostEngine: 0
+  boostStrafeEngine: 0
+  bulletClass: 0
+  rocketClass: 1
+  laserClass: 0
+  supportClass: 0
 --- !u!114 &-5058857993275173830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,28 +661,4 @@ MonoBehaviour:
     x: 0
     z: 0
     moduleTypeIndex: 0
-  moduleValues:
-    moduleName: 
-    modulDescription_multiLineText: 'Energie Production: 2.5 TJ/s
-
-      Energie
-      Storage: 10 TJ
-
-      Health: 10 TP
-
-      <color="red">Bullet class: +1 </color>'
-    costMass: 1
-    costEnergie: 0
-    energieProduction: 2.5
-    energieStorage: 10
-    health: 10
-    protection: 0
-    mainEngine: 0
-    directionEngine: 0
-    strafeEngine: 0
-    boostEngine: 0
-    boostStrafeEngine: 0
-    bulletClass: 1
-    rocketClass: 0
-    laserClass: 0
-    supportClass: 0
+  moduleValues: {fileID: 5361166310108107299}

@@ -19,7 +19,6 @@ public class Modules
     public string moduleName;
     public GameObject modulePrefabs;
     public GameObject hangarPrefab;
-    public Mesh modulMesh;
     public Sprite modulSprite;
     public ModulTyp myEnumVariable;
     public bool canLeft = false;
