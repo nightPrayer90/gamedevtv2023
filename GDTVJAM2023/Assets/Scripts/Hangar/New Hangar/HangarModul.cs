@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-
 
 
 public class HangarModul : MonoBehaviour
@@ -16,13 +14,14 @@ public class HangarModul : MonoBehaviour
     public List<Sphere> spheres;
     private Selection selectionController;
     private ModuleStorage moduleStorage;
+    public List<int> possibleReplacements;
 
     [Header("Module Data")]
     public ModuleDataRuntime moduleData;
 
     [Header("Module Values")]
     public ModuleValues moduleValues;
-    
+
 
 
     private void Awake()
@@ -33,10 +32,14 @@ public class HangarModul : MonoBehaviour
         moduleStorage = GameObject.Find("Ship").GetComponentInParent<ModuleStorage>();
 
         // only for Cockpit or Strafe
-        if (hasNoParentControll == true) 
+        if (hasNoParentControll == true)
             haveParent = true;
     }
 
+    private void Start()
+    {
+        CreateModulList();
+    }
 
     public void HandleSetDeselect()
     {
@@ -56,11 +59,19 @@ public class HangarModul : MonoBehaviour
         else
         {
             Debug.Log("level Parent Modul " + moduleData.parentModule.level);
+
+            // 
+            if (possibleReplacements.Count == 0)
+            {
+               // CreateModulList();
+            }
+            
+
         }
     }
 
     // control function, if an installed Modul was deleted
-   public void ControllDelete()
+    public void ControllDelete()
     {
         // turn Shperes on or off
         foreach (Sphere sph in spheres)
@@ -76,7 +87,7 @@ public class HangarModul : MonoBehaviour
         {
             haveParent = false;
             Debug.Log("i have no Parent (ParentControl)");
-            moduleStorage.canGameStart = false;
+            //moduleStorage.canGameStart = false;
         }
         else
         {
@@ -84,4 +95,31 @@ public class HangarModul : MonoBehaviour
         }
     }
 
+    public void CreateModulList()
+    {
+        foreach (Modules module in moduleStorage.moduleList.moduls)
+        {
+            switch (moduleValues.moduleType)
+            {
+                case ModuleType.Cockpit:
+                case ModuleType.StrafeEngine:
+                    if (module.moduleType == moduleValues.moduleType && module.moduleName != moduleValues.moduleName)
+                    {
+
+                        possibleReplacements.Add(moduleStorage.moduleList.moduls.IndexOf(module));
+                    }
+                    break;
+                default:
+                    if (module.canLeft == moduleValues.canLeft && module.canRight == moduleValues.canRight &&
+                    module.canFront == moduleValues.canFront && module.canBack == moduleValues.canBack
+                     && module.moduleName != moduleValues.moduleName)
+                    {
+                        possibleReplacements.Add(moduleStorage.moduleList.moduls.IndexOf(module));
+                    }
+                    break;
+            }
+
+            
+        }
+    }
 }

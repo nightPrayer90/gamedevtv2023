@@ -17,134 +17,716 @@ MonoBehaviour:
     modulePrefabs: {fileID: 8919917907132705989, guid: bf45f026dcfb8fe48be46de0f2a1a408, type: 3}
     hangarPrefab: {fileID: 8919917907132705989, guid: 5073fba1e0babe74b91895200a7e6fbc, type: 3}
     modulSprite: {fileID: 21300000, guid: 9689a6e207a49ab4eac8dbb4698edb25, type: 3}
-    myEnumVariable: 4
+    moduleType: 4
     canLeft: 0
     canRight: 0
     canFront: 0
     canBack: 0
+    moduleValues:
+      moduleName: Cockpit
+      moduleType: 4
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: "Energie Production: 2.5 TJ/s\r\nEnergie Storage:
+        10 TJ\r\nHealth: 10 TP\r\n<color=\"red\">Bullet class: +1 </color>\r"
+      costMass: 1
+      costEnergie: 0
+      energieProduction: 2.5
+      energieStorage: 10
+      health: 10
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 1
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
   - moduleName: Connector 4 Ways
     modulePrefabs: {fileID: 3509744163337706340, guid: ba0aaec002e01f940907b4f1f3314ad8, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: df5162d8499e99841b16e16369eb2382, type: 3}
     modulSprite: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
-    myEnumVariable: 0
+    moduleType: 0
     canLeft: 1
     canRight: 1
     canFront: 1
     canBack: 1
+    moduleValues:
+      moduleName: Connector 4 Ways
+      moduleType: 0
+      canLeft: 1
+      canRight: 1
+      canFront: 1
+      canBack: 1
+      modulDescription_multiLineText: 'Energie Storage +2
+
+        Health +2'
+      costMass: 0.25
+      costEnergie: 0.2
+      energieProduction: 0
+      energieStorage: 2
+      health: 2
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
   - moduleName: Main Engine
     modulePrefabs: {fileID: 6234797105683024306, guid: db1dafc08107f8e40b58d894a7a4fa5b, type: 3}
     hangarPrefab: {fileID: 6234797105683024306, guid: bca6781ce9bcc264a9282a2f6034c3fa, type: 3}
     modulSprite: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
-    myEnumVariable: 1
+    moduleType: 1
     canLeft: 0
     canRight: 0
     canFront: 0
     canBack: 1
+    moduleValues:
+      moduleName: Main Engine
+      moduleType: 1
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 1
+      modulDescription_multiLineText: "<color=#FFBF00>You need one main engine to
+        fly \r\nforwards or backwards.</color>\r\nThrust force: 4 TJ\r\nBoost force:
+        <color=#00FFFF>5 TJ </color>\r\nYou get the Ability  <color=#00FFFF>Power
+        Boost</color>"
+      costMass: 0.2
+      costEnergie: 0.4
+      energieProduction: 0
+      energieStorage: 0
+      health: 0
+      protection: 0
+      mainEngine: 4
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 5
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
   - moduleName: Direction Engine
     modulePrefabs: {fileID: 3538126319694765833, guid: 432ae4b429e793a459cf133cde93e210, type: 3}
     hangarPrefab: {fileID: 3538126319694765833, guid: 4cbd91a62b37e7e4e935da2973e04073, type: 3}
     modulSprite: {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
-    myEnumVariable: 3
+    moduleType: 3
     canLeft: 0
     canRight: 0
     canFront: 0
     canBack: 1
+    moduleValues:
+      moduleName: Direction Engine
+      moduleType: 3
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 1
+      modulDescription_multiLineText: "<color=#FFBF00>You need two direction engines
+        to \r\nbe able to turn your ship in space.</color>\r\nTorque force: 0.27
+        TNm"
+      costMass: 0.05
+      costEnergie: 0.1
+      energieProduction: 0
+      energieStorage: 0
+      health: 0
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0.27
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
   - moduleName: Strafe Engine
     modulePrefabs: {fileID: 7337684759434239658, guid: 9c7457030927679498ecc18f972067c3, type: 3}
     hangarPrefab: {fileID: 7337684759434239658, guid: 80edf329a6db7f340a4a6457885cc012, type: 3}
     modulSprite: {fileID: 21300000, guid: f2a3444a22688804a856c2dbc72a0f88, type: 3}
-    myEnumVariable: 2
+    moduleType: 2
     canLeft: 0
     canRight: 0
     canFront: 0
     canBack: 0
+    moduleValues:
+      moduleName: Strafe Engine
+      moduleType: 2
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: "<color=#FFBF00>The Strafe engine allows you
+        \r\nto strafe left and right.</color>\r\nStrafe force: 2 TJ\r\nBoost force:
+        <color=#00FFFF>5 TJ </color>"
+      costMass: 0.1
+      costEnergie: 0.1
+      energieProduction: 0
+      energieStorage: 0
+      health: 0
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 2
+      boostEngine: 0
+      boostStrafeEngine: 5
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
   - moduleName: Bullet Shooter Front
     modulePrefabs: {fileID: 5320222491944983181, guid: e8568299a8cef5b459f2152b7e17b8bb, type: 3}
     hangarPrefab: {fileID: 5320222491944983181, guid: 421154c17452542499d6be8edd596b14, type: 3}
     modulSprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
-    myEnumVariable: 5
+    moduleType: 5
     canLeft: 0
     canRight: 0
     canFront: 1
     canBack: 0
+    moduleValues:
+      moduleName: Bullet Shooter Front
+      moduleType: 5
+      canLeft: 0
+      canRight: 0
+      canFront: 1
+      canBack: 0
+      modulDescription_multiLineText: '<color=#FFBF00>Midrange bullet attack</color>
+
+        Damage:
+        3 TP/ hit
+
+        Firerate: 2,5 bullets/s'
+      costMass: 0.05
+      costEnergie: 0.3
+      energieProduction: 0
+      energieStorage: 0
+      health: 0
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
   - moduleName: Rocket Shooter Left
     modulePrefabs: {fileID: 8822405608560347169, guid: 2162f41ade93f1e499eca5ee53e6140b, type: 3}
     hangarPrefab: {fileID: 8822405608560347169, guid: 5472a73a34a548b4cac2162482de8d0e, type: 3}
     modulSprite: {fileID: 21300000, guid: 85b8d66edb138b643a0fb5de213b1813, type: 3}
-    myEnumVariable: 5
+    moduleType: 5
     canLeft: 1
     canRight: 0
     canFront: 0
     canBack: 0
+    moduleValues:
+      moduleName: 
+      moduleType: 0
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: "<color=#FFBF00>Short range rocket attack.
+        Fire \r\nhoming rockets with explosion AOE</color>\r\nDamage: 6 TP/hit\r\nFirerate:
+        1 rocked/s"
+      costMass: 0.15
+      costEnergie: 0.15
+      energieProduction: 0
+      energieStorage: 0
+      health: 0
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
   - moduleName: RocketShooter Right
     modulePrefabs: {fileID: 8822405608560347169, guid: 6ae7da83b0521134d8a0008ba76c4971, type: 3}
     hangarPrefab: {fileID: 8822405608560347169, guid: 921cab49f21656a4893a7648d9179b06, type: 3}
     modulSprite: {fileID: 21300000, guid: 85b8d66edb138b643a0fb5de213b1813, type: 3}
-    myEnumVariable: 5
+    moduleType: 5
     canLeft: 0
     canRight: 1
     canFront: 0
     canBack: 0
-  - moduleName: Laser Pointer
+    moduleValues:
+      moduleName: 
+      moduleType: 0
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: "<color=#FFBF00>Short range rocket attack.
+        Fire \r\nhoming rockets with explosion AOE</color>\r\nDamage: 6 TP/hit\r\nFirerate:
+        1 rocked/s"
+      costMass: 0.15
+      costEnergie: 0.15
+      energieProduction: 0
+      energieStorage: 0
+      health: 0
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Laser Pointer front
     modulePrefabs: {fileID: 253641423190805723, guid: 3e70d801e71d7e24abfa31e2aa2b5f1a, type: 3}
     hangarPrefab: {fileID: 253641423190805723, guid: d4ea42eee5ad3fe4e972e621f9a54bf7, type: 3}
     modulSprite: {fileID: 21300000, guid: 6dc4799b581d432469bebeed9e1a48e0, type: 3}
-    myEnumVariable: 5
+    moduleType: 5
     canLeft: 0
     canRight: 0
     canFront: 1
     canBack: 0
-  - moduleName: Wing Typ 01 right
-    modulePrefabs: {fileID: 3509744163337706340, guid: dae7987f8c9aba84f815972cbbdf6040, type: 3}
-    hangarPrefab: {fileID: 3509744163337706340, guid: 47520f6c06f5e5946870f84e6f0352b3, type: 3}
-    modulSprite: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
-    myEnumVariable: 0
-    canLeft: 0
-    canRight: 1
-    canFront: 0
-    canBack: 0
-  - moduleName: Wing Typ 01 left
+    moduleValues:
+      moduleName: 
+      moduleType: 0
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: 
+      costMass: 0
+      costEnergie: 0
+      energieProduction: 0
+      energieStorage: 0
+      health: 0
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Wing 01 left
     modulePrefabs: {fileID: 3509744163337706340, guid: 77c508665db59114b870912fa86b52df, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 3074fa7045d4bc3438ec839f3782fb40, type: 3}
     modulSprite: {fileID: 21300000, guid: a7a01ead83f63fa44a6141650e1add89, type: 3}
-    myEnumVariable: 0
+    moduleType: 0
     canLeft: 1
     canRight: 0
     canFront: 0
     canBack: 0
-  - moduleName: Wing Typ 02 left
+    moduleValues:
+      moduleName: 
+      moduleType: 0
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: 'Energie Storage +1
+
+        Health +1'
+      costMass: 0.1
+      costEnergie: 0.05
+      energieProduction: 0
+      energieStorage: 1
+      health: 1
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Wing 01 right
+    modulePrefabs: {fileID: 3509744163337706340, guid: dae7987f8c9aba84f815972cbbdf6040, type: 3}
+    hangarPrefab: {fileID: 3509744163337706340, guid: 47520f6c06f5e5946870f84e6f0352b3, type: 3}
+    modulSprite: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
+    moduleType: 0
+    canLeft: 0
+    canRight: 1
+    canFront: 0
+    canBack: 0
+    moduleValues:
+      moduleName: 
+      moduleType: 0
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: 'Energie Storage +1
+
+        Health +1'
+      costMass: 0.1
+      costEnergie: 0.05
+      energieProduction: 0
+      energieStorage: 1
+      health: 1
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Wing 02 left
     modulePrefabs: {fileID: 3509744163337706340, guid: c14afca5e8d6684489f23deb60aef15d, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: fb747d04ec6c3fb44b36eba8cd5cd7e8, type: 3}
     modulSprite: {fileID: 21300000, guid: a7a01ead83f63fa44a6141650e1add89, type: 3}
-    myEnumVariable: 0
+    moduleType: 0
     canLeft: 1
     canRight: 0
     canFront: 0
     canBack: 0
-  - moduleName: Wing Typ 02 right
+    moduleValues:
+      moduleName: Wing Typ 02 left
+      moduleType: 0
+      canLeft: 1
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: 'Protecton Level +1
+
+        Health +1'
+      costMass: 0.12
+      costEnergie: 0.1
+      energieProduction: 0
+      energieStorage: 0
+      health: 1
+      protection: 1
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Wing 02 right
     modulePrefabs: {fileID: 3509744163337706340, guid: 76463148984ee21499406210fbcbb439, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 62c1da1d42d45204384e5b28b06a5b83, type: 3}
     modulSprite: {fileID: 21300000, guid: a7a01ead83f63fa44a6141650e1add89, type: 3}
-    myEnumVariable: 0
+    moduleType: 0
     canLeft: 0
     canRight: 1
     canFront: 0
     canBack: 0
+    moduleValues:
+      moduleName: 
+      moduleType: 0
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: 'Protecton Level +1
+
+        Health +1'
+      costMass: 0.12
+      costEnergie: 0.1
+      energieProduction: 0
+      energieStorage: 0
+      health: 1
+      protection: 1
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
   - moduleName: Cockpit Rocket
     modulePrefabs: {fileID: 8919917907132705989, guid: 1cd9fb2984961994eb5dc6524501ef17, type: 3}
     hangarPrefab: {fileID: 8919917907132705989, guid: 75a31e48dfcce32499637b23cf8a4a52, type: 3}
-    modulSprite: {fileID: 21300000, guid: a7a01ead83f63fa44a6141650e1add89, type: 3}
-    myEnumVariable: 4
+    modulSprite: {fileID: 21300000, guid: 1e1ffa433f68c644c9a4da3169d71e46, type: 3}
+    moduleType: 4
     canLeft: 0
     canRight: 0
     canFront: 0
     canBack: 0
+    moduleValues:
+      moduleName: Cockpit Rocket
+      moduleType: 4
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: 'Energie Production: 2.3 TJ/s
+
+        Energie
+        Storage: 10 TJ
+
+        Health: 10 TP
+
+        <color="orange">Rocketclass:
+        +1 </color>'
+      costMass: 0.9
+      costEnergie: 0
+      energieProduction: 2.3
+      energieStorage: 10
+      health: 10
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 1
+      laserClass: 0
+      supportClass: 0
   - moduleName: Cockpit Laser
     modulePrefabs: {fileID: 8919917907132705989, guid: 5c854dcaded65be4aadbffce1fa6925a, type: 3}
     hangarPrefab: {fileID: 8919917907132705989, guid: b8966957bf8324842b678ccb122a6c75, type: 3}
-    modulSprite: {fileID: 21300000, guid: a7a01ead83f63fa44a6141650e1add89, type: 3}
-    myEnumVariable: 4
+    modulSprite: {fileID: 21300000, guid: a234fb4dc61c9c44da3e6ae32922551f, type: 3}
+    moduleType: 4
+    canLeft: 0
+    canRight: 0
+    canFront: 0
+    canBack: 0
+    moduleValues:
+      moduleName: Cockpit Laser
+      moduleType: 4
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: '
+
+        Energie Production: 2.7 TJ/s
+
+        Energie
+        Storage: 10 TJ
+
+        Health: 10 TP
+
+        <color="blue">Laser class:
+        +1 </color>'
+      costMass: 1.1
+      costEnergie: 0
+      energieProduction: 2.7
+      energieStorage: 10
+      health: 10
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 1
+      supportClass: 0
+  - moduleName: Wing 03 left (DE)
+    modulePrefabs: {fileID: 3509744163337706340, guid: bfe9dc78404ea09429b20d74537b8cef, type: 3}
+    hangarPrefab: {fileID: 3509744163337706340, guid: 087bd023c96b2c54989b84bcbb83e87d, type: 3}
+    modulSprite: {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
+    moduleType: 0
+    canLeft: 1
+    canRight: 0
+    canFront: 0
+    canBack: 0
+    moduleValues:
+      moduleName: 
+      moduleType: 0
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: 
+      costMass: 0.17
+      costEnergie: 0.15
+      energieProduction: 0
+      energieStorage: 0
+      health: 1
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0.27
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Wing 03 right (DE)
+    modulePrefabs: {fileID: 3509744163337706340, guid: c426916aa9fba3842a700562e29a9516, type: 3}
+    hangarPrefab: {fileID: 3509744163337706340, guid: 43f88ece3a5e4614f936d5b2f953bb8a, type: 3}
+    modulSprite: {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
+    moduleType: 0
     canLeft: 0
     canRight: 1
     canFront: 0
     canBack: 0
+    moduleValues:
+      moduleName: Wing Typ 03 right (DE)
+      moduleType: 3
+      canLeft: 0
+      canRight: 1
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: 
+      costMass: 0.17
+      costEnergie: 0.15
+      energieProduction: 0
+      energieStorage: 0
+      health: 1
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0.27
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Wing 04 left (DE+BS)
+    modulePrefabs: {fileID: 3509744163337706340, guid: 519c684cacfaabd43855806ce9809b24, type: 3}
+    hangarPrefab: {fileID: 3509744163337706340, guid: cce53aeb1cd73964488e1c24d606ae0e, type: 3}
+    modulSprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
+    moduleType: 0
+    canLeft: 1
+    canRight: 0
+    canFront: 0
+    canBack: 0
+    moduleValues:
+      moduleName: Wing Typ 04 left (DE+BS)
+      moduleType: 5
+      canLeft: 1
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: 
+      costMass: 0.22
+      costEnergie: 0.45
+      energieProduction: 0
+      energieStorage: 0
+      health: 1
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0.27
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Wing 04 right (DE+BS)
+    modulePrefabs: {fileID: 3509744163337706340, guid: 2279e4db908f61b45aee375f336ce73c, type: 3}
+    hangarPrefab: {fileID: 3509744163337706340, guid: 19a56be42afea084b8ce0487f48e8d37, type: 3}
+    modulSprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
+    moduleType: 0
+    canLeft: 0
+    canRight: 1
+    canFront: 0
+    canBack: 0
+    moduleValues:
+      moduleName: Wing Typ 04 right (DE+BS)
+      moduleType: 5
+      canLeft: 0
+      canRight: 1
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: 
+      costMass: 0.22
+      costEnergie: 0.45
+      energieProduction: 0
+      energieStorage: 0
+      health: 1
+      protection: 0
+      mainEngine: 0
+      directionEngine: 1
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Bullet Shooter left
+    modulePrefabs: {fileID: 3509744163337706340, guid: 9d9f3b45db154eb4ca7bad4f0040fe46, type: 3}
+    hangarPrefab: {fileID: 3509744163337706340, guid: b5e28a5a499713a44bade23d9967fc42, type: 3}
+    modulSprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
+    moduleType: 5
+    canLeft: 1
+    canRight: 0
+    canFront: 0
+    canBack: 0
+    moduleValues:
+      moduleName: Bullet Shooter left
+      moduleType: 5
+      canLeft: 1
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: 
+      costMass: 0.1
+      costEnergie: 0.3
+      energieProduction: 0
+      energieStorage: 0
+      health: 0
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Bullet Shooter right
+    modulePrefabs: {fileID: 3509744163337706340, guid: e0166ad0d5deaa1458d4dc3bc20dd96f, type: 3}
+    hangarPrefab: {fileID: 3509744163337706340, guid: 1d4dc11a969b65c4081cfb002a02028c, type: 3}
+    modulSprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
+    moduleType: 5
+    canLeft: 0
+    canRight: 1
+    canFront: 0
+    canBack: 0
+    moduleValues:
+      moduleName: Bullet Shooter right
+      moduleType: 5
+      canLeft: 0
+      canRight: 1
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: 
+      costMass: 0.1
+      costEnergie: 0.3
+      energieProduction: 0
+      energieStorage: 0
+      health: 0
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0

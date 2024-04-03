@@ -5320,6 +5320,7 @@ MonoBehaviour:
   mainCamera: {fileID: 877381050}
   minZoom: 20
   maxZoom: 50
+  modulePanelMouseOver: {fileID: 2038161173}
 --- !u!4 &1204264142
 Transform:
   m_ObjectHideFlags: 0
@@ -8298,13 +8299,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742142284}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.003921569}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9989,6 +9990,7 @@ GameObject:
   - component: {fileID: 2038161171}
   - component: {fileID: 2038161170}
   - component: {fileID: 2038161172}
+  - component: {fileID: 2038161173}
   m_Layer: 0
   m_Name: Modul Panel
   m_TagString: Untagged
@@ -10067,6 +10069,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &2038161173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038161168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88a580d74108ee469582128a328fff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMouseOverModulePanel: 0
 --- !u!1 &2053835918
 GameObject:
   m_ObjectHideFlags: 0

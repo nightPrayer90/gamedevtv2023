@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8822405608560347170}
-  - component: {fileID: -2752027234912424823}
   - component: {fileID: -4040257021538848736}
   m_Layer: 7
   m_Name: HRocketshooterRight
@@ -35,37 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2752027234912424823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8822405608560347169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ee87beadea4c1d40aa4b43c2c37e002, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moduleName: 
-  modulDescription_multiLineText: "<color=#FFBF00>Short range rocket attack. Fire
-    \r\nhoming rockets with explosion AOE</color>\r\nDamage: 6 TP/hit\r\nFirerate:
-    1 rocked/s"
-  costMass: 0.1
-  costEnergie: 0.2
-  energieProduction: 0
-  energieStorage: 0
-  health: 0
-  protection: 0
-  mainEngine: 0
-  directionEngine: 0
-  strafeEngine: 0
-  boostEngine: 0
-  boostStrafeEngine: 0
-  bulletClass: 0
-  rocketClass: 0
-  laserClass: 0
-  supportClass: 0
 --- !u!114 &-4040257021538848736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,12 +50,35 @@ MonoBehaviour:
   hasNoParentControll: 0
   haveParent: 0
   spheres: []
+  possibleReplacements: 
   moduleData:
     level: 0
     x: 0
     z: 0
     moduleTypeIndex: 0
-  moduleValues: {fileID: -2752027234912424823}
+  moduleValues:
+    moduleName: 
+    moduleType: 0
+    canLeft: 0
+    canRight: 0
+    canFront: 0
+    canBack: 0
+    modulDescription_multiLineText: 
+    costMass: 0
+    costEnergie: 0
+    energieProduction: 0
+    energieStorage: 0
+    health: 0
+    protection: 0
+    mainEngine: 0
+    directionEngine: 0
+    strafeEngine: 0
+    boostEngine: 0
+    boostStrafeEngine: 0
+    bulletClass: 0
+    rocketClass: 0
+    laserClass: 0
+    supportClass: 0
 --- !u!1 &8822405608639048629
 GameObject:
   m_ObjectHideFlags: 0

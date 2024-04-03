@@ -2,30 +2,30 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ModuleType
+{
+    Connector,
+    MainEngine,
+    StrafeEngine,
+    DirectionEngine,
+    Cockpit,
+    Weapon
+}
+
 
 [Serializable]
 public class Modules
 {
-    public enum ModulTyp
-    {
-        Connector,
-        MainEngine,
-        StrafeEngine,
-        DirectionEngine,
-        Cockpit,
-        Weapon
-    }
-
     public string moduleName;
     public GameObject modulePrefabs;
     public GameObject hangarPrefab;
     public Sprite modulSprite;
-    public ModulTyp myEnumVariable;
+    public ModuleType moduleType;
     public bool canLeft = false;
     public bool canRight = false;
     public bool canFront = false;
     public bool canBack = false;
-
+    public ModuleValues moduleValues = new();
 }
 
 

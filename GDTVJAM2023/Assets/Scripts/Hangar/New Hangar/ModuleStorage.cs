@@ -243,7 +243,18 @@ public class ModuleStorage : MonoBehaviour
                 go.transform.localPosition = new Vector3(instance.x, 0, instance.z);
                 go.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 HangarModul hangarModul = go.GetComponent<HangarModul>();
+
+                // copy all Module Values
+                hangarModul.moduleValues = moduleList.moduls[instance.moduleTypeIndex].moduleValues;
+
+                // set inspector Values
                 hangarModul.moduleValues.moduleName = moduleList.moduls[instance.moduleTypeIndex].moduleName;
+                hangarModul.moduleValues.moduleType = moduleList.moduls[instance.moduleTypeIndex].moduleType;
+                hangarModul.moduleValues.canLeft = moduleList.moduls[instance.moduleTypeIndex].canLeft;
+                hangarModul.moduleValues.canRight = moduleList.moduls[instance.moduleTypeIndex].canRight;
+                hangarModul.moduleValues.canFront = moduleList.moduls[instance.moduleTypeIndex].canFront;
+                hangarModul.moduleValues.canBack = moduleList.moduls[instance.moduleTypeIndex].canBack;
+
                 installedHangarModules.Add(hangarModul);
             }
 
@@ -253,6 +264,8 @@ public class ModuleStorage : MonoBehaviour
                 GameObject go = Instantiate(moduleList.moduls[instance.moduleTypeIndex].modulePrefabs, transformParent, false);
                 go.transform.localPosition = new Vector3(instance.x, 0, instance.z);
                 go.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+                //TODO: copy and use ModuleValues
             }
         }
     }

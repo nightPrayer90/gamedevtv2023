@@ -10,6 +10,7 @@ public class CameraRotate : MonoBehaviour
     [SerializeField] Camera mainCamera;
     [SerializeField] float minZoom;
     [SerializeField] float maxZoom;
+    [SerializeField] ModulePanelMouseOver modulePanelMouseOver;
 
     Vector3 localRot;
 
@@ -32,12 +33,13 @@ public class CameraRotate : MonoBehaviour
 
         if (Input.GetAxisRaw("Mouse ScrollWheel") != 0)
         {
-            float scroll = mainCamera.fieldOfView  - Input.GetAxisRaw("Mouse ScrollWheel")*220f;
-            scroll = Mathf.Clamp(scroll, minZoom, maxZoom);
-            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, scroll, Time.deltaTime * 10f); ;
-
-            //mainCamera.fieldOfView = Mathf.Max(minZoom, Mathf.Min(maxZoom, mainCamera.fieldOfView + scroll));
-
+            if (modulePanelMouseOver.isMouseOverModulePanel == false)
+            {
+                float scroll = mainCamera.fieldOfView - Input.GetAxisRaw("Mouse ScrollWheel") * 220f;
+                scroll = Mathf.Clamp(scroll, minZoom, maxZoom);
+                mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, scroll, Time.deltaTime * 10f); ;
+            }
+         
         }
     }
 }

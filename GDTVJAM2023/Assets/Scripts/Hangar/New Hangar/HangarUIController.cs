@@ -147,6 +147,35 @@ public class HangarUIController : MonoBehaviour
         scpCostMassValue.text = selectedModul.moduleValues.costMass.ToString() + " t";
         scpCostEnergieValue.text = selectedModul.moduleValues.costEnergie.ToString() + " TJ/s";
 
+
+        // open Module Panel
+        int modules = selectedModul.possibleReplacements.Count;
+
+        if (modules > 0)
+        {
+            modulePanel.DOKill();
+            if (modulePanel.alpha != 1)
+            {
+                modulePanel.blocksRaycasts = true;
+                modulePanel.DOFade(1, 0.2f);
+            }
+
+            // load Content Panel
+            // duplicate Content Moduls
+            for (int i = 0; i < modules; i++)
+            {
+                GameObject go = Instantiate(moduleContentPanelPrefab);
+                ModulContentPanelManager mCPM = go.GetComponent<ModulContentPanelManager>();
+                go.transform.SetParent(contentParent);
+                go.transform.localScale = new Vector3(1, 1, 1);
+
+                mCPM.modulIndex = selectedModul.possibleReplacements[i];
+                mCPM.parentHangarModule = selectedModul;
+                //mCPM.selectedSphere = mRSph;
+
+                goContentPanels.Add(go);
+            }
+        }
     }
 
     // deselect all

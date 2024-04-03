@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 3509744163337706343}
   - component: {fileID: 2569567448489865694}
   m_Layer: 7
-  m_Name: WingRight 1
+  m_Name: WingRight_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

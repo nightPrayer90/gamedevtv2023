@@ -88,7 +88,7 @@ public class Sphere : MonoBehaviour
                         availableModuls.Add(moduleList.moduls.IndexOf(module));
                     break;
                 case SphereSide.strafe:
-                    if (module.myEnumVariable == Modules.ModulTyp.StrafeEngine)
+                    if (module.moduleType == ModuleType.StrafeEngine)
                         availableModuls.Add(moduleList.moduls.IndexOf(module));
                     break;
             }

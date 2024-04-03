@@ -1,12 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class ModuleValues : MonoBehaviour
+[Serializable]
+public class ModuleValues
 {
-    public string moduleName; // set from other objects (create)
+    [HideInInspector] public string moduleName; // set from other objects (create)
+    [HideInInspector] public ModuleType moduleType;
+    [HideInInspector] public bool canLeft = false;
+    [HideInInspector] public bool canRight = false;
+    [HideInInspector] public bool canFront = false;
+    [HideInInspector] public bool canBack = false;
+    [Header("Hangar Only")]
     [TextArea]
     public string modulDescription_multiLineText;
+
+    [Header("Hangar and GamePlay")]
     public float costMass;
     public float costEnergie;
     public float energieProduction;

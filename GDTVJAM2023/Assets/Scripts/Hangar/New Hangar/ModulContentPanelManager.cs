@@ -25,7 +25,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
     private GameObject modulToCreate;
     private Transform shipParent;
     private ModuleStorage moduleStorage;
-    private HangarModul parentHangarModule;
+    public HangarModul parentHangarModule;
     private ModuleList moduleList;
     private HangarUIController hangarUIController;
 
@@ -42,8 +42,11 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         selectionManager = GameObject.Find("SelectionController").GetComponent<Selection>();
         hangarUIController = selectionManager.gameObject.GetComponent<HangarUIController>();
 
-        sph = selectedSphere.GetComponent<Sphere>();
-        parentHangarModule = sph.parentTransform.gameObject.GetComponent<HangarModul>();
+        if (selectedSphere != null)
+        {
+            sph = selectedSphere.GetComponent<Sphere>();
+            parentHangarModule = sph.parentTransform.gameObject.GetComponent<HangarModul>();
+        }
 
         moduleStorage = shipParent.GetComponent<ModuleStorage>();
         moduleList = moduleStorage.moduleList;
@@ -104,47 +107,77 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
     {
         float spawnpos_x = 0;
         float spawnpos_z = 0;
-
-        switch (sph.sphereSide)
-        {
-            case SphereSide.left:
-                spawnpos_x = sph.spawnPositionX;
-                spawnpos_z = sph.spawnPositionZ - 1;
-                break;
-
-            case SphereSide.right:
-                spawnpos_x = sph.spawnPositionX;
-                spawnpos_z = sph.spawnPositionZ + 1;
-                break;
-
-            case SphereSide.front:
-                spawnpos_x = sph.spawnPositionX - 1;
-                spawnpos_z = sph.spawnPositionZ;
-                break;
-
-            case SphereSide.back:
-                spawnpos_x = sph.spawnPositionX + 1;
-                spawnpos_z = sph.spawnPositionZ;
-
-                break;
-            case SphereSide.strafe:
-                spawnpos_x = sph.spawnPositionX - 1 ;
-                spawnpos_z = sph.spawnPositionZ;
-                break;
-        }
-
-        GameObject go = Instantiate(modulToCreate, new Vector3(spawnpos_x, sph.parentTransform.position.y, spawnpos_z), Quaternion.Euler(0f, 0f, 0f));
-        go.transform.SetParent(shipParent);
-        HangarModul newHangarModule = go.GetComponent<HangarModul>();
-
+        GameObject go = null;
         ModuleDataRuntime newModuleData = new();
-        newModuleData.x = spawnpos_x;
-        newModuleData.z = spawnpos_z;
+
+        // Handle Sphere Select
+        if (sph != null)
+        {
+            switch (sph.sphereSide)
+            {
+                case SphereSide.left:
+                    spawnpos_x = sph.spawnPositionX;
+                    spawnpos_z = sph.spawnPositionZ - 1;
+                    break;
+
+                case SphereSide.right:
+                    spawnpos_x = sph.spawnPositionX;
+                    spawnpos_z = sph.spawnPositionZ + 1;
+                    break;
+
+                case SphereSide.front:
+                    spawnpos_x = sph.spawnPositionX - 1;
+                    spawnpos_z = sph.spawnPositionZ;
+                    break;
+
+                case SphereSide.back:
+                    spawnpos_x = sph.spawnPositionX + 1;
+                    spawnpos_z = sph.spawnPositionZ;
+
+                    break;
+                case SphereSide.strafe:
+                    spawnpos_x = sph.spawnPositionX - 1;
+                    spawnpos_z = sph.spawnPositionZ;
+                    break;
+            }
+            // create a new Module
+            go = Instantiate(modulToCreate, new Vector3(spawnpos_x, parentHangarModule.transform.position.y, spawnpos_z), Quaternion.Euler(0f, 0f, 0f));
+            go.transform.SetParent(shipParent);
+
+            newModuleData.level = parentHangarModule.moduleData.level + 1;
+        }
+        else
+        {
+            // handle Module select
+            // delete the old module
+            moduleStorage.HangarRemoveModule();
+
+            // create a new Module
+            go = Instantiate(modulToCreate, parentHangarModule.transform.position, Quaternion.Euler(0f, 0f, 0f));
+            go.transform.SetParent(shipParent);
+
+            
+            newModuleData.level = parentHangarModule.moduleData.level;
+        }
+        newModuleData.x = go.transform.position.x;
+        newModuleData.z = go.transform.position.z;
         newModuleData.moduleTypeIndex = modulIndex;
         newModuleData.parentModule = parentHangarModule.moduleData;
-        newModuleData.level = parentHangarModule.moduleData.level + 1;
+
+        HangarModul newHangarModule = go.GetComponent<HangarModul>();
         newHangarModule.moduleData = newModuleData;
+
+        // set all Module values
+        newHangarModule.moduleValues = moduleList.moduls[modulIndex].moduleValues;
+
+        // set inspector Modlue values
         newHangarModule.moduleValues.moduleName = moduleList.moduls[modulIndex].moduleName;
+        newHangarModule.moduleValues.moduleType = moduleList.moduls[modulIndex].moduleType;
+
+        newHangarModule.moduleValues.canLeft = moduleList.moduls[modulIndex].canLeft;
+        newHangarModule.moduleValues.canRight = moduleList.moduls[modulIndex].canRight;
+        newHangarModule.moduleValues.canFront = moduleList.moduls[modulIndex].canFront;
+        newHangarModule.moduleValues.canBack = moduleList.moduls[modulIndex].canBack;
 
         moduleStorage.installedModuleData.Add(newModuleData);
         moduleStorage.installedHangarModules.Add(newHangarModule);

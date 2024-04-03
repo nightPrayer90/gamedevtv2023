@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3509744163337706343}
   - component: {fileID: 5832571155248958424}
   m_Layer: 7
-  m_Name: WingLeft
+  m_Name: WingLeft_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,7 +89,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3509744164497189554}
-  m_Mesh: {fileID: 1378968506556707602, guid: 4deaef3f99a93304683fcb4009f62e6d, type: 3}
+  m_Mesh: {fileID: 1818822576872037987, guid: 77859503a80428a479ac5d9fafa83bb3, type: 3}
 --- !u!23 &3509744164497189559
 MeshRenderer:
   m_ObjectHideFlags: 0
