@@ -107,6 +107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8919917907132705990}
+  - component: {fileID: -2590331114524650038}
   m_Layer: 7
   m_Name: CockpitLaser
   m_TagString: Untagged
@@ -130,3 +131,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2590331114524650038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8919917907132705989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27dabd0820b5d6f42af1e6e3240c80ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moduleVales:
+    moduleName: 
+    moduleType: 0
+    canLeft: 0
+    canRight: 0
+    canFront: 0
+    canBack: 0
+    modulDescription_multiLineText: 
+    costMass: 0
+    costEnergie: 0
+    energieProduction: 0
+    energieStorage: 0
+    health: 0
+    protection: 0
+    mainEngine: 0
+    directionEngine: 0
+    strafeEngine: 0
+    boostEngine: 0
+    boostStrafeEngine: 0
+    bulletClass: 0
+    rocketClass: 0
+    laserClass: 0
+    supportClass: 0

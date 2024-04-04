@@ -67,6 +67,7 @@ public class ModuleStorage : MonoBehaviour
 
         installedModuleData = new();
         dataService = new();
+
         List<ModuleData> loadedModules = dataService.LoadData<List<ModuleData>>("modules.json", false);
         if (loadedModules.Count <= 0)
         {
@@ -265,7 +266,11 @@ public class ModuleStorage : MonoBehaviour
                 go.transform.localPosition = new Vector3(instance.x, 0, instance.z);
                 go.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
-                //TODO: copy and use ModuleValues
+                BaseModule bm = go.GetComponent<BaseModule>();
+
+                //copy all Module Vales
+                if (bm != null)
+                    bm.moduleVales = moduleList.moduls[instance.moduleTypeIndex].moduleValues;
             }
         }
     }

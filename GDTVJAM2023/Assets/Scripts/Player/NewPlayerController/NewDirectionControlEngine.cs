@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewDirectionControlEngine : MonoBehaviour
+public class NewDirectionControlEngine : BaseModule
 {
     private enum Side
     {

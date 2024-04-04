@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewBaseEngine : MonoBehaviour
+public class NewBaseEngine : BaseModule
 {
     // Objects
     private NewPlayerController playerController;
@@ -85,8 +85,6 @@ public class NewBaseEngine : MonoBehaviour
             }
             else
             {
-
-
                 totalThrustForce = thrustForce * EnergieDebuffForce();
                 ps_engine.Emit(1);
                 useBoost = false;

@@ -4980,6 +4980,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DropRocket
       objectReference: {fileID: 0}
+    - target: {fileID: 944220412744055719, guid: a6d86ef9fcb3b084fae049be9d2a24b8, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1094723561592136691, guid: a6d86ef9fcb3b084fae049be9d2a24b8, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -4999,6 +5003,18 @@ PrefabInstance:
     - target: {fileID: 4079952102900378710, guid: a6d86ef9fcb3b084fae049be9d2a24b8, type: 3}
       propertyPath: m_LocalScale.z
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665910795349350667, guid: a6d86ef9fcb3b084fae049be9d2a24b8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.046279836
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665910795349350667, guid: a6d86ef9fcb3b084fae049be9d2a24b8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.091082186
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665910795349350667, guid: a6d86ef9fcb3b084fae049be9d2a24b8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.754717
       objectReference: {fileID: 0}
     - target: {fileID: 7340316633593488057, guid: a6d86ef9fcb3b084fae049be9d2a24b8, type: 3}
       propertyPath: m_RootOrder

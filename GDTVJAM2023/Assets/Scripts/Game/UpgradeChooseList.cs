@@ -7,6 +7,7 @@ public class UpgradeChooseList : MonoBehaviour
     [Header("Upgrade System")]
     public UpgradeContainer[] weaponUpgrades;
     public List<int> weaponIndexInstalled = new List<int>();
+    public PlayerWeaponController playerWeaponController;
 
     [Header("Class level")]
     public int mcBulletLvl = 0;
@@ -56,6 +57,20 @@ public class UpgradeChooseList : MonoBehaviour
             weaponIndexInstalled.Add(0);
         }
         BuildlistCountAfterUpdate();
+
+        // Update Weaponcontroller after loading all modules
+        Invoke("UpdatePlayerWeaponController", 1f);
+    }
+
+    private void UpdatePlayerWeaponController()
+    {
+        baseBulletCritChance += critChance * mcBulletLvl;
+        baseBulletCritDamage += critDamage * mcBulletLvl;
+        baseRocketAOERadius += aoeRange * mcExplosionLvl;
+        baseLaserBurnDamageChance += burningChance * mcLaserLvl;
+        baseSupportRealoadTime = mcSupportLvl;
+
+        playerWeaponController.UpdateWeaponValues();
     }
 
     public List<int> BuildUpgradeList(UpgradeTyp upgradeTyp)

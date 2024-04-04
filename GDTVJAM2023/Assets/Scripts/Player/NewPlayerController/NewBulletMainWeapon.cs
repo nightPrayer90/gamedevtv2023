@@ -43,7 +43,7 @@ public class NewBulletMainWeapon : BaseModule
 
     public void HandleDamageUpdate(int damageToUpdate)
     {
-        bulletBaseDamage = (bulletBaseDamage + damageToUpdate);
+        bulletBaseDamage = (bulletBaseDamage + damageToUpdate );
         SetBulletDamage();
     }
 
@@ -117,7 +117,7 @@ public class NewBulletMainWeapon : BaseModule
     // set the main weapon particle damage
     public void SetBulletDamage()
     {
-        bulletResouldDamage = bulletBaseDamage + Mathf.RoundToInt((float)bulletBaseDamage * (upgradeChooseList.percBulletDamage / 100));
+        bulletResouldDamage = bulletBaseDamage + Mathf.CeilToInt((float)bulletBaseDamage * (upgradeChooseList.percBulletDamage / 100));
         particelBullet.BulletSetDamage(bulletResouldDamage);
     }
     #endregion
@@ -126,7 +126,7 @@ public class NewBulletMainWeapon : BaseModule
     private void EnergieDamageDebuff()
     {
         if (playerController.energieProduction < 0) {
-            bulletResouldDamage = bulletBaseDamage + Mathf.RoundToInt((float)bulletBaseDamage * (upgradeChooseList.percBulletDamage / 100) * 0.5f);
+            bulletResouldDamage = bulletBaseDamage + Mathf.CeilToInt((float)bulletBaseDamage * (upgradeChooseList.percBulletDamage / 100) * 0.5f);
             particelBullet.BulletSetDamage(bulletResouldDamage);
 
         }

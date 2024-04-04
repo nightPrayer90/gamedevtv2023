@@ -190,8 +190,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27dabd0820b5d6f42af1e6e3240c80ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mass: 0.1
-  playerHealth: 1
+  moduleVales:
+    moduleName: 
+    moduleType: 0
+    canLeft: 0
+    canRight: 0
+    canFront: 0
+    canBack: 0
+    modulDescription_multiLineText: 
+    costMass: 0
+    costEnergie: 0
+    energieProduction: 0
+    energieStorage: 0
+    health: 0
+    protection: 0
+    mainEngine: 0
+    directionEngine: 0
+    strafeEngine: 0
+    boostEngine: 0
+    boostStrafeEngine: 0
+    bulletClass: 0
+    rocketClass: 0
+    laserClass: 0
+    supportClass: 0
 --- !u!114 &592741057287821858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +225,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537f6210025ef1e4e93b26e09c132316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moduleVales:
+    moduleName: 
+    moduleType: 0
+    canLeft: 0
+    canRight: 0
+    canFront: 0
+    canBack: 0
+    modulDescription_multiLineText: 
+    costMass: 0
+    costEnergie: 0
+    energieProduction: 0
+    energieStorage: 0
+    health: 0
+    protection: 0
+    mainEngine: 0
+    directionEngine: 0
+    strafeEngine: 0
+    boostEngine: 0
+    boostStrafeEngine: 0
+    bulletClass: 0
+    rocketClass: 0
+    laserClass: 0
+    supportClass: 0
   ps_engine: {fileID: 9178511581905244593}
   torqueForce: 0.27
   engine_side: 1
@@ -219,6 +263,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd85861c1ca869a4f933fff2b31254a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moduleVales:
+    moduleName: 
+    moduleType: 0
+    canLeft: 0
+    canRight: 0
+    canFront: 0
+    canBack: 0
+    modulDescription_multiLineText: 
+    costMass: 0
+    costEnergie: 0
+    energieProduction: 0
+    energieStorage: 0
+    health: 0
+    protection: 0
+    mainEngine: 0
+    directionEngine: 0
+    strafeEngine: 0
+    boostEngine: 0
+    boostStrafeEngine: 0
+    bulletClass: 0
+    rocketClass: 0
+    laserClass: 0
+    supportClass: 0
   bulletBaseDamage: 3
   fireRate: 0.4
   WeaponSound: {fileID: 0}
@@ -252,7 +319,7 @@ Transform:
   m_GameObject: {fileID: 3509744164497189554}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3509744163337706343}
@@ -265,7 +332,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3509744164497189554}
-  m_Mesh: {fileID: -5914985212785175621, guid: 034f461aae104c14994eb0354d9bb754, type: 3}
+  m_Mesh: {fileID: -5521435848765417330, guid: a28acb44fd3798c4a9726e2371c92e5f, type: 3}
 --- !u!23 &3509744164497189559
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -322,7 +389,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.7538635, y: 0.5595479, z: 0.16189808}
-  m_Center: {x: 0.12459275, y: 0.09194422, z: 0.17457446}
+  m_Center: {x: -0.1, y: 0.09194422, z: 0.17457446}
 --- !u!1 &3767494463983403356
 GameObject:
   m_ObjectHideFlags: 0

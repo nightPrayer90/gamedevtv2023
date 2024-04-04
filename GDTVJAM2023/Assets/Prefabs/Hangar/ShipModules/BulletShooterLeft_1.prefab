@@ -4903,7 +4903,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3509744163337706343}
-  - component: {fileID: 5832571155248958424}
   - component: {fileID: 2012068545435488710}
   m_Layer: 7
   m_Name: BulletShooterLeft_1
@@ -4929,20 +4928,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5832571155248958424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3509744163337706340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27dabd0820b5d6f42af1e6e3240c80ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mass: 0.1
-  playerHealth: 1
 --- !u!114 &2012068545435488710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4955,6 +4940,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd85861c1ca869a4f933fff2b31254a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moduleVales:
+    moduleName: 
+    moduleType: 0
+    canLeft: 0
+    canRight: 0
+    canFront: 0
+    canBack: 0
+    modulDescription_multiLineText: 
+    costMass: 0
+    costEnergie: 0
+    energieProduction: 0
+    energieStorage: 0
+    health: 0
+    protection: 0
+    mainEngine: 0
+    directionEngine: 0
+    strafeEngine: 0
+    boostEngine: 0
+    boostStrafeEngine: 0
+    bulletClass: 0
+    rocketClass: 0
+    laserClass: 0
+    supportClass: 0
   bulletBaseDamage: 3
   fireRate: 0.4
   WeaponSound: {fileID: 0}
@@ -5055,8 +5063,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7379776, y: 0.565735, z: 0.16189808}
-  m_Center: {x: -0.110027984, y: 0.086309135, z: 0.17457446}
+  m_Size: {x: 0.13597625, y: 0.565735, z: 0.16189808}
+  m_Center: {x: -0.41102865, y: 0.086309135, z: 0.17457446}
 --- !u!1 &8158328921746256177
 GameObject:
   m_ObjectHideFlags: 0

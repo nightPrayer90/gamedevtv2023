@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewStrafeEngine : MonoBehaviour
+public class NewStrafeEngine : BaseModule
 {
     private NewPlayerController playerController;
     [SerializeField] private ParticleSystem ps_leftEngine;

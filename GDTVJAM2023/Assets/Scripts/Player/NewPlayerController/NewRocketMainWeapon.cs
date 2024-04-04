@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewRocketMainWeapon : MonoBehaviour
+public class NewRocketMainWeapon : BaseModule
 {
     [Header("Rocked Settings")]
     public float fireRate;
