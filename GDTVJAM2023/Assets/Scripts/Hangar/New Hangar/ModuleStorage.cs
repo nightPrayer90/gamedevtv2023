@@ -270,7 +270,7 @@ public class ModuleStorage : MonoBehaviour
 
                 //copy all Module Vales
                 if (bm != null)
-                    bm.moduleVales = moduleList.moduls[instance.moduleTypeIndex].moduleValues;
+                    bm.moduleValues = moduleList.moduls[instance.moduleTypeIndex].moduleValues;
             }
         }
     }

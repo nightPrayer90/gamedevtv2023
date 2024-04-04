@@ -24,8 +24,8 @@ public class NewPlayerController : MonoBehaviour
     public float energieProduction = 1f;
     public float energieMax = 10f;
     public float energieCurrent = 0f;
-    [HideInInspector] public float protectionPerc = 0;
-    [HideInInspector] public int protectionLvl = 0;
+    /*[HideInInspector]*/ public float protectionPerc = 0;
+    /*[HideInInspector]*/ public int protectionLvl = 0;
     private bool canGetLaserDamage = true;
 
     [Header("Player Level Properties")]
@@ -64,6 +64,8 @@ public class NewPlayerController : MonoBehaviour
     public event Action OnIntroOver;
     public event Action<float> OnUpdateRotateSpeed;
 
+
+
     /* **************************************************************************** */
     /* Lifecycle-Methoden---------------------------------------------------------- */
     /* **************************************************************************** */
@@ -81,10 +83,20 @@ public class NewPlayerController : MonoBehaviour
 
         // starting Energie System
         InvokeRepeating("EnergieRegen", 2f, 0.1f);
+
+        // TODO Update protection after loading
+        Invoke("UpdateProtection",1f);
         
     }
 
-  
+    private void UpdateProtection()
+    {
+        // Invoke from Awake !TODO
+        float normalizedLvl = Mathf.InverseLerp(0, 10, protectionLvl);
+        float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
+        protectionPerc = targetPercentage;
+    }
+
 
     // Update is called once per frame
     void Update()

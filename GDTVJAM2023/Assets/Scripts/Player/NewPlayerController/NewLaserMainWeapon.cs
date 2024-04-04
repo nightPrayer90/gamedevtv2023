@@ -37,6 +37,9 @@ public class NewLaserMainWeapon : BaseModule
 
     void Start()
     {
+        // Update Module Values to Player Controller - Function comes from BaseModule
+        UpdateModuleValues();
+
         GameObject go = GameObject.Find("Game Manager");
 
         gameManager = go.GetComponent<GameManager>();
@@ -64,7 +67,7 @@ public class NewLaserMainWeapon : BaseModule
     private void HandleDamageUpdate(int damageToUpdate)
     {
         laserBaseDamage += damageToUpdate;
-        resultLaserDamage = Mathf.RoundToInt((float)laserBaseDamage * (1 + (upgradeChooseList.percLaserDamage / 100)));
+        resultLaserDamage = Mathf.CeilToInt((float)laserBaseDamage * (1 + (upgradeChooseList.percLaserDamage / 100)));
     }
 
     private void HandleStartShooting()

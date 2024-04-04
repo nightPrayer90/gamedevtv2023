@@ -16,10 +16,14 @@ public class NewStrafeEngine : BaseModule
     [SerializeField] private ParticleSystem ps_rigtBoost;
     private bool useBoost = false;
     public float boostCost = 0.1f;
+    private int direction = -1; // chance axis 1 or -1
 
     // Start is called before the first frame update
     void Start()
     {
+        // Update Module Values to Player Controller - Function comes from BaseModule
+        UpdateModuleValues();
+
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<NewPlayerController>();
         playerRigidbody = playerController.GetComponent<Rigidbody>();
     }
@@ -52,7 +56,7 @@ public class NewStrafeEngine : BaseModule
             }
 
             // Berechne die Kraft basierend auf dem horizontalen Input
-            Vector3 thrust = playerRigidbody.transform.right * playerController.horizontalInput2 * -totalStrafeForce;
+            Vector3 thrust = playerRigidbody.transform.right * playerController.horizontalInput2 * -totalStrafeForce * direction;
 
             // Wende die Kraft auf das Raumschiff an
             playerRigidbody.AddForce(thrust);
@@ -78,7 +82,7 @@ public class NewStrafeEngine : BaseModule
             }
 
             // Berechne die Kraft basierend auf dem horizontalen Input
-            Vector3 thrust = playerRigidbody.transform.right * playerController.horizontalInput2 * -totalStrafeForce;
+            Vector3 thrust = playerRigidbody.transform.right * playerController.horizontalInput2 * -totalStrafeForce * direction;
 
             // Wende die Kraft auf das Raumschiff an
             playerRigidbody.AddForce(thrust);   

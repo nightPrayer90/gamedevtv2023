@@ -2,30 +2,27 @@ using UnityEngine;
 
 public class BaseModule : MonoBehaviour
 {
-    public ModuleValues moduleVales;
-    private NewPlayerController playerController;
-    private Rigidbody playerRigidbody;
-    private UpgradeChooseList upgradeChooseList;
-
-    private void Start()
+    public ModuleValues moduleValues;
+   
+    protected void UpdateModuleValues()
     {
         GameObject go = GameObject.FindGameObjectWithTag("Player");
         GameObject gm = GameObject.Find("Game Manager");
 
         if (go != null)
         {
-            playerController = go.GetComponent<NewPlayerController>();
-            playerRigidbody = playerController.GetComponent<Rigidbody>();
-            playerRigidbody.mass += moduleVales.costMass;
+            NewPlayerController playerController = go.GetComponent<NewPlayerController>();
+            Rigidbody playerRigidbody = playerController.GetComponent<Rigidbody>();
+            playerRigidbody.mass += moduleValues.costMass;
 
-            playerController.energieProduction += moduleVales.energieProduction;
-            playerController.energieProduction -= moduleVales.costEnergie;
-            playerController.energieMax += moduleVales.energieStorage;
+            playerController.energieProduction += moduleValues.energieProduction;
+            playerController.energieProduction -= moduleValues.costEnergie;
+            playerController.energieMax += moduleValues.energieStorage;
 
-            playerController.playerMaxHealth += moduleVales.health;
-            playerController.playerCurrentHealth += moduleVales.health;
+            playerController.playerMaxHealth += moduleValues.health;
+            playerController.playerCurrentHealth += moduleValues.health;
 
-            playerController.protectionLvl += (int)moduleVales.protection; //ToDo - float in ModuleValues to int!
+            playerController.protectionLvl += (int)moduleValues.protection; //ToDo - float in ModuleValues to int!
 
             // Change the center of Mass
             //playerRigidbody.centerOfMass = playerRigidbody.centerOfMass + new Vector3((transform.localPosition.x / 2) * mass, 0f, (transform.localPosition.z / 2) * mass);
@@ -33,11 +30,11 @@ public class BaseModule : MonoBehaviour
 
         if (gm != null)
         {
-            upgradeChooseList = gm.GetComponent<UpgradeChooseList>();
-            upgradeChooseList.mcBulletLvl = moduleVales.bulletClass;
-            upgradeChooseList.mcExplosionLvl = moduleVales.rocketClass;
-            upgradeChooseList.mcLaserLvl = moduleVales.laserClass;
-            upgradeChooseList.mcSupportLvl = moduleVales.supportClass;
+            UpgradeChooseList upgradeChooseList = gm.GetComponent<UpgradeChooseList>();
+            upgradeChooseList.mcBulletLvl = moduleValues.bulletClass;
+            upgradeChooseList.mcExplosionLvl = moduleValues.rocketClass;
+            upgradeChooseList.mcLaserLvl = moduleValues.laserClass;
+            upgradeChooseList.mcSupportLvl = moduleValues.supportClass;
         }
     }
 }

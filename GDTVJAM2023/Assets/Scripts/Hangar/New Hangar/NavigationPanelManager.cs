@@ -89,6 +89,7 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
                 moduleStorage.NewShip();
                 moduleStorage.BuildShipFromModuleData();
                 moduleStorage.RefreshModulSpheres();
+                hangarUIController.SetShipPanel();
                 break;
 
             case 2: // ship preset 2
@@ -96,6 +97,7 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
                 moduleStorage.LoadPreset();
                 moduleStorage.BuildShipFromModuleData();
                 moduleStorage.RefreshModulSpheres();
+                hangarUIController.SetShipPanel();
                 break;
         }
 

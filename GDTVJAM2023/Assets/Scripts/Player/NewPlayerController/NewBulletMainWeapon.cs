@@ -26,6 +26,9 @@ public class NewBulletMainWeapon : BaseModule
     #region lifecycle
     void Start()
     {
+        // Update Module Values to Player Controller - Function comes from BaseModule
+        UpdateModuleValues();
+
         GameObject go = GameObject.Find("Game Manager");
         if (go != null) {
             gameManager = go.GetComponent<GameManager>();

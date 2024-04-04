@@ -97,8 +97,8 @@ MonoBehaviour:
       canFront: 0
       canBack: 1
       modulDescription_multiLineText: "<color=#FFBF00>You need one main engine to
-        fly \r\nforwards or backwards.</color>\r\nThrust force: 4 TJ\r\nBoost force:
-        <color=#00FFFF>5 TJ </color>\r\nYou get the Ability  <color=#00FFFF>Power
+        fly \r\nforwards or backwards.</color>\r\nThrust force: 5 TJ\r\nBoost force:
+        <color=#00FFFF>8 TJ </color>\r\nYou get the Ability  <color=#00FFFF>Power
         Boost</color>"
       costMass: 0.2
       costEnergie: 0.4
@@ -106,10 +106,10 @@ MonoBehaviour:
       energieStorage: 0
       health: 0
       protection: 0
-      mainEngine: 4
+      mainEngine: 5
       directionEngine: 0
       strafeEngine: 0
-      boostEngine: 5
+      boostEngine: 8
       boostStrafeEngine: 0
       bulletClass: 0
       rocketClass: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
       canFront: 0
       canBack: 0
       modulDescription_multiLineText: "<color=#FFBF00>The Strafe engine allows you
-        \r\nto strafe left and right.</color>\r\nStrafe force: 2 TJ\r\nBoost force:
+        \r\nto strafe left and right.</color>\r\nStrafe force: 3 TJ\r\nBoost force:
         <color=#00FFFF>5 TJ </color>"
       costMass: 0.1
       costEnergie: 0.1
@@ -176,7 +176,7 @@ MonoBehaviour:
       protection: 0
       mainEngine: 0
       directionEngine: 0
-      strafeEngine: 2
+      strafeEngine: 3
       boostEngine: 0
       boostStrafeEngine: 5
       bulletClass: 0
@@ -612,8 +612,8 @@ MonoBehaviour:
     canFront: 0
     canBack: 0
     moduleValues:
-      moduleName: Wing Typ 04 left (DE+BS)
-      moduleType: 5
+      moduleName: Wing 04 left (DE+BS)
+      moduleType: 0
       canLeft: 1
       canRight: 0
       canFront: 0
@@ -644,8 +644,8 @@ MonoBehaviour:
     canFront: 0
     canBack: 0
     moduleValues:
-      moduleName: Wing Typ 04 right (DE+BS)
-      moduleType: 5
+      moduleName: Wing 04 right (DE+BS)
+      moduleType: 0
       canLeft: 0
       canRight: 1
       canFront: 0

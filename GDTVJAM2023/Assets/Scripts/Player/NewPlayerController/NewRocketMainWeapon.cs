@@ -25,6 +25,9 @@ public class NewRocketMainWeapon : BaseModule
     #region Lifecycle Methoden
     void Start()
     {
+        // Update Module Values to Player Controller - Function comes from BaseModule
+        UpdateModuleValues();
+
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
         playerController = GetComponentInParent<NewPlayerController>();
@@ -38,7 +41,7 @@ public class NewRocketMainWeapon : BaseModule
     public void HandleDamageUpdate(int damageToUpdate)
     {
         rockedBaseDamage += damageToUpdate;
-        rockedResultDamage = Mathf.RoundToInt((float)rockedBaseDamage * (1 + (upgradeChooseList.percRocketDamage / 100)));
+        rockedResultDamage = Mathf.CeilToInt((float)rockedBaseDamage * (1 + (upgradeChooseList.percRocketDamage / 100)));
     }
 
     private void HandleStartShooting()

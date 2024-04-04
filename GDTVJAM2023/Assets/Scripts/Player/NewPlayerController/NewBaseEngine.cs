@@ -38,6 +38,12 @@ public class NewBaseEngine : BaseModule
     // Start is called before the first frame update
     void Start()
     {
+        // Update Module Values to Player Controller - Function comes from BaseModule
+        UpdateModuleValues();
+
+        thrustForce = moduleValues.mainEngine;
+        FrontBoostPower = moduleValues.boostEngine;
+
         GameObject go = GameObject.Find("Game Manager");
         gameManager = go.GetComponent<GameManager>();
         playerController = GetComponentInParent<NewPlayerController>();

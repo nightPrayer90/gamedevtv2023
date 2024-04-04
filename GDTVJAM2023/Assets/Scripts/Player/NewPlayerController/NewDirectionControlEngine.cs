@@ -23,6 +23,9 @@ public class NewDirectionControlEngine : BaseModule
     // Start is called before the first frame update
     void Start()
     {
+        // Update Module Values to Player Controller - Function comes from BaseModule
+        UpdateModuleValues();
+
         playerController = GetComponentInParent<NewPlayerController>();
         playerController.OnUpdateRotateSpeed += HandleRotateSpeed;
         playerRigidbody = playerController.GetComponent<Rigidbody>();

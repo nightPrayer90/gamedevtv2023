@@ -8622,6 +8622,7 @@ MonoBehaviour:
   req3: {fileID: 4036232904408471289}
   req3Text: {fileID: 6746352769607513777}
   unique: {fileID: 8813834751940405978}
+  uniqueText: {fileID: 0}
 --- !u!1 &6249226895950932509
 GameObject:
   m_ObjectHideFlags: 0
@@ -10013,6 +10014,7 @@ MonoBehaviour:
   - {fileID: 2313738799206915577}
   - {fileID: 2845793643762768895}
   shipPanalController: {fileID: 665995005372648457}
+  upgradeIndex: 
   upgradeValue: []
   headerStr: []
   descriptionTextStr: []
@@ -10027,6 +10029,7 @@ MonoBehaviour:
   reqColor3: []
   reqText3: []
   isUnique: 
+  upgradeCount: 
   classPointsBullets:
   - {fileID: 2626283017025450415}
   - {fileID: 6478667722971320363}
@@ -10075,6 +10078,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 242b3362ce4ffd84b8deafe42aa8f4c8, type: 3}
   bkImage: {fileID: 6249226896855123007}
   classColors: []
+  classPanels: []
   selectedUpgradePanelList:
   - {fileID: 6883646671709620006}
   - {fileID: 6883646672628958853}
@@ -10888,6 +10892,7 @@ MonoBehaviour:
   req3: {fileID: 1215075303482552626}
   req3Text: {fileID: 157475701440433919}
   unique: {fileID: 966971185871274614}
+  uniqueText: {fileID: 0}
 --- !u!1 &6249226897487843092
 GameObject:
   m_ObjectHideFlags: 0
@@ -11063,6 +11068,7 @@ MonoBehaviour:
   req3: {fileID: 6566084102319471113}
   req3Text: {fileID: 7435837985206424931}
   unique: {fileID: 1943322941245238511}
+  uniqueText: {fileID: 0}
 --- !u!1 &6249226897579198259
 GameObject:
   m_ObjectHideFlags: 0
