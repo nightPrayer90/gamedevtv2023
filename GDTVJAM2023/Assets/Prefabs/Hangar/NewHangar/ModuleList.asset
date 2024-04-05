@@ -512,9 +512,7 @@ MonoBehaviour:
       canRight: 0
       canFront: 0
       canBack: 0
-      modulDescription_multiLineText: '
-
-        Energie Production: 2.7 TJ/s
+      modulDescription_multiLineText: 'Energie Production: 2.7 TJ/s
 
         Energie
         Storage: 10 TJ
