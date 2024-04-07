@@ -6,15 +6,12 @@ using static UnityEditor.Progress;
 [Serializable]
 public class ModuleDataRuntime : ModuleData
 {
-    [SerializeField]
-    public ModuleDataRuntime parentModule;
     public ModuleDataRuntime()
     {
 
     }
     public ModuleDataRuntime(ModuleData baseData)
     {
-        level = baseData.level;
         x = baseData.x;
         z = baseData.z;
         moduleTypeIndex = baseData.moduleTypeIndex;
@@ -37,7 +34,6 @@ public class ModuleDataRuntime : ModuleData
 [Serializable]
 public class ModuleData
 {
-    public int level;
     public float x;
     public float z;
     public int moduleTypeIndex;
@@ -88,39 +84,10 @@ public class ModuleStorage : MonoBehaviour
             selectionManager = GameObject.Find("SelectionController").GetComponent<Selection>();
 
             // rebuild parents
-            RebuildParents();
 
             // set ShipPanel
             hangarUIController = selectionManager.gameObject.GetComponent<HangarUIController>();
             hangarUIController.SetShipPanel();
-        }
-    }
-
-    public void RebuildParents()
-    {
-        for (int i = 0; i < installedModuleData.Count; i++)
-        {
-            HangarModul hgm = installedHangarModules[i].GetComponent<HangarModul>();
-            // load base data
-            hgm.moduleData = new(installedModuleData[i]);
-            // get all modules in level below
-            foreach (ModuleDataRuntime module in GetModulesByLevel(hgm.moduleData.level - 1))
-            {
-                // check if one is positioned next to this one
-                float x_diff = module.x - hgm.moduleData.x;
-                float z_diff = module.z - hgm.moduleData.z;
-                if (x_diff >= -1 && x_diff <= 1 && z_diff >= -1 && z_diff <= 1 && Mathf.Abs(x_diff) - Mathf.Abs(z_diff) != 0)
-                {
-                    // acceptable distance and not a diagonal
-                    // will always take the first one as parent
-                    // this is not deterministic
-                    hgm.moduleData.parentModule = module;
-                    installedModuleData[i].parentModule = module;
-                }
-            }
-
-            // TODO - have the gameObject no Parent - canGameStart = false;
-            hgm.ParentControl();
         }
     }
 
@@ -177,7 +144,6 @@ public class ModuleStorage : MonoBehaviour
 
         // TODO - if any Modul with no parent - the HangarModul script set canGameStart to false;
         canGameStart = true;
-        RebuildParents();
 
         // Refresh all other Moduls
         for (int i = 0; i < installedHangarModules.Count; i++)
@@ -196,27 +162,12 @@ public class ModuleStorage : MonoBehaviour
         foreach (ModuleDataRuntime item in installedModuleData)
         {
             ModuleData moduleData = new();
-            moduleData.level = item.level;
             moduleData.x = item.x;
             moduleData.z = item.z;
             moduleData.moduleTypeIndex = item.moduleTypeIndex;
             moduleDataSave.Add(moduleData);
         }
         dataService.SaveData("modules.json", moduleDataSave, false);
-    }
-
-    public List<ModuleDataRuntime> GetModulesByLevel(int level)
-    {
-        List<ModuleDataRuntime> result = new();
-        // TODO temporary helper function
-        foreach (ModuleDataRuntime item in installedModuleData)
-        {
-            if (item.level == level)
-            {
-                result.Add(item);
-            }
-        }
-        return result;
     }
 
     public void NewShip()

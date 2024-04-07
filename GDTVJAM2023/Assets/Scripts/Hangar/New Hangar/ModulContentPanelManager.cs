@@ -14,8 +14,8 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
     public Image modulContentPanel;
 
     [Header("Selection Controls")]
-    public Color32 baseColor = new Color32(8,57,156,255);
-    public Color32 selectionColor = new Color32(124,124,255,255);
+    public Color32 baseColor = new Color32(8, 57, 156, 255);
+    public Color32 selectionColor = new Color32(124, 124, 255, 255);
     public MeshFilter selectedSphere;
     private Selection selectionManager;
     private Sphere sph;
@@ -62,7 +62,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
 
         // Modul Sprite
         if (moduleList.moduls[modulIndex].modulSprite != null)
-        moduleImagePanel.sprite = moduleList.moduls[modulIndex].modulSprite;
+            moduleImagePanel.sprite = moduleList.moduls[modulIndex].modulSprite;
 
         // Hangar Modul Prefab
         modulToCreate = moduleList.moduls[modulIndex].hangarPrefab;
@@ -143,8 +143,6 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
             // create a new Module
             go = Instantiate(modulToCreate, new Vector3(spawnpos_x, parentHangarModule.transform.position.y, spawnpos_z), Quaternion.Euler(0f, 0f, 0f));
             go.transform.SetParent(shipParent);
-
-            newModuleData.level = parentHangarModule.moduleData.level + 1;
         }
         else
         {
@@ -156,13 +154,10 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
             go = Instantiate(modulToCreate, parentHangarModule.transform.position, Quaternion.Euler(0f, 0f, 0f));
             go.transform.SetParent(shipParent);
 
-            
-            newModuleData.level = parentHangarModule.moduleData.level;
         }
         newModuleData.x = go.transform.position.x;
         newModuleData.z = go.transform.position.z;
         newModuleData.moduleTypeIndex = modulIndex;
-        newModuleData.parentModule = parentHangarModule.moduleData;
 
         HangarModul newHangarModule = go.GetComponent<HangarModul>();
         newHangarModule.moduleData = newModuleData;

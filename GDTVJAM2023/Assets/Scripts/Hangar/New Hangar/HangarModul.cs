@@ -52,22 +52,6 @@ public class HangarModul : MonoBehaviour
     public void SetActive()
     {
         isSelected = true;
-        if (moduleData.parentModule == null)
-        {
-            Debug.Log("I have no Parent (select)");
-        }
-        else
-        {
-            Debug.Log("level Parent Modul " + moduleData.parentModule.level);
-
-            // 
-            if (possibleReplacements.Count == 0)
-            {
-               // CreateModulList();
-            }
-            
-
-        }
     }
 
     // control function, if an installed Modul was deleted
@@ -77,21 +61,6 @@ public class HangarModul : MonoBehaviour
         foreach (Sphere sph in spheres)
         {
             sph.ControllSpheres();
-        }
-    }
-
-    // TODO - just temporary
-    public void ParentControl()
-    {
-        if (moduleData.parentModule == null && hasNoParentControll == false)
-        {
-            haveParent = false;
-            Debug.Log("i have no Parent (ParentControl)");
-            //moduleStorage.canGameStart = false;
-        }
-        else
-        {
-            haveParent = true;
         }
     }
 
