@@ -13,10 +13,7 @@ public class Sphere : MonoBehaviour
     public float spawnPositionX;
     public float spawnPositionZ;
     private MeshRenderer meshRenderer;
-    private ModuleList moduleList;
-    private GameObject ship;
     private Collider meshCollider;
-    public List<int> availableModuls;
 
     public enum SphereSide
     {
@@ -32,9 +29,7 @@ public class Sphere : MonoBehaviour
     {
         selectionController = GameObject.Find("SelectionController").GetComponent<Selection>();
         selectionController.OnDeselect += HandleSetDeselect;
-        ship = GameObject.Find("Ship");
-        moduleStorage = ship.GetComponent<ModuleStorage>();
-        moduleList = moduleStorage.moduleList;
+        moduleStorage = GameObject.Find("Ship").GetComponent<ModuleStorage>();
         parentModul = parentTransform.gameObject.GetComponent<HangarModul>();
 
         //moduleInstances = moduleStorage.installedModuleData;
@@ -51,7 +46,6 @@ public class Sphere : MonoBehaviour
         spawnPositionZ = parentTransform.localPosition.z;
 
         ControllSpheres();
-        CreateModuleList();
     }
 
     public void HandleSetDeselect()
@@ -65,37 +59,6 @@ public class Sphere : MonoBehaviour
     public void SetActive()
     {
         isActiv = true;
-        Debug.Log(parentModul.haveParent);
-    }
-
-    public void CreateModuleList()
-    {
-        foreach (Modules module in moduleList.moduls)
-        {
-            switch (sphereSide)
-            {
-                case SphereSide.left:
-                    if (module.canLeft == true)
-                        availableModuls.Add(moduleList.moduls.IndexOf(module));
-                    break;
-                case SphereSide.right:
-                    if (module.canRight == true)
-                        availableModuls.Add(moduleList.moduls.IndexOf(module));
-                    break;
-                case SphereSide.front:
-                    if (module.canFront == true)
-                        availableModuls.Add(moduleList.moduls.IndexOf(module));
-                    break;
-                case SphereSide.back:
-                    if (module.canBack == true)
-                        availableModuls.Add(moduleList.moduls.IndexOf(module));
-                    break;
-                case SphereSide.strafe:
-                    if (module.moduleType == ModuleType.StrafeEngine)
-                        availableModuls.Add(moduleList.moduls.IndexOf(module));
-                    break;
-            }
-        }
     }
 
     public void ControllSpheres()

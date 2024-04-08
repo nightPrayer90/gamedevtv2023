@@ -89,7 +89,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         gameObject.transform.DOScale(new Vector3(1.01f, 1.01f, 1.01f), 0.1f);
 
         modulContentPanel.color = selectionColor;
-        hangarUIController.MouseOverModulePanel(modulToCreate, moduleList.moduls[modulIndex].moduleName);
+        hangarUIController.MouseOverModulePanel(modulIndex);
     }
 
     // Handle Mouse exit UI

@@ -59,6 +59,7 @@ public class HangarTooltip : MonoBehaviour
             case 6: // Energie Storage
             case 7: // Ship mass
             case 8: // Protection
+            case 9: // Energie in use
                 header_ = tooltipContent[contentType].header;
                 content_ = tooltipContent[contentType].content;
                 break;

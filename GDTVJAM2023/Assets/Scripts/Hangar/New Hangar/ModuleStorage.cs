@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 [Serializable]
 public class ModuleDataRuntime : ModuleData
@@ -63,8 +62,14 @@ public class ModuleStorage : MonoBehaviour
     // TODO can be replaced by List<HangarModule> to get rid of GetComponent<HangarModule>
     public List<HangarModul> installedHangarModules;
 
-    // TODO just temporary
-    public bool canGameStart = true;
+    //ModuleLists
+    public List<int> leftModules;
+    public List<int> rightModules;
+    public List<int> frontModules;
+    public List<int> backModules;
+    public List<int> strafeModules;
+
+    public bool isAllConnected = true;
 
     // Start is called before the first frame update
     void Start()
@@ -93,7 +98,8 @@ public class ModuleStorage : MonoBehaviour
             // find selection manager
             selectionManager = GameObject.Find("SelectionController").GetComponent<Selection>();
 
-            // rebuild parents
+            // set Module lists für spheres
+            CreateModuleLists();
 
             // set ShipPanel
             hangarUIController = selectionManager.gameObject.GetComponent<HangarUIController>();
@@ -101,6 +107,20 @@ public class ModuleStorage : MonoBehaviour
         }
 
         BuildModuleGrid();
+    }
+
+    private void OnDestroy()
+    {
+        List<ModuleData> moduleDataSave = new();
+        foreach (ModuleDataRuntime item in installedModuleData)
+        {
+            ModuleData moduleData = new();
+            moduleData.x = item.x;
+            moduleData.z = item.z;
+            moduleData.moduleTypeIndex = item.moduleTypeIndex;
+            moduleDataSave.Add(moduleData);
+        }
+        dataService.SaveData("modules.json", moduleDataSave, false);
     }
 
     public void HangarRemoveModule()
@@ -167,11 +187,66 @@ public class ModuleStorage : MonoBehaviour
         }
     }
 
+    public void RemoveDisconnectedModules()
+    {
+        int i = 0;
+        while (i < installedHangarModules.Count)
+        {
+            HangarModul hgm = installedHangarModules[i];
+            if (hgm.moduleData.bestCost == ushort.MaxValue && moduleList.moduls[hgm.moduleData.moduleTypeIndex].moduleType != ModuleType.StrafeEngine)
+            {
+                // destroy gameObject
+                Destroy(hgm.gameObject);
+
+                // delete GameObject from List
+                installedHangarModules.RemoveAt(i);
+
+                // delete GameObject from savelist
+                installedModuleData.RemoveAt(i);
+            }
+            else
+            {
+                i++;
+            }
+        }
+
+        // reset ship ui panel
+        hangarUIController.SetShipPanel();
+
+        // deselsect
+        selectionManager.DeselectAll();
+
+        // HideButton
+        isAllConnected = true;
+        ControllUnconnectedModules();
+    }
+
+    public void RemoveAllModule()
+    {
+        // deselsect
+        selectionManager.DeselectAll();
+
+        for (int i = 0; i < installedHangarModules.Count; i++)
+        {
+            // destroy gameObject
+            Destroy(installedHangarModules[i].gameObject);
+        }
+
+        // delete GameObject from List
+        installedHangarModules.Clear();
+
+        // delete GameObject from savelist
+        installedModuleData.Clear();
+
+        // reset ship ui panel
+        hangarUIController.SetShipPanel();
+    }
+
     public void RefreshModulSpheres()
     {
 
         // TODO - if any Modul with no parent - the HangarModul script set canGameStart to false;
-        canGameStart = true;
+        isAllConnected = true;
 
         // Refresh all other Moduls
         for (int i = 0; i < installedHangarModules.Count; i++)
@@ -179,13 +254,13 @@ public class ModuleStorage : MonoBehaviour
             HangarModul hgm = installedHangarModules[i];
             hgm.ControllChildSpheres();
         }
-
-
-        Debug.Log("gameCanStart? " + canGameStart);
     }
 
     public void BuildModuleGrid()
     {
+        isAllConnected = true;
+        ControllUnconnectedModules(); // reset
+
         installedModuleGrid = new ModuleDataRuntime[101, 101]; // allow coordinates from -50 to 50
         foreach (ModuleDataRuntime mdr in installedModuleData)
         {
@@ -215,35 +290,7 @@ public class ModuleStorage : MonoBehaviour
         }
     }
 
-    public void RemoveDisconnectedModules()
-    {
-        int i = 0;
-        while(i < installedHangarModules.Count)
-        {
-            HangarModul hgm = installedHangarModules[i];
-            if (hgm.moduleData.bestCost == ushort.MaxValue && moduleList.moduls[hgm.moduleData.moduleTypeIndex].moduleType != ModuleType.StrafeEngine)
-            {
-                // destroy gameObject
-                Destroy(hgm.gameObject);
-
-                // delete GameObject from List
-                installedHangarModules.RemoveAt(i);
-
-                // delete GameObject from savelist
-                installedModuleData.RemoveAt(i);
-
-                // reset ship ui panel
-                hangarUIController.SetShipPanel();
-
-                // deselsect
-                selectionManager.DeselectAll();
-            }
-            else
-            {
-                i++;
-            }
-        }
-    }
+    
 
     private List<ModuleDataRuntime> GetNeighborCells(int x, int z, ModuleDataRuntime curCell)
     {
@@ -268,19 +315,7 @@ public class ModuleStorage : MonoBehaviour
         return result;
     }
 
-    private void OnDestroy()
-    {
-        List<ModuleData> moduleDataSave = new();
-        foreach (ModuleDataRuntime item in installedModuleData)
-        {
-            ModuleData moduleData = new();
-            moduleData.x = item.x;
-            moduleData.z = item.z;
-            moduleData.moduleTypeIndex = item.moduleTypeIndex;
-            moduleDataSave.Add(moduleData);
-        }
-        dataService.SaveData("modules.json", moduleDataSave, false);
-    }
+    
 
     public void NewShip()
     {
@@ -339,26 +374,28 @@ public class ModuleStorage : MonoBehaviour
         }
     }
 
-    public void RemoveAllModule()
+  
+
+    private void CreateModuleLists()
     {
-        // deselsect
-        selectionManager.DeselectAll();
-
-        for (int i = 0; i < installedHangarModules.Count; i++)
+        foreach (Modules module in moduleList.moduls)
         {
-            // destroy gameObject
-            Destroy(installedHangarModules[i].gameObject);
-
-
+            if (module.canLeft == true)
+                leftModules.Add(moduleList.moduls.IndexOf(module));
+            if (module.canRight == true)
+                rightModules.Add(moduleList.moduls.IndexOf(module));
+            if (module.canFront == true)
+                frontModules.Add(moduleList.moduls.IndexOf(module));
+            if (module.canBack == true)
+                backModules.Add(moduleList.moduls.IndexOf(module));
+            if (module.moduleType == ModuleType.StrafeEngine)
+                strafeModules.Add(moduleList.moduls.IndexOf(module));
         }
+    }
 
-        // delete GameObject from List
-        installedHangarModules.Clear();
-
-        // delete GameObject from savelist
-        installedModuleData.Clear();
-
-        // reset ship ui panel
-        hangarUIController.SetShipPanel();
+    public void ControllUnconnectedModules()
+    {
+        if (gameManager == null)
+        hangarUIController.ControllUnconnectedModules(isAllConnected);
     }
 }

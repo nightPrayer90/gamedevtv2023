@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 
@@ -8,8 +6,7 @@ public class HangarModul : MonoBehaviour
 {
     [Header("Management")]
     public bool isSelected = false;
-    public bool hasNoParentControll = false; // only ture on Cockpit or Strafe modules
-    public bool haveParent = false;
+    public bool hasDeleteButton = false; // only ture on Cockpit or Strafe modules
 
     [Header("GameObjects")]
     public List<Sphere> spheres;
@@ -36,10 +33,6 @@ public class HangarModul : MonoBehaviour
         shipMaterial = childMeshRenderer.materials[0];
 
         moduleStorage = GameObject.Find("Ship").GetComponentInParent<ModuleStorage>();
-
-        // only for Cockpit or Strafe
-        if (hasNoParentControll == true)
-            haveParent = true;
     }
 
     private void Start()
@@ -77,8 +70,16 @@ public class HangarModul : MonoBehaviour
     {
         Material[] materials = childMeshRenderer.materials;
 
-        materials[0] = moduleData.bestCost == ushort.MaxValue ? highlightMaterial : shipMaterial;
-
+       if (moduleData.bestCost == ushort.MaxValue && moduleValues.moduleType != ModuleType.StrafeEngine)
+        {
+            materials[0] = highlightMaterial;
+            moduleStorage.isAllConnected = false;
+            moduleStorage.ControllUnconnectedModules();
+        }
+        else
+        {
+            materials[0] = shipMaterial;
+        }
         childMeshRenderer.materials = materials;
     }
 
