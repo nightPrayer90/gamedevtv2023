@@ -108,7 +108,7 @@ public class ModuleStorage : MonoBehaviour
         // delete the correct module
         for (int i = 0; i < installedHangarModules.Count; i++)
         {
-            HangarModul hgm = installedHangarModules[i].GetComponent<HangarModul>();
+            HangarModul hgm = installedHangarModules[i];
             if (hgm.isSelected == true)
             {
                 // destroy gameObject
@@ -143,7 +143,7 @@ public class ModuleStorage : MonoBehaviour
         // delete the correct module
         for (int i = 0; i < installedHangarModules.Count; i++)
         {
-            HangarModul hgm = installedHangarModules[i].GetComponent<HangarModul>();
+            HangarModul hgm = installedHangarModules[i];
             if (hgm.isSelected == true)
             {
                 // destroy gameObject
@@ -217,11 +217,30 @@ public class ModuleStorage : MonoBehaviour
 
     public void RemoveDisconnectedModules()
     {
-        foreach (ModuleDataRuntime mdr in installedModuleData)
+        int i = 0;
+        while(i < installedHangarModules.Count)
         {
-            if (mdr.bestCost == ushort.MaxValue && moduleList.moduls[mdr.moduleTypeIndex].moduleType != ModuleType.StrafeEngine)
+            HangarModul hgm = installedHangarModules[i];
+            if (hgm.moduleData.bestCost == ushort.MaxValue && moduleList.moduls[hgm.moduleData.moduleTypeIndex].moduleType != ModuleType.StrafeEngine)
             {
-                Debug.Log(mdr.x + " " + mdr.z);
+                // destroy gameObject
+                Destroy(hgm.gameObject);
+
+                // delete GameObject from List
+                installedHangarModules.RemoveAt(i);
+
+                // delete GameObject from savelist
+                installedModuleData.RemoveAt(i);
+
+                // reset ship ui panel
+                hangarUIController.SetShipPanel();
+
+                // deselsect
+                selectionManager.DeselectAll();
+            }
+            else
+            {
+                i++;
             }
         }
     }
