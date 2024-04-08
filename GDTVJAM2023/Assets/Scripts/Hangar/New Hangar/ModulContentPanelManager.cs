@@ -148,7 +148,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         {
             // handle Module select
             // delete the old module
-            moduleStorage.HangarRemoveModule();
+            moduleStorage.HangarChangeModule();
 
             // create a new Module
             go = Instantiate(modulToCreate, parentHangarModule.transform.position, Quaternion.Euler(0f, 0f, 0f));
@@ -176,8 +176,8 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
 
         moduleStorage.installedModuleData.Add(newModuleData);
         moduleStorage.installedHangarModules.Add(newHangarModule);
-        moduleStorage.RefreshModulSpheres();
         moduleStorage.BuildModuleGrid();
+        moduleStorage.RefreshModulSpheres();
 
         hangarUIController.SetShipPanel();
 

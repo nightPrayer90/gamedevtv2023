@@ -148,11 +148,13 @@ MonoBehaviour:
   haveParent: 0
   spheres: []
   possibleReplacements: 
+  highlightMaterial: {fileID: 2100000, guid: 8ae23242e9d9e0f40bab0fcf05be5ecb, type: 2}
   moduleData:
-    level: 0
     x: 0
     z: 0
     moduleTypeIndex: 0
+    cost: 1
+    bestCost: 65535
   moduleValues:
     moduleName: 
     moduleType: 0

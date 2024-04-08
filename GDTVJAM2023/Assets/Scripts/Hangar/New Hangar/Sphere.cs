@@ -104,7 +104,7 @@ public class Sphere : MonoBehaviour
                 case SphereSide.left:
                     foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
-                        if ((module.x == spawnPositionX && module.z == spawnPositionZ - 1))
+                        if ((module.x == spawnPositionX && module.z == spawnPositionZ - 1) || parentModul.moduleData.bestCost == ushort.MaxValue)
                         {
                             meshRenderer.enabled = false;
                             meshCollider.enabled = false;
@@ -123,7 +123,7 @@ public class Sphere : MonoBehaviour
                 case SphereSide.right:
                     foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
-                        if ((module.x == spawnPositionX && module.z == spawnPositionZ + 1))
+                        if ((module.x == spawnPositionX && module.z == spawnPositionZ + 1) || parentModul.moduleData.bestCost == ushort.MaxValue)
                         {
                             meshRenderer.enabled = false;
                             meshCollider.enabled = false;
@@ -142,7 +142,7 @@ public class Sphere : MonoBehaviour
                 case SphereSide.front:
                     foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
-                        if ((module.x == spawnPositionX - 1 && module.z == spawnPositionZ))
+                        if ((module.x == spawnPositionX - 1 && module.z == spawnPositionZ) || parentModul.moduleData.bestCost == ushort.MaxValue)
                         {
                             meshCollider.enabled = false;
                             meshRenderer.enabled = false;
@@ -161,7 +161,7 @@ public class Sphere : MonoBehaviour
                 case SphereSide.back:
                     foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
-                        if ((module.x == spawnPositionX + 1 && module.z == spawnPositionZ))
+                        if ((module.x == spawnPositionX + 1 && module.z == spawnPositionZ) || parentModul.moduleData.bestCost == ushort.MaxValue)
                         {
                             meshRenderer.enabled = false;
                             meshCollider.enabled = false;

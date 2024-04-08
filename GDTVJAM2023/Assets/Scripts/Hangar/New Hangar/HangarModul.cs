@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -15,6 +16,9 @@ public class HangarModul : MonoBehaviour
     private Selection selectionController;
     private ModuleStorage moduleStorage;
     public List<int> possibleReplacements;
+    private MeshRenderer childMeshRenderer;
+    public Material highlightMaterial;
+    private Material shipMaterial;
 
     [Header("Module Data")]
     public ModuleDataRuntime moduleData;
@@ -28,6 +32,8 @@ public class HangarModul : MonoBehaviour
     {
         selectionController = GameObject.Find("SelectionController").GetComponent<Selection>();
         selectionController.OnDeselect += HandleSetDeselect;
+        childMeshRenderer = gameObject.GetComponentInChildren<MeshRenderer>();
+        shipMaterial = childMeshRenderer.materials[0];
 
         moduleStorage = GameObject.Find("Ship").GetComponentInParent<ModuleStorage>();
 
@@ -57,6 +63,12 @@ public class HangarModul : MonoBehaviour
     // control function, if an installed Modul was deleted
     public void ControllDelete()
     {
+        Material[] materials = childMeshRenderer.materials;
+
+        materials[0] = moduleData.bestCost == ushort.MaxValue ? highlightMaterial : shipMaterial;
+        
+        childMeshRenderer.materials = materials;
+
         // turn Shperes on or off
         foreach (Sphere sph in spheres)
         {

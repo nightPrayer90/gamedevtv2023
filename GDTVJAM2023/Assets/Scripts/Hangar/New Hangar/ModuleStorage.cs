@@ -111,22 +111,6 @@ public class ModuleStorage : MonoBehaviour
             HangarModul hgm = installedHangarModules[i].GetComponent<HangarModul>();
             if (hgm.isSelected == true)
             {
-                // clean up depending modules
-                //List<ModuleDataRuntime> children = GetModulesByLevel(hgm.moduleData.level + 1);
-                //canGameStart = true;
-                /*foreach (ModuleDataRuntime child in children)
-                {
-                    // TODO: children of children
-                    if (child.parentModule == null)
-                    {
-                        break;
-                    }
-                    /*if (child.parentModule.WorkingEquals(hgM.moduleData))
-                    {
-                        Debug.Log(child.moduleTypeIndex);   
-                    }
-                }*/
-
                 // destroy gameObject
                 Destroy(installedHangarModules[i].gameObject);
 
@@ -152,6 +136,35 @@ public class ModuleStorage : MonoBehaviour
 
         // Refresh all Shperes
         RefreshModulSpheres();
+    }
+
+    public void HangarChangeModule()
+    {
+        // delete the correct module
+        for (int i = 0; i < installedHangarModules.Count; i++)
+        {
+            HangarModul hgm = installedHangarModules[i].GetComponent<HangarModul>();
+            if (hgm.isSelected == true)
+            {
+                // destroy gameObject
+                Destroy(installedHangarModules[i].gameObject);
+
+                // delete GameObject from List
+                installedHangarModules.RemoveAt(i);
+
+                // delete GameObject from savelist
+                installedModuleData.RemoveAt(i);
+
+                // reset ship ui panel
+                hangarUIController.SetShipPanel();
+
+                // deselsect
+                selectionManager.DeselectAll();
+
+                // exit For
+                break;
+            }
+        }
     }
 
     public void RefreshModulSpheres()
@@ -286,6 +299,7 @@ public class ModuleStorage : MonoBehaviour
                 hangarModul.moduleValues.canRight = moduleList.moduls[instance.moduleTypeIndex].canRight;
                 hangarModul.moduleValues.canFront = moduleList.moduls[instance.moduleTypeIndex].canFront;
                 hangarModul.moduleValues.canBack = moduleList.moduls[instance.moduleTypeIndex].canBack;
+                hangarModul.moduleData = instance;
 
                 installedHangarModules.Add(hangarModul);
             }
