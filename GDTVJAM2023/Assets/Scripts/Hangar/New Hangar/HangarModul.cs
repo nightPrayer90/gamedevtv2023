@@ -45,7 +45,7 @@ public class HangarModul : MonoBehaviour
     private void Start()
     {
         CreateModuleList();
-        ControllDelete();
+        ControllOwnMaterial();
     }
 
     public void HandleSetDeselect()
@@ -62,19 +62,24 @@ public class HangarModul : MonoBehaviour
     }
 
     // control function, if an installed Modul was deleted
-    public void ControllDelete()
+    public void ControllChildSpheres()
     {
-        Material[] materials = childMeshRenderer.materials;
-
-        materials[0] = moduleData.bestCost == ushort.MaxValue ? highlightMaterial : shipMaterial;
-
-        childMeshRenderer.materials = materials;
+        ControllOwnMaterial();
 
         // turn Shperes on or off
         foreach (Sphere sph in spheres)
         {
             sph.ControllSpheres();
         }
+    }
+
+    private void ControllOwnMaterial()
+    {
+        Material[] materials = childMeshRenderer.materials;
+
+        materials[0] = moduleData.bestCost == ushort.MaxValue ? highlightMaterial : shipMaterial;
+
+        childMeshRenderer.materials = materials;
     }
 
     public void CreateModuleList()

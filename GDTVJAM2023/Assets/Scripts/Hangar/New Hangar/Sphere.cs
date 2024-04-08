@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Sphere : MonoBehaviour
 {
-    public bool isModulSet = false;
     private bool isActiv = false;
     private Selection selectionController;
     public  Transform parentTransform;
@@ -41,13 +40,17 @@ public class Sphere : MonoBehaviour
         //moduleInstances = moduleStorage.installedModuleData;
         meshRenderer = gameObject.GetComponent<MeshRenderer>();
         meshCollider = gameObject.GetComponent<Collider>();
+
+        
+
     }
 
     private void Start()
     {
         spawnPositionX = parentTransform.localPosition.x;
         spawnPositionZ = parentTransform.localPosition.z;
-        //ControllSpheres();
+
+        ControllSpheres();
         CreateModuleList();
     }
 
@@ -102,96 +105,71 @@ public class Sphere : MonoBehaviour
             switch (sphereSide)
             {
                 case SphereSide.left:
+                    meshCollider.enabled = true;
+                    meshRenderer.enabled = true;
                     foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
                         if ((module.x == spawnPositionX && module.z == spawnPositionZ - 1) || parentModul.moduleData.bestCost == ushort.MaxValue)
                         {
                             meshRenderer.enabled = false;
                             meshCollider.enabled = false;
-                            isModulSet = true;
                             return;
-                        }
-                        else
-                        {
-                            meshCollider.enabled = true;
-                            meshRenderer.enabled = true;
-                            isModulSet = false;
                         }
                     }
                     break;
 
                 case SphereSide.right:
+                    meshCollider.enabled = true;
+                    meshRenderer.enabled = true;
                     foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
                         if ((module.x == spawnPositionX && module.z == spawnPositionZ + 1) || parentModul.moduleData.bestCost == ushort.MaxValue)
                         {
                             meshRenderer.enabled = false;
                             meshCollider.enabled = false;
-                            isModulSet = true;
                             return;
-                        }
-                        else
-                        {
-                            meshRenderer.enabled = true;
-                            meshCollider.enabled = true;
-                            isModulSet = false;
                         }
                     }
                     break;
 
                 case SphereSide.front:
+                    meshCollider.enabled = true;
+                    meshRenderer.enabled = true;
                     foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
                         if ((module.x == spawnPositionX - 1 && module.z == spawnPositionZ) || parentModul.moduleData.bestCost == ushort.MaxValue)
                         {
                             meshCollider.enabled = false;
                             meshRenderer.enabled = false;
-                            isModulSet = true;
                             return;
-                        }
-                        else
-                        {
-                            meshRenderer.enabled = true;
-                            meshCollider.enabled = true;
-                            isModulSet = false;
                         }
                     }
                     break;
 
                 case SphereSide.back:
+                    meshCollider.enabled = true;
+                    meshRenderer.enabled = true;
                     foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
                         if ((module.x == spawnPositionX + 1 && module.z == spawnPositionZ) || parentModul.moduleData.bestCost == ushort.MaxValue)
                         {
                             meshRenderer.enabled = false;
                             meshCollider.enabled = false;
-                            isModulSet = true;
                             return;
-                        }
-                        else
-                        {
-                            meshRenderer.enabled = true;
-                            meshCollider.enabled = true;
-                            isModulSet = false;
                         }
                     }
 
                     break;
                 case SphereSide.strafe:
+                    meshCollider.enabled = true;
+                    meshRenderer.enabled = true;
                     foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
                         if (module.x == -1 && module.z == 0)
                         {
                             meshRenderer.enabled = false;
                             meshCollider.enabled = false;
-                            isModulSet = true;
                             return;
-                        }
-                        else
-                        {
-                            meshRenderer.enabled = true;
-                            meshCollider.enabled = true;
-                            isModulSet = false;
                         }
                     }
                     break;

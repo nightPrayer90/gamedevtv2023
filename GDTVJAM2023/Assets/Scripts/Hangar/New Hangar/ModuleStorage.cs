@@ -177,7 +177,7 @@ public class ModuleStorage : MonoBehaviour
         for (int i = 0; i < installedHangarModules.Count; i++)
         {
             HangarModul hgm = installedHangarModules[i];
-            hgm.ControllDelete();
+            hgm.ControllChildSpheres();
         }
 
 
