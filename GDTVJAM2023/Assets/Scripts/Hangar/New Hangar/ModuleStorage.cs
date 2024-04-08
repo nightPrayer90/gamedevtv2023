@@ -176,7 +176,7 @@ public class ModuleStorage : MonoBehaviour
         // Refresh all other Moduls
         for (int i = 0; i < installedHangarModules.Count; i++)
         {
-            HangarModul hgm = installedHangarModules[i].GetComponent<HangarModul>();
+            HangarModul hgm = installedHangarModules[i];
             hgm.ControllDelete();
         }
 
