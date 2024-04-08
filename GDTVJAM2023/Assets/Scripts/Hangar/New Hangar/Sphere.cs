@@ -47,8 +47,8 @@ public class Sphere : MonoBehaviour
     {
         spawnPositionX = parentTransform.localPosition.x;
         spawnPositionZ = parentTransform.localPosition.z;
-        ControllSpheres();
-        CreateModulList();
+        //ControllSpheres();
+        CreateModuleList();
     }
 
     public void HandleSetDeselect()
@@ -65,7 +65,7 @@ public class Sphere : MonoBehaviour
         Debug.Log(parentModul.haveParent);
     }
 
-    public void CreateModulList()
+    public void CreateModuleList()
     {
         foreach (Modules module in moduleList.moduls)
         {

@@ -44,7 +44,8 @@ public class HangarModul : MonoBehaviour
 
     private void Start()
     {
-        CreateModulList();
+        CreateModuleList();
+        ControllDelete();
     }
 
     public void HandleSetDeselect()
@@ -66,7 +67,7 @@ public class HangarModul : MonoBehaviour
         Material[] materials = childMeshRenderer.materials;
 
         materials[0] = moduleData.bestCost == ushort.MaxValue ? highlightMaterial : shipMaterial;
-        
+
         childMeshRenderer.materials = materials;
 
         // turn Shperes on or off
@@ -76,7 +77,7 @@ public class HangarModul : MonoBehaviour
         }
     }
 
-    public void CreateModulList()
+    public void CreateModuleList()
     {
         foreach (Modules module in moduleStorage.moduleList.moduls)
         {
@@ -91,16 +92,19 @@ public class HangarModul : MonoBehaviour
                     }
                     break;
                 default:
-                    if (module.canLeft == moduleValues.canLeft && module.canRight == moduleValues.canRight &&
-                    module.canFront == moduleValues.canFront && module.canBack == moduleValues.canBack
-                     && module.moduleName != moduleValues.moduleName)
+                    if ((moduleValues.canLeft == false || (module.canLeft == moduleValues.canLeft)) &&
+                        (moduleValues.canRight == false || (module.canRight == moduleValues.canRight)) &&
+                        (moduleValues.canFront == false || (module.canFront == moduleValues.canFront)) &&
+                        (moduleValues.canBack == false || (module.canBack == moduleValues.canBack)) &&
+                        !moduleValues.moduleName.Equals(module.moduleName)
+                        )
                     {
                         possibleReplacements.Add(moduleStorage.moduleList.moduls.IndexOf(module));
                     }
                     break;
             }
 
-            
+
         }
     }
 }
