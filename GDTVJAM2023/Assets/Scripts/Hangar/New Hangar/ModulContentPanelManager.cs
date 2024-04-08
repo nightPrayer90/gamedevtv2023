@@ -177,8 +177,11 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         moduleStorage.installedModuleData.Add(newModuleData);
         moduleStorage.installedHangarModules.Add(newHangarModule);
         moduleStorage.RefreshModulSpheres();
+        moduleStorage.BuildModuleGrid();
 
         hangarUIController.SetShipPanel();
+
+
 
         selectionManager.DeselectAll();
     }

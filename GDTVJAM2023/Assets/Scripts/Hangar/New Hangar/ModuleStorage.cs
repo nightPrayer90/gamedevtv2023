@@ -6,6 +6,9 @@ using static UnityEditor.Progress;
 [Serializable]
 public class ModuleDataRuntime : ModuleData
 {
+    public ushort cost = 1; // cannot be 0
+    public ushort bestCost = ushort.MaxValue;
+
     public ModuleDataRuntime()
     {
 
@@ -15,6 +18,12 @@ public class ModuleDataRuntime : ModuleData
         x = baseData.x;
         z = baseData.z;
         moduleTypeIndex = baseData.moduleTypeIndex;
+    }
+
+    public void ResetCost()
+    {
+        cost = 1;
+        bestCost = ushort.MaxValue;
     }
 
     public bool WorkingEquals(object obj)
@@ -42,6 +51,7 @@ public class ModuleData
 public class ModuleStorage : MonoBehaviour
 {
     public List<ModuleDataRuntime> installedModuleData;
+    public ModuleDataRuntime[,] installedModuleGrid;
     JsonDataService dataService;
     public ModuleList moduleList;
     public Transform transformParent;
@@ -89,6 +99,8 @@ public class ModuleStorage : MonoBehaviour
             hangarUIController = selectionManager.gameObject.GetComponent<HangarUIController>();
             hangarUIController.SetShipPanel();
         }
+
+        BuildModuleGrid();
     }
 
     public void HangarRemoveModule()
@@ -130,6 +142,9 @@ public class ModuleStorage : MonoBehaviour
                 // deselsect
                 selectionManager.DeselectAll();
 
+                // 
+                BuildModuleGrid();
+
                 // exit For
                 break;
             }
@@ -154,6 +169,71 @@ public class ModuleStorage : MonoBehaviour
 
 
         Debug.Log("gameCanStart? " + canGameStart);
+    }
+
+    public void BuildModuleGrid()
+    {
+        installedModuleGrid = new ModuleDataRuntime[101, 101]; // allow coordinates from -50 to 50
+        foreach (ModuleDataRuntime mdr in installedModuleData)
+        {
+            installedModuleGrid[(int)mdr.x + 50, (int)mdr.z + 50] = mdr;
+            mdr.ResetCost();
+        }
+
+        Queue<ModuleDataRuntime> cellsToCheck = new Queue<ModuleDataRuntime>();
+        installedModuleGrid[50, 50].cost = 0;
+        installedModuleGrid[50, 50].bestCost = 0;
+        cellsToCheck.Enqueue(installedModuleGrid[50, 50]);
+
+        while (cellsToCheck.Count > 0)
+        {
+            ModuleDataRuntime curCell = cellsToCheck.Dequeue();
+            List<ModuleDataRuntime> curNeighbors = GetNeighborCells((int)curCell.x + 50, (int)curCell.z + 50, curCell);
+            foreach (ModuleDataRuntime curNeighbor in curNeighbors)
+            {
+                if (curNeighbor == null) continue;
+                if (curNeighbor.cost == ushort.MaxValue) { continue; } // we do not need to calculate where I could go from there because I can never be there
+                if (curNeighbor.cost + curCell.bestCost < curNeighbor.bestCost) // calculate where to go from that neighbor cell
+                {
+                    curNeighbor.bestCost = (ushort)(curNeighbor.cost + curCell.bestCost); // this works because initially all bestCost are ushort.max
+                    cellsToCheck.Enqueue(curNeighbor);
+                }
+            }
+        }
+    }
+
+    public void RemoveDisconnectedModules()
+    {
+        foreach (ModuleDataRuntime mdr in installedModuleData)
+        {
+            if (mdr.bestCost == ushort.MaxValue && moduleList.moduls[mdr.moduleTypeIndex].moduleType != ModuleType.StrafeEngine)
+            {
+                Debug.Log(mdr.x + " " + mdr.z);
+            }
+        }
+    }
+
+    private List<ModuleDataRuntime> GetNeighborCells(int x, int z, ModuleDataRuntime curCell)
+    {
+        List<ModuleDataRuntime> result = new();
+        // check all neighbors if they can be connected in the direction of the current field and if the current field can be connected in the neighbor's direction. If both apply, that direction is a valid path
+        if (moduleList.moduls[curCell.moduleTypeIndex].canHaveFrontNeighbor && installedModuleGrid[x - 1, z] != null && moduleList.moduls[installedModuleGrid[x - 1, z].moduleTypeIndex].canHaveBackNeighbor)
+        {
+            result.Add(installedModuleGrid[x - 1, z]);
+        }
+        if (moduleList.moduls[curCell.moduleTypeIndex].canHaveBackNeighbor && installedModuleGrid[x + 1, z] != null && moduleList.moduls[installedModuleGrid[x + 1, z].moduleTypeIndex].canHaveFrontNeighbor)
+        {
+            result.Add(installedModuleGrid[x + 1, z]);
+        }
+        if (moduleList.moduls[curCell.moduleTypeIndex].canHaveRightNeighbor && installedModuleGrid[x, z + 1] != null && moduleList.moduls[installedModuleGrid[x, z + 1].moduleTypeIndex].canHaveLeftNeighbor)
+        {
+            result.Add(installedModuleGrid[x, z + 1]);
+        }
+        if (moduleList.moduls[curCell.moduleTypeIndex].canHaveLeftNeighbor && installedModuleGrid[x, z - 1] != null && moduleList.moduls[installedModuleGrid[x, z - 1].moduleTypeIndex].canHaveRightNeighbor)
+        {
+            result.Add(installedModuleGrid[x, z - 1]);
+        }
+        return result;
     }
 
     private void OnDestroy()
@@ -236,7 +316,7 @@ public class ModuleStorage : MonoBehaviour
             // destroy gameObject
             Destroy(installedHangarModules[i].gameObject);
 
-           
+
         }
 
         // delete GameObject from List

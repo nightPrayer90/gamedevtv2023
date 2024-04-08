@@ -104,7 +104,7 @@ public class Sphere : MonoBehaviour
                 case SphereSide.left:
                     foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
-                        if ((module.x == spawnPositionX && module.z == spawnPositionZ - 1) || parentModul.haveParent == false)
+                        if ((module.x == spawnPositionX && module.z == spawnPositionZ - 1))
                         {
                             meshRenderer.enabled = false;
                             meshCollider.enabled = false;
@@ -123,7 +123,7 @@ public class Sphere : MonoBehaviour
                 case SphereSide.right:
                     foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
-                        if ((module.x == spawnPositionX && module.z == spawnPositionZ + 1) || parentModul.haveParent == false)
+                        if ((module.x == spawnPositionX && module.z == spawnPositionZ + 1))
                         {
                             meshRenderer.enabled = false;
                             meshCollider.enabled = false;
@@ -142,7 +142,7 @@ public class Sphere : MonoBehaviour
                 case SphereSide.front:
                     foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
-                        if ((module.x == spawnPositionX - 1 && module.z == spawnPositionZ) || parentModul.haveParent == false)
+                        if ((module.x == spawnPositionX - 1 && module.z == spawnPositionZ))
                         {
                             meshCollider.enabled = false;
                             meshRenderer.enabled = false;
@@ -161,7 +161,7 @@ public class Sphere : MonoBehaviour
                 case SphereSide.back:
                     foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
-                        if ((module.x == spawnPositionX + 1 && module.z == spawnPositionZ) || parentModul.haveParent == false)
+                        if ((module.x == spawnPositionX + 1 && module.z == spawnPositionZ))
                         {
                             meshRenderer.enabled = false;
                             meshCollider.enabled = false;

@@ -25,6 +25,10 @@ public class Modules
     public bool canRight = false;
     public bool canFront = false;
     public bool canBack = false;
+    public bool canHaveLeftNeighbor = false;
+    public bool canHaveRightNeighbor = false;
+    public bool canHaveFrontNeighbor = false;
+    public bool canHaveBackNeighbor = false;
     public ModuleValues moduleValues = new();
 }
 
