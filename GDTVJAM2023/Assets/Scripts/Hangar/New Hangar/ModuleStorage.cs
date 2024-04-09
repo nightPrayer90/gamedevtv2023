@@ -371,11 +371,21 @@ public class ModuleStorage : MonoBehaviour
                 go.transform.localPosition = new Vector3(instance.x, 0, instance.z);
                 go.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
-                BaseModule bm = go.GetComponent<BaseModule>();
+                BaseModule[] baseModules = go.GetComponents<BaseModule>();
 
+                int i = 0;
                 //copy all Module Vales
-                if (bm != null)
-                    bm.moduleValues = moduleList.moduls[instance.moduleTypeIndex].moduleValues;
+                foreach (BaseModule bm in baseModules)
+                {
+                    if (bm != null)
+                    {
+                        if (i == 0)
+                        {
+                            bm.moduleValues = moduleList.moduls[instance.moduleTypeIndex].moduleValues;
+                        }
+                    }
+                    i++;
+                }
             }
         }
     }

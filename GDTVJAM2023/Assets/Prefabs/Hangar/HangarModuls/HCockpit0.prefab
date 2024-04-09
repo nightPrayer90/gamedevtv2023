@@ -497,7 +497,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7057816587558836830}
-  m_Mesh: {fileID: 2094547527704587648, guid: 4dc46bbb892ac0541b325da773710856, type: 3}
+  m_Mesh: {fileID: -1089169484673301199, guid: f6abe699e9fe38c428fffd3fce822217, type: 3}
 --- !u!23 &5582534510747539000
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -552,8 +552,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7004057, y: 1.8587164, z: 0.2790688}
-  m_Center: {x: 0.010899544, y: 0.39185768, z: 0.13647829}
+  m_Size: {x: 0.7004057, y: 1.9701332, z: 0.26710495}
+  m_Center: {x: 0.010899544, y: 0.4475661, z: 0.13049637}
 --- !u!1 &8919917907132705989
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 8919917907132705990}
   - component: {fileID: -5058857993275173830}
   m_Layer: 7
-  m_Name: HCockpitRocket
+  m_Name: HCockpit0
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

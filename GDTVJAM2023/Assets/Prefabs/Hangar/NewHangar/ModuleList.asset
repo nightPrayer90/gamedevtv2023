@@ -33,20 +33,209 @@ MonoBehaviour:
       canRight: 0
       canFront: 0
       canBack: 0
-      modulDescription_multiLineText: "Energie Production: 2.5 TJ/s\r\nEnergie Storage:
-        10 TJ\r\nHealth: 10 TP\r\n<color=\"red\">Bullet class: +1 </color>\r"
-      costMass: 1
+      modulDescription_multiLineText: "Energie Production: 1.9 TJ/s\r\nEnergie Storage:
+        7 TJ\r\nHealth: 8 HP\r\n<color=\"red\">Bullet class: +1 </color>\r"
+      costMass: 0.6
       costEnergie: 0
-      energieProduction: 2.5
-      energieStorage: 10
-      health: 10
+      energieProduction: 1.9
+      energieStorage: 7
+      health: 8
       protection: 0
       mainEngine: 0
       directionEngine: 0
       strafeEngine: 0
       boostEngine: 0
       boostStrafeEngine: 0
-      bulletClass: 1
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Wing 00 left (BS)
+    modulePrefabs: {fileID: 3509744163337706340, guid: e38bd7d21b4432047a7efda185661a17, type: 3}
+    hangarPrefab: {fileID: 3509744163337706340, guid: 9d5ae236a5ded114caea9a3e7fe46e64, type: 3}
+    modulSprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
+    moduleType: 5
+    canLeft: 1
+    canRight: 0
+    canFront: 0
+    canBack: 0
+    canHaveLeftNeighbor: 0
+    canHaveRightNeighbor: 1
+    canHaveFrontNeighbor: 0
+    canHaveBackNeighbor: 1
+    moduleValues:
+      moduleName: Wing 00 left (BS)
+      moduleType: 5
+      canLeft: 1
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: "<color=#FFBF00>Wing with midrange bullet attack</color>\r\nDamage:
+        2 HP/ hit\r\nFirerate: 4 bullets/s \nConnector: back"
+      costMass: 0.2
+      costEnergie: 0.2
+      energieProduction: 0
+      energieStorage: 0
+      health: 1
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Wing 00 right (BS)
+    modulePrefabs: {fileID: 3509744163337706340, guid: d54ff805a3ee8de448d71ca6f33226c2, type: 3}
+    hangarPrefab: {fileID: 3509744163337706340, guid: e020c86d2ad8a8347b7bec3e70dfa593, type: 3}
+    modulSprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
+    moduleType: 5
+    canLeft: 0
+    canRight: 1
+    canFront: 0
+    canBack: 0
+    canHaveLeftNeighbor: 1
+    canHaveRightNeighbor: 0
+    canHaveFrontNeighbor: 0
+    canHaveBackNeighbor: 1
+    moduleValues:
+      moduleName: Wing 00 right (BS)
+      moduleType: 5
+      canLeft: 0
+      canRight: 1
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: "<color=#FFBF00>Wing with midrange bullet attack</color>\r\nDamage:
+        2 HP/ hit\r\nFirerate: 4 bullets/s \nConnector: back"
+      costMass: 0.2
+      costEnergie: 0.2
+      energieProduction: 0
+      energieStorage: 0
+      health: 1
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Main Engine 0
+    modulePrefabs: {fileID: 6234797105683024306, guid: db1dafc08107f8e40b58d894a7a4fa5b, type: 3}
+    hangarPrefab: {fileID: 6234797105683024306, guid: bca6781ce9bcc264a9282a2f6034c3fa, type: 3}
+    modulSprite: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
+    moduleType: 1
+    canLeft: 0
+    canRight: 0
+    canFront: 0
+    canBack: 1
+    canHaveLeftNeighbor: 0
+    canHaveRightNeighbor: 0
+    canHaveFrontNeighbor: 1
+    canHaveBackNeighbor: 0
+    moduleValues:
+      moduleName: Main Engine 0
+      moduleType: 1
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 1
+      modulDescription_multiLineText: "<color=#FFBF00>You need one main engine to
+        fly \r\nforwards or backwards.</color>\r\nThrust force: 5 TJ\r\nBoost force:
+        <color=#00FFFF>8 TJ </color>\r\nYou get the Ability  <color=#00FFFF>Power
+        Boost</color>"
+      costMass: 0.2
+      costEnergie: 0.4
+      energieProduction: 0
+      energieStorage: 0
+      health: 0
+      protection: 0
+      mainEngine: 5
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 8
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Direction Engine 0
+    modulePrefabs: {fileID: 3538126319694765833, guid: 432ae4b429e793a459cf133cde93e210, type: 3}
+    hangarPrefab: {fileID: 3538126319694765833, guid: 4cbd91a62b37e7e4e935da2973e04073, type: 3}
+    modulSprite: {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
+    moduleType: 3
+    canLeft: 0
+    canRight: 0
+    canFront: 0
+    canBack: 1
+    canHaveLeftNeighbor: 0
+    canHaveRightNeighbor: 0
+    canHaveFrontNeighbor: 1
+    canHaveBackNeighbor: 0
+    moduleValues:
+      moduleName: Direction Engine 0
+      moduleType: 3
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 1
+      modulDescription_multiLineText: "<color=#FFBF00>You need two direction engines
+        to \r\nbe able to turn your ship in space.</color>\r\nTorque force: 0.27
+        TNm"
+      costMass: 0.05
+      costEnergie: 0.1
+      energieProduction: 0
+      energieStorage: 0
+      health: 0
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0.27
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Strafe Engine 0
+    modulePrefabs: {fileID: 7337684759434239658, guid: 9c7457030927679498ecc18f972067c3, type: 3}
+    hangarPrefab: {fileID: 7337684759434239658, guid: 80edf329a6db7f340a4a6457885cc012, type: 3}
+    modulSprite: {fileID: 21300000, guid: f2a3444a22688804a856c2dbc72a0f88, type: 3}
+    moduleType: 2
+    canLeft: 0
+    canRight: 0
+    canFront: 0
+    canBack: 0
+    canHaveLeftNeighbor: 0
+    canHaveRightNeighbor: 0
+    canHaveFrontNeighbor: 0
+    canHaveBackNeighbor: 0
+    moduleValues:
+      moduleName: Strafe Engine 0
+      moduleType: 2
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: "<color=#FFBF00>The Strafe engine allows you
+        \r\nto strafe left and right.</color>\r\nStrafe force: 3 TJ\r\nBoost force:
+        <color=#00FFFF>5 TJ </color>"
+      costMass: 0.1
+      costEnergie: 0.1
+      energieProduction: 0
+      energieStorage: 0
+      health: 0
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 3
+      boostEngine: 0
+      boostStrafeEngine: 5
+      bulletClass: 0
       rocketClass: 0
       laserClass: 0
       supportClass: 0
@@ -88,122 +277,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
-  - moduleName: Main Engine
-    modulePrefabs: {fileID: 6234797105683024306, guid: db1dafc08107f8e40b58d894a7a4fa5b, type: 3}
-    hangarPrefab: {fileID: 6234797105683024306, guid: bca6781ce9bcc264a9282a2f6034c3fa, type: 3}
-    modulSprite: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
-    moduleType: 1
-    canLeft: 0
-    canRight: 0
-    canFront: 0
-    canBack: 1
-    canHaveLeftNeighbor: 0
-    canHaveRightNeighbor: 0
-    canHaveFrontNeighbor: 1
-    canHaveBackNeighbor: 0
-    moduleValues:
-      moduleName: Main Engine
-      moduleType: 1
-      canLeft: 0
-      canRight: 0
-      canFront: 0
-      canBack: 1
-      modulDescription_multiLineText: "<color=#FFBF00>You need one main engine to
-        fly \r\nforwards or backwards.</color>\r\nThrust force: 5 TJ\r\nBoost force:
-        <color=#00FFFF>8 TJ </color>\r\nYou get the Ability  <color=#00FFFF>Power
-        Boost</color>"
-      costMass: 0.2
-      costEnergie: 0.4
-      energieProduction: 0
-      energieStorage: 0
-      health: 0
-      protection: 0
-      mainEngine: 5
-      directionEngine: 0
-      strafeEngine: 0
-      boostEngine: 8
-      boostStrafeEngine: 0
-      bulletClass: 0
-      rocketClass: 0
-      laserClass: 0
-      supportClass: 0
-  - moduleName: Direction Engine
-    modulePrefabs: {fileID: 3538126319694765833, guid: 432ae4b429e793a459cf133cde93e210, type: 3}
-    hangarPrefab: {fileID: 3538126319694765833, guid: 4cbd91a62b37e7e4e935da2973e04073, type: 3}
-    modulSprite: {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
-    moduleType: 3
-    canLeft: 0
-    canRight: 0
-    canFront: 0
-    canBack: 1
-    canHaveLeftNeighbor: 0
-    canHaveRightNeighbor: 0
-    canHaveFrontNeighbor: 1
-    canHaveBackNeighbor: 0
-    moduleValues:
-      moduleName: Direction Engine
-      moduleType: 3
-      canLeft: 0
-      canRight: 0
-      canFront: 0
-      canBack: 1
-      modulDescription_multiLineText: "<color=#FFBF00>You need two direction engines
-        to \r\nbe able to turn your ship in space.</color>\r\nTorque force: 0.27
-        TNm"
-      costMass: 0.05
-      costEnergie: 0.1
-      energieProduction: 0
-      energieStorage: 0
-      health: 0
-      protection: 0
-      mainEngine: 0
-      directionEngine: 0.27
-      strafeEngine: 0
-      boostEngine: 0
-      boostStrafeEngine: 0
-      bulletClass: 0
-      rocketClass: 0
-      laserClass: 0
-      supportClass: 0
-  - moduleName: Strafe Engine
-    modulePrefabs: {fileID: 7337684759434239658, guid: 9c7457030927679498ecc18f972067c3, type: 3}
-    hangarPrefab: {fileID: 7337684759434239658, guid: 80edf329a6db7f340a4a6457885cc012, type: 3}
-    modulSprite: {fileID: 21300000, guid: f2a3444a22688804a856c2dbc72a0f88, type: 3}
-    moduleType: 2
-    canLeft: 0
-    canRight: 0
-    canFront: 0
-    canBack: 0
-    canHaveLeftNeighbor: 0
-    canHaveRightNeighbor: 0
-    canHaveFrontNeighbor: 0
-    canHaveBackNeighbor: 0
-    moduleValues:
-      moduleName: Strafe Engine
-      moduleType: 2
-      canLeft: 0
-      canRight: 0
-      canFront: 0
-      canBack: 0
-      modulDescription_multiLineText: "<color=#FFBF00>The Strafe engine allows you
-        \r\nto strafe left and right.</color>\r\nStrafe force: 3 TJ\r\nBoost force:
-        <color=#00FFFF>5 TJ </color>"
-      costMass: 0.1
-      costEnergie: 0.1
-      energieProduction: 0
-      energieStorage: 0
-      health: 0
-      protection: 0
-      mainEngine: 0
-      directionEngine: 0
-      strafeEngine: 3
-      boostEngine: 0
-      boostStrafeEngine: 5
-      bulletClass: 0
-      rocketClass: 0
-      laserClass: 0
-      supportClass: 0
-  - moduleName: Bullet Shooter Front
+  - moduleName: Bullet Shooter front
     modulePrefabs: {fileID: 5320222491944983181, guid: e8568299a8cef5b459f2152b7e17b8bb, type: 3}
     hangarPrefab: {fileID: 5320222491944983181, guid: 421154c17452542499d6be8edd596b14, type: 3}
     modulSprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
@@ -226,7 +300,7 @@ MonoBehaviour:
       modulDescription_multiLineText: '<color=#FFBF00>Midrange bullet attack</color>
 
         Damage:
-        3 TP/ hit
+        3 HP/ hit
 
         Firerate: 2,5 bullets/s'
       costMass: 0.05
@@ -265,7 +339,7 @@ MonoBehaviour:
       canFront: 0
       canBack: 0
       modulDescription_multiLineText: "<color=#FFBF00>Short range rocket attack.
-        Fire \r\nhoming rockets with explosion AOE</color>\r\nDamage: 6 TP/hit\r\nFirerate:
+        Fire \r\nhoming rockets with explosion AOE</color>\r\nDamage: 6 HP/hit\r\nFirerate:
         1 rocked/s"
       costMass: 0.15
       costEnergie: 0.15
@@ -296,14 +370,14 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: 
-      moduleType: 0
+      moduleName: RocketShooter Right
+      moduleType: 5
       canLeft: 0
-      canRight: 0
+      canRight: 1
       canFront: 0
       canBack: 0
       modulDescription_multiLineText: "<color=#FFBF00>Short range rocket attack.
-        Fire \r\nhoming rockets with explosion AOE</color>\r\nDamage: 6 TP/hit\r\nFirerate:
+        Fire \r\nhoming rockets with explosion AOE</color>\r\nDamage: 6 HP/hit\r\nFirerate:
         1 rocked/s"
       costMass: 0.15
       costEnergie: 0.15
@@ -370,9 +444,9 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: 
+      moduleName: Wing 01 left
       moduleType: 0
-      canLeft: 0
+      canLeft: 1
       canRight: 0
       canFront: 0
       canBack: 0
@@ -508,9 +582,53 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+  - moduleName: Cockpit Bullet
+    modulePrefabs: {fileID: 8919917907132705989, guid: bf45f026dcfb8fe48be46de0f2a1a408, type: 3}
+    hangarPrefab: {fileID: 8919917907132705989, guid: 5073fba1e0babe74b91895200a7e6fbc, type: 3}
+    modulSprite: {fileID: 21300000, guid: 1e1ffa433f68c644c9a4da3169d71e46, type: 3}
+    moduleType: 4
+    canLeft: 0
+    canRight: 0
+    canFront: 0
+    canBack: 0
+    canHaveLeftNeighbor: 1
+    canHaveRightNeighbor: 1
+    canHaveFrontNeighbor: 0
+    canHaveBackNeighbor: 1
+    moduleValues:
+      moduleName: Cockpit Bullet
+      moduleType: 4
+      canLeft: 0
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: 'Energie Production: 2.5 TJ/s
+
+        Energie
+        Storage: 10 TJ
+
+        Health: 10 TP
+
+        <color="red">Bullet class:
+        +1 </color>'
+      costMass: 1
+      costEnergie: 0
+      energieProduction: 2.5
+      energieStorage: 10
+      health: 10
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 1
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
   - moduleName: Cockpit Rocket
-    modulePrefabs: {fileID: 8919917907132705989, guid: 1cd9fb2984961994eb5dc6524501ef17, type: 3}
-    hangarPrefab: {fileID: 8919917907132705989, guid: 75a31e48dfcce32499637b23cf8a4a52, type: 3}
+    modulePrefabs: {fileID: 8919917907132705989, guid: 5c854dcaded65be4aadbffce1fa6925a, type: 3}
+    hangarPrefab: {fileID: 8919917907132705989, guid: b8966957bf8324842b678ccb122a6c75, type: 3}
     modulSprite: {fileID: 21300000, guid: 1e1ffa433f68c644c9a4da3169d71e46, type: 3}
     moduleType: 4
     canLeft: 0
@@ -553,8 +671,8 @@ MonoBehaviour:
       laserClass: 0
       supportClass: 0
   - moduleName: Cockpit Laser
-    modulePrefabs: {fileID: 8919917907132705989, guid: 5c854dcaded65be4aadbffce1fa6925a, type: 3}
-    hangarPrefab: {fileID: 8919917907132705989, guid: b8966957bf8324842b678ccb122a6c75, type: 3}
+    modulePrefabs: {fileID: 8919917907132705989, guid: 1cd9fb2984961994eb5dc6524501ef17, type: 3}
+    hangarPrefab: {fileID: 8919917907132705989, guid: 75a31e48dfcce32499637b23cf8a4a52, type: 3}
     modulSprite: {fileID: 21300000, guid: a234fb4dc61c9c44da3e6ae32922551f, type: 3}
     moduleType: 4
     canLeft: 0
@@ -732,7 +850,7 @@ MonoBehaviour:
       health: 1
       protection: 0
       mainEngine: 0
-      directionEngine: 1
+      directionEngine: 0.27
       strafeEngine: 0
       boostEngine: 0
       boostStrafeEngine: 0

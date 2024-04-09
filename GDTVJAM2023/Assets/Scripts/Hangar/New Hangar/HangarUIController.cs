@@ -183,11 +183,12 @@ public class HangarUIController : MonoBehaviour
             removePanel.blocksRaycasts = true;
             removePanel.DOFade(1, 0.2f);
         }
-        if (removePanel.alpha == 1)
+        if (removePanel.alpha == 1 && selectedModul.moduleValues.moduleType == ModuleType.Cockpit)
         {
             removePanel.blocksRaycasts = false;
             removePanel.DOFade(0, 0.2f);
         }
+
 
         if (selectionContentPanel.alpha != 1)
         {
