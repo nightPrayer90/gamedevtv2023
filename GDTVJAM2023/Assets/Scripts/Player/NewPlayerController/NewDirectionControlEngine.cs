@@ -26,6 +26,8 @@ public class NewDirectionControlEngine : BaseModule
         // Update Module Values to Player Controller - Function comes from BaseModule
         UpdateModuleValues();
 
+        torqueForce = moduleValues.directionEngine;
+
         playerController = GetComponentInParent<NewPlayerController>();
         playerController.OnUpdateRotateSpeed += HandleRotateSpeed;
         playerRigidbody = playerController.GetComponent<Rigidbody>();

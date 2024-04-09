@@ -5,14 +5,13 @@ using UnityEngine;
 public class HangarModul : MonoBehaviour
 {
     [Header("Management")]
-    public bool isSelected = false;
-    public bool hasDeleteButton = false; // only ture on Cockpit or Strafe modules
+    [HideInInspector] public bool isSelected = false;
 
     [Header("GameObjects")]
     public List<Sphere> spheres;
     private Selection selectionController;
     private ModuleStorage moduleStorage;
-    public List<int> possibleReplacements;
+    [HideInInspector] public List<int> possibleReplacements;
     private MeshRenderer childMeshRenderer;
     public Material highlightMaterial;
     private Material shipMaterial;

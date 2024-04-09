@@ -2534,6 +2534,7 @@ MonoBehaviour:
   cpRocketText: {fileID: 1479575865}
   cpLaserText: {fileID: 359753141}
   cpSupportText: {fileID: 1656023399}
+  notificationText: {fileID: 592853758}
   moduleStorage: {fileID: 1761201646}
   contentParent: {fileID: 1795571762}
   moduleContentPanelPrefab: {fileID: 7393697055927682587, guid: 7c78940b21f8ebc4588dfe687b477e89, type: 3}
@@ -9785,6 +9786,7 @@ MonoBehaviour:
   backModules: 
   strafeModules: 
   isAllConnected: 1
+  isEnergiePositiv: 1
 --- !u!4 &1761201647
 Transform:
   m_ObjectHideFlags: 0

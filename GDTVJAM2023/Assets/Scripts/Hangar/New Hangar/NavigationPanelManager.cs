@@ -102,7 +102,7 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
                 hangarUIController.SetShipPanel();
                 break;
         }
-
+        AudioManager.Instance.PlaySFX("HangarNewShip");
     }
     #endregion
 }

@@ -70,6 +70,7 @@ public class ModuleStorage : MonoBehaviour
     public List<int> strafeModules;
 
     public bool isAllConnected = true;
+    public bool isEnergiePositiv = true;
 
     // Start is called before the first frame update
     void Start()
@@ -149,6 +150,8 @@ public class ModuleStorage : MonoBehaviour
                 // 
                 BuildModuleGrid();
 
+                AudioManager.Instance.PlaySFX("HangarDelete");
+
                 // exit For
                 break;
             }
@@ -219,6 +222,9 @@ public class ModuleStorage : MonoBehaviour
         // HideButton
         isAllConnected = true;
         ControllUnconnectedModules();
+
+        AudioManager.Instance.PlaySFX("HangarDeleteAll");
+
     }
 
     public void RemoveAllModule()

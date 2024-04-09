@@ -55,12 +55,17 @@ public class HangarUIController : MonoBehaviour
     public TextMeshProUGUI cpLaserText;
     public TextMeshProUGUI cpSupportText;
 
+    [Header("Notification Panel")]
+    public TextMeshProUGUI notificationText;
+
     [Header("Game Objects")]
     public ModuleStorage moduleStorage;
     public Transform contentParent;
     public GameObject moduleContentPanelPrefab;
     private Selection selectionController;
     private List<GameObject> goContentPanels = new List<GameObject>();
+
+   
 
     private void Awake()
     {
@@ -173,12 +178,12 @@ public class HangarUIController : MonoBehaviour
         // Handle Panel UI
         removePanel.DOKill();
         selectionContentPanel.DOKill();
-        if (removePanel.alpha != 1 && selectedModul.hasDeleteButton == false) //TODO hasNoParentControll - cant delete Cockpit or StrafeEngine
+        if (removePanel.alpha != 1 && selectedModul.moduleValues.moduleType != ModuleType.Cockpit) //TODO hasNoParentControll - cant delete Cockpit or StrafeEngine
         {
             removePanel.blocksRaycasts = true;
             removePanel.DOFade(1, 0.2f);
         }
-        if (removePanel.alpha == 1 && selectedModul.hasDeleteButton == true)
+        if (removePanel.alpha == 1)
         {
             removePanel.blocksRaycasts = false;
             removePanel.DOFade(0, 0.2f);
@@ -337,15 +342,26 @@ public class HangarUIController : MonoBehaviour
         spMassValue.text = massResult.ToString() + " t";
         spEnergieProduction.text = energieProductionResult.ToString() + " TJ/s";
         spEnergieInUse.text = energieRegenResult.ToString() + " TJ/s";
+        
+        spEnergieInUse.color = energieProductionResult < energieRegenResult ? Color.red : Color.white;
+        moduleStorage.isEnergiePositiv = energieProductionResult < energieRegenResult ? false : true;
+
         energieRegenResult = Mathf.Round((energieProductionResult - energieRegenResult) * 100) / 100;
         spEnergieRegen.text = (energieRegenResult).ToString() + " TJ/s"; // TODO: do it red if it is smaller than 0
         spEnergieStorage.text = energieStorage.ToString() + " TJ";
-        spHealth.text = health.ToString() + " HP";
-        spProtection.text = protection.ToString() + " %";
         spMainEngine.text = mainEngine.ToString() + " /<color=#00FFFF>" + boostEngine.ToString() + "</color> TN";
         directionEngine = Mathf.Round((directionEngine / 2) * 100) / 100;
         spDirectionEngine.text = directionEngine.ToString() + " TNm";
         spStrafeEngine.text = strafeEngine.ToString() + " /<color=#00FFFF>" + boostStrafe.ToString() + "</color> TN";
+
+
+        spHealth.text = health.ToString() + " HP";
+
+        protection = Mathf.InverseLerp(0, 10, protection);
+        protection = Mathf.RoundToInt(Mathf.Sqrt(protection) * 60);
+
+        spProtection.text = protection.ToString() + " %";
+
 
         //Class Panel
         cpBulletImage.enabled = (bulletClass > 0) ? true : false;
@@ -367,13 +383,25 @@ public class HangarUIController : MonoBehaviour
     #region Button Controls
     public void GameStart()
     {
-        if (moduleStorage.isAllConnected == true)
+        if (moduleStorage.isAllConnected == true && moduleStorage.isEnergiePositiv == true)
         {
             AudioManager.Instance.PlaySFX("MouseKlick");
             SceneManager.LoadScene(gameScene);
         }
         else
         {
+            if (moduleStorage.isEnergiePositiv == false)
+            {
+                notificationText.text = "Your ship needs more energy than it produces!";
+                AudioManager.Instance.PlaySFX("CantStartGame1");
+            }
+
+            if (moduleStorage.isAllConnected == false)
+            {
+                notificationText.text = "All modules must be connected!";
+                AudioManager.Instance.PlaySFX("CantStartGame2");
+            }
+           
             notificationPanel.alpha = 1;
             notificationPanel.DOKill();
             notificationPanel.DOFade(0, 3f).SetDelay(1f);

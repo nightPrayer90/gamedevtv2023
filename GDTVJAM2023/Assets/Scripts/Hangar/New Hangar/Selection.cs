@@ -88,6 +88,8 @@ public class Selection : MonoBehaviour
                         selection.GetComponentInParent<HangarModul>().SetActive();
                         hangarUIController.HandleModulSelect(selection);
                         lastSelection = selection;
+
+                        AudioManager.Instance.PlaySFX("HangarSelectPart");
                     }
 
                     // select a part modul sphere
@@ -102,6 +104,8 @@ public class Selection : MonoBehaviour
                         selection.GetComponentInParent<Sphere>().SetActive();
                         hangarUIController.HandleShpereSelect(selection);
                         lastSelection = selection;
+
+                        AudioManager.Instance.PlaySFX("HangarSelectSphere");
                     }
 
                     // klick at a free space

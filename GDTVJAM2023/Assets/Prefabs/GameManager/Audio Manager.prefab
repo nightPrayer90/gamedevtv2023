@@ -152,6 +152,28 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 1d5a9af2f4e97da42a9bdb59e9a4a5e7, type: 3}
   - name: ShieldCollision
     clip: {fileID: 8300000, guid: 846e03b63d518814783b8ea67e97c251, type: 3}
+  - name: HangarBuild1
+    clip: {fileID: 8300000, guid: fd7fe1a3aba09134795987427e0aa628, type: 3}
+  - name: HangarBuild2
+    clip: {fileID: 8300000, guid: da4916c8705b83641b2c2ad5a57ba210, type: 3}
+  - name: HangarBuild3
+    clip: {fileID: 8300000, guid: d1736b15d6ff7bc4aa07d19b210ef985, type: 3}
+  - name: HangarBuild4
+    clip: {fileID: 8300000, guid: 2c4f9b2b7a08dff41893523c06f2abe3, type: 3}
+  - name: CantStartGame1
+    clip: {fileID: 8300000, guid: 6102edab95f919c4985f7e8e3117bd33, type: 3}
+  - name: CantStartGame2
+    clip: {fileID: 8300000, guid: 8b08ed68ff15dea4e9e35debd5233f04, type: 3}
+  - name: HangarDeleteAll
+    clip: {fileID: 8300000, guid: b4383be7e160b844b89cd8958ee670fa, type: 3}
+  - name: HangarDelete
+    clip: {fileID: 8300000, guid: af4edbd568bd00a488caa3559462ea9d, type: 3}
+  - name: HangarNewShip
+    clip: {fileID: 8300000, guid: b988ae0845f46dc4c82d56178d30fe3f, type: 3}
+  - name: HangarSelectPart
+    clip: {fileID: 8300000, guid: fec9f9de5ee9e1f49bc60ee2b0fb543f, type: 3}
+  - name: HangarSelectSphere
+    clip: {fileID: 8300000, guid: 248de0f50de5a6e4a9f7ad02f44419d0, type: 3}
   musicSource: {fileID: 5360521062723552136}
   sfxSource: {fileID: 6929376283259157201}
   musicVolume: 0.2

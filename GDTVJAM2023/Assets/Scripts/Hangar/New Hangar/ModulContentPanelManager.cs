@@ -181,6 +181,15 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
 
         hangarUIController.SetShipPanel();
 
+        int ran = Random.Range(0, 4);
+        switch (ran)
+        {
+            case 0: AudioManager.Instance.PlaySFX("HangarBuild1"); break;
+            case 1: AudioManager.Instance.PlaySFX("HangarBuild2"); break;
+            case 2: AudioManager.Instance.PlaySFX("HangarBuild3"); break;
+            case 3: AudioManager.Instance.PlaySFX("HangarBuild4"); break;
+        }
+
 
 
         selectionManager.DeselectAll();
