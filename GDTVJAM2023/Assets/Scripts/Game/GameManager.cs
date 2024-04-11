@@ -797,7 +797,7 @@ public class GameManager : MonoBehaviour
     {
         expCollected = Mathf.RoundToInt((float)expCollected * percent);
 
-        switch (playerData.playerShip)
+        /*switch (playerData.playerShip)
         {
             case 0:
                 playerData.expBullet += expCollected;
@@ -808,10 +808,10 @@ public class GameManager : MonoBehaviour
             case 2:
                 playerData.expLaser += expCollected;
                 break;
-        }
+        }*/
 
         // TODO: Speichern!
-        AudioManager.Instance.SavePlayerData();
+       // AudioManager.Instance.SavePlayerData();
 
         return expCollected;
     }

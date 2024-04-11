@@ -5213,7 +5213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduleList: {fileID: 11400000, guid: 0cbbf3c8352d3e449baf78feda11ae88, type: 2}
   moduleCounts: 
-  credits: 495135
+  credits: 0
   activeLevel: 1
   moduleContainers:
   - {fileID: 1861080676}
@@ -5225,6 +5225,7 @@ MonoBehaviour:
   - {fileID: 1174583640}
   - {fileID: 434920754}
   - {fileID: 1210816068}
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   highligtMaterial: {fileID: 2100000, guid: a0bd76e122baffa42afe8f7627db8cea, type: 2}
   selectionMaterial: {fileID: 2100000, guid: 7e4aed4964de54f42b49c2559ee88a7b, type: 2}
   creditsText: {fileID: 475707908}

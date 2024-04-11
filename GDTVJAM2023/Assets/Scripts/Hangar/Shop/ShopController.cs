@@ -11,9 +11,12 @@ public class ShopController : MonoBehaviour
     // Module Management
     public ModuleList moduleList;
     public List<int> moduleCounts;
-    public int credits = 5000;
+    public int credits = 0;
     public int activeLevel = 0;
+    //private IDataService dataService = new JsonDataService();
     public List<ShopModuleContainer> moduleContainers;
+    //public PlayerStats playerStats = new PlayerStats();
+    public PlayerData playerData;
 
     // Selection
     public Material highligtMaterial;
@@ -36,17 +39,34 @@ public class ShopController : MonoBehaviour
     // Events
     //public event Action OnDeselect;
 
+
+
+
+    /* **************************************************************************** */
+    /* LIFECYCLE------------------------------------------------------------------- */
+    /* **************************************************************************** */
     private void Awake()
     {
-        // TODO Load from SaveData---------
-        int count = moduleList.moduls.Count;
-        for (int i = 0; i < count; i++)
+        // ToDo - do this in one scribteble object - Playerdata
+        // Try to load playerStats - Move this Later to PlayerData
+        //playerStats = dataService.LoadData<PlayerStats>("playerData.json", false);
+        if (playerData.moduleCounts.Count > 0)
+        {
+            // set data from SaveGame
+            for (int i = 0; i < playerData.moduleCounts.Count; i++)
+            {
+                moduleCounts.Add(playerData.moduleCounts[i]);
+            }
+        }
+        // fill the rest of the list*/
+        while (moduleCounts.Count < moduleList.moduls.Count)
         {
             moduleCounts.Add(0);
         }
 
+
         // credits
-        UpdateCredits(0);
+        UpdateCredits(playerData.credits);
 
         // reset
         buyPanel.alpha = 0;
@@ -148,6 +168,26 @@ public class ShopController : MonoBehaviour
 
         }
     }
+
+    private void OnDestroy()
+    {
+        playerData.moduleCounts.Clear();
+
+        foreach (int i in moduleCounts)
+        {
+            playerData.moduleCounts.Add(i);
+        }
+
+        playerData.credits = credits;
+
+        // Save Data into Player File
+        AudioManager.Instance.SavePlayerData();
+    }
+
+    /* **************************************************************************** */
+    /* SELECTION CONTROL----------------------------------------------------------- */
+    /* **************************************************************************** */
+
 
     public void DeselectAll()
     {

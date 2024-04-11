@@ -17,6 +17,8 @@ public class MenuButtonController : MonoBehaviour
     public TMP_Dropdown qualityDropdown;
     public Toggle fullScreenBtn;
 
+    
+
     /* **************************************************************************** */
     /* Lifecycle-Methoden---------------------------------------------------------- */
     /* **************************************************************************** */
@@ -79,6 +81,13 @@ public class MenuButtonController : MonoBehaviour
     /* **************************************************************************** */
     public void GameStart()
     {
+        AudioManager.Instance.SetPlayerDataToDefault();
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        SceneManager.LoadScene(gameScene);
+    }
+    public void GameLoad()
+    {
+        AudioManager.Instance.LoadPlayerData();
         AudioManager.Instance.PlaySFX("MouseKlick");
         SceneManager.LoadScene(gameScene);
     }

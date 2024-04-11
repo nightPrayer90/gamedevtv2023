@@ -53,8 +53,8 @@ public class SaveAndStart : MonoBehaviour
     // only for Editor Runtime
     private void LoadPlayerData()
     {
-        playerData.savePath = AudioManager.Instance.playerStats.savePath;
+       /* playerData.savePath = AudioManager.Instance.playerStats.savePath;
         Debug.Log(AudioManager.Instance.playerStats.playerName);
-        playerData.playerName = AudioManager.Instance.playerStats.playerName;
+        playerData.playerName = AudioManager.Instance.playerStats.playerName;*/
     }
 }

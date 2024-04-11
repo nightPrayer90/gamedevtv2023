@@ -9787,6 +9787,7 @@ MonoBehaviour:
   strafeModules: 
   isAllConnected: 1
   isEnergiePositiv: 1
+  playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
 --- !u!4 &1761201647
 Transform:
   m_ObjectHideFlags: 0

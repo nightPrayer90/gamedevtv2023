@@ -15,16 +15,11 @@ public class PlayerData : ScriptableObject
     public int playerShipIcon;
 
     // hangar
-    [Header("Hangar")]
-    public int playerShip = 0;
-    public int playerShipCount = 1; //unlocking ships
-    public int expBullet = 0;
-    public int expRocket = 0;
-    public int expLaser = 0;
-    public int globalUpgradeCountBullet = 0;
-    public int globalUpgradeCountRocket = 0;
-    public int globalUpgradeCountLaser = 0;
-    public List<int> bulletResearchedSkills;
-    public List<int> rocketResearchedSkills;
-    public List<int> laserResearchedSkills;
+    [Header("Hangar and Shop")]
+    public List<int> moduleCounts = new();
+    public int credits;
+
+    // Game
+    [Header("Game")]
+    public int bossLevel = 0;
 }

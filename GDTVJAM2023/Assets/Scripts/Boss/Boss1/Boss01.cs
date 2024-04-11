@@ -64,11 +64,11 @@ public class Boss01 : MonoBehaviour
         enemyHealthScr.DieEvent += EnemyHealthScr_DieEvent;
 
         // TODOO MESSE - rocketship hat boss 1 weniger leben
-        if (playerData.playerShip == 1) //rocketship
+        /*if (playerData.playerShip == 1) //rocketship
         {
             enemyHealthScr.enemyHealth = Mathf.CeilToInt(enemyHealthScr.enemyHealth * 0.70f);
             enemyHealthScr.enemyStartHealth = enemyHealthScr.enemyHealth;
-        }
+        }*/
 
         // set values
         enemyHealthScr.canTakeDamage = false;

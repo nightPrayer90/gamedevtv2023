@@ -338,6 +338,7 @@ public class SaveLoadTest : MonoBehaviour
         playerData.playerShipIcon = playerStats.shipPanelIndex;
 
         // Hangar
+        /*
         playerData.playerShip = playerStats.playerShip;
         playerData.playerShipCount = playerStats.playerShipCount;
         playerData.expBullet = playerStats.expBullet;
@@ -382,6 +383,7 @@ public class SaveLoadTest : MonoBehaviour
         playerData.laserResearchedSkills.Add(playerStats.laserRS_8);
         playerData.laserResearchedSkills.Add(playerStats.laserRS_9);
         playerData.laserResearchedSkills.Add(playerStats.laserRS_10);
+        */
     }
 
 }

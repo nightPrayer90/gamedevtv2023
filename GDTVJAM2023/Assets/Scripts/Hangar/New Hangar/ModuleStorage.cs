@@ -72,7 +72,16 @@ public class ModuleStorage : MonoBehaviour
     public bool isAllConnected = true;
     public bool isEnergiePositiv = true;
 
-    // Start is called before the first frame update
+    //PlayerData
+    public PlayerData playerData;
+    private IDataService dataServiceStats = new JsonDataService();
+
+
+
+    /* **************************************************************************** */
+    /* LIFECYCLE------------------------------------------------------------------- */
+    /* **************************************************************************** */
+
     void Start()
     {
         gameManager = GameObject.Find("Game Manager");
@@ -122,7 +131,13 @@ public class ModuleStorage : MonoBehaviour
             moduleDataSave.Add(moduleData);
         }
         dataService.SaveData("modules.json", moduleDataSave, false);
+        AudioManager.Instance.SavePlayerData();
     }
+
+
+    /* **************************************************************************** */
+    /* HANDLE HANGAR FUNCTIONS----------------------------------------------------- */
+    /* **************************************************************************** */
 
     public void HangarRemoveModule()
     {
@@ -296,8 +311,6 @@ public class ModuleStorage : MonoBehaviour
         }
     }
 
-    
-
     private List<ModuleDataRuntime> GetNeighborCells(int x, int z, ModuleDataRuntime curCell)
     {
         List<ModuleDataRuntime> result = new();
@@ -320,8 +333,6 @@ public class ModuleStorage : MonoBehaviour
         }
         return result;
     }
-
-    
 
     public void NewShip()
     {
@@ -389,8 +400,6 @@ public class ModuleStorage : MonoBehaviour
             }
         }
     }
-
-  
 
     private void CreateModuleLists()
     {
