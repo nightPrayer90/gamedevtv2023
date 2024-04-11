@@ -125,6 +125,12 @@ public class AudioManager : MonoBehaviour
         {
             File.Delete(path);
         }
+        //TODO save Modules in SaveData
+        path = Application.persistentDataPath + System.IO.Path.DirectorySeparatorChar + "modules.json";
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
 
         playerData.playerName = "Player";
         playerData.savePath = "playerData.json";
@@ -135,7 +141,12 @@ public class AudioManager : MonoBehaviour
         playerData.bossLevel = 0;
         playerData.moduleCounts = new();
         // parts for first ship
-        for (int i = 0; i< moduleList.moduls.Count; i++)
+        playerData.moduleCounts.Add(1);
+        playerData.moduleCounts.Add(1);
+        playerData.moduleCounts.Add(1);
+        playerData.moduleCounts.Add(1);
+        playerData.moduleCounts.Add(2);
+        for (int i = 5; i< moduleList.moduls.Count; i++)
         {
             playerData.moduleCounts.Add(0);
         }

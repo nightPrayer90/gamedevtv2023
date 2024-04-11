@@ -88,6 +88,7 @@ public class ModuleStorage : MonoBehaviour
         dataService = new();
 
         List<ModuleData> loadedModules = dataService.LoadData<List<ModuleData>>("modules.json", false);
+
         if (loadedModules.Count <= 0)
         {
             LoadPreset();
@@ -348,6 +349,7 @@ public class ModuleStorage : MonoBehaviour
     public void NewShip()
     {
         installedModuleData.Add(new ModuleDataRuntime());
+        playerData.moduleCounts[installedModuleData[0].moduleTypeIndex] -= 1; 
     }
 
     public void LoadPreset()
@@ -355,6 +357,7 @@ public class ModuleStorage : MonoBehaviour
         foreach (ModuleData item in shipPreset.baseModules)
         {
             installedModuleData.Add(new ModuleDataRuntime(item));
+            playerData.moduleCounts[item.moduleTypeIndex] -= 1;
         }
         Debug.Log("LoadPreset");
     }

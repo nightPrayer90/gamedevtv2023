@@ -216,10 +216,6 @@ public class GameManager : MonoBehaviour
         emissionMaterialReverse.SetTexture("_EmissionMap", secondDimenionTexture2);
 
         districtBaseShader.SetFloat("_DimensionControll", 1f);
-
-
-        // Reset directional ligth color
-        directionalLight.color = firstDimensionColor;
     }
 
     /* **************************************************************************** */

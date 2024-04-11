@@ -83,7 +83,7 @@ public class MenuButtonController : MonoBehaviour
     {
         AudioManager.Instance.SetPlayerDataToDefault();
         AudioManager.Instance.PlaySFX("MouseKlick");
-        SceneManager.LoadScene(gameScene);
+        SceneManager.LoadScene("IntroScene");
     }
     public void GameLoad()
     {

@@ -84,7 +84,7 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
                 hangarUIController.GoToShop();
                 break;
 
-            case 1: //ship preset 1
+            case 1: //new ship
                 moduleStorage.RemoveAllModule();
                 moduleStorage.NewShip();
                 moduleStorage.BuildShipFromModuleData();
