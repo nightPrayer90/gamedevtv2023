@@ -17,6 +17,7 @@ public class Selection : MonoBehaviour
     private RaycastHit raycastHit;
     private HangarUIController hangarUIController;
     private Transform lastSelection;
+    private ModuleStorage moduleStorage;
 
     public event Action OnDeselect;
     
@@ -24,6 +25,7 @@ public class Selection : MonoBehaviour
     private void Start()
     {
         hangarUIController = gameObject.GetComponent<HangarUIController>();
+        moduleStorage = GameObject.Find("Ship").GetComponent<ModuleStorage>();
     }
 
     private void Update()
@@ -85,7 +87,10 @@ public class Selection : MonoBehaviour
                         // select the new Object
                         originalMaterialSelectet = originalMaterial;
                         selection.GetComponent<MeshRenderer>().material = selectionMaterial;
-                        selection.GetComponentInParent<HangarModul>().SetActive();
+                        HangarModul hm = selection.GetComponentInParent<HangarModul>();
+                        hm.CreateModuleList();
+                        hm.SetActive();
+
                         hangarUIController.HandleModulSelect(selection);
                         lastSelection = selection;
 
@@ -101,6 +106,8 @@ public class Selection : MonoBehaviour
                         // select the new Object
                         originalMaterialSelectet = originalMaterial;
                         selection.GetComponent<MeshRenderer>().material = selectionSphereMaterial;
+                        moduleStorage.CreateModuleLists();
+
                         selection.GetComponentInParent<Sphere>().SetActive();
                         hangarUIController.HandleShpereSelect(selection);
                         lastSelection = selection;

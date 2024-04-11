@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a4ecad2af0e324ca61106d9a2bd9e3, type: 3}
   m_Name: PlayerDataContainer
   m_EditorClassIdentifier: 
-  playerName: default-player
-  savePath: /player-statsDefault.json
+  playerName: Player
+  savePath: playerData.json
   playerShipIcon: 0
-  moduleCounts: 
-  credits: 0
-  bossLevel: 0
+  moduleCounts: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000001000000020000000000000000000000000000000000000000000000
+  credits: 91
+  bossLevel: 2

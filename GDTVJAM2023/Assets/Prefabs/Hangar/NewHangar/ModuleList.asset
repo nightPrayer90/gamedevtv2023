@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduls:
   - moduleName: Cockpit
-    modulePrefabs: {fileID: 8919917907132705989, guid: bf45f026dcfb8fe48be46de0f2a1a408, type: 3}
-    hangarPrefab: {fileID: 8919917907132705989, guid: 5073fba1e0babe74b91895200a7e6fbc, type: 3}
+    modulePrefabs: {fileID: 8919917907132705989, guid: f654821ae2dd1f54d9a14c9339615fa2, type: 3}
+    hangarPrefab: {fileID: 8919917907132705989, guid: 9fc27daa8cfaa6749b5b953c7f2e163a, type: 3}
     modulSprite: {fileID: 21300000, guid: 9689a6e207a49ab4eac8dbb4698edb25, type: 3}
     moduleType: 4
     canLeft: 0

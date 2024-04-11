@@ -179,48 +179,7 @@ MonoBehaviour:
   musicVolume: 0.2
   sfxVolume: 0.5
   playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
-  playerStats:
-    playerName: default-player
-    shipPanelIndex: 0
-    savePath: /player-statsDefault.json
-    playerShip: 0
-    playerShipCount: 1
-    expBullet: 0
-    expRocket: 0
-    expLaser: 0
-    globalUpgradeCountBullet: 0
-    globalUpgradeCountRocket: 0
-    globalUpgradeCountLaser: 0
-    bulletRS_1: 0
-    bulletRS_2: 0
-    bulletRS_3: 0
-    bulletRS_4: 0
-    bulletRS_5: 0
-    bulletRS_6: 0
-    bulletRS_7: 0
-    bulletRS_8: 0
-    bulletRS_9: 0
-    bulletRS_10: 0
-    rocketRS_1: 0
-    rocketRS_2: 0
-    rocketRS_3: 0
-    rocketRS_4: 0
-    rocketRS_5: 0
-    rocketRS_6: 0
-    rocketRS_7: 0
-    rocketRS_8: 0
-    rocketRS_9: 0
-    rocketRS_10: 0
-    laserRS_1: 0
-    laserRS_2: 0
-    laserRS_3: 0
-    laserRS_4: 0
-    laserRS_5: 0
-    laserRS_6: 0
-    laserRS_7: 0
-    laserRS_8: 0
-    laserRS_9: 0
-    laserRS_10: 0
+  moduleList: {fileID: 11400000, guid: 0cbbf3c8352d3e449baf78feda11ae88, type: 2}
 --- !u!1 &5013503996951810301
 GameObject:
   m_ObjectHideFlags: 0

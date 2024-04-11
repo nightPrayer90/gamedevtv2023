@@ -74,8 +74,6 @@ public class ModuleStorage : MonoBehaviour
 
     //PlayerData
     public PlayerData playerData;
-    private IDataService dataServiceStats = new JsonDataService();
-
 
 
     /* **************************************************************************** */
@@ -109,7 +107,7 @@ public class ModuleStorage : MonoBehaviour
             selectionManager = GameObject.Find("SelectionController").GetComponent<Selection>();
 
             // set Module lists für spheres
-            CreateModuleLists();
+            //CreateModuleLists();
 
             // set ShipPanel
             hangarUIController = selectionManager.gameObject.GetComponent<HangarUIController>();
@@ -147,6 +145,9 @@ public class ModuleStorage : MonoBehaviour
             HangarModul hgm = installedHangarModules[i];
             if (hgm.isSelected == true)
             {
+                // delete from playerData
+                playerData.moduleCounts[hgm.moduleData.moduleTypeIndex] += 1;
+
                 // destroy gameObject
                 Destroy(installedHangarModules[i].gameObject);
 
@@ -184,6 +185,9 @@ public class ModuleStorage : MonoBehaviour
             HangarModul hgm = installedHangarModules[i];
             if (hgm.isSelected == true)
             {
+                // delete from playerData
+                playerData.moduleCounts[hgm.moduleData.moduleTypeIndex] += 1;
+
                 // destroy gameObject
                 Destroy(installedHangarModules[i].gameObject);
 
@@ -213,14 +217,17 @@ public class ModuleStorage : MonoBehaviour
             HangarModul hgm = installedHangarModules[i];
             if (hgm.moduleData.bestCost == ushort.MaxValue && moduleList.moduls[hgm.moduleData.moduleTypeIndex].moduleType != ModuleType.StrafeEngine)
             {
+                // delete from playerData
+                playerData.moduleCounts[hgm.moduleData.moduleTypeIndex] += 1;
+
                 // destroy gameObject
                 Destroy(hgm.gameObject);
 
                 // delete GameObject from List
                 installedHangarModules.RemoveAt(i);
 
-                // delete GameObject from savelist
-                installedModuleData.RemoveAt(i);
+                // delete from playerData
+                playerData.moduleCounts[i] += 1;
             }
             else
             {
@@ -249,8 +256,12 @@ public class ModuleStorage : MonoBehaviour
 
         for (int i = 0; i < installedHangarModules.Count; i++)
         {
+            // delete from playerData
+            playerData.moduleCounts[installedHangarModules[i].moduleData.moduleTypeIndex] += 1;
+
             // destroy gameObject
             Destroy(installedHangarModules[i].gameObject);
+
         }
 
         // delete GameObject from List
@@ -401,19 +412,33 @@ public class ModuleStorage : MonoBehaviour
         }
     }
 
-    private void CreateModuleLists()
+    public void CreateModuleLists()
     {
+        //TODO: Make a list for every direction!
+        // Link it with SphereSelect
+        leftModules.Clear();
+        rightModules.Clear();
+        frontModules.Clear();
+        backModules.Clear();
+        strafeModules.Clear();
+
         foreach (Modules module in moduleList.moduls)
         {
-            if (module.canLeft == true)
+            int index = moduleList.moduls.IndexOf(module);
+
+            if (module.canLeft == true && playerData.moduleCounts[index] > 0)
                 leftModules.Add(moduleList.moduls.IndexOf(module));
-            if (module.canRight == true)
+
+            if (module.canRight == true && playerData.moduleCounts[index] > 0)
                 rightModules.Add(moduleList.moduls.IndexOf(module));
-            if (module.canFront == true)
+
+            if (module.canFront == true && playerData.moduleCounts[index] > 0)
                 frontModules.Add(moduleList.moduls.IndexOf(module));
-            if (module.canBack == true)
+
+            if (module.canBack == true && playerData.moduleCounts[index] > 0)
                 backModules.Add(moduleList.moduls.IndexOf(module));
-            if (module.moduleType == ModuleType.StrafeEngine)
+
+            if (module.moduleType == ModuleType.StrafeEngine && playerData.moduleCounts[index] > 0)
                 strafeModules.Add(moduleList.moduls.IndexOf(module));
         }
     }

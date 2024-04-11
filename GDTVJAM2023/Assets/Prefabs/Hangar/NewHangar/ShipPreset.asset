@@ -28,9 +28,6 @@ MonoBehaviour:
   - x: 1
     z: -1
     moduleTypeIndex: 4
-  - x: -1
-    z: 0
-    moduleTypeIndex: 5
   - x: 1
     z: 0
     moduleTypeIndex: 3

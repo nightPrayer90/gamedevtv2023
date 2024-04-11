@@ -181,6 +181,8 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
 
         hangarUIController.SetShipPanel();
 
+        moduleStorage.playerData.moduleCounts[modulIndex] -= 1;
+
         int ran = Random.Range(0, 4);
         switch (ran)
         {

@@ -9,7 +9,7 @@ public class ShopModule : MonoBehaviour
     public int itemCost = 0;
     [HideInInspector] public int itemSellPrice = 0;
     private ShopModuleMeshHud meshHud;
-    private ShopModuleContainer shopModuleContainer;
+    [HideInInspector] public ShopModuleContainer shopModuleContainer;
     private ShopFloatingObject floatingObject;
 
     private void Awake()

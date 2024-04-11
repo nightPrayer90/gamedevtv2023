@@ -36,7 +36,6 @@ public class HangarModul : MonoBehaviour
 
     private void Start()
     {
-        CreateModuleList();
         ControllOwnMaterial();
     }
 
@@ -84,20 +83,23 @@ public class HangarModul : MonoBehaviour
 
     public void CreateModuleList()
     {
+        possibleReplacements.Clear();
         foreach (Modules module in moduleStorage.moduleList.moduls)
         {
+            int index = moduleStorage.moduleList.moduls.IndexOf(module);
+ 
             switch (moduleValues.moduleType)
             {
                 case ModuleType.Cockpit:
                 case ModuleType.StrafeEngine:
-                    if (module.moduleType == moduleValues.moduleType && module.moduleName != moduleValues.moduleName)
+                    if (moduleStorage.playerData.moduleCounts[index] >  0 && module.moduleType == moduleValues.moduleType && module.moduleName != moduleValues.moduleName)
                     {
-
                         possibleReplacements.Add(moduleStorage.moduleList.moduls.IndexOf(module));
                     }
                     break;
                 default:
-                    if ((moduleValues.canLeft == false || (module.canLeft == moduleValues.canLeft)) &&
+                    if (moduleStorage.playerData.moduleCounts[index] > 0 &&
+                        (moduleValues.canLeft == false || (module.canLeft == moduleValues.canLeft)) &&
                         (moduleValues.canRight == false || (module.canRight == moduleValues.canRight)) &&
                         (moduleValues.canFront == false || (module.canFront == moduleValues.canFront)) &&
                         (moduleValues.canBack == false || (module.canBack == moduleValues.canBack)) &&

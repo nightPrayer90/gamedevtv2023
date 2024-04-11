@@ -836,7 +836,7 @@ MonoBehaviour:
     \nemperors that we have to defeat in order to have peace from the attacks. \nIt
     is simply impossible."
   typingSoundAudio: 
-  menueScene: LoadScene
+  menueScene: MenueScene
   typingSpeed: 0.03
   displayText: {fileID: 2107987968}
   transitionDuration: 1

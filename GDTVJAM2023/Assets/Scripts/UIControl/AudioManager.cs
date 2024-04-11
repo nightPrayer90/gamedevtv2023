@@ -17,7 +17,7 @@ public class AudioManager : MonoBehaviour
     public PlayerData playerData;
     private IDataService DataService = new JsonDataService();
     private bool encriptionEnabled = false;
-
+    public ModuleList moduleList;
 
     private void Awake()
     {
@@ -134,6 +134,11 @@ public class AudioManager : MonoBehaviour
         playerData.credits = 0;
         playerData.bossLevel = 0;
         playerData.moduleCounts = new();
+        // parts for first ship
+        for (int i = 0; i< moduleList.moduls.Count; i++)
+        {
+            playerData.moduleCounts.Add(0);
+        }
     }
 
     public void LoadPlayerData()
@@ -150,6 +155,8 @@ public class AudioManager : MonoBehaviour
         // Hangar and Shop
         playerData.credits = playerStats.credits;
         playerData.bossLevel = playerStats.bossLevel;
+
+        playerData.moduleCounts.Clear();
         foreach (int i in playerStats.moduleCounts)
         {
             playerData.moduleCounts.Add(i);

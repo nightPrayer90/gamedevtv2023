@@ -11,7 +11,7 @@ public class ModuleValues
     [HideInInspector] public bool canFront = false;
     [HideInInspector] public bool canBack = false;
     [Header("Hangar Only")]
-    [TextArea]
+    [TextArea(3,5)]
     public string modulDescription_multiLineText;
 
     [Header("Hangar and GamePlay")]

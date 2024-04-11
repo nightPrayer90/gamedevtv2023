@@ -10,12 +10,9 @@ public class ShopController : MonoBehaviour
 {
     // Module Management
     public ModuleList moduleList;
-    public List<int> moduleCounts;
     public int credits = 0;
     public int activeLevel = 0;
-    //private IDataService dataService = new JsonDataService();
     public List<ShopModuleContainer> moduleContainers;
-    //public PlayerStats playerStats = new PlayerStats();
     public PlayerData playerData;
 
     // Selection
@@ -50,7 +47,7 @@ public class ShopController : MonoBehaviour
         // ToDo - do this in one scribteble object - Playerdata
         // Try to load playerStats - Move this Later to PlayerData
         //playerStats = dataService.LoadData<PlayerStats>("playerData.json", false);
-        if (playerData.moduleCounts.Count > 0)
+        /*if (playerData.moduleCounts.Count > 0)
         {
             // set data from SaveGame
             for (int i = 0; i < playerData.moduleCounts.Count; i++)
@@ -58,15 +55,18 @@ public class ShopController : MonoBehaviour
                 moduleCounts.Add(playerData.moduleCounts[i]);
             }
         }
-        // fill the rest of the list*/
+        // fill the rest of the list
         while (moduleCounts.Count < moduleList.moduls.Count)
         {
             moduleCounts.Add(0);
-        }
+        }*/
 
 
         // credits
         UpdateCredits(playerData.credits);
+
+        // Level
+        activeLevel = playerData.bossLevel;
 
         // reset
         buyPanel.alpha = 0;
@@ -140,7 +140,7 @@ public class ShopController : MonoBehaviour
 
                         // buy Panel
                         buyBtnText.text = "buy for " + selectedShopModule.itemCost.ToString() + " CD";
-                        if (moduleCounts[selectedShopModule.itemIndex] > 0)
+                        if (playerData.moduleCounts[selectedShopModule.itemIndex] > 0)
                         {
                             sellBtn.SetActive(true);
                             sellBtnText.text = "sell for " + selectedShopModule.itemSellPrice.ToString() + " CD";
@@ -171,12 +171,12 @@ public class ShopController : MonoBehaviour
 
     private void OnDestroy()
     {
-        playerData.moduleCounts.Clear();
+       /* playerData.moduleCounts.Clear();
 
         foreach (int i in moduleCounts)
         {
             playerData.moduleCounts.Add(i);
-        }
+        }*/
 
         playerData.credits = credits;
 
@@ -252,7 +252,7 @@ public class ShopController : MonoBehaviour
             if (credits >= selectedShopModule.itemCost)
             {
                 UpdateCredits(-selectedShopModule.itemCost);
-                moduleCounts[selectedShopModule.itemIndex] += 1;
+                playerData.moduleCounts[selectedShopModule.itemIndex] += 1;
 
                 selectedShopModule.BuyModule();
             }
@@ -266,7 +266,7 @@ public class ShopController : MonoBehaviour
         if (selectedShopModule != null)
         {
             UpdateCredits(selectedShopModule.itemSellPrice);
-            moduleCounts[selectedShopModule.itemIndex] -= 1;
+            playerData.moduleCounts[selectedShopModule.itemIndex] -= 1;
 
             selectedShopModule.BuyModule();
         }

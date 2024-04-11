@@ -88,16 +88,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Ship")]
     public PlayerData playerData;
-    public ShipData bulletShipData;
-    public ShipData rocketShipData;
-    public ShipData laserShipData;
-    public bool isPlayerData = true;
-    public StartShip startShip;
-    [HideInInspector] public int ship;
-    public Transform playerStartPosition;
-    public GameObject playerShip_bullet;
-    public GameObject playerShip_rocket;
-    public GameObject playerShip_laser;
 
 
     [Header("Objects")]
@@ -118,76 +108,7 @@ public class GameManager : MonoBehaviour
     /* **************************************************************************** */
     private void Awake()
     {
-
         DOTween.KillAll();
-
-        //debug
-        isPlayerData = false;
-
-        if (isPlayerData == false)
-        {
-            // create the Playership
-            
-
-            /*switch (startShip)
-            {
-                case StartShip.bullet:
-                    var player_b = Instantiate(playerShip_bullet, playerStartPosition.position, playerStartPosition.rotation);
-                    player = player_b.GetComponent<PlayerController>();
-                    //weaponController = player_b.GetComponent<PlayerWeaponController>();
-                    upgradeChooseList.weaponUpgrades[49].reqLaser = 100;
-                    upgradeChooseList.weaponUpgrades[55].reqRocket = 100;
-                    ship = 0;
-                    break;
-                case StartShip.rocket:
-                    var player_r = Instantiate(playerShip_rocket, playerStartPosition.position, playerStartPosition.rotation);
-                    player = player_r.GetComponent<PlayerController>();
-                    //weaponController = player_r.GetComponent<PlayerWeaponController>();
-                    upgradeChooseList.weaponUpgrades[51].reqBullet = 100;
-                    upgradeChooseList.weaponUpgrades[49].reqLaser = 100;
-                    ship = 1;
-                    break;
-                case StartShip.laser:
-                    var player_l = Instantiate(playerShip_laser, playerStartPosition.position, playerStartPosition.rotation);
-                    player = player_l.GetComponent<PlayerController>();
-                    //weaponController = player_l.GetComponent<PlayerWeaponController>();
-                    upgradeChooseList.weaponUpgrades[51].reqBullet = 100;
-                    upgradeChooseList.weaponUpgrades[55].reqRocket = 100;
-                    ship = 2;
-                    break;
-      
-            }
-        }
-        else
-        {
-            switch (playerData.playerShip)
-            {
-                case 0:
-                    var player_b = Instantiate(playerShip_bullet, playerStartPosition.position, playerStartPosition.rotation);
-                    player = player_b.GetComponent<PlayerController>();
-                    //weaponController = player_b.GetComponent<PlayerWeaponController>();
-                    upgradeChooseList.weaponUpgrades[49].reqLaser = 100;
-                    upgradeChooseList.weaponUpgrades[55].reqRocket = 100;
-                    ship = 0;
-                    break;
-                case 1:
-                    var player_r = Instantiate(playerShip_rocket, playerStartPosition.position, playerStartPosition.rotation);
-                    player = player_r.GetComponent<PlayerController>();
-                    //weaponController = player_r.GetComponent<PlayerWeaponController>();
-                    upgradeChooseList.weaponUpgrades[51].reqBullet = 100;
-                    upgradeChooseList.weaponUpgrades[49].reqLaser = 100;
-                    ship = 1;
-                    break;
-                case 2:
-                    var player_l = Instantiate(playerShip_laser, playerStartPosition.position, playerStartPosition.rotation);
-                    player = player_l.GetComponent<PlayerController>();
-                    //weaponController = player_l.GetComponent<PlayerWeaponController>();
-                    upgradeChooseList.weaponUpgrades[51].reqBullet = 100;
-                    upgradeChooseList.weaponUpgrades[55].reqRocket = 100;
-                    ship = 2;
-                    break;
-            }*/
-        }
     }
 
     void Start()
@@ -280,6 +201,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        // Set game speed
+        Time.timeScale = 1;
+
+        // Reset dimension materials
+        buildingMaterial.SetTexture("_MainTex", firstDimensionTexture1);
+        emissionMaterial.SetTexture("_MainTex", firstDimensionTexture1);
+        emissionMaterial.SetTexture("_EmissionMap", firstDimensionTexture1);
+
+        buildingMaterialReverse.SetTexture("_MainTex", secondDimenionTexture2);
+        emissionMaterialReverse.SetTexture("_MainTex", secondDimenionTexture2);
+        emissionMaterialReverse.SetTexture("_EmissionMap", secondDimenionTexture2);
+
+        districtBaseShader.SetFloat("_DimensionControll", 1f);
+
+
+        // Reset directional ligth color
+        directionalLight.color = firstDimensionColor;
+    }
 
     /* **************************************************************************** */
     /* Manage Menu Panels---------------------------------------------------------- */
@@ -291,9 +232,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         gameIsPlayed = false;
 
-        float perc_ = 0.1f +  ((float)bulletShipData.moreUpgradePoints + (float)rocketShipData.moreUpgradePoints + (float)laserShipData.moreUpgradePoints)/100;
-
-        expGameOverText.text = "you have earned: " + CalculateGlobalPlayerExp(perc_) + " upgrade points (" + (perc_*100).ToString()  +  "% collected exp) for your ship";
+        expGameOverText.text = "you have earned: " + CalculateGlobalPlayerExp(1f) + " Credits";
 
         gameOverUI.SetActive(true);
         playerUI.SetActive(false);
@@ -308,7 +247,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         gameIsPlayed = false;
 
-        expGameVictoryText.text = "you have earned: " + CalculateGlobalPlayerExp(0.5f) + " upgrade points (50% collected exp) for your ship";
+        expGameOverText.text = "you have earned: " + CalculateGlobalPlayerExp(1f) + " Credits";
 
         gameOverUI.SetActive(false);
         playerUI.SetActive(false);
@@ -797,21 +736,15 @@ public class GameManager : MonoBehaviour
     {
         expCollected = Mathf.RoundToInt((float)expCollected * percent);
 
-        /*switch (playerData.playerShip)
+        playerData.credits += expCollected;
+
+        if (playerData.bossLevel < (districtNumber-1)) //-1 because it starts with 1
         {
-            case 0:
-                playerData.expBullet += expCollected;
-                break;
-            case 1:
-                playerData.expRocket += expCollected;
-                break;
-            case 2:
-                playerData.expLaser += expCollected;
-                break;
-        }*/
+            playerData.bossLevel = districtNumber-1;
+        }
 
         // TODO: Speichern!
-       // AudioManager.Instance.SavePlayerData();
+        AudioManager.Instance.SavePlayerData();
 
         return expCollected;
     }

@@ -27,11 +27,11 @@ public class ShopModuleMeshHud : MonoBehaviour
 
     private void UpdateItemCount()
     {
-        if (shopController.moduleCounts[shopModule.itemIndex] == 0)
+        if (shopController.playerData.moduleCounts[shopModule.itemIndex] == 0)
             countText.color = Color.grey;
         else
             countText.color = Color.green;
-        countText.text = "item count: " + shopController.moduleCounts[shopModule.itemIndex].ToString();
+        countText.text = "item count: " + shopController.playerData.moduleCounts[shopModule.itemIndex].ToString();
     }
 
     public void SetMeshHuD(bool canBuy)
@@ -47,9 +47,9 @@ public class ShopModuleMeshHud : MonoBehaviour
         {
             buyShpere.SetActive(true);
             buyShpere.transform.position = shopModule.transform.position;
-            headerText.text = "";
+            headerText.text = shopController.moduleList.moduls[shopModule.itemIndex].moduleName + " (" + shopModule.itemCost + " CD)"; ;
             contentText.text = "";
-            countText.text = "";
+            countText.text = $"<color=\"red\"> Defead Boss {shopModule.shopModuleContainer.index} to buy.</color>";
         }
     }
 }
