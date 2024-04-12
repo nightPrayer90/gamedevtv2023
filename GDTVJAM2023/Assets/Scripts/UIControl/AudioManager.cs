@@ -141,12 +141,12 @@ public class AudioManager : MonoBehaviour
         playerData.bossLevel = 0;
         playerData.moduleCounts = new();
         // parts for first ship
+        /*playerData.moduleCounts.Add(1);
         playerData.moduleCounts.Add(1);
         playerData.moduleCounts.Add(1);
         playerData.moduleCounts.Add(1);
-        playerData.moduleCounts.Add(1);
-        playerData.moduleCounts.Add(2);
-        for (int i = 5; i< moduleList.moduls.Count; i++)
+        playerData.moduleCounts.Add(2);*/
+        for (int i = 0; i< moduleList.moduls.Count; i++)
         {
             playerData.moduleCounts.Add(0);
         }

@@ -357,7 +357,8 @@ public class ModuleStorage : MonoBehaviour
         foreach (ModuleData item in shipPreset.baseModules)
         {
             installedModuleData.Add(new ModuleDataRuntime(item));
-            playerData.moduleCounts[item.moduleTypeIndex] -= 1;
+            if (gameManager == null)
+                playerData.moduleCounts[item.moduleTypeIndex] -= 1;
         }
         Debug.Log("LoadPreset");
     }
