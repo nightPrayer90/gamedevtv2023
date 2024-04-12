@@ -96,85 +96,47 @@ public class HangarUIController : MonoBehaviour
     }
 
     // handle Sphere selection
-    public void HandleShpereSelect(Transform selection)
+    public void HandleShpereSelect(Sphere selection)
     {
-        // cash selectet Sphere Controller
-        Sphere sph = selection.gameObject.GetComponent<Sphere>();
-
-
-        // open Panel
-        modulePanel.DOKill();
-        if (modulePanel.alpha != 1)
-        {
-            modulePanel.blocksRaycasts = true;
-            modulePanel.DOFade(1, 0.2f);
-        }
-
         // load Content Panel
-        if (sph != null)
+        if (selection != null)
         {
-            int moduls = 0;
+            int modules = 0;
             MeshFilter mRSph = selection.GetComponent<MeshFilter>();
+            
+            modules = moduleStorage.possibleModules.Count;
 
-            switch (sph.sphereSide)
+            if (modules > 0)
             {
-                case SphereSide.left:
-                    moduls = moduleStorage.leftModules.Count;
-                    break;
-                case SphereSide.right:
-                    moduls = moduleStorage.rightModules.Count;
-                    break;
-                case SphereSide.front:
-                    moduls = moduleStorage.frontModules.Count;
-                    break;
-                case SphereSide.back:
-                    moduls = moduleStorage.backModules.Count;
-                    break;
-                case SphereSide.strafe:
-                    moduls = moduleStorage.strafeModules.Count;
-                    break;
-            }
-
-            // duplicate Content Moduls
-            for (int i = 0; i < moduls; i++)
-            {
-                GameObject go = Instantiate(moduleContentPanelPrefab);
-                ModulContentPanelManager mCPM = go.GetComponent<ModulContentPanelManager>();
-                go.transform.SetParent(contentParent);
-                go.transform.localScale = new Vector3(1, 1, 1);
-
-
-                switch (sph.sphereSide)
+                // open Panel
+                modulePanel.DOKill();
+                if (modulePanel.alpha != 1)
                 {
-                    case SphereSide.left:
-                        mCPM.modulIndex = moduleStorage.leftModules[i];
-                        break;
-                    case SphereSide.right:
-                        mCPM.modulIndex = moduleStorage.rightModules[i];
-                        break;
-                    case SphereSide.front:
-                        mCPM.modulIndex = moduleStorage.frontModules[i];
-                        break;
-                    case SphereSide.back:
-                        mCPM.modulIndex = moduleStorage.backModules[i];
-                        break;
-                    case SphereSide.strafe:
-                        mCPM.modulIndex = moduleStorage.strafeModules[i];
-                        break;
+                    modulePanel.blocksRaycasts = true;
+                    modulePanel.DOFade(1, 0.2f);
                 }
 
-                mCPM.selectedSphere = mRSph;
+                // duplicate Content Moduls
+                for (int i = 0; i < modules; i++)
+                {
+                    GameObject go = Instantiate(moduleContentPanelPrefab);
+                    ModulContentPanelManager mCPM = go.GetComponent<ModulContentPanelManager>();
+                    go.transform.SetParent(contentParent);
+                    go.transform.localScale = new Vector3(1, 1, 1);
 
-                goContentPanels.Add(go);
+                    mCPM.modulIndex = moduleStorage.possibleModules[i];
+                 
+                    mCPM.selectedSphere = mRSph;
+
+                    goContentPanels.Add(go);
+                }
             }
         }
     }
 
     // handle Module selection
-    public void HandleModulSelect(Transform selection)
+    public void HandleModulSelect(HangarModul selectedModul)
     {
-        HangarModul selectedModul = selection.GetComponentInParent<HangarModul>();
-
         // Handle Panel UI
         removePanel.DOKill();
         selectionContentPanel.DOKill();

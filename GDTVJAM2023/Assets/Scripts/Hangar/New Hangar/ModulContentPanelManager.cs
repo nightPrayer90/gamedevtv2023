@@ -10,22 +10,23 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
 {
     [Header("UI Controls")]
     public TextMeshProUGUI nameText;
+    public TextMeshProUGUI quantityText;
     public Image moduleImagePanel;
     public Image modulContentPanel;
 
     [Header("Selection Controls")]
     public Color32 baseColor = new Color32(8, 57, 156, 255);
     public Color32 selectionColor = new Color32(124, 124, 255, 255);
-    public MeshFilter selectedSphere;
+    [HideInInspector] public MeshFilter selectedSphere;
     private Selection selectionManager;
     private Sphere sph;
 
     [Header("Create new Mesh Controls")]
-    public int modulIndex;
+    [HideInInspector] public int modulIndex;
     private GameObject modulToCreate;
     private Transform shipParent;
     private ModuleStorage moduleStorage;
-    public HangarModul parentHangarModule;
+    [HideInInspector] public HangarModul parentHangarModule;
     private ModuleList moduleList;
     private HangarUIController hangarUIController;
 
@@ -57,8 +58,9 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
 
     public void UpdatePanel()
     {
-        // Header
+        // Content
         nameText.text = moduleList.moduls[modulIndex].moduleName;
+        quantityText.text = moduleStorage.playerData.moduleCounts[modulIndex].ToString();
 
         // Modul Sprite
         if (moduleList.moduls[modulIndex].modulSprite != null)

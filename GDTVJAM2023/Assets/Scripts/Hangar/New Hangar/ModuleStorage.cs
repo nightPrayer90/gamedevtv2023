@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,11 +64,7 @@ public class ModuleStorage : MonoBehaviour
     public List<HangarModul> installedHangarModules;
 
     //ModuleLists
-    public List<int> leftModules;
-    public List<int> rightModules;
-    public List<int> frontModules;
-    public List<int> backModules;
-    public List<int> strafeModules;
+    public List<int> possibleModules;
 
     public bool isAllConnected = true;
     public bool isEnergiePositiv = true;
@@ -228,7 +225,7 @@ public class ModuleStorage : MonoBehaviour
                 installedHangarModules.RemoveAt(i);
 
                 // delete from playerData
-                playerData.moduleCounts[i] += 1;
+                installedModuleData.RemoveAt(i);
             }
             else
             {
@@ -416,34 +413,63 @@ public class ModuleStorage : MonoBehaviour
         }
     }
 
-    public void CreateModuleLists()
+    public void CreateModuleLists(Sphere.SphereSide sphSide)
     {
-        //TODO: Make a list for every direction!
-        // Link it with SphereSelect
-        leftModules.Clear();
-        rightModules.Clear();
-        frontModules.Clear();
-        backModules.Clear();
-        strafeModules.Clear();
+        possibleModules.Clear();
 
-        foreach (Modules module in moduleList.moduls)
+        switch (sphSide)
         {
-            int index = moduleList.moduls.IndexOf(module);
+            case Sphere.SphereSide.left:
+                foreach (Modules module in moduleList.moduls)
+                {
+                    int index = moduleList.moduls.IndexOf(module);
 
-            if (module.canLeft == true && playerData.moduleCounts[index] > 0)
-                leftModules.Add(moduleList.moduls.IndexOf(module));
+                    if (module.canLeft == true && playerData.moduleCounts[index] > 0)
+                        possibleModules.Add(moduleList.moduls.IndexOf(module));
+                }
+                break;
 
-            if (module.canRight == true && playerData.moduleCounts[index] > 0)
-                rightModules.Add(moduleList.moduls.IndexOf(module));
+            case Sphere.SphereSide.right:
+                foreach (Modules module in moduleList.moduls)
+                {
+                    int index = moduleList.moduls.IndexOf(module);
 
-            if (module.canFront == true && playerData.moduleCounts[index] > 0)
-                frontModules.Add(moduleList.moduls.IndexOf(module));
+                    if (module.canRight == true && playerData.moduleCounts[index] > 0)
+                        possibleModules.Add(moduleList.moduls.IndexOf(module));
+                }
+                break;
 
-            if (module.canBack == true && playerData.moduleCounts[index] > 0)
-                backModules.Add(moduleList.moduls.IndexOf(module));
+            case Sphere.SphereSide.front:
+                foreach (Modules module in moduleList.moduls)
+                {
+                    int index = moduleList.moduls.IndexOf(module);
 
-            if (module.moduleType == ModuleType.StrafeEngine && playerData.moduleCounts[index] > 0)
-                strafeModules.Add(moduleList.moduls.IndexOf(module));
+                    if (module.canFront == true && playerData.moduleCounts[index] > 0)
+                        possibleModules.Add(moduleList.moduls.IndexOf(module));
+                }
+                break;
+
+            case Sphere.SphereSide.back:
+                foreach (Modules module in moduleList.moduls)
+                {
+                    int index = moduleList.moduls.IndexOf(module);
+
+                    if (module.canBack == true && playerData.moduleCounts[index] > 0)
+                        possibleModules.Add(moduleList.moduls.IndexOf(module));
+                }
+                break;
+
+            case Sphere.SphereSide.strafe:
+                foreach (Modules module in moduleList.moduls)
+                {
+                    int index = moduleList.moduls.IndexOf(module);
+
+                    if (module.moduleType == ModuleType.StrafeEngine && playerData.moduleCounts[index] > 0)
+                        possibleModules.Add(moduleList.moduls.IndexOf(module));
+                }
+                break;
+
+
         }
     }
 

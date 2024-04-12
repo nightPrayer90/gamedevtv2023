@@ -90,8 +90,7 @@ public class Selection : MonoBehaviour
                         HangarModul hm = selection.GetComponentInParent<HangarModul>();
                         hm.CreateModuleList();
                         hm.SetActive();
-
-                        hangarUIController.HandleModulSelect(selection);
+                        hangarUIController.HandleModulSelect(hm);
                         lastSelection = selection;
 
                         AudioManager.Instance.PlaySFX("HangarSelectPart");
@@ -106,10 +105,10 @@ public class Selection : MonoBehaviour
                         // select the new Object
                         originalMaterialSelectet = originalMaterial;
                         selection.GetComponent<MeshRenderer>().material = selectionSphereMaterial;
-                        moduleStorage.CreateModuleLists();
-
-                        selection.GetComponentInParent<Sphere>().SetActive();
-                        hangarUIController.HandleShpereSelect(selection);
+                        Sphere sph = selection.GetComponentInParent<Sphere>();
+                        moduleStorage.CreateModuleLists(sph.sphereSide);
+                        sph.SetActive();
+                        hangarUIController.HandleShpereSelect(sph); // TODO selection maybe = sph?
                         lastSelection = selection;
 
                         AudioManager.Instance.PlaySFX("HangarSelectSphere");

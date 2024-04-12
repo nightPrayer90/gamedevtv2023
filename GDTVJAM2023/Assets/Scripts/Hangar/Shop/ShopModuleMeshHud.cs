@@ -31,7 +31,7 @@ public class ShopModuleMeshHud : MonoBehaviour
             countText.color = Color.grey;
         else
             countText.color = Color.green;
-        countText.text = "item count: " + shopController.playerData.moduleCounts[shopModule.itemIndex].ToString();
+        countText.text = "in Storage: " + shopController.playerData.moduleCounts[shopModule.itemIndex].ToString();
     }
 
     public void SetMeshHuD(bool canBuy)

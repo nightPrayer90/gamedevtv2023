@@ -347,7 +347,7 @@ MonoBehaviour:
       canBack: 0
       modulDescription_multiLineText: "<color=#FFBF00>Short range rocket attack.
         Fire \r\nhoming rockets with explosion AOE</color>\r\nDamage: 6 HP/hit\r\nFirerate:
-        1 rocked/s"
+        1 Rocket/s"
       costMass: 0.15
       costEnergie: 0.15
       energieProduction: 0
@@ -385,7 +385,7 @@ MonoBehaviour:
       canBack: 0
       modulDescription_multiLineText: "<color=#FFBF00>Short range rocket attack.
         Fire \r\nhoming rockets with explosion AOE</color>\r\nDamage: 6 HP/hit\r\nFirerate:
-        1 rocked/s"
+        1 Rocket/s"
       costMass: 0.15
       costEnergie: 0.15
       energieProduction: 0
@@ -995,10 +995,10 @@ MonoBehaviour:
       canBack: 1
       modulDescription_multiLineText: 'Thrust force: 6 TJ
 
-        Boost force:
-        <color=#00FFFF>10 TJ </color>
+        Boost force: <color=#00FFFF>10
+        TJ </color>
 
-        <color=#00FFFF>Boost needs less Energie</color>'
+        <color=#00FFFF>Boost needs less Energie/s</color>'
       costMass: 0.2
       costEnergie: 0.4
       energieProduction: 0
@@ -1078,7 +1078,7 @@ MonoBehaviour:
         Connectors: front, left,
         right'
       costMass: 0.12
-      costEnergie: 0.15
+      costEnergie: 0.12
       energieProduction: 0
       energieStorage: 0
       health: 1
@@ -1112,12 +1112,12 @@ MonoBehaviour:
       canRight: 0
       canFront: 1
       canBack: 1
-      modulDescription_multiLineText: 'Health +1
+      modulDescription_multiLineText: 'Health + 1
 
         Connectors: front, back,
         right'
       costMass: 0.12
-      costEnergie: 0.15
+      costEnergie: 0.12
       energieProduction: 0
       energieStorage: 0
       health: 1
@@ -1156,7 +1156,7 @@ MonoBehaviour:
         Connectors: front, back,
         left'
       costMass: 0.12
-      costEnergie: 0.15
+      costEnergie: 0.12
       energieProduction: 0
       energieStorage: 0
       health: 1
@@ -1190,12 +1190,12 @@ MonoBehaviour:
       canRight: 1
       canFront: 0
       canBack: 1
-      modulDescription_multiLineText: 'Health +1
+      modulDescription_multiLineText: 'Health + 1
 
-        Connectors: front, left,
+        Connectors:  back, left,
         right'
       costMass: 0.12
-      costEnergie: 0.15
+      costEnergie: 0.12
       energieProduction: 0
       energieStorage: 0
       health: 1
