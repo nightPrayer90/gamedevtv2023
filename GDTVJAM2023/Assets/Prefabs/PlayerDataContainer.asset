@@ -15,29 +15,47 @@ MonoBehaviour:
   playerName: Player
   savePath: playerData.json
   playerShipIcon: 0
-  moduleCounts: 0100000000000000000000000100000000000000020000000000000003000000060000000b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000200000000000000000000000500000000000000
+  moduleCounts: 0100000001000000010000000100000002000000020000000000000001000000050000000a00000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000010000000000000000000000040000000000000001000000
   moduleData:
   - x: 0
-    z: 1
-    moduleTypeIndex: 2
-  - x: 1
-    z: 1
-    moduleTypeIndex: 4
+    z: -1
+    moduleTypeIndex: 24
   - x: 0
-    z: -1
-    moduleTypeIndex: 1
-  - x: 1
-    z: -1
-    moduleTypeIndex: 4
-  - x: 1
-    z: 0
-    moduleTypeIndex: 25
-  - x: -1
-    z: 0
-    moduleTypeIndex: 5
+    z: 1
+    moduleTypeIndex: 24
+  - x: 0
+    z: -2
+    moduleTypeIndex: 8
+  - x: 0
+    z: 2
+    moduleTypeIndex: 9
   - x: 0
     z: 0
     moduleTypeIndex: 15
-  credits: 62
-  shopLevelVisited: 1
-  bossLevel: 1
+  - x: -1
+    z: -1
+    moduleTypeIndex: 29
+  - x: -1
+    z: 0
+    moduleTypeIndex: 5
+  - x: -2
+    z: -1
+    moduleTypeIndex: 7
+  - x: -1
+    z: 1
+    moduleTypeIndex: 28
+  - x: -2
+    z: 1
+    moduleTypeIndex: 7
+  - x: 1
+    z: 0
+    moduleTypeIndex: 26
+  - x: 1
+    z: -1
+    moduleTypeIndex: 31
+  - x: 1
+    z: 1
+    moduleTypeIndex: 31
+  credits: 423
+  shopLevelVisited: 3
+  bossLevel: 3

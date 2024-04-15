@@ -4823,7 +4823,7 @@ GameObject:
   - component: {fileID: 3538126319694765834}
   - component: {fileID: 3538126319694765835}
   m_Layer: 7
-  m_Name: DirectionEngine
+  m_Name: DirectionEngine 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4924,7 +4924,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4834224030632902957}
-  m_Mesh: {fileID: 6928651379773550454, guid: 0ee126b6a45e06942a2d98a83100821b, type: 3}
+  m_Mesh: {fileID: -8900698535846258394, guid: 0e3fe0757c6e93f43a1e71ded91d51a4, type: 3}
 --- !u!23 &7763363540470736668
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4946,8 +4946,8 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 2baf35c6852fbf94290e8b77b1ff4f9f, type: 2}
-  - {fileID: -6253268659915273264, guid: 23390bf0c56bdcb4db31ea2f8ec44211, type: 3}
   - {fileID: 2100000, guid: 84e6c9458a642bd498e5a9dddd5549a0, type: 2}
+  - {fileID: -6253268659915273264, guid: 23390bf0c56bdcb4db31ea2f8ec44211, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

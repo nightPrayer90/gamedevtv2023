@@ -9,6 +9,7 @@ public class ShopModuleMeshHud : MonoBehaviour
 
     [SerializeField] private TextMeshPro headerText;
     [SerializeField] private TextMeshPro contentText;
+    [SerializeField] private TextMeshPro costText;
     [SerializeField] private TextMeshPro maxCountText;
     [SerializeField] private TextMeshPro countText;
     [SerializeField] private GameObject buyShpere;
@@ -44,7 +45,6 @@ public class ShopModuleMeshHud : MonoBehaviour
         countText.text = colorstrStorage + "in Storage: " + shopController.playerData.moduleCounts[shopModule.itemIndex].ToString() + "</color>"
             + colorstrShip + "    in ship: " + shopController.shipModulesInUse[shopModule.itemIndex].ToString() + "</color>";
 
-
         if (shopModule.itemMaxCount == -1)
             maxCountText.text = "Unlimited modules available";
         else
@@ -65,6 +65,7 @@ public class ShopModuleMeshHud : MonoBehaviour
             buyShpere.SetActive(false);
             headerText.text = shopController.moduleList.moduls[shopModule.itemIndex].moduleName + " (" + shopModule.itemCost + " CD)";
             contentText.text = shopController.moduleList.moduls[shopModule.itemIndex].moduleValues.modulDescription_multiLineText;
+            costText.text = $"Mass: {shopController.moduleList.moduls[shopModule.itemIndex].moduleValues.costMass} t   Energie: {shopController.moduleList.moduls[shopModule.itemIndex].moduleValues.costEnergie} TN";
             UpdateItemCount();
         }
         else
@@ -74,6 +75,7 @@ public class ShopModuleMeshHud : MonoBehaviour
             headerText.text = shopController.moduleList.moduls[shopModule.itemIndex].moduleName + " (" + shopModule.itemCost + " CD)"; ;
             contentText.text = "";
             maxCountText.text = "";
+            costText.text = "";
             countText.text = $"<color=\"red\"> Defeat Boss {shopModule.shopModuleContainer.index} to buy.</color>";
         }
     }

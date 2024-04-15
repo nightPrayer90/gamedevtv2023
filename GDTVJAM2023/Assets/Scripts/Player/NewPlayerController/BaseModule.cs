@@ -31,10 +31,10 @@ public class BaseModule : MonoBehaviour
         if (gm != null)
         {
             UpgradeChooseList upgradeChooseList = gm.GetComponent<UpgradeChooseList>();
-            upgradeChooseList.mcBulletLvl = moduleValues.bulletClass;
-            upgradeChooseList.mcExplosionLvl = moduleValues.rocketClass;
-            upgradeChooseList.mcLaserLvl = moduleValues.laserClass;
-            upgradeChooseList.mcSupportLvl = moduleValues.supportClass;
+            upgradeChooseList.mcBulletLvl += moduleValues.bulletClass;
+            upgradeChooseList.mcExplosionLvl += moduleValues.rocketClass;
+            upgradeChooseList.mcLaserLvl += moduleValues.laserClass;
+            upgradeChooseList.mcSupportLvl += moduleValues.supportClass;
         }
     }
 }

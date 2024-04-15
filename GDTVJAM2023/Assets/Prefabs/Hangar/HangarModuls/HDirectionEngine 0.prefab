@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3538126319694765834}
   - component: {fileID: 3054044098822754424}
   m_Layer: 7
-  m_Name: HDirectionEngine
+  m_Name: HDirectionEngine 0
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

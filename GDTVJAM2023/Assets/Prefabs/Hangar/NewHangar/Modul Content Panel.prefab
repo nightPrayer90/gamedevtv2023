@@ -231,7 +231,7 @@ MonoBehaviour:
   nameText: {fileID: 7393697056782118645}
   quantityText: {fileID: 5282514749627078387}
   moduleImagePanel: {fileID: 7393697058007234737}
-  modulContentPanel: {fileID: 7393697055927682581}
+  moduleContentPanel: {fileID: 7393697055927682581}
   baseColor:
     serializedVersion: 2
     rgba: 4288428296
@@ -239,7 +239,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294933628
   selectedSphere: {fileID: 0}
-  modulIndex: 0
+  moduleIndex: 0
   parentHangarModule: {fileID: 0}
 --- !u!1 &7393697056782118651
 GameObject:

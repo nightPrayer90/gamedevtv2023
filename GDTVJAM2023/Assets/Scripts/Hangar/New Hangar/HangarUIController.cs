@@ -136,7 +136,7 @@ public class HangarUIController : MonoBehaviour
                     go.transform.SetParent(contentParent);
                     go.transform.localScale = new Vector3(1, 1, 1);
 
-                    mCPM.modulIndex = moduleStorage.possibleModules[i];
+                    mCPM.moduleIndex = moduleStorage.possibleModules[i];
 
                     mCPM.selectedSphere = mRSph;
 
@@ -203,7 +203,7 @@ public class HangarUIController : MonoBehaviour
                 go.transform.SetParent(contentParent);
                 go.transform.localScale = new Vector3(1, 1, 1);
 
-                mCPM.modulIndex = selectedModul.possibleReplacements[i];
+                mCPM.moduleIndex = selectedModul.possibleReplacements[i];
                 mCPM.parentHangarModule = selectedModul;
                 //mCPM.selectedSphere = mRSph;
 

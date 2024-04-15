@@ -103,7 +103,6 @@ public class AudioManager : MonoBehaviour
         // Hangar and Shop
         foreach (ModuleData module in playerData.moduleData)
         {
-            Debug.Log(module);
             playerStats.moduleData.Add(module);
         }
 

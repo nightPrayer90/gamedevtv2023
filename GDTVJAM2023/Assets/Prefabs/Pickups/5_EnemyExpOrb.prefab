@@ -14605,7 +14605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 4
   detectionRange: 1
-  expValue: 3
+  expValue: 5
 --- !u!65 &4477590178855136814
 BoxCollider:
   m_ObjectHideFlags: 0

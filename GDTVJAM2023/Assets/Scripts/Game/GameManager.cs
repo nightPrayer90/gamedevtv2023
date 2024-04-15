@@ -243,7 +243,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         gameIsPlayed = false;
 
-        expGameOverText.text = CalculateGlobalPlayerExp(1f);
+        expGameVictoryText.text = CalculateGlobalPlayerExp(1f);
 
         gameOverUI.SetActive(false);
         playerUI.SetActive(false);
@@ -742,7 +742,6 @@ public class GameManager : MonoBehaviour
 
         playerData.credits += expCollected;
 
-        // TODO: Speichern!
         AudioManager.Instance.SavePlayerData();
 
         return resultString;

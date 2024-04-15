@@ -12,7 +12,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI quantityText;
     public Image moduleImagePanel;
-    public Image modulContentPanel;
+    public Image moduleContentPanel;
 
     [Header("Selection Controls")]
     public Color32 baseColor = new Color32(8, 57, 156, 255);
@@ -20,16 +20,19 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
     [HideInInspector] public MeshFilter selectedSphere;
     private Selection selectionManager;
     private Sphere sph;
+    private MeshRenderer shpMR;
 
     [Header("Create new Mesh Controls")]
-    [HideInInspector] public int modulIndex;
-    private GameObject modulToCreate;
+    [HideInInspector] public int moduleIndex;
+    private GameObject moduleToCreate;
+    private GameObject moduleGhost;
+    private GameObject moduleCreatedGhost;
     private Transform shipParent;
     private ModuleStorage moduleStorage;
     [HideInInspector] public HangarModul parentHangarModule;
     private ModuleList moduleList;
     private HangarUIController hangarUIController;
-
+   
 
 
     /* **************************************************************************** */
@@ -46,6 +49,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         if (selectedSphere != null)
         {
             sph = selectedSphere.GetComponent<Sphere>();
+            shpMR = selectedSphere.GetComponent<MeshRenderer>();
             parentHangarModule = sph.parentTransform.gameObject.GetComponent<HangarModul>();
         }
 
@@ -59,16 +63,16 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
     public void UpdatePanel()
     {
         // Content
-        nameText.text = moduleList.moduls[modulIndex].moduleName;
-        quantityText.text = moduleStorage.playerData.moduleCounts[modulIndex].ToString();
+        nameText.text = moduleList.moduls[moduleIndex].moduleName;
+        quantityText.text = moduleStorage.playerData.moduleCounts[moduleIndex].ToString();
 
         // Modul Sprite
-        if (moduleList.moduls[modulIndex].modulSprite != null)
-            moduleImagePanel.sprite = moduleList.moduls[modulIndex].modulSprite;
+        if (moduleList.moduls[moduleIndex].modulSprite != null)
+            moduleImagePanel.sprite = moduleList.moduls[moduleIndex].modulSprite;
 
         // Hangar Modul Prefab
-        modulToCreate = moduleList.moduls[modulIndex].hangarPrefab;
-
+        moduleToCreate = moduleList.moduls[moduleIndex].hangarPrefab;
+        moduleGhost = moduleList.moduls[moduleIndex].hangarGhost;
     }
 
     private void OnDestroy()
@@ -90,8 +94,47 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         gameObject.transform.DOComplete();
         gameObject.transform.DOScale(new Vector3(1.01f, 1.01f, 1.01f), 0.1f);
 
-        modulContentPanel.color = selectionColor;
-        hangarUIController.MouseOverModulePanel(modulIndex);
+        moduleContentPanel.color = selectionColor;
+        hangarUIController.MouseOverModulePanel(moduleIndex);
+
+
+        // Create a GhostObject
+        if (selectedSphere != null && moduleGhost != null)
+        {
+            float spawnpos_x = 0;
+            float spawnpos_z = 0;
+
+            switch (sph.sphereSide)
+            {
+                case SphereSide.left:
+                    spawnpos_x = sph.spawnPositionX;
+                    spawnpos_z = sph.spawnPositionZ - 1;
+                    break;
+
+                case SphereSide.right:
+                    spawnpos_x = sph.spawnPositionX;
+                    spawnpos_z = sph.spawnPositionZ + 1;
+                    break;
+
+                case SphereSide.front:
+                    spawnpos_x = sph.spawnPositionX - 1;
+                    spawnpos_z = sph.spawnPositionZ;
+                    break;
+
+                case SphereSide.back:
+                    spawnpos_x = sph.spawnPositionX + 1;
+                    spawnpos_z = sph.spawnPositionZ;
+
+                    break;
+                case SphereSide.strafe:
+                    spawnpos_x = sph.spawnPositionX - 1;
+                    spawnpos_z = sph.spawnPositionZ;
+                    break;
+            }
+
+            moduleCreatedGhost = Instantiate(moduleGhost, new Vector3(spawnpos_x, parentHangarModule.transform.position.y, spawnpos_z), Quaternion.identity);
+            shpMR.enabled = false;
+        }
     }
 
     // Handle Mouse exit UI
@@ -100,8 +143,15 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         gameObject.transform.DOComplete();
         gameObject.transform.DOScale(new Vector3(1.0f, 1.0f, 1.0f), 0.05f);
 
-        modulContentPanel.color = baseColor;
+        moduleContentPanel.color = baseColor;
         hangarUIController.MouseExitModulePanel(0.2f);
+
+        // delete Ghost if exist
+        if (moduleCreatedGhost != null)
+        {
+            Destroy(moduleCreatedGhost);
+            shpMR.enabled = true;
+        }
     }
 
     // Handle Mouse klick on UI
@@ -111,6 +161,13 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         float spawnpos_z = 0;
         GameObject go = null;
         ModuleDataRuntime newModuleData = new();
+
+        // delete Ghost if exist
+        if (moduleCreatedGhost != null)
+        {
+            Destroy(moduleCreatedGhost);
+            shpMR.enabled = true;
+        }
 
         // Handle Sphere Select
         if (sph != null)
@@ -143,7 +200,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
                     break;
             }
             // create a new Module
-            go = Instantiate(modulToCreate, new Vector3(spawnpos_x, parentHangarModule.transform.position.y, spawnpos_z), Quaternion.Euler(0f, 0f, 0f));
+            go = Instantiate(moduleToCreate, new Vector3(spawnpos_x, parentHangarModule.transform.position.y, spawnpos_z), Quaternion.Euler(0f, 0f, 0f));
             go.transform.SetParent(shipParent);
         }
         else
@@ -153,28 +210,28 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
             moduleStorage.HangarChangeModule();
 
             // create a new Module
-            go = Instantiate(modulToCreate, parentHangarModule.transform.position, Quaternion.Euler(0f, 0f, 0f));
+            go = Instantiate(moduleToCreate, parentHangarModule.transform.position, Quaternion.Euler(0f, 0f, 0f));
             go.transform.SetParent(shipParent);
 
         }
         newModuleData.x = go.transform.position.x;
         newModuleData.z = go.transform.position.z;
-        newModuleData.moduleTypeIndex = modulIndex;
+        newModuleData.moduleTypeIndex = moduleIndex;
 
         HangarModul newHangarModule = go.GetComponent<HangarModul>();
         newHangarModule.moduleData = newModuleData;
 
         // set all Module values
-        newHangarModule.moduleValues = moduleList.moduls[modulIndex].moduleValues;
+        newHangarModule.moduleValues = moduleList.moduls[moduleIndex].moduleValues;
 
         // set inspector Modlue values
-        newHangarModule.moduleValues.moduleName = moduleList.moduls[modulIndex].moduleName;
-        newHangarModule.moduleValues.moduleType = moduleList.moduls[modulIndex].moduleType;
+        newHangarModule.moduleValues.moduleName = moduleList.moduls[moduleIndex].moduleName;
+        newHangarModule.moduleValues.moduleType = moduleList.moduls[moduleIndex].moduleType;
 
-        newHangarModule.moduleValues.canLeft = moduleList.moduls[modulIndex].canLeft;
-        newHangarModule.moduleValues.canRight = moduleList.moduls[modulIndex].canRight;
-        newHangarModule.moduleValues.canFront = moduleList.moduls[modulIndex].canFront;
-        newHangarModule.moduleValues.canBack = moduleList.moduls[modulIndex].canBack;
+        newHangarModule.moduleValues.canLeft = moduleList.moduls[moduleIndex].canLeft;
+        newHangarModule.moduleValues.canRight = moduleList.moduls[moduleIndex].canRight;
+        newHangarModule.moduleValues.canFront = moduleList.moduls[moduleIndex].canFront;
+        newHangarModule.moduleValues.canBack = moduleList.moduls[moduleIndex].canBack;
 
         moduleStorage.installedModuleData.Add(newModuleData);
         moduleStorage.installedHangarModules.Add(newHangarModule);
@@ -183,7 +240,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
 
         hangarUIController.SetShipPanel();
 
-        moduleStorage.playerData.moduleCounts[modulIndex] -= 1;
+        moduleStorage.playerData.moduleCounts[moduleIndex] -= 1;
 
         int ran = Random.Range(0, 4);
         switch (ran)
