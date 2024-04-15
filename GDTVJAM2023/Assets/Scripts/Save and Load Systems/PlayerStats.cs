@@ -15,7 +15,9 @@ public class PlayerStats
 
     // Hangar + Shop
     public List<int> moduleCounts = new();
+    public List<ModuleData> moduleData = new();
     public int credits = 100;
+    public int shopLevelVisited = 0;
 
     // Game
     public int bossLevel = 0;

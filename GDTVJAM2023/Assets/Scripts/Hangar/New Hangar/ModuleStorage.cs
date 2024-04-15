@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,7 +51,6 @@ public class ModuleStorage : MonoBehaviour
 {
     public List<ModuleDataRuntime> installedModuleData;
     public ModuleDataRuntime[,] installedModuleGrid;
-    JsonDataService dataService;
     public ModuleList moduleList;
     public Transform transformParent;
     private GameObject gameManager;
@@ -82,9 +80,13 @@ public class ModuleStorage : MonoBehaviour
         gameManager = GameObject.Find("Game Manager");
 
         installedModuleData = new();
-        dataService = new();
 
-        List<ModuleData> loadedModules = dataService.LoadData<List<ModuleData>>("modules.json", false);
+        List<ModuleData> loadedModules = new();
+        foreach(ModuleData i in playerData.moduleData)
+        {
+            loadedModules.Add(i);
+        }
+
 
         if (loadedModules.Count <= 0)
         {
@@ -117,16 +119,15 @@ public class ModuleStorage : MonoBehaviour
 
     private void OnDestroy()
     {
-        List<ModuleData> moduleDataSave = new();
+        playerData.moduleData.Clear();
         foreach (ModuleDataRuntime item in installedModuleData)
         {
             ModuleData moduleData = new();
             moduleData.x = item.x;
             moduleData.z = item.z;
             moduleData.moduleTypeIndex = item.moduleTypeIndex;
-            moduleDataSave.Add(moduleData);
+            playerData.moduleData.Add(moduleData);
         }
-        dataService.SaveData("modules.json", moduleDataSave, false);
         AudioManager.Instance.SavePlayerData();
     }
 
@@ -271,6 +272,35 @@ public class ModuleStorage : MonoBehaviour
         // reset ship ui panel
         hangarUIController.SetShipPanel();
     }
+
+    public void RemoveStrafeEngine(GameObject strafeEngine)
+    {
+        HangarModul hgm = strafeEngine.GetComponent<HangarModul>();
+
+        // delete from playerData
+        playerData.moduleCounts [hgm.moduleData.moduleTypeIndex] += 1;
+
+        // destroy gameObject
+        Destroy(strafeEngine);
+
+        for (int i = 0; i < installedHangarModules.Count; i++)
+        {
+            if (installedModuleData[i].moduleTypeIndex == hgm.moduleData.moduleTypeIndex)
+            {
+
+                // delete GameObject from List
+                installedHangarModules.RemoveAt(i);
+
+                // delete GameObject from savelist
+                installedModuleData.RemoveAt(i);
+
+                break;
+            }
+        }
+        // reset ship ui panel
+        hangarUIController.SetShipPanel();
+    }
+
 
     public void RefreshModulSpheres()
     {

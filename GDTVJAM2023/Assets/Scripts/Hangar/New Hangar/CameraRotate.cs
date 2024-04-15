@@ -35,11 +35,17 @@ public class CameraRotate : MonoBehaviour
         {
             if (modulePanelMouseOver.isMouseOverModulePanel == false)
             {
-                float scroll = mainCamera.fieldOfView - Input.GetAxisRaw("Mouse ScrollWheel") * 220f;
-                scroll = Mathf.Clamp(scroll, minZoom, maxZoom);
-                mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, scroll, Time.deltaTime * 10f); ;
+                float scroll = Input.GetAxisRaw("Mouse ScrollWheel") * 8f ;
+                float targetFOV = mainCamera.fieldOfView - scroll;
+
+                targetFOV = Mathf.Clamp(targetFOV, minZoom, maxZoom);
+
+                if (targetFOV < minZoom + 0.05f || targetFOV > maxZoom - 0.05f)
+                    mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, targetFOV, Time.deltaTime * 10f);
+                else
+                    mainCamera.fieldOfView = targetFOV;
             }
-         
+
         }
     }
 }

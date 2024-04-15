@@ -20,6 +20,7 @@ public class HangarUIController : MonoBehaviour
     public CanvasGroup selectionContentPanel;
     public CanvasGroup mouseOverPanel;
     public CanvasGroup notificationPanel;
+    public CanvasGroup newModuleNotification;
 
     [Header("Selection Content Panel")]
     public TextMeshProUGUI scpHeader;
@@ -65,7 +66,7 @@ public class HangarUIController : MonoBehaviour
     private Selection selectionController;
     private List<GameObject> goContentPanels = new List<GameObject>();
 
-   
+
 
     private void Awake()
     {
@@ -93,6 +94,15 @@ public class HangarUIController : MonoBehaviour
         cpRocketImage.enabled = false;
         cpLaserImage.enabled = false;
         cpSupportImage.enabled = false;
+
+        if (moduleStorage.playerData.shopLevelVisited != moduleStorage.playerData.bossLevel)
+        {
+            newModuleNotification.DOFade(0.0f, 1f).SetEase(Ease.InQuint).SetLoops(-1, LoopType.Restart);
+        }
+        else
+        {
+            newModuleNotification.alpha = 0;
+        }
     }
 
     // handle Sphere selection
@@ -103,11 +113,13 @@ public class HangarUIController : MonoBehaviour
         {
             int modules = 0;
             MeshFilter mRSph = selection.GetComponent<MeshFilter>();
-            
+
             modules = moduleStorage.possibleModules.Count;
 
             if (modules > 0)
             {
+
+                AudioManager.Instance.PlaySFX("HangarSelectSphere");
                 // open Panel
                 modulePanel.DOKill();
                 if (modulePanel.alpha != 1)
@@ -125,11 +137,15 @@ public class HangarUIController : MonoBehaviour
                     go.transform.localScale = new Vector3(1, 1, 1);
 
                     mCPM.modulIndex = moduleStorage.possibleModules[i];
-                 
+
                     mCPM.selectedSphere = mRSph;
 
                     goContentPanels.Add(go);
                 }
+            }
+            else
+            {
+                AudioManager.Instance.PlaySFX("HangarCantLoadSelect");
             }
         }
     }
@@ -170,6 +186,7 @@ public class HangarUIController : MonoBehaviour
 
         if (modules > 0)
         {
+            AudioManager.Instance.PlaySFX("HangarSelectPart");
             modulePanel.DOKill();
             if (modulePanel.alpha != 1)
             {
@@ -192,6 +209,10 @@ public class HangarUIController : MonoBehaviour
 
                 goContentPanels.Add(go);
             }
+        }
+        else
+        {
+            AudioManager.Instance.PlaySFX("HangarCantLoadSelect");
         }
     }
 
@@ -305,7 +326,7 @@ public class HangarUIController : MonoBehaviour
         spMassValue.text = massResult.ToString() + " t";
         spEnergieProduction.text = energieProductionResult.ToString() + " TJ/s";
         spEnergieInUse.text = energieRegenResult.ToString() + " TJ/s";
-        
+
         spEnergieInUse.color = energieProductionResult < energieRegenResult ? Color.red : Color.white;
         moduleStorage.isEnergiePositiv = energieProductionResult < energieRegenResult ? false : true;
 
@@ -364,7 +385,7 @@ public class HangarUIController : MonoBehaviour
                 notificationText.text = "All modules must be connected!";
                 AudioManager.Instance.PlaySFX("CantStartGame2");
             }
-           
+
             notificationPanel.alpha = 1;
             notificationPanel.DOKill();
             notificationPanel.DOFade(0, 3f).SetDelay(1f);

@@ -55,6 +55,19 @@ public class HangarModul : MonoBehaviour
     // control function, if an installed Modul was deleted
     public void ControllChildSpheres()
     {
+        // Maybe TODO Later -> if change from another Cockpit to Cockpit 0 Delete the StrafeEngine
+        if (moduleValues.moduleType == ModuleType.StrafeEngine)
+        {
+            foreach(ModuleDataRuntime module in moduleStorage.installedModuleData)
+            {
+                if (module.moduleTypeIndex == 0)
+                {
+                    moduleStorage.RemoveStrafeEngine(gameObject);
+                    break;
+                }
+            }
+        }
+
         ControllOwnMaterial();
 
         // turn Shperes on or off

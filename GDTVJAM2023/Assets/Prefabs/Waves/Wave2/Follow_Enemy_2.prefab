@@ -204,8 +204,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.27116966, y: 0.2121768, z: 0.35147572}
-  m_Center: {x: 0.0025672913, y: 0.016288519, z: 0.052770615}
+  m_Size: {x: 0.27116966, y: 0.3073063, z: 0.35147572}
+  m_Center: {x: 0.0025672913, y: 0.012399673, z: 0.052770615}
 --- !u!114 &3161139216598759946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,12 +252,15 @@ MonoBehaviour:
   engineParticle: {fileID: 4074321248506332404}
   novaOnDie: {fileID: 4303235208557751318, guid: c01ac0e458a23da41aaf1c60e7ee97a7, type: 3}
   enemyHealth: 7
+  enemyStartHealth: 0
   collisonDamage: 1
   explosionForce: 5
   expOrbSpawn: 1
   secondDimensionEnemy: 0
   canTakeDamage: 1
   canPoolObject: 1
+  isBoss: 0
+  isMine: 0
   enemyWeapons: []
   enemyWeaponParticles: []
   bulletDamage: 0

@@ -72,7 +72,7 @@ public class Sphere : MonoBehaviour
                     meshRenderer.enabled = true;
                     foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
-                        if ((module.x == spawnPositionX && module.z == spawnPositionZ - 1) || parentModul.moduleData.bestCost == ushort.MaxValue)
+                        if ((module.x == spawnPositionX && module.z == spawnPositionZ - 1) || (parentModul.moduleData.bestCost == ushort.MaxValue) || (spawnPositionX == -1 && spawnPositionZ == 1))
                         {
                             meshRenderer.enabled = false;
                             meshCollider.enabled = false;
@@ -86,7 +86,7 @@ public class Sphere : MonoBehaviour
                     meshRenderer.enabled = true;
                     foreach (ModuleData module in moduleStorage.installedModuleData)
                     {
-                        if ((module.x == spawnPositionX && module.z == spawnPositionZ + 1) || parentModul.moduleData.bestCost == ushort.MaxValue)
+                        if ((module.x == spawnPositionX && module.z == spawnPositionZ + 1) || (parentModul.moduleData.bestCost == ushort.MaxValue) || (spawnPositionX == -1 && spawnPositionZ == -1))
                         {
                             meshRenderer.enabled = false;
                             meshCollider.enabled = false;

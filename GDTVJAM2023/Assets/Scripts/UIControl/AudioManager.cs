@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Newtonsoft.Json;
 using System.IO;
-using DG.Tweening.Plugins.Core.PathCore;
 
 
 public class AudioManager : MonoBehaviour
@@ -105,6 +101,12 @@ public class AudioManager : MonoBehaviour
         playerStats.shipPanelIndex = playerData.playerShipIcon;
 
         // Hangar and Shop
+        foreach (ModuleData module in playerData.moduleData)
+        {
+            Debug.Log(module);
+            playerStats.moduleData.Add(module);
+        }
+
         foreach (int i in playerData.moduleCounts)
         {
             playerStats.moduleCounts.Add(i);
@@ -112,6 +114,7 @@ public class AudioManager : MonoBehaviour
 
         playerStats.credits = playerData.credits;
         playerStats.bossLevel = playerData.bossLevel;
+        playerStats.shopLevelVisited = playerData.shopLevelVisited;
 
 
         DataService.SaveData(playerData.savePath, playerStats, encriptionEnabled);
@@ -140,12 +143,9 @@ public class AudioManager : MonoBehaviour
         playerData.credits = 0;
         playerData.bossLevel = 0;
         playerData.moduleCounts = new();
-        // parts for first ship
-        /*playerData.moduleCounts.Add(1);
-        playerData.moduleCounts.Add(1);
-        playerData.moduleCounts.Add(1);
-        playerData.moduleCounts.Add(1);
-        playerData.moduleCounts.Add(2);*/
+        playerData.moduleData = new();
+        playerData.shopLevelVisited = 0;
+
         for (int i = 0; i< moduleList.moduls.Count; i++)
         {
             playerData.moduleCounts.Add(0);
@@ -166,6 +166,14 @@ public class AudioManager : MonoBehaviour
         // Hangar and Shop
         playerData.credits = playerStats.credits;
         playerData.bossLevel = playerStats.bossLevel;
+        playerData.shopLevelVisited = playerStats.shopLevelVisited;
+
+
+        playerData.moduleData.Clear();
+        foreach (ModuleData i in playerStats.moduleData)
+        {
+            playerData.moduleData.Add(i);
+        }
 
         playerData.moduleCounts.Clear();
         foreach (int i in playerStats.moduleCounts)

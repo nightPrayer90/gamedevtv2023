@@ -7,6 +7,7 @@ public class ShopModule : MonoBehaviour
     private ShopController shopController;
     public int itemIndex = 0;
     public int itemCost = 0;
+    public int itemMaxCount = -1;
     [HideInInspector] public int itemSellPrice = 0;
     private ShopModuleMeshHud meshHud;
     [HideInInspector] public ShopModuleContainer shopModuleContainer;
@@ -39,11 +40,11 @@ public class ShopModule : MonoBehaviour
         Debug.Log("isDeSelected");
     }*/
 
-    public void BuyModule()
+    public void BuyModule(int flag)
     {
         if (meshHud != null)
         {
-            meshHud.BuyItem();
+            meshHud.BuyItem(flag);
         }
     }
 }

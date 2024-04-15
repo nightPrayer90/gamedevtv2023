@@ -17,7 +17,9 @@ public class PlayerData : ScriptableObject
     // hangar
     [Header("Hangar and Shop")]
     public List<int> moduleCounts = new();
+    public List<ModuleData> moduleData;
     public int credits;
+    public int shopLevelVisited = 0;
 
     // Game
     [Header("Game")]

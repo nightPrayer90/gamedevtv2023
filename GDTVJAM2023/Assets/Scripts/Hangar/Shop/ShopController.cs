@@ -14,6 +14,7 @@ public class ShopController : MonoBehaviour
     public int activeLevel = 0;
     public List<ShopModuleContainer> moduleContainers;
     public PlayerData playerData;
+    public List<int> shipModulesInUse;
 
     // Selection
     public Material highligtMaterial;
@@ -30,6 +31,7 @@ public class ShopController : MonoBehaviour
     public TextMeshProUGUI creditsText;
     public CanvasGroup buyPanel;
     public TextMeshProUGUI buyBtnText;
+    public GameObject buyButton;
     public GameObject sellBtn;
     public TextMeshProUGUI sellBtnText;
 
@@ -38,29 +40,22 @@ public class ShopController : MonoBehaviour
 
 
 
-
     /* **************************************************************************** */
     /* LIFECYCLE------------------------------------------------------------------- */
     /* **************************************************************************** */
     private void Awake()
     {
-        // ToDo - do this in one scribteble object - Playerdata
-        // Try to load playerStats - Move this Later to PlayerData
-        //playerStats = dataService.LoadData<PlayerStats>("playerData.json", false);
-        /*if (playerData.moduleCounts.Count > 0)
+        // create a List with all ModulesCounts that use in the playership
+        foreach (int i in playerData.moduleCounts)
         {
-            // set data from SaveGame
-            for (int i = 0; i < playerData.moduleCounts.Count; i++)
-            {
-                moduleCounts.Add(playerData.moduleCounts[i]);
-            }
+            shipModulesInUse.Add(0);
         }
-        // fill the rest of the list
-        while (moduleCounts.Count < moduleList.moduls.Count)
+        for (int i = 0; i < playerData.moduleData.Count; i++)
         {
-            moduleCounts.Add(0);
-        }*/
+            shipModulesInUse[playerData.moduleData[i].moduleTypeIndex] += 1;
+        }
 
+        playerData.shopLevelVisited = playerData.bossLevel;
 
         // credits
         UpdateCredits(playerData.credits);
@@ -138,8 +133,24 @@ public class ShopController : MonoBehaviour
 
                         lastSelection = selection;
 
-                        // buy Panel
+                        // buy Panel ----
                         buyBtnText.text = "buy for " + selectedShopModule.itemCost.ToString() + " CD";
+                        // buy btn
+                        buyButton.SetActive(true);
+
+                        int inUse = playerData.moduleCounts[selectedShopModule.itemIndex] + shipModulesInUse[selectedShopModule.itemIndex];
+                        if (inUse >= selectedShopModule.itemMaxCount && selectedShopModule.itemMaxCount != -1)
+                        {
+                            buyButton.SetActive(false);
+                            AudioManager.Instance.PlaySFX("HangarCantLoadSelect");
+                        }
+                        else
+                        {
+                            AudioManager.Instance.PlaySFX("HangarSelectPart");
+                        }
+
+
+                        // sell btn
                         if (playerData.moduleCounts[selectedShopModule.itemIndex] > 0)
                         {
                             sellBtn.SetActive(true);
@@ -171,12 +182,12 @@ public class ShopController : MonoBehaviour
 
     private void OnDestroy()
     {
-       /* playerData.moduleCounts.Clear();
+        /* playerData.moduleCounts.Clear();
 
-        foreach (int i in moduleCounts)
-        {
-            playerData.moduleCounts.Add(i);
-        }*/
+         foreach (int i in moduleCounts)
+         {
+             playerData.moduleCounts.Add(i);
+         }*/
 
         playerData.credits = credits;
 
@@ -226,7 +237,7 @@ public class ShopController : MonoBehaviour
     {
         credits += credits_;
         creditsText.text = "Credits: " + credits.ToString() + " CD";
-        
+
         creditsText.gameObject.transform.DOKill();
         creditsText.gameObject.transform.DOShakePosition(0.5f, 5, 25, 90);
 
@@ -254,9 +265,14 @@ public class ShopController : MonoBehaviour
                 UpdateCredits(-selectedShopModule.itemCost);
                 playerData.moduleCounts[selectedShopModule.itemIndex] += 1;
 
-                selectedShopModule.BuyModule();
+                selectedShopModule.BuyModule(0);
+                AudioManager.Instance.PlaySFX("ShopBuy");
             }
-
+            else
+            {
+                // ToDo what happents if we have not enough credits
+                AudioManager.Instance.PlaySFX("ShopCantBuyModules");
+            }
         }
         DeselectAll();
     }
@@ -265,10 +281,11 @@ public class ShopController : MonoBehaviour
     {
         if (selectedShopModule != null)
         {
+            AudioManager.Instance.PlaySFX("ShopSell");
             UpdateCredits(selectedShopModule.itemSellPrice);
             playerData.moduleCounts[selectedShopModule.itemIndex] -= 1;
 
-            selectedShopModule.BuyModule();
+            selectedShopModule.BuyModule(1);
         }
         DeselectAll();
     }

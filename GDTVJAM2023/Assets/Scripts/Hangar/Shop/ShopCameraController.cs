@@ -153,7 +153,7 @@ public class ShopCameraController : MonoBehaviour
         }*/
 
         // handle zoom
-        if (Input.GetKey(KeyCode.R)) // zoom in
+        /*if (Input.GetKey(KeyCode.R)) // zoom in
         {
             if (newZoom.y > zoomLimits.x)
                 newZoom += zoomAmount;
@@ -164,7 +164,7 @@ public class ShopCameraController : MonoBehaviour
                 newZoom -= zoomAmount;
         }
 
-        
+        */
     }
 
     private void CalculateCameraTransforms()

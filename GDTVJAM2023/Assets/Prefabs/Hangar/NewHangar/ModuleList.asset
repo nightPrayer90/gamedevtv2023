@@ -38,15 +38,15 @@ MonoBehaviour:
         Energie
         Storage: 7 TJ
 
-        Health: 8 HP
+        Health: 5 HP
 
         Strafe Engine: 2/ <color=#00FFFF>3.5</color>
         TN'
-      costMass: 0.5
+      costMass: 0.6
       costEnergie: 0
       energieProduction: 1.7
       energieStorage: 7
-      health: 8
+      health: 5
       protection: 0
       mainEngine: 0
       directionEngine: 0
@@ -222,7 +222,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Strafe Engine 0
+      moduleName: Strafe Engine 1
       moduleType: 2
       canLeft: 0
       canRight: 0
@@ -959,7 +959,7 @@ MonoBehaviour:
       canBack: 1
       modulDescription_multiLineText: Health +1
       costMass: 0.15
-      costEnergie: 0.2
+      costEnergie: 0.15
       energieProduction: 0
       energieStorage: 2
       health: 1
@@ -993,22 +993,22 @@ MonoBehaviour:
       canRight: 0
       canFront: 0
       canBack: 1
-      modulDescription_multiLineText: 'Thrust force: 6 TJ
+      modulDescription_multiLineText: 'Thrust force: 7.5 TJ
 
-        Boost force: <color=#00FFFF>10
-        TJ </color>
+        Boost force:
+        <color=#00FFFF>11 TJ </color>
 
         <color=#00FFFF>Boost needs less Energie/s</color>'
       costMass: 0.2
-      costEnergie: 0.4
+      costEnergie: 0.5
       energieProduction: 0
       energieStorage: 0
       health: 0
       protection: 0
-      mainEngine: 6
+      mainEngine: 7.5
       directionEngine: 0
       strafeEngine: 0
-      boostEngine: 10
+      boostEngine: 11
       boostStrafeEngine: 0
       bulletClass: 0
       rocketClass: 0
@@ -1028,26 +1028,26 @@ MonoBehaviour:
     canHaveFrontNeighbor: 1
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Main Engine 0
+      moduleName: Main Engine 2
       moduleType: 1
       canLeft: 0
       canRight: 0
       canFront: 0
       canBack: 1
       modulDescription_multiLineText: "<color=#FFBF00>You need one main engine to
-        fly \r\nforwards or backwards.</color>\r\nThrust force: 6 TJ\r\nBoost force:
-        <color=#00FFFF>9 TJ </color>\r\nYou get the Ability  <color=#00FFFF>Power
+        fly \r\nforwards or backwards.</color>\r\nThrust force: 8 TJ\r\nBoost force:
+        <color=#00FFFF>10 TJ </color>\r\nYou get the Ability  <color=#00FFFF>Power
         Boost</color>"
       costMass: 0.2
-      costEnergie: 0.4
+      costEnergie: 0.5
       energieProduction: 0
       energieStorage: 0
       health: 0
       protection: 0
-      mainEngine: 6
+      mainEngine: 8
       directionEngine: 0
       strafeEngine: 0
-      boostEngine: 9
+      boostEngine: 10
       boostStrafeEngine: 0
       bulletClass: 0
       rocketClass: 0
@@ -1078,7 +1078,7 @@ MonoBehaviour:
         Connectors: front, left,
         right'
       costMass: 0.12
-      costEnergie: 0.12
+      costEnergie: 0.1
       energieProduction: 0
       energieStorage: 0
       health: 1
@@ -1117,7 +1117,7 @@ MonoBehaviour:
         Connectors: front, back,
         right'
       costMass: 0.12
-      costEnergie: 0.12
+      costEnergie: 0.1
       energieProduction: 0
       energieStorage: 0
       health: 1
@@ -1156,7 +1156,7 @@ MonoBehaviour:
         Connectors: front, back,
         left'
       costMass: 0.12
-      costEnergie: 0.12
+      costEnergie: 0.1
       energieProduction: 0
       energieStorage: 0
       health: 1
@@ -1184,18 +1184,18 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 1
     moduleValues:
-      moduleName: Connector 3 Ways 1
+      moduleName: Connector 3 Ways 4
       moduleType: 0
       canLeft: 1
       canRight: 1
-      canFront: 0
-      canBack: 1
+      canFront: 1
+      canBack: 0
       modulDescription_multiLineText: 'Health + 1
 
         Connectors:  back, left,
         right'
       costMass: 0.12
-      costEnergie: 0.12
+      costEnergie: 0.1
       energieProduction: 0
       energieStorage: 0
       health: 1

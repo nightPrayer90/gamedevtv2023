@@ -204,8 +204,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.27116966, y: 0.2121768, z: 0.35147572}
-  m_Center: {x: 0.0025672913, y: 0.016288519, z: 0.052770615}
+  m_Size: {x: 0.27116966, y: 0.26827908, z: 0.35147572}
+  m_Center: {x: 0.0025672913, y: 0.005545616, z: 0.052770615}
 --- !u!114 &3161139216598759946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +260,7 @@ MonoBehaviour:
   canTakeDamage: 1
   canPoolObject: 1
   isBoss: 0
+  isMine: 0
   enemyWeapons: []
   enemyWeaponParticles: []
   bulletDamage: 0

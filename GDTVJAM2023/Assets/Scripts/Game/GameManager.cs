@@ -228,7 +228,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         gameIsPlayed = false;
 
-        expGameOverText.text = "you have earned: " + CalculateGlobalPlayerExp(1f) + " Credits";
+        expGameOverText.text = CalculateGlobalPlayerExp(1f);
 
         gameOverUI.SetActive(true);
         playerUI.SetActive(false);
@@ -243,7 +243,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         gameIsPlayed = false;
 
-        expGameOverText.text = "you have earned: " + CalculateGlobalPlayerExp(1f) + " Credits";
+        expGameOverText.text = CalculateGlobalPlayerExp(1f);
 
         gameOverUI.SetActive(false);
         playerUI.SetActive(false);
@@ -419,7 +419,7 @@ public class GameManager : MonoBehaviour
         killCounter = killCounter + amount;
 
         int enemyToDefeat = Mathf.Max(0, enemysToKill - killCounter);
-        enemyToKillText.text = "Enemys to defeat: " + enemyToDefeat;
+        enemyToKillText.text = "Enemies to defeat: " + enemyToDefeat;
 
         // if the enemy kill quest for the current destrict is done
         if (enemyToDefeat == 0 && canSpawnNextDimention == true)
@@ -728,21 +728,24 @@ public class GameManager : MonoBehaviour
     }
 
     // write earned exp in playerData
-    private int CalculateGlobalPlayerExp(float percent)
+    private string CalculateGlobalPlayerExp(float percent)
     {
         expCollected = Mathf.RoundToInt((float)expCollected * percent);
 
-        playerData.credits += expCollected;
+        string resultString = $"you earned {expCollected} Credits";
 
-        if (playerData.bossLevel < (districtNumber-1)) //-1 because it starts with 1
+        if (playerData.bossLevel < (districtNumber - 1)) //-1 because it starts with 1
         {
-            playerData.bossLevel = districtNumber-1;
+            resultString += "\n and unlock new modules in Module Shop!";
+            playerData.bossLevel = districtNumber - 1;
         }
+
+        playerData.credits += expCollected;
 
         // TODO: Speichern!
         AudioManager.Instance.SavePlayerData();
 
-        return expCollected;
+        return resultString;
     }
 }
 
