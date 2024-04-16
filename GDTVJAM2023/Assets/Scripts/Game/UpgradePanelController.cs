@@ -713,6 +713,13 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.olCount += 1;
                 playerWeaponController.UpdateWeaponValues();
                 break;
+            case 81: // Tactical Minefield
+                playerWeaponController.isMineLayer = true;
+                playerWeaponController.WeaponChoose();
+                UpdateClass(number, 1);
+                GoBockToDimension();
+                weaponCount++;
+                break;
         }
     }
 

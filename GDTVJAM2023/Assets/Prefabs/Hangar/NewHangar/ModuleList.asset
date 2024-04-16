@@ -63,7 +63,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 9d5ae236a5ded114caea9a3e7fe46e64, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: e0dd02f65e042e7428d78cd3471fb176, type: 3}
     modulSprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
-    moduleType: 5
+    moduleType: 6
     canLeft: 1
     canRight: 0
     canFront: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: e020c86d2ad8a8347b7bec3e70dfa593, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: cbf983cc1f3c12a4f9705804227e6dd1, type: 3}
     modulSprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
-    moduleType: 5
+    moduleType: 6
     canLeft: 0
     canRight: 1
     canFront: 0
@@ -453,7 +453,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 3074fa7045d4bc3438ec839f3782fb40, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: a860039c419ef4b4484955622ba66036, type: 3}
     modulSprite: {fileID: 21300000, guid: a7a01ead83f63fa44a6141650e1add89, type: 3}
-    moduleType: 0
+    moduleType: 6
     canLeft: 1
     canRight: 0
     canFront: 0
@@ -492,7 +492,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 47520f6c06f5e5946870f84e6f0352b3, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 423dd5f0308f5f74085528bf6eec76d5, type: 3}
     modulSprite: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
-    moduleType: 0
+    moduleType: 6
     canLeft: 0
     canRight: 1
     canFront: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: fb747d04ec6c3fb44b36eba8cd5cd7e8, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 97110d38b34151e41bb0c2a9ae4aeaee, type: 3}
     modulSprite: {fileID: 21300000, guid: a7a01ead83f63fa44a6141650e1add89, type: 3}
-    moduleType: 0
+    moduleType: 6
     canLeft: 1
     canRight: 0
     canFront: 0
@@ -570,7 +570,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 62c1da1d42d45204384e5b28b06a5b83, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: f51dd2da054c7b24287bd87060ed0dc5, type: 3}
     modulSprite: {fileID: 21300000, guid: a7a01ead83f63fa44a6141650e1add89, type: 3}
-    moduleType: 0
+    moduleType: 6
     canLeft: 0
     canRight: 1
     canFront: 0
@@ -744,7 +744,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 087bd023c96b2c54989b84bcbb83e87d, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 901ff16e09993254093fa5d704f51967, type: 3}
     modulSprite: {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
-    moduleType: 0
+    moduleType: 6
     canLeft: 1
     canRight: 0
     canFront: 0
@@ -783,7 +783,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 43f88ece3a5e4614f936d5b2f953bb8a, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: d6bd91d662e91ef42932358cf3a1665d, type: 3}
     modulSprite: {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
-    moduleType: 0
+    moduleType: 6
     canLeft: 0
     canRight: 1
     canFront: 0
@@ -822,7 +822,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: cce53aeb1cd73964488e1c24d606ae0e, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 114c7878752ec4243b30de0ccb8ce1f5, type: 3}
     modulSprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
-    moduleType: 0
+    moduleType: 6
     canLeft: 1
     canRight: 0
     canFront: 0
@@ -861,7 +861,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 19a56be42afea084b8ce0487f48e8d37, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 627446d265b7d7147b2d395625cc2b3c, type: 3}
     modulSprite: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
-    moduleType: 0
+    moduleType: 6
     canLeft: 0
     canRight: 1
     canFront: 0
@@ -1258,7 +1258,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3538126319694765833, guid: 588ba2873ad4cc94b812c73905307f98, type: 3}
     hangarGhost: {fileID: 3538126319694765833, guid: d305d3e9d4aba234794ea18ad150a99d, type: 3}
     modulSprite: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
-    moduleType: 0
+    moduleType: 3
     canLeft: 0
     canRight: 0
     canFront: 0

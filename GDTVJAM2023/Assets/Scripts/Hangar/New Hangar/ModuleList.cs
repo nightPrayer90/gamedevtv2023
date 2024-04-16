@@ -9,7 +9,8 @@ public enum ModuleType
     StrafeEngine,
     DirectionEngine,
     Cockpit,
-    Weapon
+    Weapon,
+    Wings
 }
 
 
