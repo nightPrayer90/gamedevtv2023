@@ -5,27 +5,20 @@ public class OrbitalLaserOrb : MonoBehaviour
 {
     public ParticleSystem orbParticle;
     public ParticleSystem hitParticle;
-    public OrbitalLaser orbitalLaser;
 
-    public int damage;
-    public float realoadTime;
-
-    public int index;
+    [HideInInspector] public int damage;
+    [HideInInspector] public float realoadTime;
+    [HideInInspector] public int index;
 
     // Start is called before the first frame update
     void Start()
     {
-        damage = orbitalLaser.damage;
-        realoadTime = orbitalLaser.realoadTime;
-
         Invoke("ActivateOrb", index);
         gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        
-
         if (other.CompareTag("Enemy") || other.CompareTag("secondDimensionEnemy"))
         {
             EnemyHealth eh = other.GetComponent<EnemyHealth>();
@@ -40,10 +33,7 @@ public class OrbitalLaserOrb : MonoBehaviour
             }
             else
             {
-                
                 EnemyShield es = other.transform.GetComponentInParent<EnemyShield>();
-
-                Debug.Log(es);
 
                 if (es != null)
                 {
@@ -56,19 +46,7 @@ public class OrbitalLaserOrb : MonoBehaviour
         }
     }
 
-    private void OnParticleCollision(GameObject other)
-    {
-
-        Debug.Log("Collision");
-        /*if (upgradeChooseList.weaponIndexInstalled[57] == false) //todo to true
-        {
-            ParticleSystem part = other.GetComponent<ParticleSystem>(); // *** important! Making a variable to acess the particle system of the emmiting object, in this case, the lasers from my player ship.
-
-
-        }*/
-    }
-
-    // if the Orb Collide with an Enemy laser2
+      // if the Orb Collide with an Enemy laser2
     public void DestroyOrb()
     {
         Invoke("ActivateOrb", realoadTime);

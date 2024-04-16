@@ -98,13 +98,11 @@ public class RocketController : MonoBehaviour
             layerMask = (1 << 9);
             tagStr = "secondDimensionEnemy";
         }
-
-        GameObject go = other.gameObject;
         
         // enemy target tag compare only than destroy the rocked
-        if (other.gameObject.CompareTag(tagStr))
+        if (other.CompareTag(tagStr))
         {
-            Explode(go);
+            Explode(other.gameObject);
         }
     }
 

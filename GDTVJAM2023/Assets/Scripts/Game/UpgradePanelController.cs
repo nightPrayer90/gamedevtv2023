@@ -589,8 +589,9 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.bossBonusDamage = 35;
                 break;
             case 56: // Laser Orbit Accelerator
-                playerWeaponController.olRotationSpeed = Mathf.Round(playerWeaponController.olRotationSpeed * 1.2f);
-                playerWeaponController.olReloadTime = Mathf.Round(playerWeaponController.olReloadTime * 0.93f);
+                playerWeaponController.olRotationSpeed = Mathf.Round(playerWeaponController.olRotationSpeed * 1.25f);
+                playerWeaponController.olDamage += 1;
+                upgradeChooseList.weaponUpgrades[80].reqLaser = 3; // Orbital Laser Array
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 57: // Explosive Impact
@@ -617,8 +618,8 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.chanceToGetfullEnergy += 5;
                 break;
             case 64: // Fast Head Cannon
-                playerWeaponController.hcBulletDamage = 1;
-                playerWeaponController.hcSalveCount = 4;
+                playerWeaponController.hcBulletDamage = 2;
+                playerWeaponController.hcSalveCount = 7;
                 playerWeaponController.hcReloadTime = 1f;
                 playerWeaponController.UpdateWeaponValues();
 
@@ -627,21 +628,23 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.weaponUpgrades[76].reqBullet = 4; // Cannon Power
                 break;
             case 65: // Big Head Cannon
-                playerWeaponController.hcBulletDamage = 20;
-                playerWeaponController.hcSalveCount = 1;
-                playerWeaponController.hcReloadTime = 5f;
+                playerWeaponController.hcBulletDamage = 12;
+                playerWeaponController.hcSalveCount = 2;
+                playerWeaponController.hcReloadTime = 3.5f;
                 playerWeaponController.UpdateWeaponValues();
 
                 upgradeChooseList.weaponUpgrades[64].reqBullet = 99; // Fast Head Cannon
                 upgradeChooseList.weaponUpgrades[66].reqBullet = 3; // Sniper Head Cannon
                 break;
             case 66: // Sniper Head Cannon
-                playerWeaponController.hcBulletDamage = 25;
+                playerWeaponController.hcBulletDamage = 18;
+                playerWeaponController.hcSalveCount = 2;
+                playerWeaponController.hcReloadTime = 4f;
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 67: // Gatlin Head Cannon
-                playerWeaponController.hcReloadTime = 0.25f;
-                playerWeaponController.hcSalveCount = 3;
+                playerWeaponController.hcReloadTime = 0.5f;
+                playerWeaponController.hcSalveCount = 5;
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 68: // fast Spread gun
@@ -704,6 +707,10 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 79: // Power Nova
                 playerWeaponController.neDamage += 2;
+                playerWeaponController.UpdateWeaponValues();
+                break;
+            case 80: // Orbital Laser Array
+                playerWeaponController.olCount += 1;
                 playerWeaponController.UpdateWeaponValues();
                 break;
         }

@@ -5089,8 +5089,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
-  detectRange: 2
-  forcePower: 0.06
+  detectRange: 3
+  forcePower: 0.2
   sphereForceTime: 0.5
   hitParticle: {fileID: 5823111163088731255}
   spawnParticle: {fileID: 4646494061281161086}

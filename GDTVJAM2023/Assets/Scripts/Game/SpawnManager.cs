@@ -1,7 +1,5 @@
 using System;
-using System.Runtime.ConstrainedExecution;
 using UnityEngine;
-using UnityEngine.XR;
 
 [Serializable]
 public class WaveData
@@ -170,10 +168,10 @@ public class SpawnManager : MonoBehaviour
 
     private Vector3 GetRandomSpawnPositionFromPlayer()
     {
-        Vector3 spawnDirection = UnityEngine.Random.onUnitSphere;
-        Vector3 adjustedSpawnDirection = spawnDirection.normalized * minSpawnDistance;
-        float spawnDistance = UnityEngine.Random.Range(1f, maxSpawnDistance - minSpawnDistance);
-        Vector3 spawnPosition = playerTransform.position + (adjustedSpawnDirection * spawnDistance);
+        Vector2 randomDirectionXZ = UnityEngine.Random.insideUnitCircle.normalized;
+        float spawnDistance = UnityEngine.Random.Range(minSpawnDistance, maxSpawnDistance);
+        Vector3 spawnPosition = playerTransform.position + new Vector3(randomDirectionXZ.x, 0f, randomDirectionXZ.y) * spawnDistance;
+
         spawnPosition.y = 6f; // Y-Koordinate auf 0 setzen
         return spawnPosition;
     }

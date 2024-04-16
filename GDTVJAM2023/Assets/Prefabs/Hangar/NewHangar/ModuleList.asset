@@ -358,7 +358,7 @@ MonoBehaviour:
         Fire \r\nhoming rockets with explosion AOE</color>\r\nDamage: 6 HP/hit\r\nFirerate:
         1 Rocket/s"
       costMass: 0.15
-      costEnergie: 0.15
+      costEnergie: 0.2
       energieProduction: 0
       energieStorage: 0
       health: 0
@@ -397,7 +397,7 @@ MonoBehaviour:
         Fire \r\nhoming rockets with explosion AOE</color>\r\nDamage: 6 HP/hit\r\nFirerate:
         1 Rocket/s"
       costMass: 0.15
-      costEnergie: 0.15
+      costEnergie: 0.2
       energieProduction: 0
       energieStorage: 0
       health: 0
@@ -550,7 +550,7 @@ MonoBehaviour:
       modulDescription_multiLineText: 'Protecton Level +1
 
         Health +1'
-      costMass: 0.12
+      costMass: 0.1
       costEnergie: 0.1
       energieProduction: 0
       energieStorage: 0
@@ -589,7 +589,7 @@ MonoBehaviour:
       modulDescription_multiLineText: 'Protecton Level +1
 
         Health +1'
-      costMass: 0.12
+      costMass: 0.1
       costEnergie: 0.1
       energieProduction: 0
       energieStorage: 0
@@ -916,7 +916,8 @@ MonoBehaviour:
       canRight: 0
       canFront: 0
       canBack: 0
-      modulDescription_multiLineText: 
+      modulDescription_multiLineText: "<color=#FFBF00>Midrange bullet attack</color>
+        \r\nDamage: 5 HP/ hit \r\nFirerate: 2 bullets/s"
       costMass: 0.1
       costEnergie: 0.3
       energieProduction: 0
@@ -953,7 +954,8 @@ MonoBehaviour:
       canRight: 1
       canFront: 0
       canBack: 0
-      modulDescription_multiLineText: 
+      modulDescription_multiLineText: "<color=#FFBF00>Midrange bullet attack</color>
+        \r\nDamage: 5 HP/ hit \r\nFirerate: 2 bullets/s"
       costMass: 0.1
       costEnergie: 0.3
       energieProduction: 0
@@ -1116,7 +1118,7 @@ MonoBehaviour:
 
         Connectors: front, left,
         right'
-      costMass: 0.12
+      costMass: 0.1
       costEnergie: 0.1
       energieProduction: 0
       energieStorage: 0
@@ -1156,7 +1158,7 @@ MonoBehaviour:
 
         Connectors: front, back,
         right'
-      costMass: 0.12
+      costMass: 0.1
       costEnergie: 0.1
       energieProduction: 0
       energieStorage: 0
@@ -1196,7 +1198,7 @@ MonoBehaviour:
 
         Connectors: front, back,
         left'
-      costMass: 0.12
+      costMass: 0.1
       costEnergie: 0.1
       energieProduction: 0
       energieStorage: 0
@@ -1236,7 +1238,7 @@ MonoBehaviour:
 
         Connectors:  back, left,
         right'
-      costMass: 0.12
+      costMass: 0.1
       costEnergie: 0.1
       energieProduction: 0
       energieStorage: 0

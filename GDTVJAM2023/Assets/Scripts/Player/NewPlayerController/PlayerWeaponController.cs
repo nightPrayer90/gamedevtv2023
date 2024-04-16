@@ -25,6 +25,7 @@ public class PlayerWeaponController : MonoBehaviour
     public bool isFrontLaser = false;
     public bool isOrbitalLaser = false;
     public bool isThermalSpheres = false;
+    public bool isMineLayer = false;
 
     private HeadCannon isHeadCannonInstalled;
     private PeriodSpawner isRocketLauncherInstalled;
@@ -39,6 +40,8 @@ public class PlayerWeaponController : MonoBehaviour
     private FrontLaser isFrontLaserInstalled;
     private OrbitalLaser isOrbitalLaserInstalled;
     private ThermalSpheres isThermalSpheresInstalled;
+    private MineLayer isMineLayerInstalled;
+
 
 
     [Header("Shields")]
@@ -87,7 +90,7 @@ public class PlayerWeaponController : MonoBehaviour
     [HideInInspector] public float bwRealoadTime_;
     [HideInInspector] public int bwSalveCount_;
 
-    [Header("Life Modul")]
+    [Header("Support Modul")]
     public int lmLifePerTick = 1;
     public float lmReloadTime = 10;
     public GameObject lifeModul;
@@ -135,8 +138,8 @@ public class PlayerWeaponController : MonoBehaviour
 
     [Header("Orbital Laser")]
     public int olDamage = 10;
-    public float olReloadTime = 3f;
-    public float olRotationSpeed = 450;
+    public int olCount = 3;
+    public float olRotationSpeed = 300;
     public GameObject orbitalLaser;
     [HideInInspector] public int olDamage_;
     [HideInInspector] public float olReloadTime_;
@@ -150,6 +153,14 @@ public class PlayerWeaponController : MonoBehaviour
     [HideInInspector] public float tsLifetime_;
     [HideInInspector] public float tsRelaodTime_;
 
+    [Header("Mine Layer")]
+    public int mlDamage = 6;
+    public float mlLifetime = 12;
+    public float mlReloadTime = 3f;
+    public GameObject mineLayer;
+    [HideInInspector] public int mlDamage_;
+    [HideInInspector] public float mlLifetime_;
+    [HideInInspector] public float mlRelaodTime_;
 
     [Header("Container")]
     public Transform passivParentContainer;
@@ -268,6 +279,11 @@ public class PlayerWeaponController : MonoBehaviour
         {
             go = Instantiate(thermalSphere, passivParentContainer);
             isThermalSpheresInstalled = go.GetComponent<ThermalSpheres>();
+        }
+        if (isMineLayer == true && isMineLayerInstalled == null)
+        {
+            go = Instantiate(mineLayer, passivParentContainer);
+            isMineLayerInstalled = go.GetComponent<MineLayer>();
         }
 
         Invoke("UpdateWeaponValues", 0.1f);
@@ -413,12 +429,11 @@ public class PlayerWeaponController : MonoBehaviour
 
         // Orbital Laser - laser - defence
         olDamage_ = Mathf.CeilToInt((olDamage) * (1 + upgradeChooseList.percLaserDamage / 100));
-        olReloadTime_ = Mathf.Max(0.1f, (olReloadTime * (suReloadTime)));
         //olRotationSpeed = olRotationSpeed;
         if (isOrbitalLaserInstalled != null)
         {
             isOrbitalLaserInstalled.damage = olDamage_;
-            isOrbitalLaserInstalled.realoadTime = olReloadTime_;
+            isOrbitalLaserInstalled.orbCount = olCount;
             isOrbitalLaserInstalled.rotationSpeed = olRotationSpeed;
 
             isOrbitalLaserInstalled.UpdateOrbs();
@@ -434,6 +449,18 @@ public class PlayerWeaponController : MonoBehaviour
             isThermalSpheresInstalled.spawnInterval = tsRelaodTime_;
             isThermalSpheresInstalled.lifeTime = tsLifetime_;
             isThermalSpheresInstalled.UpdateInvoke();
+        }
+
+        // Mine Layer - rocket
+        mlDamage_ = Mathf.CeilToInt((mlDamage) * (1 + upgradeChooseList.percRocketDamage / 100));
+        mlRelaodTime_ = Mathf.Max(0.1f, (mlReloadTime * suReloadTime));
+        mlLifetime_ = mlLifetime;
+        if (isMineLayerInstalled != null)
+        {
+            isMineLayerInstalled.baseDamage = mlDamage_;
+            isMineLayerInstalled.spawnInterval = mlRelaodTime_;
+            isMineLayerInstalled.lifeTime = mlLifetime_;
+            isMineLayerInstalled.UpdateInvoke();
         }
     }
     #endregion

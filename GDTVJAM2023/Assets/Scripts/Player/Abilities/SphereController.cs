@@ -17,14 +17,13 @@ public class SphereController : MonoBehaviour
 
     private void OnEnable()
     {
-
         transform.DOScale(initalScale, 0.5f).SetUpdate(true);
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
 
         shereForceTime_ = sphereForceTime - (upgradeChooseList.weaponIndexInstalled[73] / 10);
 
-        InvokeRepeating("CheckForEnemy", 1, shereForceTime_);
+        InvokeRepeating("CheckForEnemy", 0.5f, shereForceTime_);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,7 +43,6 @@ public class SphereController : MonoBehaviour
             {
                 if (eh.canTakeDamage == true)
                 {
-                    
                     AudioManager.Instance.PlaySFX("PlayerLaserHit");
                     hitParticle.Emit(15);
 
@@ -61,10 +59,7 @@ public class SphereController : MonoBehaviour
             }
             else
             {
-
                 EnemyShield es = other.transform.GetComponentInParent<EnemyShield>();
-
-                Debug.Log(es);
 
                 if (es != null)
                 {
@@ -102,7 +97,6 @@ public class SphereController : MonoBehaviour
             }
         }
     }
-
 
 
     public void SetDestroyTimer(float lifetime)
