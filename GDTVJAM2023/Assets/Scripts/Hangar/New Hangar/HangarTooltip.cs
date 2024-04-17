@@ -60,6 +60,12 @@ public class HangarTooltip : MonoBehaviour
             case 7: // Ship mass
             case 8: // Protection
             case 9: // Energie in use
+            case 10:// no Filter
+            case 11:// Cockpits
+            case 12:// Thruster
+            case 13:// Connectors
+            case 14:// Weapons
+            case 15:// Wings
                 header_ = tooltipContent[contentType].header;
                 content_ = tooltipContent[contentType].content;
                 break;

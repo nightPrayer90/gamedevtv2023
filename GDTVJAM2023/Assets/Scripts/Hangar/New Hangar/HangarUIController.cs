@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using TMPro;
 using static Sphere;
@@ -62,10 +61,8 @@ public class HangarUIController : MonoBehaviour
     [Header("Game Objects")]
     public ModuleStorage moduleStorage;
     public Transform contentParent;
-    public GameObject moduleContentPanelPrefab;
     private Selection selectionController;
-    private List<GameObject> goContentPanels = new List<GameObject>();
-
+    public HangarFilterBtn hangarFilterBtn;
 
 
     private void Awake()
@@ -118,8 +115,8 @@ public class HangarUIController : MonoBehaviour
 
             if (modules > 0)
             {
-
                 AudioManager.Instance.PlaySFX("HangarSelectSphere");
+                
                 // open Panel
                 modulePanel.DOKill();
                 if (modulePanel.alpha != 1)
@@ -129,19 +126,9 @@ public class HangarUIController : MonoBehaviour
                 }
 
                 // duplicate Content Moduls
-                for (int i = 0; i < modules; i++)
-                {
-                    GameObject go = Instantiate(moduleContentPanelPrefab);
-                    ModulContentPanelManager mCPM = go.GetComponent<ModulContentPanelManager>();
-                    go.transform.SetParent(contentParent);
-                    go.transform.localScale = new Vector3(1, 1, 1);
-
-                    mCPM.moduleIndex = moduleStorage.possibleModules[i];
-
-                    mCPM.selectedSphere = mRSph;
-
-                    goContentPanels.Add(go);
-                }
+                hangarFilterBtn.moduleParentTransform = selection.parentTransform;
+                hangarFilterBtn.BuildLists();
+                hangarFilterBtn.CreateFromHangarUIController(contentParent, mRSph);      
             }
             else
             {
@@ -182,7 +169,7 @@ public class HangarUIController : MonoBehaviour
 
 
         // open Module Panel
-        int modules = selectedModul.possibleReplacements.Count;
+        int modules = moduleStorage.possibleModules.Count;
 
         if (modules > 0)
         {
@@ -194,21 +181,10 @@ public class HangarUIController : MonoBehaviour
                 modulePanel.DOFade(1, 0.2f);
             }
 
-            // load Content Panel
             // duplicate Content Moduls
-            for (int i = 0; i < modules; i++)
-            {
-                GameObject go = Instantiate(moduleContentPanelPrefab);
-                ModulContentPanelManager mCPM = go.GetComponent<ModulContentPanelManager>();
-                go.transform.SetParent(contentParent);
-                go.transform.localScale = new Vector3(1, 1, 1);
-
-                mCPM.moduleIndex = selectedModul.possibleReplacements[i];
-                mCPM.parentHangarModule = selectedModul;
-                //mCPM.selectedSphere = mRSph;
-
-                goContentPanels.Add(go);
-            }
+            hangarFilterBtn.moduleParentTransform = selectedModul.transform;
+            hangarFilterBtn.BuildLists();
+            hangarFilterBtn.CreateFromHangarUIController(contentParent);
         }
         else
         {
@@ -222,13 +198,6 @@ public class HangarUIController : MonoBehaviour
         modulePanel.DOFade(0, 0.2f).OnComplete(() => { modulePanel.blocksRaycasts = false; });
         removePanel.DOFade(0, 0.2f).OnComplete(() => { removePanel.blocksRaycasts = false; });
         selectionContentPanel.DOFade(0, 0.2f).OnComplete(() => { selectionContentPanel.blocksRaycasts = true; });
-
-        // delete all Panels
-        for (int i = 0; i < goContentPanels.Count; i++)
-        {
-            Destroy(goContentPanels[i]);
-        }
-        goContentPanels.Clear();
     }
 
     public void ControllUnconnectedModules(bool isAllConnected)
@@ -360,6 +329,8 @@ public class HangarUIController : MonoBehaviour
     }
 
     #endregion
+
+
 
     /* **************************************************************************** */
     /* BUTTON CONTOLS-------------------------------------------------------------- */

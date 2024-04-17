@@ -32,9 +32,6 @@ public class Sphere : MonoBehaviour
         //moduleInstances = moduleStorage.installedModuleData;
         meshRenderer = gameObject.GetComponent<MeshRenderer>();
         meshCollider = gameObject.GetComponent<Collider>();
-
-        
-
     }
 
     private void Start()

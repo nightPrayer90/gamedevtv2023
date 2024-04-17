@@ -304,7 +304,6 @@ public class ModuleStorage : MonoBehaviour
 
     public void RefreshModulSpheres()
     {
-
         // TODO - if any Modul with no parent - the HangarModul script set canGameStart to false;
         isAllConnected = true;
 
@@ -498,6 +497,41 @@ public class ModuleStorage : MonoBehaviour
                         possibleModules.Add(moduleList.moduls.IndexOf(module));
                 }
                 break;
+
+
+        }
+    }
+
+    public void CreateReplacementList(HangarModul hangarModule)
+    {
+        possibleModules.Clear();
+
+        foreach (Modules module in moduleList.moduls)
+        {
+            int index = moduleList.moduls.IndexOf(module);
+
+            switch (hangarModule.moduleValues.moduleType)
+            {
+                case ModuleType.Cockpit:
+                case ModuleType.StrafeEngine:
+                    if (playerData.moduleCounts[index] > 0 && module.moduleType == hangarModule.moduleValues.moduleType && module.moduleName != hangarModule.moduleValues.moduleName)
+                    {
+                        possibleModules.Add(moduleList.moduls.IndexOf(module));
+                    }
+                    break;
+                default:
+                    if (playerData.moduleCounts[index] > 0 &&
+                        (hangarModule.moduleValues.canLeft == false || (module.canLeft == hangarModule.moduleValues.canLeft)) &&
+                        (hangarModule.moduleValues.canRight == false || (module.canRight == hangarModule.moduleValues.canRight)) &&
+                        (hangarModule.moduleValues.canFront == false || (module.canFront == hangarModule.moduleValues.canFront)) &&
+                        (hangarModule.moduleValues.canBack == false || (module.canBack == hangarModule.moduleValues.canBack)) &&
+                        !hangarModule.moduleValues.moduleName.Equals(module.moduleName)
+                        )
+                    {
+                        possibleModules.Add(moduleList.moduls.IndexOf(module));
+                    }
+                    break;
+            }
 
 
         }

@@ -474,7 +474,6 @@ public class EnemyHealth : MonoBehaviour
     /* **************************************************************************** */
     /* SHOOTING CONTROL------------------------------------------------------------ */
     /* **************************************************************************** */
-    // start shooting
     public void StartShooting()
     {
         if (isShooting == false)
@@ -502,7 +501,6 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    // stop shooting
     public void StopShooting()
     {
         CancelInvoke("InvokeShooting");
@@ -526,7 +524,6 @@ public class EnemyHealth : MonoBehaviour
         gameManager.DoFloatingText(pos, "+" + damage.ToString(),new Color(1f, 0.6f, 0.0f, 1f));
     }
 
-    // drop an Item
     private void Drop()
     {
         if (expOrbSpawn)

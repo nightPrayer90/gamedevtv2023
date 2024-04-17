@@ -88,8 +88,10 @@ public class Selection : MonoBehaviour
                         originalMaterialSelectet = originalMaterial;
                         selection.GetComponent<MeshRenderer>().material = selectionMaterial;
                         HangarModul hm = selection.GetComponentInParent<HangarModul>();
-                        hm.CreateModuleList();
+                        
+                        moduleStorage.CreateReplacementList(hm);
                         hm.SetActive();
+
                         hangarUIController.HandleModulSelect(hm);
                         lastSelection = selection;
                     }
@@ -104,8 +106,10 @@ public class Selection : MonoBehaviour
                         originalMaterialSelectet = originalMaterial;
                         selection.GetComponent<MeshRenderer>().material = selectionSphereMaterial;
                         Sphere sph = selection.GetComponentInParent<Sphere>();
+                        
                         moduleStorage.CreateModuleLists(sph.sphereSide);
                         sph.SetActive();
+
                         hangarUIController.HandleShpereSelect(sph); // TODO selection maybe = sph?
                         lastSelection = selection;
                     }

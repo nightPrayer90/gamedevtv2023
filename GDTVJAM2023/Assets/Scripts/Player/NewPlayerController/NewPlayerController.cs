@@ -10,6 +10,7 @@ public class NewPlayerController : MonoBehaviour
     private bool isIntro = true;
     //private bool isStartSound = false;
     private float introTargetY = 6f;
+    public bool hasMainEngine = false;
 
     [Header("Player Movement")]
     [HideInInspector] public float horizontalInput;
@@ -70,7 +71,6 @@ public class NewPlayerController : MonoBehaviour
     /* Lifecycle-Methoden---------------------------------------------------------- */
     /* **************************************************************************** */
     #region lifecycle
-    // Start is called before the first frame update
     void Awake()
     {
         playerRigidbody.centerOfMass = new Vector3(0f, 0f, 0f);
@@ -86,7 +86,6 @@ public class NewPlayerController : MonoBehaviour
 
         // TODO Update protection after loading
         Invoke("UpdateProtection",1f);
-        
     }
 
     private void UpdateProtection()
@@ -97,8 +96,6 @@ public class NewPlayerController : MonoBehaviour
         protectionPerc = targetPercentage;
     }
 
-
-    // Update is called once per frame
     void Update()
     {
         // Debug
@@ -115,25 +112,24 @@ public class NewPlayerController : MonoBehaviour
             {
                 // Startboost in allen Engines auslösen
                 AudioManager.Instance.PlaySFX("ShortAlert");
-
                 OnIntroOver?.Invoke();
+                if (hasMainEngine == true)
+                {
+                    playerRigidbody.AddForce(transform.forward * 1200, ForceMode.Force);
+                }
                 isIntro = false;
             }
-
         }
         else
         {
             //Gameplay Loop
             HandleInput();
         }
-
         //debug
         //masseanzeiger
         centerOfMass.transform.localPosition = playerRigidbody.centerOfMass + new Vector3(0f,1f,0f);
     }
     #endregion
-
-
 
     /* **************************************************************************** */
     /* Collision Stuff------------------------------------------------------------- */
@@ -150,26 +146,6 @@ public class NewPlayerController : MonoBehaviour
                 ObjectPoolManager.ReturnObjectToPool(other.gameObject);
                 int expValue = other.GetComponent<EnemyExp>().expValue;
                 UpdatePlayerExperience(expValue);
-                break;
-
-            case "BulletPickup":
-                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
-                UpdateClassLevel(0);
-                break;
-
-            case "ExplosionPickup":
-                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
-                UpdateClassLevel(1);
-                break;
-
-            case "LaserPickup":
-                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
-                UpdateClassLevel(2);
-                break;
-
-            case "SupportPickup":
-                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
-                UpdateClassLevel(3);
                 break;
 
             case "UpgradePickup":
@@ -202,42 +178,8 @@ public class NewPlayerController : MonoBehaviour
         }
     }
 
-    private void UpdateClassLevel(int input)
-    {
-        AudioManager.Instance.PlaySFX("WindowOpen");
-        string floatingText = "";
-        switch (input)
-        {
-            case 0:
-                upgradeChooseList.mcBulletLvl++;
-                upgradeChooseList.baseBulletCritChance += upgradeChooseList.critChance;
-                upgradeChooseList.baseBulletCritDamage += upgradeChooseList.critDamage;
-                floatingText = "+1 bullet class";
-                break;
-            case 1:
-                upgradeChooseList.mcExplosionLvl++;
-                upgradeChooseList.baseRocketAOERadius += upgradeChooseList.aoeRange;
-                floatingText = "+1 explosion class";
-                break;
-            case 2:
-                upgradeChooseList.mcLaserLvl++;
-                upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.burningChance;
-                floatingText = "+1 laser class";
-                break;
-            case 3:
-                upgradeChooseList.mcSupportLvl++;
-                floatingText = "+1 support class";
-                upgradeChooseList.baseSupportRealoadTime += upgradeChooseList.supportRealodTime;
-                break;
-        }
-
-        gameManager.DoFloatingText(transform.position, floatingText, gameManager.globalClassColor[input]);
-        playerWeaponController.UpdateWeaponValues();
-    }
-
     public void PlayerWeaponUpdatePickup()
     {
-
         Time.timeScale = 0;
         AudioManager.Instance.PlaySFX("LevelUp");
         //engineAudioSource.Stop();
@@ -344,8 +286,11 @@ public class NewPlayerController : MonoBehaviour
                     gameManager.UpdateEnemyToKill(1);
                 }
 
-                // destroy the enemy
-                Destroy(collision.gameObject);
+                if (enemyHealth.isBoss == false)
+                {
+                    // destroy the enemy
+                    Destroy(collision.gameObject);
+                }
             }
         }
     }

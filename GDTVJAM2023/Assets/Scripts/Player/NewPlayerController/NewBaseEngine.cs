@@ -50,6 +50,7 @@ public class NewBaseEngine : BaseModule
         playerController.OnIntroOver += HandleStartBoost;
         playerController.OnUpdateRotateSpeed += HandleSpeedUpdate;
         playerRigidbody = playerController.GetComponent<Rigidbody>();
+        playerController.hasMainEngine = true;
     }
 
     // Update is called once per frame
@@ -144,7 +145,6 @@ public class NewBaseEngine : BaseModule
     private void HandleStartBoost()
     {
         ps_engine.Play();
-        playerRigidbody.AddForce(-transform.right * thrustForce * 160, ForceMode.Force);
     }
 
     private void HandleSpeedUpdate(float flyspeed)
