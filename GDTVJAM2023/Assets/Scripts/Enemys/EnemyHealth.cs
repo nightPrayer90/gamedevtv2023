@@ -370,7 +370,7 @@ public class EnemyHealth : MonoBehaviour
     // nova on die Ability
     private void NovaOnDie(int novaTyp) //0=die 1=crit
     {
-        if (novaOnDie != null && (upgradeChooseList.weaponIndexInstalled[52] == 1 || upgradeChooseList.weaponIndexInstalled[23] == 1))
+        if (novaOnDie != null && (upgradeChooseList.upgrades[52].upgradeIndexInstalled == 1 || upgradeChooseList.upgrades[23].upgradeIndexInstalled == 1))
         {
             Vector3 pos = new Vector3(0,0,0);
             float explosionRadius = 0;
@@ -431,7 +431,7 @@ public class EnemyHealth : MonoBehaviour
                     float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius), 1f);
                     int adjustedDamage = Mathf.CeilToInt(novaDamage * scaleFactor);
 
-                    if (upgradeChooseList.weaponIndexInstalled[54] == 1)
+                    if (upgradeChooseList.upgrades[54].upgradeIndexInstalled > 0)
                     {
                         int ran = UnityEngine.Random.Range(0, 100);
                         if (ran < playerWeaponController.bulletCritChance)

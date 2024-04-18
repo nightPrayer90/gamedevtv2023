@@ -8,7 +8,7 @@ public class OrbitalLaserOrb : MonoBehaviour
 
     [HideInInspector] public int damage;
     [HideInInspector] public float realoadTime;
-    [HideInInspector] public int index;
+    public int index;
 
     // Start is called before the first frame update
     void Start()

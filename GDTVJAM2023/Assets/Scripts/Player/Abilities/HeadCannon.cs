@@ -163,7 +163,7 @@ public class HeadCannon : MonoBehaviour
         if (fireSalveCount < fireSalveMax && nearestEnemy != null && canFire == true)
         {
             int psIndex = 0;
-            if (upgradeChooseList.weaponIndexInstalled[65] == 1 || upgradeChooseList.weaponIndexInstalled[66] == 1)
+            if (upgradeChooseList.upgrades[65].upgradeIndexInstalled > 0 || upgradeChooseList.upgrades[66].upgradeIndexInstalled > 0)
             {
                 detectionRange = 12f;
                 psIndex = 1;

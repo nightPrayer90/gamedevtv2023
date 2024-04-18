@@ -53,7 +53,6 @@ public class OrbitalLaser : MonoBehaviour
             float angle = i * (360f / orbCount); // Berechne den Winkel zwischen jedem Orb
             Quaternion rotation = Quaternion.Euler(0f, angle, 0f);
 
-
             Vector3 spawnPosition = transform.position + rotation * Vector3.forward * orbRadius;
 
             // Erzeuge den Orb an den berechneten Koordinaten
@@ -62,7 +61,7 @@ public class OrbitalLaser : MonoBehaviour
 
             OrbitalLaserOrb orbLaser = orb.GetComponentInChildren<OrbitalLaserOrb>();
             orbLaser.index = i + 1;
-            orbLaser.damage = Mathf.CeilToInt((float)playerWeaponController.olDamage * (1 + ((float)upgradeChooseList.percLaserDamage / 100)));
+            orbLaser.damage = playerWeaponController.olDamage; //Debug - zeile hängt das spiel auf //Mathf.CeilToInt((float)playerWeaponController.olDamage * (1 + ((float)upgradeChooseList.percLaserDamage / 100)));
             orbLaser.realoadTime = realoadTime;
             orbitalLaserOrbs.Add(orbLaser);
         }
@@ -76,16 +75,19 @@ public class OrbitalLaser : MonoBehaviour
 
     public void UpdateOrbs()
     {
-
-        if (orbitalLaserOrbs.Count < orbCount)
+        if (playerWeaponController != null)
         {
-            SpawnNewOrbs();
-            return;
-        }
 
-        foreach (OrbitalLaserOrb orb in orbitalLaserOrbs)
-        {
-            orb.damage = Mathf.CeilToInt((float)playerWeaponController.olDamage * (1 + ((float)upgradeChooseList.percLaserDamage / 100)));
+            if (orbitalLaserOrbs.Count < orbCount)
+            {
+                SpawnNewOrbs();
+                return;
+            }
+
+            foreach (OrbitalLaserOrb orb in orbitalLaserOrbs)
+            {
+                orb.damage = Mathf.CeilToInt((float)playerWeaponController.olDamage * (1 + ((float)upgradeChooseList.percLaserDamage / 100)));
+            }
         }
     }
 }

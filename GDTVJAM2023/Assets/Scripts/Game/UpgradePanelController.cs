@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using DG.Tweening;
+using static UpgradeChooseList;
 
 
 public class UpgradePanelController : MonoBehaviour
@@ -18,14 +19,11 @@ public class UpgradePanelController : MonoBehaviour
     [HideInInspector] public Color[] headerColor;
     [HideInInspector] public Color[] mainClassColor;
     [HideInInspector] public string[] mainClassStr;
-    [HideInInspector] public Color[] subClassColor = new Color[3];
-    [HideInInspector] public string[] subClassStr = new string[3];
     [HideInInspector] public Sprite[] iconPanel;
     [HideInInspector] public Color[] reqColor;
     [HideInInspector] public string[] reqText;
     [HideInInspector] public Color[] reqColor3;
     [HideInInspector] public string[] reqText3;
-    [HideInInspector] public bool[] isUnique;
     [HideInInspector] public int[] upgradeCount;
     public Image[] classPointsBullets;
     public Image[] classPointsAOE;
@@ -33,7 +31,6 @@ public class UpgradePanelController : MonoBehaviour
     public Image[] classPointsSupport;
     public Image[] classUpImage;
     public Sprite[] classUpSprite;
-    //public Color weaponColor;
 
     [Header("Value Panel")]
     public Image bkImage;
@@ -68,15 +65,12 @@ public class UpgradePanelController : MonoBehaviour
         descriptionTextStr = new string[3];
         mainClassColor = new Color[3];
         mainClassStr = new string[3];
-        subClassColor = new Color[3];
-        subClassStr = new string[3];
         iconPanel = new Sprite[3];
         headerColor = new Color[3];
         reqColor = new Color[6];
         reqText = new string[6];
         reqColor3 = new Color[3];
         reqText3 = new string[3];
-        isUnique = new bool[3];
         upgradeCount = new int[3];
 
         selectetPanel = -1;
@@ -169,7 +163,7 @@ public class UpgradePanelController : MonoBehaviour
             
 
             int number = gameManager.selectedNumbers_[i];
-            UpgradeContainer uC = upgradeChooseList.weaponUpgrades[number];
+            Upgrade uC = upgradeChooseList.uLObject.upgradeList[number];
 
             // calculate values
             switch (number)
@@ -213,11 +207,6 @@ public class UpgradePanelController : MonoBehaviour
             mainClassStr[i] = System.Enum.GetName(typeof(UpgradeContainer.MainClass), uC.mainClass).ToString();
             mainClassColor[i] = classColors[index];
 
-            // subClass
-            index = (int)uC.subClass;
-            subClassStr[i] = uC.subClass.ToString();
-            subClassColor[i] = classColors[index];
-
             // set requerments
             int count_ = 0;
             reqColor[i] = gameManager.globalClassColor[8];
@@ -260,7 +249,6 @@ public class UpgradePanelController : MonoBehaviour
                 reqText3[i] = "";
             }
 
-            isUnique[i] = uC.isUnique;
             upgradeCount[i] = uC.UpgradeCount;
 
             panelList[i].SetDescription();        
@@ -295,7 +283,7 @@ public class UpgradePanelController : MonoBehaviour
                 selectedUpgradePanelList[weaponCount].gameObject.GetComponent<ClassTooltipTrigger>().contentType = number;
             }
 
-            UpgradeContainer uC = upgradeChooseList.weaponUpgrades[number];
+            Upgrade uC = upgradeChooseList.uLObject.upgradeList[number];
 
             // update class colors
             int index_ = (int)uC.mainClass;
@@ -308,7 +296,7 @@ public class UpgradePanelController : MonoBehaviour
     {
         int number = gameManager.selectedNumbers_[index];
         isTweening = true;
-        upgradeChooseList.weaponIndexInstalled[number] += 1;
+        upgradeChooseList.upgrades[number].upgradeIndexInstalled += 1;
 
         switch (number)
         {
@@ -345,15 +333,19 @@ public class UpgradePanelController : MonoBehaviour
                 GoBockToDimension();
                 weaponCount++;
 
-                upgradeChooseList.weaponUpgrades[64].reqBullet = 2; // Fast Head Cannon
-                upgradeChooseList.weaponUpgrades[65].reqBullet = 2; // Big Head Cannon
+                upgradeChooseList.upgrades[64].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[64].UpgradeCount;
+                upgradeChooseList.upgrades[65].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[65].UpgradeCount;
+
+                //upgradeChooseList.weaponUpgrades[64].reqBullet = 2; // Fast Head Cannon
+                //upgradeChooseList.weaponUpgrades[65].reqBullet = 2; // Big Head Cannon
                 break;
             case 7: //weapon: rocket launcher
                 playerWeaponController.isRocketLauncher = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 GoBockToDimension();
-                upgradeChooseList.weaponUpgrades[57].reqRocket = 3; // Explosive Impact
+                upgradeChooseList.upgrades[57].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[57].UpgradeCount;
+                //upgradeChooseList.weaponUpgrades[57].reqRocket = 3; // Explosive Impact
 
                 weaponCount++;
                 break;
@@ -362,7 +354,8 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 GoBockToDimension();
-                upgradeChooseList.weaponUpgrades[58].reqBullet = 4; // Explosive Impact
+                upgradeChooseList.upgrades[58].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[58].UpgradeCount;
+                //upgradeChooseList.weaponUpgrades[58].reqBullet = 4; // Explosive Impact
 
                 weaponCount++;
                 break;
@@ -382,9 +375,13 @@ public class UpgradePanelController : MonoBehaviour
                 GoBockToDimension();
                 weaponCount++;
 
-                upgradeChooseList.weaponUpgrades[63].reqSupport = 2; // Natural Energy
-                upgradeChooseList.weaponUpgrades[32].reqSupport = 2; // Expansion Fortuity
-                upgradeChooseList.weaponUpgrades[33].reqSupport = 3; // Vitality Infusion
+                upgradeChooseList.upgrades[64].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[64].UpgradeCount;
+                upgradeChooseList.upgrades[32].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[32].UpgradeCount;
+                upgradeChooseList.upgrades[33].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[33].UpgradeCount;
+
+                //upgradeChooseList.weaponUpgrades[63].reqSupport = 2; // Natural Energy
+                //upgradeChooseList.weaponUpgrades[32].reqSupport = 2; // Expansion Fortuity
+                //upgradeChooseList.weaponUpgrades[33].reqSupport = 3; // Vitality Infusion
 
                 break;
             case 11: //weapon: spread gun
@@ -392,7 +389,10 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 GoBockToDimension();
-                upgradeChooseList.weaponUpgrades[50].reqBullet = 2;  // Wide Spray Expansion
+
+                upgradeChooseList.upgrades[50].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[50].UpgradeCount;
+                //upgradeChooseList.weaponUpgrades[50].reqBullet = 2;  // Wide Spray Expansion
+
 
                 weaponCount++;
                 break;
@@ -401,9 +401,13 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
 
-                upgradeChooseList.weaponUpgrades[40].reqSupport = 1; // Fortified Defense
-                upgradeChooseList.weaponUpgrades[41].reqSupport = 1; // Shielded Strike
-                upgradeChooseList.weaponUpgrades[13].reqSupport = 2; // Back Shield
+                upgradeChooseList.upgrades[40].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[40].UpgradeCount;
+                upgradeChooseList.upgrades[41].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[41].UpgradeCount;
+                upgradeChooseList.upgrades[13].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[13].UpgradeCount;
+
+                //upgradeChooseList.weaponUpgrades[40].reqSupport = 1; // Fortified Defense
+                //upgradeChooseList.weaponUpgrades[41].reqSupport = 1; // Shielded Strike
+                //upgradeChooseList.weaponUpgrades[13].reqSupport = 2; // Back Shield
                 GoBockToDimension();
                 weaponCount++;
                 break;
@@ -420,10 +424,16 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 GoBockToDimension();
-                upgradeChooseList.weaponUpgrades[77].reqRocket = 2; // Fury Nova
-                upgradeChooseList.weaponUpgrades[78].reqRocket = 2; // Nuclear Nova
-                upgradeChooseList.weaponUpgrades[36].reqRocket = 2; // Boosted Nova Impact
-                upgradeChooseList.weaponUpgrades[79].reqRocket = 3; // Power Nova
+
+                upgradeChooseList.upgrades[77].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[77].UpgradeCount;
+                upgradeChooseList.upgrades[78].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[78].UpgradeCount;
+                upgradeChooseList.upgrades[36].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[36].UpgradeCount;
+                upgradeChooseList.upgrades[79].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[79].UpgradeCount;
+
+                //upgradeChooseList.weaponUpgrades[77].reqRocket = 2; // Fury Nova
+                //upgradeChooseList.weaponUpgrades[78].reqRocket = 2; // Nuclear Nova
+                //upgradeChooseList.weaponUpgrades[36].reqRocket = 2; // Boosted Nova Impact
+                //upgradeChooseList.weaponUpgrades[79].reqRocket = 3; // Power Nova
                 weaponCount++;
                 break;
             case 15: //weapon: rocket wings
@@ -445,8 +455,10 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
                 GoBockToDimension();
-                upgradeChooseList.weaponUpgrades[56].reqLaser = 2; // Laser Orbit Accelerator
-  
+
+                upgradeChooseList.upgrades[56].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[56].UpgradeCount;
+                //upgradeChooseList.weaponUpgrades[56].reqLaser = 2; // Laser Orbit Accelerator
+
                 weaponCount++;
                 break;
             case 18: //bullet class
@@ -528,17 +540,22 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 40: // Fortified Defense
                 upgradeChooseList.shieldHealth += 1;
-                upgradeChooseList.weaponUpgrades[41].reqSupport = 99; // Shielded Strike
-                upgradeChooseList.weaponUpgrades[42].reqSupport = 2; // Lifeflow Shields
 
+                upgradeChooseList.upgrades[41].upgradeStartCount = 0;
+                upgradeChooseList.upgrades[42].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[42].UpgradeCount; 
+                //upgradeChooseList.weaponUpgrades[41].reqSupport = 99; // Shielded Strike
+                //upgradeChooseList.weaponUpgrades[42].reqSupport = 2; // Lifeflow Shields
                 break;
             case 41: // Shielded Strike
                 upgradeChooseList.shieldDamage += 5;
-                upgradeChooseList.weaponUpgrades[40].reqSupport = 99; // Fortified Defense
-                upgradeChooseList.weaponUpgrades[61].reqSupport = 2; // Shieldbreaker's Might
+                upgradeChooseList.upgrades[40].upgradeStartCount = 0;
+                upgradeChooseList.upgrades[61].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[61].UpgradeCount; 
+                //upgradeChooseList.weaponUpgrades[40].reqSupport = 99; // Fortified Defense
+                //upgradeChooseList.weaponUpgrades[61].reqSupport = 2; // Shieldbreaker's Might
                 break;
             case 42: // Lifeflow Shields
-                upgradeChooseList.weaponUpgrades[43].reqSupport = 3; // Ignition Shield
+                upgradeChooseList.upgrades[43].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[43].UpgradeCount;
+                //upgradeChooseList.weaponUpgrades[43].reqSupport = 3; // Ignition Shield
                 break;
             case 43: // Ignition Shield
 
@@ -569,7 +586,8 @@ public class UpgradePanelController : MonoBehaviour
 
                 break;
             case 50: // Wide Spray Expansion
-                upgradeChooseList.weaponUpgrades[68].reqBullet = 3;  // fast Spread gun
+                upgradeChooseList.upgrades[68].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[68].UpgradeCount; ;
+                //upgradeChooseList.weaponUpgrades[68].reqBullet = 3;  // fast Spread gun
                 playerWeaponController.sgBulletCount += 2;
                 break;
             case 51: // Lightning Reload
@@ -591,7 +609,8 @@ public class UpgradePanelController : MonoBehaviour
             case 56: // Laser Orbit Accelerator
                 playerWeaponController.olRotationSpeed = Mathf.Round(playerWeaponController.olRotationSpeed * 1.25f);
                 playerWeaponController.olDamage += 1;
-                upgradeChooseList.weaponUpgrades[80].reqLaser = 3; // Orbital Laser Array
+                upgradeChooseList.upgrades[80].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[80].UpgradeCount; ;
+                //upgradeChooseList.weaponUpgrades[80].reqLaser = 3; // Orbital Laser Array
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 57: // Explosive Impact
@@ -608,11 +627,14 @@ public class UpgradePanelController : MonoBehaviour
                 playerController.energieProduction = playerController.energieProduction * (1 + (0.6f));
                 break;
             case 61: // Continuous shield 
-                upgradeChooseList.weaponUpgrades[62].reqSupport = 3; // Explosiv Shild
+                upgradeChooseList.upgrades[62].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[62].UpgradeCount; ;
+                //upgradeChooseList.weaponUpgrades[62].reqSupport = 3; // Explosiv Shild
                 break;
             case 62: // Explosiv Shield 
-                upgradeChooseList.weaponUpgrades[44].reqSupport = 4; // Shield Nova
-                upgradeChooseList.weaponUpgrades[45].reqSupport = 4; // Shieldbreaker's Might
+                upgradeChooseList.upgrades[44].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[44].UpgradeCount; ;
+                upgradeChooseList.upgrades[45].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[45].UpgradeCount; ;
+                //upgradeChooseList.weaponUpgrades[44].reqSupport = 4; // Shield Nova
+                //upgradeChooseList.weaponUpgrades[45].reqSupport = 4; // Shieldbreaker's Might
                 break;
             case 63: // Natural energie
                 upgradeChooseList.chanceToGetfullEnergy += 5;
@@ -623,9 +645,12 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.hcReloadTime = 1f;
                 playerWeaponController.UpdateWeaponValues();
 
-                upgradeChooseList.weaponUpgrades[65].reqBullet = 99; // Big Head Cannon
-                upgradeChooseList.weaponUpgrades[67].reqBullet = 3; // Gatlin Head Cannon
-                upgradeChooseList.weaponUpgrades[76].reqBullet = 4; // Cannon Power
+                upgradeChooseList.upgrades[65].upgradeStartCount = 0 ;
+                upgradeChooseList.upgrades[67].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[67].UpgradeCount; 
+                upgradeChooseList.upgrades[76].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[76].UpgradeCount; 
+                //upgradeChooseList.weaponUpgrades[65].reqBullet = 99; // Big Head Cannon
+                //upgradeChooseList.weaponUpgrades[67].reqBullet = 3; // Gatlin Head Cannon
+                //upgradeChooseList.weaponUpgrades[76].reqBullet = 4; // Cannon Power
                 break;
             case 65: // Big Head Cannon
                 playerWeaponController.hcBulletDamage = 12;
@@ -633,8 +658,10 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.hcReloadTime = 3.5f;
                 playerWeaponController.UpdateWeaponValues();
 
-                upgradeChooseList.weaponUpgrades[64].reqBullet = 99; // Fast Head Cannon
-                upgradeChooseList.weaponUpgrades[66].reqBullet = 3; // Sniper Head Cannon
+                upgradeChooseList.upgrades[64].upgradeStartCount = 0;
+                upgradeChooseList.upgrades[66].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[66].UpgradeCount; 
+                //upgradeChooseList.weaponUpgrades[64].reqBullet = 99; // Fast Head Cannon
+                //upgradeChooseList.weaponUpgrades[66].reqBullet = 3; // Sniper Head Cannon
                 break;
             case 66: // Sniper Head Cannon
                 playerWeaponController.hcBulletDamage = 18;
@@ -652,9 +679,12 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 69: // therminal Spheres
-                upgradeChooseList.weaponUpgrades[70].reqLaser = 3; // Chaotic Shperes
-                upgradeChooseList.weaponUpgrades[73].reqLaser = 4; // Dynamic Spheres
-                upgradeChooseList.weaponUpgrades[74].reqLaser = 3; // Enhanced Plasma Spheres
+                upgradeChooseList.upgrades[70].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[70].UpgradeCount;
+                upgradeChooseList.upgrades[73].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[73].UpgradeCount;
+                upgradeChooseList.upgrades[74].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[74].UpgradeCount;
+                //upgradeChooseList.weaponUpgrades[70].reqLaser = 3; // Chaotic Shperes
+                //upgradeChooseList.weaponUpgrades[73].reqLaser = 4; // Dynamic Spheres
+                //upgradeChooseList.weaponUpgrades[74].reqLaser = 3; // Enhanced Plasma Spheres
                 playerWeaponController.isThermalSpheres = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number, 2);
@@ -662,9 +692,12 @@ public class UpgradePanelController : MonoBehaviour
                 weaponCount++;
                 break;
             case 70: // therminal Spheres
-                upgradeChooseList.weaponUpgrades[71].reqLaser = 4; // Power Spheres
-                upgradeChooseList.weaponUpgrades[74].reqLaser = 99; // Enhanced Plasma Spheres
-                upgradeChooseList.weaponUpgrades[72].reqLaser = 3; // Creazy Spheres
+                upgradeChooseList.upgrades[71].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[71].UpgradeCount;
+                upgradeChooseList.upgrades[74].upgradeStartCount = 0;
+                upgradeChooseList.upgrades[72].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[72].UpgradeCount;
+                //upgradeChooseList.weaponUpgrades[71].reqLaser = 4; // Power Spheres
+                //upgradeChooseList.weaponUpgrades[74].reqLaser = 99; // Enhanced Plasma Spheres
+                //upgradeChooseList.weaponUpgrades[72].reqLaser = 3; // Creazy Spheres
                 playerWeaponController.tsDamage = 2;
                 playerWeaponController.tsLifetime = 2f;
                 playerWeaponController.tsReloadTime = 0.5f;
@@ -679,8 +712,10 @@ public class UpgradePanelController : MonoBehaviour
             case 73: // Dynamic Spheres
                 break;
             case 74: // Enhanced Plasma  Spheres
-                upgradeChooseList.weaponUpgrades[70].reqLaser = 99; // Chaotic Shperes
-                upgradeChooseList.weaponUpgrades[75].reqLaser = 4; // Big Photon Sphere
+                upgradeChooseList.upgrades[70].upgradeStartCount = 0;
+                upgradeChooseList.upgrades[75].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[75].UpgradeCount; 
+                //upgradeChooseList.weaponUpgrades[70].reqLaser = 99; // Chaotic Shperes
+                //upgradeChooseList.weaponUpgrades[75].reqLaser = 4; // Big Photon Sphere
                 playerWeaponController.tsLifetime += 1;
                 playerWeaponController.UpdateWeaponValues();
                 break;
@@ -694,13 +729,15 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 77: // Fury Novas
-                upgradeChooseList.weaponUpgrades[78].reqRocket = 99; // Nuclear Nova
+                upgradeChooseList.upgrades[78].upgradeStartCount = 0; 
+                //upgradeChooseList.weaponUpgrades[78].reqRocket = 99; // Nuclear Nova
                 playerWeaponController.neRadius -= 0.15f;
                 playerWeaponController.neReloadTime -= 0.8f;
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 78: // Nuclear Novas
-                upgradeChooseList.weaponUpgrades[77].reqRocket = 99; // Fury Nova
+                upgradeChooseList.upgrades[77].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[77].UpgradeCount; 
+                //upgradeChooseList.weaponUpgrades[77].reqRocket = 99; // Fury Nova
                 playerWeaponController.neRadius += 0.12f;
                 playerWeaponController.neReloadTime += 0.3f;
                 playerWeaponController.UpdateWeaponValues();
@@ -742,17 +779,15 @@ public class UpgradePanelController : MonoBehaviour
     // update classlevel in player weapon controller
     private void UpdateClass(int number, int factor = 1)
     {
-        UpgradeContainer uC = upgradeChooseList.weaponUpgrades[number];
+        Upgrade uC = upgradeChooseList.uLObject.upgradeList[number];
 
         // update mainClass level
         int index = (int)uC.mainClass;
 
-        //Debug.Log(number + " - index " + index + " - " + upgradeChooseList.weaponUpgrades[index + 17].maxSkillCount);
-
         switch (index)
         {
             case 0:
-                if (upgradeChooseList.mcBulletLvl < upgradeChooseList.weaponUpgrades[index + 18].maxSkillCount)
+                if (upgradeChooseList.mcBulletLvl < 8)
                 {
                     upgradeChooseList.mcBulletLvl += factor;
                     upgradeChooseList.baseBulletCritChance += upgradeChooseList.critChance;
@@ -760,21 +795,21 @@ public class UpgradePanelController : MonoBehaviour
                 }
                 break;
             case 1:
-                if (upgradeChooseList.mcExplosionLvl < upgradeChooseList.weaponUpgrades[index + 18].maxSkillCount)
+                if (upgradeChooseList.mcExplosionLvl < 8)
                 {
                     upgradeChooseList.mcExplosionLvl += factor;
                     upgradeChooseList.baseRocketAOERadius += upgradeChooseList.aoeRange;
                 }
                 break;
             case 2:
-                if (upgradeChooseList.mcLaserLvl < upgradeChooseList.weaponUpgrades[index + 18].maxSkillCount)
+                if (upgradeChooseList.mcLaserLvl < 8)
                 {
                     upgradeChooseList.mcLaserLvl += factor;
                     upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.burningChance;
                 }
                 break;
             case 3:
-                if (upgradeChooseList.mcSupportLvl < upgradeChooseList.weaponUpgrades[index + 18].maxSkillCount)
+                if (upgradeChooseList.mcSupportLvl < 8)
                 {
                     upgradeChooseList.mcSupportLvl += factor;
                     upgradeChooseList.baseSupportRealoadTime += upgradeChooseList.supportRealodTime;

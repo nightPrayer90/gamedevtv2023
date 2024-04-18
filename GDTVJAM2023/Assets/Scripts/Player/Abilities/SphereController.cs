@@ -21,7 +21,7 @@ public class SphereController : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
 
-        shereForceTime_ = sphereForceTime - (upgradeChooseList.weaponIndexInstalled[73] / 10);
+        shereForceTime_ = sphereForceTime - (upgradeChooseList.upgrades[73].upgradeIndexInstalled / 10);
 
         InvokeRepeating("CheckForEnemy", 0.5f, shereForceTime_);
     }
@@ -46,7 +46,7 @@ public class SphereController : MonoBehaviour
                     AudioManager.Instance.PlaySFX("PlayerLaserHit");
                     hitParticle.Emit(15);
 
-                    if (upgradeChooseList.weaponIndexInstalled[70] == 1)
+                    if (upgradeChooseList.upgrades[70].upgradeIndexInstalled > 0)
                     {
                         eh.TakeLaserDamage(damage, 4);
                         eh.ShowDamageFromObjects(damage);

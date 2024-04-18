@@ -53,9 +53,9 @@ public class ThermalSpheres : MonoBehaviour
     private void SpawnSphere()
     {
         int sphereIndex = 0;
-        if (upgradeChooseList.weaponIndexInstalled[70] == 1)
+        if (upgradeChooseList.upgrades[70].upgradeIndexInstalled > 0)
             sphereIndex = 1;
-        if (upgradeChooseList.weaponIndexInstalled[75] == 1)
+        if (upgradeChooseList.upgrades[75].upgradeIndexInstalled > 0)
             sphereIndex = 2;
 
         GameObject go = ObjectPoolManager.SpawnObject(spheresToLaunch[sphereIndex], spawnPoint.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
@@ -66,7 +66,7 @@ public class ThermalSpheres : MonoBehaviour
         sphere.SetDestroyTimer(lifeTime);
 
 
-        for (int i = 0; i <= upgradeChooseList.weaponIndexInstalled[72]; i++)
+        for (int i = 0; i <= upgradeChooseList.upgrades[72].upgradeIndexInstalled; i++)
         {
             int random = Random.Range(0, 100);
             if (random < 25)

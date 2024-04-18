@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 
 public class UpgradPanelIndex : MonoBehaviour
@@ -20,7 +21,6 @@ public class UpgradPanelIndex : MonoBehaviour
     public TextMeshProUGUI descriptionText;
     public Image iconPanel;
     public TextMeshProUGUI mainClass;
-    public TextMeshProUGUI subClass;
     private bool isTweening = true;
     public bool isSelected = false;
     private UpgradeChooseList upgradeChooseList;
@@ -75,8 +75,6 @@ public class UpgradPanelIndex : MonoBehaviour
 
         mainClass.text = upgradePanelController.mainClassStr[index];
         mainClass.color = upgradePanelController.mainClassColor[index];
-        subClass.text = upgradePanelController.subClassStr[index];
-        subClass.color = upgradePanelController.subClassColor[index];
 
         headerText.color = upgradePanelController.headerColor[index];
 
@@ -90,17 +88,15 @@ public class UpgradPanelIndex : MonoBehaviour
         req3.color = upgradePanelController.reqColor3[index];
         req3Text.text = upgradePanelController.reqText3[index];
 
+        if (upgradeChooseList == null)
+        {
+            upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
+        }
 
-        if (upgradePanelController.isUnique[index] == true)
+        if (upgradePanelController.upgradeCount[index] != 999)
         {
             unique.SetActive(true);
-
-            if (upgradeChooseList == null)
-            {
-                upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
-            }
-
-            uniqueText.text = (upgradePanelController.upgradeCount[index] - upgradeChooseList.weaponIndexInstalled[upgradePanelController.upgradeIndex[index]]).ToString();
+            uniqueText.text = (upgradePanelController.upgradeCount[index] - upgradeChooseList.upgrades[upgradePanelController.upgradeIndex[index]].upgradeIndexInstalled).ToString();
         }
         else
         {

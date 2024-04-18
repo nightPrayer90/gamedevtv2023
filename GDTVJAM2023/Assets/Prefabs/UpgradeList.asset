@@ -1,0 +1,1256 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108791ca3350a0f49ae559cfd5c64cdd, type: 3}
+  m_Name: UpgradeList
+  m_EditorClassIdentifier: 
+  upgradeList:
+  - headerStr: Life
+    upgradeIndex: 0
+    passivUpgradeString: 
+    descriptionStr: Increase your health by XX.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 4
+    colorIndex: 9
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 999
+    upgradeStartCount: 999
+  - headerStr: Damage
+    upgradeIndex: 1
+    passivUpgradeString: 
+    descriptionStr: Increase your main weapon damage by XX.
+    iconPanel: {fileID: 21300000, guid: d717766fd39692e47bc9e10ac04ab6dc, type: 3}
+    mainClass: 8
+    upgradeTyp: 4
+    colorIndex: 9
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 999
+    upgradeStartCount: 999
+  - headerStr: Protection
+    upgradeIndex: 2
+    passivUpgradeString: 
+    descriptionStr: Increases your chance of blocking 50% incoming damage up to XX
+      %.
+    iconPanel: {fileID: 21300000, guid: 0ed2cb74a7f3ebb479bdc536ce9e1422, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 9
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 999
+    upgradeStartCount: 999
+  - headerStr: Energy capacity
+    upgradeIndex: 3
+    passivUpgradeString: 
+    descriptionStr: Increases the maximum energy storage by 15%.
+    iconPanel: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 9
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 999
+    upgradeStartCount: 999
+  - headerStr: Agility
+    upgradeIndex: 4
+    passivUpgradeString: 
+    descriptionStr: Increase your agility and our speed by 10%.
+    iconPanel: {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 9
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 3
+    upgradeStartCount: 3
+  - headerStr: Pickup Range
+    upgradeIndex: 5
+    passivUpgradeString: 
+    descriptionStr: Increase your pickup range by XX.
+    iconPanel: {fileID: 21300000, guid: ca41a70726d6ed84da8ea7d1000633f3, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 9
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 3
+    upgradeStartCount: 3
+  - headerStr: Head Cannon
+    upgradeIndex: 6
+    passivUpgradeString: 
+    descriptionStr: Fires a targeted volley of shots at nearby enemies.
+    iconPanel: {fileID: 21300000, guid: eddf778d779dd2e46a84c198e40ecab5, type: 3}
+    mainClass: 0
+    upgradeTyp: 0
+    colorIndex: 10
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Rocket Launcher
+    upgradeIndex: 7
+    passivUpgradeString: 
+    descriptionStr: Fires homing missiles at nearby enemies.
+    iconPanel: {fileID: 21300000, guid: 1cdaf286f8e1ff047879fc7c76debb9a, type: 3}
+    mainClass: 1
+    upgradeTyp: 0
+    colorIndex: 10
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Fireflies
+    upgradeIndex: 8
+    passivUpgradeString: 
+    descriptionStr: Releases a swarm of slowly spreading projectiles.
+    iconPanel: {fileID: 21300000, guid: b248b2b0686619a4cae68905c3e43676, type: 3}
+    mainClass: 0
+    upgradeTyp: 0
+    colorIndex: 10
+    reqBullet: 2
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Bullet Wings
+    upgradeIndex: 9
+    passivUpgradeString: 
+    descriptionStr: Fires a volley of spreading projectiles from the wings.
+    iconPanel: {fileID: 21300000, guid: dff2809d972cbaf448e7a1888f1d01ea, type: 3}
+    mainClass: 0
+    upgradeTyp: 0
+    colorIndex: 10
+    reqBullet: 4
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Support Module
+    upgradeIndex: 10
+    passivUpgradeString: 
+    descriptionStr: Regenerates life over time. You get 15 % chance for double exp.
+    iconPanel: {fileID: 21300000, guid: 1a9c2c2a4a64e944eb9944340feb3595, type: 3}
+    mainClass: 3
+    upgradeTyp: 0
+    colorIndex: 10
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 2
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Spread Gun
+    upgradeIndex: 11
+    passivUpgradeString: 
+    descriptionStr: Fires periodic bursts of short-range bullets from the center.
+    iconPanel: {fileID: 21300000, guid: cfa1d4ae5cbde234c855a1d8c18577e9, type: 3}
+    mainClass: 0
+    upgradeTyp: 0
+    colorIndex: 10
+    reqBullet: 1
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Front Shield
+    upgradeIndex: 12
+    passivUpgradeString: 
+    descriptionStr: Regenerating shield at the front of the ship.
+    iconPanel: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
+    mainClass: 3
+    upgradeTyp: 0
+    colorIndex: 10
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Back Shield
+    upgradeIndex: 13
+    passivUpgradeString: 
+    descriptionStr: Regenerating shield at the back of the ship.
+    iconPanel: {fileID: 21300000, guid: a7a01ead83f63fa44a6141650e1add89, type: 3}
+    mainClass: 3
+    upgradeTyp: 0
+    colorIndex: 10
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 99
+    reqAbility: F. Shield
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Shock Nova
+    upgradeIndex: 14
+    passivUpgradeString: 
+    descriptionStr: Creates a nova around the ship that knocks back enemies.
+    iconPanel: {fileID: 21300000, guid: b5adefc2f49023b4e9917d4e5664ed8c, type: 3}
+    mainClass: 1
+    upgradeTyp: 0
+    colorIndex: 10
+    reqBullet: 0
+    reqRocket: 1
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Rocket Wings
+    upgradeIndex: 15
+    passivUpgradeString: 
+    descriptionStr: Sends out a battery of homing missiles.
+    iconPanel: {fileID: 21300000, guid: 88f631d3dd40cd24585c3384e7bedd70, type: 3}
+    mainClass: 1
+    upgradeTyp: 0
+    colorIndex: 10
+    reqBullet: 0
+    reqRocket: 4
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Front Laser
+    upgradeIndex: 16
+    passivUpgradeString: 
+    descriptionStr: Fires a laser beam in the direction of flight that burns enemies
+      on contact.
+    iconPanel: {fileID: 21300000, guid: d3137069e9e58f042aa289b4de30f4b9, type: 3}
+    mainClass: 2
+    upgradeTyp: 0
+    colorIndex: 10
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 4
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Orbital Laser
+    upgradeIndex: 17
+    passivUpgradeString: 
+    descriptionStr: Creates three laser spheres that orbit the player and burn enemies
+      on contact.
+    iconPanel: {fileID: 21300000, guid: eb4257d784bcf9341903fc1efd7fbefa, type: 3}
+    mainClass: 2
+    upgradeTyp: 0
+    colorIndex: 10
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Bullet Class
+    upgradeIndex: 18
+    passivUpgradeString: 
+    descriptionStr: 'Each level increases the crit chance by 7% and crit damage by
+      20% for all bullet weapons. '
+    iconPanel: {fileID: 21300000, guid: ef5d3b2870cd2bf45b282a9afa8084c3, type: 3}
+    mainClass: 0
+    upgradeTyp: 2
+    colorIndex: 0
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 4
+    upgradeStartCount: 4
+  - headerStr: Explosion Class
+    upgradeIndex: 19
+    passivUpgradeString: 
+    descriptionStr: Each level in this class increases the AOE size by 20% for all
+      explosions.
+    iconPanel: {fileID: 21300000, guid: c55d6069c3e51184d99a1dec6fb22688, type: 3}
+    mainClass: 1
+    upgradeTyp: 2
+    colorIndex: 1
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 4
+    upgradeStartCount: 4
+  - headerStr: Laser Class
+    upgradeIndex: 20
+    passivUpgradeString: 
+    descriptionStr: Increases the chance of enemies burning from laser damage by
+      2%.
+    iconPanel: {fileID: 21300000, guid: e33e7de7e4aa41c48b6f5e23934b99b9, type: 3}
+    mainClass: 2
+    upgradeTyp: 2
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 4
+    upgradeStartCount: 4
+  - headerStr: Support Class
+    upgradeIndex: 21
+    passivUpgradeString: 
+    descriptionStr: Improves reload time of all weapon systems by 10%.
+    iconPanel: {fileID: 21300000, guid: d77731612a405b64eb61fe076a3f4fb2, type: 3}
+    mainClass: 3
+    upgradeTyp: 2
+    colorIndex: 3
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 4
+    upgradeStartCount: 4
+  - headerStr: _
+    upgradeIndex: 22
+    passivUpgradeString: 
+    descriptionStr: Increases your swarm class level by 1.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 3
+    colorIndex: 4
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 0
+    upgradeStartCount: 0
+  - headerStr: _
+    upgradeIndex: 23
+    passivUpgradeString: 
+    descriptionStr: Increases your defense class level by 1.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 3
+    colorIndex: 5
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 0
+    upgradeStartCount: 0
+  - headerStr: _
+    upgradeIndex: 24
+    passivUpgradeString: 
+    descriptionStr: Increases your targeting class level by 1.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 3
+    colorIndex: 6
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 0
+    upgradeStartCount: 0
+  - headerStr: _
+    upgradeIndex: 25
+    passivUpgradeString: 
+    descriptionStr: Increases your direction class level by 1.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 3
+    colorIndex: 7
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 0
+    upgradeStartCount: 0
+  - headerStr: Critical Impact
+    upgradeIndex: 26
+    passivUpgradeString: 
+    descriptionStr: Increases bullet crit damage by 7%.
+    iconPanel: {fileID: 21300000, guid: 0f095aeb1ea80e941b9725e24b66768b, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 0
+    reqBullet: 2
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 3
+    upgradeStartCount: 3
+  - headerStr: Critical Ammo
+    upgradeIndex: 27
+    passivUpgradeString: 
+    descriptionStr: Increases bullet crit chance by 3%.
+    iconPanel: {fileID: 21300000, guid: fdb041d3663397a42876247dd4414c56, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 0
+    reqBullet: 2
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 3
+    upgradeStartCount: 3
+  - headerStr: Blast Expansion
+    upgradeIndex: 28
+    passivUpgradeString: 
+    descriptionStr: Increases AOE from all explosions by 8%.
+    iconPanel: {fileID: 21300000, guid: f3c839403425314428e4af39e40f745e, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 1
+    reqBullet: 0
+    reqRocket: 2
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 5
+    upgradeStartCount: 5
+  - headerStr: Searing Focus
+    upgradeIndex: 29
+    passivUpgradeString: 
+    descriptionStr: Increases the laser burning damage per tick by 20%.
+    iconPanel: {fileID: 21300000, guid: dfb698914e313f5498d8a5bdb417753c, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 2
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 5
+    upgradeStartCount: 5
+  - headerStr: Scorching Potential
+    upgradeIndex: 30
+    passivUpgradeString: 
+    descriptionStr: Increases laser burning chance by 1%.
+    iconPanel: {fileID: 21300000, guid: bb2b24b3ec2f7014384556e3d31e1ab5, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 3
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 3
+    upgradeStartCount: 3
+  - headerStr: Fortified Overdrive
+    upgradeIndex: 31
+    passivUpgradeString: 
+    descriptionStr: Increases the time a power boost makes your ship invulnerable
+      by 0.2s.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 3
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 2
+    reqAbility: 
+    UpgradeCount: 3
+    upgradeStartCount: 0
+  - headerStr: Expansion Fortuity
+    upgradeIndex: 32
+    passivUpgradeString: 
+    descriptionStr: +10% chance to get double exp if you collect an exp orb.
+    iconPanel: {fileID: 21300000, guid: 7d1e7b05f71c05a48847a73dbdbd303e, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 3
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 2
+    reqAbility: Sup. Modul
+    UpgradeCount: 3
+    upgradeStartCount: 0
+  - headerStr: Vitality Infusion
+    upgradeIndex: 33
+    passivUpgradeString: 
+    descriptionStr: +2% chance to get 1 life if you collect an exp orb.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 3
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 3
+    reqAbility: Sup. Modul
+    UpgradeCount: 3
+    upgradeStartCount: 0
+  - headerStr: Rocket Mastery
+    upgradeIndex: 34
+    passivUpgradeString: 
+    descriptionStr: Increases rocket lifetime by + 0.2s.
+    iconPanel: {fileID: 21300000, guid: 9d6a3bfdf73489748967838ab10b4010, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 1
+    reqBullet: 0
+    reqRocket: 3
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 999
+    upgradeStartCount: 999
+  - headerStr: Impact Burst
+    upgradeIndex: 35
+    passivUpgradeString: 
+    descriptionStr: Triggers a nova when an opponent collides with you.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 1
+    reqBullet: 0
+    reqRocket: 2
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 0
+  - headerStr: Boosted Nova Impact
+    upgradeIndex: 36
+    passivUpgradeString: 
+    descriptionStr: Triggers a nova when you hit an enemy with your power boost.
+    iconPanel: {fileID: 21300000, guid: b5adefc2f49023b4e9917d4e5664ed8c, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 1
+    reqBullet: 0
+    reqRocket: 2
+    reqLaser: 0
+    reqSupport: 1
+    reqAbility: Shock Nova
+    UpgradeCount: 1
+    upgradeStartCount: 0
+  - headerStr: Deadly Focus
+    upgradeIndex: 37
+    passivUpgradeString: 
+    descriptionStr: Increases bullet crit chance by 10%
+    iconPanel: {fileID: 21300000, guid: 6a387fbcdaca8304696667735c8cbbe2, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 0
+    reqBullet: 4
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Extended Blast Expansion
+    upgradeIndex: 38
+    passivUpgradeString: 
+    descriptionStr: Increases AOE from all your explosions by 15%.
+    iconPanel: {fileID: 21300000, guid: 43c71b03c8dcfd142b0356482cb248e1, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 1
+    reqBullet: 0
+    reqRocket: 4
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Ignition Augment
+    upgradeIndex: 39
+    passivUpgradeString: 
+    descriptionStr: Increases base laser burning damage per tick by 3.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 4
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Fortified Defense
+    upgradeIndex: 40
+    passivUpgradeString: 
+    descriptionStr: Increases shield health by +1.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 3
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 1
+    reqAbility: F. Shield
+    UpgradeCount: 2
+    upgradeStartCount: 0
+  - headerStr: Shielded Strike
+    upgradeIndex: 41
+    passivUpgradeString: 
+    descriptionStr: Shields deal +5 damage on collision.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 3
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 2
+    reqAbility: F. Shield
+    UpgradeCount: 2
+    upgradeStartCount: 0
+  - headerStr: Lifeflow Shields
+    upgradeIndex: 42
+    passivUpgradeString: 
+    descriptionStr: Shields regenerate life over time.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 3
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 2
+    reqAbility: F. Shield
+    UpgradeCount: 1
+    upgradeStartCount: 0
+  - headerStr: Ignition Shield
+    upgradeIndex: 43
+    passivUpgradeString: 
+    descriptionStr: Shields inflict colliding enemies with burning damage.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 3
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 3
+    reqSupport: 3
+    reqAbility: F. Shield
+    UpgradeCount: 1
+    upgradeStartCount: 0
+  - headerStr: Shieldbreaker's Honor
+    upgradeIndex: 44
+    passivUpgradeString: 
+    descriptionStr: Increases AOE size of all explosions by 2% each time a shield
+      is broken.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 3
+    reqBullet: 0
+    reqRocket: 3
+    reqLaser: 0
+    reqSupport: 4
+    reqAbility: F. Shield
+    UpgradeCount: 1
+    upgradeStartCount: 0
+  - headerStr: Shieldbreaker's Might
+    upgradeIndex: 45
+    passivUpgradeString: 
+    descriptionStr: Increases critical damage by 2% each time a shield is broken.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 3
+    reqBullet: 3
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 4
+    reqAbility: F. Shield
+    UpgradeCount: 1
+    upgradeStartCount: 0
+  - headerStr: Ballistic Boost
+    upgradeIndex: 46
+    passivUpgradeString: 
+    descriptionStr: Increases all bullet damage by +12%.
+    iconPanel: {fileID: 21300000, guid: 4d51efc3c4162c0438f55dc3cb3190ba, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 0
+    reqBullet: 1
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 999
+    upgradeStartCount: 999
+  - headerStr: Boom Boom Boost
+    upgradeIndex: 47
+    passivUpgradeString: 
+    descriptionStr: Increases all explosion damage by +15%.
+    iconPanel: {fileID: 21300000, guid: 4d51efc3c4162c0438f55dc3cb3190ba, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 1
+    reqBullet: 0
+    reqRocket: 1
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 999
+    upgradeStartCount: 999
+  - headerStr: Beam Boost
+    upgradeIndex: 48
+    passivUpgradeString: 
+    descriptionStr: Increases all laser damage by +15%.
+    iconPanel: {fileID: 21300000, guid: 4d51efc3c4162c0438f55dc3cb3190ba, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 1
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 999
+    upgradeStartCount: 999
+  - headerStr: Rapid Laser Reload
+    upgradeIndex: 49
+    passivUpgradeString: 
+    descriptionStr: Reduces main laser reload time by 10%.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 1
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 3
+    upgradeStartCount: 3
+  - headerStr: Wide Spray Expansion
+    upgradeIndex: 50
+    passivUpgradeString: 
+    descriptionStr: Increases the number of bullets for the spread gun by 2.
+    iconPanel: {fileID: 21300000, guid: cfa1d4ae5cbde234c855a1d8c18577e9, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 0
+    reqBullet: 2
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: Spreadgun
+    UpgradeCount: 3
+    upgradeStartCount: 0
+  - headerStr: Lightning Reload
+    upgradeIndex: 51
+    passivUpgradeString: 
+    descriptionStr: Increases bullet main weapon fire rate by 7%.
+    iconPanel: {fileID: 21300000, guid: d23e632d3fae25248ace3d83ddc9902e, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 0
+    reqBullet: 1
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 999
+    upgradeStartCount: 999
+  - headerStr: Kaboomed Targets
+    upgradeIndex: 52
+    passivUpgradeString: 
+    descriptionStr: 10% chance enemies killed by bullets create a nova.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 10
+    reqBullet: 3
+    reqRocket: 3
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Critical Explosion
+    upgradeIndex: 53
+    passivUpgradeString: 
+    descriptionStr: 5% chance that critical damage from bullets will trigger a nova.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 10
+    reqBullet: 4
+    reqRocket: 2
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Detonation Crits
+    upgradeIndex: 54
+    passivUpgradeString: 
+    descriptionStr: Chance that AOE damage will cause critical damage.
+    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 10
+    reqBullet: 2
+    reqRocket: 4
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Titan Slayer
+    upgradeIndex: 55
+    passivUpgradeString: 
+    descriptionStr: Increases main weapon damage against bosses by 35%.
+    iconPanel: {fileID: 21300000, guid: 9f4cd08ec7f9ec840b89978f1fced188, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 1
+    reqBullet: 0
+    reqRocket: 1
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Laser Orbit Accelerator
+    upgradeIndex: 56
+    passivUpgradeString: 
+    descriptionStr: Increases Orbital Laser rotation speed by 25% and base damage
+      by 1.
+    iconPanel: {fileID: 21300000, guid: eb4257d784bcf9341903fc1efd7fbefa, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 2
+    reqSupport: 0
+    reqAbility: Orbital Laser
+    UpgradeCount: 2
+    upgradeStartCount: 0
+  - headerStr: Explosive Impact
+    upgradeIndex: 57
+    passivUpgradeString: 
+    descriptionStr: Increased the AOE size of Rocked Launcher rockets by 20%.
+    iconPanel: {fileID: 21300000, guid: 1cdaf286f8e1ff047879fc7c76debb9a, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 1
+    reqBullet: 0
+    reqRocket: 3
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: Rocket Launcher
+    UpgradeCount: 1
+    upgradeStartCount: 0
+  - headerStr: Luminous Growth
+    upgradeIndex: 58
+    passivUpgradeString: 
+    descriptionStr: Increases the life time and size of your Fireflies.
+    iconPanel: {fileID: 21300000, guid: b248b2b0686619a4cae68905c3e43676, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 0
+    reqBullet: 4
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: Fireflies
+    UpgradeCount: 1
+    upgradeStartCount: 0
+  - headerStr: Engine boost
+    upgradeIndex: 59
+    passivUpgradeString: 
+    descriptionStr: Increases Energy recover rate by 20%.
+    iconPanel: {fileID: 21300000, guid: f2a3444a22688804a856c2dbc72a0f88, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 3
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 1
+    reqAbility: 
+    UpgradeCount: 3
+    upgradeStartCount: 3
+  - headerStr: Engine Overload
+    upgradeIndex: 60
+    passivUpgradeString: 
+    descriptionStr: Increases Energy recover rate by 60%.
+    iconPanel: {fileID: 21300000, guid: f2a3444a22688804a856c2dbc72a0f88, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 3
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 3
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Continuous Shield
+    upgradeIndex: 61
+    passivUpgradeString: 
+    descriptionStr: Halves the time the shield needs to regenerate.
+    iconPanel: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 3
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 2
+    reqAbility: F. Shield
+    UpgradeCount: 1
+    upgradeStartCount: 0
+  - headerStr: Explosiv Shield
+    upgradeIndex: 62
+    passivUpgradeString: 
+    descriptionStr: The Shild triggers a nova when it dies
+    iconPanel: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 3
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 3
+    reqAbility: F. Shield
+    UpgradeCount: 1
+    upgradeStartCount: 0
+  - headerStr: Natural Energy
+    upgradeIndex: 63
+    passivUpgradeString: 
+    descriptionStr: +5% chance to fully charge your energy when you collect an exp
+      orb.
+    iconPanel: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 3
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 2
+    reqAbility: Sup. Modul
+    UpgradeCount: 2
+    upgradeStartCount: 0
+  - headerStr: Fast Head Cannon
+    upgradeIndex: 64
+    passivUpgradeString: 
+    descriptionStr: Reduces the damage but increases the rate of fire.
+    iconPanel: {fileID: 21300000, guid: eddf778d779dd2e46a84c198e40ecab5, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 0
+    reqBullet: 2
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: Head Cannon
+    UpgradeCount: 1
+    upgradeStartCount: 0
+  - headerStr: Big Head Cannon
+    upgradeIndex: 65
+    passivUpgradeString: 
+    descriptionStr: Much more damage but less rate of fire.
+    iconPanel: {fileID: 21300000, guid: eddf778d779dd2e46a84c198e40ecab5, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 0
+    reqBullet: 2
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: Head Cannon
+    UpgradeCount: 1
+    upgradeStartCount: 0
+  - headerStr: Sniper Head Cannon
+    upgradeIndex: 66
+    passivUpgradeString: 
+    descriptionStr: More damage, more range, more fly speed.
+    iconPanel: {fileID: 21300000, guid: eddf778d779dd2e46a84c198e40ecab5, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 0
+    reqBullet: 3
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: Head Cannon
+    UpgradeCount: 1
+    upgradeStartCount: 0
+  - headerStr: Gatlin Head Cannon
+    upgradeIndex: 67
+    passivUpgradeString: 
+    descriptionStr: Increases the rate of fire.
+    iconPanel: {fileID: 21300000, guid: eddf778d779dd2e46a84c198e40ecab5, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 0
+    reqBullet: 3
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: Head Cannon
+    UpgradeCount: 1
+    upgradeStartCount: 0
+  - headerStr: Fast Spread gun
+    upgradeIndex: 68
+    passivUpgradeString: 
+    descriptionStr: Decrease the spread gun reaload time by 0.5s.
+    iconPanel: {fileID: 21300000, guid: cfa1d4ae5cbde234c855a1d8c18577e9, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 0
+    reqBullet: 3
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: Spreadgun
+    UpgradeCount: 3
+    upgradeStartCount: 0
+  - headerStr: Thermal Sphere
+    upgradeIndex: 69
+    passivUpgradeString: 
+    descriptionStr: You leave homing spheres that set enemies on fire.
+    iconPanel: {fileID: 21300000, guid: 6ad6d83118aee0b44a0ee6c80093c8e6, type: 3}
+    mainClass: 2
+    upgradeTyp: 0
+    colorIndex: 10
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 2
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Chaotic Sunfire Spheres
+    upgradeIndex: 70
+    passivUpgradeString: 
+    descriptionStr: Spheres become smaller, are dropped faster and do laser damage.
+    iconPanel: {fileID: 21300000, guid: 6ad6d83118aee0b44a0ee6c80093c8e6, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 3
+    reqSupport: 0
+    reqAbility: Thermal Sphere
+    UpgradeCount: 1
+    upgradeStartCount: 0
+  - headerStr: Power Spheres
+    upgradeIndex: 71
+    passivUpgradeString: 
+    descriptionStr: Spheres base damage +2.
+    iconPanel: {fileID: 21300000, guid: 6ad6d83118aee0b44a0ee6c80093c8e6, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 4
+    reqSupport: 0
+    reqAbility: Thermal Sphere
+    UpgradeCount: 3
+    upgradeStartCount: 0
+  - headerStr: Creazy Spheres
+    upgradeIndex: 72
+    passivUpgradeString: 
+    descriptionStr: +25% chance to spawn another Sphere at the same time.
+    iconPanel: {fileID: 21300000, guid: 6ad6d83118aee0b44a0ee6c80093c8e6, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 3
+    reqSupport: 0
+    reqAbility: Thermal Sphere
+    UpgradeCount: 5
+    upgradeStartCount: 0
+  - headerStr: Dynamic Spheres
+    upgradeIndex: 73
+    passivUpgradeString: 
+    descriptionStr: Spheres become more accurate and can move more frequently
+    iconPanel: {fileID: 21300000, guid: 6ad6d83118aee0b44a0ee6c80093c8e6, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 4
+    reqSupport: 2
+    reqAbility: Thermal Sphere
+    UpgradeCount: 2
+    upgradeStartCount: 0
+  - headerStr: Enhanced Plasma Spheres
+    upgradeIndex: 74
+    passivUpgradeString: 
+    descriptionStr: Incresed the Lifetime of all Spheres by 1s.
+    iconPanel: {fileID: 21300000, guid: 6ad6d83118aee0b44a0ee6c80093c8e6, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 3
+    reqSupport: 0
+    reqAbility: Thermal Sphere
+    UpgradeCount: 3
+    upgradeStartCount: 0
+  - headerStr: Big Photon Spheres
+    upgradeIndex: 75
+    passivUpgradeString: 
+    descriptionStr: Make the Spheres bigger and more aggressive.
+    iconPanel: {fileID: 21300000, guid: 6ad6d83118aee0b44a0ee6c80093c8e6, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 4
+    reqSupport: 0
+    reqAbility: Thermal Sphere
+    UpgradeCount: 1
+    upgradeStartCount: 0
+  - headerStr: Cannon Power
+    upgradeIndex: 76
+    passivUpgradeString: 
+    descriptionStr: Increases the Head Cannon base Damage by 1.
+    iconPanel: {fileID: 21300000, guid: eddf778d779dd2e46a84c198e40ecab5, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 0
+    reqBullet: 4
+    reqRocket: 0
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: Head Cannon
+    UpgradeCount: 2
+    upgradeStartCount: 0
+  - headerStr: Fury Novas
+    upgradeIndex: 77
+    passivUpgradeString: 
+    descriptionStr: Novas got smaller but reload faster.
+    iconPanel: {fileID: 21300000, guid: b5adefc2f49023b4e9917d4e5664ed8c, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 1
+    reqBullet: 0
+    reqRocket: 2
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: Schock Nova
+    UpgradeCount: 2
+    upgradeStartCount: 0
+  - headerStr: Nuclear Novas
+    upgradeIndex: 78
+    passivUpgradeString: 
+    descriptionStr: Novas got smaller but reload faster.
+    iconPanel: {fileID: 21300000, guid: b5adefc2f49023b4e9917d4e5664ed8c, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 1
+    reqBullet: 0
+    reqRocket: 2
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: Schock Nova
+    UpgradeCount: 2
+    upgradeStartCount: 0
+  - headerStr: Power  Novas
+    upgradeIndex: 79
+    passivUpgradeString: 
+    descriptionStr: Increasd Nova base damage +2.
+    iconPanel: {fileID: 21300000, guid: b5adefc2f49023b4e9917d4e5664ed8c, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 1
+    reqBullet: 0
+    reqRocket: 3
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: Orbital Laser
+    UpgradeCount: 2
+    upgradeStartCount: 0
+  - headerStr: Orbital Laser Array
+    upgradeIndex: 80
+    passivUpgradeString: 
+    descriptionStr: 'Increase the number of rotating orbs by 1. '
+    iconPanel: {fileID: 21300000, guid: b5adefc2f49023b4e9917d4e5664ed8c, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 3
+    reqSupport: 0
+    reqAbility: Orbital Laser
+    UpgradeCount: 3
+    upgradeStartCount: 0
+  - headerStr: Tactical Minefield
+    upgradeIndex: 81
+    passivUpgradeString: 
+    descriptionStr: Your ship spawns a mine at periodic intervals, which explodes
+      on contact with the enemies.
+    iconPanel: {fileID: 21300000, guid: f3c839403425314428e4af39e40f745e, type: 3}
+    mainClass: 1
+    upgradeTyp: 0
+    colorIndex: 10
+    reqBullet: 0
+    reqRocket: 2
+    reqLaser: 0
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1

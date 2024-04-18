@@ -217,21 +217,21 @@ public class ShieldController : MonoBehaviour
         }
 
         // update crit damage
-        if (upgradeChooseList.weaponIndexInstalled[45] == 1)
+        if (upgradeChooseList.upgrades[45].upgradeIndexInstalled > 0)
         {
             upgradeChooseList.critDamage += 2;
             burnEffect.Emit(5);
         }
 
         // update AOE size
-        if (upgradeChooseList.weaponIndexInstalled[44] == 1)
+        if (upgradeChooseList.upgrades[44].upgradeIndexInstalled > 0)
         {
             upgradeChooseList.baseRocketAOERadius += 2;
             burnEffect.Emit(5);
         }
 
         // trigger Nova
-        if (upgradeChooseList.weaponIndexInstalled[62] == 1)
+        if (upgradeChooseList.upgrades[62].upgradeIndexInstalled > 0)
         {
             NovaOnDeath(5,10);
         }
@@ -271,7 +271,7 @@ public class ShieldController : MonoBehaviour
                 hitEffect.Emit(30);
             }
         }
-        if (upgradeChooseList.weaponIndexInstalled[43] == 1)
+        if (upgradeChooseList.upgrades[43].upgradeIndexInstalled > 0 )
         {
             if (enH == null)
             {
@@ -290,7 +290,7 @@ public class ShieldController : MonoBehaviour
     private void Shieldregenerate()
     {
         CancelInvoke("Shieldregenerate");
-        if (upgradeChooseList.weaponIndexInstalled[42] == 1)
+        if (upgradeChooseList.upgrades[42].upgradeIndexInstalled > 0)
         {
             if (shieldLife_ < shieldLife)
             {
@@ -342,7 +342,7 @@ public class ShieldController : MonoBehaviour
 
                 if (eHC != null)
                 {
-                    if (upgradeChooseList.weaponIndexInstalled[54] == 1)
+                    if (upgradeChooseList.upgrades[54].upgradeIndexInstalled > 0)
                     {
                         int ran = Random.Range(0, 100);
                         if (ran < playerWeaponController.bulletCritChance)

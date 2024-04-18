@@ -597,11 +597,11 @@ public class GameManager : MonoBehaviour
 
         // create temporary list from weapons or normal upgrades - depends on the player level
         if (playerLevel == -1) // new weapon
-            valueList.AddRange(upgradeChooseList.BuildUpgradeList(UpgradeTyp.WeaponUpgrade)); 
+            valueList.AddRange(upgradeChooseList.BuildUpgradeList(Upgrade.UpgradeTyp.WeaponUpgrade)); 
         else if ((playerLevel % 5) == 0) // class update
-            valueList.AddRange(upgradeChooseList.BuildUpgradeList(UpgradeTyp.ClassUpgrade));
+            valueList.AddRange(upgradeChooseList.BuildUpgradeList(Upgrade.UpgradeTyp.ClassUpgrade));
         else
-            valueList.AddRange((upgradeChooseList.BuildUpgradeList(UpgradeTyp.NormalUpgrade)));
+            valueList.AddRange((upgradeChooseList.BuildUpgradeList(Upgrade.UpgradeTyp.NormalUpgrade)));
 
         // create 3 random possible numbers that do not duplicate each other
         for (int i = 0; i < 3; i++)

@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 17
-  itemCost: 1
+  itemCost: 120
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -1804,7 +1804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 11
-  itemCost: 1
+  itemCost: 10
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -2809,7 +2809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 6
-  itemCost: 1
+  itemCost: 200
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -3247,7 +3247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 28
-  itemCost: 1
+  itemCost: 15
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -4509,7 +4509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 25
-  itemCost: 1
+  itemCost: 40
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -6173,7 +6173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 19
-  itemCost: 1
+  itemCost: 120
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -6919,7 +6919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 9
-  itemCost: 1
+  itemCost: 30
   itemMaxCount: 2
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -7420,7 +7420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 22
-  itemCost: 1
+  itemCost: 150
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -7586,7 +7586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 8
-  itemCost: 1
+  itemCost: 30
   itemMaxCount: 2
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -7834,7 +7834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 23
-  itemCost: 1
+  itemCost: 150
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -8437,7 +8437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 13
-  itemCost: 1
+  itemCost: 40
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -8886,7 +8886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 16
-  itemCost: 1
+  itemCost: 80
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -9086,7 +9086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 14
-  itemCost: 1
+  itemCost: 40
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -9970,7 +9970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 27
-  itemCost: 1
+  itemCost: 15
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -10212,7 +10212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 29
-  itemCost: 1
+  itemCost: 15
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -11165,7 +11165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 7
-  itemCost: 1
+  itemCost: 25
   itemMaxCount: 2
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -11569,7 +11569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 31
-  itemCost: 1
+  itemCost: 100
   itemMaxCount: 2
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -11620,7 +11620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 30
-  itemCost: 1
+  itemCost: 15
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -12077,7 +12077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 18
-  itemCost: 1
+  itemCost: 120
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -13550,7 +13550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 5
-  itemCost: 1
+  itemCost: 40
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -13805,7 +13805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 12
-  itemCost: 1
+  itemCost: 10
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -14154,7 +14154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 24
-  itemCost: 1
+  itemCost: 60
   itemMaxCount: 2
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -14425,7 +14425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 26
-  itemCost: 1
+  itemCost: 160
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}
@@ -16164,7 +16164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemIndex: 15
-  itemCost: 1
+  itemCost: 80
   itemMaxCount: 1
   itemSellPrice: 0
   shopModuleContainer: {fileID: 0}

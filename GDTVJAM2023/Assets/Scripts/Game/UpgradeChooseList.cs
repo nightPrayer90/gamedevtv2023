@@ -1,20 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public class UpgradeQuanityObserver
+{
+    public int upgradeIndexInstalled;
+    public int upgradeStartCount;
+}
+
 public class UpgradeChooseList : MonoBehaviour
 {
+    
     [Header("Upgrade System")]
-    public UpgradeContainer[] weaponUpgrades;
-    public List<int> weaponIndexInstalled = new List<int>();
+    public UpgradeList uLObject;
+    public List<UpgradeQuanityObserver> upgrades = new List<UpgradeQuanityObserver>();
+    
+    //public UpgradeContainer[] weaponUpgrades; //TODO DELETE
+
     public PlayerWeaponController playerWeaponController;
+    public NewPlayerController playerController;
 
     [Header("Class level")]
     public int mcBulletLvl = 0;
     public int mcExplosionLvl = 0;
     public int mcLaserLvl = 0;
     public int mcSupportLvl = 0;
- 
+
 
     [Header("Basic Ability Values")]
     public float percBulletDamage = 0;
@@ -45,17 +58,23 @@ public class UpgradeChooseList : MonoBehaviour
     public int supportRealodTime = 10;
     public int laserBurningTickDamangePercent = 100;
 
-    public int normalUpgradeCount = 0;
-    public int weaponUpgradeCount = 0;
+    private int normalUpgradeCount = 0;
+    private int weaponUpgradeCount = 0;
+
+    
 
 
     private void Start()
     {
         // this list was filled fom playerWeaponController
-        for (int i = 0; i < weaponUpgrades.Length; i++)
+        for (int i = 0; i < uLObject.upgradeList.Count; i++)
         {
-            weaponIndexInstalled.Add(0);
+            UpgradeQuanityObserver aUpdate = new();
+            aUpdate.upgradeIndexInstalled = 0;
+            aUpdate.upgradeStartCount = uLObject.upgradeList[i].upgradeStartCount;
+            upgrades.Add(aUpdate);
         }
+
         BuildlistCountAfterUpdate();
 
         // Update Weaponcontroller after loading all modules
@@ -73,14 +92,14 @@ public class UpgradeChooseList : MonoBehaviour
         playerWeaponController.UpdateWeaponValues();
     }
 
-    public List<int> BuildUpgradeList(UpgradeTyp upgradeTyp)
+    public List<int> BuildUpgradeList(Upgrade.UpgradeTyp upgradeTyp)
     {
         List<int> buildList = new List<int>();
 
-        for( int i=0; i < weaponUpgrades.Length; i++ )
+        for (int i = 0; i < uLObject.upgradeList.Count; i++)
         {
-            if (weaponUpgrades[i].upgradeTyp == upgradeTyp && weaponIndexInstalled[i] < weaponUpgrades[i].UpgradeCount &&
-               mcBulletLvl >= weaponUpgrades[i].reqBullet && mcExplosionLvl >= weaponUpgrades[i].reqRocket && mcLaserLvl >= weaponUpgrades[i].reqLaser && mcSupportLvl >= weaponUpgrades[i].reqSupport )   
+            if (uLObject.upgradeList[i].upgradeTyp == upgradeTyp && upgrades[i].upgradeIndexInstalled < upgrades[i].upgradeStartCount &&
+               mcBulletLvl >= uLObject.upgradeList[i].reqBullet && mcExplosionLvl >= uLObject.upgradeList[i].reqRocket && mcLaserLvl >= uLObject.upgradeList[i].reqLaser && mcSupportLvl >= uLObject.upgradeList[i].reqSupport)
             {
                 buildList.Add(i);
             }
@@ -104,8 +123,8 @@ public class UpgradeChooseList : MonoBehaviour
             buildList.Add(2);
         }
 
-        if (upgradeTyp == UpgradeTyp.NormalUpgrade) normalUpgradeCount = buildList.Count;
-        if (upgradeTyp == UpgradeTyp.WeaponUpgrade) weaponUpgradeCount = buildList.Count;
+        if (upgradeTyp == Upgrade.UpgradeTyp.NormalUpgrade) normalUpgradeCount = buildList.Count;
+        if (upgradeTyp == Upgrade.UpgradeTyp.WeaponUpgrade) weaponUpgradeCount = buildList.Count;
 
         //Debug.Log("buildListcount befor update " + buildList.Count);
         return buildList;
@@ -123,25 +142,27 @@ public class UpgradeChooseList : MonoBehaviour
         weaponUpgradeCount = 0;
 
         // count new
-        for (int i = 0; i < weaponUpgrades.Length; i++)
+        for (int i = 0; i < uLObject.upgradeList.Count; i++)
         {
-            if (weaponIndexInstalled[i] < weaponUpgrades[i].UpgradeCount &&
-               mcBulletLvl >= weaponUpgrades[i].reqBullet && mcExplosionLvl >= weaponUpgrades[i].reqRocket && mcLaserLvl >= weaponUpgrades[i].reqLaser && mcSupportLvl >= weaponUpgrades[i].reqSupport)
+            if (upgrades[i].upgradeIndexInstalled < upgrades[i].upgradeStartCount &&
+               mcBulletLvl >= uLObject.upgradeList[i].reqBullet && mcExplosionLvl >= uLObject.upgradeList[i].reqRocket && mcLaserLvl >= uLObject.upgradeList[i].reqLaser && mcSupportLvl >= uLObject.upgradeList[i].reqSupport)
             {
-                if (weaponUpgrades[i].upgradeTyp == UpgradeTyp.NormalUpgrade)
+                if (uLObject.upgradeList[i].upgradeTyp == Upgrade.UpgradeTyp.NormalUpgrade)
                 {
                     normalUpgradeCount++;
                 }
-                if (weaponUpgrades[i].upgradeTyp == UpgradeTyp.WeaponUpgrade)
+                if (uLObject.upgradeList[i].upgradeTyp == Upgrade.UpgradeTyp.WeaponUpgrade)
                 {
                     weaponUpgradeCount++;
                 }
             }
         }
 
+
+
         // build the new values
         string returnString = " ";
-        
+
         if (oldNC < normalUpgradeCount)
         {
             returnString = "You unlocked " + (normalUpgradeCount - oldNC).ToString() + " new upgrade(s).";
@@ -150,6 +171,9 @@ public class UpgradeChooseList : MonoBehaviour
         {
             returnString += " You unlocked " + (weaponUpgradeCount - oldWC).ToString() + " new weapon upgrade(s).";
         }
+
+        // Maybe TODO - Skip the first massage
+        if (playerController.playerLevel <= 2) returnString = "";
 
         return returnString;
     }

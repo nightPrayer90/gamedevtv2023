@@ -85,7 +85,7 @@ public class NovaOnHit : MonoBehaviour
                 if (eHC != null)
                 {
                     resultColor = eHC.hitColor;
-                    if (upgradeChooseList.weaponIndexInstalled[54] == 1)
+                    if (upgradeChooseList.upgrades[54].upgradeIndexInstalled > 0)
                     {
                         int ran = UnityEngine.Random.Range(0, 100);
                         if (ran < weaponController.bulletCritChance)

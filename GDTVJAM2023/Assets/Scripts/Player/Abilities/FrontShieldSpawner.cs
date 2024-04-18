@@ -21,7 +21,7 @@ public class FrontShieldSpawner : MonoBehaviour
     public void SpawnFrondShieldControl()
     {
         float resultSpawnInterval = spawnInterval;
-        if (UpgradeChooseList.weaponIndexInstalled[61] == 1)
+        if (UpgradeChooseList.upgrades[61].upgradeIndexInstalled > 0)
             resultSpawnInterval *= 0.5f;
 
         Invoke("SpawnFrontShield", resultSpawnInterval);

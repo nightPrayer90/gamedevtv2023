@@ -63,9 +63,6 @@ public class ClassTooltip : MonoBehaviour
         triggerPosition_ = triggerPosition;
 
         // set tooltip content
-
-
-
         string content_ = "";
 
         switch (contentType)
@@ -123,7 +120,7 @@ public class ClassTooltip : MonoBehaviour
             case 6: // Head Cannon
                 headerField.text = tooltipContent[5].header;
                 headerField.color = gameManager.globalClassColor[0];
-                content_ = upgradeChooseList.weaponUpgrades[contentType].descriptionStr + " " + upgradeChooseList.weaponUpgrades[contentType].passivUpgrades + Environment.NewLine;
+                content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[5].content; 
                 content_ = content_.Replace("XXX", playerWeaponController.hcBulletDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.hcReloadTime_.ToString());
@@ -133,7 +130,7 @@ public class ClassTooltip : MonoBehaviour
             case 7: // Rocked Launcher
                 headerField.text = tooltipContent[6].header;
                 headerField.color = gameManager.globalClassColor[1];
-                content_ = upgradeChooseList.weaponUpgrades[contentType].descriptionStr + " " + upgradeChooseList.weaponUpgrades[contentType].passivUpgrades + Environment.NewLine;
+                content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[6].content;
                 content_ = content_.Replace("XXX", playerWeaponController.rlDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.rlReloadTime_.ToString());
@@ -142,7 +139,7 @@ public class ClassTooltip : MonoBehaviour
             case 8: // Fire Flies
                 headerField.text = tooltipContent[7].header;
                 headerField.color = gameManager.globalClassColor[0];
-                content_ = upgradeChooseList.weaponUpgrades[contentType].descriptionStr + " " + upgradeChooseList.weaponUpgrades[contentType].passivUpgrades + Environment.NewLine;
+                content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[7].content;
                 content_ = content_.Replace("XXX", playerWeaponController.ffDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.ffReloadTime_.ToString());
@@ -152,7 +149,7 @@ public class ClassTooltip : MonoBehaviour
             case 9: // Bullet Wings
                 headerField.text = tooltipContent[8].header;
                 headerField.color = gameManager.globalClassColor[0];
-                content_ = upgradeChooseList.weaponUpgrades[contentType].descriptionStr + " " + upgradeChooseList.weaponUpgrades[contentType].passivUpgrades + Environment.NewLine;
+                content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[8].content;
                 content_ = content_.Replace("XXX", playerWeaponController.bwDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.bwRealoadTime_.ToString());
@@ -162,7 +159,7 @@ public class ClassTooltip : MonoBehaviour
             case 10: // Life Modul
                 headerField.text = tooltipContent[9].header;
                 headerField.color = gameManager.globalClassColor[3];
-                content_ = upgradeChooseList.weaponUpgrades[contentType].descriptionStr + " " + upgradeChooseList.weaponUpgrades[contentType].passivUpgrades + Environment.NewLine;
+                content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[9].content;
                 content_ = content_.Replace("XXX", playerWeaponController.lmLifePerTick_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.lmReloadTime_.ToString());
@@ -170,7 +167,7 @@ public class ClassTooltip : MonoBehaviour
             case 11: // Spread Gun
                 headerField.text = tooltipContent[10].header;
                 headerField.color = gameManager.globalClassColor[0];
-                content_ = upgradeChooseList.weaponUpgrades[contentType].descriptionStr + " " + upgradeChooseList.weaponUpgrades[contentType].passivUpgrades + Environment.NewLine;
+                content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[10].content;
                 content_ = content_.Replace("XXX", playerWeaponController.sgDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.sgReloadTime_.ToString());
@@ -180,7 +177,7 @@ public class ClassTooltip : MonoBehaviour
             case 12: // Front Shield
                 headerField.text = tooltipContent[11].header;
                 headerField.color = gameManager.globalClassColor[3];
-                content_ = upgradeChooseList.weaponUpgrades[contentType].descriptionStr + " " + upgradeChooseList.weaponUpgrades[contentType].passivUpgrades + Environment.NewLine;
+                content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[11].content;
                 content_ = content_.Replace("XXX", (playerWeaponController.fsShieldLife_ + upgradeChooseList.shieldHealth).ToString());
                 content_ = content_.Replace("YYY", (playerWeaponController.fsSpawnTime_).ToString());
@@ -189,7 +186,7 @@ public class ClassTooltip : MonoBehaviour
             case 13: // Back Schield
                 headerField.text = tooltipContent[12].header;
                 headerField.color = gameManager.globalClassColor[3]; 
-                content_ = upgradeChooseList.weaponUpgrades[contentType].descriptionStr + " " + upgradeChooseList.weaponUpgrades[contentType].passivUpgrades + Environment.NewLine;
+                content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[12].content;
                 content_ = content_.Replace("XXX", (playerWeaponController.bsShildLife_ + upgradeChooseList.shieldHealth).ToString());
                 content_ = content_.Replace("YYY", (playerWeaponController.bsSpawnTime_).ToString());
@@ -198,7 +195,7 @@ public class ClassTooltip : MonoBehaviour
             case 14: // Shock Nova
                 headerField.text = tooltipContent[13].header;
                 headerField.color = gameManager.globalClassColor[1]; 
-                content_ = upgradeChooseList.weaponUpgrades[contentType].descriptionStr + " " + upgradeChooseList.weaponUpgrades[contentType].passivUpgrades + Environment.NewLine;
+                content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[13].content;
                 content_ = content_.Replace("XXX", playerWeaponController.neDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.neReloadTime_.ToString());
@@ -207,7 +204,7 @@ public class ClassTooltip : MonoBehaviour
             case 15: // Rocket Wings
                 headerField.text = tooltipContent[14].header;
                 headerField.color = gameManager.globalClassColor[1];
-                content_ = upgradeChooseList.weaponUpgrades[contentType].descriptionStr + " " + upgradeChooseList.weaponUpgrades[contentType].passivUpgrades + Environment.NewLine;
+                content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[14].content;
                 content_ = content_.Replace("XXX", playerWeaponController.rwDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.rwReloadTime_.ToString());
@@ -217,7 +214,7 @@ public class ClassTooltip : MonoBehaviour
             case 16: // Front Laser
                 headerField.text = tooltipContent[15].header;
                 headerField.color = gameManager.globalClassColor[2];
-                content_ = upgradeChooseList.weaponUpgrades[contentType].descriptionStr + " " + upgradeChooseList.weaponUpgrades[contentType].passivUpgrades + Environment.NewLine;
+                content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[15].content;
                 content_ = content_.Replace("XXX", playerWeaponController.flDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.flReloadTime_.ToString());
@@ -227,7 +224,7 @@ public class ClassTooltip : MonoBehaviour
             case 17: // Orbital Laser
                 headerField.text = tooltipContent[16].header;
                 headerField.color = gameManager.globalClassColor[2];
-                content_ = upgradeChooseList.weaponUpgrades[contentType].descriptionStr + " " + upgradeChooseList.weaponUpgrades[contentType].passivUpgrades + Environment.NewLine;
+                content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[16].content;
                 content_ = content_.Replace("XXX", playerWeaponController.olDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.olReloadTime_.ToString());

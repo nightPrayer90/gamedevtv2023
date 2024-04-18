@@ -30,9 +30,9 @@ public class NewPlayerController : MonoBehaviour
     private bool canGetLaserDamage = true;
 
     [Header("Player Level Properties")]
+    public int playerLevel = 1;
     private int playerCurrentExperience;
     private int playerExperienceToLevelUp = 6;
-    private int playerLevel = 1;
     private float playerLevelUpFactor = 1.2f;
 
     [Header("Game Objects")]
@@ -262,12 +262,12 @@ public class NewPlayerController : MonoBehaviour
                     // trigger the damage floating text
                     gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
                     
-                    if (upgradeChooseList.weaponIndexInstalled[35] == 1) NovaOnHit(2f, 8);
+                    if (upgradeChooseList.upgrades[35].upgradeIndexInstalled > 0) NovaOnHit(2f, 8);
                 }
                 else
                 {
                     // add a force after the collision to the player
-                    if (upgradeChooseList.weaponIndexInstalled[36] == 1)
+                    if (upgradeChooseList.upgrades[36].upgradeIndexInstalled > 0)
                     {
                         NovaOnHit(1.2f, 6);
                         playerRigidbody.AddForce(explosionDirection * 1.4f * enemyHealth.explosionForce, ForceMode.Impulse);
@@ -568,7 +568,7 @@ public class NewPlayerController : MonoBehaviour
 
                 if (eHC != null)
                 {
-                    if (upgradeChooseList.weaponIndexInstalled[54] == 1)
+                    if (upgradeChooseList.upgrades[54].upgradeIndexInstalled > 0)
                     {
                         int ran = UnityEngine.Random.Range(0, 100);
                         if (ran < playerWeaponController.bulletCritChance)
