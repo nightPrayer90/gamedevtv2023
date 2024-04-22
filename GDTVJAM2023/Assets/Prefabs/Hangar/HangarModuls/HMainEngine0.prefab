@@ -41,7 +41,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5593386538855220751}
-  m_Mesh: {fileID: -5266563423701852545, guid: a0ab44b2f76a2b54bbb8d3564c1c34b4, type: 3}
+  m_Mesh: {fileID: -5729938964241385864, guid: baaac7ac3f2202d46964e5acc73dabff, type: 3}
 --- !u!23 &5593386538855220747
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -146,10 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSelected: 0
-  hasNoParentControll: 0
-  haveParent: 0
   spheres: []
-  possibleReplacements: 
   highlightMaterial: {fileID: 2100000, guid: 8ae23242e9d9e0f40bab0fcf05be5ecb, type: 2}
   moduleData:
     x: 0

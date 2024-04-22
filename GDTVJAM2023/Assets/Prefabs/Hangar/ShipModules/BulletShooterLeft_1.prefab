@@ -4940,7 +4940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd85861c1ca869a4f933fff2b31254a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moduleVales:
+  moduleValues:
     moduleName: 
     moduleType: 0
     canLeft: 0
@@ -5031,6 +5031,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 2baf35c6852fbf94290e8b77b1ff4f9f, type: 2}
+  - {fileID: 2100000, guid: a0bd76e122baffa42afe8f7627db8cea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

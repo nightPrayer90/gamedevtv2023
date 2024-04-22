@@ -4905,7 +4905,7 @@ GameObject:
   - component: {fileID: 3509744163337706343}
   - component: {fileID: 2012068545435488710}
   m_Layer: 7
-  m_Name: WingLeft_0
+  m_Name: WingLeft_0_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5032,6 +5032,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 2baf35c6852fbf94290e8b77b1ff4f9f, type: 2}
+  - {fileID: 2100000, guid: a0bd76e122baffa42afe8f7627db8cea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

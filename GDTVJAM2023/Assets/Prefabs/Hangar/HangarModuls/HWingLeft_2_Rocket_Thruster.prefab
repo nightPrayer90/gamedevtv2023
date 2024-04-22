@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3509744163337706343}
   - component: {fileID: 8099496030707116036}
   m_Layer: 7
-  m_Name: HWingRight_4
+  m_Name: HWingLeft_2_Rocket_Thruster
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3509744164497189557}
-  - {fileID: 6274992993116538510}
+  - {fileID: 3478146742212629990}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,10 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSelected: 0
-  hasNoParentControll: 0
-  haveParent: 0
   spheres: []
-  possibleReplacements: 
   highlightMaterial: {fileID: 2100000, guid: 8ae23242e9d9e0f40bab0fcf05be5ecb, type: 2}
   moduleData:
     x: 0
@@ -109,7 +106,7 @@ Transform:
   m_GameObject: {fileID: 3509744164497189554}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3509744163337706343}
@@ -122,7 +119,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3509744164497189554}
-  m_Mesh: {fileID: -5521435848765417330, guid: a28acb44fd3798c4a9726e2371c92e5f, type: 3}
+  m_Mesh: {fileID: -8095205350420230452, guid: 3aeec8353c3361648a7d1fc9f8f515df, type: 3}
 --- !u!23 &3509744164497189559
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -178,9 +175,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.075005, y: 1.075001, z: 0.16189808}
-  m_Center: {x: 0, y: -0.000000041621792, z: 0.17457448}
---- !u!1001 &9000619723857362351
+  m_Size: {x: 0.79968584, y: 0.81017077, z: 0.16189808}
+  m_Center: {x: -0.113735974, y: -0.028132811, z: 0.17457446}
+--- !u!1001 &1997631322644197063
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -237,8 +234,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58f076419e3ac88478bca78da42160de, type: 3}
---- !u!4 &6274992993116538510 stripped
+--- !u!4 &3478146742212629990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3169934981478923041, guid: 58f076419e3ac88478bca78da42160de, type: 3}
-  m_PrefabInstance: {fileID: 9000619723857362351}
+  m_PrefabInstance: {fileID: 1997631322644197063}
   m_PrefabAsset: {fileID: 0}

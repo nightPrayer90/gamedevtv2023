@@ -145,7 +145,7 @@ public class NewLaserMainWeapon : BaseModule
 
         // laser 1
         RaycastHit hit;
-        if (Physics.Raycast(LaserSpawnPoint1.position, -LaserSpawnPoint1.forward, out hit, raycastDistance, layerMask))
+        if (Physics.Raycast(LaserSpawnPoint1.position, -LaserSpawnPoint1.up, out hit, raycastDistance, layerMask))
         {
             EnemyHealth collidedObject = hit.collider.gameObject.GetComponent<EnemyHealth>();
 
@@ -185,14 +185,14 @@ public class NewLaserMainWeapon : BaseModule
         }
         else
         {
-            lr.SetPosition(1, LaserSpawnPoint1.position - LaserSpawnPoint1.forward * raycastDistance);
+            lr.SetPosition(1, LaserSpawnPoint1.position - LaserSpawnPoint1.up * (raycastDistance + Random.Range(-0.1f, 0.1f)));
         }
     }
 
     private void SetLaserLRPosition()
     {
         lr.SetPosition(0, LaserSpawnPoint1.position);
-        lr.SetPosition(1, LaserSpawnPoint1.position - LaserSpawnPoint1.forward * laserRange);
+        lr.SetPosition(1, LaserSpawnPoint1.position - LaserSpawnPoint1.up * (laserRange+ Random.Range(-0.1f,0.1f))) ;
     }
 
     // Debuff is EnergieProduction < 0

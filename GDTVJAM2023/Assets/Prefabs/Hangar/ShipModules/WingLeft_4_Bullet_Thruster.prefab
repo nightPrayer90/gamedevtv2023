@@ -4906,7 +4906,7 @@ GameObject:
   - component: {fileID: 8446558180025201688}
   - component: {fileID: 2012068545435488710}
   m_Layer: 7
-  m_Name: WingLeft_4
+  m_Name: WingLeft_4_Bullet_Thruster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5074,6 +5074,7 @@ MeshRenderer:
   - {fileID: 2100000, guid: 2baf35c6852fbf94290e8b77b1ff4f9f, type: 2}
   - {fileID: -6253268659915273264, guid: 23390bf0c56bdcb4db31ea2f8ec44211, type: 3}
   - {fileID: 2100000, guid: 84e6c9458a642bd498e5a9dddd5549a0, type: 2}
+  - {fileID: 2100000, guid: a0bd76e122baffa42afe8f7627db8cea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
