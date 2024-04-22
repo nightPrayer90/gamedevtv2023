@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     private IDataService DataService = new JsonDataService();
     private bool encriptionEnabled = false;
     public ModuleList moduleList;
+    public UpgradeList uLPrefab;
 
     private void Awake()
     {
@@ -88,6 +89,8 @@ public class AudioManager : MonoBehaviour
         sfxSource.volume = volume;
     }
 
+    // --------------------------------------------------------------------------------------------
+    // save and load stuff
     // ToDo: Maybe move in another object
     // this function move all data in form the playerData to the playerStats and saves this data
     public void SavePlayerData()
@@ -115,7 +118,12 @@ public class AudioManager : MonoBehaviour
         playerStats.bossLevel = playerData.bossLevel;
         playerStats.shopLevelVisited = playerData.shopLevelVisited;
 
-
+        // Skillboard
+        foreach (bool i in playerData.skillsSpotted)
+        {
+            playerStats.skillsSpotted.Add(i);
+        }
+        
         DataService.SaveData(playerData.savePath, playerStats, encriptionEnabled);
         //Debug.Log("SaveDataEnd---- " + playerStats.playerName);
     }
@@ -149,6 +157,12 @@ public class AudioManager : MonoBehaviour
         {
             playerData.moduleCounts.Add(0);
         }
+
+        // Skill Board
+        for (int i = 0; i < uLPrefab.upgradeList.Count; i++)
+        {
+            playerData.skillsSpotted.Add(false);
+        }
     }
 
     public void LoadPlayerData()
@@ -178,6 +192,13 @@ public class AudioManager : MonoBehaviour
         foreach (int i in playerStats.moduleCounts)
         {
             playerData.moduleCounts.Add(i);
+        }
+
+        // Skill Board
+        playerData.skillsSpotted.Clear();
+        foreach (bool b in playerStats.skillsSpotted)
+        {
+            playerData.skillsSpotted.Add(b);
         }
     }
 }

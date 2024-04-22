@@ -9,8 +9,9 @@ public class HangarUIController : MonoBehaviour
 {
     [Header("Scene Management")]
     public string gameScene = "GameScene";
-    public string MenueScene = "MenueScene";
-    public string ShopScene = "ShopScene";
+    public string menueScene = "MenueScene";
+    public string shopScene = "ShopScene";
+    public string skillBoardScene = "SkillBordScene";
 
     [Header("UI Controls")]
     public CanvasGroup modulePanel;
@@ -365,13 +366,19 @@ public class HangarUIController : MonoBehaviour
     public void BackToMenue()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
-        SceneManager.LoadScene(MenueScene);
+        SceneManager.LoadScene(menueScene);
     }
 
     public void GoToShop()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
-        SceneManager.LoadScene(ShopScene);
+        SceneManager.LoadScene(shopScene);
     }
+    public void GoToSkillBoard()
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        SceneManager.LoadScene(skillBoardScene);
+    }
+
     #endregion
 }

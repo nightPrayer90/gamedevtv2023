@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: buildings
     second: {fileID: 2100000, guid: 79850a606d718c2409405aff6ffe6887, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: schmauchspuren
+    second: {fileID: 2100000, guid: eb7d703aa9e1cf8499d87e31ba8670d6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

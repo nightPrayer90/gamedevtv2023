@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Scriptable Objects/PlayerData")]
@@ -24,4 +25,8 @@ public class PlayerData : ScriptableObject
     // Game
     [Header("Game")]
     public int bossLevel = 0;
+
+    // Skill board
+    [Header("Skill Bord")]
+    public List<bool> skillsSpotted = new();
 }

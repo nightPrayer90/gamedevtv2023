@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Energy
+    second: {fileID: 2100000, guid: 7f1cb373f7862fa459c322277693791d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: buildings
     second: {fileID: 2100000, guid: 79850a606d718c2409405aff6ffe6887, type: 2}
   - first:

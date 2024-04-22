@@ -7,8 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Energy
+    second: {fileID: 2100000, guid: 3428fc29a26638b4fb3eade916ee5e96, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: buildings
     second: {fileID: 2100000, guid: 79850a606d718c2409405aff6ffe6887, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: schmauchspuren
+    second: {fileID: 2100000, guid: 304c7bd13ad382148a90cda6a6d5dd01, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

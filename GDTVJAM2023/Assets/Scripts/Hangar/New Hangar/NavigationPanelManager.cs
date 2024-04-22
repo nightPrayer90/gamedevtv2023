@@ -101,6 +101,10 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
                 moduleStorage.RefreshModulSpheres();
                 hangarUIController.SetShipPanel();
                 break;
+
+            case 3: // skillboard btn
+                hangarUIController.GoToSkillBoard();
+                break;
         }
         AudioManager.Instance.PlaySFX("HangarNewShip");
     }

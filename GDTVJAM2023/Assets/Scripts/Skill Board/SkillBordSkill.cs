@@ -23,21 +23,38 @@ public class SkillBordSkill : MonoBehaviour
     public TextMeshProUGUI count_text;
 
     private int colorIndex = 0;
-
+    private bool isSpotted = true;
 
     private void Start()
     {
         controller = GameObject.Find("Controller").GetComponent<SkillBordController>();
         colorIndex = controller.ulPrefab.upgradeList[skillIndex].colorIndex;
 
-        headerText.text = controller.ulPrefab.upgradeList[skillIndex].headerStr.ToString();
-        headerText.color = controller.ccPrefab.classColor[colorIndex];
+        if (controller.debugMode == false)
+            isSpotted = controller.playerData.skillsSpotted[skillIndex];
 
-        discriptionText.text = controller.ulPrefab.upgradeList[skillIndex].descriptionStr.ToString();
-        icoSprite.sprite = controller.ulPrefab.upgradeList[skillIndex].iconPanel;
-        
-        mainClassText.text = controller.ulPrefab.upgradeList[skillIndex].mainClass.ToString() == "Nothing" ? "" : controller.ulPrefab.upgradeList[skillIndex].mainClass.ToString();
-        
+
+        if (isSpotted == true)
+        {
+            headerText.text = controller.ulPrefab.upgradeList[skillIndex].headerStr.ToString();
+            headerText.color = controller.ccPrefab.classColor[colorIndex];
+
+            discriptionText.text = controller.ulPrefab.upgradeList[skillIndex].descriptionStr.ToString();
+            icoSprite.sprite = controller.ulPrefab.upgradeList[skillIndex].iconPanel;
+
+            mainClassText.text = controller.ulPrefab.upgradeList[skillIndex].mainClass.ToString() == "Nothing" ? "" : controller.ulPrefab.upgradeList[skillIndex].mainClass.ToString();
+
+        }
+        else
+        {
+            headerText.text = "???";
+            headerText.color = controller.ccPrefab.classColor[colorIndex];
+
+            discriptionText.text = "???";
+            mainClassText.text = "";
+        }
+
+
         switch (controller.ulPrefab.upgradeList[skillIndex].mainClass.ToString())
         {
             case "Bullet":
@@ -63,7 +80,7 @@ public class SkillBordSkill : MonoBehaviour
         {
             regContainer[index].SetActive(true);
             reqText[index].text = controller.ulPrefab.upgradeList[skillIndex].reqBullet.ToString();
-            reqImage[index].color = controller.ccPrefab.classColor[0]; 
+            reqImage[index].color = controller.ccPrefab.classColor[0];
             index++;
         }
         if (controller.ulPrefab.upgradeList[skillIndex].reqRocket != 0)

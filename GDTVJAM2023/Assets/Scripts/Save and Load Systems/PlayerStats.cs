@@ -22,4 +22,7 @@ public class PlayerStats
     // Game
     public int bossLevel = 0;
 
+    // Skill Bord
+    public List<bool> skillsSpotted = new();
+
 }

@@ -195,7 +195,7 @@ public class UpgradePanelController : MonoBehaviour
                     break;
             }
             upgradeIndex[i] = number;
-
+            gameManager.playerData.skillsSpotted[upgradeIndex[i]] = true;
 
             // set text descriptions
             iconPanel[i] = uC.iconPanel;

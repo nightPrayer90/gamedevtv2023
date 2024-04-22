@@ -1208,7 +1208,7 @@ MonoBehaviour:
     reqAbility: Schock Nova
     UpgradeCount: 2
     upgradeStartCount: 0
-  - headerStr: Power  Novas
+  - headerStr: Power Novas
     upgradeIndex: 79
     passivUpgradeString: 
     descriptionStr: Increasd Nova base damage +2.
