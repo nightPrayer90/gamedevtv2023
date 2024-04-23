@@ -1,6 +1,5 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class NewLaserMainWeapon : BaseModule
@@ -152,11 +151,9 @@ public class NewLaserMainWeapon : BaseModule
             if (collidedObject != null)
             {
 
-                if (collidedObject.canTakeLaserDamage[1] == true && collidedObject.canTakeDamage == true)
+                if (collidedObject.canTakeLaserDamage[Mathf.Min(5, moduleIndex)] == true && collidedObject.canTakeDamage == true)
                 {
-
-
-                    collidedObject.TakeLaserDamage(EnergieDamageDebuff(resultLaserDamage), 1);
+                    collidedObject.TakeLaserDamage(EnergieDamageDebuff(resultLaserDamage), Mathf.Min(5,moduleIndex));
                     collidedObject.ShowDamageFromPosition(hit.point, EnergieDamageDebuff(resultLaserDamage));
                     collisionParticle.transform.position = hit.point;
                     collisionParticle.Play();
@@ -185,14 +182,14 @@ public class NewLaserMainWeapon : BaseModule
         }
         else
         {
-            lr.SetPosition(1, LaserSpawnPoint1.position - LaserSpawnPoint1.up * (raycastDistance + Random.Range(-0.1f, 0.1f)));
+            lr.SetPosition(1, LaserSpawnPoint1.position - LaserSpawnPoint1.up * (raycastDistance + UnityEngine.Random.Range(-0.1f, 0.1f)));
         }
     }
 
     private void SetLaserLRPosition()
     {
         lr.SetPosition(0, LaserSpawnPoint1.position);
-        lr.SetPosition(1, LaserSpawnPoint1.position - LaserSpawnPoint1.up * (laserRange+ Random.Range(-0.1f,0.1f))) ;
+        lr.SetPosition(1, LaserSpawnPoint1.position - LaserSpawnPoint1.up * (laserRange+ UnityEngine.Random.Range(-0.1f,0.1f))) ;
     }
 
     // Debuff is EnergieProduction < 0

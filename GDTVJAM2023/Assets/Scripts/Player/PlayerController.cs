@@ -325,7 +325,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
-        gameManager.DoFloatingText(transform.position, floatingText, gameManager.globalClassColor[input]);
+        gameManager.DoFloatingText(transform.position, floatingText, gameManager.cCPrefab.classColor[input]);
         playerWeaponController.UpdateWeaponValues();
     }
 

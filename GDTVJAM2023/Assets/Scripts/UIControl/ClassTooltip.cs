@@ -70,7 +70,7 @@ public class ClassTooltip : MonoBehaviour
             case 0: // bullet
                 content_ = tooltipContent[contentType].content;
                 headerField.text = tooltipContent[contentType].header;
-                headerField.color = gameManager.globalClassColor[contentType];
+                headerField.color = gameManager.cCPrefab.classColor[contentType];
                 if (upgradeChooseList.mcBulletLvl > 0) headerField.text = headerField.text + " - " + upgradeChooseList.mcBulletLvl.ToString();
                 content_ = content_.Replace("XXX", upgradeChooseList.percBulletDamage.ToString());
                 content_ = content_.Replace("YYY", upgradeChooseList.baseBulletCritChance.ToString());
@@ -79,7 +79,7 @@ public class ClassTooltip : MonoBehaviour
             case 1: // explosion
                 content_ = tooltipContent[contentType].content;
                 headerField.text = tooltipContent[contentType].header;
-                headerField.color = gameManager.globalClassColor[contentType];
+                headerField.color = gameManager.cCPrefab.classColor[contentType];
                 if (upgradeChooseList.mcExplosionLvl > 0) headerField.text = headerField.text + " - " + upgradeChooseList.mcExplosionLvl.ToString();
                 content_ = content_.Replace("XXX", upgradeChooseList.percRocketDamage.ToString());
                 content_ = content_.Replace("YYY", upgradeChooseList.baseRocketAOERadius.ToString());
@@ -88,7 +88,7 @@ public class ClassTooltip : MonoBehaviour
             case 2: // laser
                 content_ = tooltipContent[contentType].content;
                 headerField.text = tooltipContent[contentType].header;
-                headerField.color = gameManager.globalClassColor[contentType];
+                headerField.color = gameManager.cCPrefab.classColor[contentType];
                 if (upgradeChooseList.mcLaserLvl > 0) headerField.text = headerField.text + " - " + upgradeChooseList.mcLaserLvl.ToString();
                 content_ = content_.Replace("XXX", upgradeChooseList.percLaserDamage.ToString());
                 content_ = content_.Replace("YYY", upgradeChooseList.baseLaserBurnDamageChance.ToString());
@@ -98,7 +98,7 @@ public class ClassTooltip : MonoBehaviour
             case 3: // support
                 content_ = tooltipContent[contentType].content;
                 headerField.text = tooltipContent[contentType].header;
-                headerField.color = gameManager.globalClassColor[contentType];
+                headerField.color = gameManager.cCPrefab.classColor[contentType];
                 if (upgradeChooseList.mcSupportLvl > 0) headerField.text = headerField.text + " - " + upgradeChooseList.mcSupportLvl.ToString();
                 content_ = content_.Replace("XXX", upgradeChooseList.baseSupportRealoadTime.ToString());
                 content_ = content_.Replace("YYY", upgradeChooseList.chanceToGetTwoExp.ToString());
@@ -108,7 +108,7 @@ public class ClassTooltip : MonoBehaviour
             case 4: // ship
                 content_ = tooltipContent[contentType].content;
                 headerField.text = tooltipContent[contentType].header;
-                headerField.color = gameManager.globalClassColor[contentType];
+                headerField.color = gameManager.cCPrefab.classColor[contentType];
 
                 content_ = content_.Replace("ZZZ", playerController.playerCurrentHealth.ToString() + " / " + playerController.playerMaxHealth.ToString());
                 content_ = content_.Replace("AAA", playerController.protectionLvl.ToString() + " protection - " + playerController.protectionPerc.ToString());
@@ -119,7 +119,7 @@ public class ClassTooltip : MonoBehaviour
             // Weapon-------------------------------------------------------------------------------------------------
             case 6: // Head Cannon
                 headerField.text = tooltipContent[5].header;
-                headerField.color = gameManager.globalClassColor[0];
+                headerField.color = gameManager.cCPrefab.classColor[0];
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[5].content; 
                 content_ = content_.Replace("XXX", playerWeaponController.hcBulletDamage_.ToString());
@@ -129,7 +129,7 @@ public class ClassTooltip : MonoBehaviour
                 break;
             case 7: // Rocked Launcher
                 headerField.text = tooltipContent[6].header;
-                headerField.color = gameManager.globalClassColor[1];
+                headerField.color = gameManager.cCPrefab.classColor[1];
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[6].content;
                 content_ = content_.Replace("XXX", playerWeaponController.rlDamage_.ToString());
@@ -138,7 +138,7 @@ public class ClassTooltip : MonoBehaviour
                 break;
             case 8: // Fire Flies
                 headerField.text = tooltipContent[7].header;
-                headerField.color = gameManager.globalClassColor[0];
+                headerField.color = gameManager.cCPrefab.classColor[0];
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[7].content;
                 content_ = content_.Replace("XXX", playerWeaponController.ffDamage_.ToString());
@@ -148,7 +148,7 @@ public class ClassTooltip : MonoBehaviour
                 break;
             case 9: // Bullet Wings
                 headerField.text = tooltipContent[8].header;
-                headerField.color = gameManager.globalClassColor[0];
+                headerField.color = gameManager.cCPrefab.classColor[0];
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[8].content;
                 content_ = content_.Replace("XXX", playerWeaponController.bwDamage_.ToString());
@@ -158,7 +158,7 @@ public class ClassTooltip : MonoBehaviour
                 break;
             case 10: // Life Modul
                 headerField.text = tooltipContent[9].header;
-                headerField.color = gameManager.globalClassColor[3];
+                headerField.color = gameManager.cCPrefab.classColor[3];
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[9].content;
                 content_ = content_.Replace("XXX", playerWeaponController.lmLifePerTick_.ToString());
@@ -166,7 +166,7 @@ public class ClassTooltip : MonoBehaviour
                 break;
             case 11: // Spread Gun
                 headerField.text = tooltipContent[10].header;
-                headerField.color = gameManager.globalClassColor[0];
+                headerField.color = gameManager.cCPrefab.classColor[0];
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[10].content;
                 content_ = content_.Replace("XXX", playerWeaponController.sgDamage_.ToString());
@@ -176,7 +176,7 @@ public class ClassTooltip : MonoBehaviour
                 break;
             case 12: // Front Shield
                 headerField.text = tooltipContent[11].header;
-                headerField.color = gameManager.globalClassColor[3];
+                headerField.color = gameManager.cCPrefab.classColor[3];
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[11].content;
                 content_ = content_.Replace("XXX", (playerWeaponController.fsShieldLife_ + upgradeChooseList.shieldHealth).ToString());
@@ -185,7 +185,7 @@ public class ClassTooltip : MonoBehaviour
                 break;
             case 13: // Back Schield
                 headerField.text = tooltipContent[12].header;
-                headerField.color = gameManager.globalClassColor[3]; 
+                headerField.color = gameManager.cCPrefab.classColor[3]; 
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[12].content;
                 content_ = content_.Replace("XXX", (playerWeaponController.bsShildLife_ + upgradeChooseList.shieldHealth).ToString());
@@ -194,7 +194,7 @@ public class ClassTooltip : MonoBehaviour
                 break;
             case 14: // Shock Nova
                 headerField.text = tooltipContent[13].header;
-                headerField.color = gameManager.globalClassColor[1]; 
+                headerField.color = gameManager.cCPrefab.classColor[1]; 
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[13].content;
                 content_ = content_.Replace("XXX", playerWeaponController.neDamage_.ToString());
@@ -203,7 +203,7 @@ public class ClassTooltip : MonoBehaviour
                 break;
             case 15: // Rocket Wings
                 headerField.text = tooltipContent[14].header;
-                headerField.color = gameManager.globalClassColor[1];
+                headerField.color = gameManager.cCPrefab.classColor[1];
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[14].content;
                 content_ = content_.Replace("XXX", playerWeaponController.rwDamage_.ToString());
@@ -213,7 +213,7 @@ public class ClassTooltip : MonoBehaviour
                 break;
             case 16: // Front Laser
                 headerField.text = tooltipContent[15].header;
-                headerField.color = gameManager.globalClassColor[2];
+                headerField.color = gameManager.cCPrefab.classColor[2];
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[15].content;
                 content_ = content_.Replace("XXX", playerWeaponController.flDamage_.ToString());
@@ -223,7 +223,7 @@ public class ClassTooltip : MonoBehaviour
                 break;
             case 17: // Orbital Laser
                 headerField.text = tooltipContent[16].header;
-                headerField.color = gameManager.globalClassColor[2];
+                headerField.color = gameManager.cCPrefab.classColor[2];
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[16].content;
                 content_ = content_.Replace("XXX", playerWeaponController.olDamage_.ToString());
@@ -232,7 +232,7 @@ public class ClassTooltip : MonoBehaviour
                 break;
             case 69: // Thermal Sphere
                 headerField.text = tooltipContent[17].header;
-                headerField.color = gameManager.globalClassColor[2];
+                headerField.color = gameManager.cCPrefab.classColor[2];
                 content_ = "Work in Progress";
                 break;
 

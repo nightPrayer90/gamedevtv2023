@@ -5,6 +5,7 @@ public class KillDOTweens : MonoBehaviour
 {
     private void Awake()
     {
-        DOTween.KillAll();
+
+        //DOTween.KillAll();
     }
 }

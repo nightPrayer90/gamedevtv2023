@@ -57,6 +57,7 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
     // Handle Mouse over UI
     public void OnPointerEnter(PointerEventData eventData)
     {
+        AudioManager.Instance.PlaySFX("MouseHover");
         gameObject.transform.DOComplete();
         gameObject.transform.DOScale(new Vector3(1.01f, 1.01f, 1.01f), 0.1f);
 
@@ -82,6 +83,7 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
         {
             case 0: // shop btn
                 hangarUIController.GoToShop();
+                AudioManager.Instance.PlaySFX("MouseKlick");
                 break;
 
             case 1: //new ship
@@ -91,6 +93,7 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
                 moduleStorage.BuildModuleGrid();
                 moduleStorage.RefreshModulSpheres();
                 hangarUIController.SetShipPanel();
+                AudioManager.Instance.PlaySFX("HangarNewShip");
                 break;
 
             case 2: // ship preset 2
@@ -100,13 +103,15 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
                 moduleStorage.BuildModuleGrid();
                 moduleStorage.RefreshModulSpheres();
                 hangarUIController.SetShipPanel();
+                AudioManager.Instance.PlaySFX("HangarNewShip");
                 break;
 
             case 3: // skillboard btn
                 hangarUIController.GoToSkillBoard();
+                AudioManager.Instance.PlaySFX("MouseKlick");
                 break;
         }
-        AudioManager.Instance.PlaySFX("HangarNewShip");
+       
     }
     #endregion
 }

@@ -23,7 +23,7 @@ public class EnemyClassPickup : MonoBehaviour
         ParticleSystem.MainModule mainModuleSP = sub_Part.main;
 
         int randomNumber = Random.Range(4, 8);
-        classColor = gameManager.globalClassColor[randomNumber];
+        classColor = gameManager.cCPrefab.classColor[randomNumber];
         mainModuleMP.startColor = classColor;
         mainModuleSP.startColor = classColor;
 

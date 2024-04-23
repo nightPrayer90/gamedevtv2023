@@ -45,6 +45,7 @@ public class NewStrafeEngine : BaseModule
 
                 playerController.energieCurrent -= boostCost;
                 useBoost = true;
+                playerController.useBoost = true;
 
                 if (playerController.energieCurrent < boostCost) useBoost = false;
             }
@@ -53,6 +54,7 @@ public class NewStrafeEngine : BaseModule
                 totalStrafeForce = strafeForce * EnergieDebuffForce();
                 ps_leftEngine.Emit(1);
                 useBoost = false;
+                playerController.useBoost = false;
             }
 
             // Berechne die Kraft basierend auf dem horizontalen Input
@@ -72,13 +74,18 @@ public class NewStrafeEngine : BaseModule
                 playerController.energieCurrent -= boostCost;
                 useBoost = true;
 
-                if (playerController.energieCurrent < boostCost) useBoost = false;
+                if (playerController.energieCurrent < boostCost)
+                {
+                    useBoost = false;
+                    playerController.useBoost = false;
+                }
             }
             else
             {
                 totalStrafeForce = strafeForce * EnergieDebuffForce();
                 ps_rigtEngine.Emit(1);
                 useBoost = false;
+                playerController.useBoost = false;
             }
 
             // Berechne die Kraft basierend auf dem horizontalen Input

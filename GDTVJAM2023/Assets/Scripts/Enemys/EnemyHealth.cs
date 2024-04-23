@@ -152,6 +152,7 @@ public class EnemyHealth : MonoBehaviour
             if (damagetyp == 0)
             {
                 // calculate crit damage
+
                 int ran = UnityEngine.Random.Range(0, 100);
                 if (ran < playerWeaponController.bulletCritChance)
                 {

@@ -96,6 +96,8 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
     {
         if (isClickt == false)
         {
+            AudioManager.Instance.PlaySFX("MouseHover");
+
             gameObject.transform.DOComplete();
             gameObject.transform.DOScale(new Vector3(1.01f, 1.01f, 1.01f), 0.1f);
 

@@ -770,7 +770,7 @@ MonoBehaviour:
     reqSupport: 0
     reqAbility: 
     UpgradeCount: 3
-    upgradeStartCount: 3
+    upgradeStartCount: 0
   - headerStr: Wide Spray Expansion
     upgradeIndex: 50
     passivUpgradeString: 
@@ -800,7 +800,7 @@ MonoBehaviour:
     reqSupport: 0
     reqAbility: 
     UpgradeCount: 999
-    upgradeStartCount: 999
+    upgradeStartCount: 0
   - headerStr: Kaboomed Targets
     upgradeIndex: 52
     passivUpgradeString: 
@@ -860,7 +860,7 @@ MonoBehaviour:
     reqSupport: 0
     reqAbility: 
     UpgradeCount: 1
-    upgradeStartCount: 1
+    upgradeStartCount: 0
   - headerStr: Laser Orbit Accelerator
     upgradeIndex: 56
     passivUpgradeString: 

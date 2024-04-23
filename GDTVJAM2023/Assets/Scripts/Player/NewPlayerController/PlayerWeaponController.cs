@@ -170,7 +170,7 @@ public class PlayerWeaponController : MonoBehaviour
     public float fsSpawnTime = 10f;
     public int fsShieldLife = 3;
     public float bsSpawnTime = 6f;
-    public int bsShildLife = 2; 
+    public int bsShildLife = 2;
     public bool isFrontShieldEnabled = false;
     public bool isBackShieldLeft = false;
     public bool isBackShieldRight = false;
@@ -186,9 +186,9 @@ public class PlayerWeaponController : MonoBehaviour
     public event Action<float> ONUpdateBulletRealodTime;
 
     // private Objects
-    private NewPlayerController playerController;
+    //private NewPlayerController playerController;
     private UpgradeChooseList upgradeChooseList;
-
+    private bool canPlayBulletShootSfx = true;
 
 
     /* **************************************************************************** */
@@ -197,7 +197,7 @@ public class PlayerWeaponController : MonoBehaviour
     #region lifecycle
     void Start()
     {
-        playerController = gameObject.GetComponent<NewPlayerController>();
+        //playerController = gameObject.GetComponent<NewPlayerController>();
         upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
 
         // Start Values
@@ -482,4 +482,22 @@ public class PlayerWeaponController : MonoBehaviour
         ONUpdateBulletRealodTime?.Invoke(reloadTimeUpdate);
     }
 
+
+
+    /* **************************************************************************** */
+    /* Shootsound ----------------------------------------------------------------- */
+    /* **************************************************************************** */
+    public void BulletShootingSoundEngine()
+    {
+        if (canPlayBulletShootSfx == true)
+        {
+            AudioManager.Instance.PlaySFX("PlayerShot");
+            canPlayBulletShootSfx = false;
+            Invoke("InvokeBulletSoundReset", 0.1f);
+        }
+    }
+    private void InvokeBulletSoundReset()
+    {
+        canPlayBulletShootSfx = true;
+    }
 }

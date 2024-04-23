@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     private bool encriptionEnabled = false;
     public ModuleList moduleList;
     public UpgradeList uLPrefab;
+    public SimpleSceneTransition transition;
 
     private void Awake()
     {
@@ -70,6 +71,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    
     public void ToggleMusic()
     {
         musicSource.mute = !musicSource.mute;
@@ -200,5 +202,12 @@ public class AudioManager : MonoBehaviour
         {
             playerData.skillsSpotted.Add(b);
         }
+    }
+
+    // --------------------------------------------
+    // Transition Stuff ---------------------------
+   public void SceneTransition(string sceneName, int panelIndex = 0)
+    {
+        transition.Transition(sceneName, panelIndex);
     }
 }

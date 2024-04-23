@@ -115,6 +115,9 @@ public class NewBulletMainWeapon : BaseModule
 
         // emit 1 particle of each mainweapon
         bulletParticalSystem.Emit(1);
+
+        // trigger sound
+        playerWeaponController.BulletShootingSoundEngine();
     }
 
     // set the main weapon particle damage

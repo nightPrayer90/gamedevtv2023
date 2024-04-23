@@ -73,7 +73,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 1
     moduleValues:
-      moduleName: Wing 00 left (BS)
+      moduleName: Bullet Wing lleft
       moduleType: 6
       canLeft: 1
       canRight: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 1
     moduleValues:
-      moduleName: Wing 00 right (BS)
+      moduleName: Bullet Wing right
       moduleType: 6
       canLeft: 0
       canRight: 1
@@ -157,7 +157,7 @@ MonoBehaviour:
       canBack: 1
       modulDescription_multiLineText: "<color=#FFBF00>You need one main engine to
         fly \r\nforwards or backwards.</color>\r\nThrust force: 5 TJ\r\nBoost force:
-        <color=#00FFFF>8 TJ </color>\r\nYou get the Ability  <color=#00FFFF>Power
+        <color=#00FFFF>13 TJ </color>\r\nYou get the Ability  <color=#00FFFF>Power
         Boost</color>"
       costMass: 0.2
       costEnergie: 0.4
@@ -168,7 +168,7 @@ MonoBehaviour:
       mainEngine: 5
       directionEngine: 0
       strafeEngine: 0
-      boostEngine: 8
+      boostEngine: 13
       boostStrafeEngine: 0
       bulletClass: 0
       rocketClass: 0
@@ -839,14 +839,13 @@ MonoBehaviour:
       canRight: 0
       canFront: 0
       canBack: 0
-      modulDescription_multiLineText: '"Health + 1
-
-        Torque force: 0.30 TNm"'
+      modulDescription_multiLineText: "<color=#FFBF00>Midrange bullet attack</color>\r\nDamage:
+        3 HP/ hit \r\nHealth + 2\r\nTorque force: 0.30 TNm"
       costMass: 0.25
       costEnergie: 0.45
       energieProduction: 0
       energieStorage: 0
-      health: 1
+      health: 2
       protection: 0
       mainEngine: 0
       directionEngine: 0.3
@@ -878,14 +877,13 @@ MonoBehaviour:
       canRight: 1
       canFront: 0
       canBack: 0
-      modulDescription_multiLineText: '"Health + 1
-
-        Torque force: 0.30 TNm"'
+      modulDescription_multiLineText: "<color=#FFBF00>Midrange bullet attack</color>\r\nDamage:
+        3 HP/ hit \r\nHealth + 2\r\nTorque force: 0.30 TNm"
       costMass: 0.25
       costEnergie: 0.45
       energieProduction: 0
       energieStorage: 0
-      health: 1
+      health: 2
       protection: 0
       mainEngine: 0
       directionEngine: 0.3
@@ -1036,7 +1034,7 @@ MonoBehaviour:
       modulDescription_multiLineText: 'Thrust force: 7.5 TJ
 
         Boost force:
-        <color=#00FFFF>11 TJ </color>
+        <color=#00FFFF>16 TJ </color>
 
         <color=#00FFFF>Boost needs less Energie/s</color>'
       costMass: 0.2
@@ -1048,7 +1046,7 @@ MonoBehaviour:
       mainEngine: 7.5
       directionEngine: 0
       strafeEngine: 0
-      boostEngine: 11
+      boostEngine: 16
       boostStrafeEngine: 0
       bulletClass: 0
       rocketClass: 0
@@ -1077,7 +1075,7 @@ MonoBehaviour:
       canBack: 1
       modulDescription_multiLineText: "<color=#FFBF00>You need one main engine to
         fly \r\nforwards or backwards.</color>\r\nThrust force: 8 TJ\r\nBoost force:
-        <color=#00FFFF>10 TJ </color>\r\nYou get the Ability  <color=#00FFFF>Power
+        <color=#00FFFF>13 TJ </color>\r\nYou get the Ability  <color=#00FFFF>Power
         Boost</color>"
       costMass: 0.2
       costEnergie: 0.55
@@ -1088,7 +1086,7 @@ MonoBehaviour:
       mainEngine: 8
       directionEngine: 0
       strafeEngine: 0
-      boostEngine: 10
+      boostEngine: 13
       boostStrafeEngine: 0
       bulletClass: 0
       rocketClass: 0
@@ -1313,13 +1311,14 @@ MonoBehaviour:
       canRight: 0
       canFront: 0
       canBack: 0
-      modulDescription_multiLineText: "\"<color=#FFBF00>You need two direction engines
-        to \nbe able to turn your ship in space.</color>\nTorque force: 0.30 TNm\""
+      modulDescription_multiLineText: "<color=#FFBF00>Short range rocket attack.
+        Fire \nhoming rockets, explosions have AOE</color>\nDamage: 6 HP/ hit \nHealth
+        + 2"
       costMass: 0.3
       costEnergie: 0.25
       energieProduction: 0
       energieStorage: 0
-      health: 0
+      health: 2
       protection: 0
       mainEngine: 0
       directionEngine: 0.3
@@ -1351,13 +1350,14 @@ MonoBehaviour:
       canRight: 1
       canFront: 0
       canBack: 0
-      modulDescription_multiLineText: "\"<color=#FFBF00>You need two direction engines
-        to \nbe able to turn your ship in space.</color>\nTorque force: 0.30 TNm\""
+      modulDescription_multiLineText: "<color=#FFBF00>Short range rocket attack.
+        Fire \nhoming rockets, explosions have AOE</color>\nDamage: 6 HP/ hit \nHealth
+        + 2"
       costMass: 0.3
       costEnergie: 0.15
       energieProduction: 0
       energieStorage: 0
-      health: 0
+      health: 2
       protection: 0
       mainEngine: 0
       directionEngine: 0.3
@@ -1389,13 +1389,14 @@ MonoBehaviour:
       canRight: 0
       canFront: 0
       canBack: 0
-      modulDescription_multiLineText: "\"<color=#FFBF00>You need two direction engines
-        to \nbe able to turn your ship in space.</color>\nTorque force: 0.30 TNm\""
+      modulDescription_multiLineText: "<color=#FFBF00>Short range rocket attack.
+        Fire \nhoming rockets, explosions have AOE</color>\nDamage: 6 HP/ hit \nHealth
+        + 2\nTorque force: 0.30 TNm"
       costMass: 0.35
       costEnergie: 0.4
       energieProduction: 0
       energieStorage: 0
-      health: 0
+      health: 2
       protection: 0
       mainEngine: 0
       directionEngine: 0.3
@@ -1427,13 +1428,14 @@ MonoBehaviour:
       canRight: 1
       canFront: 0
       canBack: 0
-      modulDescription_multiLineText: "\"<color=#FFBF00>You need two direction engines
-        to \nbe able to turn your ship in space.</color>\nTorque force: 0.30 TNm\""
+      modulDescription_multiLineText: "<color=#FFBF00>Short range rocket attack.
+        Fire \nhoming rockets, explosions have AOE</color>\nDamage: 6 HP/ hit \nHealth
+        + 2\nTorque force: 0.30 TNm"
       costMass: 0.35
       costEnergie: 0.4
       energieProduction: 0
       energieStorage: 0
-      health: 0
+      health: 2
       protection: 0
       mainEngine: 0
       directionEngine: 0.3
@@ -1466,12 +1468,13 @@ MonoBehaviour:
       canFront: 0
       canBack: 0
       modulDescription_multiLineText: "\"<color=#FFBF00>You need two direction engines
-        to \nbe able to turn your ship in space.</color>\nTorque force: 0.30 TNm\""
+        to \nbe able to turn your ship in space.</color>\nTorque force: 0.30 TNm\"\nHealth:
+        +2\nHealth: +2"
       costMass: 0.25
       costEnergie: 0.3
       energieProduction: 0
       energieStorage: 0
-      health: 0
+      health: 2
       protection: 0
       mainEngine: 0
       directionEngine: 0.3
@@ -1503,13 +1506,13 @@ MonoBehaviour:
       canRight: 1
       canFront: 0
       canBack: 0
-      modulDescription_multiLineText: "\"<color=#FFBF00>You need two direction engines
-        to \nbe able to turn your ship in space.</color>\nTorque force: 0.30 TNm\""
+      modulDescription_multiLineText: "<color=#FFBF00>Short range laser attack.</color>\nDamage:
+        4 HP/hit\nShoot Time: 3 s \nDown Time: 2 s\nHealth: +2"
       costMass: 0.25
       costEnergie: 0.3
       energieProduction: 0
       energieStorage: 0
-      health: 0
+      health: 2
       protection: 0
       mainEngine: 0
       directionEngine: 0.3
@@ -1541,13 +1544,22 @@ MonoBehaviour:
       canRight: 0
       canFront: 0
       canBack: 0
-      modulDescription_multiLineText: "\"<color=#FFBF00>You need two direction engines
-        to \nbe able to turn your ship in space.</color>\nTorque force: 0.30 TNm\""
+      modulDescription_multiLineText: '<color=#FFBF00>Short range laser attack.</color>
+
+        Damage:
+        4 HP/hit
+
+        Shoot Time: 3 s/ Down Time: 2 s
+
+        Torque force:
+        0.30 TNm
+
+        Health: +2'
       costMass: 0.3
       costEnergie: 0.45
       energieProduction: 0
       energieStorage: 0
-      health: 0
+      health: 2
       protection: 0
       mainEngine: 0
       directionEngine: 0.3
@@ -1575,6 +1587,91 @@ MonoBehaviour:
     moduleValues:
       moduleName: Laser Wing 02 right
       moduleType: 6
+      canLeft: 0
+      canRight: 1
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: '<color=#FFBF00>Short range laser attack.</color>
+
+        Damage:
+        4 HP/hit
+
+        Shoot Time: 3 s/ Down Time: 2 s
+
+        Torque force:
+        0.30 TNm
+
+        Health: +2'
+      costMass: 0.3
+      costEnergie: 0.45
+      energieProduction: 0
+      energieStorage: 0
+      health: 0
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0.3
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Solar Module left
+    modulePrefabs: {fileID: 3509744163337706340, guid: ab080c26b6dce47498a61e5de92e9b1e, type: 3}
+    hangarPrefab: {fileID: 3509744163337706340, guid: 3c28e4de16c7a984fa16ba29077d3bfd, type: 3}
+    hangarGhost: {fileID: 3509744163337706340, guid: 7225831e39aac904faa358483f0903bd, type: 3}
+    modulSprite: {fileID: 21300000, guid: 0ed2cb74a7f3ebb479bdc536ce9e1422, type: 3}
+    moduleType: 0
+    canLeft: 1
+    canRight: 0
+    canFront: 0
+    canBack: 0
+    canHaveLeftNeighbor: 0
+    canHaveRightNeighbor: 1
+    canHaveFrontNeighbor: 0
+    canHaveBackNeighbor: 0
+    moduleValues:
+      moduleName: Solar Module left
+      moduleType: 0
+      canLeft: 1
+      canRight: 0
+      canFront: 0
+      canBack: 0
+      modulDescription_multiLineText: "\"<color=#FFBF00>You need two direction engines
+        to \nbe able to turn your ship in space.</color>\nTorque force: 0.30 TNm\""
+      costMass: 0.3
+      costEnergie: 0.45
+      energieProduction: 0
+      energieStorage: 0
+      health: 0
+      protection: 0
+      mainEngine: 0
+      directionEngine: 0.3
+      strafeEngine: 0
+      boostEngine: 0
+      boostStrafeEngine: 0
+      bulletClass: 0
+      rocketClass: 0
+      laserClass: 0
+      supportClass: 0
+  - moduleName: Solar Module right
+    modulePrefabs: {fileID: 3509744163337706340, guid: d4890933a02f2d54b8fdb773305ced6a, type: 3}
+    hangarPrefab: {fileID: 3509744163337706340, guid: 76209ab9f4ab9464185364cf87bed6bd, type: 3}
+    hangarGhost: {fileID: 3509744163337706340, guid: 383472670fe6e7f438101f47caf08355, type: 3}
+    modulSprite: {fileID: 21300000, guid: 0ed2cb74a7f3ebb479bdc536ce9e1422, type: 3}
+    moduleType: 0
+    canLeft: 0
+    canRight: 1
+    canFront: 0
+    canBack: 0
+    canHaveLeftNeighbor: 1
+    canHaveRightNeighbor: 0
+    canHaveFrontNeighbor: 0
+    canHaveBackNeighbor: 0
+    moduleValues:
+      moduleName: Solar Module right
+      moduleType: 0
       canLeft: 0
       canRight: 1
       canFront: 0

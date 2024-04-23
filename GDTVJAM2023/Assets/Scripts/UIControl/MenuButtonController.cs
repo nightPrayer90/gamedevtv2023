@@ -83,18 +83,21 @@ public class MenuButtonController : MonoBehaviour
     {
         AudioManager.Instance.SetPlayerDataToDefault();
         AudioManager.Instance.PlaySFX("MouseKlick");
-        SceneManager.LoadScene("IntroScene");
+        //SceneManager.LoadScene("IntroScene");
+        AudioManager.Instance.SceneTransition("IntroScene");
     }
     public void GameLoad()
     {
         AudioManager.Instance.LoadPlayerData();
         AudioManager.Instance.PlaySFX("MouseKlick");
-        SceneManager.LoadScene(gameScene);
+        //SceneManager.LoadScene(gameScene);
+        AudioManager.Instance.SceneTransition(gameScene);
     }
     public void Credits()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
-        SceneManager.LoadScene("CreditScene");
+        AudioManager.Instance.SceneTransition("CreditScene",1);
+        //SceneManager.LoadScene("CreditScene");
     }
     public void GameQuit()
     {
@@ -104,12 +107,14 @@ public class MenuButtonController : MonoBehaviour
     public void Encarta()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
-        SceneManager.LoadScene("Encarta");
+        //SceneManager.LoadScene("Encarta");
+        AudioManager.Instance.SceneTransition("Encarta",1);
     }
     public void Options()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
-        SceneManager.LoadScene("OptionScene");
+        //SceneManager.LoadScene("OptionScene");
+        AudioManager.Instance.SceneTransition("OptionScene",1);
     }
 
 
@@ -153,7 +158,8 @@ public class MenuButtonController : MonoBehaviour
     public void BacktoMainMenueCredit()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
-        SceneManager.LoadScene("MenueScene");
+        //SceneManager.LoadScene("MenueScene");
+        AudioManager.Instance.SceneTransition("MenueScene",1);
     }
 
 
@@ -165,13 +171,15 @@ public class MenuButtonController : MonoBehaviour
     public void BacktoMainMenue()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
-        SceneManager.LoadScene("HangarScene");
+        //SceneManager.LoadScene("HangarScene");
         AudioManager.Instance.PlayMusic("MenuMusic");
+        AudioManager.Instance.SceneTransition("HangarScene");
     }
     public void LevelRestart()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        AudioManager.Instance.SceneTransition(SceneManager.GetActiveScene().name);
     }
 
     public void LevelPauseStop()
@@ -189,8 +197,9 @@ public class MenuButtonController : MonoBehaviour
     public void BacktoMainMenueVictory()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
-        SceneManager.LoadScene("OutroScene");
+        //SceneManager.LoadScene("OutroScene");
         AudioManager.Instance.PlayMusic("MenuMusic");
+        AudioManager.Instance.SceneTransition("OutroScene");
     }
 
 

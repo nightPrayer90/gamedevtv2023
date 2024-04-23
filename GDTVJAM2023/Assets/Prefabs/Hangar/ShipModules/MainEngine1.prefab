@@ -24336,6 +24336,7 @@ MonoBehaviour:
     rocketClass: 0
     laserClass: 0
     supportClass: 0
+  moduleIndex: -1
   ps_engine: {fileID: 5593386540622038281}
   ps_boostEngine: {fileID: 6234797105447130074}
   ps_boostParticle: {fileID: 6234797106759847629}
@@ -24343,16 +24344,16 @@ MonoBehaviour:
   hasPowerBoost: 0
   hasFontBoost: 1
   FrontBoostPower: 5
-  FrontBoostCost: 0.12
+  FrontBoostCost: 0.08
   ps_backEngines:
   - {fileID: 5593386540214549264}
   - {fileID: 5593386540635064468}
   ps_backBoostEngines:
   - {fileID: 6234797105552858118}
   - {fileID: 6234797106707952507}
-  backForce: 2
+  backForce: 3
   hasBackBoost: 1
-  BackBoostPower: 4.5
+  BackBoostPower: 5
   canShowEnergie: 1
   boostMeshRenderer: {fileID: 5593386538855220747}
   mat_EnergieFull: {fileID: 2100000, guid: 9fee6c79de9d37749b0af1be8bdc0435, type: 2}

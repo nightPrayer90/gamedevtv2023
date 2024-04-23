@@ -41,7 +41,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI enemyToKillText;
     public TextMeshProUGUI enemyCounterText;
     public TextMeshProUGUI outsideBorderText;
-    public List<Color> globalClassColor;
+    //public List<Color> globalClassColor;
+    public ClassColor cCPrefab;
     public Transform outsideBorderTextTweenTarget;
     [HideInInspector] public float curretEnemyCounter;
     public GameObject miniMap;
@@ -290,7 +291,11 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         upgradeText.text = upgradeChooseList.BuildlistCountAfterUpdate();
+
+        // Fade Text in
         upgradeTextCG.DOFade(1, 0.5f);
+
+        // Fade Text out
         Invoke("InvokeupgradeText", 2f);
 
         gameIsPlayed = true;

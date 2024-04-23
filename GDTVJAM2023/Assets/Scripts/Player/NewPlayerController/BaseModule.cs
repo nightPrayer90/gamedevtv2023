@@ -3,6 +3,7 @@ using UnityEngine;
 public class BaseModule : MonoBehaviour
 {
     public ModuleValues moduleValues;
+    public int moduleIndex = -1;
    
     protected void UpdateModuleValues()
     {

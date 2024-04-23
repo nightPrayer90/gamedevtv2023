@@ -6,6 +6,7 @@ public class NewBaseEngine : BaseModule
     private NewPlayerController playerController;
     private Rigidbody playerRigidbody;
     private GameManager gameManager;
+    private bool useBoost = false;
 
     [Header("Forward Engine")]
     [SerializeField] private ParticleSystem ps_engine;
@@ -17,7 +18,6 @@ public class NewBaseEngine : BaseModule
     public bool hasFontBoost = true;
     public float FrontBoostPower;
     public float FrontBoostCost = 0.1f;
-    private bool useBoost = false;
 
     [Header("Backwards Engine")]
     [SerializeField] private ParticleSystem[] ps_backEngines;
@@ -35,6 +35,7 @@ public class NewBaseEngine : BaseModule
     public Material mat_EnergieRegen;
     private int lastMaterial = 0;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +52,13 @@ public class NewBaseEngine : BaseModule
         playerController.OnUpdateRotateSpeed += HandleSpeedUpdate;
         playerRigidbody = playerController.GetComponent<Rigidbody>();
         playerController.hasMainEngine = true;
+
+        UpgradeChooseList upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
+
+        if (hasPowerBoost == true)
+        {
+            upgradeChooseList.upgrades[31].upgradeStartCount = 3;
+        }
     }
 
     // Update is called once per frame
@@ -62,7 +70,7 @@ public class NewBaseEngine : BaseModule
         if (playerController.verticalInput > 0.5)
         {
             // boost
-            if (hasFontBoost == true && Input.GetButton("Boost") && (playerController.energieCurrent > 1 || useBoost == true))
+            if (hasFontBoost == true && playerController.boostInput && (playerController.energieCurrent > 1 || useBoost == true))
             {
                 totalThrustForce = thrustForce + FrontBoostPower;
 
@@ -87,6 +95,7 @@ public class NewBaseEngine : BaseModule
                 ps_boostEngine.Emit(1);
 
                 useBoost = true;
+                playerController.useBoost = true;
 
                 if (playerController.energieCurrent < FrontBoostCost) useBoost = false;
             }
@@ -94,7 +103,9 @@ public class NewBaseEngine : BaseModule
             {
                 totalThrustForce = thrustForce * EnergieDebuffForce();
                 ps_engine.Emit(1);
+
                 useBoost = false;
+                playerController.useBoost = false;
             }
 
             // Berechne die Kraft basierend auf dem horizontalen Input
@@ -110,7 +121,7 @@ public class NewBaseEngine : BaseModule
         if (playerController.verticalInput < -0.5)
         {
             // boost
-            if (hasBackBoost == true && Input.GetButton("Boost") && (playerController.energieCurrent > 1 || useBoost == true))
+            if (hasBackBoost == true && playerController.boostInput && (playerController.energieCurrent > 1 || useBoost == true))
             {
                 totalBackForce = backForce + BackBoostPower;
                 foreach (ParticleSystem ps in ps_backBoostEngines)
@@ -120,8 +131,13 @@ public class NewBaseEngine : BaseModule
 
                 playerController.energieCurrent -= FrontBoostCost;
                 useBoost = true;
+                playerController.useBoost = true;
 
-                if (playerController.energieCurrent < FrontBoostCost) useBoost = false;
+                if (playerController.energieCurrent < FrontBoostCost)
+                {
+                    useBoost = false;
+                    playerController.useBoost = false;
+                }
             }
             else
             {

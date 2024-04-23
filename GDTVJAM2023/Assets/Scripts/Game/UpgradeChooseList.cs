@@ -161,7 +161,7 @@ public class UpgradeChooseList : MonoBehaviour
 
 
         // build the new values
-        string returnString = " ";
+        string returnString = "";
 
         if (oldNC < normalUpgradeCount)
         {
@@ -174,6 +174,7 @@ public class UpgradeChooseList : MonoBehaviour
 
         // Maybe TODO - Skip the first massage
         if (playerController.playerLevel <= 2) returnString = "";
+        if (returnString != "") AudioManager.Instance.PlaySFX("GetNewUpgrades");
 
         return returnString;
     }

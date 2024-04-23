@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 using TMPro;
 using static Sphere;
 
@@ -342,7 +342,8 @@ public class HangarUIController : MonoBehaviour
         if (moduleStorage.isAllConnected == true && moduleStorage.isEnergiePositiv == true)
         {
             AudioManager.Instance.PlaySFX("MouseKlick");
-            SceneManager.LoadScene(gameScene);
+            AudioManager.Instance.SceneTransition(gameScene);
+            //SceneManager.LoadScene(gameScene);
         }
         else
         {
@@ -366,18 +367,21 @@ public class HangarUIController : MonoBehaviour
     public void BackToMenue()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
-        SceneManager.LoadScene(menueScene);
+        //SceneManager.LoadScene(menueScene);
+        AudioManager.Instance.SceneTransition(menueScene,1);
     }
 
     public void GoToShop()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
-        SceneManager.LoadScene(shopScene);
+        AudioManager.Instance.SceneTransition(shopScene);
+        //SceneManager.LoadScene(shopScene);
     }
     public void GoToSkillBoard()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
-        SceneManager.LoadScene(skillBoardScene);
+        AudioManager.Instance.SceneTransition(skillBoardScene);
+        //SceneManager.LoadScene(skillBoardScene);
     }
 
     #endregion

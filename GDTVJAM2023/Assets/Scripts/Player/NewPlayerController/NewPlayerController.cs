@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class NewPlayerController : MonoBehaviour
 {
@@ -10,12 +11,18 @@ public class NewPlayerController : MonoBehaviour
     private bool isIntro = true;
     //private bool isStartSound = false;
     private float introTargetY = 6f;
-    public bool hasMainEngine = false;
+    
+    // engine stuff
+    [HideInInspector] public bool hasMainEngine = false;
+    private bool isEnginePlayed = false;
+    [HideInInspector] public bool useBoost = false;
 
     [Header("Player Movement")]
     [HideInInspector] public float horizontalInput;
     [HideInInspector] public float verticalInput;
     [HideInInspector] public float horizontalInput2;
+    [HideInInspector] public bool boostInput;
+    [HideInInspector] public bool isboostSoundFlag = false;
 
     [Header("Player Stats")]
     [SerializeField] private bool canTakeDamge = true;
@@ -37,6 +44,7 @@ public class NewPlayerController : MonoBehaviour
 
     [Header("Game Objects")]
     public GameObject novaOnHit;
+    [SerializeField] private AudioSource engineSound;
     [SerializeField] private NavigationController navigationController;
     [SerializeField] private GameObject centerOfMass;
     [SerializeField] private Rigidbody playerRigidbody;
@@ -86,6 +94,7 @@ public class NewPlayerController : MonoBehaviour
 
         // TODO Update protection after loading
         Invoke("UpdateProtection",1f);
+        Invoke("SetModuleIndex", 1f);
     }
 
     private void UpdateProtection()
@@ -94,6 +103,30 @@ public class NewPlayerController : MonoBehaviour
         float normalizedLvl = Mathf.InverseLerp(0, 10, protectionLvl);
         float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
         protectionPerc = targetPercentage;
+    }
+
+    private void SetModuleIndex()
+    {
+        NewLaserMainWeapon[] foundLasers;
+        NewBulletMainWeapon[] foundBullets;
+        NewRocketMainWeapon[] foundRockets;
+
+        foundLasers = gameObject.GetComponentsInChildren<NewLaserMainWeapon>();
+        foundBullets = gameObject.GetComponentsInChildren<NewBulletMainWeapon>();
+        foundRockets = gameObject.GetComponentsInChildren<NewRocketMainWeapon>();
+
+        for (int i = 0; i < foundLasers.Length; i++)
+        { foundLasers[i].moduleIndex = i; }
+
+        for (int i = 0; i < foundBullets.Length; i++)
+        { foundBullets[i].moduleIndex = i; }
+
+        for (int i = 0; i < foundRockets.Length; i++)
+        { foundRockets[i].moduleIndex = i; }
+
+        if (foundLasers.Length > 0) upgradeChooseList.upgrades[49].upgradeStartCount = 3;
+        if (foundBullets.Length > 0) upgradeChooseList.upgrades[51].upgradeStartCount = 999;
+        if (foundRockets.Length > 0) upgradeChooseList.upgrades[55].upgradeStartCount = 1;
     }
 
     void Update()
@@ -343,6 +376,9 @@ public class NewPlayerController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
         horizontalInput2 = Input.GetAxis("Horizontal2");
+        boostInput = Input.GetButton("Boost");
+
+        ShipEngineSound();
     }
 
     void CalculateFlySpeed()
@@ -381,15 +417,14 @@ public class NewPlayerController : MonoBehaviour
     private void UpdatePlayerExperience(int expValue)
     {
         int exp = expValue;
-        // get + 1 experience
 
         // chance to get double exp
         if (upgradeChooseList.chanceToGetTwoExp > 0)
         {
             if (UnityEngine.Random.Range(0, 100) <= upgradeChooseList.chanceToGetTwoExp)
             {
-                gameManager.DoFloatingText(transform.position, "+", Color.white);
-                exp += 1;
+                exp *= 2;
+                gameManager.DoFloatingText(transform.position, $"+{exp}", Color.white);
             }
         }
 
@@ -525,6 +560,7 @@ public class NewPlayerController : MonoBehaviour
 
 
 
+
     /* **************************************************************************** */
     /* MISC------------------------------------------------------------------------ */
     /* **************************************************************************** */
@@ -614,5 +650,43 @@ public class NewPlayerController : MonoBehaviour
     {
         OnUpdateRotateSpeed?.Invoke(updateSpeed);
     }
+
+    private void ShipEngineSound()
+    {
+        if ( (horizontalInput != 0 || verticalInput != 0 || horizontalInput2 != 0))
+        {
+            if (isEnginePlayed == false)
+            {
+                engineSound.DOComplete();
+                engineSound.Play();
+                engineSound.DOFade(AudioManager.Instance.sfxVolume, 0.2f);
+                isEnginePlayed = true;
+            }
+            else
+            {
+                if (useBoost == true && isboostSoundFlag == false)
+                {
+                    Debug.Log("booosssst");
+                    AudioManager.Instance.PlaySFX("PlayerBoost");
+                    isboostSoundFlag = true;
+                }
+            }
+
+        }
+        else
+        {
+            if (isEnginePlayed == true)
+            {
+                engineSound.Stop();
+                isEnginePlayed = false;
+            }
+        }
+
+        if (useBoost == false && boostInput == false)
+        {
+            isboostSoundFlag = false;
+        }
+    }
+
     #endregion
 }

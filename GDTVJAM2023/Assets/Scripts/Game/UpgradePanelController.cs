@@ -34,7 +34,7 @@ public class UpgradePanelController : MonoBehaviour
 
     [Header("Value Panel")]
     public Image bkImage;
-    [HideInInspector] public List<Color> classColors;
+    //public List<Color> classColors;
     public List<Image> classPanels = new List<Image>();
 
     public List<Image> selectedUpgradePanelList = new List<Image>();
@@ -55,7 +55,7 @@ public class UpgradePanelController : MonoBehaviour
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
-        classColors = new List<Color>(gameManager.globalClassColor);
+        //classColors = new List<Color>(gameManager.cCPrefab.classColor);
         playerController = GameObject.FindWithTag("Player").GetComponent<NewPlayerController>();
         playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
 
@@ -191,7 +191,7 @@ public class UpgradePanelController : MonoBehaviour
                     break;
 
                 default: //weapon select
-                    headerColor[i] = gameManager.globalClassColor[uC.colorIndex];
+                    headerColor[i] = gameManager.cCPrefab.classColor[uC.colorIndex];
                     break;
             }
             upgradeIndex[i] = number;
@@ -205,47 +205,48 @@ public class UpgradePanelController : MonoBehaviour
             // mainClass
             int index = (int)uC.mainClass;
             mainClassStr[i] = System.Enum.GetName(typeof(UpgradeContainer.MainClass), uC.mainClass).ToString();
-            mainClassColor[i] = classColors[index];
+            mainClassColor[i] = gameManager.cCPrefab.classColor[index];
+            Debug.Log(gameManager.cCPrefab.classColor[index]);
 
             // set requerments
             int count_ = 0;
-            reqColor[i] = gameManager.globalClassColor[8];
+            reqColor[i] = gameManager.cCPrefab.classColor[8];
             reqText[i] = "";
-            reqColor[i+3] = gameManager.globalClassColor[8];
+            reqColor[i+3] = gameManager.cCPrefab.classColor[8];
             reqText[i+3] = "";
 
             if (uC.reqBullet > 0 )
             {
-                reqColor[i] = gameManager.globalClassColor[0];
+                reqColor[i] = gameManager.cCPrefab.classColor[0];
                 reqText[i] = uC.reqBullet.ToString();
                 count_ += 3;
             }
             if (uC.reqRocket > 0)
             {
-                reqColor[i+ count_] = gameManager.globalClassColor[1];
+                reqColor[i+ count_] = gameManager.cCPrefab.classColor[1];
                 reqText[i+ count_] = uC.reqRocket.ToString();
                 count_ += 3;
             }
             if (uC.reqLaser > 0)
             {
-                reqColor[i+ count_] = gameManager.globalClassColor[2];
+                reqColor[i+ count_] = gameManager.cCPrefab.classColor[2];
                 reqText[i+ count_] = uC.reqLaser.ToString();
                 count_ += 3;
             }
             if (uC.reqSupport > 0)
             {
-                reqColor[i+ count_] = gameManager.globalClassColor[3];
+                reqColor[i+ count_] = gameManager.cCPrefab.classColor[3];
                 reqText[i+ count_] = uC.reqSupport.ToString();
             }
 
             if (uC.reqAbility != "")
             {
-                reqColor3[i] = gameManager.globalClassColor[uC.colorIndex];
+                reqColor3[i] = gameManager.cCPrefab.classColor[uC.colorIndex];
                 reqText3[i] = uC.reqAbility;
             }
             else
             {
-                reqColor3[i] = gameManager.globalClassColor[8];
+                reqColor3[i] = gameManager.cCPrefab.classColor[8];
                 reqText3[i] = "";
             }
 

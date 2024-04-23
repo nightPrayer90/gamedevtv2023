@@ -1,9 +1,7 @@
 using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ShopController : MonoBehaviour
@@ -298,7 +296,8 @@ public class ShopController : MonoBehaviour
     public void GoBackToHangar()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
-        SceneManager.LoadScene("HangarScene");
+        AudioManager.Instance.SceneTransition("HangarScene");
+        //SceneManager.LoadScene("HangarScene");
     }
     #endregion
 }
