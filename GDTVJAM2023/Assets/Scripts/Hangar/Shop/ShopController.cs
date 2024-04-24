@@ -158,13 +158,14 @@ public class ShopController : MonoBehaviour
                         {
                             sellBtn.SetActive(false);
                         }
+
                         buyPanel.DOKill();
                         if (buyPanel.alpha < 1)
                         {
                             buyPanel.DOFade(1, 0.2f);
-                            buyPanel.blocksRaycasts = true;
+                            
                         }
-
+                        buyPanel.blocksRaycasts = true;
                     }
                     // klick at a free space
                     else
