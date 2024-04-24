@@ -733,7 +733,7 @@ public class GameManager : MonoBehaviour
     }
 
     // write earned exp in playerData
-    private string CalculateGlobalPlayerExp(float percent)
+    private string CalculateGlobalPlayerExp(float percent, bool isVictory = false)
     {
         expCollected = Mathf.RoundToInt((float)expCollected * percent);
 
@@ -744,6 +744,10 @@ public class GameManager : MonoBehaviour
             resultString += "\n and unlock new modules in Module Shop!";
             playerData.bossLevel = districtNumber - 1;
         }
+
+        //TODO: Only for the DEMO
+        if (isVictory == true)
+            playerData.bossLevel = 3;
 
         playerData.credits += expCollected;
 

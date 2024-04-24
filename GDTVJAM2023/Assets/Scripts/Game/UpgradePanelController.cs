@@ -774,6 +774,9 @@ public class UpgradePanelController : MonoBehaviour
 
     public void GetUpdate()
     {
+        // make the player Invulnerability for few sec
+        playerController.GetInvulnerabilityAfterUpdate();
+
         gameManager.UpgradeGet();
     }
 

@@ -35,6 +35,7 @@ public class MenuButtonController : MonoBehaviour
             SetSlider();
         }
 
+        /*
         if (qualityDropdown != null)
         {
             qualityDropdown.value = QualitySettings.GetQualityLevel();
@@ -67,6 +68,7 @@ public class MenuButtonController : MonoBehaviour
             resolutionDropdrown.value = currentResolutionIndex;
             resolutionDropdrown.RefreshShownValue();
         }
+        */
     }
     void OnMouseEnter()
     {
@@ -153,27 +155,14 @@ public class MenuButtonController : MonoBehaviour
 
 
     /* **************************************************************************** */
-    /* CREDIT SCENE---------------------------------------------------------------- */
-    /* **************************************************************************** */
-    public void BacktoMainMenueCredit()
-    {
-        AudioManager.Instance.PlaySFX("MouseKlick");
-        //SceneManager.LoadScene("MenueScene");
-        AudioManager.Instance.SceneTransition("MenueScene",1);
-    }
-
-
-
-
-    /* **************************************************************************** */
     /* IN GAME--------------------------------------------------------------------- */
     /* **************************************************************************** */
     public void BacktoMainMenue()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
         //SceneManager.LoadScene("HangarScene");
-        AudioManager.Instance.PlayMusic("MenuMusic");
-        AudioManager.Instance.SceneTransition("HangarScene");
+        AudioManager.Instance.PlayMusic("MenueMusic");
+        AudioManager.Instance.SceneTransition("MenueScene");
     }
     public void LevelRestart()
     {
@@ -188,6 +177,13 @@ public class MenuButtonController : MonoBehaviour
         GameObject.Find("Game Manager").GetComponent<GameManager>().PauseMenue();
     }
 
+    public void BacktoHangar()
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        //SceneManager.LoadScene("HangarScene");
+        AudioManager.Instance.PlayMusic("MenuMusic");
+        AudioManager.Instance.SceneTransition("HangarScene");
+    }
 
 
 
@@ -197,11 +193,9 @@ public class MenuButtonController : MonoBehaviour
     public void BacktoMainMenueVictory()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
-        //SceneManager.LoadScene("OutroScene");
         AudioManager.Instance.PlayMusic("MenuMusic");
         AudioManager.Instance.SceneTransition("OutroScene");
     }
-
 
 
 

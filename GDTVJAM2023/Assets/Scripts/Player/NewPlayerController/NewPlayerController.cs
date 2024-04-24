@@ -11,7 +11,7 @@ public class NewPlayerController : MonoBehaviour
     private bool isIntro = true;
     //private bool isStartSound = false;
     private float introTargetY = 6f;
-    
+
     // engine stuff
     [HideInInspector] public bool hasMainEngine = false;
     private bool isEnginePlayed = false;
@@ -32,8 +32,10 @@ public class NewPlayerController : MonoBehaviour
     public float energieProduction = 1f;
     public float energieMax = 10f;
     public float energieCurrent = 0f;
-    /*[HideInInspector]*/ public float protectionPerc = 0;
-    /*[HideInInspector]*/ public int protectionLvl = 0;
+    /*[HideInInspector]*/
+    public float protectionPerc = 0;
+    /*[HideInInspector]*/
+    public int protectionLvl = 0;
     private bool canGetLaserDamage = true;
 
     [Header("Player Level Properties")]
@@ -53,7 +55,7 @@ public class NewPlayerController : MonoBehaviour
     public List<ParticleCollisionEvent> collisionEvents;
     private UpgradeChooseList upgradeChooseList;
     private PlayerWeaponController playerWeaponController;
-    
+
 
     [Header("Outside Border")]
     public float damageInterval = 1f;
@@ -93,7 +95,7 @@ public class NewPlayerController : MonoBehaviour
         InvokeRepeating("EnergieRegen", 2f, 0.1f);
 
         // TODO Update protection after loading
-        Invoke("UpdateProtection",1f);
+        Invoke("UpdateProtection", 1f);
         Invoke("SetModuleIndex", 1f);
     }
 
@@ -160,7 +162,7 @@ public class NewPlayerController : MonoBehaviour
         }
         //debug
         //masseanzeiger
-        centerOfMass.transform.localPosition = playerRigidbody.centerOfMass + new Vector3(0f,1f,0f);
+        centerOfMass.transform.localPosition = playerRigidbody.centerOfMass + new Vector3(0f, 1f, 0f);
     }
     #endregion
 
@@ -294,7 +296,7 @@ public class NewPlayerController : MonoBehaviour
 
                     // trigger the damage floating text
                     gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
-                    
+
                     if (upgradeChooseList.upgrades[35].upgradeIndexInstalled > 0) NovaOnHit(2f, 8);
                 }
                 else
@@ -308,7 +310,7 @@ public class NewPlayerController : MonoBehaviour
                     else
                     {
                         gameManager.DoFloatingText(collision.transform.position, "+" + enemyHealth.enemyHealth, enemyHitColor);
-                        playerRigidbody.AddForce(transform.forward * 2.5f , ForceMode.Impulse);
+                        playerRigidbody.AddForce(transform.forward * 2.5f, ForceMode.Impulse);
                     }
                 }
 
@@ -396,10 +398,10 @@ public class NewPlayerController : MonoBehaviour
     //InvokeRepeating - Awake
     private void EnergieRegen()
     {
-        if(energieCurrent < energieMax)
+        if (energieCurrent < energieMax)
         {
             energieCurrent = Mathf.Min(energieMax, energieCurrent + energieProduction / 10);
-            gameManager.UpdateEnergieSlider(Mathf.Max(0,energieCurrent));
+            gameManager.UpdateEnergieSlider(Mathf.Max(0, energieCurrent));
         }
     }
 
@@ -447,7 +449,7 @@ public class NewPlayerController : MonoBehaviour
                 energieCurrent = energieMax;
             }
         }
-        
+
 
         playerCurrentExperience += exp;
         bool isLevelUp;
@@ -638,6 +640,12 @@ public class NewPlayerController : MonoBehaviour
         powerBoostMarker.SetActive(false);
     }
 
+    public void GetInvulnerabilityAfterUpdate()
+    {
+        canTakeDamge = false;
+        Invoke("Invulnerability", 0.5f);
+    }
+
     // player can take damage
     public void GetInvulnerability()
     {
@@ -653,7 +661,7 @@ public class NewPlayerController : MonoBehaviour
 
     private void ShipEngineSound()
     {
-        if ( (horizontalInput != 0 || verticalInput != 0 || horizontalInput2 != 0))
+        if ((horizontalInput != 0 || verticalInput != 0 || horizontalInput2 != 0))
         {
             if (isEnginePlayed == false)
             {

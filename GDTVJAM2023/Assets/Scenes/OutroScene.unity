@@ -833,7 +833,7 @@ MonoBehaviour:
     life nothing happens by chance, everything is pre-planned. \nShe has always known
     what will happen and what my future will be."
   typingSoundAudio: 
-  menueScene: MenueScene
+  menueScene: HangarScene
   typingSpeed: 0.03
   displayText: {fileID: 2107987968}
   transitionDuration: 1

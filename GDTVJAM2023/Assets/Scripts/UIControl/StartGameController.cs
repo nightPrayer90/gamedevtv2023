@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using TMPro;
 
+
 public class StartGameController : MonoBehaviour
 {
     [Header("Menue Panel Handler")]
@@ -35,20 +36,26 @@ public class StartGameController : MonoBehaviour
     [Header("Settings Panel")]
     public Slider _musicSlider;
     public Slider _sfxSlider;
-    Resolution[] resolutions;
+    
     public TMP_Dropdown resolutionDropdrown;
     public TMP_Dropdown qualityDropdown;
     public Toggle fullScreenBtn;
     private float _musicVolume;
     private float _sfxVolume;
     private bool isSettingsOpen = false;
+    Resolution[] resolutions;
+    private List<Resolution> filteredResolutions = new List<Resolution>();
+    private int currentResolutionIndex = 0;
+    private float currentRefreshRate;
 
     [Header("Credits Panel")]
     private bool isCreditssOpen = false;
 
+
     private void Start()
     {
         Time.timeScale = 1;
+        HandleStartSettings();
 
         gameStartPanel.alpha = 1f;
         gameStartPanel.blocksRaycasts = true;
@@ -90,8 +97,6 @@ public class StartGameController : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
         isSettingsOpen = true;
-
-        HandleStartSettings();
 
         gameStartPanel.DOComplete();
         gameStartPanel.DOFade(0, 0.3f);
@@ -243,7 +248,11 @@ public class StartGameController : MonoBehaviour
     }
     #endregion
 
-
+    public void GameQuit()
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        Application.Quit();
+    }
 
     /* **************************************************************************** */
     /* Settings -------------------------------------------------------------------- */
@@ -264,6 +273,7 @@ public class StartGameController : MonoBehaviour
 
         if (qualityDropdown != null)
         {
+            Debug.Log(QualitySettings.GetQualityLevel());
             qualityDropdown.value = QualitySettings.GetQualityLevel();
         }
 
@@ -275,21 +285,32 @@ public class StartGameController : MonoBehaviour
         if (resolutionDropdrown != null)
         {
             resolutions = Screen.resolutions;
+            filteredResolutions = new List<Resolution>();
+
             resolutionDropdrown.ClearOptions();
+            currentRefreshRate = Screen.currentResolution.refreshRate;
+
+            for (int i = 0; i < resolutions.Length; i++)
+            {
+                if (resolutions[i].refreshRate == currentRefreshRate)
+                {
+                    filteredResolutions.Add(resolutions[i]);
+                }
+            }
 
             List<string> options = new List<string>();
 
-            int currentResolutionIndex = 0;
-            for (int i = 0; i < resolutions.Length; i++)
+            for (int i = 0; i < filteredResolutions.Count; i++)
             {
-                string option = resolutions[i].width + " x " + resolutions[i].height + " @ " + resolutions[i].refreshRate + "hz";
-                options.Add(option);
+                string resolutionOption = filteredResolutions[i].width + "x" + filteredResolutions[i].height;
+                options.Add(resolutionOption);
 
-                if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height && resolutions[i].refreshRate == Screen.currentResolution.refreshRate)
+                if (filteredResolutions[i].width == Screen.width && filteredResolutions[i].height == Screen.height)
                 {
                     currentResolutionIndex = i;
                 }
             }
+
             resolutionDropdrown.AddOptions(options);
             resolutionDropdrown.value = currentResolutionIndex;
             resolutionDropdrown.RefreshShownValue();
@@ -305,12 +326,18 @@ public class StartGameController : MonoBehaviour
     public void SetFullscreen(bool isFullscreen)
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
+
         Screen.fullScreen = isFullscreen;
+
+        /*if (isFullscreen) Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+        else Screen.fullScreenMode = FullScreenMode.Windowed;*/
+
+
     }
     public void SetResolution(int resolutionIndex)
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
-        Resolution resolution = resolutions[resolutionIndex];
+        Resolution resolution = filteredResolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
     public void MusicVolume()

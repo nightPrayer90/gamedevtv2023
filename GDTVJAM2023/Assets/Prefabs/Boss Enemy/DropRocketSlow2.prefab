@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6454837237237564931, guid: b81c11a22c3d3f84387f160aa2f30cca, type: 3}
       propertyPath: speed
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -6454837237237564931, guid: b81c11a22c3d3f84387f160aa2f30cca, type: 3}
       propertyPath: startTime
@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6454837237237564931, guid: b81c11a22c3d3f84387f160aa2f30cca, type: 3}
       propertyPath: iniLifeTime
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -6454837237237564931, guid: b81c11a22c3d3f84387f160aa2f30cca, type: 3}
       propertyPath: maxLifeTime
@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6454837237237564931, guid: b81c11a22c3d3f84387f160aa2f30cca, type: 3}
       propertyPath: explosionRadius
-      value: 1
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: -6454837237237564931, guid: b81c11a22c3d3f84387f160aa2f30cca, type: 3}
       propertyPath: rocketScattering
