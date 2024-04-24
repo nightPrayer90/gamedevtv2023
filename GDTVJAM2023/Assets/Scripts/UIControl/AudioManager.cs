@@ -130,22 +130,16 @@ public class AudioManager : MonoBehaviour
         //Debug.Log("SaveDataEnd---- " + playerStats.playerName);
     }
 
-    public void SetPlayerDataToDefault()
+    public void SetPlayerDataToDefault(String path_)
     {
-        string path = Application.persistentDataPath + System.IO.Path.DirectorySeparatorChar + playerData.savePath;
+        string path = Application.persistentDataPath + Path.DirectorySeparatorChar + path_;
         if (File.Exists(path))
         {
             File.Delete(path);
         }
-        //TODO save Modules in SaveData
-        path = Application.persistentDataPath + System.IO.Path.DirectorySeparatorChar + "modules.json";
-        if (File.Exists(path))
-        {
-            File.Delete(path);
-        }
-
+       
         playerData.playerName = "Player";
-        playerData.savePath = "playerData.json";
+        playerData.savePath = path_; //"playerData.json";
         playerData.playerShipIcon = 0;
 
         // Hangar and Shop
@@ -167,11 +161,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void LoadPlayerData()
+    public void LoadPlayerData(string path)
     {
         PlayerStats playerStats = new();
 
-        playerStats = DataService.LoadData<PlayerStats>("playerData.json", false);
+        playerStats = DataService.LoadData<PlayerStats>(path, false); //"playerData.json"
 
         // PlayerStuff
         playerData.playerName = playerStats.playerName;
