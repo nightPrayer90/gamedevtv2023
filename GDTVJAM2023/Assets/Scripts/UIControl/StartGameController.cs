@@ -8,6 +8,12 @@ using TMPro;
 
 public class StartGameController : MonoBehaviour
 {
+    [Header("Menue Panel Handler")]
+    public CanvasGroup gameStartPanel;
+    public CanvasGroup settingsPanel;
+    public CanvasGroup creditsPanel;
+
+    [Header("Start Game Panel")]
     public Transform loadUITransform;
     public CanvasGroup loadUICanvasGroup;
     private bool loadUIFlag = false;
@@ -25,8 +31,32 @@ public class StartGameController : MonoBehaviour
 
     public List<PlayerStats> playerStats;
 
+
+    [Header("Settings Panel")]
+    public Slider _musicSlider;
+    public Slider _sfxSlider;
+    Resolution[] resolutions;
+    public TMP_Dropdown resolutionDropdrown;
+    public TMP_Dropdown qualityDropdown;
+    public Toggle fullScreenBtn;
+    private float _musicVolume;
+    private float _sfxVolume;
+    private bool isSettingsOpen = false;
+
+    [Header("Credits Panel")]
+    private bool isCreditssOpen = false;
+
     private void Start()
     {
+        Time.timeScale = 1;
+
+        gameStartPanel.alpha = 1f;
+        gameStartPanel.blocksRaycasts = true;
+        settingsPanel.alpha = 0f;
+        settingsPanel.blocksRaycasts = false;
+        creditsPanel.alpha = 0;
+        creditsPanel.blocksRaycasts = false;
+
         loadUITransform.localPosition = new Vector3(0, 900f, 0);
 
         loadUICanvasGroup.alpha = 0;
@@ -38,12 +68,86 @@ public class StartGameController : MonoBehaviour
     private void Update()
     {
         // Fade out
-        if (Input.GetKeyDown(KeyCode.Escape) && loadUIFlag == true)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            FadeLoadUIOut();
+            if (loadUIFlag == true)
+                FadeLoadUIOut();
+
+            if (isSettingsOpen == true)
+                CloseSettings();
+
+            if (isCreditssOpen == true)
+                CloseCredits();
         }
     }
 
+
+    /* **************************************************************************** */
+    /* Handle Navigation ---------------------------------------------------------- */
+    /* **************************************************************************** */
+
+    public void OpenSettings()
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        isSettingsOpen = true;
+
+        HandleStartSettings();
+
+        gameStartPanel.DOComplete();
+        gameStartPanel.DOFade(0, 0.3f);
+        gameStartPanel.blocksRaycasts = false;
+
+        settingsPanel.DOComplete();
+        settingsPanel.DOFade(1, 0.3f);
+        settingsPanel.blocksRaycasts = true;
+    }
+
+    public void CloseSettings()
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        isSettingsOpen = false;
+
+        gameStartPanel.DOComplete();
+        gameStartPanel.DOFade(1, 0.3f);
+        gameStartPanel.blocksRaycasts = true;
+
+        settingsPanel.DOComplete();
+        settingsPanel.DOFade(0, 0.3f);
+        settingsPanel.blocksRaycasts = false;
+    }
+
+    public void OpenCredits()
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        isCreditssOpen = true;
+
+        gameStartPanel.DOComplete();
+        gameStartPanel.DOFade(0, 0.3f);
+        gameStartPanel.blocksRaycasts = false;
+
+        creditsPanel.DOComplete();
+        creditsPanel.DOFade(1, 0.3f);
+        creditsPanel.blocksRaycasts = true;
+    }
+
+    public void CloseCredits()
+    { 
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        isCreditssOpen = false;
+
+        gameStartPanel.DOComplete();
+        gameStartPanel.DOFade(1, 0.3f);
+        gameStartPanel.blocksRaycasts = true;
+
+        creditsPanel.DOComplete();
+        creditsPanel.DOFade(0, 0.3f);
+        creditsPanel.blocksRaycasts = false;
+    }
+
+    /* **************************************************************************** */
+    /* Start Game Stuff ----------------------------------------------------------- */
+    /* **************************************************************************** */
+    #region start game stuff
     public void FadeLoadUIIn()
     {
         if (loadUIFlag == false)
@@ -57,6 +161,7 @@ public class StartGameController : MonoBehaviour
             loadUITransform.DOLocalMoveY(0, 0.4f).SetUpdate(true);
         }
     }
+
     private void FadeLoadUIOut()
     {
         if (loadUIFlag == true)
@@ -79,7 +184,7 @@ public class StartGameController : MonoBehaviour
         {
             // load Player Data
             playerStats[i] = new();
-            path = $"playerData{i+1}.json";
+            path = $"playerData{i + 1}.json";
             playerStats[i] = DataService.LoadData<PlayerStats>(path, encriptionEnabled);
 
             // update Panel
@@ -132,8 +237,97 @@ public class StartGameController : MonoBehaviour
 
         PlayerStats newplayerStats = new();
 
-        playerStats[index-1] = newplayerStats;
+        playerStats[index - 1] = newplayerStats;
 
-        UpdateLoadPanel(index-1);
+        UpdateLoadPanel(index - 1);
     }
+    #endregion
+
+
+
+    /* **************************************************************************** */
+    /* Settings -------------------------------------------------------------------- */
+    /* **************************************************************************** */
+    #region settings
+    private void HandleStartSettings()
+    {
+        if (_musicSlider != null)
+        {
+            _musicVolume = AudioManager.Instance.musicVolume;
+            _sfxVolume = AudioManager.Instance.sfxVolume;
+
+            AudioManager.Instance.MusicVolume(_musicVolume);
+            AudioManager.Instance.SFXVolume(_sfxVolume);
+
+            SetSlider();
+        }
+
+        if (qualityDropdown != null)
+        {
+            qualityDropdown.value = QualitySettings.GetQualityLevel();
+        }
+
+        if (fullScreenBtn != null)
+        {
+            fullScreenBtn.isOn = Screen.fullScreen;
+        }
+
+        if (resolutionDropdrown != null)
+        {
+            resolutions = Screen.resolutions;
+            resolutionDropdrown.ClearOptions();
+
+            List<string> options = new List<string>();
+
+            int currentResolutionIndex = 0;
+            for (int i = 0; i < resolutions.Length; i++)
+            {
+                string option = resolutions[i].width + " x " + resolutions[i].height + " @ " + resolutions[i].refreshRate + "hz";
+                options.Add(option);
+
+                if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height && resolutions[i].refreshRate == Screen.currentResolution.refreshRate)
+                {
+                    currentResolutionIndex = i;
+                }
+            }
+            resolutionDropdrown.AddOptions(options);
+            resolutionDropdrown.value = currentResolutionIndex;
+            resolutionDropdrown.RefreshShownValue();
+        }
+    }
+
+
+    public void SetQuality(int qualityIndex)
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        QualitySettings.SetQualityLevel(qualityIndex);
+    }
+    public void SetFullscreen(bool isFullscreen)
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        Screen.fullScreen = isFullscreen;
+    }
+    public void SetResolution(int resolutionIndex)
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+    public void MusicVolume()
+    {
+        AudioManager.Instance.MusicVolume(_musicSlider.value);
+        AudioManager.Instance.musicVolume = _musicSlider.value;
+    }
+    public void SFXVolume()
+    {
+        AudioManager.Instance.SFXVolume(_sfxSlider.value);
+        AudioManager.Instance.sfxVolume = _sfxSlider.value;
+    }
+    public void SetSlider()
+    {
+        _musicSlider.value = _musicVolume;
+        _sfxSlider.value = _sfxVolume;
+    }
+    #endregion
+
 }
