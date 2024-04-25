@@ -354,7 +354,7 @@ public class ShieldController : MonoBehaviour
 
                     // show floating text
                     if (eHC.canTakeDamage == true)
-                        gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), resultColor);
+                        gameManager.DoFloatingText(rb.transform.position, adjustedDamage.ToString(), resultColor);
 
                     // calculate enemy damage
                     eHC.TakeExplosionDamage(adjustedDamage);

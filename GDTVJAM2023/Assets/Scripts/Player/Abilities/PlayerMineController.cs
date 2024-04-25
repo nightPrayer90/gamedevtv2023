@@ -102,7 +102,7 @@ public class PlayerMineController : MonoBehaviour
             {
                 int shieldDamage = 1;
                 eSh.ShieldGetDamage(shieldDamage);
-                gameManager.DoFloatingText(transform.position, "+" + shieldDamage, eSh.hitColor);
+                gameManager.DoFloatingText(transform.position, shieldDamage.ToString(), eSh.hitColor);
                 continue;
             }
 
@@ -145,7 +145,7 @@ public class PlayerMineController : MonoBehaviour
 
                 // show floating text
                 if (eHC.canTakeDamage == true)
-                    gameManager.DoFloatingText(obj.transform.position, "+" + adjustedDamage.ToString(), resultColor);
+                    gameManager.DoFloatingText(obj.transform.position, adjustedDamage.ToString(), resultColor);
 
                 // calculate enemy damage
                 eHC.TakeExplosionDamage(adjustedDamage);

@@ -511,10 +511,10 @@ MonoBehaviour:
     reqBullet: 0
     reqRocket: 0
     reqLaser: 0
-    reqSupport: 2
-    reqAbility: Sup. Modul
+    reqSupport: 1
+    reqAbility: 
     UpgradeCount: 3
-    upgradeStartCount: 0
+    upgradeStartCount: 3
   - headerStr: Vitality Infusion
     upgradeIndex: 33
     passivUpgradeString: 

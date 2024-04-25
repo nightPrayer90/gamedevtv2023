@@ -398,7 +398,7 @@ public class PlayerController : MonoBehaviour
                     UpdatePlayerHealth(damage);
 
                     // trigger the damage floating text
-                    gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
+                    gameManager.DoFloatingText(transform.position,damage.ToString(), hitColor);
 
                     if (upgradeChooseList.upgrades[35].upgradeIndexInstalled > 0)  NovaOnHit(2f, 8);
                 }
@@ -412,7 +412,7 @@ public class PlayerController : MonoBehaviour
                     }
                     else
                     {
-                        gameManager.DoFloatingText(collision.transform.position, "+" + enemyHealth.enemyHealth, enemyHitColor);
+                        gameManager.DoFloatingText(collision.transform.position, enemyHealth.enemyHealth.ToString(), enemyHitColor);
                         playerRb.AddForce(explosionDirection * 1f * enemyHealth.explosionForce, ForceMode.Impulse);
                     }
                     
@@ -445,7 +445,7 @@ public class PlayerController : MonoBehaviour
             damage = Protection(damage);
             UpdatePlayerHealth(damage);
 
-            gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
+            gameManager.DoFloatingText(transform.position, damage.ToString(), hitColor);
         }
     }
 
@@ -456,7 +456,7 @@ public class PlayerController : MonoBehaviour
         {
             damage = Protection(damage);
             UpdatePlayerHealth(damage);
-            gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
+            gameManager.DoFloatingText(transform.position, damage.ToString(), hitColor);
 
             Invoke("InvokeLaserDamage", 1f);
 
@@ -811,7 +811,7 @@ public class PlayerController : MonoBehaviour
 
                         // show floating text
                         if (eHC.canTakeDamage == true)
-                            gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), resultColor);
+                            gameManager.DoFloatingText(rb.transform.position, adjustedDamage.ToString(), resultColor);
 
                         // calculate enemy damage
                         eHC.TakeExplosionDamage(adjustedDamage);

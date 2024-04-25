@@ -88,7 +88,7 @@ public class EnemyShield : MonoBehaviour
         {
             Vector3 pos = collisionEvent.intersection; // the point of intersection between the particle and the enemy
             hitParticle.transform.position = pos;
-            gameManager.DoFloatingText(pos, "+1", hitColor);
+            gameManager.DoFloatingText(pos, "1", hitColor);
         }
 
         ShieldGetDamage();
@@ -197,6 +197,6 @@ public class EnemyShield : MonoBehaviour
 
     public void ShowDamageFromPosition(Vector3 pos)
     {
-        gameManager.DoFloatingText(pos, "+1", hitColor);
+        gameManager.DoFloatingText(pos, "1", hitColor);
     }
 }

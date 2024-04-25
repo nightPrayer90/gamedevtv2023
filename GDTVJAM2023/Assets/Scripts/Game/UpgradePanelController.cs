@@ -369,6 +369,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 10: //weapon: supoort Modul
                 upgradeChooseList.chanceToGetTwoExp += 15;
+                upgradeChooseList.chanceToGetfullEnergy += 2;
                 playerWeaponController.isLifeModul = true;
                 playerWeaponController.WeaponChoose();
                 
@@ -377,7 +378,7 @@ public class UpgradePanelController : MonoBehaviour
                 weaponCount++;
 
                 upgradeChooseList.upgrades[64].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[64].UpgradeCount;
-                upgradeChooseList.upgrades[32].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[32].UpgradeCount;
+                upgradeChooseList.upgrades[32].upgradeStartCount += 3;
                 upgradeChooseList.upgrades[33].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[33].UpgradeCount;
 
                 //upgradeChooseList.weaponUpgrades[63].reqSupport = 2; // Natural Energy

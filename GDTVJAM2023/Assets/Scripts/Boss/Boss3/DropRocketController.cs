@@ -146,7 +146,7 @@ public class DropRocketController : MonoBehaviour
             adjustedDamage = Mathf.CeilToInt(damage * scaleFactor);
 
             // show floating text
-            gameManager.DoFloatingText(player.position, "+" + adjustedDamage.ToString(), resultColor);
+            gameManager.DoFloatingText(player.position, adjustedDamage.ToString(), resultColor);
 
             // calculate enemy damage
             playerController.UpdatePlayerHealth(adjustedDamage);

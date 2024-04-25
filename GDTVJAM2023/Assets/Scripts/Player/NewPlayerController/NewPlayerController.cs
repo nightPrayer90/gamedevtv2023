@@ -159,10 +159,14 @@ public class NewPlayerController : MonoBehaviour
         {
             //Gameplay Loop
             HandleInput();
+
+            // ToDo
+
+
         }
         //debug
         //masseanzeiger
-        centerOfMass.transform.localPosition = playerRigidbody.centerOfMass + new Vector3(0f, 1f, 0f);
+        //centerOfMass.transform.localPosition = playerRigidbody.centerOfMass + new Vector3(0f, 1f, 0f);
     }
     #endregion
 
@@ -295,7 +299,7 @@ public class NewPlayerController : MonoBehaviour
                     UpdatePlayerHealth(damage);
 
                     // trigger the damage floating text
-                    gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
+                    gameManager.DoFloatingText(transform.position, damage.ToString(), hitColor);
 
                     if (upgradeChooseList.upgrades[35].upgradeIndexInstalled > 0) NovaOnHit(2f, 8);
                 }
@@ -309,7 +313,7 @@ public class NewPlayerController : MonoBehaviour
                     }
                     else
                     {
-                        gameManager.DoFloatingText(collision.transform.position, "+" + enemyHealth.enemyHealth, enemyHitColor);
+                        gameManager.DoFloatingText(collision.transform.position, enemyHealth.enemyHealth.ToString(), enemyHitColor);
                         playerRigidbody.AddForce(transform.forward * 2.5f, ForceMode.Impulse);
                     }
                 }
@@ -343,7 +347,7 @@ public class NewPlayerController : MonoBehaviour
             damage = Protection(damage);
             UpdatePlayerHealth(damage);
 
-            gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
+            gameManager.DoFloatingText(transform.position,  damage.ToString(), hitColor);
         }
     }
 
@@ -354,7 +358,7 @@ public class NewPlayerController : MonoBehaviour
         {
             damage = Protection(damage);
             UpdatePlayerHealth(damage);
-            gameManager.DoFloatingText(transform.position, "+" + damage.ToString(), hitColor);
+            gameManager.DoFloatingText(transform.position, damage.ToString(), hitColor);
 
             Invoke("InvokeLaserDamage", 1f);
 
@@ -618,7 +622,7 @@ public class NewPlayerController : MonoBehaviour
 
                     // show floating text
                     if (eHC.canTakeDamage == true)
-                        gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), resultColor);
+                        gameManager.DoFloatingText(rb.transform.position, adjustedDamage.ToString(), resultColor);
 
                     // calculate enemy damage
                     eHC.TakeExplosionDamage(adjustedDamage);

@@ -170,7 +170,7 @@ public class EnemyHealth : MonoBehaviour
             foreach (ParticleCollisionEvent collisionEvent in collisionEvents) //  for each collision, do the following:
             {
                 Vector3 pos = collisionEvent.intersection; // the point of intersection between the particle and the enemy
-                gameManager.DoFloatingText(pos, "+" + damage.ToString(), resultColor);
+                gameManager.DoFloatingText(pos, damage.ToString(), resultColor);
             }
         }
     }
@@ -449,7 +449,7 @@ public class EnemyHealth : MonoBehaviour
                     {
                         // show floating text
                         if (eHC.canTakeDamage == true)
-                        gameManager.DoFloatingText(rb.transform.position, "+" + adjustedDamage.ToString(), resultColor);
+                        gameManager.DoFloatingText(rb.transform.position,adjustedDamage.ToString(), resultColor);
 
                         // calculate enemy damage
                         eHC.TakeExplosionDamage(adjustedDamage);
@@ -511,18 +511,18 @@ public class EnemyHealth : MonoBehaviour
     public void ShowDamageFromObjects(int damage)
     {
         Vector3 pos = transform.position; // the point of intersection between the particle and the enemy
-        gameManager.DoFloatingText(pos, "+" + damage.ToString(), hitColor);
+        gameManager.DoFloatingText(pos, damage.ToString(), hitColor);
     }
 
     public void ShowDamageFromObjectsColor(int damage, Color hitColor_)
     {
         Vector3 pos = transform.position; // the point of intersection between the particle and the enemy
-        gameManager.DoFloatingText(pos, "+" + damage.ToString(), hitColor_);
+        gameManager.DoFloatingText(pos, damage.ToString(), hitColor_);
     }
 
     public void ShowDamageFromPosition(Vector3 pos, int damage)
     {
-        gameManager.DoFloatingText(pos, "+" + damage.ToString(),new Color(1f, 0.6f, 0.0f, 1f));
+        gameManager.DoFloatingText(pos, damage.ToString(),new Color(1f, 0.6f, 0.0f, 1f));
     }
 
     private void Drop()

@@ -146,6 +146,7 @@ public class NewLaserMainWeapon : BaseModule
         RaycastHit hit;
         if (Physics.Raycast(LaserSpawnPoint1.position, -LaserSpawnPoint1.up, out hit, raycastDistance, layerMask))
         {
+            Debug.Log("Raycast");
             EnemyHealth collidedObject = hit.collider.gameObject.GetComponent<EnemyHealth>();
 
             if (collidedObject != null)
