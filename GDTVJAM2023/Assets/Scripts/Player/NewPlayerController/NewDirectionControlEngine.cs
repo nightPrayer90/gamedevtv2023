@@ -110,7 +110,7 @@ public class NewDirectionControlEngine : BaseModule
                 Vector3 torque = engineUPPos * -playerController.horizontalInput * torqueForce;
 
                 playerRigidbody.AddTorque(torque);
-                playerRigidbody.rotation = Quaternion.Euler(0f, playerRigidbody.rotation.eulerAngles.y, 0f);
+
 
                 ps_engine.Emit(1);
             }
@@ -123,7 +123,7 @@ public class NewDirectionControlEngine : BaseModule
                 Vector3 torque = engineUPPos * playerController.horizontalInput * torqueForce;
 
                 playerRigidbody.AddTorque(torque);
-                playerRigidbody.rotation = Quaternion.Euler(0f, playerRigidbody.rotation.eulerAngles.y, 0f);
+                
 
                 ps_engine.Emit(1);
             }

@@ -1297,13 +1297,13 @@ MonoBehaviour:
     canHaveFrontNeighbor: 1
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Direction Engine 1
+      moduleName: D2 Direction Engine
       moduleType: 3
       canLeft: 0
       canRight: 0
       canFront: 0
       canBack: 1
-      modulDescription_multiLineText: 'Torque force: 0.30 TN'
+      modulDescription_multiLineText: 'Torque force: 0.31 TN'
       costMass: 0.05
       costEnergie: 0.15
       energieProduction: 0
@@ -1311,7 +1311,7 @@ MonoBehaviour:
       health: 0
       protection: 0
       mainEngine: 0
-      directionEngine: 0.3
+      directionEngine: 0.31
       strafeEngine: 0
       boostEngine: 0
       boostStrafeEngine: 0
@@ -1372,7 +1372,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Rocket Wing 01 right
+      moduleName: D3 Titan Glide R
       moduleType: 6
       canLeft: 0
       canRight: 1
@@ -1410,7 +1410,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Rocket Wing 02 left
+      moduleName: D3 Titan Jet L
       moduleType: 6
       canLeft: 1
       canRight: 0
@@ -1449,7 +1449,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Rocket Wing 02 right
+      moduleName: D3 Titan Jet R
       moduleType: 6
       canLeft: 0
       canRight: 1
@@ -1488,7 +1488,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Laser Wing 01 left
+      moduleName: D3 Luminex Glide L
       moduleType: 6
       canLeft: 1
       canRight: 0
@@ -1526,7 +1526,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Laser Wing 01 right
+      moduleName: D3 Luminex Glide R
       moduleType: 6
       canLeft: 0
       canRight: 1
@@ -1573,7 +1573,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Laser Wing 02 left
+      moduleName: D4 Luminex Jet L
       moduleType: 6
       canLeft: 1
       canRight: 0
@@ -1621,7 +1621,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Laser Wing 02 right
+      moduleName: D4 Luminex Jet R
       moduleType: 6
       canLeft: 0
       canRight: 1
