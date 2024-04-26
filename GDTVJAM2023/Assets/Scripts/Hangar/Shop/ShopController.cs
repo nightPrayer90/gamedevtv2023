@@ -138,7 +138,7 @@ public class ShopController : MonoBehaviour
                         lastSelection = selection;
 
                         // buy Panel ----
-                        buyBtnText.text = "buy for " + selectedShopModule.itemCost.ToString() + " CD";
+                        buyBtnText.text = "Buy for " + selectedShopModule.itemCost.ToString() + " CD";
                         // buy btn
                         buyButton.SetActive(true);
 
@@ -158,7 +158,7 @@ public class ShopController : MonoBehaviour
                         if (playerData.moduleCounts[selectedShopModule.itemIndex] > 0)
                         {
                             sellBtn.SetActive(true);
-                            sellBtnText.text = "sell for " + selectedShopModule.itemSellPrice.ToString() + " CD";
+                            sellBtnText.text = "Sell for " + selectedShopModule.itemSellPrice.ToString() + " CD";
                         }
                         else
                         {
