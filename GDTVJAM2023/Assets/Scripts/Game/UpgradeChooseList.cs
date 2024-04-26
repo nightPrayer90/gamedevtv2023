@@ -158,8 +158,6 @@ public class UpgradeChooseList : MonoBehaviour
             }
         }
 
-
-
         // build the new values
         string returnString = "";
 

@@ -229,7 +229,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         gameIsPlayed = false;
 
-        expGameOverText.text = CalculateGlobalPlayerExp(1f);
+        expGameOverText.text = CalculateGlobalPlayerExp(1f, false);
 
         gameOverUI.SetActive(true);
         playerUI.SetActive(false);
@@ -244,7 +244,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         gameIsPlayed = false;
 
-        expGameVictoryText.text = CalculateGlobalPlayerExp(1f);
+        expGameVictoryText.text = CalculateGlobalPlayerExp(1f, true);
 
         gameOverUI.SetActive(false);
         playerUI.SetActive(false);
@@ -747,7 +747,7 @@ public class GameManager : MonoBehaviour
 
         //TODO: Only for the DEMO
         if (isVictory == true)
-            playerData.bossLevel = 3;
+            playerData.bossLevel = 5;
 
         playerData.credits += expCollected;
 

@@ -18,6 +18,14 @@ public class NewDirectionControlEngine : BaseModule
     private Side engine_side;
 
 
+    [Header("Energie Show Options")]
+    public bool canShowEnergie = true;
+    public MeshRenderer meshRenderer;
+    public Material mat_EnergieFull;
+    public Material mat_EnergieEmpty;
+    public Material mat_EnergieRegen;
+    private int lastMaterial = 0;
+    public int targetMaterial = 2;
 
 
     // Start is called before the first frame update
@@ -93,6 +101,7 @@ public class NewDirectionControlEngine : BaseModule
     // Update is called once per frame
     void FixedUpdate()
     {
+        ShowEnergie();
 
         if (playerController.horizontalInput > 0.1)
         {
@@ -125,5 +134,43 @@ public class NewDirectionControlEngine : BaseModule
     private void HandleRotateSpeed(float RotateSpeed)
     {
         torqueForce = torqueForce * (1 + (RotateSpeed / 100));
+    }
+
+    private void ShowEnergie()
+    {
+        int material = 1;
+
+        if (canShowEnergie == true)
+        {
+            if (playerController.energieCurrent >= playerController.energieMax * 0.90f)
+            {
+                material = 1;
+            }
+            else if (playerController.energieCurrent <= 0.5f)
+            {
+                material = 2;
+            }
+            else
+            {
+                material = 3;
+            }
+
+            // nur wenn sich das material geändert hat
+            if (lastMaterial != material)
+            {
+                lastMaterial = material;
+
+                Material[] materials = meshRenderer.materials;
+
+                if (lastMaterial == 1)
+                    materials[targetMaterial] = mat_EnergieFull;
+                else if (lastMaterial == 2)
+                    materials[targetMaterial] = mat_EnergieEmpty;
+                else if (lastMaterial == 3)
+                    materials[targetMaterial] = mat_EnergieRegen;
+
+                meshRenderer.materials = materials;
+            }
+        }
     }
 }

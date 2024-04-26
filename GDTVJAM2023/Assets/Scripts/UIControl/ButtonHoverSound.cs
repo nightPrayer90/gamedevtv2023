@@ -10,5 +10,9 @@ public class ButtonHoverSound : MonoBehaviour, IPointerEnterHandler
     {
         AudioManager.Instance.PlaySFX("MouseHover");
     }
-    
+
+    public void KlickSound()
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+    }
 }

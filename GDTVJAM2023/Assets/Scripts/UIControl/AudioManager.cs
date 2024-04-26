@@ -71,7 +71,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    
     public void ToggleMusic()
     {
         musicSource.mute = !musicSource.mute;
@@ -95,6 +94,7 @@ public class AudioManager : MonoBehaviour
     // save and load stuff
     // ToDo: Maybe move in another object
     // this function move all data in form the playerData to the playerStats and saves this data
+    #region Load an Save stuff
     public void SavePlayerData()
     {
         PlayerStats playerStats = new();
@@ -147,6 +147,7 @@ public class AudioManager : MonoBehaviour
         playerData.bossLevel = 0;
         playerData.moduleCounts = new();
         playerData.moduleData = new();
+        playerData.skillsSpotted = new();
         playerData.shopLevelVisited = 0;
 
         for (int i = 0; i< moduleList.moduls.Count; i++)
@@ -204,4 +205,5 @@ public class AudioManager : MonoBehaviour
     {
         transition.Transition(sceneName, panelIndex);
     }
+    #endregion
 }

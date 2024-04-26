@@ -103,6 +103,14 @@ public class HangarUIController : MonoBehaviour
         }
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            BackToMenue();
+        }
+    }
+
     // handle Sphere selection
     public void HandleShpereSelect(Sphere selection)
     {

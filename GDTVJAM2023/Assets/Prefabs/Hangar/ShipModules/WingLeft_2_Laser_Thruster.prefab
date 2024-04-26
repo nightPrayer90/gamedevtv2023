@@ -5098,6 +5098,11 @@ MonoBehaviour:
   ps_engine: {fileID: 5172111136767094056}
   torqueForce: 0.28
   engine_side: 0
+  canShowEnergie: 1
+  meshRenderer: {fileID: 3509744164497189559}
+  mat_EnergieFull: {fileID: 2100000, guid: 9fee6c79de9d37749b0af1be8bdc0435, type: 2}
+  mat_EnergieEmpty: {fileID: 2100000, guid: edb287f7c39d8c9429a10b296debcf15, type: 2}
+  mat_EnergieRegen: {fileID: 2100000, guid: 8df1d89c54d6873449f4b49d4160f9bb, type: 2}
 --- !u!114 &8423830545514501198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5134,7 +5139,7 @@ MonoBehaviour:
     laserClass: 0
     supportClass: 0
   moduleIndex: -1
-  laserBaseDamage: 5
+  laserBaseDamage: 4
   fireRate: 2
   laserRange: 2
   laserShootTime: 3

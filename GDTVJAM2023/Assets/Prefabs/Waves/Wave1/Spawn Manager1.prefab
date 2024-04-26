@@ -56,7 +56,7 @@ MonoBehaviour:
   maxWaveEnemys: 7
   minSpawnDistance: 12
   maxSpawnDistance: 16
-  spawnInterval: 5
+  spawnInterval: 3
 --- !u!1 &7282052545705051866
 GameObject:
   m_ObjectHideFlags: 0

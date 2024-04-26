@@ -183,17 +183,16 @@ public class ShopController : MonoBehaviour
 
 
         }
+
+        // back to Hangar
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GoBackToHangar();
+        }
     }
 
     private void OnDestroy()
     {
-        /* playerData.moduleCounts.Clear();
-
-         foreach (int i in moduleCounts)
-         {
-             playerData.moduleCounts.Add(i);
-         }*/
-
         playerData.credits = credits;
 
         // Save Data into Player File

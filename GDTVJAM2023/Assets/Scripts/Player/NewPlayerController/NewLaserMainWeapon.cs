@@ -77,8 +77,6 @@ public class NewLaserMainWeapon : BaseModule
     private void HandleLaserReloadTime(float updateRealodeTime)
     {
         fireRate = fireRate * updateRealodeTime;
-        CancelInvoke("LaserShooting");
-        Invoke("StartLaserShooting", fireRate);
     }
     #endregion
 

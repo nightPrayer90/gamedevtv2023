@@ -765,7 +765,7 @@ MonoBehaviour:
     colorIndex: 2
     reqBullet: 0
     reqRocket: 0
-    reqLaser: 1
+    reqLaser: 0
     reqSupport: 0
     reqAbility: 
     UpgradeCount: 3
@@ -793,7 +793,7 @@ MonoBehaviour:
     mainClass: 8
     upgradeTyp: 1
     colorIndex: 0
-    reqBullet: 1
+    reqBullet: 0
     reqRocket: 0
     reqLaser: 0
     reqSupport: 0
@@ -854,7 +854,7 @@ MonoBehaviour:
     upgradeTyp: 1
     colorIndex: 1
     reqBullet: 0
-    reqRocket: 1
+    reqRocket: 0
     reqLaser: 0
     reqSupport: 0
     reqAbility: 

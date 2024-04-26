@@ -28,7 +28,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 1
     moduleValues:
-      moduleName: Cockpit
+      moduleName: D0 Cockpit
       moduleType: 4
       canLeft: 0
       canRight: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 1
     moduleValues:
-      moduleName: Bullet Wing left
+      moduleName: D0 Skyfire Link L
       moduleType: 6
       canLeft: 1
       canRight: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 1
     moduleValues:
-      moduleName: Bullet Wing right
+      moduleName: D0 Skyfire Link R
       moduleType: 6
       canLeft: 0
       canRight: 1
@@ -162,7 +162,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 1
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Main Engine 0
+      moduleName: D0 Main Engine
       moduleType: 1
       canLeft: 0
       canRight: 0
@@ -390,7 +390,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
-  - moduleName: D1 RocketShooter R
+  - moduleName: D1 Rocket Shooter R
     modulePrefabs: {fileID: 8822405608560347169, guid: 6ae7da83b0521134d8a0008ba76c4971, type: 3}
     hangarPrefab: {fileID: 8822405608560347169, guid: 921cab49f21656a4893a7648d9179b06, type: 3}
     hangarGhost: {fileID: 8822405608560347169, guid: 149a67f96f3b41949b01a579dad7086c, type: 3}
@@ -642,7 +642,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 1
     moduleValues:
-      moduleName: Cockpit Bullet
+      moduleName: D1 Cockpit Bullet
       moduleType: 4
       canLeft: 0
       canRight: 0
@@ -655,7 +655,7 @@ MonoBehaviour:
 
         Health: 10 HP
 
-        <color=""red"">Bullet Class:
+        <color=#FF0000>Bullet Class:
         +1 </color>'
       costMass: 0.9
       costEnergie: 0
@@ -687,7 +687,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 1
     moduleValues:
-      moduleName: Cockpit Rocket
+      moduleName: D2 Cockpit Rocket
       moduleType: 4
       canLeft: 0
       canRight: 0
@@ -700,8 +700,8 @@ MonoBehaviour:
 
         Health: 12 HP
 
-        <color=""orange"">Explosion
-        Class: +1 </color>'
+        <color=#F57000>Explosion Class:
+        +1 </color>'
       costMass: 1
       costEnergie: 0
       energieProduction: 2.7
@@ -745,7 +745,7 @@ MonoBehaviour:
 
         Health: 8 HP
 
-        <color=""blue"">Laser class:
+        <color=#5F9AFF>Laser class:
         +1 </color>'
       costMass: 0.8
       costEnergie: 0
@@ -1122,7 +1122,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
-  - moduleName: D1 Connector 3 Ways 1
+  - moduleName: D1 Connector 3S1
     modulePrefabs: {fileID: 3509744163337706340, guid: 266ce1da77f2a53499a1d40066b6188f, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: e496a06ca78a2b643b503b2dd2ab58f7, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: ab6e1e1064f1d7e41b22ec46e84c1bf6, type: 3}
@@ -1162,7 +1162,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
-  - moduleName: D1 Connector 3S1
+  - moduleName: D1 Connector 3S2
     modulePrefabs: {fileID: 3509744163337706340, guid: fe33c587fe6526e40a280770553799b2, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 5c5cfc486bff9774fa608dbb94b18e8c, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 29ff42016579a084695dd17e5805c20d, type: 3}
@@ -1202,7 +1202,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
-  - moduleName: D1 Connector 3S2
+  - moduleName: D1 Connector 3S3
     modulePrefabs: {fileID: 3509744163337706340, guid: 7e616b25ed580794298e606446099fa3, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 6082b6c1fa301484c8bf00e3a55fa325, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: c1f75d87523e4304e997663b9b1aeffe, type: 3}
@@ -1242,7 +1242,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
-  - moduleName: D1 Connector 3S3
+  - moduleName: D1 Connector 3S4
     modulePrefabs: {fileID: 3509744163337706340, guid: b90e8c5e25ee85c4aa276ed865ef45ce, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: b54332d122e2a5e48ab388a0e82a4d0d, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 833092bf435d6694593af56e08cdc8bb, type: 3}
