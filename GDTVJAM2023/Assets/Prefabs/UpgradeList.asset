@@ -1254,3 +1254,18 @@ MonoBehaviour:
     reqAbility: 
     UpgradeCount: 1
     upgradeStartCount: 1
+  - headerStr: Burning Spheres
+    upgradeIndex: 82
+    passivUpgradeString: 
+    descriptionStr: Chance to get one more Sphere per salve from your main weapon.
+    iconPanel: {fileID: 21300000, guid: dfb698914e313f5498d8a5bdb417753c, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 3
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 1
+    reqSupport: 1
+    reqAbility: 
+    UpgradeCount: 3
+    upgradeStartCount: 0

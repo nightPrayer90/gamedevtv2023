@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using System;
 
 public class ShopController : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class ShopController : MonoBehaviour
     public TextMeshProUGUI sellBtnText;
 
     // Events
-    //public event Action OnDeselect;
+    public event Action onBuyModule;
 
 
 
@@ -73,6 +74,11 @@ public class ShopController : MonoBehaviour
             else
                 container.isActive = false;
         }
+    }
+
+    private void Start()
+    {
+        onBuyModule?.Invoke();
     }
 
     private void Update()
@@ -273,6 +279,8 @@ public class ShopController : MonoBehaviour
                 AudioManager.Instance.PlaySFX("ShopCantBuyModules");
             }
         }
+
+        onBuyModule?.Invoke();
         DeselectAll();
     }
 
@@ -286,6 +294,8 @@ public class ShopController : MonoBehaviour
 
             selectedShopModule.BuyModule(1);
         }
+
+        onBuyModule?.Invoke();
         DeselectAll();
     }
 

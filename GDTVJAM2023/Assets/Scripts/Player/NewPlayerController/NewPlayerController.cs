@@ -112,10 +112,12 @@ public class NewPlayerController : MonoBehaviour
         NewLaserMainWeapon[] foundLasers;
         NewBulletMainWeapon[] foundBullets;
         NewRocketMainWeapon[] foundRockets;
+        NewSphereThrower[] foundSphereThrowers;
 
         foundLasers = gameObject.GetComponentsInChildren<NewLaserMainWeapon>();
         foundBullets = gameObject.GetComponentsInChildren<NewBulletMainWeapon>();
         foundRockets = gameObject.GetComponentsInChildren<NewRocketMainWeapon>();
+        foundSphereThrowers = gameObject.GetComponentsInChildren<NewSphereThrower>();
 
         for (int i = 0; i < foundLasers.Length; i++)
         { foundLasers[i].moduleIndex = i; }
@@ -124,11 +126,16 @@ public class NewPlayerController : MonoBehaviour
         { foundBullets[i].moduleIndex = i; }
 
         for (int i = 0; i < foundRockets.Length; i++)
-        { foundRockets[i].moduleIndex = i; }
+        {
+            foundRockets[i].moduleIndex = i; }
+
+        for (int i = 0; i < foundSphereThrowers.Length; i++)
+        { foundSphereThrowers[i].moduleIndex = i; }
 
         if (foundLasers.Length > 0) upgradeChooseList.upgrades[49].upgradeStartCount = 3;
         if (foundBullets.Length > 0) upgradeChooseList.upgrades[51].upgradeStartCount = 999;
         if (foundRockets.Length > 0) upgradeChooseList.upgrades[55].upgradeStartCount = 1;
+        if (foundSphereThrowers.Length > 0) upgradeChooseList.upgrades[82].upgradeStartCount = 3;
     }
 
     void Update()
@@ -159,10 +166,6 @@ public class NewPlayerController : MonoBehaviour
         {
             //Gameplay Loop
             HandleInput();
-
-            // ToDo
-
-
         }
         //debug
         //masseanzeiger
@@ -313,7 +316,7 @@ public class NewPlayerController : MonoBehaviour
                     }
                     else
                     {
-                        gameManager.DoFloatingText(collision.transform.position, enemyHealth.enemyHealth.ToString(), enemyHitColor);
+                        gameManager.DoFloatingText(collision.transform.position, enemyHealth.enemyHealth.ToString(), enemyHealth.hitColor);
                         playerRigidbody.AddForce(transform.forward * 2.5f, ForceMode.Impulse);
                     }
                 }
@@ -347,7 +350,7 @@ public class NewPlayerController : MonoBehaviour
             damage = Protection(damage);
             UpdatePlayerHealth(damage);
 
-            gameManager.DoFloatingText(transform.position,  damage.ToString(), hitColor);
+            gameManager.DoFloatingText(transform.position, damage.ToString(), hitColor);
         }
     }
 

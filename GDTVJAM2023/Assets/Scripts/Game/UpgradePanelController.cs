@@ -759,6 +759,9 @@ public class UpgradePanelController : MonoBehaviour
                 GoBockToDimension();
                 weaponCount++;
                 break;
+            case 82: // Burning Spheres
+
+                break;
         }
     }
 

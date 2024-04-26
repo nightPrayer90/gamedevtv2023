@@ -5082,6 +5082,7 @@ MonoBehaviour:
     rocketClass: 0
     laserClass: 0
     supportClass: 0
+  moduleIndex: -1
   ps_engine: {fileID: 9178511581905244593}
   torqueForce: 0.28
   engine_side: 1
@@ -5120,7 +5121,8 @@ MonoBehaviour:
     rocketClass: 0
     laserClass: 0
     supportClass: 0
-  laserBaseDamage: 4
+  moduleIndex: -1
+  laserBaseDamage: 5
   fireRate: 2
   laserRange: 2
   laserShootTime: 3
