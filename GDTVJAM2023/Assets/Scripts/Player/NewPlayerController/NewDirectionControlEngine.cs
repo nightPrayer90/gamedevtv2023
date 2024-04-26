@@ -110,7 +110,9 @@ public class NewDirectionControlEngine : BaseModule
                 Vector3 torque = engineUPPos * -playerController.horizontalInput * torqueForce;
 
                 playerRigidbody.AddTorque(torque);
-
+                Quaternion targetRotation = Quaternion.Euler(0f, playerRigidbody.rotation.eulerAngles.y, 0f);
+                // Interpoliere die aktuelle Rotation des Spieler-Rigidbodys zur Zielrotation
+                playerRigidbody.rotation = Quaternion.Lerp(playerRigidbody.rotation, targetRotation, Time.deltaTime * 1f);
 
                 ps_engine.Emit(1);
             }
@@ -123,7 +125,9 @@ public class NewDirectionControlEngine : BaseModule
                 Vector3 torque = engineUPPos * playerController.horizontalInput * torqueForce;
 
                 playerRigidbody.AddTorque(torque);
-                
+                Quaternion targetRotation = Quaternion.Euler(0f, playerRigidbody.rotation.eulerAngles.y, 0f);
+                // Interpoliere die aktuelle Rotation des Spieler-Rigidbodys zur Zielrotation
+                playerRigidbody.rotation = Quaternion.Lerp(playerRigidbody.rotation, targetRotation, Time.deltaTime * 10f);
 
                 ps_engine.Emit(1);
             }

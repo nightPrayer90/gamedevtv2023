@@ -388,7 +388,6 @@ public class NewPlayerController : MonoBehaviour
         boostInput = Input.GetButton("Boost");
 
 
-        playerRigidbody.rotation = Quaternion.Euler(0f, playerRigidbody.rotation.eulerAngles.y, 0f);
 
         ShipEngineSound();
     }
