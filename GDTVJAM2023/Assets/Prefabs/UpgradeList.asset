@@ -46,8 +46,7 @@ MonoBehaviour:
   - headerStr: Protection
     upgradeIndex: 2
     passivUpgradeString: 
-    descriptionStr: Increases your chance of blocking 50% incoming damage up to XX
-      %.
+    descriptionStr: XX% chance of halving the incoming damage.
     iconPanel: {fileID: 21300000, guid: 0ed2cb74a7f3ebb479bdc536ce9e1422, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -59,7 +58,7 @@ MonoBehaviour:
     reqAbility: 
     UpgradeCount: 999
     upgradeStartCount: 999
-  - headerStr: Energy capacity
+  - headerStr: Energy Capacity
     upgradeIndex: 3
     passivUpgradeString: 
     descriptionStr: Increases the maximum energy storage by 15%.
@@ -77,7 +76,7 @@ MonoBehaviour:
   - headerStr: Agility
     upgradeIndex: 4
     passivUpgradeString: 
-    descriptionStr: Increase your agility and our speed by 10%.
+    descriptionStr: Increases agility and speed by 10%.
     iconPanel: {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -92,7 +91,7 @@ MonoBehaviour:
   - headerStr: Pickup Range
     upgradeIndex: 5
     passivUpgradeString: 
-    descriptionStr: Increase your pickup range by XX.
+    descriptionStr: Increases pickup range by XX.
     iconPanel: {fileID: 21300000, guid: ca41a70726d6ed84da8ea7d1000633f3, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -457,7 +456,7 @@ MonoBehaviour:
   - headerStr: Searing Focus
     upgradeIndex: 29
     passivUpgradeString: 
-    descriptionStr: Increases the laser burning damage per tick by 20%.
+    descriptionStr: Increases laser burning damage per tick by 20%.
     iconPanel: {fileID: 21300000, guid: dfb698914e313f5498d8a5bdb417753c, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -774,7 +773,7 @@ MonoBehaviour:
   - headerStr: Wide Spray Expansion
     upgradeIndex: 50
     passivUpgradeString: 
-    descriptionStr: Increases the number of bullets for the spread gun by 2.
+    descriptionStr: Increases the number of bullets for the spray gun by 2.
     iconPanel: {fileID: 21300000, guid: cfa1d4ae5cbde234c855a1d8c18577e9, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -819,7 +818,7 @@ MonoBehaviour:
   - headerStr: Critical Explosion
     upgradeIndex: 53
     passivUpgradeString: 
-    descriptionStr: 5% chance that critical damage from bullets will trigger a nova.
+    descriptionStr: 5% chance critical damage from bullets will trigger a nova.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -895,7 +894,7 @@ MonoBehaviour:
   - headerStr: Luminous Growth
     upgradeIndex: 58
     passivUpgradeString: 
-    descriptionStr: Increases the life time and size of your Fireflies.
+    descriptionStr: Increases life time and size of Fireflies.
     iconPanel: {fileID: 21300000, guid: b248b2b0686619a4cae68905c3e43676, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -907,10 +906,10 @@ MonoBehaviour:
     reqAbility: Fireflies
     UpgradeCount: 1
     upgradeStartCount: 0
-  - headerStr: Engine boost
+  - headerStr: Engine Boost
     upgradeIndex: 59
     passivUpgradeString: 
-    descriptionStr: Increases Energy recover rate by 20%.
+    descriptionStr: Increases energy recover rate by 20%.
     iconPanel: {fileID: 21300000, guid: f2a3444a22688804a856c2dbc72a0f88, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -925,7 +924,7 @@ MonoBehaviour:
   - headerStr: Engine Overload
     upgradeIndex: 60
     passivUpgradeString: 
-    descriptionStr: Increases Energy recover rate by 60%.
+    descriptionStr: Increases energy recover rate by 60%.
     iconPanel: {fileID: 21300000, guid: f2a3444a22688804a856c2dbc72a0f88, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -952,10 +951,10 @@ MonoBehaviour:
     reqAbility: F. Shield
     UpgradeCount: 1
     upgradeStartCount: 0
-  - headerStr: Explosiv Shield
+  - headerStr: Explosive Shield
     upgradeIndex: 62
     passivUpgradeString: 
-    descriptionStr: The Shild triggers a nova when it dies
+    descriptionStr: Shields trigger a nova when they die
     iconPanel: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -970,8 +969,7 @@ MonoBehaviour:
   - headerStr: Natural Energy
     upgradeIndex: 63
     passivUpgradeString: 
-    descriptionStr: +5% chance to fully charge your energy when you collect an exp
-      orb.
+    descriptionStr: +5% chance for a full energy charge when collecting an exp orb.
     iconPanel: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -986,7 +984,7 @@ MonoBehaviour:
   - headerStr: Fast Head Cannon
     upgradeIndex: 64
     passivUpgradeString: 
-    descriptionStr: Reduces the damage but increases the rate of fire.
+    descriptionStr: Reduces damage but increases fire rate.
     iconPanel: {fileID: 21300000, guid: eddf778d779dd2e46a84c198e40ecab5, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1001,7 +999,7 @@ MonoBehaviour:
   - headerStr: Big Head Cannon
     upgradeIndex: 65
     passivUpgradeString: 
-    descriptionStr: Much more damage but less rate of fire.
+    descriptionStr: Much more damage but decreased fire rate.
     iconPanel: {fileID: 21300000, guid: eddf778d779dd2e46a84c198e40ecab5, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1028,10 +1026,10 @@ MonoBehaviour:
     reqAbility: Head Cannon
     UpgradeCount: 1
     upgradeStartCount: 0
-  - headerStr: Gatlin Head Cannon
+  - headerStr: Gatling Head Cannon
     upgradeIndex: 67
     passivUpgradeString: 
-    descriptionStr: Increases the rate of fire.
+    descriptionStr: Increases fire rate.
     iconPanel: {fileID: 21300000, guid: eddf778d779dd2e46a84c198e40ecab5, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1043,10 +1041,10 @@ MonoBehaviour:
     reqAbility: Head Cannon
     UpgradeCount: 1
     upgradeStartCount: 0
-  - headerStr: Fast Spread gun
+  - headerStr: Fast Spray gun
     upgradeIndex: 68
     passivUpgradeString: 
-    descriptionStr: Decrease the spread gun reaload time by 0.5s.
+    descriptionStr: Decreases spray gun reaload time by 0.5s.
     iconPanel: {fileID: 21300000, guid: cfa1d4ae5cbde234c855a1d8c18577e9, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1091,7 +1089,7 @@ MonoBehaviour:
   - headerStr: Power Spheres
     upgradeIndex: 71
     passivUpgradeString: 
-    descriptionStr: Spheres base damage +2.
+    descriptionStr: Increases sphere base damage by +2.
     iconPanel: {fileID: 21300000, guid: 6ad6d83118aee0b44a0ee6c80093c8e6, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1103,10 +1101,10 @@ MonoBehaviour:
     reqAbility: Thermal Sphere
     UpgradeCount: 3
     upgradeStartCount: 0
-  - headerStr: Creazy Spheres
+  - headerStr: Crazy Spheres
     upgradeIndex: 72
     passivUpgradeString: 
-    descriptionStr: +25% chance to spawn another Sphere at the same time.
+    descriptionStr: +25% chance to spawn another sphere at the same time.
     iconPanel: {fileID: 21300000, guid: 6ad6d83118aee0b44a0ee6c80093c8e6, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1121,7 +1119,7 @@ MonoBehaviour:
   - headerStr: Dynamic Spheres
     upgradeIndex: 73
     passivUpgradeString: 
-    descriptionStr: Spheres become more accurate and can move more frequently
+    descriptionStr: Spheres become more accurate and can move more frequently.
     iconPanel: {fileID: 21300000, guid: 6ad6d83118aee0b44a0ee6c80093c8e6, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1136,7 +1134,7 @@ MonoBehaviour:
   - headerStr: Enhanced Plasma Spheres
     upgradeIndex: 74
     passivUpgradeString: 
-    descriptionStr: Incresed the Lifetime of all Spheres by 1s.
+    descriptionStr: Increases life time of all spheres by 1s.
     iconPanel: {fileID: 21300000, guid: 6ad6d83118aee0b44a0ee6c80093c8e6, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1151,7 +1149,7 @@ MonoBehaviour:
   - headerStr: Big Photon Spheres
     upgradeIndex: 75
     passivUpgradeString: 
-    descriptionStr: Make the Spheres bigger and more aggressive.
+    descriptionStr: Makes the spheres bigger and more aggressive.
     iconPanel: {fileID: 21300000, guid: 6ad6d83118aee0b44a0ee6c80093c8e6, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1166,7 +1164,7 @@ MonoBehaviour:
   - headerStr: Cannon Power
     upgradeIndex: 76
     passivUpgradeString: 
-    descriptionStr: Increases the Head Cannon base Damage by 1.
+    descriptionStr: Increases Head Cannon base damage by 1.
     iconPanel: {fileID: 21300000, guid: eddf778d779dd2e46a84c198e40ecab5, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1181,7 +1179,7 @@ MonoBehaviour:
   - headerStr: Fury Novas
     upgradeIndex: 77
     passivUpgradeString: 
-    descriptionStr: Novas got smaller but reload faster.
+    descriptionStr: Novas get smaller but reload faster.
     iconPanel: {fileID: 21300000, guid: b5adefc2f49023b4e9917d4e5664ed8c, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1190,13 +1188,13 @@ MonoBehaviour:
     reqRocket: 2
     reqLaser: 0
     reqSupport: 0
-    reqAbility: Schock Nova
+    reqAbility: Shock Nova
     UpgradeCount: 2
     upgradeStartCount: 0
   - headerStr: Nuclear Novas
     upgradeIndex: 78
     passivUpgradeString: 
-    descriptionStr: Novas got smaller but reload faster.
+    descriptionStr: Novas get bigger but reload more slowly.
     iconPanel: {fileID: 21300000, guid: b5adefc2f49023b4e9917d4e5664ed8c, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1205,13 +1203,13 @@ MonoBehaviour:
     reqRocket: 2
     reqLaser: 0
     reqSupport: 0
-    reqAbility: Schock Nova
+    reqAbility: Shock Nova
     UpgradeCount: 2
     upgradeStartCount: 0
   - headerStr: Power Novas
     upgradeIndex: 79
     passivUpgradeString: 
-    descriptionStr: Increasd Nova base damage +2.
+    descriptionStr: Increases Nova base damage by +2.
     iconPanel: {fileID: 21300000, guid: b5adefc2f49023b4e9917d4e5664ed8c, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1226,7 +1224,7 @@ MonoBehaviour:
   - headerStr: Orbital Laser Array
     upgradeIndex: 80
     passivUpgradeString: 
-    descriptionStr: 'Increase the number of rotating orbs by 1. '
+    descriptionStr: 'Increases the number of rotating orbs by 1. '
     iconPanel: {fileID: 21300000, guid: b5adefc2f49023b4e9917d4e5664ed8c, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1241,8 +1239,8 @@ MonoBehaviour:
   - headerStr: Tactical Minefield
     upgradeIndex: 81
     passivUpgradeString: 
-    descriptionStr: Your ship spawns a mine at periodic intervals, which explodes
-      on contact with the enemies.
+    descriptionStr: Your ship spawns mines in periodic intervals, which explode on
+      contact with enemies.
     iconPanel: {fileID: 21300000, guid: f3c839403425314428e4af39e40f745e, type: 3}
     mainClass: 1
     upgradeTyp: 0
@@ -1257,7 +1255,7 @@ MonoBehaviour:
   - headerStr: Burning Spheres
     upgradeIndex: 82
     passivUpgradeString: 
-    descriptionStr: Chance to get one more Sphere per salve from your main weapon.
+    descriptionStr: Chance to get one more sphere per salve for your main weapon.
     iconPanel: {fileID: 21300000, guid: dfb698914e313f5498d8a5bdb417753c, type: 3}
     mainClass: 8
     upgradeTyp: 1
