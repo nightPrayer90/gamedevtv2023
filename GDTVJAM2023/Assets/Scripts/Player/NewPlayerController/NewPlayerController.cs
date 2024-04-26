@@ -171,6 +171,23 @@ public class NewPlayerController : MonoBehaviour
         //masseanzeiger
         //centerOfMass.transform.localPosition = playerRigidbody.centerOfMass + new Vector3(0f, 1f, 0f);
     }
+
+    private void FixedUpdate()
+    {
+        // Überprüfen, ob keine horizontale Richtungsänderung erfolgt
+        if (Mathf.Abs(horizontalInput) < 0.1f)
+        {
+            // Aktuellen X-Rotationswert abrufen
+            float currentRotationX = transform.rotation.eulerAngles.x;
+
+            // Ziel-X-Rotationswert auf 0 setzen
+            Quaternion targetRotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
+
+            // Lerpen der X-Rotation
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 1f * Time.fixedDeltaTime);
+        }
+    }
+
     #endregion
 
     /* **************************************************************************** */
@@ -387,10 +404,11 @@ public class NewPlayerController : MonoBehaviour
         horizontalInput2 = Input.GetAxis("Horizontal2");
         boostInput = Input.GetButton("Boost");
 
-
-
         ShipEngineSound();
     }
+
+  
+
 
     void CalculateFlySpeed()
     {
