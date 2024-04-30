@@ -448,9 +448,9 @@ public class NewPlayerController : MonoBehaviour
         int exp = expValue;
 
         // chance to get double exp
-        if (upgradeChooseList.chanceToGetTwoExp > 0)
+        if (playerWeaponController.shipData.chanceToGetTwoExp > 0)
         {
-            if (UnityEngine.Random.Range(0, 100) <= upgradeChooseList.chanceToGetTwoExp)
+            if (UnityEngine.Random.Range(0, 100) <= playerWeaponController.shipData.chanceToGetTwoExp)
             {
                 exp *= 2;
                 gameManager.DoFloatingText(transform.position, $"+{exp}", Color.white);
@@ -458,9 +458,9 @@ public class NewPlayerController : MonoBehaviour
         }
 
         // chance to get one health
-        if (upgradeChooseList.chanceToGet1Health > 0)
+        if (playerWeaponController.shipData.chanceToGetHealth > 0)
         {
-            if (UnityEngine.Random.Range(0, 100) <= upgradeChooseList.chanceToGet1Health)
+            if (UnityEngine.Random.Range(0, 100) <= playerWeaponController.shipData.chanceToGetHealth)
             {
                 gameManager.DoFloatingText(transform.position, "+1", Color.green);
                 UpdatePlayerHealth(-1);
@@ -468,9 +468,9 @@ public class NewPlayerController : MonoBehaviour
         }
 
         // chance to get full energie
-        if (upgradeChooseList.chanceToGetfullEnergy > 0 && energieCurrent < energieMax)
+        if (playerWeaponController.shipData.chanceToGetFullEnergy > 0 && energieCurrent < energieMax)
         {
-            if (UnityEngine.Random.Range(0, 100) <= upgradeChooseList.chanceToGetfullEnergy)
+            if (UnityEngine.Random.Range(0, 100) <= playerWeaponController.shipData.chanceToGetFullEnergy)
             {
                 gameManager.DoFloatingText(transform.position, "E", Color.magenta);
                 energieCurrent = energieMax;
@@ -602,7 +602,7 @@ public class NewPlayerController : MonoBehaviour
 
         Vector3 pos = transform.position;
         LayerMask layerMask = (1 << 6);
-        explosionRadius = explosionRadius + playerWeaponController.rocketAOERadius;
+        explosionRadius = explosionRadius + playerWeaponController.shipData.rocketAOERadius;
         NovaDamage = 6;
 
         if (gameManager.dimensionShift == true)
@@ -636,7 +636,7 @@ public class NewPlayerController : MonoBehaviour
                     if (upgradeChooseList.upgrades[54].upgradeIndexInstalled > 0)
                     {
                         int ran = UnityEngine.Random.Range(0, 100);
-                        if (ran < playerWeaponController.bulletCritChance)
+                        if (ran < playerWeaponController.shipData.bulletCritChance)
                         {
                             adjustedDamage = eHC.CritDamage(adjustedDamage);
                             resultColor = eHC.critColor;
@@ -678,7 +678,7 @@ public class NewPlayerController : MonoBehaviour
     {
         canTakeDamge = false;
         powerBoostMarker.SetActive(true);
-        Invoke("Invulnerability", upgradeChooseList.baseBoostInvulnerability);
+        Invoke("Invulnerability", playerWeaponController.shipData.boostInvulnerability);
     }
 
     public void UpdateAgility(float updateSpeed)

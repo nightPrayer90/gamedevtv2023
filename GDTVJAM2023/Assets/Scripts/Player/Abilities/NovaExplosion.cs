@@ -41,7 +41,7 @@ public class NovaExplosion : MonoBehaviour
         weaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         novaDamage = weaponController.neDamage;
         spawnInterval = weaponController.neReloadTime;
-        explosionRadius = weaponController.neRadius * weaponController.rocketAOERadius;
+        explosionRadius = weaponController.neRadius * weaponController.shipData.rocketAOERadius;
     }
 
 
@@ -88,7 +88,7 @@ public class NovaExplosion : MonoBehaviour
                     if (upgradeChooseList.upgrades[54].upgradeIndexInstalled > 0)
                     {
                         int ran = UnityEngine.Random.Range(0, 100);
-                        if (ran < weaponController.bulletCritChance)
+                        if (ran < weaponController.shipData.bulletCritChance)
                         {
                             adjustedDamage = eHC.CritDamage(adjustedDamage);
                             resultColor = eHC.critColor;

@@ -91,7 +91,7 @@ public class PlayerMineController : MonoBehaviour
         CancelInvoke("DestroyObject");
 
         // array of all Objects in explosionRadius
-        float explosionRadius_ = explosionRadius * playerWeaponController.rocketAOERadius;
+        float explosionRadius_ = explosionRadius * playerWeaponController.shipData.rocketAOERadius;
         var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius_, layerMask);
 
         foreach (var obj in surroundingObjects)
@@ -122,7 +122,7 @@ public class PlayerMineController : MonoBehaviour
 
             if (eHC.isBoss == true && isMainWeapon == true)
             {
-                adjustedDamage = Mathf.CeilToInt((float)damage * (1 + (float)upgradeChooseList.bossBonusDamage / 100));
+                adjustedDamage = Mathf.CeilToInt((float)damage * (1 + (float)playerWeaponController.shipData.bossBonusDamage / 100));
             }
 
             if (eHC != null)
@@ -136,7 +136,7 @@ public class PlayerMineController : MonoBehaviour
                 if (upgradeChooseList.upgrades[54].upgradeIndexInstalled > 0)
                 {
                     int ran = Random.Range(0, 100);
-                    if (ran < playerWeaponController.bulletCritChance)
+                    if (ran < playerWeaponController.shipData.bulletCritChance)
                     {
                         adjustedDamage = eHC.CritDamage(adjustedDamage);
                         resultColor = eHC.critColor;

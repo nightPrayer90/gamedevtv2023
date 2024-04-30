@@ -47,8 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystemToCheck: {fileID: 886906482968318348}
+  rippleParticleSystem: {fileID: 0}
   isEmittingSound: 1
   audioSource: {fileID: 4775533782357955424}
+  rippleParicleSize: 1
 --- !u!82 &4775533782357955424
 AudioSource:
   m_ObjectHideFlags: 0

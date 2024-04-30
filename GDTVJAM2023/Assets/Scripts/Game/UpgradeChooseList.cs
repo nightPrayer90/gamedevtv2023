@@ -22,47 +22,8 @@ public class UpgradeChooseList : MonoBehaviour
     public PlayerWeaponController playerWeaponController;
     public NewPlayerController playerController;
 
-    [Header("Class level")]
-    public int mcBulletLvl = 0;
-    public int mcExplosionLvl = 0;
-    public int mcLaserLvl = 0;
-    public int mcSupportLvl = 0;
-
-
-    [Header("Basic Ability Values")]
-    public float percBulletDamage = 0;
-    public int baseBulletCritChance = 0;
-    public int baseBulletCritDamage = 100;
-    public float percRocketDamage = 0;
-    public float baseRocketAOERadius = 0;
-    public int baseLaserBurnDamageChance = 0;
-    public float percLaserDamage = 0;
-    public int baseSupportRealoadTime = 0;
-    public int baseLaserTicks = 4;
-    public int baseLaserTickDamage = 5;
-    public float baseAttackSpeed = 0;
-    public float baseBoostInvulnerability = 0.5f;
-    public float chanceToGetTwoExp = 0;
-    public float chanceToGet1Health = 0;
-    public float chanceToGetfullEnergy = 0;
-    public float rocketLifeTime = 0;
-    public int shieldHealth = 0;
-    public int shieldDamage = 0;
-    public int bossBonusDamage = 0;
-
-    [Header("Class Upgrade Values")]
-    public int critChance = 7;
-    public int critDamage = 20;
-    public float aoeRange = 20;
-    public int burningChance = 2;
-    public int supportRealodTime = 10;
-    public int laserBurningTickDamangePercent = 100;
-
     private int normalUpgradeCount = 0;
-    private int weaponUpgradeCount = 0;
-
-    
-
+    private int weaponUpgradeCount = 0; 
 
     private void Start()
     {
@@ -74,24 +35,11 @@ public class UpgradeChooseList : MonoBehaviour
             aUpdate.upgradeStartCount = uLObject.upgradeList[i].upgradeStartCount;
             upgrades.Add(aUpdate);
         }
-
+        
         BuildlistCountAfterUpdate();
-
-        // Update Weaponcontroller after loading all modules
-        Invoke("UpdatePlayerWeaponController", 1f);
     }
 
-    private void UpdatePlayerWeaponController()
-    {
-        baseBulletCritChance += critChance * mcBulletLvl;
-        baseBulletCritDamage += critDamage * mcBulletLvl;
-        baseRocketAOERadius += aoeRange * mcExplosionLvl;
-        baseLaserBurnDamageChance += burningChance * mcLaserLvl;
-        baseSupportRealoadTime = mcSupportLvl;
-
-        playerWeaponController.UpdateWeaponValues();
-    }
-
+ 
     public List<int> BuildUpgradeList(Upgrade.UpgradeTyp upgradeTyp)
     {
         List<int> buildList = new List<int>();
@@ -99,7 +47,7 @@ public class UpgradeChooseList : MonoBehaviour
         for (int i = 0; i < uLObject.upgradeList.Count; i++)
         {
             if (uLObject.upgradeList[i].upgradeTyp == upgradeTyp && upgrades[i].upgradeIndexInstalled < upgrades[i].upgradeStartCount &&
-               mcBulletLvl >= uLObject.upgradeList[i].reqBullet && mcExplosionLvl >= uLObject.upgradeList[i].reqRocket && mcLaserLvl >= uLObject.upgradeList[i].reqLaser && mcSupportLvl >= uLObject.upgradeList[i].reqSupport)
+               playerWeaponController.shipData.mcBulletLvl >= uLObject.upgradeList[i].reqBullet && playerWeaponController.shipData.mcExplosionLvl >= uLObject.upgradeList[i].reqRocket && playerWeaponController.shipData.mcLaserLvl >= uLObject.upgradeList[i].reqLaser && playerWeaponController.shipData.mcSupportLvl >= uLObject.upgradeList[i].reqSupport)
             {
                 buildList.Add(i);
             }
@@ -145,7 +93,7 @@ public class UpgradeChooseList : MonoBehaviour
         for (int i = 0; i < uLObject.upgradeList.Count; i++)
         {
             if (upgrades[i].upgradeIndexInstalled < upgrades[i].upgradeStartCount &&
-               mcBulletLvl >= uLObject.upgradeList[i].reqBullet && mcExplosionLvl >= uLObject.upgradeList[i].reqRocket && mcLaserLvl >= uLObject.upgradeList[i].reqLaser && mcSupportLvl >= uLObject.upgradeList[i].reqSupport)
+               playerWeaponController.shipData.mcBulletLvl >= uLObject.upgradeList[i].reqBullet && playerWeaponController.shipData.mcExplosionLvl >= uLObject.upgradeList[i].reqRocket && playerWeaponController.shipData.mcLaserLvl >= uLObject.upgradeList[i].reqLaser && playerWeaponController.shipData.mcSupportLvl >= uLObject.upgradeList[i].reqSupport)
             {
                 if (uLObject.upgradeList[i].upgradeTyp == Upgrade.UpgradeTyp.NormalUpgrade)
                 {

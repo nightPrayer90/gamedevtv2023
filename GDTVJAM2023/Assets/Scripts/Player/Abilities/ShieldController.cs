@@ -219,14 +219,14 @@ public class ShieldController : MonoBehaviour
         // update crit damage
         if (upgradeChooseList.upgrades[45].upgradeIndexInstalled > 0)
         {
-            upgradeChooseList.critDamage += 2;
+            playerWeaponController.shipData.critDamage += 2;
             burnEffect.Emit(5);
         }
 
         // update AOE size
         if (upgradeChooseList.upgrades[44].upgradeIndexInstalled > 0)
         {
-            upgradeChooseList.baseRocketAOERadius += 2;
+            playerWeaponController.shipData.rocketAOERadius += 2;
             burnEffect.Emit(5);
         }
 
@@ -260,14 +260,14 @@ public class ShieldController : MonoBehaviour
     {
         EnemyHealth enH = null;
 
-        if (upgradeChooseList.shieldDamage > 0)
+        if (playerWeaponController.shipData.shieldDamage > 0)
         {
             enH = collsion.GetComponent<EnemyHealth>();
 
             if (enH != null)
             {
-                enH.TakeDamage(upgradeChooseList.shieldDamage);
-                enH.ShowDamageFromObjects(upgradeChooseList.shieldDamage);
+                enH.TakeDamage(playerWeaponController.shipData.shieldDamage);
+                enH.ShowDamageFromObjects(playerWeaponController.shipData.shieldDamage);
                 hitEffect.Emit(30);
             }
         }
@@ -312,7 +312,7 @@ public class ShieldController : MonoBehaviour
 
         Vector3 pos = transform.position;
         LayerMask layerMask = (1 << 6);
-        explosionRadius = explosionRadius + playerWeaponController.rocketAOERadius;
+        explosionRadius = explosionRadius + playerWeaponController.shipData.rocketAOERadius;
 
         if (gameManager.dimensionShift == true)
         {
@@ -345,7 +345,7 @@ public class ShieldController : MonoBehaviour
                     if (upgradeChooseList.upgrades[54].upgradeIndexInstalled > 0)
                     {
                         int ran = Random.Range(0, 100);
-                        if (ran < playerWeaponController.bulletCritChance)
+                        if (ran < playerWeaponController.shipData.bulletCritChance)
                         {
                             adjustedDamage = eHC.CritDamage(adjustedDamage);
                             resultColor = eHC.critColor;

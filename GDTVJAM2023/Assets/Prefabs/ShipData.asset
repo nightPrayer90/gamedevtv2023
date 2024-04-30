@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd6faff630936f40a2920f37d27073e, type: 3}
+  m_Name: ShipData
+  m_EditorClassIdentifier: 
+  mcBulletLvl: 0
+  mcExplosionLvl: 0
+  mcLaserLvl: 0
+  mcSupportLvl: 0
+  baseLaserTicks: 4
+  baseLaserTickDamage: 5
+  laserBurningTickDamangePercent: 100
+  boostInvulnerability: 0.5
+  percBulletDamage: 0
+  percRocketDamage: 0
+  percLaserDamage: 0
+  chanceToGetTwoExp: 0
+  chanceToGetHealth: 0
+  chanceToGetFullEnergy: 0
+  rocketLifeTime: 0
+  shieldHealth: 0
+  shieldDamage: 0
+  bossBonusDamage: 0
+  supportReloadTime: 0
+  bulletCritChance: 0
+  bulletCritDamage: 0
+  burnDamageChance: 0
+  rocketAOERadius: 0
+  critChance: 7
+  critDamage: 20
+  aoeRange: 20
+  burningChance: 2
+  realodTime: 10

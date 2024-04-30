@@ -53,7 +53,6 @@ public class ModuleStorage : MonoBehaviour
     public ModuleDataRuntime[,] installedModuleGrid;
     public ModuleList moduleList;
     public Transform transformParent;
-    private GameObject gameManager;
     private Selection selectionManager;
     private HangarUIController hangarUIController;
 
@@ -77,12 +76,10 @@ public class ModuleStorage : MonoBehaviour
 
     void Start()
     {
-        gameManager = GameObject.Find("Game Manager");
-
         installedModuleData = new();
 
         List<ModuleData> loadedModules = new();
-        foreach(ModuleData i in playerData.moduleData)
+        foreach (ModuleData i in playerData.moduleData)
         {
             loadedModules.Add(i);
         }
@@ -101,18 +98,12 @@ public class ModuleStorage : MonoBehaviour
         }
         BuildShipFromModuleData();
 
-        if (gameManager == null)
-        {
-            // find selection manager
-            selectionManager = GameObject.Find("SelectionController").GetComponent<Selection>();
+        // find selection manager
+        selectionManager = GameObject.Find("SelectionController").GetComponent<Selection>();
 
-            // set Module lists für spheres
-            //CreateModuleLists();
-
-            // set ShipPanel
-            hangarUIController = selectionManager.gameObject.GetComponent<HangarUIController>();
-            hangarUIController.SetShipPanel();
-        }
+        // set ShipPanel
+        hangarUIController = selectionManager.gameObject.GetComponent<HangarUIController>();
+        hangarUIController.SetShipPanel();
 
         BuildModuleGrid();
     }
@@ -278,7 +269,7 @@ public class ModuleStorage : MonoBehaviour
         HangarModul hgm = strafeEngine.GetComponent<HangarModul>();
 
         // delete from playerData
-        playerData.moduleCounts [hgm.moduleData.moduleTypeIndex] += 1;
+        playerData.moduleCounts[hgm.moduleData.moduleTypeIndex] += 1;
 
         // destroy gameObject
         Destroy(strafeEngine);
@@ -375,7 +366,7 @@ public class ModuleStorage : MonoBehaviour
     public void NewShip()
     {
         installedModuleData.Add(new ModuleDataRuntime());
-        playerData.moduleCounts[installedModuleData[0].moduleTypeIndex] -= 1; 
+        playerData.moduleCounts[installedModuleData[0].moduleTypeIndex] -= 1;
     }
 
     public void LoadPreset()
@@ -383,8 +374,7 @@ public class ModuleStorage : MonoBehaviour
         foreach (ModuleData item in shipPreset.baseModules)
         {
             installedModuleData.Add(new ModuleDataRuntime(item));
-            if (gameManager == null)
-                playerData.moduleCounts[item.moduleTypeIndex] -= 1;
+            playerData.moduleCounts[item.moduleTypeIndex] -= 1;
         }
         Debug.Log("LoadPreset");
     }
@@ -394,51 +384,24 @@ public class ModuleStorage : MonoBehaviour
         foreach (ModuleDataRuntime instance in installedModuleData)
         {
             // Hangar
-            if (gameManager == null)
-            {
-                GameObject go = Instantiate(moduleList.moduls[instance.moduleTypeIndex].hangarPrefab, transformParent, false);
-                go.transform.localPosition = new Vector3(instance.x, 0, instance.z);
-                go.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                HangarModul hangarModul = go.GetComponent<HangarModul>();
+            GameObject go = Instantiate(moduleList.moduls[instance.moduleTypeIndex].hangarPrefab, transformParent, false);
+            go.transform.localPosition = new Vector3(instance.x, 0, instance.z);
+            go.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            HangarModul hangarModul = go.GetComponent<HangarModul>();
 
-                // copy all Module Values
-                hangarModul.moduleValues = moduleList.moduls[instance.moduleTypeIndex].moduleValues;
+            // copy all Module Values
+            hangarModul.moduleValues = moduleList.moduls[instance.moduleTypeIndex].moduleValues;
 
-                // set inspector Values
-                hangarModul.moduleValues.moduleName = moduleList.moduls[instance.moduleTypeIndex].moduleName;
-                hangarModul.moduleValues.moduleType = moduleList.moduls[instance.moduleTypeIndex].moduleType;
-                hangarModul.moduleValues.canLeft = moduleList.moduls[instance.moduleTypeIndex].canLeft;
-                hangarModul.moduleValues.canRight = moduleList.moduls[instance.moduleTypeIndex].canRight;
-                hangarModul.moduleValues.canFront = moduleList.moduls[instance.moduleTypeIndex].canFront;
-                hangarModul.moduleValues.canBack = moduleList.moduls[instance.moduleTypeIndex].canBack;
-                hangarModul.moduleData = instance;
+            // set inspector Values
+            hangarModul.moduleValues.moduleName = moduleList.moduls[instance.moduleTypeIndex].moduleName;
+            hangarModul.moduleValues.moduleType = moduleList.moduls[instance.moduleTypeIndex].moduleType;
+            hangarModul.moduleValues.canLeft = moduleList.moduls[instance.moduleTypeIndex].canLeft;
+            hangarModul.moduleValues.canRight = moduleList.moduls[instance.moduleTypeIndex].canRight;
+            hangarModul.moduleValues.canFront = moduleList.moduls[instance.moduleTypeIndex].canFront;
+            hangarModul.moduleValues.canBack = moduleList.moduls[instance.moduleTypeIndex].canBack;
+            hangarModul.moduleData = instance;
 
-                installedHangarModules.Add(hangarModul);
-            }
-
-            // Level
-            else
-            {
-                GameObject go = Instantiate(moduleList.moduls[instance.moduleTypeIndex].modulePrefabs, transformParent, false);
-                go.transform.localPosition = new Vector3(instance.x, 0, instance.z);
-                go.transform.localRotation = Quaternion.Euler(0, 0, 0);
-
-                BaseModule[] baseModules = go.GetComponents<BaseModule>();
-
-                int i = 0;
-                //copy all Module Vales
-                foreach (BaseModule bm in baseModules)
-                {
-                    if (bm != null)
-                    {
-                        if (i == 0)
-                        {
-                            bm.moduleValues = moduleList.moduls[instance.moduleTypeIndex].moduleValues;
-                        }
-                    }
-                    i++;
-                }
-            }
+            installedHangarModules.Add(hangarModul);
         }
     }
 
@@ -539,7 +502,6 @@ public class ModuleStorage : MonoBehaviour
 
     public void ControllUnconnectedModules()
     {
-        if (gameManager == null)
         hangarUIController.ControllUnconnectedModules(isAllConnected);
     }
 }

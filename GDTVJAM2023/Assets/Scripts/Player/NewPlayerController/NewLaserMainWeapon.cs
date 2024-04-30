@@ -25,7 +25,6 @@ public class NewLaserMainWeapon : BaseModule
 
     //private Objects
     private GameManager gameManager;
-    private UpgradeChooseList upgradeChooseList;
     private PlayerWeaponController playerWeaponController;
     private NewPlayerController playerController;
 
@@ -42,7 +41,6 @@ public class NewLaserMainWeapon : BaseModule
         GameObject go = GameObject.Find("Game Manager");
 
         gameManager = go.GetComponent<GameManager>();
-        upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
         playerController = GetComponentInParent<NewPlayerController>();
         playerController.OnIntroOver += HandleStartShooting;
 
@@ -66,7 +64,7 @@ public class NewLaserMainWeapon : BaseModule
     private void HandleDamageUpdate(int damageToUpdate)
     {
         laserBaseDamage += damageToUpdate;
-        resultLaserDamage = Mathf.CeilToInt((float)laserBaseDamage * (1 + (upgradeChooseList.percLaserDamage / 100)));
+        resultLaserDamage = Mathf.CeilToInt((float)laserBaseDamage * (1 + (playerWeaponController.shipData.percLaserDamage / 100)));
     }
 
     private void HandleStartShooting()

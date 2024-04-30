@@ -3938,7 +3938,7 @@ GameObject:
   - component: {fileID: 385707406}
   - component: {fileID: 385707407}
   m_Layer: 7
-  m_Name: ShopWingTyp3Right
+  m_Name: ShopWingTyp4Right
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3973,7 +3973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4046e8ecadc57d540b12c3da4cc6679c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemIndex: 19
+  itemIndex: 21
   itemCost: 150
   itemMaxCount: 1
   itemSellPrice: 0
@@ -10834,7 +10834,7 @@ GameObject:
   - component: {fileID: 1137167873}
   - component: {fileID: 1137167874}
   m_Layer: 7
-  m_Name: ShopWingTyp3Left
+  m_Name: ShopWingTyp4Left
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10869,7 +10869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4046e8ecadc57d540b12c3da4cc6679c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemIndex: 18
+  itemIndex: 20
   itemCost: 150
   itemMaxCount: 1
   itemSellPrice: 0

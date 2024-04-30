@@ -2,13 +2,11 @@ using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static PlayerMWController;
 
 public class NewBulletMainWeapon : BaseModule
 {
     //private Objects
     private GameManager gameManager;
-    private UpgradeChooseList upgradeChooseList;
 
     public int bulletBaseDamage;
     private int bulletResouldDamage;
@@ -32,7 +30,6 @@ public class NewBulletMainWeapon : BaseModule
         GameObject go = GameObject.Find("Game Manager");
         if (go != null) {
             gameManager = go.GetComponent<GameManager>();
-            upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
             playerController = GetComponentInParent<NewPlayerController>();
             playerController.OnIntroOver += HandleStartShooting;
             playerWeaponController = GetComponentInParent<PlayerWeaponController>();
@@ -123,7 +120,7 @@ public class NewBulletMainWeapon : BaseModule
     // set the main weapon particle damage
     public void SetBulletDamage()
     {
-        bulletResouldDamage = bulletBaseDamage + Mathf.CeilToInt((float)bulletBaseDamage * (upgradeChooseList.percBulletDamage / 100));
+        bulletResouldDamage = bulletBaseDamage + Mathf.CeilToInt((float)bulletBaseDamage * (playerWeaponController.shipData.percBulletDamage / 100));
         particelBullet.BulletSetDamage(bulletResouldDamage);
     }
     #endregion
@@ -132,7 +129,7 @@ public class NewBulletMainWeapon : BaseModule
     private void EnergieDamageDebuff()
     {
         if (playerController.energieProduction < 0) {
-            bulletResouldDamage = bulletBaseDamage + Mathf.CeilToInt((float)bulletBaseDamage * (upgradeChooseList.percBulletDamage / 100) * 0.5f);
+            bulletResouldDamage = bulletBaseDamage + Mathf.CeilToInt((float)bulletBaseDamage * (playerWeaponController.shipData.percBulletDamage / 100) * 0.5f);
             particelBullet.BulletSetDamage(bulletResouldDamage);
 
         }

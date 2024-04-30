@@ -86,7 +86,7 @@ public class OrbitalLaser : MonoBehaviour
 
             foreach (OrbitalLaserOrb orb in orbitalLaserOrbs)
             {
-                orb.damage = Mathf.CeilToInt((float)playerWeaponController.olDamage * (1 + ((float)upgradeChooseList.percLaserDamage / 100)));
+                orb.damage = Mathf.CeilToInt((float)playerWeaponController.olDamage * (1 + ((float)playerWeaponController.shipData.percLaserDamage / 100)));
             }
         }
     }

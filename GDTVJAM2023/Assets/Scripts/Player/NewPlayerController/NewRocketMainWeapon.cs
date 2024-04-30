@@ -15,7 +15,6 @@ public class NewRocketMainWeapon : BaseModule
     
     //private Objects
     private GameManager gameManager;
-    private UpgradeChooseList upgradeChooseList;
     private PlayerWeaponController playerWeaponController;
     private NewPlayerController playerController;
 
@@ -29,7 +28,6 @@ public class NewRocketMainWeapon : BaseModule
         UpdateModuleValues();
 
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
         playerController = GetComponentInParent<NewPlayerController>();
         playerController.OnIntroOver += HandleStartShooting;
         playerWeaponController = GetComponentInParent<PlayerWeaponController>();
@@ -41,7 +39,7 @@ public class NewRocketMainWeapon : BaseModule
     public void HandleDamageUpdate(int damageToUpdate)
     {
         rockedBaseDamage += damageToUpdate;
-        rockedResultDamage = Mathf.CeilToInt((float)rockedBaseDamage * (1 + (upgradeChooseList.percRocketDamage / 100)));
+        rockedResultDamage = Mathf.CeilToInt((float)rockedBaseDamage * (1 + (playerWeaponController.shipData.percRocketDamage / 100)));
     }
 
     private void HandleStartShooting()

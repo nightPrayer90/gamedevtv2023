@@ -368,8 +368,8 @@ public class UpgradePanelController : MonoBehaviour
                 weaponCount++;
                 break;
             case 10: //weapon: supoort Modul
-                upgradeChooseList.chanceToGetTwoExp += 15;
-                upgradeChooseList.chanceToGetfullEnergy += 2;
+                playerWeaponController.shipData.chanceToGetTwoExp += 15;
+                playerWeaponController.shipData.chanceToGetFullEnergy += 2;
                 playerWeaponController.isLifeModul = true;
                 playerWeaponController.WeaponChoose();
                 
@@ -489,36 +489,36 @@ public class UpgradePanelController : MonoBehaviour
                 break;
 
             case 26: // crit damage
-                upgradeChooseList.baseBulletCritDamage += 7;
+                playerWeaponController.shipData.bulletCritDamage += 7;
                 playerWeaponController.WeaponChoose();
                 break;
             case 27: // crit chance
-                upgradeChooseList.baseBulletCritChance += 3;
+                playerWeaponController.shipData.bulletCritChance += 3;
                 playerWeaponController.WeaponChoose();
                 break;
             case 28: // explosion range
-                upgradeChooseList.baseRocketAOERadius += 8;
+                playerWeaponController.shipData.rocketAOERadius += 8;
                 playerWeaponController.WeaponChoose();
                 break;
             case 29: // burning tick damage
-                upgradeChooseList.laserBurningTickDamangePercent += 20;
+                playerWeaponController.shipData.laserBurningTickDamangePercent += 20;
                 playerWeaponController.WeaponChoose();
                 break;
             case 30: // burning chance
-                upgradeChooseList.baseLaserBurnDamageChance += 1;
+                playerWeaponController.shipData.burnDamageChance += 1;
                 playerWeaponController.WeaponChoose();
                 break;
             case 31: // invulnerability
-                upgradeChooseList.baseBoostInvulnerability += 0.2f;
+                playerWeaponController.shipData.boostInvulnerability += 0.2f;
                 break;
             case 32: // chance to get douple exp
-                upgradeChooseList.chanceToGetTwoExp += 10;
+                playerWeaponController.shipData.chanceToGetTwoExp += 10;
                 break;
             case 33: // 1 life to collect exp
-                upgradeChooseList.chanceToGet1Health += 2;
+                playerWeaponController.shipData.chanceToGetHealth += 2;
                 break;
             case 34: // rocket life time
-                upgradeChooseList.rocketLifeTime += 0.2f;
+                playerWeaponController.shipData.rocketLifeTime += 0.2f;
                 playerWeaponController.WeaponChoose();
                 break;
             case 35: // Chance to trigger a Nova if u get hit
@@ -528,20 +528,20 @@ public class UpgradePanelController : MonoBehaviour
 
                 break;
             case 37: // Bullet crit chance +10%
-               
-                upgradeChooseList.baseBulletCritChance += 10;
+
+                playerWeaponController.shipData.bulletCritChance += 10;
                 playerWeaponController.WeaponChoose();
                 break;
             case 38: // Extended Blast Expansion
-                upgradeChooseList.baseRocketAOERadius += 15;
+                playerWeaponController.shipData.rocketAOERadius += 15;
                 playerWeaponController.WeaponChoose();
                 break;
             case 39: // Ignition Augment
-                upgradeChooseList.baseLaserTickDamage += 3;
+                playerWeaponController.shipData.baseLaserTickDamage += 3;
                 playerWeaponController.WeaponChoose();
                 break;
             case 40: // Fortified Defense
-                upgradeChooseList.shieldHealth += 1;
+                playerWeaponController.shipData.shieldHealth += 1;
 
                 upgradeChooseList.upgrades[41].upgradeStartCount = 0;
                 upgradeChooseList.upgrades[42].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[42].UpgradeCount; 
@@ -549,7 +549,7 @@ public class UpgradePanelController : MonoBehaviour
                 //upgradeChooseList.weaponUpgrades[42].reqSupport = 2; // Lifeflow Shields
                 break;
             case 41: // Shielded Strike
-                upgradeChooseList.shieldDamage += 5;
+                playerWeaponController.shipData.shieldDamage += 5;
                 upgradeChooseList.upgrades[40].upgradeStartCount = 0;
                 upgradeChooseList.upgrades[61].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[61].UpgradeCount; 
                 //upgradeChooseList.weaponUpgrades[40].reqSupport = 99; // Fortified Defense
@@ -569,17 +569,17 @@ public class UpgradePanelController : MonoBehaviour
 
                 break;
             case 46: // Ballistic Boost
-                upgradeChooseList.percBulletDamage += 12;
+                playerWeaponController.shipData.percBulletDamage += 12;
                 playerWeaponController.UpdateWeaponValues();
                 playerWeaponController.UpdateMWDamage(0);
                 break;
             case 47: // Boom Boom Boost
-                upgradeChooseList.percRocketDamage += 15;
+                playerWeaponController.shipData.percRocketDamage += 15;
                 playerWeaponController.UpdateWeaponValues();
                 playerWeaponController.UpdateMWDamage(0);
                 break;
             case 48: // Beam Boost
-                upgradeChooseList.percLaserDamage += 15;
+                playerWeaponController.shipData.percLaserDamage += 15;
                 playerWeaponController.UpdateWeaponValues();
                 playerWeaponController.UpdateMWDamage(0);
                 break;
@@ -605,8 +605,8 @@ public class UpgradePanelController : MonoBehaviour
                 
                 break;
             case 55: // Titan Slayer
-            
-                upgradeChooseList.bossBonusDamage = 35;
+
+                playerWeaponController.shipData.bossBonusDamage = 35;
                 break;
             case 56: // Laser Orbit Accelerator
                 playerWeaponController.olRotationSpeed = Mathf.Round(playerWeaponController.olRotationSpeed * 1.25f);
@@ -639,7 +639,7 @@ public class UpgradePanelController : MonoBehaviour
                 //upgradeChooseList.weaponUpgrades[45].reqSupport = 4; // Shieldbreaker's Might
                 break;
             case 63: // Natural energie
-                upgradeChooseList.chanceToGetfullEnergy += 5;
+                playerWeaponController.shipData.chanceToGetFullEnergy += 5;
                 break;
             case 64: // Fast Head Cannon
                 playerWeaponController.hcBulletDamage = 2;
@@ -795,32 +795,32 @@ public class UpgradePanelController : MonoBehaviour
         switch (index)
         {
             case 0:
-                if (upgradeChooseList.mcBulletLvl < 8)
+                if (playerWeaponController.shipData.mcBulletLvl < 8)
                 {
-                    upgradeChooseList.mcBulletLvl += factor;
-                    upgradeChooseList.baseBulletCritChance += upgradeChooseList.critChance;
-                    upgradeChooseList.baseBulletCritDamage += upgradeChooseList.critDamage;
+                    playerWeaponController.shipData.mcBulletLvl += factor;
+                    playerWeaponController.shipData.bulletCritChance += playerWeaponController.shipData.critChance;
+                    playerWeaponController.shipData.bulletCritDamage += playerWeaponController.shipData.critDamage;
                 }
                 break;
             case 1:
-                if (upgradeChooseList.mcExplosionLvl < 8)
+                if (playerWeaponController.shipData.mcExplosionLvl < 8)
                 {
-                    upgradeChooseList.mcExplosionLvl += factor;
-                    upgradeChooseList.baseRocketAOERadius += upgradeChooseList.aoeRange;
+                    playerWeaponController.shipData.mcExplosionLvl += factor;
+                    playerWeaponController.shipData.rocketAOERadius += playerWeaponController.shipData.aoeRange;
                 }
                 break;
             case 2:
-                if (upgradeChooseList.mcLaserLvl < 8)
+                if (playerWeaponController.shipData.mcLaserLvl < 8)
                 {
-                    upgradeChooseList.mcLaserLvl += factor;
-                    upgradeChooseList.baseLaserBurnDamageChance += upgradeChooseList.burningChance;
+                    playerWeaponController.shipData.mcLaserLvl += factor;
+                    playerWeaponController.shipData.burnDamageChance += playerWeaponController.shipData.burningChance;
                 }
                 break;
             case 3:
-                if (upgradeChooseList.mcSupportLvl < 8)
+                if (playerWeaponController.shipData.mcSupportLvl < 8)
                 {
-                    upgradeChooseList.mcSupportLvl += factor;
-                    upgradeChooseList.baseSupportRealoadTime += upgradeChooseList.supportRealodTime;
+                    playerWeaponController.shipData.mcSupportLvl += factor;
+                    playerWeaponController.shipData.supportReloadTime += playerWeaponController.shipData.realodTime;
                 }
                 break;
         }
@@ -831,29 +831,29 @@ public class UpgradePanelController : MonoBehaviour
     {
         for(int i=0; i<8 ; i++) //classPointsBullets.Length
         {
-            if (!DisplayClassPoints(upgradeChooseList.mcBulletLvl, i))
+            if (!DisplayClassPoints(playerWeaponController.shipData.mcBulletLvl, i))
             { classPointsBullets[i].color = Color.white; /*Debug.Log("Bullets " + i);*/ }
 
-            if (!DisplayClassPoints(upgradeChooseList.mcExplosionLvl, i))
+            if (!DisplayClassPoints(playerWeaponController.shipData.mcExplosionLvl, i))
             { classPointsAOE[i].color = Color.white; }
 
-            if (!DisplayClassPoints(upgradeChooseList.mcLaserLvl, i))
+            if (!DisplayClassPoints(playerWeaponController.shipData.mcLaserLvl, i))
             { classPointsLaser[i].color = Color.white; }
 
-            if (!DisplayClassPoints(upgradeChooseList.mcSupportLvl, i))
+            if (!DisplayClassPoints(playerWeaponController.shipData.mcSupportLvl, i))
             { classPointsSupport[i].color = Color.white; }
         }
 
-        if (upgradeChooseList.mcBulletLvl > 0)
+        if (playerWeaponController.shipData.mcBulletLvl > 0)
         { classUpImage[0].sprite = classUpSprite[0]; }
 
-        if (upgradeChooseList.mcExplosionLvl > 0)
+        if (playerWeaponController.shipData.mcExplosionLvl > 0)
         { classUpImage[1].sprite = classUpSprite[1]; }
 
-        if (upgradeChooseList.mcLaserLvl > 0)
+        if (playerWeaponController.shipData.mcLaserLvl > 0)
         { classUpImage[2].sprite = classUpSprite[2]; }
 
-        if (upgradeChooseList.mcSupportLvl > 0)
+        if (playerWeaponController.shipData.mcSupportLvl > 0)
         { classUpImage[3].sprite = classUpSprite[3]; }
     }
 

@@ -21,6 +21,7 @@ public class ParticleSystemDestroy : MonoBehaviour
         //AudioManager.Instance.PlaySFX("Explosion");
         if (isEmittingSound == true && audioSource != null)
         {
+            audioSource.pitch = 1 + Random.Range(-0.3f, 0.3f); // Audio variation
             audioSource.volume = AudioManager.Instance.sfxVolume;
             audioSource.Play();
         }

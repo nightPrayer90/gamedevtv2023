@@ -3,49 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "ShipData", menuName = "Scriptable Objects/ShipData")]
 
+[CreateAssetMenu(fileName = "ShipData", menuName = "Scriptable Objects/ShipData")]
 public class ShipData : ScriptableObject
 {
-    //player controller
-    public float speed = 11f;
-    public float rotateSpeed = 3.5f;
-    public int health = 10;
-    public int baseDamage = 5;
-    public float fireRate = 0.4f;
-    public float pickupRange = 0.8f;
-    public float boostPower = 4f;
-    public float boostDuration = 2f;
-    public int protectionLevel = 0;
+    [Header("Class level")]
+    public int mcBulletLvl = 0;
+    public int mcExplosionLvl = 0;
+    public int mcLaserLvl = 0;
+    public int mcSupportLvl = 0;
 
-    // weapon controller
-    public int bulletClass = 0;
-    public int explosionClass = 0;
-    public int laserClass = 0;
-    public int supportClass = 0;
 
-    // upgrade stuff
-    public int moreUpgradePoints = 0;
-    public int chanceToDoubleExp = 0;
-    public int pecBulletDamage = 0;
-    public int pecExplosionDamage = 0;
-    public int pecLaserDamage = 0;
-    public int pecCritChance = 0;
-    public int pecAOE = 0;
-    public int pecBurningChance = 0;
-    public int pecBulletCritDamage = 0;
-    public float rocketLifeTime = 0f;
-    public int burningDamagePerTick = 0;
-    public int pecMainWeaponDamageBoss = 0;
-    public float laserShootingTime = 0;
+    [Header("Start Values")]
+    public int baseLaserTicks = 4;
+    public int baseLaserTickDamage = 5;
+    //public float baseAttackSpeed = 0;
+    public int laserBurningTickDamangePercent = 100;
+    public float boostInvulnerability = 0.5f;
 
-    // Hangar
-    public Color mainClassColor;
-    public Sprite shipIcon;
-    public Sprite shipWeaponImage;
-    public string shipName;
-    public string shipWeaponStr;
-    public string shipDescription;
-    public string shipWeaponDescription;
+    [Header("Basic Ability Values")]
+    public float percBulletDamage = 0;
+    public float percRocketDamage = 0;
+    public float percLaserDamage = 0;
+    
+    public float chanceToGetTwoExp = 0;
+    public float chanceToGetHealth = 0;
+    public float chanceToGetFullEnergy = 0;
+    public float rocketLifeTime = 0;
+
+    public int shieldHealth = 0;
+    public int shieldDamage = 0;
+    public int bossBonusDamage = 0;
+
+    public float supportReloadTime = 0;
+
+    
+
+    [Header("Weapon buffs")]
+    public int bulletCritChance = 0;
+    public int bulletCritDamage = 0;
+    public int burnDamageChance = 0;
+    public float rocketAOERadius = 0;
+
+
+    [Header("Const Class Upgrade Values")]
+    public int critChance = 7;
+    public int critDamage = 20;
+    public float aoeRange = 20;
+    public int burningChance = 2;
+    public int realodTime = 10;
+
+
+    //public int baseBulletCritChance = 0;
+    //public int baseBulletCritDamage = 100;
+    //public int baseLaserBurnDamageChance = 0;
+    //public float baseRocketAOERadius = 0;
+    //public int baseSupportRealoadTime = 0;
 
 }

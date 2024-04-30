@@ -154,7 +154,7 @@ public class EnemyHealth : MonoBehaviour
                 // calculate crit damage
 
                 int ran = UnityEngine.Random.Range(0, 100);
-                if (ran < playerWeaponController.bulletCritChance)
+                if (ran < playerWeaponController.shipData.bulletCritChance)
                 {
                     damage = CritDamage(damage);
                     resultColor = critColor;
@@ -276,7 +276,7 @@ public class EnemyHealth : MonoBehaviour
 
             // calculate burning damage
             int ran = UnityEngine.Random.Range(0, 100);
-            if (ran < playerWeaponController.burnDamageChance && isBurning == false)
+            if (ran < playerWeaponController.shipData.burnDamageChance && isBurning == false)
             {
                 isBurning = true;
                 InvokeBurningDamage();
@@ -325,14 +325,14 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeBurningDamage()
     {
-        int burningDamage = Mathf.CeilToInt( upgradeChooseList.baseLaserTickDamage * (upgradeChooseList.laserBurningTickDamangePercent)/100);
+        int burningDamage = Mathf.CeilToInt( playerWeaponController.shipData.baseLaserTickDamage * (playerWeaponController.shipData.laserBurningTickDamangePercent)/100);
 
         ShowDamageFromObjectsColor(burningDamage, burningColor);
         TakeLaserDamage(burningDamage,0);
 
         burnTickCount++;
 
-        if (burnTickCount > upgradeChooseList.baseLaserTicks)
+        if (burnTickCount > playerWeaponController.shipData.baseLaserTicks)
         {
             CancelInvoke("TakeBurningDamage");
             burnTickCount = 0;
@@ -386,7 +386,7 @@ public class EnemyHealth : MonoBehaviour
                     }
                     pos = transform.position;
 
-                    explosionRadius = 1.5f + playerWeaponController.rocketAOERadius;
+                    explosionRadius = 1.5f + playerWeaponController.shipData.rocketAOERadius;
                     novaDamage = 10;
 
                     break;
@@ -398,7 +398,7 @@ public class EnemyHealth : MonoBehaviour
                     }
                     pos = transform.position;
 
-                    explosionRadius = 0.5f + playerWeaponController.rocketAOERadius;
+                    explosionRadius = 0.5f + playerWeaponController.shipData.rocketAOERadius;
                     novaDamage = 6;
 
                     break;
@@ -435,7 +435,7 @@ public class EnemyHealth : MonoBehaviour
                     if (upgradeChooseList.upgrades[54].upgradeIndexInstalled > 0)
                     {
                         int ran = UnityEngine.Random.Range(0, 100);
-                        if (ran < playerWeaponController.bulletCritChance)
+                        if (ran < playerWeaponController.shipData.bulletCritChance)
                         {
                             adjustedDamage = CritDamage(adjustedDamage);
                             resultColor = critColor;
@@ -465,7 +465,7 @@ public class EnemyHealth : MonoBehaviour
 
     public int CritDamage(int damage)
     {
-        damage = Mathf.CeilToInt(damage * ((float)playerWeaponController.bulletCritDamage / 100));
+        damage = Mathf.CeilToInt(damage * ((float)playerWeaponController.shipData.bulletCritDamage / 100));
         //resultColor = critColor;
         return damage;
     }

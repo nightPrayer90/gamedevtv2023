@@ -71,39 +71,39 @@ public class ClassTooltip : MonoBehaviour
                 content_ = tooltipContent[contentType].content;
                 headerField.text = tooltipContent[contentType].header;
                 headerField.color = gameManager.cCPrefab.classColor[contentType];
-                if (upgradeChooseList.mcBulletLvl > 0) headerField.text = headerField.text + " - " + upgradeChooseList.mcBulletLvl.ToString();
-                content_ = content_.Replace("XXX", upgradeChooseList.percBulletDamage.ToString());
-                content_ = content_.Replace("YYY", upgradeChooseList.baseBulletCritChance.ToString());
-                content_ = content_.Replace("ZZZ", upgradeChooseList.baseBulletCritDamage.ToString());
+                if (playerWeaponController.shipData.mcBulletLvl > 0) headerField.text = headerField.text + " - " + playerWeaponController.shipData.mcBulletLvl.ToString();
+                content_ = content_.Replace("XXX", playerWeaponController.shipData.percBulletDamage.ToString());
+                content_ = content_.Replace("YYY", playerWeaponController.shipData.bulletCritChance.ToString());
+                content_ = content_.Replace("ZZZ", playerWeaponController.shipData.bulletCritDamage.ToString());
                 break;
             case 1: // explosion
                 content_ = tooltipContent[contentType].content;
                 headerField.text = tooltipContent[contentType].header;
                 headerField.color = gameManager.cCPrefab.classColor[contentType];
-                if (upgradeChooseList.mcExplosionLvl > 0) headerField.text = headerField.text + " - " + upgradeChooseList.mcExplosionLvl.ToString();
-                content_ = content_.Replace("XXX", upgradeChooseList.percRocketDamage.ToString());
-                content_ = content_.Replace("YYY", upgradeChooseList.baseRocketAOERadius.ToString());
-                content_ = content_.Replace("ZZZ", upgradeChooseList.rocketLifeTime.ToString());
+                if (playerWeaponController.shipData.mcExplosionLvl > 0) headerField.text = headerField.text + " - " + playerWeaponController.shipData.mcExplosionLvl.ToString();
+                content_ = content_.Replace("XXX", playerWeaponController.shipData.percRocketDamage.ToString());
+                content_ = content_.Replace("YYY", playerWeaponController.shipData.rocketAOERadius.ToString());
+                content_ = content_.Replace("ZZZ", playerWeaponController.shipData.rocketLifeTime.ToString());
                 break;
             case 2: // laser
                 content_ = tooltipContent[contentType].content;
                 headerField.text = tooltipContent[contentType].header;
                 headerField.color = gameManager.cCPrefab.classColor[contentType];
-                if (upgradeChooseList.mcLaserLvl > 0) headerField.text = headerField.text + " - " + upgradeChooseList.mcLaserLvl.ToString();
-                content_ = content_.Replace("XXX", upgradeChooseList.percLaserDamage.ToString());
-                content_ = content_.Replace("YYY", upgradeChooseList.baseLaserBurnDamageChance.ToString());
-                content_ = content_.Replace("ZZZ", upgradeChooseList.baseLaserTicks.ToString() + "x" + upgradeChooseList.baseLaserTickDamage.ToString());
-                content_ = content_.Replace("AAA", upgradeChooseList.laserBurningTickDamangePercent.ToString());
+                if (playerWeaponController.shipData.mcLaserLvl > 0) headerField.text = headerField.text + " - " + playerWeaponController.shipData.mcLaserLvl.ToString();
+                content_ = content_.Replace("XXX", playerWeaponController.shipData.percLaserDamage.ToString());
+                content_ = content_.Replace("YYY", playerWeaponController.shipData.burnDamageChance.ToString());
+                content_ = content_.Replace("ZZZ", playerWeaponController.shipData.baseLaserTicks.ToString() + "x" + playerWeaponController.shipData.baseLaserTickDamage.ToString());
+                content_ = content_.Replace("AAA", playerWeaponController.shipData.laserBurningTickDamangePercent.ToString());
                 break;
             case 3: // support
                 content_ = tooltipContent[contentType].content;
                 headerField.text = tooltipContent[contentType].header;
                 headerField.color = gameManager.cCPrefab.classColor[contentType];
-                if (upgradeChooseList.mcSupportLvl > 0) headerField.text = headerField.text + " - " + upgradeChooseList.mcSupportLvl.ToString();
-                content_ = content_.Replace("XXX", upgradeChooseList.baseSupportRealoadTime.ToString());
-                content_ = content_.Replace("YYY", upgradeChooseList.chanceToGetTwoExp.ToString());
-                content_ = content_.Replace("ZZZ", upgradeChooseList.chanceToGet1Health.ToString());
-                content_ = content_.Replace("AAA", upgradeChooseList.baseBoostInvulnerability.ToString());
+                if (playerWeaponController.shipData.mcSupportLvl > 0) headerField.text = headerField.text + " - " + playerWeaponController.shipData.mcSupportLvl.ToString();
+                content_ = content_.Replace("XXX", playerWeaponController.shipData.supportReloadTime.ToString());
+                content_ = content_.Replace("YYY", playerWeaponController.shipData.chanceToGetTwoExp.ToString());
+                content_ = content_.Replace("ZZZ", playerWeaponController.shipData.chanceToGetHealth.ToString());
+                content_ = content_.Replace("AAA", playerWeaponController.shipData.boostInvulnerability.ToString());
                 break;
             case 4: // ship
                 content_ = tooltipContent[contentType].content;
@@ -125,7 +125,7 @@ public class ClassTooltip : MonoBehaviour
                 content_ = content_.Replace("XXX", playerWeaponController.hcBulletDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.hcReloadTime_.ToString());
                  content_ = content_.Replace("ZZZ", playerWeaponController.hcSalveCount_.ToString());
-                content_ = content_.Replace("AAA", upgradeChooseList.baseBulletCritChance.ToString() + "%/ " + upgradeChooseList.baseBulletCritDamage.ToString() +  "% (" + Mathf.CeilToInt(((float)upgradeChooseList.baseBulletCritDamage/100)* playerWeaponController.hcBulletDamage_).ToString() + ")");
+                content_ = content_.Replace("AAA", upgradeChooseList.playerWeaponController.shipData.ToString() + "%/ " + upgradeChooseList.playerWeaponController.shipData.ToString() +  "% (" + Mathf.CeilToInt(((float)playerWeaponController.shipData.bulletCritDamage/100)* playerWeaponController.hcBulletDamage_).ToString() + ")");
                 break;
             case 7: // Rocked Launcher
                 headerField.text = tooltipContent[6].header;
@@ -134,7 +134,7 @@ public class ClassTooltip : MonoBehaviour
                 content_ += tooltipContent[6].content;
                 content_ = content_.Replace("XXX", playerWeaponController.rlDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.rlReloadTime_.ToString());
-                content_ = content_.Replace("AAA", (playerWeaponController.rlAOERange_ * (1 + upgradeChooseList.baseRocketAOERadius / 100)).ToString());
+                content_ = content_.Replace("AAA", (playerWeaponController.rlAOERange_ * (1 + playerWeaponController.shipData.rocketAOERadius / 100)).ToString());
                 break;
             case 8: // Fire Flies
                 headerField.text = tooltipContent[7].header;
@@ -144,7 +144,7 @@ public class ClassTooltip : MonoBehaviour
                 content_ = content_.Replace("XXX", playerWeaponController.ffDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.ffReloadTime_.ToString());
                 content_ = content_.Replace("ZZZ", playerWeaponController.ffbulletCount_.ToString());
-                content_ = content_.Replace("AAA", upgradeChooseList.baseBulletCritChance.ToString() + "%/ " + upgradeChooseList.baseBulletCritDamage.ToString() + "% (" + Mathf.CeilToInt(((float)upgradeChooseList.baseBulletCritDamage/100) * playerWeaponController.ffDamage_).ToString() + ")");
+                content_ = content_.Replace("AAA", playerWeaponController.shipData.bulletCritChance.ToString() + "%/ " + playerWeaponController.shipData.bulletCritDamage.ToString() + "% (" + Mathf.CeilToInt(((float)playerWeaponController.shipData.bulletCritDamage/100) * playerWeaponController.ffDamage_).ToString() + ")");
                 break;
             case 9: // Bullet Wings
                 headerField.text = tooltipContent[8].header;
@@ -154,7 +154,7 @@ public class ClassTooltip : MonoBehaviour
                 content_ = content_.Replace("XXX", playerWeaponController.bwDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.bwRealoadTime_.ToString());
                 content_ = content_.Replace("ZZZ", playerWeaponController.bwSalveCount_.ToString());
-                content_ = content_.Replace("AAA", upgradeChooseList.baseBulletCritChance.ToString() + "%/ " + upgradeChooseList.baseBulletCritDamage.ToString() + "% (" + Mathf.CeilToInt(((float)upgradeChooseList.baseBulletCritDamage/100) * playerWeaponController.bwDamage_).ToString() + ")");
+                content_ = content_.Replace("AAA", playerWeaponController.shipData.bulletCritChance.ToString() + "%/ " + playerWeaponController.shipData.bulletCritDamage.ToString() + "% (" + Mathf.CeilToInt(((float)playerWeaponController.shipData.bulletCritDamage/100) * playerWeaponController.bwDamage_).ToString() + ")");
                 break;
             case 10: // Life Modul
                 headerField.text = tooltipContent[9].header;
@@ -172,25 +172,25 @@ public class ClassTooltip : MonoBehaviour
                 content_ = content_.Replace("XXX", playerWeaponController.sgDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.sgReloadTime_.ToString());
                 content_ = content_.Replace("ZZZ", playerWeaponController.sgBulletCount_.ToString());
-                content_ = content_.Replace("AAA", upgradeChooseList.baseBulletCritChance.ToString() + "%/ " + upgradeChooseList.baseBulletCritDamage.ToString() + "% (" + Mathf.CeilToInt(((float)upgradeChooseList.baseBulletCritDamage/100) * playerWeaponController.sgDamage_).ToString() + ")");
+                content_ = content_.Replace("AAA", playerWeaponController.shipData.bulletCritChance.ToString() + "%/ " + playerWeaponController.shipData.bulletCritDamage.ToString() + "% (" + Mathf.CeilToInt(((float)playerWeaponController.shipData.bulletCritDamage/100) * playerWeaponController.sgDamage_).ToString() + ")");
                 break;
             case 12: // Front Shield
                 headerField.text = tooltipContent[11].header;
                 headerField.color = gameManager.cCPrefab.classColor[3];
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[11].content;
-                content_ = content_.Replace("XXX", (playerWeaponController.fsShieldLife_ + upgradeChooseList.shieldHealth).ToString());
+                content_ = content_.Replace("XXX", (playerWeaponController.fsShieldLife_ + playerWeaponController.shipData.shieldHealth).ToString());
                 content_ = content_.Replace("YYY", (playerWeaponController.fsSpawnTime_).ToString());
-                content_ = content_.Replace("ZZZ", (upgradeChooseList.shieldDamage).ToString());
+                content_ = content_.Replace("ZZZ", (playerWeaponController.shipData.shieldDamage).ToString());
                 break;
             case 13: // Back Schield
                 headerField.text = tooltipContent[12].header;
                 headerField.color = gameManager.cCPrefab.classColor[3]; 
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[12].content;
-                content_ = content_.Replace("XXX", (playerWeaponController.bsShildLife_ + upgradeChooseList.shieldHealth).ToString());
+                content_ = content_.Replace("XXX", (playerWeaponController.bsShildLife_ + playerWeaponController.shipData.shieldHealth).ToString());
                 content_ = content_.Replace("YYY", (playerWeaponController.bsSpawnTime_).ToString());
-                content_ = content_.Replace("ZZZ", (upgradeChooseList.shieldDamage).ToString());
+                content_ = content_.Replace("ZZZ", (playerWeaponController.shipData.shieldDamage).ToString());
                 break;
             case 14: // Shock Nova
                 headerField.text = tooltipContent[13].header;
@@ -209,7 +209,7 @@ public class ClassTooltip : MonoBehaviour
                 content_ = content_.Replace("XXX", playerWeaponController.rwDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.rwReloadTime_.ToString());
                 content_ = content_.Replace("ZZZ", playerWeaponController.rwSalveCount_.ToString());
-                content_ = content_.Replace("AAA", (0.4 * (1 + upgradeChooseList.baseRocketAOERadius/100)).ToString());
+                content_ = content_.Replace("AAA", (0.4 * (1 + playerWeaponController.shipData.rocketAOERadius/100)).ToString());
                 break;
             case 16: // Front Laser
                 headerField.text = tooltipContent[15].header;
@@ -219,7 +219,7 @@ public class ClassTooltip : MonoBehaviour
                 content_ = content_.Replace("XXX", playerWeaponController.flDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.flReloadTime_.ToString());
                 content_ = content_.Replace("ZZZ", playerWeaponController.flShootingTime_.ToString());
-                content_ = content_.Replace("AAA", upgradeChooseList.baseLaserBurnDamageChance.ToString());
+                content_ = content_.Replace("AAA", playerWeaponController.shipData.burnDamageChance.ToString());
                 break;
             case 17: // Orbital Laser
                 headerField.text = tooltipContent[16].header;
@@ -228,7 +228,7 @@ public class ClassTooltip : MonoBehaviour
                 content_ += tooltipContent[16].content;
                 content_ = content_.Replace("XXX", playerWeaponController.olDamage_.ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.olReloadTime_.ToString());
-                content_ = content_.Replace("AAA", upgradeChooseList.baseLaserBurnDamageChance.ToString());
+                content_ = content_.Replace("AAA", playerWeaponController.shipData.burnDamageChance.ToString());
                 break;
             case 69: // Thermal Sphere
                 headerField.text = tooltipContent[17].header;
