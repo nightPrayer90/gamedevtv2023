@@ -41,7 +41,7 @@ MonoBehaviour:
 
         Health: 5 HP
 
-        Strafe engine: 2.5 / 4 TN'
+        Strafe engine: 3 / 4 TN'
       costMass: 0.6
       costEnergie: 0
       energieProduction: 1.9
@@ -50,7 +50,7 @@ MonoBehaviour:
       protection: 0
       mainEngine: 0
       directionEngine: 0
-      strafeEngine: 2.5
+      strafeEngine: 3
       boostEngine: 0
       boostStrafeEngine: 4
       bulletClass: 0
@@ -246,8 +246,7 @@ MonoBehaviour:
       canFront: 0
       canBack: 0
       modulDescription_multiLineText: "<color=#FFBF00>The Strafe Engine allows you
-        \nto strafe left and right.</color>\nStrafe force: 3.5 TN\nBoost force: 5
-        TN"
+        \nto strafe left and right.</color>\nStrafe force: 4 TN\nBoost force: 6 TN"
       costMass: 0.1
       costEnergie: 0.1
       energieProduction: 0
@@ -256,9 +255,9 @@ MonoBehaviour:
       protection: 0
       mainEngine: 0
       directionEngine: 0
-      strafeEngine: 3.5
+      strafeEngine: 4
       boostEngine: 0
-      boostStrafeEngine: 5
+      boostStrafeEngine: 6
       bulletClass: 0
       rocketClass: 0
       laserClass: 0

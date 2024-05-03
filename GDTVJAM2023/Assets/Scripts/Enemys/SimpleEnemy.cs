@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class SimpleEnemy : MonoBehaviour
 {
-   
     public enum MoveTyp
     {
         BasicFollow,

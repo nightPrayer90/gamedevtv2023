@@ -16,11 +16,12 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
     public int btnIndex = 0;
 
     [Header("Selection Controls")]
-    public Color32 baseColor = new Color32(8,57,156,255);
-    public Color32 selectionColor = new Color32(124,124,255,255);
+    public Color32 baseColor = new Color32(8, 57, 156, 255);
+    public Color32 selectionColor = new Color32(124, 124, 255, 255);
     private Selection selectionManager;
     private ModuleStorage moduleStorage;
     private HangarUIController hangarUIController;
+    public HangarRotateShips hangarRotateShips;
 
 
     /* **************************************************************************** */
@@ -44,7 +45,8 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
         nameText.text = btnName;
 
         // Sprite
-        moduleImagePanel.sprite = btnSprite;
+        if (moduleImagePanel != null)
+            moduleImagePanel.sprite = btnSprite;
     }
     #endregion
 
@@ -110,8 +112,25 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
                 hangarUIController.GoToSkillBoard();
                 AudioManager.Instance.PlaySFX("MouseKlick");
                 break;
+
+            case 4: // preset 1
+                hangarRotateShips.RotateShip(1);
+                AudioManager.Instance.PlaySFX("MouseKlick");
+                break;
+            case 5: // preset 2
+                hangarRotateShips.RotateShip(2);
+                AudioManager.Instance.PlaySFX("MouseKlick");
+                break;
+            case 6: // preset 3
+                hangarRotateShips.RotateShip(3);
+                AudioManager.Instance.PlaySFX("MouseKlick");
+                break;
+            case 7: // preset 4
+                hangarRotateShips.RotateShip(4);
+                AudioManager.Instance.PlaySFX("MouseKlick");
+                break;
         }
-       
+
     }
     #endregion
 }

@@ -26,6 +26,9 @@ public class NewStrafeEngine : BaseModule
 
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<NewPlayerController>();
         playerRigidbody = playerController.GetComponent<Rigidbody>();
+
+        strafeForce = moduleValues.strafeEngine;
+        strafeBoostforce = moduleValues.boostStrafeEngine;
     }
 
     // Update is called once per frame

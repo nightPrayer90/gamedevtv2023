@@ -9,10 +9,8 @@ public class EnemyHealth : MonoBehaviour
     public GameObject explosionObject;
     public GameObject collisionExplosionObject;
     public GameObject expOrb;
-    public GameObject classPickup;
     public GameObject miniMapIcon;
     public ParticleSystem engineParticle;
-    private Collider enemyCollider;
     public GameObject novaOnDie;
 
     [Header("Enemy Settings")]
@@ -46,7 +44,7 @@ public class EnemyHealth : MonoBehaviour
 
 
     [Header("AOE Damage Control")]
-    public GameObject _replacement;
+    public GameObject _AOEreplacement;
     private float startCollisionMultiplier = 64;
     private float collisionMultiplier = 64;
 
@@ -64,7 +62,7 @@ public class EnemyHealth : MonoBehaviour
     private GameManager gameManager;
     private UpgradeChooseList upgradeChooseList;
     private PlayerWeaponController playerWeaponController;
-    
+    private Collider enemyCollider;
 
 
 
@@ -233,9 +231,9 @@ public class EnemyHealth : MonoBehaviour
                 Drop();
 
                 // create object to die effect
-                if (_replacement != null)
+                if (_AOEreplacement != null)
                 {
-                    var replacement = Instantiate(_replacement, transform.position, transform.rotation);
+                    var replacement = Instantiate(_AOEreplacement, transform.position, transform.rotation);
 
                     // make the die effect object explode
                     var rbs = replacement.GetComponentsInChildren<Rigidbody>();
@@ -529,16 +527,8 @@ public class EnemyHealth : MonoBehaviour
     {
         if (expOrbSpawn)
         {
-            int ran = UnityEngine.Random.Range(0, 100);
 
-            if (ran >= 0 || classPickup == null)
-            {
                 ObjectPoolManager.SpawnObject(expOrb, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
-            }
-            else
-            {
-                ObjectPoolManager.SpawnObject(classPickup, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
-            }
         }
     }
 }
