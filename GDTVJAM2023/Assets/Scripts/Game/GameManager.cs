@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 
 public class GameManager : MonoBehaviour
@@ -103,6 +104,9 @@ public class GameManager : MonoBehaviour
     private bool canSpawnNextDimention = true;
     public MenuButtonController menuButtonController;
 
+
+    // Events
+    public event Action<bool> OnDimensionSwap;
 
     /* **************************************************************************** */
     /* Lifecycle-Methoden---------------------------------------------------------- */
@@ -455,6 +459,7 @@ public class GameManager : MonoBehaviour
     {
         canSpawnNextDimention = true;
     }
+
     // update the enemy counter text
     public void UpdateEnemyCounter(float curretEnemyCounter_)
     {
@@ -521,6 +526,7 @@ public class GameManager : MonoBehaviour
         DestroyAllEXPOrbs();
 
         dimensionShift = true;
+        OnDimensionSwap?.Invoke(dimensionShift);
     }
 
     // player goes back into the first dimension
@@ -573,6 +579,7 @@ public class GameManager : MonoBehaviour
         currentSpawnManager.transform.SetParent(gameObject.transform);
 
         dimensionShift = false;
+        OnDimensionSwap?.Invoke(dimensionShift);
 
         Invoke("InvokeCanSpawnNext", 2f);
     }
@@ -611,7 +618,7 @@ public class GameManager : MonoBehaviour
         // create 3 random possible numbers that do not duplicate each other
         for (int i = 0; i < 3; i++)
         {
-            int randomIndex = Random.Range(0, valueList.Count);     // generate a random number
+            int randomIndex = UnityEngine.Random.Range(0, valueList.Count);     // generate a random number
             selectedNumbers.Add(valueList[randomIndex]);            // save the number in a list
             valueList.RemoveAt(randomIndex);                        // remove the value from the temp list
         }
