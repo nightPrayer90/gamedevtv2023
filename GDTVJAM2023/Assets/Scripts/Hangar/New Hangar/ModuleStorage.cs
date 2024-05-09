@@ -117,6 +117,8 @@ public class ModuleStorage : MonoBehaviour
         BuildShipFromModuleData();
 
         BuildModuleGrid();
+
+        hangarUIController.SetShipPanel();
     }
 
     /// <summary>
@@ -271,9 +273,6 @@ public class ModuleStorage : MonoBehaviour
 
         // delete GameObject from savelist
         installedModuleData.Clear();
-
-        // reset ship ui panel
-        hangarUIController.SetShipPanel();
     }
 
     public void RemoveStrafeEngine(GameObject strafeEngine)
