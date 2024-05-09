@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using DG.Tweening;
 //using UnityEngine.SceneManagement;
 using TMPro;
-using static Sphere;
 
 public class HangarUIController : MonoBehaviour
 {
