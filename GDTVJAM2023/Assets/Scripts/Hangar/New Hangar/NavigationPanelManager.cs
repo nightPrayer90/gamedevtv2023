@@ -115,19 +115,31 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
 
             case 4: // preset 1
                 hangarRotateShips.RotateShip(1);
+                moduleStorage.RemoveAllModule();
+                moduleStorage.playerData.ActiveShip = 0;
                 AudioManager.Instance.PlaySFX("MouseKlick");
+                moduleStorage.LoadShip();
                 break;
             case 5: // preset 2
                 hangarRotateShips.RotateShip(2);
+                moduleStorage.RemoveAllModule();
+                moduleStorage.playerData.ActiveShip = 1;
                 AudioManager.Instance.PlaySFX("MouseKlick");
+                moduleStorage.LoadShip();
                 break;
             case 6: // preset 3
                 hangarRotateShips.RotateShip(3);
+                moduleStorage.RemoveAllModule();
+                moduleStorage.playerData.ActiveShip = 2;
                 AudioManager.Instance.PlaySFX("MouseKlick");
+                moduleStorage.LoadShip();
                 break;
             case 7: // preset 4
                 hangarRotateShips.RotateShip(4);
+                moduleStorage.RemoveAllModule();
+                moduleStorage.playerData.ActiveShip = 3;
                 AudioManager.Instance.PlaySFX("MouseKlick");
+                moduleStorage.LoadShip();
                 break;
         }
 

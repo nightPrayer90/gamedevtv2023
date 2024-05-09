@@ -91,6 +91,21 @@ public class ModuleStorage : MonoBehaviour
 
     void Start()
     {
+        // find selection manager
+        selectionManager = GameObject.Find("SelectionController").GetComponent<Selection>();
+
+        // set ShipPanel
+        hangarUIController = selectionManager.gameObject.GetComponent<HangarUIController>();
+        hangarUIController.SetShipPanel();
+
+        LoadShip();
+#if UNITY_EDITOR
+        AudioManager.Instance.LoadPlayerData(playerData.savePath);
+#endif
+    }
+
+    public void LoadShip()
+    {
         // load active ship
         installedModuleData = new();
 
@@ -100,13 +115,6 @@ public class ModuleStorage : MonoBehaviour
         }
 
         BuildShipFromModuleData();
-
-        // find selection manager
-        selectionManager = GameObject.Find("SelectionController").GetComponent<Selection>();
-
-        // set ShipPanel
-        hangarUIController = selectionManager.gameObject.GetComponent<HangarUIController>();
-        hangarUIController.SetShipPanel();
 
         BuildModuleGrid();
     }
