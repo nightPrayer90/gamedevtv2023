@@ -79,15 +79,6 @@ public class GameManager : MonoBehaviour
     [Header("Floating Damage")]
     public GameObject textPrefab;
 
-
-    public enum StartShip
-    {
-        bullet,
-        rocket,
-        laser,
-        custom
-    }
-
     [Header("Player Ship")]
     public PlayerData playerData;
 

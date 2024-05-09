@@ -7,6 +7,7 @@ public class NewBaseEngine : BaseModule
     private Rigidbody playerRigidbody;
     private GameManager gameManager;
     private bool useBoost = false;
+    private bool powerBoostResetFlag = true;
 
     [Header("Forward Engine")]
     [SerializeField] private ParticleSystem ps_engine;
@@ -16,8 +17,10 @@ public class NewBaseEngine : BaseModule
     private float totalThrustForce = 0;
     public bool hasPowerBoost = true;
     public bool hasFontBoost = true;
-    public float FrontBoostPower;
-    public float FrontBoostCost = 0.1f;
+    public float frontBoostPower;
+    public float frontBoostCost = 0.1f;
+    public float powerBoostDowntime = 3f;
+    public float powerBoostCost = 0.3f;
 
     [Header("Backwards Engine")]
     [SerializeField] private ParticleSystem[] ps_backEngines;
@@ -25,7 +28,7 @@ public class NewBaseEngine : BaseModule
     public float backForce = 1f;
     private float totalBackForce = 0;
     public bool hasBackBoost = true;
-    public float BackBoostPower;
+    public float backBoostPower;
 
     [Header("Energie Show Options")]
     public bool canShowEnergie = true;
@@ -43,7 +46,7 @@ public class NewBaseEngine : BaseModule
         UpdateModuleValues();
 
         thrustForce = moduleValues.mainEngine;
-        FrontBoostPower = moduleValues.boostEngine;
+        frontBoostPower = moduleValues.boostEngine;
 
         GameObject go = GameObject.Find("Game Manager");
         gameManager = go.GetComponent<GameManager>();
@@ -69,39 +72,50 @@ public class NewBaseEngine : BaseModule
         // Forwards
         if (playerController.verticalInput > 0.5)
         {
-            // boost
-            if (hasFontBoost == true && playerController.boostInput && (playerController.energieCurrent > 1 || useBoost == true))
+            // boost and abilitys
+            if (hasFontBoost == true && (playerController.boostInput || playerController.abilityInput) && playerController.energieCurrent > 0)
             {
-                totalThrustForce = thrustForce + FrontBoostPower;
+                // normal boost
+                if (playerController.boostInput && playerController.energieCurrent > 0)
+                {
+                    totalThrustForce = thrustForce + frontBoostPower;
+                    playerController.energieCurrent -= frontBoostCost;
 
-                // powerboost
-                if (hasPowerBoost == true && playerController.energieCurrent >= playerController.energieMax * 0.90f)
+                    totalThrustForce = thrustForce + frontBoostPower;
+                    ps_boostParticle.Emit(1);
+                    ps_boostEngine.Emit(1);
+
+                    useBoost = true;
+                    playerController.useBoost = true;
+                }
+
+                // power boost
+                if (hasPowerBoost == true && playerController.abilityInput && playerController.energieCurrent >= playerController.energieMax * powerBoostCost && powerBoostResetFlag)
                 {
                     gameManager.ScreenShake(5);
                     AudioManager.Instance.PlaySFX("PlayerBoostKick");
                     ps_boostParticle.Emit(80);
                     ps_boostEngine.Emit(30);
-                    playerRigidbody.AddForce(-transform.right * totalThrustForce * 25, ForceMode.Force);
+
+                    Debug.Log(useBoost);
+
+                    if (useBoost == true) playerRigidbody.AddForce(-transform.right * totalThrustForce * 20, ForceMode.Force);
+                    else playerRigidbody.AddForce(-transform.right * totalThrustForce * 70, ForceMode.Force);
+
                     playerController.GetInvulnerability();
-                    playerController.energieCurrent -= playerController.energieMax * 0.25f;
+                    playerController.energieCurrent -= playerController.energieMax * powerBoostCost;
+                    powerBoostResetFlag = false;
+                    Invoke(nameof(InvokeResetPowerBoost), powerBoostDowntime);
+
                 }
-                else
-                {
-                    playerController.energieCurrent -= FrontBoostCost;
-                }
 
-                totalThrustForce = thrustForce + FrontBoostPower;
-                ps_boostParticle.Emit(1);
-                ps_boostEngine.Emit(1);
-
-                useBoost = true;
-                playerController.useBoost = true;
-
-                if (playerController.energieCurrent < FrontBoostCost) useBoost = false;
+                if (playerController.energieCurrent < frontBoostCost) useBoost = false;
             }
+
+            // normal Flight
             else
             {
-                totalThrustForce = thrustForce * EnergieDebuffForce();
+                totalThrustForce = thrustForce;
                 ps_engine.Emit(1);
 
                 useBoost = false;
@@ -113,8 +127,6 @@ public class NewBaseEngine : BaseModule
 
             // Wende die Kraft auf das Raumschiff an
             playerRigidbody.AddForce(thrust);
-
-
         }
 
         // Backwards
@@ -123,17 +135,17 @@ public class NewBaseEngine : BaseModule
             // boost
             if (hasBackBoost == true && playerController.boostInput && (playerController.energieCurrent > 1 || useBoost == true))
             {
-                totalBackForce = backForce + BackBoostPower;
+                totalBackForce = backForce + backBoostPower;
                 foreach (ParticleSystem ps in ps_backBoostEngines)
                 {
                     ps.Emit(1);
                 }
 
-                playerController.energieCurrent -= FrontBoostCost;
+                playerController.energieCurrent -= frontBoostCost;
                 useBoost = true;
                 playerController.useBoost = true;
 
-                if (playerController.energieCurrent < FrontBoostCost)
+                if (playerController.energieCurrent < frontBoostCost)
                 {
                     useBoost = false;
                     playerController.useBoost = false;
@@ -141,7 +153,7 @@ public class NewBaseEngine : BaseModule
             }
             else
             {
-                totalBackForce = backForce * EnergieDebuffForce();
+                totalBackForce = backForce;
                 foreach (ParticleSystem ps in ps_backEngines)
                 {
                     ps.Emit(1);
@@ -153,8 +165,6 @@ public class NewBaseEngine : BaseModule
 
             // Wende die Kraft auf das Raumschiff an
             playerRigidbody.AddForce(thrust);
-
-
         }
     }
 
@@ -208,13 +218,9 @@ public class NewBaseEngine : BaseModule
         }
     }
 
-    private float EnergieDebuffForce()
+    private void InvokeResetPowerBoost()
     {
-        float debuffForce = 1;
-        if (playerController.energieProduction < 0)
-        {
-            debuffForce = 0.7f;
-        }
-        return debuffForce;
+        powerBoostResetFlag = true;
+        ps_boostParticle.Emit(100);
     }
 }

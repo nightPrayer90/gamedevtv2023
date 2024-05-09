@@ -62,6 +62,7 @@ public class Boss02 : MonoBehaviour
     private Rigidbody playerRb;
     public Rigidbody rb;
     private GameManager gameManager;
+    public BossParticle bossParticle;
 
     public Boss2upPhase upPhase;
     public Boss2upPhase2 upPhase2;
@@ -153,6 +154,7 @@ public class Boss02 : MonoBehaviour
         if (distanceToPlayer <= 4.1f)
         {
             bossState = 1;
+            bossParticle.ParticleStop();
             damageArea.SetActive(true);
             gameManager.ScreenShake(3);
             AudioManager.Instance.PlaySFX("LiftUPBoss");
@@ -197,6 +199,7 @@ public class Boss02 : MonoBehaviour
             if (isMinimap == false && gameManager.districtNumber == bossIndex)
             {
                 minimapIcon.SetActive(true);
+                bossParticle.ParticleStart();
 
                 minimapSpR.DOFade(1f, 2f).SetDelay(1f);
                 minimapIcon.transform.DOScale(new Vector3(15f, 15f, 15f), 2f).SetDelay(1f).OnComplete(() =>

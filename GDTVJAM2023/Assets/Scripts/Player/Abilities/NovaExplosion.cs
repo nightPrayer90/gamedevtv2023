@@ -41,7 +41,7 @@ public class NovaExplosion : MonoBehaviour
         weaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         novaDamage = weaponController.neDamage;
         spawnInterval = weaponController.neReloadTime;
-        explosionRadius = weaponController.neRadius * weaponController.shipData.rocketAOERadius;
+        explosionRadius = weaponController.neRadius * (1+weaponController.shipData.rocketAOERadius/100);
     }
 
 

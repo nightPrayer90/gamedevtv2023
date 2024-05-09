@@ -312,7 +312,7 @@ public class ShieldController : MonoBehaviour
 
         Vector3 pos = transform.position;
         LayerMask layerMask = (1 << 6);
-        explosionRadius = explosionRadius + playerWeaponController.shipData.rocketAOERadius;
+        explosionRadius = explosionRadius * (1+playerWeaponController.shipData.rocketAOERadius/100);
 
         if (gameManager.dimensionShift == true)
         {

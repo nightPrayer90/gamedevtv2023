@@ -42,6 +42,8 @@ public class SpawnManager : MonoBehaviour
     private SpawnDistrictList spawnDistrictList;
     private ParticleSystem spawnParticle;
 
+    private int spawncount = 0;
+
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
     /* **************************************************************************** */
@@ -104,6 +106,7 @@ public class SpawnManager : MonoBehaviour
                 spawnParticle.transform.position = spawnPosition;
                 spawnParticle.Emit(50);
             }
+
             switch (wave)
             {
                 case Wave.Wave1:
@@ -134,6 +137,7 @@ public class SpawnManager : MonoBehaviour
                     ObjectPoolManager.SpawnObject(objectToSpawn, spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.Wave9);
                     break;
             }
+            spawncount += 1;
         }
     }
 

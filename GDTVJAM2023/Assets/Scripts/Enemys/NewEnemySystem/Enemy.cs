@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public Collider enemyCollider;//
     [HideInInspector] public GameManager gameManager;///
     [HideInInspector] public PlayerWeaponController playerWeaponController;//
-    [HideInInspector] public NewEnemyBullet enemyBullet;//
+    [HideInInspector] public EnemyBullet enemyBullet;//
     [HideInInspector] public Rigidbody playerRb;//
     [HideInInspector] public UpgradeChooseList upgradeChooseList;//
 
@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         gameManager.OnDimensionSwap += HandleDimensionSwap;
 
-        enemyBullet = gameObject.GetComponent<NewEnemyBullet>();
+        enemyBullet = gameObject.GetComponent<EnemyBullet>();
         upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
         enemyCollider = GetComponent<Collider>();
         playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();

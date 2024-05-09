@@ -7,62 +7,47 @@ public class EnemyHealth : MonoBehaviour
 {
     [Header("Objects")]
     public GameObject explosionObject;
-    public GameObject collisionExplosionObject;
-    public GameObject expOrb;
+    public GameObject _AOEreplacement;
+    private float collisionMultiplier = 128;
+    public GameObject _burnReplacement;
+    public GameObject dropObject;
     public GameObject miniMapIcon;
-    public ParticleSystem engineParticle;
     public GameObject novaOnDie;
+    public ParticleSystem burnParticleSystem;
+    public Collider enemyCollider;
 
     [Header("Enemy Settings")]
     public float enemyHealth = 2.0f;
-    [HideInInspector]public float enemyStartHealth;
+    [HideInInspector] public float enemyStartHealth;
     public int collisonDamage = 1;
     public float explosionForce = 5.0f;
-    public bool expOrbSpawn = false;
     public bool secondDimensionEnemy = false;
-    public bool canTakeDamage = true;
+    [HideInInspector] public bool canTakeDamage = true;
     public bool canPoolObject = true;
     public event EventHandler DieEvent;
     public bool isBoss = false;
-    public bool isMine = false;
-
-    [Header("Enemy Weapons")]
-    public List<EnemyParticleBullet> enemyWeapons;
-    public List<ParticleSystem> enemyWeaponParticles;
-    public int bulletDamage;
-    public float fireRate;
-    private bool isShooting = false;
-    private AudioSource audioSource;
-
+    public bool isGround = false;
 
     [Header("Collision Control")]
     public List<ParticleCollisionEvent> collisionEvents;
-    public Color hitColor = new Color(1f, 0.6f, 0.0f, 1f);
-    public Color critColor = new Color(1f, 0.6f, 0.0f, 1f);
-    private Color resultColor;
     private bool isdied = false;
 
 
-    [Header("AOE Damage Control")]
-    public GameObject _AOEreplacement;
-    private float startCollisionMultiplier = 64;
-    private float collisionMultiplier = 64;
-
-
-    [Header("Laser burning Control")]
-    public GameObject _burnReplacement;
-    public ParticleSystem burnParticleSystem;
-    public Color burningColor = new Color(1f, 0.0f, 0.01f, 1f);
     private bool isBurning = false;
     private int burnTickCount = 0;
-    public bool[] canTakeLaserDamage = new bool[5];
+    [HideInInspector] public bool[] canTakeLaserDamage = new bool[] { true, true, true, true, true };
+
+    // Color Management
+    [HideInInspector] public Color hitColor = new Color();
+    [HideInInspector] public Color critColor = new Color();
+    [HideInInspector] public Color burningColor = new Color();
+    private Color resultColor;
 
 
     // gameObjects to find
     private GameManager gameManager;
     private UpgradeChooseList upgradeChooseList;
     private PlayerWeaponController playerWeaponController;
-    private Collider enemyCollider;
 
 
 
@@ -72,19 +57,19 @@ public class EnemyHealth : MonoBehaviour
     private void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        hitColor = gameManager.cCPrefab.classColor[11];
+        critColor = gameManager.cCPrefab.classColor[12];
+        burningColor = gameManager.cCPrefab.classColor[13];
         upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
-        if (bulletDamage != 0) audioSource = GetComponent<AudioSource>();
 
-        collisionMultiplier += startCollisionMultiplier + UnityEngine.Random.Range(-16, 128);
+        collisionMultiplier += UnityEngine.Random.Range(-16, 128);
         enemyStartHealth = enemyHealth;
-
-        enemyCollider = GetComponent<Collider>();
     }
 
     private void OnEnable()
     {
+        if (enemyCollider != null) enemyCollider.enabled = true;
         collisionEvents = new List<ParticleCollisionEvent>();
-        isShooting = false;
         enemyHealth = enemyStartHealth;
         isBurning = false;
         if (canPoolObject == true)
@@ -92,11 +77,6 @@ public class EnemyHealth : MonoBehaviour
 
         burnTickCount = 0;
         CancelInvoke();
-        if (burnParticleSystem != null)
-            burnParticleSystem.Stop();
-
-        if (engineParticle != null)
-            engineParticle.Play();
 
         isdied = false;
         canTakeLaserDamage[0] = true; //burning Damage
@@ -104,6 +84,8 @@ public class EnemyHealth : MonoBehaviour
         canTakeLaserDamage[2] = true; // MW Laser 2
         canTakeLaserDamage[3] = true; // front Laser
         canTakeLaserDamage[4] = true; // Orbital Laser
+
+        gameManager.OnDimensionSwap += HandleDimensionSwap;
     }
 
     private void Start()
@@ -111,36 +93,42 @@ public class EnemyHealth : MonoBehaviour
         playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
     }
 
-    private void Update()
+    public void HandleDimensionSwap(bool isSecondDimension = false)
     {
         if (isdied == false)
         {
-            if (gameManager.dimensionShift == !secondDimensionEnemy)
+            if (isSecondDimension == true)
             {
-                enemyCollider.enabled = false;
+                if (enemyCollider != null) enemyCollider.enabled = false;
                 if (miniMapIcon != null) miniMapIcon.SetActive(false);
-                if (bulletDamage > 0) StopShooting();
-                if (engineParticle != null) engineParticle.Stop();
+
             }
             else
             {
-                if (isShooting == false)
-                {
-                    enemyCollider.enabled = true;
-                    if (miniMapIcon != null) miniMapIcon.SetActive(true);
-                    if (bulletDamage > 0) StartShooting();
-                    
-                }
-                if (engineParticle != null && engineParticle.isPlaying == false) engineParticle.Play();
+                if (enemyCollider != null) enemyCollider.enabled = true;
+                if (miniMapIcon != null) miniMapIcon.SetActive(true);
             }
         }
     }
 
+    private void OnDisable()
+    {
+        gameManager.OnDimensionSwap -= HandleDimensionSwap;
+    }
+
+
+
+    /* **************************************************************************** */
+    /* TAKE DAMAGE CONTROLL ------------------------------------------------------- */
+    /* **************************************************************************** */
+    #region take damage controll
+
+    // take damage from a bullet -----------------------------------------------------
     private void OnParticleCollision(GameObject other)
     {
         if (canTakeDamage == true)
         {
-            ParticleSystem part = other.GetComponent<ParticleSystem>(); // *** important! Making a variable to acess the particle system of the emmiting object, in this case, the lasers from my player ship.
+            ParticleSystem part = other.GetComponent<ParticleSystem>();
             var ps = other.GetComponent<ParticleBullet>();
             int damage = ps.bulletDamage;
             int damagetyp = ps.damageTyp;
@@ -149,8 +137,9 @@ public class EnemyHealth : MonoBehaviour
             // damage from a bullet
             if (damagetyp == 0)
             {
-                // calculate crit damage
+                AudioManager.Instance.PlaySFX("ImpactShot");
 
+                // calculate crit damage
                 int ran = UnityEngine.Random.Range(0, 100);
                 if (ran < playerWeaponController.shipData.bulletCritChance)
                 {
@@ -159,63 +148,43 @@ public class EnemyHealth : MonoBehaviour
                     NovaOnDie(1);
                 }
 
-                TakeDamage(damage, 1); //damagetyp = 1 = bullet Damage
+                // calculate Enemy Health
+                TakeDamage(damage);
             }
 
-            
+            // trigger damage text
             int numCollisionEvents = part.GetCollisionEvents(this.gameObject, collisionEvents);
-
-            foreach (ParticleCollisionEvent collisionEvent in collisionEvents) //  for each collision, do the following:
+            foreach (ParticleCollisionEvent collisionEvent in collisionEvents)
             {
                 Vector3 pos = collisionEvent.intersection; // the point of intersection between the particle and the enemy
                 gameManager.DoFloatingText(pos, damage.ToString(), resultColor);
             }
         }
     }
-   
-    /* **************************************************************************** */
-    /* TAKE DAMAGE CONTROL--------------------------------------------------------- */
-    /* **************************************************************************** */
 
-    // take damage from a bullet
-    public void TakeDamage(int damage, int damageTyp = 0)
+    public void TakeDamage(int damage)
     {
-        AudioManager.Instance.PlaySFX("ImpactShot");
-
-        //if (canTakeDamage)
+        // calculate Enemy Health
+        enemyHealth -= damage;
+        if (enemyHealth <= 0)
         {
+            // instanstiate explosion
+            if (explosionObject != null)
+                ObjectPoolManager.SpawnObject(explosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
 
-            // calculate Enemy Health
-            enemyHealth -= damage;
-
-            if (enemyHealth <= 0)
-            {
-                // cancle all Invokes
-                CancelInvoke();
-
-                // drop an Item
-                Drop();
-
-                // calculate chance of explosion
-                NovaOnDie(0);
-
-                // update player UI
-                if (secondDimensionEnemy == false && isMine == false)
-                {
-                    gameManager.UpdateEnemyCounter(-1);
-                    gameManager.UpdateEnemyToKill(1);
-                }
-
-                // Trigger Explosion
-                ObjectPoolManager.SpawnObject(collisionExplosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
-
-                Die();
-
-           }
+            Die();
         }
     }
 
-    // take damage from an explosion
+    public int CritDamage(int damage)
+    {
+        damage = Mathf.CeilToInt(damage * ((float)playerWeaponController.shipData.bulletCritDamage / 100));
+        //resultColor = critColor;
+        return damage;
+    }
+
+
+    // take damage from a Explosion -----------------------------------------------------
     public void TakeExplosionDamage(int damage)
     {
         if (canTakeDamage == true)
@@ -224,12 +193,6 @@ public class EnemyHealth : MonoBehaviour
 
             if (enemyHealth <= 0)
             {
-                // cancle all Invokes
-                CancelInvoke();
-
-                // drop an Item
-                Drop();
-
                 // create object to die effect
                 if (_AOEreplacement != null)
                 {
@@ -239,24 +202,17 @@ public class EnemyHealth : MonoBehaviour
                     var rbs = replacement.GetComponentsInChildren<Rigidbody>();
                     foreach (var rb in rbs)
                     {
-                        rb.AddExplosionForce(collisionMultiplier, transform.position, 1);  //collision.contacts[0].point;
+                        rb.AddExplosionForce(collisionMultiplier, transform.position, 1);
                     }
                 }
-
-                // update player UI
-                if (secondDimensionEnemy == false)
-                {
-                    gameManager.UpdateEnemyCounter(-1);
-                    gameManager.UpdateEnemyToKill(1);
-                }
-
                 Die();
             }
         }
     }
 
 
-    // take damage from a laser
+
+    // take damage from a Laser -----------------------------------------------------
     private IEnumerator InvokeCanGetLaserDamage(int index)
     {
         yield return new WaitForSeconds(0.3f);
@@ -268,7 +224,9 @@ public class EnemyHealth : MonoBehaviour
         if (canTakeLaserDamage[index] == true)
         {
             AudioManager.Instance.PlaySFX("PlayerLaserHit");
+
             canTakeLaserDamage[index] = false;
+
             if (gameObject.activeSelf)
                 StartCoroutine(InvokeCanGetLaserDamage(index));
 
@@ -280,40 +238,26 @@ public class EnemyHealth : MonoBehaviour
                 InvokeBurningDamage();
             }
 
-            //if (canTakeDamage)
+            enemyHealth -= damage;
+
+            if (enemyHealth <= 0)
             {
-                enemyHealth -= damage;
+                // die sound
+                AudioManager.Instance.PlaySFX("PlayerLaserDie");
 
-                if (enemyHealth <= 0)
+                // create object to die effect
+                if (_burnReplacement != null)
                 {
-                    // cancle all Invokes
-                    CancelInvoke();
-
-                    // drop an Item
-                    Drop();
-
-                    // create object to die effect
-                    if (_burnReplacement != null)
-                    {
-                        Instantiate(_burnReplacement, transform.position, transform.rotation);
-                    }
-
-                    // update player UI
-                    if (secondDimensionEnemy == false)
-                    {
-                        gameManager.UpdateEnemyCounter(-1);
-                        gameManager.UpdateEnemyToKill(1);
-                    }
-
-                    //die sound
-                    AudioManager.Instance.PlaySFX("PlayerLaserDie");
-
-                    Die();
+                    Instantiate(_burnReplacement, transform.position, transform.rotation);
                 }
+                Die();
             }
         }
     }
 
+
+
+    // take damage from burning -----------------------------------------------------
     public void InvokeBurningDamage()
     {
         if (burnParticleSystem != null)
@@ -323,10 +267,10 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeBurningDamage()
     {
-        int burningDamage = Mathf.CeilToInt( playerWeaponController.shipData.baseLaserTickDamage * (playerWeaponController.shipData.laserBurningTickDamangePercent)/100);
+        int burningDamage = Mathf.CeilToInt(playerWeaponController.shipData.baseLaserTickDamage * (playerWeaponController.shipData.laserBurningTickDamangePercent) / 100);
 
         ShowDamageFromObjectsColor(burningDamage, burningColor);
-        TakeLaserDamage(burningDamage,0);
+        TakeLaserDamage(burningDamage, 0);
 
         burnTickCount++;
 
@@ -339,39 +283,97 @@ public class EnemyHealth : MonoBehaviour
                 burnParticleSystem.Stop();
         }
     }
+    #endregion
 
+
+
+    /* **************************************************************************** */
+    /* DIE STATE ----------------------------------------------------------------------- */
+    /* **************************************************************************** */
+    #region DIE STATE
     private void Die()
     {
+        if (enemyCollider != null) enemyCollider.enabled = false;
+
+        // cancle all Invokes
+        CancelInvoke();
+
+        // update UI
+        UpdatePlayerUI();
+
+        // calculate chance of explosion
+        NovaOnDie(0);
+
         canTakeDamage = false;
         isdied = true;
-        burnParticleSystem.Stop();
 
-        if (DieEvent != null) {
+        if (burnParticleSystem != null) burnParticleSystem.Stop();
+
+        if (DieEvent != null)
+        {
             DieEvent.Invoke(this, new EventArgs());
             return;
         }
 
-        // instanstiate explosion
-        if (explosionObject != null)
-            ObjectPoolManager.SpawnObject(explosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
+        // drop an Item
+        if (dropObject != null)
+            ObjectPoolManager.SpawnObject(dropObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
 
-        // stop EngineParticleEffect
-        if (engineParticle != null)
-            engineParticle.Stop();
+        // pool (destroy) enemy object
+        DestroyEnemy();
+    }
 
+    public void DestroyEnemy()
+    {
         // pool (destroy) enemy object
         if (canPoolObject == true)
             ObjectPoolManager.ReturnObjectToPool(gameObject);
         else
+        {
             Destroy(gameObject);
+            Debug.Log("destroy");
+        }
+    }
+    #endregion
+
+
+
+    /* **************************************************************************** */
+    /* MISC ----------------------------------------------------------------------- */
+    /* **************************************************************************** */
+    #region Misc
+    public void ShowDamageFromObjects(int damage)
+    {
+        Vector3 pos = transform.position; // the point of intersection between the particle and the enemy
+        gameManager.DoFloatingText(pos, damage.ToString(), hitColor);
     }
 
-    // nova on die Ability
+    public void ShowDamageFromObjectsColor(int damage, Color hitColor_)
+    {
+        Vector3 pos = transform.position; // the point of intersection between the particle and the enemy
+        gameManager.DoFloatingText(pos, damage.ToString(), hitColor_);
+    }
+
+    public void ShowDamageFromPosition(Vector3 pos, int damage)
+    {
+        gameManager.DoFloatingText(pos, damage.ToString(), new Color(1f, 0.6f, 0.0f, 1f));
+    }
+
+    private void UpdatePlayerUI()
+    {
+        // update player UI
+        if (secondDimensionEnemy == false)
+        {
+            if (isGround == false) gameManager.UpdateEnemyCounter(-1);
+            gameManager.UpdateEnemyToKill(1);
+        }
+    }
+
     private void NovaOnDie(int novaTyp) //0=die 1=crit
     {
         if (novaOnDie != null && (upgradeChooseList.upgrades[52].upgradeIndexInstalled == 1 || upgradeChooseList.upgrades[23].upgradeIndexInstalled == 1))
         {
-            Vector3 pos = new Vector3(0,0,0);
+            Vector3 pos = new Vector3(0, 0, 0);
             float explosionRadius = 0;
             int novaDamage = 0;
 
@@ -384,7 +386,7 @@ public class EnemyHealth : MonoBehaviour
                     }
                     pos = transform.position;
 
-                    explosionRadius = 1.5f + playerWeaponController.shipData.rocketAOERadius;
+                    explosionRadius = 1.5f * (1 + playerWeaponController.shipData.rocketAOERadius/100);
                     novaDamage = 10;
 
                     break;
@@ -396,7 +398,7 @@ public class EnemyHealth : MonoBehaviour
                     }
                     pos = transform.position;
 
-                    explosionRadius = 0.5f + playerWeaponController.shipData.rocketAOERadius;
+                    explosionRadius = 0.5f * (1+playerWeaponController.shipData.rocketAOERadius/100);
                     novaDamage = 6;
 
                     break;
@@ -447,88 +449,18 @@ public class EnemyHealth : MonoBehaviour
                     {
                         // show floating text
                         if (eHC.canTakeDamage == true)
-                        gameManager.DoFloatingText(rb.transform.position,adjustedDamage.ToString(), resultColor);
+                            gameManager.DoFloatingText(rb.transform.position, adjustedDamage.ToString(), resultColor);
 
                         // calculate enemy damage
                         eHC.TakeExplosionDamage(adjustedDamage);
                     }
                 }
-            rb.AddExplosionForce(400, pos, explosionRadius);
+                rb.AddExplosionForce(400, pos, explosionRadius);
             }
 
             GameObject go = ObjectPoolManager.SpawnObject(novaOnDie, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
             go.GetComponent<ParticleSystemDestroy>().rippleParicleSize = explosionRadius;
         }
     }
-
-    public int CritDamage(int damage)
-    {
-        damage = Mathf.CeilToInt(damage * ((float)playerWeaponController.shipData.bulletCritDamage / 100));
-        //resultColor = critColor;
-        return damage;
-    }
-
-
-
-    /* **************************************************************************** */
-    /* SHOOTING CONTROL------------------------------------------------------------ */
-    /* **************************************************************************** */
-    public void StartShooting()
-    {
-        if (isShooting == false)
-        {
-            foreach (EnemyParticleBullet particle in enemyWeapons)
-            {
-                particle.bulletDamage = bulletDamage;
-            }
-
-            InvokeRepeating("InvokeShooting", 1f, fireRate);
-        }
-        isShooting = true;
-    }
-
-    public void InvokeShooting()
-    {
-        foreach (ParticleSystem particle in enemyWeaponParticles)
-        {
-            particle.Emit(1);
-        }
-        if (audioSource != null)
-        {
-            audioSource.volume = AudioManager.Instance.sfxVolume;
-            audioSource.Play();
-        }
-    }
-
-    public void StopShooting()
-    {
-        CancelInvoke("InvokeShooting");
-        isShooting = false;
-    }
-
-    public void ShowDamageFromObjects(int damage)
-    {
-        Vector3 pos = transform.position; // the point of intersection between the particle and the enemy
-        gameManager.DoFloatingText(pos, damage.ToString(), hitColor);
-    }
-
-    public void ShowDamageFromObjectsColor(int damage, Color hitColor_)
-    {
-        Vector3 pos = transform.position; // the point of intersection between the particle and the enemy
-        gameManager.DoFloatingText(pos, damage.ToString(), hitColor_);
-    }
-
-    public void ShowDamageFromPosition(Vector3 pos, int damage)
-    {
-        gameManager.DoFloatingText(pos, damage.ToString(),new Color(1f, 0.6f, 0.0f, 1f));
-    }
-
-    private void Drop()
-    {
-        if (expOrbSpawn)
-        {
-
-                ObjectPoolManager.SpawnObject(expOrb, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
-        }
-    }
+    #endregion
 }

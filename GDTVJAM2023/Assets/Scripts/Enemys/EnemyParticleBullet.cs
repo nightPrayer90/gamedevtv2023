@@ -3,7 +3,7 @@ using System.Collections;
 public class EnemyParticleBullet : MonoBehaviour
 {
     public int bulletDamage = 0;
-    public ParticleSystem bulletParticleSystem;
+    private ParticleSystem bulletParticleSystem;
 
     public bool canReflect = false;
 

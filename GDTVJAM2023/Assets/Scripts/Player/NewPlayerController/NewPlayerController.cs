@@ -22,7 +22,9 @@ public class NewPlayerController : MonoBehaviour
     [HideInInspector] public float verticalInput;
     [HideInInspector] public float horizontalInput2;
     [HideInInspector] public bool boostInput;
+    [HideInInspector] public bool abilityInput;
     [HideInInspector] public bool isboostSoundFlag = false;
+    
 
     [Header("Player Stats")]
     [SerializeField] private bool canTakeDamge = true;
@@ -306,7 +308,7 @@ public class NewPlayerController : MonoBehaviour
                 explosionDirection.Normalize();
 
                 // trigger a Explosion on the Enemy
-                ObjectPoolManager.SpawnObject(enemyHealth.collisionExplosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
+                if (enemyHealth.isBoss == false) ObjectPoolManager.SpawnObject(enemyHealth.explosionObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
 
                 // if the player is not invulnerability 
                 if (canTakeDamge == true || enemyHealth.canPoolObject == false)
@@ -348,7 +350,7 @@ public class NewPlayerController : MonoBehaviour
                 if (enemyHealth.isBoss == false)
                 {
                     // destroy the enemy
-                    Destroy(collision.gameObject);
+                    enemyHealth.DestroyEnemy();
                 }
             }
         }
@@ -403,7 +405,7 @@ public class NewPlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         horizontalInput2 = Input.GetAxis("Horizontal2");
         boostInput = Input.GetButton("Boost");
-
+        abilityInput = Input.GetButton("Ability");
         ShipEngineSound();
     }
 
@@ -602,7 +604,7 @@ public class NewPlayerController : MonoBehaviour
 
         Vector3 pos = transform.position;
         LayerMask layerMask = (1 << 6);
-        explosionRadius = explosionRadius + playerWeaponController.shipData.rocketAOERadius;
+        explosionRadius = explosionRadius * (1+ playerWeaponController.shipData.rocketAOERadius/100);
         NovaDamage = 6;
 
         if (gameManager.dimensionShift == true)
@@ -701,7 +703,6 @@ public class NewPlayerController : MonoBehaviour
             {
                 if (useBoost == true && isboostSoundFlag == false)
                 {
-                    Debug.Log("booosssst");
                     AudioManager.Instance.PlaySFX("PlayerBoost");
                     isboostSoundFlag = true;
                 }

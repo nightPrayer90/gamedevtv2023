@@ -49,7 +49,7 @@ public class NewEnemyMovement : MonoBehaviour
 
     //GameObjects
     private Rigidbody enemyRb;
-    private NewEnemyBullet enemyBullet;
+    private EnemyBullet enemyBullet;
 
     private float previousYRotation;
     float tiltAngle = 0;
@@ -67,7 +67,7 @@ public class NewEnemyMovement : MonoBehaviour
         amplitude += Random.Range(-amplitudeRange, amplitudeRange);
 
         enemy = gameObject.GetComponent<Enemy>();
-        enemyBullet = gameObject.GetComponent<NewEnemyBullet>();
+        enemyBullet = gameObject.GetComponent<EnemyBullet>();
         enemyRb = GetComponent<Rigidbody>();
     }
 

@@ -17,7 +17,6 @@ public class ShipData : ScriptableObject
     [Header("Start Values")]
     public int baseLaserTicks = 4;
     public int baseLaserTickDamage = 5;
-    //public float baseAttackSpeed = 0;
     public int laserBurningTickDamangePercent = 100;
     public float boostInvulnerability = 0.5f;
 

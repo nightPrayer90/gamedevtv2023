@@ -182,7 +182,7 @@ public class RocketController : MonoBehaviour
         CancelInvoke("DestroyObject");
 
         // array of all Objects in explosionRadius
-        float explosionRadius_ = explosionRadius * playerWeaponController.shipData.rocketAOERadius;
+        float explosionRadius_ = explosionRadius * (1+playerWeaponController.shipData.rocketAOERadius/100);
         var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius_, layerMask);
 
         foreach (var obj in surroundingObjects)
@@ -244,7 +244,7 @@ public class RocketController : MonoBehaviour
                 // calculate enemy damage
                 eHC.TakeExplosionDamage(adjustedDamage);
             }
-            rb.AddExplosionForce(explosionForce, pos, explosionRadius);
+            rb.AddExplosionForce(explosionForce, pos, explosionRadius_);
         }
 
 

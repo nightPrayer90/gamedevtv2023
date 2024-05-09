@@ -91,7 +91,7 @@ public class PlayerMineController : MonoBehaviour
         CancelInvoke("DestroyObject");
 
         // array of all Objects in explosionRadius
-        float explosionRadius_ = explosionRadius * playerWeaponController.shipData.rocketAOERadius;
+        float explosionRadius_ = explosionRadius * (1+playerWeaponController.shipData.rocketAOERadius/100);
         var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius_, layerMask);
 
         foreach (var obj in surroundingObjects)

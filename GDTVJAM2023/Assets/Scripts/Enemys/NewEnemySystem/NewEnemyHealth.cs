@@ -271,7 +271,7 @@ public class NewEnemyHealth : MonoBehaviour
                     }
                     pos = transform.position;
 
-                    explosionRadius = 1.5f + enemy.playerWeaponController.shipData.rocketAOERadius;
+                    explosionRadius = 1.5f * ( 1+ enemy.playerWeaponController.shipData.rocketAOERadius/100);
                     novaDamage = 10;
 
                     break;
@@ -283,7 +283,7 @@ public class NewEnemyHealth : MonoBehaviour
                     }
                     pos = transform.position;
 
-                    explosionRadius = 0.5f + enemy.playerWeaponController.shipData.rocketAOERadius;
+                    explosionRadius = 0.5f * (1+ enemy.playerWeaponController.shipData.rocketAOERadius/100);
                     novaDamage = 6;
 
                     break;

@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using DG.Tweening;
-using static UpgradeChooseList;
 
 
 public class UpgradePanelController : MonoBehaviour
@@ -206,7 +205,6 @@ public class UpgradePanelController : MonoBehaviour
             int index = (int)uC.mainClass;
             mainClassStr[i] = System.Enum.GetName(typeof(UpgradeContainer.MainClass), uC.mainClass).ToString();
             mainClassColor[i] = gameManager.cCPrefab.classColor[index];
-            Debug.Log(gameManager.cCPrefab.classColor[index]);
 
             // set requerments
             int count_ = 0;

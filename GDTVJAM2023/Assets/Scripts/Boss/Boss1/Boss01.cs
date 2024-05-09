@@ -48,7 +48,7 @@ public class Boss01 : MonoBehaviour
     private Rigidbody playerRb;
     private GameManager gameManager;
     public PlayerData playerData;
-
+    public BossParticle bossParticle;
 
 
     /* **************************************************************************** */
@@ -63,14 +63,7 @@ public class Boss01 : MonoBehaviour
         enemyHealthScr = gameObject.GetComponent<EnemyHealth>();
         enemyHealthScr.DieEvent += EnemyHealthScr_DieEvent;
 
-        // TODOO MESSE - rocketship hat boss 1 weniger leben
-        /*if (playerData.playerShip == 1) //rocketship
-        {
-            enemyHealthScr.enemyHealth = Mathf.CeilToInt(enemyHealthScr.enemyHealth * 0.70f);
-            enemyHealthScr.enemyStartHealth = enemyHealthScr.enemyHealth;
-        }*/
-
-        // set values
+           // set values
         enemyHealthScr.canTakeDamage = false;
 
         // update materials
@@ -141,6 +134,7 @@ public class Boss01 : MonoBehaviour
         if (distanceToPlayer <= 6f)
         {
             bossState = 1;
+            bossParticle.ParticleStop();
             damageArea.SetActive(true);
             gameManager.ScreenShake(3);
             AudioManager.Instance.PlaySFX("LiftUPBoss");
@@ -180,6 +174,7 @@ public class Boss01 : MonoBehaviour
             if (isMinimap == false)
             {
                 minimapIcon.SetActive(true);
+                bossParticle.ParticleStart();
 
                 minimapSpR.DOFade(1f, 2f).SetDelay(1f);
                 minimapIcon.transform.DOScale(new Vector3(15f, 15f, 15f), 2f).SetDelay(1f).OnComplete(() =>

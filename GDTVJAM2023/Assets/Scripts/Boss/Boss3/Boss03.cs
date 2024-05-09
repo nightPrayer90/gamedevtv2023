@@ -53,7 +53,7 @@ public class Boss03 : MonoBehaviour
     public List<GameObject> verticalRocketSpawner2 = new List<GameObject>();
     public List<GameObject> horizontalRocketSpawner = new List<GameObject>();
     public List<GameObject> horizontalRocketSpawner2 = new List<GameObject>();
-
+    public BossParticle bossParticle;
 
 
     /* **************************************************************************** */
@@ -84,8 +84,6 @@ public class Boss03 : MonoBehaviour
             isState[i] = false;
 
         }
-
-        
 
         // healthbar controll
         bossHudCg.alpha = 0;
@@ -141,6 +139,7 @@ public class Boss03 : MonoBehaviour
         if (distanceToPlayer <= 9f) // TODO FIX ME
         {
             bossState = 1;
+            bossParticle.ParticleStop();
             damageArea.SetActive(true);
             gameManager.ScreenShake(3);
             AudioManager.Instance.PlaySFX("LiftUPBoss");
@@ -164,7 +163,6 @@ public class Boss03 : MonoBehaviour
                 minimapIcon.transform.DOKill();
                 minimapSpR.DOColor(Color.red, 1f);
 
-
                 // go to the activate State
                 AudioManager.Instance.PlaySFX("WarningBoss");
                 transform.DOShakePosition(0.2f, 0.1f, 10, 90, false, true).OnComplete(() => 
@@ -180,6 +178,7 @@ public class Boss03 : MonoBehaviour
             if (isMinimap == false && gameManager.districtNumber == bossIndex)
             {
                 minimapIcon.SetActive(true);
+                bossParticle.ParticleStart();
 
                 minimapSpR.DOFade(1f, 2f).SetDelay(1f);
                 minimapIcon.transform.DOScale(new Vector3(15f, 15f, 15f), 2f).SetDelay(1f).OnComplete(() =>

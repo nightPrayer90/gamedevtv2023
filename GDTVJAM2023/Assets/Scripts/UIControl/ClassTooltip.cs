@@ -100,7 +100,7 @@ public class ClassTooltip : MonoBehaviour
                 headerField.text = tooltipContent[contentType].header;
                 headerField.color = gameManager.cCPrefab.classColor[contentType];
                 if (playerWeaponController.shipData.mcSupportLvl > 0) headerField.text = headerField.text + " - " + playerWeaponController.shipData.mcSupportLvl.ToString();
-                content_ = content_.Replace("XXX", playerWeaponController.shipData.supportReloadTime.ToString());
+                content_ = content_.Replace("XXX", (1-(playerWeaponController.shipData.supportReloadTime/100)).ToString());
                 content_ = content_.Replace("YYY", playerWeaponController.shipData.chanceToGetTwoExp.ToString());
                 content_ = content_.Replace("ZZZ", playerWeaponController.shipData.chanceToGetHealth.ToString());
                 content_ = content_.Replace("AAA", playerWeaponController.shipData.boostInvulnerability.ToString());
