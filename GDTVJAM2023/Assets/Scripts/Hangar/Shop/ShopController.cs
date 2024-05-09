@@ -49,9 +49,9 @@ public class ShopController : MonoBehaviour
         {
             shipModulesInUse.Add(0);
         }
-        for (int i = 0; i < playerData.moduleData.Count; i++)
+        for (int i = 0; i < playerData.GetActiveShip().Count; i++)
         {
-            shipModulesInUse[playerData.moduleData[i].moduleTypeIndex] += 1;
+            shipModulesInUse[playerData.GetActiveShip()[i].moduleTypeIndex] += 1;
         }
 
         playerData.shopLevelVisited = playerData.bossLevel;

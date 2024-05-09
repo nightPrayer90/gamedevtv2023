@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 [Serializable]
 public class ModuleDataRuntime : ModuleData
@@ -42,6 +43,17 @@ public class ModuleDataRuntime : ModuleData
 [Serializable]
 public class ModuleData
 {
+    public ModuleData()
+    {
+
+    }
+    public ModuleData(ModuleDataRuntime mdr)
+    {
+        x = mdr.x;
+        z = mdr.z;
+        moduleTypeIndex = mdr.moduleTypeIndex;
+    }
+
     public float x;
     public float z;
     public int moduleTypeIndex;
@@ -49,6 +61,9 @@ public class ModuleData
 
 public class ModuleStorage : MonoBehaviour
 {
+    /// <summary>
+    /// The current ship's modules with hangar specific information
+    /// </summary>
     public List<ModuleDataRuntime> installedModuleData;
     public ModuleDataRuntime[,] installedModuleGrid;
     public ModuleList moduleList;
@@ -76,26 +91,14 @@ public class ModuleStorage : MonoBehaviour
 
     void Start()
     {
+        // load active ship
         installedModuleData = new();
 
-        List<ModuleData> loadedModules = new();
-        foreach (ModuleData i in playerData.moduleData)
+        foreach (ModuleData item in playerData.GetActiveShip())
         {
-            loadedModules.Add(i);
+            installedModuleData.Add(new ModuleDataRuntime(item));
         }
 
-
-        if (loadedModules.Count <= 0)
-        {
-            LoadPreset();
-        }
-        else
-        {
-            foreach (ModuleData item in loadedModules)
-            {
-                installedModuleData.Add(new ModuleDataRuntime(item));
-            }
-        }
         BuildShipFromModuleData();
 
         // find selection manager
@@ -108,17 +111,18 @@ public class ModuleStorage : MonoBehaviour
         BuildModuleGrid();
     }
 
+    /// <summary>
+    /// Called when exiting the Hangar scene. Copies runtime module lists to savable data
+    /// </summary>
     private void OnDestroy()
     {
-        playerData.moduleData.Clear();
+        List<ModuleData> ship = new();
         foreach (ModuleDataRuntime item in installedModuleData)
         {
-            ModuleData moduleData = new();
-            moduleData.x = item.x;
-            moduleData.z = item.z;
-            moduleData.moduleTypeIndex = item.moduleTypeIndex;
-            playerData.moduleData.Add(moduleData);
+            ModuleData moduleData = new(item);
+            ship.Add(moduleData);
         }
+        playerData.SetActiveShip(ship);
         AudioManager.Instance.SavePlayerData();
     }
 
@@ -379,6 +383,9 @@ public class ModuleStorage : MonoBehaviour
         Debug.Log("LoadPreset");
     }
 
+    /// <summary>
+    /// Create game objects for active ship
+    /// </summary>
     public void BuildShipFromModuleData()
     {
         foreach (ModuleDataRuntime instance in installedModuleData)

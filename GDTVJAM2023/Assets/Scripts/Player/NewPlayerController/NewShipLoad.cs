@@ -19,7 +19,7 @@ public class NewShipLoad : MonoBehaviour
     void Start()
     {
         installedModuleData = new();
-        foreach (ModuleData item in playerData.moduleData)
+        foreach (ModuleData item in playerData.GetActiveShip())
         {
             installedModuleData.Add(new ModuleDataRuntime(item));
         }

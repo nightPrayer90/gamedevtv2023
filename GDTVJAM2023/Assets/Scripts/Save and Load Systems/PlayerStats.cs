@@ -15,7 +15,8 @@ public class PlayerStats
 
     // Hangar + Shop
     public List<int> moduleCounts = new();
-    public List<ModuleData> moduleData = new();
+    public List<ModuleData>[] shipsModuleData = new List<ModuleData>[4];
+    public int activeShip = 0;
     public int credits = 0;
     public int shopLevelVisited = 0;
 
@@ -24,5 +25,24 @@ public class PlayerStats
 
     // Skill Bord
     public List<bool> skillsSpotted = new();
+
+    public PlayerStats() { }
+    public PlayerStats(PlayerData data)
+    {
+        // PlayerProfil
+        playerName = data.playerName;
+        savePath = data.savePath;
+        shipPanelIndex = data.playerShipIcon;
+
+        // Hangar and Shop
+        shipsModuleData = data.ShipsModuleData;
+        moduleCounts = data.moduleCounts;
+        credits = data.credits;
+        bossLevel = data.bossLevel;
+        shopLevelVisited = data.shopLevelVisited;
+
+        // Skillboard
+        skillsSpotted = data.skillsSpotted;
+    }
 
 }
