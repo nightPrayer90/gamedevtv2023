@@ -26,4 +26,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SkillBordScene.unity
     guid: 828cdd4829492714397a0878a981e82a
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 66647b23f4f1c074593eb3a38c061cb8, type: 2}
