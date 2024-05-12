@@ -401,11 +401,11 @@ public class NewPlayerController : MonoBehaviour
     #region movement stuff
     void HandleInput()
     {
-        verticalInput = Input.GetAxis("Vertical");
+        /*verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
         horizontalInput2 = Input.GetAxis("Horizontal2");
         boostInput = Input.GetButton("Boost");
-        abilityInput = Input.GetButton("Ability");
+        abilityInput = Input.GetButton("Ability");*/
         ShipEngineSound();
     }
 

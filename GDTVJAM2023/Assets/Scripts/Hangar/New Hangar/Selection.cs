@@ -36,7 +36,7 @@ public class Selection : MonoBehaviour
             highlight = null;
         }
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        /*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         // handle mouse over
         if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
@@ -123,7 +123,7 @@ public class Selection : MonoBehaviour
             }
 
 
-        }
+        }*/
     }
 
     public void DeselectAll()

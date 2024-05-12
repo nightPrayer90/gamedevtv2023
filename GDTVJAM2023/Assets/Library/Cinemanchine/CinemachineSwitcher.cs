@@ -14,10 +14,10 @@ public class CinemachineSwitcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("SwitchView"))
+        /*if (Input.GetButtonDown("SwitchView"))
         {
             SwitchState();
-        }
+        }*/
     }
 
     private void SwitchState()

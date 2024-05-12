@@ -178,10 +178,10 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         // pause menu control
-        if (Input.GetKeyDown(KeyCode.Escape) && !gameOver && gameIsPlayed)
+        /*if (Input.GetKeyDown(KeyCode.Escape) && !gameOver && gameIsPlayed)
         {
             PauseMenue();
-        }
+        }*/
 
         // TODDOOO nur für die Messe
         if (gameOver == true)

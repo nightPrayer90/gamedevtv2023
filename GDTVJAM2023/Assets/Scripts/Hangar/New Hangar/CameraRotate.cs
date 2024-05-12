@@ -19,7 +19,7 @@ public class CameraRotate : MonoBehaviour
     {
         transform.position = target.position;
 
-        if (Input.GetMouseButton(2))
+        /*if (Input.GetMouseButton(2))
         {
 
             localRot.x += Input.GetAxis("Mouse Y") * MouseSpeed;
@@ -46,6 +46,6 @@ public class CameraRotate : MonoBehaviour
                     mainCamera.fieldOfView = targetFOV;
             }
 
-        }
+        }*/
     }
 }

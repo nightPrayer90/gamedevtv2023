@@ -75,7 +75,7 @@ public class StartGameController : MonoBehaviour
     private void Update()
     {
         // Fade out
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (loadUIFlag == true)
                 FadeLoadUIOut();
@@ -85,7 +85,7 @@ public class StartGameController : MonoBehaviour
 
             if (isCreditssOpen == true)
                 CloseCredits();
-        }
+        }*/
     }
 
 
