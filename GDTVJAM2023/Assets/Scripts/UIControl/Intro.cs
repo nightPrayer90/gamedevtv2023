@@ -27,6 +27,7 @@ public class Intro : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (isTyping && Input.GetMouseButtonDown(0))
         {
             // Beenden des Tippens, um den gesamten Text anzuzeigen
@@ -41,6 +42,8 @@ public class Intro : MonoBehaviour
             AudioManager.Instance.PlaySFX("DimensionSwap");
             StartFade();
         }
+        */
+        StartFade();
     }
 
     private System.Collections.IEnumerator TypeText()
