@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System;
 using System.IO;
 using TMPro;
+using UnityEngine.InputSystem;
+
 
 
 public class StartGameController : MonoBehaviour
@@ -36,7 +38,7 @@ public class StartGameController : MonoBehaviour
     [Header("Settings Panel")]
     public Slider _musicSlider;
     public Slider _sfxSlider;
-    
+
     public TMP_Dropdown resolutionDropdrown;
     public TMP_Dropdown qualityDropdown;
     public Toggle fullScreenBtn;
@@ -51,6 +53,9 @@ public class StartGameController : MonoBehaviour
     [Header("Credits Panel")]
     private bool isCreditssOpen = false;
 
+    public InputActionReference Action;
+    public InputActionAsset AllTheActions;
+    InputActionRebindingExtensions.RebindingOperation rebindOperation;
 
     private void Start()
     {
@@ -136,7 +141,7 @@ public class StartGameController : MonoBehaviour
     }
 
     public void CloseCredits()
-    { 
+    {
         AudioManager.Instance.PlaySFX("MouseKlick");
         isCreditssOpen = false;
 
@@ -357,4 +362,45 @@ public class StartGameController : MonoBehaviour
     }
     #endregion
 
+    public void SetBoostButtonTest()
+    {
+        Action.action.Disable(); // critical before rebind!!
+        
+        // non-persistent interactive override
+        rebindOperation = Action.action.PerformInteractiveRebinding()
+                .WithControlsExcluding("Mouse")
+                .WithCancelingThrough("<Keyboard>/escape")
+                .OnMatchWaitForAnother(0.2f)
+                .Start()
+                .OnCancel(op =>
+                {
+                    //CleanUp();
+                    Debug.Log("cancel");
+                    //RebindOverlay.SetActive(false);
+                    //KeybindMenu.SetActive(true);
+                    Action.action.Enable();
+                    rebindOperation.Dispose();
+                })
+                .OnComplete(op =>
+                {
+                    Action.action.Enable();
+                    //SetPref(prefs, op.action.GetBindingDisplayString(1));
+                    //textmesh.text = op.action.GetBindingDisplayString(1).ToUpper();
+                    //StoreControlOverrides();
+                    Debug.Log("saved1");
+                    //RebindOverlay.SetActive(false);
+                    //KeybindMenu.SetActive(true);
+                    //CleanUp();
+                    rebindOperation.Dispose();
+                });
+        // persistent non-interactive override (not sure where this is stored)
+        AllTheActions.FindAction("Select").ChangeBinding(0).WithPath("<Gamepad>/buttonWest");
+
+        // non-persistent non-interactive override (sets override path not visible in UI)
+        // AllTheActions.FindAction("Select")
+        //    .ApplyBindingOverride(new InputBinding
+        //{
+        //    overridePath = "<Gamepad>/buttonWest"
+        //});
+    }
 }
