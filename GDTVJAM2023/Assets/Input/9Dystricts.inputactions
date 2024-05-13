@@ -44,7 +44,7 @@
                 {
                     "name": "Camera",
                     "type": "Button",
-                    "id": "84ed0c85-8f3c-43ae-908e-72131b21633d",
+                    "id": "3b78f599-59fa-4d50-bfa6-208e6c474c1b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -285,7 +285,7 @@
                 },
                 {
                     "name": "",
-                    "id": "a9117ed1-a0ee-446f-8788-bc4b0919fe27",
+                    "id": "a2b789a7-0bca-4b9d-bdab-b9f72921cef1",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
@@ -296,7 +296,7 @@
                 },
                 {
                     "name": "",
-                    "id": "e109f277-4d60-4fde-a854-897cd2daec9d",
+                    "id": "a58fba37-2e65-40ee-be9f-aae733ca8ce3",
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",

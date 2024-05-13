@@ -430,6 +430,15 @@ public class NewPlayerController : MonoBehaviour
     private void OnAbility(InputValue movementValue)
     {
         abilityInput = movementValue.Get<float>() == 1;
+        PlayerInput pi = GetComponent<PlayerInput>();
+        pi.onActionTriggered += Pi_onActionTriggered;
+    }
+
+    private void Pi_onActionTriggered(InputAction.CallbackContext obj)
+    {
+        switch(obj.action.name)
+        {
+        }
     }
 
     void CalculateFlySpeed()
