@@ -103,11 +103,11 @@ public class NewDirectionControlEngine : BaseModule
     {
         ShowEnergie();
 
-        if (playerController.horizontalInput > 0.1)
+        if (playerController.rotateInput > 0.1)
         {
             if (engine_side == Side.right)
             {
-                Vector3 torque = engineUPPos * -playerController.horizontalInput * torqueForce;
+                Vector3 torque = engineUPPos * -playerController.rotateInput * torqueForce;
 
                 playerRigidbody.AddTorque(torque);
 
@@ -115,11 +115,11 @@ public class NewDirectionControlEngine : BaseModule
             }
         }
 
-        if (playerController.horizontalInput < -0.1)
+        if (playerController.rotateInput < -0.1)
         {
             if (engine_side == Side.left)
             {
-                Vector3 torque = engineUPPos * playerController.horizontalInput * torqueForce;
+                Vector3 torque = engineUPPos * playerController.rotateInput * torqueForce;
 
                 playerRigidbody.AddTorque(torque);
 

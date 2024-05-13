@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 public class NewPlayerController : MonoBehaviour
 {
@@ -18,9 +19,9 @@ public class NewPlayerController : MonoBehaviour
     [HideInInspector] public bool useBoost = false;
 
     [Header("Player Movement")]
-    [HideInInspector] public float horizontalInput;
+    [HideInInspector] public float rotateInput;
     [HideInInspector] public float verticalInput;
-    [HideInInspector] public float horizontalInput2;
+    [HideInInspector] public float strafeInput;
     [HideInInspector] public bool boostInput;
     [HideInInspector] public bool abilityInput;
     [HideInInspector] public bool isboostSoundFlag = false;
@@ -177,7 +178,7 @@ public class NewPlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         // Überprüfen, ob keine horizontale Richtungsänderung erfolgt
-        if (Mathf.Abs(horizontalInput) < 0.1f)
+        if (Mathf.Abs(rotateInput) < 0.1f)
         {
             // Aktuellen X-Rotationswert abrufen
             float currentRotationX = transform.rotation.eulerAngles.x;
@@ -399,18 +400,37 @@ public class NewPlayerController : MonoBehaviour
     /* Movement Stuff-------------------------------------------------------------- */
     /* **************************************************************************** */
     #region movement stuff
+    
     void HandleInput()
     {
-        /*verticalInput = Input.GetAxis("Vertical");
-        horizontalInput = Input.GetAxis("Horizontal");
-        horizontalInput2 = Input.GetAxis("Horizontal2");
-        boostInput = Input.GetButton("Boost");
-        abilityInput = Input.GetButton("Ability");*/
+        
+        
+        //boostInput = Input.GetButton("Boost");
+        //abilityInput = Input.GetButton("Ability");
         ShipEngineSound();
     }
 
-  
+    private void OnMove(InputValue movementValue)
+    {
+        Vector2 movementVector = movementValue.Get<Vector2>();
+        strafeInput = movementVector.x;
+        verticalInput = movementVector.y;
+    }
 
+    private void OnRotate(InputValue movementValue)
+    {
+        rotateInput = movementValue.Get<float>();
+    }
+
+    private void OnBoost(InputValue movementValue)
+    {
+        boostInput = movementValue.Get<float>() == 1;
+    }
+
+    private void OnAbility(InputValue movementValue)
+    {
+        abilityInput = movementValue.Get<float>() == 1;
+    }
 
     void CalculateFlySpeed()
     {
@@ -690,7 +710,7 @@ public class NewPlayerController : MonoBehaviour
 
     private void ShipEngineSound()
     {
-        if ((horizontalInput != 0 || verticalInput != 0 || horizontalInput2 != 0))
+        if ((rotateInput != 0 || verticalInput != 0 || strafeInput != 0))
         {
             if (isEnginePlayed == false)
             {
