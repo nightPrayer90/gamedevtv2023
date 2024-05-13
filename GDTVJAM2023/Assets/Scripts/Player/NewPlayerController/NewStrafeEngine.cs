@@ -37,11 +37,11 @@ public class NewStrafeEngine : BaseModule
         if (playerController == null)
             return; // TODO: schön machen
 
-        if (playerController.horizontalInput2 > 0.5)
+        if (playerController.strafeInput > 0.5)
         {
 
             // boost
-            if (hasStrafeBoost == true && Input.GetButton("Boost") && (playerController.energieCurrent > 1 || useBoost == true))
+            if (hasStrafeBoost == true && (playerController.energieCurrent > 1 || useBoost == true)) // TODO here was removed: checking strafe input button
             {
                 totalStrafeForce = strafeForce + strafeBoostforce;
                 ps_leftBoost.Emit(1);
@@ -61,15 +61,15 @@ public class NewStrafeEngine : BaseModule
             }
 
             // Berechne die Kraft basierend auf dem horizontalen Input
-            Vector3 thrust = playerRigidbody.transform.right * playerController.horizontalInput2 * -totalStrafeForce * direction;
+            Vector3 thrust = playerRigidbody.transform.right * playerController.strafeInput * -totalStrafeForce * direction;
 
             // Wende die Kraft auf das Raumschiff an
             playerRigidbody.AddForce(thrust);
         }
 
-        if (playerController.horizontalInput2 < -0.5)
+        if (playerController.strafeInput < -0.5)
         {
-            if (hasStrafeBoost == true && Input.GetButton("Boost") && (playerController.energieCurrent > 1 || useBoost == true))
+            if (hasStrafeBoost == true && (playerController.energieCurrent > 1 || useBoost == true)) // TODO here was removed: checking strafe input button
             {
                 totalStrafeForce = strafeForce + strafeBoostforce;
                 ps_rigtBoost.Emit(1);
@@ -92,7 +92,7 @@ public class NewStrafeEngine : BaseModule
             }
 
             // Berechne die Kraft basierend auf dem horizontalen Input
-            Vector3 thrust = playerRigidbody.transform.right * playerController.horizontalInput2 * -totalStrafeForce * direction;
+            Vector3 thrust = playerRigidbody.transform.right * playerController.strafeInput * -totalStrafeForce * direction;
 
             // Wende die Kraft auf das Raumschiff an
             playerRigidbody.AddForce(thrust);   
