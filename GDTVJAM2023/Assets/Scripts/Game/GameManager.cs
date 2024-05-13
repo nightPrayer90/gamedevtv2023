@@ -186,14 +186,14 @@ public class GameManager : MonoBehaviour
         // TODDOOO nur für die Messe
         if (gameOver == true)
         {
-            if (Input.GetButtonDown("Boost"))
+            /*if (Input.GetButtonDown("Boost"))
             {
                 menuButtonController.LevelRestart();
             }
             if (Input.GetButtonDown("SwitchView"))
             {
                 menuButtonController.BacktoMainMenue();
-            }
+            }*/
         }
     }
 
