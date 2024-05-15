@@ -44,7 +44,7 @@
                 {
                     "name": "Camera",
                     "type": "Button",
-                    "id": "3b78f599-59fa-4d50-bfa6-208e6c474c1b",
+                    "id": "ead4b6cd-a1c1-4136-a03d-33a3c0633e47",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -142,44 +142,11 @@
                 },
                 {
                     "name": "",
-                    "id": "1635d3fe-58b6-4ba9-a4e2-f4b964f6b5c8",
-                    "path": "<XRController>/{Primary2DAxis}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3ea4d645-4504-4529-b061-ab81934c3752",
-                    "path": "<Joystick>/stick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c1f7a91b-d0fd-4a62-997e-7fb9b69bf235",
                     "path": "<Gamepad>/rightStick/x",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Rotate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3e5f5442-8668-4b27-a940-df99bad7e831",
-                    "path": "<Joystick>/{Hatswitch}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick",
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -230,28 +197,6 @@
                 },
                 {
                     "name": "",
-                    "id": "ee3d0cd2-254e-47a7-a8cb-bc94d9658c54",
-                    "path": "<Joystick>/trigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Joystick",
-                    "action": "Boost",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8255d333-5683-4943-a58a-ccb207ff1dce",
-                    "path": "<XRController>/{PrimaryAction}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR",
-                    "action": "Boost",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "714f0d71-f07e-41bc-9983-ce71de56763f",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
@@ -285,7 +230,7 @@
                 },
                 {
                     "name": "",
-                    "id": "a2b789a7-0bca-4b9d-bdab-b9f72921cef1",
+                    "id": "4ab6da78-0552-4af2-8afe-3da003a7a931",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
@@ -296,7 +241,7 @@
                 },
                 {
                     "name": "",
-                    "id": "a58fba37-2e65-40ee-be9f-aae733ca8ce3",
+                    "id": "a3fc9894-200a-4240-ba17-8bcd9dcd530b",
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",

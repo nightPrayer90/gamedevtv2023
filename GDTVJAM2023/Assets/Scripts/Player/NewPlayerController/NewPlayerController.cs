@@ -2,7 +2,6 @@ using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using System.Linq;
 using UnityEngine.InputSystem;
 
 public class NewPlayerController : MonoBehaviour
@@ -40,6 +39,9 @@ public class NewPlayerController : MonoBehaviour
     /*[HideInInspector]*/
     public int protectionLvl = 0;
     private bool canGetLaserDamage = true;
+
+    [Header("Movement Input")]
+    public PlayerInputHandler intputHandler;
 
     [Header("Player Level Properties")]
     public int playerLevel = 1;
@@ -403,43 +405,16 @@ public class NewPlayerController : MonoBehaviour
     
     void HandleInput()
     {
-        
-        
-        //boostInput = Input.GetButton("Boost");
-        //abilityInput = Input.GetButton("Ability");
+        strafeInput = intputHandler.MoveInput.x;
+        verticalInput = intputHandler.MoveInput.y;
+        rotateInput = intputHandler.RotateInput;
+        boostInput = intputHandler.BoostInput;
+        abilityInput = intputHandler.AbilityInput;
         ShipEngineSound();
     }
 
-    private void OnMove(InputValue movementValue)
-    {
-        Vector2 movementVector = movementValue.Get<Vector2>();
-        strafeInput = movementVector.x;
-        verticalInput = movementVector.y;
-    }
 
-    private void OnRotate(InputValue movementValue)
-    {
-        rotateInput = movementValue.Get<float>();
-    }
-
-    private void OnBoost(InputValue movementValue)
-    {
-        boostInput = movementValue.Get<float>() == 1;
-    }
-
-    private void OnAbility(InputValue movementValue)
-    {
-        abilityInput = movementValue.Get<float>() == 1;
-        PlayerInput pi = GetComponent<PlayerInput>();
-        pi.onActionTriggered += Pi_onActionTriggered;
-    }
-
-    private void Pi_onActionTriggered(InputAction.CallbackContext obj)
-    {
-        switch(obj.action.name)
-        {
-        }
-    }
+  
 
     void CalculateFlySpeed()
     {
