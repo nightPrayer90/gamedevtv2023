@@ -278,7 +278,6 @@ public class StartGameController : MonoBehaviour
 
         if (qualityDropdown != null)
         {
-            Debug.Log(QualitySettings.GetQualityLevel());
             qualityDropdown.value = QualitySettings.GetQualityLevel();
         }
 

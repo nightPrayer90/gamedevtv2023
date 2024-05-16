@@ -301,7 +301,7 @@ public class GameManager : MonoBehaviour
         experienceSlider.DOValue(0, 0.4f, false);
         experienceSlider.transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0.5f), 0.5f, 5, 0.5f).SetUpdate(true).OnComplete(() => {
             experienceSlider.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
-        }); ;
+        });
     }
 
     private void InvokeupgradeText()

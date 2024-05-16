@@ -31,7 +31,6 @@ public class EnemyMovementOrbit : EnemyMovement
 
     protected override void HandleStateSwap(int state)
     {
-        Debug.Log(state);
         switch (state)
         {
             case 0:

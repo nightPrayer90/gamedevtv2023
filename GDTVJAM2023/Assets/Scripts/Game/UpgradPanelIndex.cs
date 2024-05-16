@@ -36,12 +36,18 @@ public class UpgradPanelIndex : MonoBehaviour
     public TextMeshProUGUI uniqueText;
 
 
-    private void OnEnable()
+    private void Awake()
     {
         upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
+    }
+
+    private void OnEnable()
+    {
         isTweening = true;
         isSelected = false;
         transform.position = new Vector3(transform.position.x, transform.position.y + 400f, transform.position.z);
+
+        SetDescription();
 
         // fade in
         panelImage.sprite = spPanelDeselcet;
@@ -63,6 +69,8 @@ public class UpgradPanelIndex : MonoBehaviour
             });
         });
     }
+
+
 
 
     public void SetDescription()
@@ -104,8 +112,6 @@ public class UpgradPanelIndex : MonoBehaviour
         }
     }
 
-
-
     public void OnMouseEnter_()
     {
         upgradePanelController.selectetPanel = index;
@@ -114,7 +120,6 @@ public class UpgradPanelIndex : MonoBehaviour
         {
             // Farbe des Panels ändern, wenn die Maus über das Panel fährt
             upgradePanelController.UpdateValuePanelOnMouseEnter(index);
-            //SelectPanel();
         }
     }
 
@@ -139,7 +144,6 @@ public class UpgradPanelIndex : MonoBehaviour
         {
             // Zurück zur Standardfarbe wechseln, wenn die Maus das Panel verlässt
             upgradePanelController.selectetPanel = -1;
-            upgradePanelController.UpdateValuePanel();
             DeselectPanel();
         }
     }

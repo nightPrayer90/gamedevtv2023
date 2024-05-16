@@ -35,7 +35,7 @@ public class HangarRotateShips : MonoBehaviour
     {
         // Drehe das Objekt zur entsprechenden Rotation mit DOTween
         transform.DORotate(new Vector3(0f, rotationState, 0f), 1f)
-            .SetEase(Ease.InOutQuad)
-            .OnComplete(() => Debug.Log("Rotation completed"));
+            .SetEase(Ease.InOutQuad);
+            
     }
 }

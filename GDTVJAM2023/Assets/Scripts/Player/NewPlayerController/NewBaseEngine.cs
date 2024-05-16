@@ -116,11 +116,12 @@ public class NewBaseEngine : BaseModule
             else
             {
                 totalThrustForce = thrustForce;
-                ps_engine.Emit(1);
-
+               
                 useBoost = false;
                 playerController.useBoost = false;
             }
+
+            ps_engine.Emit(1);
 
             // Berechne die Kraft basierend auf dem horizontalen Input
             Vector3 thrust = -transform.right * playerController.verticalInput * totalThrustForce;
@@ -159,6 +160,8 @@ public class NewBaseEngine : BaseModule
                     ps.Emit(1);
                 }
             }
+
+            ps_engine.Emit(1);
 
             // Berechne die Kraft basierend auf dem horizontalen Input
             Vector3 thrust = -transform.right * playerController.verticalInput * totalBackForce;

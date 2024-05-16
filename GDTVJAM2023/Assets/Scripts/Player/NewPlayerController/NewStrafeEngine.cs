@@ -41,7 +41,7 @@ public class NewStrafeEngine : BaseModule
         {
 
             // boost
-            if (hasStrafeBoost == true && (playerController.energieCurrent > 1 || useBoost == true)) // TODO here was removed: checking strafe input button
+            if (hasStrafeBoost == true && (playerController.energieCurrent > 1 || useBoost == true) && playerController.boostInput) // TODO here was removed: checking strafe input button
             {
                 totalStrafeForce = strafeForce + strafeBoostforce;
                 ps_leftBoost.Emit(1);
@@ -69,7 +69,7 @@ public class NewStrafeEngine : BaseModule
 
         if (playerController.strafeInput < -0.5)
         {
-            if (hasStrafeBoost == true && (playerController.energieCurrent > 1 || useBoost == true)) // TODO here was removed: checking strafe input button
+            if (hasStrafeBoost == true && (playerController.energieCurrent > 1 || useBoost == true) && playerController.boostInput) // TODO here was removed: checking strafe input button
             {
                 totalStrafeForce = strafeForce + strafeBoostforce;
                 ps_rigtBoost.Emit(1);

@@ -24,12 +24,7 @@ public class UpgradePanelController : MonoBehaviour
     [HideInInspector] public Color[] reqColor3;
     [HideInInspector] public string[] reqText3;
     [HideInInspector] public int[] upgradeCount;
-    public Image[] classPointsBullets;
-    public Image[] classPointsAOE;
-    public Image[] classPointsLaser;
-    public Image[] classPointsSupport;
-    public Image[] classUpImage;
-    public Sprite[] classUpSprite;
+    
 
     [Header("Value Panel")]
     public Image bkImage;
@@ -49,15 +44,19 @@ public class UpgradePanelController : MonoBehaviour
     private bool isButtonPressed = false;
     public bool isTweening = true;
 
+    public PlayerInputHandler inputHandler;
 
-    void OnEnable()
+
+    private void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
-        //classColors = new List<Color>(gameManager.cCPrefab.classColor);
         playerController = GameObject.FindWithTag("Player").GetComponent<NewPlayerController>();
         playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
+    }
 
+    void OnEnable()
+    {
         upgradeIndex = new int[3];
         upgradeValue = new float[3];
         headerStr = new string[3];
@@ -74,19 +73,34 @@ public class UpgradePanelController : MonoBehaviour
 
         selectetPanel = -1;
         isTweening = true;
-        isButtonPressed = true;
+        isButtonPressed = false;
 
         StringLibrary();
-        UpdateValuePanel();
 
         bkImage.DOFade(1f, 0.2f).SetUpdate(true);
+
+        // events
+        inputHandler.DisableGameControls();
+        inputHandler.EnableUIControls();
+
+        inputHandler.OnNavigateUIInputChanged += HandleNavigateInput;
+        inputHandler.OnClickInputChanged += HandleSubmitInput;
     }
 
-    private void Update()
+    private void OnDisable()
     {
-        if (isTweening == false)
+        // events
+        inputHandler.OnNavigateUIInputChanged -= HandleNavigateInput;
+        inputHandler.OnClickInputChanged -= HandleSubmitInput;
+        inputHandler.DisableUIControls();
+        inputHandler.EnableGameConrtols();
+    }
+
+    private void HandleNavigateInput(Vector2 inputVector2)
+    {
+        if (inputVector2 != Vector2.zero && isTweening == false && isButtonPressed == false)
         {
-            if (Input.GetAxisRaw("Horizontal") <= -0.5 && !isButtonPressed)
+            if (inputVector2.x >= 0.5)
             {
                 switch (selectetPanel)
                 {
@@ -103,12 +117,9 @@ public class UpgradePanelController : MonoBehaviour
                         selectetPanel = 0;
                         break;
                 }
-                UpdateValuePanel();
                 UpdateValuePanelOnMouseEnter(selectetPanel);
-
-                isButtonPressed = true;
             }
-            else if (Input.GetAxisRaw("Horizontal") >= 0.5 && !isButtonPressed)
+            else if (inputVector2.x <= -0.5)
             {
                 switch (selectetPanel)
                 {
@@ -125,31 +136,24 @@ public class UpgradePanelController : MonoBehaviour
                         selectetPanel = 1;
                         break;
                 }
-                UpdateValuePanel();
                 UpdateValuePanelOnMouseEnter(selectetPanel);
-
-                isButtonPressed = true;
             }
+        }
+    }
 
-            if (selectetPanel != -1 && Input.GetAxisRaw("SubmitEnter") >= 0.5 && isButtonPressed == false)
-            {
-                panelList[selectetPanel].OnMouseDown_();
-                isButtonPressed = true;
-            }
-
-            if (isButtonPressed == true)
-            {
-                if (Input.GetAxisRaw("Horizontal") > -0.5 && Input.GetAxisRaw("Horizontal") < 0.5 && Input.GetAxisRaw("SubmitEnter") < 0.5)
-                {
-                    isButtonPressed = false;
-                }
-            }
+    private void HandleSubmitInput()
+    {
+        Debug.Log("test");
+        if (selectetPanel != -1 && isButtonPressed == false)
+        {
+            panelList[selectetPanel].OnMouseDown_();
+            isButtonPressed = true;
         }
     }
 
 
 
-    // String Library
+
     public void StringLibrary()
     {
         headerColor[0] = new Color(255, 255, 255, 1f);
@@ -158,9 +162,8 @@ public class UpgradePanelController : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            upgradeValue[i] =0f;
-            
-
+            upgradeValue[i] = 0f;
+           
             int number = gameManager.selectedNumbers_[i];
             Upgrade uC = upgradeChooseList.uLObject.upgradeList[number];
 
@@ -248,18 +251,10 @@ public class UpgradePanelController : MonoBehaviour
                 reqText3[i] = "";
             }
 
-            upgradeCount[i] = uC.UpgradeCount;
-
-            panelList[i].SetDescription();        
+            upgradeCount[i] = uC.UpgradeCount;  
         }
     }
 
-    // Update Values in Panel 4
-    public void UpdateValuePanel()
-    {
-        ClassBarFiller();
-    }
-    
     // Part of the Mouse HoverEvent
     public void UpdateValuePanelOnMouseEnter(int index)
     {
@@ -329,7 +324,7 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isHeadCannon = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
-                GoBockToDimension();
+                GoBackToDimension();
                 weaponCount++;
 
                 upgradeChooseList.upgrades[64].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[64].UpgradeCount;
@@ -342,7 +337,7 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isRocketLauncher = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
-                GoBockToDimension();
+                GoBackToDimension();
                 upgradeChooseList.upgrades[57].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[57].UpgradeCount;
                 //upgradeChooseList.weaponUpgrades[57].reqRocket = 3; // Explosive Impact
 
@@ -352,7 +347,7 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isFireFlies = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
-                GoBockToDimension();
+                GoBackToDimension();
                 upgradeChooseList.upgrades[58].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[58].UpgradeCount;
                 //upgradeChooseList.weaponUpgrades[58].reqBullet = 4; // Explosive Impact
 
@@ -362,7 +357,7 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isBulletWings = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
-                GoBockToDimension();
+                GoBackToDimension();
                 weaponCount++;
                 break;
             case 10: //weapon: supoort Modul
@@ -372,7 +367,7 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.WeaponChoose();
                 
                 UpdateClass(number,1);
-                GoBockToDimension();
+                GoBackToDimension();
                 weaponCount++;
 
                 upgradeChooseList.upgrades[64].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[64].UpgradeCount;
@@ -388,7 +383,7 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isSpreadGun = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
-                GoBockToDimension();
+                GoBackToDimension();
 
                 upgradeChooseList.upgrades[50].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[50].UpgradeCount;
                 //upgradeChooseList.weaponUpgrades[50].reqBullet = 2;  // Wide Spray Expansion
@@ -408,7 +403,7 @@ public class UpgradePanelController : MonoBehaviour
                 //upgradeChooseList.weaponUpgrades[40].reqSupport = 1; // Fortified Defense
                 //upgradeChooseList.weaponUpgrades[41].reqSupport = 1; // Shielded Strike
                 //upgradeChooseList.weaponUpgrades[13].reqSupport = 2; // Back Shield
-                GoBockToDimension();
+                GoBackToDimension();
                 weaponCount++;
                 break;
             case 13: //weapon: back shield
@@ -416,14 +411,14 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
 
-                GoBockToDimension();
+                GoBackToDimension();
                 weaponCount++;
                 break;
             case 14: //weapon: schock nova
                 playerWeaponController.isNovaExplosion = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
-                GoBockToDimension();
+                GoBackToDimension();
 
                 upgradeChooseList.upgrades[77].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[77].UpgradeCount;
                 upgradeChooseList.upgrades[78].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[78].UpgradeCount;
@@ -440,21 +435,21 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isRockedWings = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
-                GoBockToDimension();
+                GoBackToDimension();
                 weaponCount++;
                 break;
             case 16: //weapon: front laser
                 playerWeaponController.isFrontLaser = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
-                GoBockToDimension();
+                GoBackToDimension();
                 weaponCount++;
                 break;
             case 17: //weapon: orbital laser
                 playerWeaponController.isOrbitalLaser = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
-                GoBockToDimension();
+                GoBackToDimension();
 
                 upgradeChooseList.upgrades[56].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[56].UpgradeCount;
                 //upgradeChooseList.weaponUpgrades[56].reqLaser = 2; // Laser Orbit Accelerator
@@ -688,7 +683,7 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isThermalSpheres = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number, 2);
-                GoBockToDimension();
+                GoBackToDimension();
                 weaponCount++;
                 break;
             case 70: // therminal Spheres
@@ -754,7 +749,7 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.isMineLayer = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number, 1);
-                GoBockToDimension();
+                GoBackToDimension();
                 weaponCount++;
                 break;
             case 82: // Burning Spheres
@@ -825,42 +820,7 @@ public class UpgradePanelController : MonoBehaviour
         playerWeaponController.UpdateWeaponValues();
     }
 
-    void ClassBarFiller()
-    {
-        for(int i=0; i<8 ; i++) //classPointsBullets.Length
-        {
-            if (!DisplayClassPoints(playerWeaponController.shipData.mcBulletLvl, i))
-            { classPointsBullets[i].color = Color.white; /*Debug.Log("Bullets " + i);*/ }
-
-            if (!DisplayClassPoints(playerWeaponController.shipData.mcExplosionLvl, i))
-            { classPointsAOE[i].color = Color.white; }
-
-            if (!DisplayClassPoints(playerWeaponController.shipData.mcLaserLvl, i))
-            { classPointsLaser[i].color = Color.white; }
-
-            if (!DisplayClassPoints(playerWeaponController.shipData.mcSupportLvl, i))
-            { classPointsSupport[i].color = Color.white; }
-        }
-
-        if (playerWeaponController.shipData.mcBulletLvl > 0)
-        { classUpImage[0].sprite = classUpSprite[0]; }
-
-        if (playerWeaponController.shipData.mcExplosionLvl > 0)
-        { classUpImage[1].sprite = classUpSprite[1]; }
-
-        if (playerWeaponController.shipData.mcLaserLvl > 0)
-        { classUpImage[2].sprite = classUpSprite[2]; }
-
-        if (playerWeaponController.shipData.mcSupportLvl > 0)
-        { classUpImage[3].sprite = classUpSprite[3]; }
-    }
-
-    bool DisplayClassPoints(int _class, int pointNumber)
-    {
-        return ((pointNumber) >= _class);
-    }
-
-    private void GoBockToDimension()
+     private void GoBackToDimension()
     {
         gameManager.GoBackDimension();
         AudioManager.Instance.PlaySFX("DimensionSwap");
