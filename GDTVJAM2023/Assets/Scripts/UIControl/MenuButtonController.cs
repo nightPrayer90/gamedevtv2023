@@ -35,40 +35,7 @@ public class MenuButtonController : MonoBehaviour
             SetSlider();
         }
 
-        /*
-        if (qualityDropdown != null)
-        {
-            qualityDropdown.value = QualitySettings.GetQualityLevel();
-        }
-
-        if (fullScreenBtn != null)
-        {
-            fullScreenBtn.isOn = Screen.fullScreen;
-        }
-
-        if (resolutionDropdrown != null)
-        {
-            resolutions = Screen.resolutions;
-            resolutionDropdrown.ClearOptions();
-
-            List<string> options = new List<string>();
-
-            int currentResolutionIndex = 0;
-            for (int i = 0; i < resolutions.Length; i++)
-            {
-                string option = resolutions[i].width + " x " + resolutions[i].height + " @ " + resolutions[i].refreshRate + "hz";
-                options.Add(option);
-
-                if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height && resolutions[i].refreshRate == Screen.currentResolution.refreshRate)
-                {
-                    currentResolutionIndex = i;
-                }
-            }
-            resolutionDropdrown.AddOptions(options);
-            resolutionDropdrown.value = currentResolutionIndex;
-            resolutionDropdrown.RefreshShownValue();
-        }
-        */
+      
     }
     void OnMouseEnter()
     {
@@ -169,12 +136,6 @@ public class MenuButtonController : MonoBehaviour
         AudioManager.Instance.PlaySFX("MouseKlick");
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         AudioManager.Instance.SceneTransition(SceneManager.GetActiveScene().name);
-    }
-
-    public void LevelPauseStop()
-    {
-        AudioManager.Instance.PlaySFX("MouseKlick");
-        GameObject.Find("Game Manager").GetComponent<GameManager>().PauseMenue();
     }
 
     public void BacktoHangar()

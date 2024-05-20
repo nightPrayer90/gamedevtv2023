@@ -71,6 +71,15 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""6681f49e-461f-4736-ac7e-a4950c7979bd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -271,6 +280,28 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
                     ""action"": ""Camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""300ffd51-76ef-42be-bc52-773310c422d5"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""OpenUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0e49072-6568-45b3-97ff-2d0fbd997f73"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""OpenUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -280,12 +311,12 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Navigate"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Value"",
                     ""id"": ""2b18fa81-2634-41c4-a109-0e26199ccbda"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Submit"",
@@ -367,6 +398,24 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CloseUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""241c6837-42d8-433f-a2cf-8ac4f32ef4b7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ClickUI"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""34ac5446-5ac4-430b-8bcd-8a4d27cc87f6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -809,6 +858,83 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
                     ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c0b3824-31a5-4e77-a58a-6db4366ff010"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""CloseUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7c95bec0-faa9-49a0-8130-39ae232af9a8"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CloseUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""da75ebfe-435f-4f7f-a154-4914f0a49d8d"",
+                    ""path"": ""<Pen>/tip"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ClickUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c00a5e9a-f44a-4197-9f5b-4f377a3bbdfd"",
+                    ""path"": ""<Touchscreen>/touch*/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Touch"",
+                    ""action"": ""ClickUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb436b1e-a289-4614-9622-2943fd9c4b41"",
+                    ""path"": ""<XRController>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""ClickUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d585c25-f28d-49f5-8709-9d6603f456cf"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ClickUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""231f83cd-e26c-41d8-9abd-20663ff7f8b3"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ClickUI"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -883,6 +1009,7 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
         m_Player_Boost = m_Player.FindAction("Boost", throwIfNotFound: true);
         m_Player_Ability = m_Player.FindAction("Ability", throwIfNotFound: true);
         m_Player_Camera = m_Player.FindAction("Camera", throwIfNotFound: true);
+        m_Player_OpenUI = m_Player.FindAction("OpenUI", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -895,6 +1022,8 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        m_UI_CloseUI = m_UI.FindAction("CloseUI", throwIfNotFound: true);
+        m_UI_ClickUI = m_UI.FindAction("ClickUI", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -959,6 +1088,7 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Boost;
     private readonly InputAction m_Player_Ability;
     private readonly InputAction m_Player_Camera;
+    private readonly InputAction m_Player_OpenUI;
     public struct PlayerActions
     {
         private @_9Dystricts m_Wrapper;
@@ -968,6 +1098,7 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
         public InputAction @Boost => m_Wrapper.m_Player_Boost;
         public InputAction @Ability => m_Wrapper.m_Player_Ability;
         public InputAction @Camera => m_Wrapper.m_Player_Camera;
+        public InputAction @OpenUI => m_Wrapper.m_Player_OpenUI;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -992,6 +1123,9 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
                 @Camera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamera;
                 @Camera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamera;
                 @Camera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamera;
+                @OpenUI.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenUI;
+                @OpenUI.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenUI;
+                @OpenUI.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenUI;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1011,6 +1145,9 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
                 @Camera.started += instance.OnCamera;
                 @Camera.performed += instance.OnCamera;
                 @Camera.canceled += instance.OnCamera;
+                @OpenUI.started += instance.OnOpenUI;
+                @OpenUI.performed += instance.OnOpenUI;
+                @OpenUI.canceled += instance.OnOpenUI;
             }
         }
     }
@@ -1029,6 +1166,8 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_RightClick;
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
+    private readonly InputAction m_UI_CloseUI;
+    private readonly InputAction m_UI_ClickUI;
     public struct UIActions
     {
         private @_9Dystricts m_Wrapper;
@@ -1043,6 +1182,8 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
+        public InputAction @CloseUI => m_Wrapper.m_UI_CloseUI;
+        public InputAction @ClickUI => m_Wrapper.m_UI_ClickUI;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1082,6 +1223,12 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
                 @TrackedDeviceOrientation.started -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnTrackedDeviceOrientation;
+                @CloseUI.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCloseUI;
+                @CloseUI.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCloseUI;
+                @CloseUI.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCloseUI;
+                @ClickUI.started -= m_Wrapper.m_UIActionsCallbackInterface.OnClickUI;
+                @ClickUI.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnClickUI;
+                @ClickUI.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnClickUI;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1116,6 +1263,12 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
                 @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
                 @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+                @CloseUI.started += instance.OnCloseUI;
+                @CloseUI.performed += instance.OnCloseUI;
+                @CloseUI.canceled += instance.OnCloseUI;
+                @ClickUI.started += instance.OnClickUI;
+                @ClickUI.performed += instance.OnClickUI;
+                @ClickUI.canceled += instance.OnClickUI;
             }
         }
     }
@@ -1172,6 +1325,7 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
         void OnBoost(InputAction.CallbackContext context);
         void OnAbility(InputAction.CallbackContext context);
         void OnCamera(InputAction.CallbackContext context);
+        void OnOpenUI(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1185,5 +1339,7 @@ public partial class @_9Dystricts : IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+        void OnCloseUI(InputAction.CallbackContext context);
+        void OnClickUI(InputAction.CallbackContext context);
     }
 }

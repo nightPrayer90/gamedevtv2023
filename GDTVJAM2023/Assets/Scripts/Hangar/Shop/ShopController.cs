@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using System;
+using UnityEngine.InputSystem;
 
 public class ShopController : MonoBehaviour
 {
@@ -49,10 +50,12 @@ public class ShopController : MonoBehaviour
         {
             shipModulesInUse.Add(0);
         }
+        Debug.Log(playerData.GetActiveShip().Count);
+        /*
         for (int i = 0; i < playerData.GetActiveShip().Count; i++)
         {
             shipModulesInUse[playerData.GetActiveShip()[i].moduleTypeIndex] += 1;
-        }
+        }*/
 
         playerData.shopLevelVisited = playerData.bossLevel;
 
@@ -89,7 +92,7 @@ public class ShopController : MonoBehaviour
             highlight = null;
         }
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         // handle mouse over
         if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
@@ -114,7 +117,7 @@ public class ShopController : MonoBehaviour
         }
 
         // handle Mouse klick
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (Mouse.current.leftButton.wasPressedThisFrame && !EventSystem.current.IsPointerOverGameObject())
         {
             if (Physics.Raycast(ray, out raycastHit))
             {
@@ -185,10 +188,10 @@ public class ShopController : MonoBehaviour
         }
 
         // back to Hangar
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             GoBackToHangar();
-        }
+        }*/
     }
 
     private void OnDestroy()
@@ -226,7 +229,6 @@ public class ShopController : MonoBehaviour
     {
         if (lastSelection != null)
             lastSelection.GetComponentInChildren<MeshRenderer>().material = originalMaterialSelectet;
-        //OnDeselect?.Invoke();
 
         // buy Panel
         buyPanel.DOKill();

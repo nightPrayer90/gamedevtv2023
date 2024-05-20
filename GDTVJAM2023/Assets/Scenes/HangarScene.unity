@@ -1038,12 +1038,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91569920}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.90248597, y: -3.6726527, z: -0.7468308}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 606577785}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &91569924
 MonoBehaviour:
@@ -1061,17 +1061,17 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: c7e602608bff46d4abb3873437de8348, type: 3}
+  m_PointAction: {fileID: -3728646534129494633, guid: c7e602608bff46d4abb3873437de8348, type: 3}
+  m_MoveAction: {fileID: 7846024074343323464, guid: c7e602608bff46d4abb3873437de8348, type: 3}
+  m_SubmitAction: {fileID: -2617030294462058488, guid: c7e602608bff46d4abb3873437de8348, type: 3}
+  m_CancelAction: {fileID: -2854259733953487365, guid: c7e602608bff46d4abb3873437de8348, type: 3}
+  m_LeftClickAction: {fileID: 7855590432162025822, guid: c7e602608bff46d4abb3873437de8348, type: 3}
+  m_MiddleClickAction: {fileID: -4753094804837391925, guid: c7e602608bff46d4abb3873437de8348, type: 3}
+  m_RightClickAction: {fileID: -2267602171367505365, guid: c7e602608bff46d4abb3873437de8348, type: 3}
+  m_ScrollWheelAction: {fileID: -425991795989731786, guid: c7e602608bff46d4abb3873437de8348, type: 3}
+  m_TrackedDevicePositionAction: {fileID: -6994027405544571135, guid: c7e602608bff46d4abb3873437de8348, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: -921873678421067754, guid: c7e602608bff46d4abb3873437de8348, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
@@ -3796,10 +3796,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 23506119}
-  - {fileID: 91569923}
   - {fileID: 722775299}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &615646570
 GameObject:
@@ -5149,7 +5148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877381048}
   m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: 0, y: 8.69, z: -10.83}
+  m_LocalPosition: {x: 0, y: 11, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6023,7 +6022,7 @@ Transform:
   - {fileID: 1521229199}
   - {fileID: 1526197864}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1006227028
 GameObject:
@@ -7549,12 +7548,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2138036135}
-  MouseSpeed: 3
-  orbitDampig: 30
-  mainCamera: {fileID: 877381050}
+  mouseSpeed: 0.1
+  orbitDamping: 10
+  distance: 5
+  zoomDamping: 5
+  zoomSpeed: 5
   minZoom: 20
-  maxZoom: 50
-  modulePanelMouseOver: {fileID: 2038161173}
+  maxZoom: 30
+  mainCamera: {fileID: 877381050}
 --- !u!4 &1204264142
 Transform:
   m_ObjectHideFlags: 0
@@ -12629,7 +12630,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1877239514
 GameObject:
@@ -14828,7 +14829,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138036134}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.90248597, y: 0, z: -0.7468308}
+  m_LocalPosition: {x: -0.90248597, y: -1.3, z: -0.7468308}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

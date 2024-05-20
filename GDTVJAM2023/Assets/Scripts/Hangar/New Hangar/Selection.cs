@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using System;
 
 public class Selection : MonoBehaviour
@@ -36,7 +37,7 @@ public class Selection : MonoBehaviour
             highlight = null;
         }
 
-        /*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         // handle mouse over
         if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
@@ -69,7 +70,7 @@ public class Selection : MonoBehaviour
         }
 
         // handle Mouse klick
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (Mouse.current.leftButton.wasPressedThisFrame && !EventSystem.current.IsPointerOverGameObject())
         {
             if (Physics.Raycast(ray, out raycastHit))
             {
@@ -123,7 +124,7 @@ public class Selection : MonoBehaviour
             }
 
 
-        }*/
+        }
     }
 
     public void DeselectAll()

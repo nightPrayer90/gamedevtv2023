@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class Intro : MonoBehaviour
 {
@@ -27,8 +28,7 @@ public class Intro : MonoBehaviour
 
     private void Update()
     {
-        /*
-        if (isTyping && Input.GetMouseButtonDown(0))
+        if (isTyping && Mouse.current.leftButton.wasPressedThisFrame)
         {
             // Beenden des Tippens, um den gesamten Text anzuzeigen
             StopAllCoroutines();
@@ -36,14 +36,12 @@ public class Intro : MonoBehaviour
             isTyping = false;
             AudioManager.Instance.PlaySFX("MouseKlick");
         }
-        else if (!isTyping && Input.GetMouseButtonDown(0))
+        else if (!isTyping && Mouse.current.leftButton.wasPressedThisFrame)
         {
             // Zur MenuScene wechseln
             AudioManager.Instance.PlaySFX("DimensionSwap");
             StartFade();
         }
-        */
-        StartFade();
     }
 
     private System.Collections.IEnumerator TypeText()

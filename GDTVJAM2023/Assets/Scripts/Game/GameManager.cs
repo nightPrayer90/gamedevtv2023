@@ -4,11 +4,12 @@ using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
+using UnityEngine.EventSystems;
 
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Game Status Controll")]
+    [Header("Game Status Control")]
     public bool gameIsPlayed = true;
     public bool gameOver = false;
     public bool isPause = false;
@@ -84,6 +85,7 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Objects")]
+    public PlayerInputHandler inputHandler;
     public CameraShake topShake;
     public CameraShake backShake;
     public CinemachineSwitcher cinemachineSwitcher;
@@ -95,9 +97,10 @@ public class GameManager : MonoBehaviour
     private bool canSpawnNextDimention = true;
     public MenuButtonController menuButtonController;
 
-
     // Events
     public event Action<bool> OnDimensionSwap;
+
+
 
     /* **************************************************************************** */
     /* Lifecycle-Methoden---------------------------------------------------------- */
@@ -113,9 +116,6 @@ public class GameManager : MonoBehaviour
         upgradeChooseList = GetComponent<UpgradeChooseList>();
         spawnDistrictList = GetComponent<SpawnDistrictList>();
 
-        // upgrades form all ships
-        //upgradeChooseList.chanceToGetTwoExp = bulletShipData.chanceToDoubleExp + rocketShipData.chanceToDoubleExp + laserShipData.chanceToDoubleExp;
-
         // Initialize timer
         currentTime = totalTime + 1;
         InvokeRepeating("UpdateTimerText", 3f, 1f);
@@ -127,7 +127,6 @@ public class GameManager : MonoBehaviour
         StartDimensionValues();
 
         // Initialze HUD Values
-        //UpdateUIPlayerHealth(10,10);
         UpdateUIPlayerExperience(false, 1, 10, 0, 0);
         UpdateTimerText();
         UpdateDistrictText();
@@ -175,30 +174,74 @@ public class GameManager : MonoBehaviour
         fogPlaneDimension.SetActive(false);
     }
 
-    private void Update()
-    {
-        // pause menu control
-        /*if (Input.GetKeyDown(KeyCode.Escape) && !gameOver && gameIsPlayed)
-        {
-            PauseMenue();
-        }*/
 
-        // TODDOOO nur für die Messe
-        if (gameOver == true)
+    private void OnEnable()
+    {
+        // events
+        inputHandler.OnOpenUIChanged += HandleBreakeUI;
+    }
+
+
+    // Open break UI
+    private void HandleBreakeUI()
+    {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        inputHandler.DisableGameControls();
+        inputHandler.EnableUIControls();
+        PauseMenue();
+
+        inputHandler.OnCloseUIChanged += HandleCloseBreakUI;
+        inputHandler.OnClickInputChanged += HandleClickUI;
+    }
+
+    // Open Close UI
+    public void HandleCloseBreakUI()
+    {
+        inputHandler.OnCloseUIChanged -= HandleCloseBreakUI;
+        inputHandler.OnClickInputChanged -= HandleClickUI;
+
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        inputHandler.DisableUIControls();
+        inputHandler.EnableGameConrtols();
+        PauseMenue();
+    }
+
+    public void HandleClickUI()
+    {
+        string selectedObject = EventSystem.current.currentSelectedGameObject.name;
+        switch (selectedObject)
         {
-            /*if (Input.GetButtonDown("Boost"))
-            {
+            case "Back Button":
+                HandleCloseBreakUI();
+                break;
+            case "Restart Button":
+                AudioManager.Instance.PlaySFX("MouseKlick");
+                inputHandler.DisableUIControls();
+                inputHandler.EnableGameConrtols();
                 menuButtonController.LevelRestart();
-            }
-            if (Input.GetButtonDown("SwitchView"))
-            {
+                break;
+            case "BackToHangar Button":
+                AudioManager.Instance.PlaySFX("MouseKlick");
+                inputHandler.DisableUIControls();
+                inputHandler.DisableGameControls();
+                menuButtonController.BacktoHangar();
+                break;
+            case "BackToMenu Button":
+                AudioManager.Instance.PlaySFX("MouseKlick");
+                inputHandler.DisableUIControls();
+                inputHandler.DisableGameControls();
                 menuButtonController.BacktoMainMenue();
-            }*/
+                break;
         }
     }
 
     private void OnDestroy()
     {
+        // events
+        inputHandler.OnOpenUIChanged -= HandleBreakeUI;
+        inputHandler.OnCloseUIChanged -= HandleCloseBreakUI;
+        inputHandler.OnClickInputChanged -= HandleClickUI;
+
         // Set game speed
         Time.timeScale = 1;
 
@@ -220,6 +263,13 @@ public class GameManager : MonoBehaviour
     // activate gameoverUI
     public void GameIsOver()
     {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        inputHandler.DisableGameControls();
+        inputHandler.EnableUIControls();
+
+        inputHandler.OnCloseUIChanged += HandleCloseBreakUI;
+        inputHandler.OnClickInputChanged += HandleClickUI;
+
         Time.timeScale = 0;
         gameOver = true;
         gameIsPlayed = false;
@@ -235,6 +285,13 @@ public class GameManager : MonoBehaviour
     // activate victoryUI
     public void Victory()
     {
+        AudioManager.Instance.PlaySFX("MouseKlick");
+        inputHandler.DisableGameControls();
+        inputHandler.EnableUIControls();
+
+        inputHandler.OnCloseUIChanged += HandleCloseBreakUI;
+        inputHandler.OnClickInputChanged += HandleClickUI;
+
         Time.timeScale = 0;
         gameOver = true;
         gameIsPlayed = false;
@@ -541,11 +598,9 @@ public class GameManager : MonoBehaviour
         bossUI.SetActive(false);
 
         // activate the next district 
-        //Debug.Log(districtNumber);
         districtNumber++;
         Debug.Log(districtNumber);
         Invoke("UpdateDistrictText", 0.5f);
-        //UpdateDistrictText(districtNumber);
 
         // chance the bgm to the level bgm
         AudioManager.Instance.PlayMusic("Dystrict" + districtNumber.ToString());
@@ -742,10 +797,6 @@ public class GameManager : MonoBehaviour
             resultString += "\n and unlock new modules in Module Shop!";
             playerData.bossLevel = districtNumber - 1;
         }
-
-        //TODO: Only for the DEMO
-        if (isVictory == true)
-            playerData.bossLevel = 5;
 
         playerData.credits += expCollected;
 

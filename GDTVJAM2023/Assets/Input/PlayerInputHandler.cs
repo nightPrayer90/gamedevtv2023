@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,19 +18,23 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private string boost = "Boost";
     [SerializeField] private string ability = "Ability";
     [SerializeField] private string cameraSwitch = "Camera";
+    [SerializeField] private string openUI = "OpenUI";
 
     private InputAction moveAction;
     private InputAction rotateAction;
     private InputAction boostAction;
     private InputAction abilityAction;
     private InputAction cameraSwitchAction;
+    private InputAction openUIAction;
 
     [Header("Action Name References UI")]
     [SerializeField] private string navigate = "Navigate";
     [SerializeField] private string click = "Click";
+    [SerializeField] private string closeUI = "CloseUI";
 
     private InputAction navigateUIAction;
     private InputAction clickUIAction;
+    private InputAction closeUIAction;
 
     [Header("OtherObjects")]
     public CinemachineSwitcher viewSwitch;
@@ -43,6 +45,8 @@ public class PlayerInputHandler : MonoBehaviour
     public bool BoostInput { get; private set; }
     public bool AbilityInput { get; private set; }
 
+
+    public event Action OnCameraSwitchInputChanged;
     private bool _cameraSwitchInput;
     public bool CameraSwitchInput 
     {
@@ -54,11 +58,32 @@ public class PlayerInputHandler : MonoBehaviour
                 _cameraSwitchInput = value;
                 if (_cameraSwitchInput)
                 {
-                    viewSwitch.SwitchState();
+                    OnCameraSwitchInputChanged?.Invoke();
                 }
             }
         }
     }
+    
+ 
+    public event Action OnOpenUIChanged;
+    private bool _openUIInput;
+    public bool OpenUIInput
+    {
+        get { return _openUIInput; }
+        private set
+        {
+            if (_openUIInput != value)
+            {
+                _openUIInput = value;
+                if (_openUIInput)
+                {
+                    OnOpenUIChanged?.Invoke();
+                }
+            }
+        }
+    }
+
+
 
     // UI Stuff
     public event Action<Vector2> OnNavigateUIInputChanged;
@@ -86,7 +111,6 @@ public class PlayerInputHandler : MonoBehaviour
             if (_clickUIInput != value)
             {
                 _clickUIInput = value;
-                Debug.Log("handler" + _clickUIInput);
                 if (_clickUIInput)
                 {
                     OnClickInputChanged?.Invoke();
@@ -94,6 +118,25 @@ public class PlayerInputHandler : MonoBehaviour
             }
         }
     }
+
+    public event Action OnCloseUIChanged;
+    private bool _closeUIInput;
+    public bool CloseUIInput
+    {
+        get { return _closeUIInput; }
+        private set
+        {
+            if (_closeUIInput != value)
+            {
+                _closeUIInput = value;
+                if (_closeUIInput)
+                {
+                    OnCloseUIChanged?.Invoke();
+                }
+            }
+        }
+    }
+
 
 
     private void Awake()
@@ -104,10 +147,12 @@ public class PlayerInputHandler : MonoBehaviour
         boostAction = playerControls.FindActionMap(actionMapName).FindAction(boost);
         abilityAction = playerControls.FindActionMap(actionMapName).FindAction(ability);
         cameraSwitchAction = playerControls.FindActionMap(actionMapName).FindAction(cameraSwitch);
+        openUIAction = playerControls.FindActionMap(actionMapName).FindAction(openUI);
 
         // UI Controls
         navigateUIAction = playerControls.FindActionMap(actionMapNameUI).FindAction(navigate);
         clickUIAction = playerControls.FindActionMap(actionMapNameUI).FindAction(click);
+        closeUIAction = playerControls.FindActionMap(actionMapNameUI).FindAction(closeUI);
         RegisterInputActions();
     }
 
@@ -129,12 +174,18 @@ public class PlayerInputHandler : MonoBehaviour
         cameraSwitchAction.performed += context => CameraSwitchInput = true;
         cameraSwitchAction.canceled += context => CameraSwitchInput = false;
 
+        openUIAction.performed += context => OpenUIInput = true;
+        openUIAction.canceled += context => OpenUIInput = false;
+
         // UI Controls
         navigateUIAction.performed += context => NavigateUIInput = context.ReadValue<Vector2>();
         navigateUIAction.canceled += context => NavigateUIInput = Vector2.zero;
 
         clickUIAction.performed += context => ClickUIInput = true;
         clickUIAction.canceled += context => ClickUIInput = false;
+
+        closeUIAction.performed += context => CloseUIInput = true;
+        closeUIAction.canceled += context => CloseUIInput = false;
     }
 
     private void OnEnable()
@@ -149,31 +200,39 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void EnableGameConrtols()
     {
+        Debug.Log("1-EnableGameConrtols");
         moveAction.Enable();
         rotateAction.Enable();
         boostAction.Enable();
         abilityAction.Enable();
         cameraSwitchAction.Enable();
+        openUIAction.Enable();
     }
 
     public void DisableGameControls()
     {
+        Debug.Log("1-DisableGameControls");
         moveAction.Disable();
         rotateAction.Disable();
         boostAction.Disable();
         abilityAction.Disable();
         cameraSwitchAction.Disable();
+        openUIAction.Disable();
     }
 
     public void EnableUIControls()
     {
+        Debug.Log("2-EnableUIControls");
         navigateUIAction.Enable();
         clickUIAction.Enable();
+        closeUIAction.Enable();
     }
 
     public void DisableUIControls()
     {
+        Debug.Log("2-DisableUIControls");
         navigateUIAction.Disable();
         clickUIAction.Disable();
+        closeUIAction.Disable();
     }
 }

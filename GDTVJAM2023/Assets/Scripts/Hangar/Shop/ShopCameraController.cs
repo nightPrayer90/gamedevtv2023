@@ -1,180 +1,157 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ShopCameraController : MonoBehaviour
 {
-    [Header("Objects")]
-    public Transform cameraTransform;
+    public float zoomSpeed = 10f;
+    public float zoomDamping = 5f;
+    public float minZoomDistance = 2f;
+    public float maxZoomDistance = 15f;
+    public float dragSpeed = 0.1f;
 
-    [Header("Movement")]
-    public float movementSpeed;
-    public float rotationAmount;
-    public float movementTime;
-    public Vector3 zoomAmount;
-
-    public Vector3 newPosition;
-    private Quaternion newRotation;
-    private Vector3 newZoom;
-
+    private Camera mainCamera;
+    private float targetZoomDistance;
     private Vector3 dragStartPosition;
-    private Vector3 dragCurrentPostion;
-    private Vector3 rotateStartPosion;
-    private Vector3 rotateCurrentPositon;
 
     [Header("Camera Limits")]
-    public Vector2 zoomLimits;
     public Vector2 horizontalLimits;
     public Vector2 verticalLimits;
-    private bool canNavigate = false;
 
+    private bool isMoving = false;
+    public bool hasMoveKeys = true;
 
-    private void Awake()
+    void Start()
     {
-        InitCamController();
+        mainCamera = Camera.main;
+        targetZoomDistance = Vector3.Distance(transform.position, mainCamera.transform.position);
     }
 
-    public void InitCamController()
+    void Update()
     {
-        //transform.position = new Vector3(gridController.gridSize.x / 2, transform.position.y, gridController.gridSize.y / 2);
-        //transform.position = new Vector3(gridController.startPos.x, transform.position.y, gridController.startPos.y);
+        Vector3 mousePosition = Mouse.current.position.ReadValue();
 
-        // set positions
-        //newPosition = new Vector3(gridController.startPos.x, transform.position.y, gridController.startPos.y);
-        //newRotation = transform.rotation;
-        newZoom = cameraTransform.localPosition;
-
-        canNavigate = true;
-    }
-
-    private void LateUpdate()
-    {
-        if (canNavigate == true)
+        // Handle mouse drag movement
+        if (Mouse.current.middleButton.wasPressedThisFrame)
         {
-            HandleMouseInput();
-            HandleMovmentInput();
-            CalculateCameraTransforms();
-        }
-    }
-
-    void HandleMouseInput()
-    {
-        // handle mouse scrolling
-        if(Input.mouseScrollDelta.y > 0) // zoom in 
-        {
-            if (newZoom.y > zoomLimits.x)
-                newZoom += Input.mouseScrollDelta.y * zoomAmount*50;
-        }
-        if (Input.mouseScrollDelta.y < 0) // zoom out
-        {
-            if (newZoom.y < zoomLimits.y)
-                newZoom += Input.mouseScrollDelta.y * zoomAmount * 50;
+            dragStartPosition = mousePosition;
         }
 
-
-        // handle mouse drag movement
-        if (Input.GetMouseButtonDown(2))
+        if (Mouse.current.middleButton.isPressed)
         {
-            Plane plane = new Plane(Vector3.up, Vector3.zero);
+            Vector3 dragCurrentPosition = mousePosition;
+            Vector3 translation = (mainCamera.ScreenToWorldPoint(new Vector3(dragStartPosition.x, dragStartPosition.y, mainCamera.nearClipPlane)) -
+                                  mainCamera.ScreenToWorldPoint(new Vector3(dragCurrentPosition.x, dragCurrentPosition.y, mainCamera.nearClipPlane))) * dragSpeed;
+            translation.y = 0; // Maintain horizontal plane movement only
+            Vector3 newPosition = transform.position + translation;
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            // Clamp the new position within the horizontal and vertical limits
+            newPosition.x = Mathf.Clamp(newPosition.x, horizontalLimits.x, horizontalLimits.y);
+            newPosition.z = Mathf.Clamp(newPosition.z, verticalLimits.x, verticalLimits.y);
 
-            float entry;
+            transform.position = newPosition;
+            dragStartPosition = dragCurrentPosition;
+        }
 
-            if(plane.Raycast(ray, out entry))
+        // Handle zoom
+        float scroll = Mouse.current.scroll.ReadValue().y;
+        if (scroll != 0)
+        {
+            if (scroll > 0 && transform.position.y > minZoomDistance + 5)
             {
-                dragStartPosition = ray.GetPoint(entry); 
+                // Zoom in towards the mouse position
+                Vector3 direction = mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, mainCamera.nearClipPlane)) - mainCamera.transform.position;
+                direction = direction.normalized;
+
+                float zoomAmount = scroll * zoomSpeed * Time.deltaTime;
+                Vector3 targetPosition = transform.position + direction * zoomAmount;
+
+                // Clamp the y position
+                targetPosition.y = Mathf.Clamp(targetPosition.y, minZoomDistance, maxZoomDistance);
+
+                // Clamp the x and z positions within the horizontal and vertical limits
+                targetPosition.x = Mathf.Clamp(targetPosition.x, horizontalLimits.x, horizontalLimits.y);
+                targetPosition.z = Mathf.Clamp(targetPosition.z, verticalLimits.x, verticalLimits.y);
+
+                // Smoothly move the camera parent to the new position
+                transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * zoomDamping);
+            }
+            else if (scroll < 0 && transform.position.y < maxZoomDistance - 5)
+            {
+                // Zoom in towards the mouse position
+                Vector3 direction = mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, mainCamera.nearClipPlane)) - mainCamera.transform.position;
+                direction = direction.normalized;
+
+                float zoomAmount = scroll * zoomSpeed * Time.deltaTime;
+                Vector3 targetPosition = transform.position + direction * zoomAmount;
+
+                // Clamp the y position
+                targetPosition.y = Mathf.Clamp(targetPosition.y, minZoomDistance, maxZoomDistance);
+
+                // Clamp the x and z positions within the horizontal and vertical limits
+                targetPosition.x = Mathf.Clamp(targetPosition.x, horizontalLimits.x, horizontalLimits.y);
+                targetPosition.z = Mathf.Clamp(targetPosition.z, verticalLimits.x, verticalLimits.y);
+
+                // Smoothly move the camera parent to the new position
+                transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * zoomDamping);
             }
         }
-        if (Input.GetMouseButton(2))
+
+        // handle Keys
+        if (!isMoving && hasMoveKeys)
         {
-            Plane plane = new Plane(Vector3.up, Vector3.zero);
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            float entry;
-
-            if (plane.Raycast(ray, out entry))
+            if (Keyboard.current.digit1Key.wasPressedThisFrame)
             {
-                dragCurrentPostion = ray.GetPoint(entry);
-                newPosition = transform.position + dragStartPosition - dragCurrentPostion;
+                StartCoroutine(MoveToPosition(new Vector3(-42, -20, 70)));
+            }
+            if (Keyboard.current.digit2Key.wasPressedThisFrame)
+            {
+                StartCoroutine(MoveToPosition(new Vector3(-32, -20, 70)));
+            }
+            if (Keyboard.current.digit3Key.wasPressedThisFrame)
+            {
+                StartCoroutine(MoveToPosition(new Vector3(-22, -20, 70)));
+            }
+            if (Keyboard.current.digit4Key.wasPressedThisFrame)
+            {
+                StartCoroutine(MoveToPosition(new Vector3(-12, -20, 70)));
+            }
+            if (Keyboard.current.digit5Key.wasPressedThisFrame)
+            {
+                StartCoroutine(MoveToPosition(new Vector3(-2, -20, 70)));
+            }
+            if (Keyboard.current.digit6Key.wasPressedThisFrame)
+            {
+                StartCoroutine(MoveToPosition(new Vector3(8, -20, 70)));
+            }
+            if (Keyboard.current.digit7Key.wasPressedThisFrame)
+            {
+                StartCoroutine(MoveToPosition(new Vector3(18, -20, 70)));
+            }
+            if (Keyboard.current.digit8Key.wasPressedThisFrame)
+            {
+                StartCoroutine(MoveToPosition(new Vector3(28, -20, 70)));
             }
         }
-
-        // handle mouse rotation
-        /*if (Input.GetMouseButtonDown(2))
-        {
-            rotateStartPosion = Input.mousePosition;
-        }
-        if (Input.GetMouseButton(2))
-        {
-            rotateCurrentPositon = Input.mousePosition;
-            Vector3 difference = rotateStartPosion - rotateCurrentPositon;
-            rotateStartPosion = rotateCurrentPositon;
-
-            newRotation *= Quaternion.Euler(Vector3.up * (-difference.x / 5f));
-        }*/
-
     }
 
-    void HandleMovmentInput()
+    IEnumerator MoveToPosition(Vector3 targetPos)
     {
+        while (Vector3.Distance(transform.position, targetPos) > 0.1f)
+        {
+            isMoving = true;
+            Vector3 newPosition = Vector3.Lerp(transform.position, targetPos, 15f * Time.deltaTime);
 
-        //ToDoo with ItputAXES
-        // handle movment
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            //if (newPosition.)
-            newPosition += (transform.forward * movementSpeed);
-        }
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            newPosition += (transform.forward * -movementSpeed);
-        }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            newPosition += (transform.right * movementSpeed);
-        }
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            newPosition += (transform.right * -movementSpeed);
-        }
+            // Clamp the new position within the horizontal and vertical limits
+            newPosition.x = Mathf.Clamp(newPosition.x, horizontalLimits.x, horizontalLimits.y);
+            newPosition.z = Mathf.Clamp(newPosition.z, verticalLimits.x, verticalLimits.y);
 
-        // handle rotation
-        /*if (Input.GetKey(KeyCode.Q))
-        {
-            newRotation *= Quaternion.Euler(Vector3.up * -rotationAmount);
-            //newPosition += (transform.right * movementSpeed);
+            transform.position = newPosition;
+            yield return null;
+            isMoving = false;
         }
-        if (Input.GetKey(KeyCode.E))
-        {
-            newRotation *= Quaternion.Euler(Vector3.up * rotationAmount);
-            //newPosition += (transform.right * -movementSpeed);
-        }*/
-
-        // handle zoom
-        /*if (Input.GetKey(KeyCode.R)) // zoom in
-        {
-            if (newZoom.y > zoomLimits.x)
-                newZoom += zoomAmount;
-        }
-        if (Input.GetKey(KeyCode.F)) // zoom out 
-        {
-            if (newZoom.y < zoomLimits.y)
-                newZoom -= zoomAmount;
-        }
-
-        */
     }
 
-    private void CalculateCameraTransforms()
-    {
-        // limit positions
-        newPosition = new Vector3(Mathf.Min(Mathf.Max(newPosition.x, horizontalLimits.x), horizontalLimits.y), transform.position.y, Mathf.Min(Mathf.Max(newPosition.z, verticalLimits.x), verticalLimits.y));
-
-        // set transforms
-        transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, Time.deltaTime * movementTime);
-        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
-    }
 }

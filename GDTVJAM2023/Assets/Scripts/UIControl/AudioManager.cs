@@ -114,6 +114,7 @@ public class AudioManager : MonoBehaviour
         }
 
         playerData.Initialize(path_, moduleList.moduls.Count, uLPrefab.upgradeList.Count);
+        SavePlayerData();
     }
 
     public void LoadPlayerData(string path)
