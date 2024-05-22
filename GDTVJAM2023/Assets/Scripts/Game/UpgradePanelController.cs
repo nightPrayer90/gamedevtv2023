@@ -13,18 +13,9 @@ public class UpgradePanelController : MonoBehaviour
     public UpgradeShipPanelController shipPanalController;
     [HideInInspector] public int[] upgradeIndex;
     [HideInInspector] public float[] upgradeValue;
-    [HideInInspector] public string[] headerStr;
-    [HideInInspector] public string[] descriptionTextStr;
-    [HideInInspector] public Color[] headerColor;
-    [HideInInspector] public Color[] mainClassColor;
-    [HideInInspector] public string[] mainClassStr;
-    [HideInInspector] public Sprite[] iconPanel;
-    [HideInInspector] public Color[] reqColor;
-    [HideInInspector] public string[] reqText;
-    [HideInInspector] public Color[] reqColor3;
-    [HideInInspector] public string[] reqText3;
     [HideInInspector] public int[] upgradeCount;
-    
+    [HideInInspector] public Sprite[] iconPanel;
+
 
     [Header("Value Panel")]
     public Image bkImage;
@@ -57,19 +48,10 @@ public class UpgradePanelController : MonoBehaviour
 
     void OnEnable()
     {
-        upgradeIndex = new int[3];
-        upgradeValue = new float[3];
-        headerStr = new string[3];
-        descriptionTextStr = new string[3];
-        mainClassColor = new Color[3];
-        mainClassStr = new string[3];
-        iconPanel = new Sprite[3];
-        headerColor = new Color[3];
-        reqColor = new Color[6];
-        reqText = new string[6];
-        reqColor3 = new Color[3];
-        reqText3 = new string[3];
-        upgradeCount = new int[3];
+        upgradeIndex = new int[3] {0,0,0};
+        upgradeValue = new float[3] {0,0,0};
+        upgradeCount = new int[3] {0,0,0};
+        iconPanel = new Sprite[3] {null,null,null};
 
         selectetPanel = -1;
         isTweening = true;
@@ -152,106 +134,17 @@ public class UpgradePanelController : MonoBehaviour
     }
 
 
-
-
     public void StringLibrary()
     {
-        headerColor[0] = new Color(255, 255, 255, 1f);
-        headerColor[1] = new Color(255, 255, 255, 1f);
-        headerColor[2] = new Color(255, 255, 255, 1f);
-
         for (int i = 0; i < 3; i++)
-        {
-            upgradeValue[i] = 0f;
-           
-            int number = gameManager.selectedNumbers_[i];
-            Upgrade uC = upgradeChooseList.uLObject.upgradeList[number];
+        {          
+            upgradeIndex[i] = gameManager.selectedNumbers_[i];
+            Upgrade upgrade = upgradeChooseList.uLObject.upgradeList[upgradeIndex[i]];
 
-            // calculate values
-            switch (number)
-            {
-                case 0: // life
-                    upgradeValue[i] = 2;
-                    break;
-                case 1: //damage
-                    upgradeValue[i] = 1;
-                    break;
-                case 2: //Protection
-                    float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + 1);
-                    float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
-
-                    upgradeValue[i] = targetPercentage;
-                    break;
-                case 3: // boost
-                    upgradeValue[i] = 15f; // 10%
-                    break;
-                case 4: // agility
-                    upgradeValue[i] = 10f; // 10%
-                    break;
-                case 5: // pickup range
-                    upgradeValue[i] = 0.8f;
-                    break;
-
-                default: //weapon select
-                    headerColor[i] = gameManager.cCPrefab.classColor[uC.colorIndex];
-                    break;
-            }
-            upgradeIndex[i] = number;
             gameManager.playerData.skillsSpotted[upgradeIndex[i]] = true;
 
             // set text descriptions
-            iconPanel[i] = uC.iconPanel;
-            headerStr[i] = uC.headerStr;
-            descriptionTextStr[i] = uC.descriptionStr.Replace("XX", upgradeValue[i].ToString());
-
-            // mainClass
-            int index = (int)uC.mainClass;
-            mainClassStr[i] = System.Enum.GetName(typeof(UpgradeContainer.MainClass), uC.mainClass).ToString();
-            mainClassColor[i] = gameManager.cCPrefab.classColor[index];
-
-            // set requerments
-            int count_ = 0;
-            reqColor[i] = gameManager.cCPrefab.classColor[8];
-            reqText[i] = "";
-            reqColor[i+3] = gameManager.cCPrefab.classColor[8];
-            reqText[i+3] = "";
-
-            if (uC.reqBullet > 0 )
-            {
-                reqColor[i] = gameManager.cCPrefab.classColor[0];
-                reqText[i] = uC.reqBullet.ToString();
-                count_ += 3;
-            }
-            if (uC.reqRocket > 0)
-            {
-                reqColor[i+ count_] = gameManager.cCPrefab.classColor[1];
-                reqText[i+ count_] = uC.reqRocket.ToString();
-                count_ += 3;
-            }
-            if (uC.reqLaser > 0)
-            {
-                reqColor[i+ count_] = gameManager.cCPrefab.classColor[2];
-                reqText[i+ count_] = uC.reqLaser.ToString();
-                count_ += 3;
-            }
-            if (uC.reqSupport > 0)
-            {
-                reqColor[i+ count_] = gameManager.cCPrefab.classColor[3];
-                reqText[i+ count_] = uC.reqSupport.ToString();
-            }
-
-            if (uC.reqAbility != "")
-            {
-                reqColor3[i] = gameManager.cCPrefab.classColor[uC.colorIndex];
-                reqText3[i] = uC.reqAbility;
-            }
-            else
-            {
-                reqColor3[i] = gameManager.cCPrefab.classColor[8];
-                reqText3[i] = "";
-            }
-
-            upgradeCount[i] = uC.UpgradeCount;  
+            iconPanel[i] = upgrade.iconPanel;
         }
     }
 
@@ -273,7 +166,7 @@ public class UpgradePanelController : MonoBehaviour
             // weapon Upgrades
             if ((number > 5 && number <= 17) || number == 69)
             {
-                selectedUpgradePanelList[weaponCount].sprite = iconPanel[index];
+//                selectedUpgradePanelList[weaponCount].sprite = iconPanel[index];
                 selectedUpgradePanelList[weaponCount].gameObject.GetComponent<ClassTooltipTrigger>().contentType = number;
             }
 
@@ -295,14 +188,15 @@ public class UpgradePanelController : MonoBehaviour
         switch (number)
         {
             case 0: //upgrade: health
-                playerController.playerMaxHealth = playerController.playerMaxHealth + Mathf.RoundToInt(upgradeValue[index]);
-                playerController.playerCurrentHealth = Mathf.Min(playerController.playerCurrentHealth + Mathf.RoundToInt(upgradeValue[index]), playerController.playerMaxHealth);
+                playerController.playerMaxHealth = playerController.playerMaxHealth + 2;
+                playerController.playerCurrentHealth = Mathf.Min(playerController.playerCurrentHealth + 2, playerController.playerMaxHealth);
                 gameManager.UpdateUIPlayerHealth(playerController.playerCurrentHealth, playerController.playerMaxHealth);
                 break;
             case 1: //upgrade: main Weapon damage
-                playerWeaponController.UpdateMWDamage(Mathf.RoundToInt(upgradeValue[index]));
+                playerWeaponController.UpdateMWDamage(1);
                 break;
             case 2: //upgrade: Protection
+
                 float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + 1);
                 float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
                 playerController.protectionPerc = targetPercentage;
@@ -310,15 +204,15 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 3: //upgrade: boost
                 
-                playerController.energieMax = playerController.energieMax * (1 + upgradeValue[index] / 100);
+                playerController.energieMax = playerController.energieMax * (1.15f);
                 gameManager.energieSlider.maxValue = playerController.energieMax;
                 gameManager.energieSlider.value = playerController.energieMax;
                 break;
             case 4: //upgrade: rotate speed
-                playerController.UpdateAgility(upgradeValue[index]);
+                playerController.UpdateAgility(10);
                 break;
             case 5: //upgrade: pickup Range
-                playerController.pickupRange = playerController.pickupRange + upgradeValue[index];
+                playerController.pickupRange = playerController.pickupRange + 0.8f;
                 break;
             case 6: //weapon: headgun
                 playerWeaponController.isHeadCannon = true;

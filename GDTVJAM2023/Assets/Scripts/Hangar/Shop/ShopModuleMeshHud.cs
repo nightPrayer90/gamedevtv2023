@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.ParticleSystem;
+
 
 public class ShopModuleMeshHud : MonoBehaviour
 {
@@ -16,7 +15,6 @@ public class ShopModuleMeshHud : MonoBehaviour
     [SerializeField] private TextMeshPro creditsText;
     [SerializeField] private GameObject buyShpere;
     [SerializeField] private ParticleSystem buyParticle;
-    [SerializeField] private ParticleSystem sellParticle;
 
     private void Awake()
     {
@@ -25,7 +23,6 @@ public class ShopModuleMeshHud : MonoBehaviour
 
         ShopFloatingObject meshFO = shopModule.gameObject.GetComponentInChildren<ShopFloatingObject>();
         //buyParticle.transform.position = meshFO.transform.position;
-        //sellParticle.transform.position = meshFO.transform.position;
 
         shopController.onBuyModule += UpdateCreditsColor;
         
@@ -35,32 +32,25 @@ public class ShopModuleMeshHud : MonoBehaviour
     public void BuyItem(int flag)
     {
         if (flag == 0) buyParticle.Play();
-        if (flag == 1) sellParticle.Play();
         UpdateItemCount();
     }
 
     private void UpdateItemCount()
     {
         string colorstrStorage = "<color=#FFFFFF>";
-        string colorstrShip = "<color=#FFFFFF>";
 
-        if (shopController.playerData.moduleCounts[shopModule.itemIndex] > 0)
+        if (shopController.shipModulesPlayerBuyed[shopModule.itemIndex] > 0)
         {
             colorstrStorage = "<color=#2EFEF7>";
         }
-        if (shopController.shipModulesInUse[shopModule.itemIndex] > 0)
-        {
-            colorstrShip = "<color=#2EFEF7>";
-        }
 
-        countText.text = colorstrStorage + "<b>in storage: " + shopController.playerData.moduleCounts[shopModule.itemIndex].ToString() + "</b></color>"
-            + colorstrShip + "    <b> in ship: " + shopController.shipModulesInUse[shopModule.itemIndex].ToString() + "</b></color>";
+        countText.text = colorstrStorage + "<b>in storage: " + shopController.shipModulesPlayerBuyed[shopModule.itemIndex].ToString() + "</b></color>";
 
         if (shopModule.itemMaxCount == -1)
             maxCountText.text = "Unlimited modules available";
         else
         {
-            int inUse = shopController.playerData.moduleCounts[shopModule.itemIndex] + shopController.shipModulesInUse[shopModule.itemIndex];
+            int inUse = shopController.playerData.moduleCounts[shopModule.itemIndex] + shopController.shipModulesPlayerBuyed[shopModule.itemIndex];
             Color c = new Color(0f, 0f, 0f);
 
             if (inUse >= shopModule.itemMaxCount)

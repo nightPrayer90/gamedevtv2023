@@ -16,7 +16,7 @@ MonoBehaviour:
   - headerStr: Life
     upgradeIndex: 0
     passivUpgradeString: 
-    descriptionStr: Increase your health by XX.
+    descriptionStr: Increase your health by 2.
     iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
     mainClass: 8
     upgradeTyp: 4
@@ -31,7 +31,7 @@ MonoBehaviour:
   - headerStr: Damage
     upgradeIndex: 1
     passivUpgradeString: 
-    descriptionStr: Increase your main weapon damage by XX.
+    descriptionStr: Increase your main weapon damage by 1.
     iconPanel: {fileID: 21300000, guid: d717766fd39692e47bc9e10ac04ab6dc, type: 3}
     mainClass: 8
     upgradeTyp: 4
@@ -46,7 +46,7 @@ MonoBehaviour:
   - headerStr: Protection
     upgradeIndex: 2
     passivUpgradeString: 
-    descriptionStr: XX% chance of halving the incoming damage.
+    descriptionStr: +XX% chance of halving the incoming damage. Total YY% > ZZ%
     iconPanel: {fileID: 21300000, guid: 0ed2cb74a7f3ebb479bdc536ce9e1422, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -91,7 +91,7 @@ MonoBehaviour:
   - headerStr: Pickup Range
     upgradeIndex: 5
     passivUpgradeString: 
-    descriptionStr: Increases pickup range by XX.
+    descriptionStr: Increases pickup range by 0,8.
     iconPanel: {fileID: 21300000, guid: ca41a70726d6ed84da8ea7d1000633f3, type: 3}
     mainClass: 8
     upgradeTyp: 1

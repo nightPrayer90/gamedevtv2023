@@ -104,6 +104,7 @@ public class HangarUIController : MonoBehaviour
 
     public void Update()
     {
+
         /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             BackToMenue();
@@ -371,6 +372,7 @@ public class HangarUIController : MonoBehaviour
             notificationPanel.DOFade(0, 3f).SetDelay(1f);
         }
     }
+
     public void BackToMenue()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");

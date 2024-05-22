@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Unity.VisualScripting;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Scriptable Objects/PlayerData")]
 public class PlayerData : ScriptableObject
@@ -45,6 +46,7 @@ public class PlayerData : ScriptableObject
     [Header("Skill Bord")]
     public List<bool> skillsSpotted = new();
 
+    // Set PlayerData to Default
     public void Initialize(string savePath, int numModules, int numUpgrades)
     {
         playerName = "Player";
@@ -56,7 +58,7 @@ public class PlayerData : ScriptableObject
         bossLevel = 0;
         moduleCounts = new();
         ShipsModuleData = new List<ModuleData>[4];
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             ShipsModuleData[i] = defaultShip.baseModules;
         }
@@ -70,12 +72,14 @@ public class PlayerData : ScriptableObject
             moduleCounts.Add(0);
         }
 
+
         // pre-fill skill board with falses
         for (int i = 0; i < numUpgrades; i++)
         {
             skillsSpotted.Add(false);
         }
     }
+    // Load Player Data
     public void LoadStats(PlayerStats data)
     {
         // PlayerProfil
@@ -85,17 +89,28 @@ public class PlayerData : ScriptableObject
 
         // Hangar and Shop
         ShipsModuleData = data.shipsModuleData;
+        moduleCounts.Clear();
         moduleCounts = data.moduleCounts;
         credits = data.credits;
         bossLevel = data.bossLevel;
         shopLevelVisited = data.shopLevelVisited;
 
         // Skillboard
+        skillsSpotted.Clear();
         skillsSpotted = data.skillsSpotted;
     }
 
     public List<ModuleData> GetActiveShip()
     {
+        #if UNITY_EDITOR
+                if (ShipsModuleData == null)
+                {
+                    Debug.Log("ShipsModuleData cant be initialized  - PlayerData Load - the last player profile");
+                    AudioManager.Instance.LoadPlayerData(savePath);
+                    return null;
+                }
+        #endif
+
         return ShipsModuleData[ActiveShip];
     }
 

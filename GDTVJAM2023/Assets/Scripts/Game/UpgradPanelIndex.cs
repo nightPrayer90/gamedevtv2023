@@ -4,6 +4,8 @@ using TMPro;
 using System.Collections.Generic;
 using DG.Tweening;
 using Unity.VisualScripting;
+using DG.Tweening.Core.Easing;
+using UnityEditor.PackageManager.Requests;
 
 
 public class UpgradPanelIndex : MonoBehaviour
@@ -24,6 +26,7 @@ public class UpgradPanelIndex : MonoBehaviour
     private bool isTweening = true;
     public bool isSelected = false;
     private UpgradeChooseList upgradeChooseList;
+    private int upgradeIndex = -1;
 
     [Header("Requirement System")]
     public Image req1;
@@ -34,11 +37,15 @@ public class UpgradPanelIndex : MonoBehaviour
     public TextMeshProUGUI req3Text;
     public GameObject unique;
     public TextMeshProUGUI uniqueText;
+    private GameManager gameManager;
+    private NewPlayerController playerController;
 
 
     private void Awake()
     {
-        upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
+        playerController = GameObject.Find("NewPlayer").GetComponent<NewPlayerController>();
     }
 
     private void OnEnable()
@@ -47,6 +54,8 @@ public class UpgradPanelIndex : MonoBehaviour
         isSelected = false;
         transform.position = new Vector3(transform.position.x, transform.position.y + 400f, transform.position.z);
 
+        // Get upgradeIndex number
+        upgradeIndex = gameManager.selectedNumbers_[index];
         SetDescription();
 
         // fade in
@@ -64,7 +73,7 @@ public class UpgradPanelIndex : MonoBehaviour
                     if (isSelected == false)
                     {
                         SelectPanel();
-                    }        
+                    }
                 }
             });
         });
@@ -74,37 +83,101 @@ public class UpgradPanelIndex : MonoBehaviour
 
 
     public void SetDescription()
-    { 
-        // Build Panel description
-        iconPanel.sprite = upgradePanelController.iconPanel[index];
-        headerText.text = upgradePanelController.headerStr[index];
-        
-        descriptionText.text = upgradePanelController.descriptionTextStr[index];
-
-        mainClass.text = upgradePanelController.mainClassStr[index];
-        mainClass.color = upgradePanelController.mainClassColor[index];
-
-        headerText.color = upgradePanelController.headerColor[index];
-
-        // requierments
-        req1.color = upgradePanelController.reqColor[index];
-        req1Text.text = upgradePanelController.reqText[index];
-
-        req2.color = upgradePanelController.reqColor[index+3];
-        req2Text.text = upgradePanelController.reqText[index+3];
-
-        req3.color = upgradePanelController.reqColor3[index];
-        req3Text.text = upgradePanelController.reqText3[index];
-
+    {
         if (upgradeChooseList == null)
         {
             upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
         }
 
-        if (upgradePanelController.upgradeCount[index] != 999)
+        Upgrade upgrade = upgradeChooseList.uLObject.upgradeList[upgradeIndex];
+
+        // Panel values
+        headerText.text = upgrade.headerStr;
+        headerText.color = gameManager.cCPrefab.classColor[upgrade.colorIndex];
+
+        iconPanel.sprite = upgrade.iconPanel;
+
+        descriptionText.text = upgrade.descriptionStr;
+        
+        if (upgradeIndex == 2) // Protection 
+        {
+            // Get Protection Level
+            float currentPercentage = playerController.protectionPerc;
+            float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + 1);
+            float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
+            descriptionText.text = descriptionText.text.Replace("XX", (targetPercentage - currentPercentage).ToString());
+            descriptionText.text = descriptionText.text.Replace("YY", (currentPercentage).ToString());
+            descriptionText.text = descriptionText.text.Replace("ZZ", (targetPercentage).ToString());
+        }
+
+        mainClass.text = upgrade.mainClass.ToString();
+        if (mainClass.text == "Nothing") mainClass.text = "";
+        mainClass.color = gameManager.cCPrefab.classColor[upgrade.colorIndex];
+
+
+
+        // requerments
+        // reset
+        int count_ = 0;
+        req1.color = gameManager.cCPrefab.classColor[8];
+        req1Text.text = "";
+        req2.color = gameManager.cCPrefab.classColor[8];
+        req2Text.text = "";
+        req3.color = gameManager.cCPrefab.classColor[8];
+        req3Text.text = "";
+
+        Color[] reqColor = new Color[2] { gameManager.cCPrefab.classColor[8], gameManager.cCPrefab.classColor[8] };
+        string[] reqText = new string[2] { "", "" };
+
+        // set
+        if (upgrade.reqBullet > 0)
+        {
+            reqColor[0] = gameManager.cCPrefab.classColor[0];
+            reqText[0] = upgrade.reqBullet.ToString();
+            count_ = 1;
+        }
+        if (upgrade.reqRocket > 0)
+        {
+            reqColor[count_] = gameManager.cCPrefab.classColor[1];
+            reqText[count_] = upgrade.reqRocket.ToString();
+            count_ = 1;
+        }
+        if (upgrade.reqLaser > 0)
+        {
+            reqColor[count_] = gameManager.cCPrefab.classColor[2];
+            reqText[count_] = upgrade.reqLaser.ToString();
+            count_ = 1;
+        }
+        if (upgrade.reqSupport > 0)
+        {
+            reqColor[count_] = gameManager.cCPrefab.classColor[3];
+            reqText[count_] = upgrade.reqSupport.ToString();
+        }
+
+
+        req1.color = reqColor[0];
+        req1Text.text = reqText[0];
+
+        req2.color = reqColor[1];
+        req2Text.text = reqText[1];
+
+        if (upgrade.reqAbility != "")
+        {
+            req3.color = gameManager.cCPrefab.classColor[upgrade.colorIndex];
+            req3Text.text = upgrade.reqAbility;
+        }
+        else
+        {
+            req3.color = gameManager.cCPrefab.classColor[8];
+            req3Text.text = "";
+        }
+
+        // Quantity
+        if (upgrade.UpgradeCount != 999)
         {
             unique.SetActive(true);
-            uniqueText.text = (upgradePanelController.upgradeCount[index] - upgradeChooseList.upgrades[upgradePanelController.upgradeIndex[index]].upgradeIndexInstalled).ToString();
+            int upgradeQuanitiy = upgrade.UpgradeCount - upgradeChooseList.upgrades[upgradeIndex].upgradeIndexInstalled;
+            uniqueText.text = (upgradeQuanitiy).ToString();
         }
         else
         {
@@ -177,7 +250,7 @@ public class UpgradPanelIndex : MonoBehaviour
         float duration = (float)index / 15;
 
         if (upgradePanelController.selectetPanel == index)
-        { 
+        {
             panelImage.sprite = spPanelSelect;
 
             transform.DOLocalMoveY(855f, .7f, true).SetUpdate(UpdateType.Normal, true).SetEase(Ease.InQuart).OnComplete(() =>

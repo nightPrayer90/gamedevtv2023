@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 [Serializable]
 public class ModuleDataRuntime : ModuleData
@@ -68,6 +67,7 @@ public class ModuleStorage : MonoBehaviour
     public ModuleDataRuntime[,] installedModuleGrid;
     public ModuleList moduleList;
     public Transform transformParent;
+    public HangarRotateShips rotateHangarObject;
     private Selection selectionManager;
     private HangarUIController hangarUIController;
 
@@ -98,10 +98,15 @@ public class ModuleStorage : MonoBehaviour
         hangarUIController = selectionManager.gameObject.GetComponent<HangarUIController>();
         hangarUIController.SetShipPanel();
 
+        installedModuleGrid = new ModuleDataRuntime[101, 101]; // allow coordinates from -50 to 50
+
+
+        Debug.Log("ModuleStorage GetActiveShip : " + playerData.GetActiveShip());
+
+        // Set Hangar Rotation to loaded position
+        rotateHangarObject.RotateShip(playerData.ActiveShip+1, false);
+
         LoadShip();
-#if UNITY_EDITOR
-        AudioManager.Instance.LoadPlayerData(playerData.savePath);
-#endif
     }
 
     public void LoadShip()
@@ -109,9 +114,31 @@ public class ModuleStorage : MonoBehaviour
         // load active ship
         installedModuleData = new();
 
+        Debug.Log("Activ Ship: " + playerData.ActiveShip);
+
         foreach (ModuleData item in playerData.GetActiveShip())
         {
             installedModuleData.Add(new ModuleDataRuntime(item));
+        }
+
+        BuildShipFromModuleData();
+
+        BuildModuleGrid();
+
+        hangarUIController.SetShipPanel();
+    }
+
+    public void LoadShipFromPreset()
+    {
+        // load active ship
+        installedModuleData = new();
+
+        Debug.Log("Activ Ship: " + playerData.ActiveShip);
+
+        foreach (ModuleData item in playerData.GetActiveShip())
+        {
+            installedModuleData.Add(new ModuleDataRuntime(item));
+            playerData.moduleCounts[item.moduleTypeIndex] -= 1;
         }
 
         BuildShipFromModuleData();
@@ -134,6 +161,17 @@ public class ModuleStorage : MonoBehaviour
         }
         playerData.SetActiveShip(ship);
         AudioManager.Instance.SavePlayerData();
+    }
+
+    public void SetShipToPlayerData()
+    {
+        List<ModuleData> ship = new();
+        foreach (ModuleDataRuntime item in installedModuleData)
+        {
+            ModuleData moduleData = new(item);
+            ship.Add(moduleData);
+        }
+        playerData.SetActiveShip(ship);
     }
 
 
@@ -322,7 +360,15 @@ public class ModuleStorage : MonoBehaviour
         isAllConnected = true;
         ControllUnconnectedModules(); // reset
 
-        installedModuleGrid = new ModuleDataRuntime[101, 101]; // allow coordinates from -50 to 50
+        // reset Grid
+        for (int i = 0; i < installedModuleGrid.GetLength(0); i++)
+        {
+            for (int j = 0; j < installedModuleGrid.GetLength(1); j++)
+            {
+                installedModuleGrid[i, j] = null;
+            }
+        }
+
         foreach (ModuleDataRuntime mdr in installedModuleData)
         {
             installedModuleGrid[(int)mdr.x + 50, (int)mdr.z + 50] = mdr;

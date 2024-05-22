@@ -14,6 +14,7 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
     public string btnName;
     public Sprite btnSprite;
     public int btnIndex = 0;
+    public ClassColor colorPrefab;
 
     [Header("Selection Controls")]
     public Color32 baseColor = new Color32(8, 57, 156, 255);
@@ -75,6 +76,7 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
         modulContentPanel.color = baseColor;
     }
 
+
     // Handle Mouse klick on UI
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -114,35 +116,57 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
                 break;
 
             case 4: // preset 1
-                hangarRotateShips.RotateShip(1);
-                moduleStorage.RemoveAllModule();
-                moduleStorage.playerData.ActiveShip = 0;
-                AudioManager.Instance.PlaySFX("MouseKlick");
-                moduleStorage.LoadShip();
+                if (hangarRotateShips.rotationState != 0)
+                {
+                    hangarRotateShips.RotateShip(1, true);
+                    moduleStorage.SetShipToPlayerData();
+                    moduleStorage.RemoveAllModule();
+                    moduleStorage.playerData.ActiveShip = 0;
+                    AudioManager.Instance.PlaySFX("HangarBuild1");
+                    moduleStorage.LoadShipFromPreset();
+                }
                 break;
             case 5: // preset 2
-                hangarRotateShips.RotateShip(2);
-                moduleStorage.RemoveAllModule();
-                moduleStorage.playerData.ActiveShip = 1;
-                AudioManager.Instance.PlaySFX("MouseKlick");
-                moduleStorage.LoadShip();
+                if (hangarRotateShips.rotationState != 90)
+                {
+                    hangarRotateShips.RotateShip(2, true);
+                    moduleStorage.SetShipToPlayerData();
+                    moduleStorage.RemoveAllModule();
+                    moduleStorage.playerData.ActiveShip = 1;
+                    AudioManager.Instance.PlaySFX("HangarBuild2");
+                    moduleStorage.LoadShipFromPreset();
+                }
                 break;
             case 6: // preset 3
-                hangarRotateShips.RotateShip(3);
-                moduleStorage.RemoveAllModule();
-                moduleStorage.playerData.ActiveShip = 2;
-                AudioManager.Instance.PlaySFX("MouseKlick");
-                moduleStorage.LoadShip();
+                if (hangarRotateShips.rotationState != 180)
+                {
+                    hangarRotateShips.RotateShip(3, true);
+                    moduleStorage.SetShipToPlayerData();
+                    moduleStorage.RemoveAllModule();
+                    moduleStorage.playerData.ActiveShip = 2;
+                    AudioManager.Instance.PlaySFX("HangarBuild3");
+                    moduleStorage.LoadShipFromPreset();
+                }
                 break;
             case 7: // preset 4
-                hangarRotateShips.RotateShip(4);
-                moduleStorage.RemoveAllModule();
-                moduleStorage.playerData.ActiveShip = 3;
-                AudioManager.Instance.PlaySFX("MouseKlick");
-                moduleStorage.LoadShip();
+                if (hangarRotateShips.rotationState != 270)
+                {
+                    hangarRotateShips.RotateShip(4, true);
+                    moduleStorage.SetShipToPlayerData();
+                    moduleStorage.RemoveAllModule();
+                    moduleStorage.playerData.ActiveShip = 3;
+                    AudioManager.Instance.PlaySFX("HangarBuild4");
+                    moduleStorage.LoadShipFromPreset();
+                }
                 break;
         }
 
     }
+
+    public void ChangeBtnColor()
+    {
+        nameText.color = colorPrefab.classColor[12];
+    }
+
     #endregion
 }

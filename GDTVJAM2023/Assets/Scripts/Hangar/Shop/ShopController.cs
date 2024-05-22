@@ -14,7 +14,7 @@ public class ShopController : MonoBehaviour
     public int activeLevel = 0;
     public List<ShopModuleContainer> moduleContainers;
     public PlayerData playerData;
-    public List<int> shipModulesInUse;
+    public List<int> shipModulesPlayerBuyed;
 
     // Selection
     public Material highligtMaterial;
@@ -32,8 +32,6 @@ public class ShopController : MonoBehaviour
     public CanvasGroup buyPanel;
     public TextMeshProUGUI buyBtnText;
     public GameObject buyButton;
-    public GameObject sellBtn;
-    public TextMeshProUGUI sellBtnText;
 
     // Events
     public event Action onBuyModule;
@@ -48,14 +46,22 @@ public class ShopController : MonoBehaviour
         // create a List with all ModulesCounts that use in the playership
         foreach (int i in playerData.moduleCounts)
         {
-            shipModulesInUse.Add(0);
+            shipModulesPlayerBuyed.Add(0);
         }
+
+
         Debug.Log(playerData.GetActiveShip().Count);
-        /*
+
+        // Get Moduls from activ Ship
         for (int i = 0; i < playerData.GetActiveShip().Count; i++)
         {
-            shipModulesInUse[playerData.GetActiveShip()[i].moduleTypeIndex] += 1;
-        }*/
+            shipModulesPlayerBuyed[playerData.GetActiveShip()[i].moduleTypeIndex] += 1;
+        }
+        // Get Modules from buyed module List
+        for (int i = 0; i < playerData.moduleCounts.Count; i++)
+        {
+            shipModulesPlayerBuyed[i] += playerData.moduleCounts[i];
+        }
 
         playerData.shopLevelVisited = playerData.bossLevel;
 
@@ -145,7 +151,7 @@ public class ShopController : MonoBehaviour
                         // buy btn
                         buyButton.SetActive(true);
 
-                        int inUse = playerData.moduleCounts[selectedShopModule.itemIndex] + shipModulesInUse[selectedShopModule.itemIndex];
+                        int inUse = playerData.moduleCounts[selectedShopModule.itemIndex] + shipModulesPlayerBuyed[selectedShopModule.itemIndex];
                         if (inUse >= selectedShopModule.itemMaxCount && selectedShopModule.itemMaxCount != -1)
                         {
                             buyButton.SetActive(false);
@@ -156,17 +162,6 @@ public class ShopController : MonoBehaviour
                             AudioManager.Instance.PlaySFX("HangarSelectPart");
                         }
 
-
-                        // sell btn
-                        if (playerData.moduleCounts[selectedShopModule.itemIndex] > 0)
-                        {
-                            sellBtn.SetActive(true);
-                            sellBtnText.text = "Sell for " + selectedShopModule.itemSellPrice.ToString() + " CD";
-                        }
-                        else
-                        {
-                            sellBtn.SetActive(false);
-                        }
 
                         buyPanel.DOKill();
                         if (buyPanel.alpha < 1)
