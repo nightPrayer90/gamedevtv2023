@@ -186,6 +186,9 @@ public class GameManager : MonoBehaviour
     private void HandleBreakeUI()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
+
+        inputHandler.OnOpenUIChanged -= HandleBreakeUI;
+
         inputHandler.DisableGameControls();
         inputHandler.EnableUIControls();
         PauseMenue();
@@ -197,12 +200,16 @@ public class GameManager : MonoBehaviour
     // Open Close UI
     public void HandleCloseBreakUI()
     {
+        Debug.Log("break");
         inputHandler.OnCloseUIChanged -= HandleCloseBreakUI;
         inputHandler.OnClickInputChanged -= HandleClickUI;
 
         AudioManager.Instance.PlaySFX("MouseKlick");
         inputHandler.DisableUIControls();
         inputHandler.EnableGameConrtols();
+
+        inputHandler.OnOpenUIChanged += HandleBreakeUI;
+
         PauseMenue();
     }
 
@@ -212,6 +219,7 @@ public class GameManager : MonoBehaviour
         switch (selectedObject)
         {
             case "Back Button":
+                Debug.Log("pressBackButton");
                 HandleCloseBreakUI();
                 break;
             case "Restart Button":

@@ -114,8 +114,6 @@ public class ModuleStorage : MonoBehaviour
         // load active ship
         installedModuleData = new();
 
-        Debug.Log("Activ Ship: " + playerData.ActiveShip);
-
         foreach (ModuleData item in playerData.GetActiveShip())
         {
             installedModuleData.Add(new ModuleDataRuntime(item));
@@ -131,9 +129,7 @@ public class ModuleStorage : MonoBehaviour
     public void LoadShipFromPreset()
     {
         // load active ship
-        installedModuleData = new();
-
-        Debug.Log("Activ Ship: " + playerData.ActiveShip);
+        installedModuleData.Clear();
 
         foreach (ModuleData item in playerData.GetActiveShip())
         {

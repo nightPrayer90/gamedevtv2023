@@ -108,12 +108,14 @@ public class PlayerInputHandler : MonoBehaviour
         get { return _clickUIInput; }
         private set
         {
+            Debug.Log("Klick " + _clickUIInput + " - " + value);
             if (_clickUIInput != value)
             {
                 _clickUIInput = value;
                 if (_clickUIInput)
                 {
                     OnClickInputChanged?.Invoke();
+                    _clickUIInput = false;
                 }
             }
         }

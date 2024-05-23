@@ -22,7 +22,7 @@ public class MineController : MonoBehaviour
     private GameManager gameManager;
     
     public List<GameObject> mineWeapons;
-    public List<ParticleSystem> mineWeaponParticels;
+    private List<ParticleSystem> mineWeaponParticels;
     private AudioSource shootSound;
 
     /* **************************************************************************** */

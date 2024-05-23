@@ -1,12 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections.Generic;
 using DG.Tweening;
-using Unity.VisualScripting;
-using DG.Tweening.Core.Easing;
-using UnityEditor.PackageManager.Requests;
-
 
 public class UpgradPanelIndex : MonoBehaviour
 {

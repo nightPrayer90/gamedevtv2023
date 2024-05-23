@@ -59,6 +59,7 @@ public class Sphere : MonoBehaviour
     {
         if (moduleStorage.installedModuleData.Count > 0)
         {
+            Debug.Log(parentModul.gameObject.name +   " Control Sphers - Sphere: " + gameObject.name );
             switch (sphereSide)
             {
                 case SphereSide.left:

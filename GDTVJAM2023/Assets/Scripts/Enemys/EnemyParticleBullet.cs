@@ -16,6 +16,7 @@ public class EnemyParticleBullet : MonoBehaviour
 
     public void HardBulletStop()
     {
+        Debug.Log("Bullet Stop");
         bulletParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 }

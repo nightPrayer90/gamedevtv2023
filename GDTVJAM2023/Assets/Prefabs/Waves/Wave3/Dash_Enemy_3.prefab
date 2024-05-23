@@ -9844,6 +9844,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
+  _AOEreplacement: {fileID: 2939619707958075189, guid: dec4b4d02343e1546a0214b465b094e7, type: 3}
+  _burnReplacement: {fileID: 3161139216598759944, guid: d859b0033dbcef64d9a005e90429e0ef, type: 3}
   dropObject: {fileID: 5693635298845190373, guid: 8e3f78fb04e545a4c918a6cb8835ac0a, type: 3}
   miniMapIcon: {fileID: 4148413571251648357}
   novaOnDie: {fileID: 4303235208557751318, guid: c01ac0e458a23da41aaf1c60e7ee97a7, type: 3}
@@ -9858,8 +9860,6 @@ MonoBehaviour:
   canPoolObject: 1
   isBoss: 0
   isGround: 0
-  _AOEreplacement: {fileID: 2939619707958075189, guid: dec4b4d02343e1546a0214b465b094e7, type: 3}
-  _burnReplacement: {fileID: 3161139216598759944, guid: d859b0033dbcef64d9a005e90429e0ef, type: 3}
   canTakeLaserDamage: 0000000000
   hitColor: {r: 1, g: 0.5998216, b: 0, a: 1}
   critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
@@ -9879,6 +9879,7 @@ MonoBehaviour:
   playerRb: {fileID: 0}
   attackDistance: 10
   distanceScatter: 1
+  updateTime: 0.25
 --- !u!114 &2338253472218715643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9897,7 +9898,7 @@ MonoBehaviour:
   rotationSpeed: 10
   canTilt: 1
   tiltBoarder: 10
-  dashForce: 5
+  dashForce: 4.2
   dashDistance: 3
   dashParticle: {fileID: 2991605057228018913}
   dashMarker: {fileID: 5429909960556702023}

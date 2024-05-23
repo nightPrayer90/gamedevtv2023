@@ -25,7 +25,7 @@ public class ParticleSystemDestroy : MonoBehaviour
             audioSource.volume = AudioManager.Instance.sfxVolume;
             audioSource.Play();
         }
-        Invoke("DeactivateSystem", 10f);
+        Invoke(nameof(DeactivateSystem), 10f);
 
         isRipplePlayed = false;
     }
