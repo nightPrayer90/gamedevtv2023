@@ -18,7 +18,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
     public Color32 baseColor = new Color32(8, 57, 156, 255);
     public Color32 selectionColor = new Color32(124, 124, 255, 255);
     [HideInInspector] public MeshFilter selectedSphere;
-    private Selection selectionManager;
+    private HangarSelection selectionManager;
     private Sphere sph;
     private MeshRenderer shpMR;
 
@@ -44,7 +44,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
     {
         // find GameObjects
         shipParent = GameObject.Find("Ship").GetComponent<Transform>();
-        selectionManager = GameObject.Find("SelectionController").GetComponent<Selection>();
+        selectionManager = GameObject.Find("SelectionController").GetComponent<HangarSelection>();
         hangarUIController = selectionManager.gameObject.GetComponent<HangarUIController>();
         hangarFilterBtn = selectionManager.gameObject.GetComponent<HangarFilterBtn>();
 

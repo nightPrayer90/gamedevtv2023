@@ -61,7 +61,7 @@ public class HangarUIController : MonoBehaviour
     [Header("Game Objects")]
     public ModuleStorage moduleStorage;
     public Transform contentParent;
-    private Selection selectionController;
+    private HangarSelection selectionController;
     public HangarFilterBtn hangarFilterBtn;
 
 
@@ -73,7 +73,7 @@ public class HangarUIController : MonoBehaviour
 
     private void Start()
     {
-        selectionController = gameObject.GetComponent<Selection>();
+        selectionController = gameObject.GetComponent<HangarSelection>();
         selectionController.OnDeselect += HandleDeselect;
         modulePanel.alpha = 0;
         modulePanel.blocksRaycasts = false;

@@ -49,10 +49,10 @@ MonoBehaviour:
   waveData:
   - enemyToSpawn: {fileID: 3161139216598759944, guid: c934e9c3aace7884a81c292b8b67bf10, type: 3}
     spawnProbabilities: 80
-    isGroundEnemy: 0
+    isGroundEnemy: 1
   - enemyToSpawn: {fileID: 3161139216598759944, guid: 05743354650a53749947a9f90a0f738f, type: 3}
     spawnProbabilities: 20
-    isGroundEnemy: 0
+    isGroundEnemy: 1
   maxWaveEnemys: 8
   minSpawnDistance: 12
   maxSpawnDistance: 16

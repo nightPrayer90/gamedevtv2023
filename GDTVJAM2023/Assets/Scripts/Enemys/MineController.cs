@@ -22,7 +22,7 @@ public class MineController : MonoBehaviour
     private GameManager gameManager;
     
     public List<GameObject> mineWeapons;
-    private List<ParticleSystem> mineWeaponParticels;
+    public List<ParticleSystem> mineWeaponParticels;
     private AudioSource shootSound;
 
     /* **************************************************************************** */
@@ -37,11 +37,6 @@ public class MineController : MonoBehaviour
 
         materialList[0] = buildingMaterial;
         materialList[1] = buildingMaterial;
-
-        foreach (var item in mineWeapons)
-        {
-            mineWeaponParticels.Add(item.GetComponentInChildren<EnemyParticleBullet>().gameObject.GetComponent<ParticleSystem>());
-        }
     }
 
     private void OnEnable()

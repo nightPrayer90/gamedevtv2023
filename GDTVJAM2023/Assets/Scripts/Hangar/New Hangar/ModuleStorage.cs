@@ -68,7 +68,7 @@ public class ModuleStorage : MonoBehaviour
     public ModuleList moduleList;
     public Transform transformParent;
     public HangarRotateShips rotateHangarObject;
-    private Selection selectionManager;
+    private HangarSelection selectionManager;
     private HangarUIController hangarUIController;
 
     public ShipPreset shipPreset;
@@ -92,7 +92,7 @@ public class ModuleStorage : MonoBehaviour
     void Start()
     {
         // find selection manager
-        selectionManager = GameObject.Find("SelectionController").GetComponent<Selection>();
+        selectionManager = GameObject.Find("SelectionController").GetComponent<HangarSelection>();
 
         // set ShipPanel
         hangarUIController = selectionManager.gameObject.GetComponent<HangarUIController>();

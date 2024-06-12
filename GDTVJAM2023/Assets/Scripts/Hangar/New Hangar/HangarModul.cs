@@ -9,7 +9,7 @@ public class HangarModul : MonoBehaviour
 
     [Header("GameObjects")]
     public List<Sphere> spheres;
-    private Selection selectionController;
+    private HangarSelection selectionController;
     private ModuleStorage moduleStorage;
     private MeshRenderer childMeshRenderer;
     public Material highlightMaterial;
@@ -25,7 +25,7 @@ public class HangarModul : MonoBehaviour
 
     private void Awake()
     {
-        selectionController = GameObject.Find("SelectionController").GetComponent<Selection>();
+        selectionController = GameObject.Find("SelectionController").GetComponent<HangarSelection>();
         selectionController.OnDeselect += HandleSetDeselect;
         childMeshRenderer = gameObject.GetComponentInChildren<MeshRenderer>();
         shipMaterial = childMeshRenderer.materials[0];

@@ -19,7 +19,7 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
     [Header("Selection Controls")]
     public Color32 baseColor = new Color32(8, 57, 156, 255);
     public Color32 selectionColor = new Color32(124, 124, 255, 255);
-    private Selection selectionManager;
+    private HangarSelection selectionManager;
     private ModuleStorage moduleStorage;
     private HangarUIController hangarUIController;
     public HangarRotateShips hangarRotateShips;
@@ -32,7 +32,7 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
     private void Start()
     {
         // find GameObjects
-        selectionManager = GameObject.Find("SelectionController").GetComponent<Selection>();
+        selectionManager = GameObject.Find("SelectionController").GetComponent<HangarSelection>();
         moduleStorage = GameObject.Find("Ship").GetComponent<ModuleStorage>();
         hangarUIController = selectionManager.gameObject.GetComponent<HangarUIController>();
 

@@ -10028,7 +10028,8 @@ MonoBehaviour:
   meshRenderer: {fileID: 655938389531368633}
   mineWeapons:
   - {fileID: 2938733139107887074}
-  mineWeaponParticels: []
+  mineWeaponParticels:
+  - {fileID: 2005549121659948994}
 --- !u!82 &7442621568476400086
 AudioSource:
   m_ObjectHideFlags: 0

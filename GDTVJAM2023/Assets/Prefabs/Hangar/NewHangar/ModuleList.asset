@@ -277,7 +277,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 1
     canHaveBackNeighbor: 1
     moduleValues:
-      moduleName: Connector 4 Ways
+      moduleName: D3 Support Connector 4S
       moduleType: 0
       canLeft: 1
       canRight: 1
@@ -287,7 +287,7 @@ MonoBehaviour:
 
         Health +2 HP
 
-        <color=AC00FF>Support
+        <color=#AC00FF>Support
         class + 1</color>'
       costMass: 0.2
       costEnergie: 0.3
@@ -841,7 +841,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
-  - moduleName: D2 Skyfire Glide L
+  - moduleName: D2 Skyfire Jet L
     modulePrefabs: {fileID: 3509744163337706340, guid: 519c684cacfaabd43855806ce9809b24, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: cce53aeb1cd73964488e1c24d606ae0e, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 114c7878752ec4243b30de0ccb8ce1f5, type: 3}
@@ -880,7 +880,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
-  - moduleName: D2 Skyfire Glide R
+  - moduleName: D2 Skyfire Jet R
     modulePrefabs: {fileID: 3509744163337706340, guid: 2279e4db908f61b45aee375f336ce73c, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 19a56be42afea084b8ce0487f48e8d37, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 627446d265b7d7147b2d395625cc2b3c, type: 3}

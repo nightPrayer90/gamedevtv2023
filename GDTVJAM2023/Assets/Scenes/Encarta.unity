@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e6d4f25027b84f24faef298de457947d, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1218,6 +1217,9 @@ MonoBehaviour:
   gameScene: TestGameScene
   _musicSlider: {fileID: 74521083}
   _sfxSlider: {fileID: 1244900760}
+  resolutionDropdrown: {fileID: 0}
+  qualityDropdown: {fileID: 0}
+  fullScreenBtn: {fileID: 0}
 --- !u!114 &748691829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1275,6 +1277,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1344,10 +1347,10 @@ MonoBehaviour:
     simplicity, and a watchful totalitarian government ensures that everything is
     not just tidy, but immaculate.
 
-    
 
-    As you step into Luminopolis, prepare
-    to be mesmerized by the enchanting glow that emanates from the streets. A sophisticated
+
+    As you step into Luminopolis, prepare to
+    be mesmerized by the enchanting glow that emanates from the streets. A sophisticated
     combination of bioluminescent technology and photovoltaic panels embedded in
     the pavement creates a breathtaking light show, guiding your way with ethereal
     hues. It''s as if you''re walking on a path paved with stardust, illuminating
@@ -1358,7 +1361,7 @@ MonoBehaviour:
     workers. It''s as if you''re stepping into a realm where productivity itself
     is illuminated, all under the watchful eye of the "Ministry of Illuminated Efficiency."
 
-    
+
 
     The
     office buildings showcase sleek and minimalist designs, perfectly reflecting
@@ -1372,24 +1375,24 @@ MonoBehaviour:
     the past, and a meticulous totalitarian government ensures that cleanliness prevails
     in every nook and cranny.
 
-    
 
-    As you venture into LuminoScrap, prepare
-    to be dazzled by the surreal sight of illuminated streets leading the way through
+
+    As you venture into LuminoScrap, prepare to
+    be dazzled by the surreal sight of illuminated streets leading the way through
     an immaculate landscape. These streets, infused with advanced bioluminescent
     technology, create a mesmerizing light display, casting a vibrant aura over the
     entire junkyard. The "Ministry of Illuminated Reclamation" oversees the constant
     illumination, transforming what was once considered a wasteland into a dazzling
     spectacle.
 
-    
 
-    Contrary to its name, LuminoScrap boasts a surprising
-    absence of actual junk. The totalitarian government, with its meticulous eye
-    for order and efficiency, has implemented a rigorous waste management system,
-    ensuring that every piece of discarded material is promptly sorted, recycled,
-    or repurposed. The "Bureau of Pristine Reutilization" operates with precision,
-    transforming what would be considered waste into valuable resources.'
+
+    Contrary to its name, LuminoScrap boasts a surprising absence
+    of actual junk. The totalitarian government, with its meticulous eye for order
+    and efficiency, has implemented a rigorous waste management system, ensuring
+    that every piece of discarded material is promptly sorted, recycled, or repurposed.
+    The "Bureau of Pristine Reutilization" operates with precision, transforming
+    what would be considered waste into valuable resources.'
   - 'The houses of Luminopolis embody the concept of minimalist elegance. These dwellings,
     though simple in appearance, are a testament to efficiency and cleanliness. The
     architectural marvels are constructed using self-cleaning materials, allowing
@@ -1397,13 +1400,13 @@ MonoBehaviour:
     Impeccable Hygiene," even a speck of dust is promptly dealt with to preserve
     the district''s pristine aesthetic.
 
-    
 
-    In Luminopolis, the totalitarian
-    government takes cleanliness seriously. Public cleanliness inspections occur
-    regularly, ensuring that every resident upholds the highest standards of tidiness.
-    A misplaced sock or an unpolished surface is met with swift action from the "Supreme
-    Sanitation Squad," whose presence is as efficient as it is unsettlingly thorough.'
+
+    In Luminopolis, the totalitarian government
+    takes cleanliness seriously. Public cleanliness inspections occur regularly,
+    ensuring that every resident upholds the highest standards of tidiness. A misplaced
+    sock or an unpolished surface is met with swift action from the "Supreme Sanitation
+    Squad," whose presence is as efficient as it is unsettlingly thorough.'
   - 'As you step foot into the industrial district, prepare to be engulfed in a symphony
     of shimmering lights. The factories here are not just places of production but
     also mesmerizing sources of illumination. Cutting-edge technologies, such as
@@ -1412,11 +1415,11 @@ MonoBehaviour:
     if the very machinery of progress is pulsating with vibrant energy, all under
     the watchful eye of the "Ministry of Illuminated Industry."
 
-    
 
-    As you
-    interact with the resilient residents of this city you''ll witness a community
-    bonded by their dedication to progress. From skillful craftsmen to tireless engineers,
+
+    As you interact
+    with the resilient residents of this city you''ll witness a community bonded
+    by their dedication to progress. From skillful craftsmen to tireless engineers,
     the denizens are the lifeblood of the industrial machine. Their relentless pursuit
     of excellence reflects the government''s vision of an orderly and productive
     society.'
@@ -1447,11 +1450,11 @@ MonoBehaviour:
     and eager customers, all under the watchful eye of the "Ministry of Economic
     Oversight."
 
-    
 
-    In Mercantilia, capitalism reigns supreme, driving the
-    relentless pursuit of wealth and prosperity. The marketplace is a sprawling labyrinth
-    of shops, boutiques, and trading floors, each offering a diverse range of goods
+
+    In Mercantilia, capitalism reigns supreme, driving the relentless
+    pursuit of wealth and prosperity. The marketplace is a sprawling labyrinth of
+    shops, boutiques, and trading floors, each offering a diverse range of goods
     and services. From advanced technologies to exquisite artisanal creations, every
     imaginable desire can be fulfilled within the expansive bazaar. The "Bureau of
     Trade Facilitation" ensures that fair practices and regulations govern the dynamic
@@ -1463,30 +1466,29 @@ MonoBehaviour:
     and the streets are filled with students, scholars, and researchers, all under
     the watchful eye of the "Ministry of Educational Authority."
 
-    
 
-    In
-    Intellectia, the pursuit of knowledge is revered, and academic institutions are
-    the epicenters of intellectual enlightenment. Cutting-edge research laboratories,
-    extensive libraries, and interactive learning spaces foster an environment of
-    innovation and discovery. The "Bureau of Scholarly Advancement" ensures that
-    rigorous academic standards and the government-approved curriculum are adhered
-    to, guiding the minds of the future generation.
 
-    
+    In Intellectia,
+    the pursuit of knowledge is revered, and academic institutions are the epicenters
+    of intellectual enlightenment. Cutting-edge research laboratories, extensive
+    libraries, and interactive learning spaces foster an environment of innovation
+    and discovery. The "Bureau of Scholarly Advancement" ensures that rigorous academic
+    standards and the government-approved curriculum are adhered to, guiding the
+    minds of the future generation.
 
-    Within Intellectia,
-    the government exercises total control over education, aiming to mold young minds
-    and maintain ideological harmony. The "Ministry of Intellectual Compliance" oversees
-    the curriculum, ensuring that it aligns with the government''s vision and values.
-    Thought-provoking subjects are explored, but always within the boundaries set
-    by the governing authority.'
+
+
+    Within Intellectia, the government exercises
+    total control over education, aiming to mold young minds and maintain ideological
+    harmony. The "Ministry of Intellectual Compliance" oversees the curriculum, ensuring
+    that it aligns with the government''s vision and values. Thought-provoking subjects
+    are explored, but always within the boundaries set by the governing authority.'
   - 'Welcome to Imperia, the majestic capitol district of this visionary metropolis,
     set in the year 2214! Imperia, known as the "Seat of Supreme Authority," is a
     place where the grand emperor, a figure of immense power, reigns over the city
     with unwavering control and authority.
 
-    
+
 
     Within Imperia, the government''s
     control extends to every aspect of daily life. The "Ministry of Civic Obedience"
@@ -1494,7 +1496,7 @@ MonoBehaviour:
     from the citizens. Surveillance systems monitor the activities of the populace,
     and the "Imperial Guard" stands as a visible symbol of authority and protection.
 
-    
+
 
     Despite
     the pervasive control, moments of grandeur and celebration abound in Imperia.
@@ -1503,13 +1505,13 @@ MonoBehaviour:
     and might. The citizens gather to witness these splendid events, filling the
     air with admiration and devotion.
 
-    
 
-    In Imperia, the commitment to
-    order and control extends beyond the grand palace. The capitol district boasts
-    immaculate streets, pristine public spaces, and meticulously landscaped artificial
-    gardens. The "Department of Imperial Splendor" ensures that every corner of Imperia
-    reflects the grand emperor''s magnificence and authority.'
+
+    In Imperia, the commitment to order
+    and control extends beyond the grand palace. The capitol district boasts immaculate
+    streets, pristine public spaces, and meticulously landscaped artificial gardens.
+    The "Department of Imperial Splendor" ensures that every corner of Imperia reflects
+    the grand emperor''s magnificence and authority.'
 --- !u!1 &855192818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,7 +1575,7 @@ MonoBehaviour:
     place where the grand emperor, a figure of immense power, reigns over the city
     with unwavering control and authority.
 
-    
+
 
     Within Imperia, the government''s
     control extends to every aspect of daily life. The "Ministry of Civic Obedience"
@@ -1581,7 +1583,7 @@ MonoBehaviour:
     from the citizens. Surveillance systems monitor the activities of the populace,
     and the "Imperial Guard" stands as a visible symbol of authority and protection.
 
-    
+
 
     Despite
     the pervasive control, moments of grandeur and celebration abound in Imperia.
@@ -1590,13 +1592,13 @@ MonoBehaviour:
     and might. The citizens gather to witness these splendid events, filling the
     air with admiration and devotion.
 
-    
 
-    In Imperia, the commitment to
-    order and control extends beyond the grand palace. The capitol district boasts
-    immaculate streets, pristine public spaces, and meticulously landscaped artificial
-    gardens. The "Department of Imperial Splendor" ensures that every corner of Imperia
-    reflects the grand emperor''s magnificence and authority.'
+
+    In Imperia, the commitment to order
+    and control extends beyond the grand palace. The capitol district boasts immaculate
+    streets, pristine public spaces, and meticulously landscaped artificial gardens.
+    The "Department of Imperial Splendor" ensures that every corner of Imperia reflects
+    the grand emperor''s magnificence and authority.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3fdd72a181942bb4fb04ebfc88484f3b, type: 2}
   m_sharedMaterial: {fileID: 3584385154073877098, guid: 3fdd72a181942bb4fb04ebfc88484f3b, type: 2}

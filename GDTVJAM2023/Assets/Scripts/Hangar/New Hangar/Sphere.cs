@@ -3,7 +3,7 @@ using UnityEngine;
 public class Sphere : MonoBehaviour
 {
     private bool isActiv = false;
-    private Selection selectionController;
+    private HangarSelection selectionController;
     public  Transform parentTransform;
     private HangarModul parentModul; //TODO
     private ModuleStorage moduleStorage;
@@ -24,7 +24,7 @@ public class Sphere : MonoBehaviour
 
     private void Awake()
     {
-        selectionController = GameObject.Find("SelectionController").GetComponent<Selection>();
+        selectionController = GameObject.Find("SelectionController").GetComponent<HangarSelection>();
         selectionController.OnDeselect += HandleSetDeselect;
         moduleStorage = GameObject.Find("Ship").GetComponent<ModuleStorage>();
         parentModul = parentTransform.gameObject.GetComponent<HangarModul>();
