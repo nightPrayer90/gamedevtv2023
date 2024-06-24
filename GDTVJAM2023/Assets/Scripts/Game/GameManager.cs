@@ -49,6 +49,10 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public float curretEnemyCounter;
     public GameObject miniMap;
     public CanvasGroup upgradeTextCG;
+    public CanvasGroup minimapCG;
+    public CanvasGroup minimapBigCG;
+    public Camera minimapCameraBig;
+    private bool bigMapisOpen = false;
     public TextMeshProUGUI upgradeText;
     public TextMeshProUGUI expGameOverText;
     public TextMeshProUGUI expGameVictoryText;
@@ -179,6 +183,25 @@ public class GameManager : MonoBehaviour
     {
         // events
         inputHandler.OnOpenUIChanged += HandleBreakeUI;
+        inputHandler.OnOpenMapInputChanged += BigMinimapControl;
+    }
+
+    private void BigMinimapControl()
+    {
+        if (bigMapisOpen == false)
+        {
+            minimapCG.alpha = 0;
+            minimapBigCG.DOFade(1f,0.2f);
+            minimapCameraBig.enabled = true;
+        }
+        else
+        {
+            minimapCG.DOFade(1, 0.2f);
+            minimapBigCG.DOKill();
+            minimapBigCG.alpha = 0;
+            minimapCameraBig.enabled = false;
+        }
+        bigMapisOpen = !bigMapisOpen;
     }
 
 
@@ -249,6 +272,7 @@ public class GameManager : MonoBehaviour
         inputHandler.OnOpenUIChanged -= HandleBreakeUI;
         inputHandler.OnCloseUIChanged -= HandleCloseBreakUI;
         inputHandler.OnClickInputChanged -= HandleClickUI;
+        inputHandler.OnOpenMapInputChanged -= BigMinimapControl;
 
         // Set game speed
         Time.timeScale = 1;

@@ -19,6 +19,7 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private string ability = "Ability";
     [SerializeField] private string cameraSwitch = "Camera";
     [SerializeField] private string openUI = "OpenUI";
+    [SerializeField] private string openMap = "OpenMap";
 
     private InputAction moveAction;
     private InputAction rotateAction;
@@ -26,6 +27,7 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction abilityAction;
     private InputAction cameraSwitchAction;
     private InputAction openUIAction;
+    private InputAction openMapAction;
 
     [Header("Action Name References UI")]
     [SerializeField] private string navigate = "Navigate";
@@ -43,8 +45,8 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 MoveInput { get; private set; }
     public float RotateInput { get; private set; }
     public bool BoostInput { get; private set; }
+  
     public bool AbilityInput { get; private set; }
-
 
     public event Action OnCameraSwitchInputChanged;
     private bool _cameraSwitchInput;
@@ -74,7 +76,7 @@ public class PlayerInputHandler : MonoBehaviour
         {
             if (_openUIInput != value)
             {
-                _openUIInput = value;
+                _openUIInput = value;       
                 if (_openUIInput)
                 {
                     OnOpenUIChanged?.Invoke();
@@ -83,6 +85,21 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+
+    public event Action OnOpenMapInputChanged;
+    private bool _openMapInput;
+    public bool OpenMapInput
+    {
+        get { return _openMapInput; }
+        private set
+        {
+            if (_openMapInput != value)
+            {
+                _openMapInput = value;
+                OnOpenMapInputChanged?.Invoke();
+            }
+        }
+    }
 
 
     // UI Stuff
@@ -108,7 +125,6 @@ public class PlayerInputHandler : MonoBehaviour
         get { return _clickUIInput; }
         private set
         {
-            Debug.Log("Klick " + _clickUIInput + " - " + value);
             if (_clickUIInput != value)
             {
                 _clickUIInput = value;
@@ -150,6 +166,7 @@ public class PlayerInputHandler : MonoBehaviour
         abilityAction = playerControls.FindActionMap(actionMapName).FindAction(ability);
         cameraSwitchAction = playerControls.FindActionMap(actionMapName).FindAction(cameraSwitch);
         openUIAction = playerControls.FindActionMap(actionMapName).FindAction(openUI);
+        openMapAction = playerControls.FindActionMap(actionMapName).FindAction(openMap);
 
         // UI Controls
         navigateUIAction = playerControls.FindActionMap(actionMapNameUI).FindAction(navigate);
@@ -178,6 +195,9 @@ public class PlayerInputHandler : MonoBehaviour
 
         openUIAction.performed += context => OpenUIInput = true;
         openUIAction.canceled += context => OpenUIInput = false;
+
+        openMapAction.performed += context => OpenMapInput = true;
+        openMapAction.canceled += context => OpenMapInput = false;
 
         // UI Controls
         navigateUIAction.performed += context => NavigateUIInput = context.ReadValue<Vector2>();
@@ -209,6 +229,7 @@ public class PlayerInputHandler : MonoBehaviour
         abilityAction.Enable();
         cameraSwitchAction.Enable();
         openUIAction.Enable();
+        openMapAction.Enable();
     }
 
     public void DisableGameControls()
@@ -220,6 +241,7 @@ public class PlayerInputHandler : MonoBehaviour
         abilityAction.Disable();
         cameraSwitchAction.Disable();
         openUIAction.Disable();
+        openMapAction.Disable();
     }
 
     public void EnableUIControls()
