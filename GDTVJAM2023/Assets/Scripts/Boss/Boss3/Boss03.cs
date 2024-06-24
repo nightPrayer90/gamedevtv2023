@@ -17,16 +17,6 @@ public class Boss03 : MonoBehaviour
     private bool isMinimap = false;
 
 
-    [Header("Boss UI")]
-    public GameObject bossHud;
-    public CanvasGroup bossHudCg;
-    public Slider bossHealthSlider;
-    public Image bossHealthForeground;
-    public Image bossHealthFillarea;
-    public Sprite bossHealthForgroundSp;
-    public Sprite bossHealthFillareaSp;
-
-
     [Header("GameObjects")]
     public Material buildingMaterial;
     public Material emissivMaterial;
@@ -54,6 +44,7 @@ public class Boss03 : MonoBehaviour
     public List<GameObject> horizontalRocketSpawner = new List<GameObject>();
     public List<GameObject> horizontalRocketSpawner2 = new List<GameObject>();
     public BossParticle bossParticle;
+    private BossUI bossUI;
 
 
     /* **************************************************************************** */
@@ -86,10 +77,8 @@ public class Boss03 : MonoBehaviour
         }
 
         // healthbar controll
-        bossHudCg.alpha = 0;
-        bossHealthForeground.sprite = bossHealthForgroundSp;
-        bossHealthFillarea.sprite = bossHealthFillareaSp;
-        bossHealthForeground.color = Color.red;
+        bossUI = gameManager.bossUI.GetComponent<BossUI>();
+        bossUI.InitHealthBar(enemyHealthScr.enemyHealth);
 
         // set tag for targeting weapons
         gameObject.tag = "Untagged";
@@ -145,15 +134,7 @@ public class Boss03 : MonoBehaviour
             AudioManager.Instance.PlaySFX("LiftUPBoss");
 
             // open bosshud
-            bossHud.SetActive(true);
-            bossHudCg.DOFade(1f, 0.2f);
-            bossHealthForeground.sprite = bossHealthForgroundSp;
-            bossHealthSlider.maxValue = enemyHealthScr.enemyHealth;
-            bossHealthSlider.value = 0;
-            bossHealthSlider.DOValue(enemyHealthScr.enemyHealth, 5.2f).OnComplete(() =>
-            {
-                bossHealthSlider.transform.DOPunchScale(new Vector3(0.05f, 0.05f, 0.05f), 1.5f, 10, 1f);
-            });
+            bossUI.OpenBossUI();
 
             // fly to y = 7
             transform.DOMoveY(6, 5f).SetEase(Ease.InOutSine).OnComplete(() =>
@@ -204,7 +185,7 @@ public class Boss03 : MonoBehaviour
 
         // go into fighting phase
         enemyHealthScr.canTakeDamage = true;
-        bossHealthForeground.color = Color.white;
+        bossUI.SetForgroundColor(Color.white);
         bossState = 2;
     }
 
@@ -216,7 +197,7 @@ public class Boss03 : MonoBehaviour
             currentState++;
         }
 
-        bossHealthSlider.value = enemyHealthScr.enemyHealth;
+        bossUI.UpdateSliderValue(enemyHealthScr.enemyHealth);
 
         switch (currentState)
         {
@@ -227,7 +208,7 @@ public class Boss03 : MonoBehaviour
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
                     verticalRocketSpawner[currentState].SetActive(true);
-                    InvokeRepeating("Shooting1", 0.5f, 4f);
+                    InvokeRepeating(nameof(Shooting1), 0.5f, 4f);
                     isState[0] = true;
                 }
 
@@ -246,14 +227,14 @@ public class Boss03 : MonoBehaviour
                     horizontalRocketSpawner[0].SetActive(true);
                     horizontalRocketSpawner[1].SetActive(true);
                     horizontalRocketSpawner[2].SetActive(true);
-                    Invoke("HorizontalRocketsOff", 5f);
+                    Invoke(nameof(HorizontalRocketsOff), 5f);
 
                     horizontalRocketSpawner2[0].SetActive(true);
                     horizontalRocketSpawner2[1].SetActive(true);
                     horizontalRocketSpawner2[2].SetActive(true);
 
                     enemyHealthScr.canTakeDamage = false;
-                    bossHealthForeground.color = Color.red;
+                    bossUI.SetForgroundColor(Color.red);
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
                     
@@ -261,12 +242,12 @@ public class Boss03 : MonoBehaviour
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
                         verticalRocketSpawner[currentState].SetActive(true);
-                        InvokeRepeating("Shooting1", 0.5f, 3f);
+                        InvokeRepeating(nameof(Shooting1), 0.5f, 3f);
 
                         transform.DOShakePosition(3f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
                             enemyHealthScr.canTakeDamage = true;
-                            bossHealthForeground.color = Color.white;
+                            bossUI.SetForgroundColor(Color.white);
                         });
                     });
                     isState[1] = true;
@@ -290,7 +271,7 @@ public class Boss03 : MonoBehaviour
                     horizontalRocketSpawner[2].SetActive(true);
                     //Invoke("HorizontalRocketsOff", 5f);
 
-                    bossHealthForeground.color = Color.red;
+                    bossUI.SetForgroundColor(Color.red);
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
                     
@@ -298,12 +279,12 @@ public class Boss03 : MonoBehaviour
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
                         verticalRocketSpawner[currentState].SetActive(true);
-                        InvokeRepeating("Shooting1", 0.5f, 2f);
+                        InvokeRepeating(nameof(Shooting1), 0.5f, 2f);
 
                         transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
                             enemyHealthScr.canTakeDamage = true;
-                            bossHealthForeground.color = Color.white;
+                            bossUI.SetForgroundColor(Color.white);
                         });
                     });
                     isState[2] = true;
@@ -329,7 +310,7 @@ public class Boss03 : MonoBehaviour
 
 
 
-        bossHudCg.DOFade(0f, 0.5f).OnComplete(()=> { bossHud.SetActive(false); });
+        bossUI.FadeOut();
 
         //InvokeRepeating("InvokeSpawnExplosion", 0.5f, 1f);
         verticalRocketSpawner2[0].SetActive(true);
@@ -365,7 +346,7 @@ public class Boss03 : MonoBehaviour
                 bossMeshRenderer.enabled = false;
                 
                 // destroy the object
-                Invoke("BossDelete",11f);
+                Invoke(nameof(BossDelete),11f);
 
                 // set tag for targeting weapons
                 gameObject.tag = "Untagged";

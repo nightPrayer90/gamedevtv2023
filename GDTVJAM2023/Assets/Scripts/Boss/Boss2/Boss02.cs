@@ -19,16 +19,6 @@ public class Boss02 : MonoBehaviour
     private int maxShieldObjects = 8;
 
 
-    [Header("Boss UI")]
-    public GameObject bossHud;
-    public CanvasGroup bossHudCg;
-    public Slider bossHealthSlider;
-    public Image bossHealthForeground;
-    public Image bossHealthFillarea;
-    public Sprite bossHealthForgroundSp;
-    public Sprite bossHealthFillareaSp;
-
-
     [Header("GameObjects")]
     public Material buildingMaterial;
     public Material emissivMaterial;
@@ -69,7 +59,7 @@ public class Boss02 : MonoBehaviour
     public Boss2DownPhase downPhase;
     
     private Quaternion targetRotation;
-
+    private BossUI bossUI;
 
     /* **************************************************************************** */
     /* Lifecycle-Methoden---------------------------------------------------------- */
@@ -101,10 +91,8 @@ public class Boss02 : MonoBehaviour
         }
 
         // healthbar controll
-        bossHudCg.alpha = 0;
-        bossHealthForeground.sprite = bossHealthForgroundSp;
-        bossHealthFillarea.sprite = bossHealthFillareaSp;
-        bossHealthForeground.color = Color.red;
+        bossUI = gameManager.bossUI.GetComponent<BossUI>();
+        bossUI.InitHealthBar(enemyHealthScr.enemyHealth);
 
         // set tag for targeting weapons
         gameObject.tag = "Untagged";
@@ -160,15 +148,7 @@ public class Boss02 : MonoBehaviour
             AudioManager.Instance.PlaySFX("LiftUPBoss");
 
             // open bosshud
-            bossHud.SetActive(true);
-            bossHudCg.DOFade(1f, 0.2f);
-            bossHealthForeground.sprite = bossHealthForgroundSp;
-            bossHealthSlider.maxValue = enemyHealthScr.enemyHealth;
-            bossHealthSlider.value = 0;
-            bossHealthSlider.DOValue(enemyHealthScr.enemyHealth, 5.2f).OnComplete(() =>
-            {
-                bossHealthSlider.transform.DOPunchScale(new Vector3(0.05f, 0.05f, 0.05f), 1.5f, 10, 1f);
-            });
+            bossUI.OpenBossUI();
 
             // fly to y = 6
             transform.DOMoveY(6, 5f).SetEase(Ease.InOutSine).OnComplete(() =>
@@ -226,7 +206,7 @@ public class Boss02 : MonoBehaviour
 
         // go into fighting phase
         enemyHealthScr.canTakeDamage = true;
-        bossHealthForeground.color = Color.white;
+        bossUI.SetForgroundColor(Color.white);
         bossState = 2;
     }
 
@@ -235,7 +215,7 @@ public class Boss02 : MonoBehaviour
         int currentState = Mathf.CeilToInt(enemyHealthScr.enemyHealth / fightingStatesStepSize);
         currentState = numberOfFightingStates - currentState;
 
-        bossHealthSlider.value = enemyHealthScr.enemyHealth;
+        bossUI.UpdateSliderValue(enemyHealthScr.enemyHealth);
 
         switch (currentState)
         {
@@ -249,7 +229,7 @@ public class Boss02 : MonoBehaviour
 
                     downPhase.GoOnPosition();
 
-                    InvokeRepeating("SpawnShield", 10f, 7.5f);
+                    InvokeRepeating(nameof(SpawnShield), 10f, 7.5f);
                   
                     isState[0] = true;
                 }
@@ -263,33 +243,27 @@ public class Boss02 : MonoBehaviour
                 // turns only one time per state
                 if (isState[1] == false)
                 {
-                    CancelInvoke("SpawnShield");
+                    CancelInvoke(nameof(SpawnShield));
                     bossChanceState.Play();
                     enemyHealthScr.canTakeDamage = false;
-                    bossHealthForeground.color = Color.red;
+                    bossUI.SetForgroundColor(Color.red);
                     rippleParticle.Play();
                     upPhase.ActivateMesh();
                     upPhase.PhaseUP();
 
-                    
-
                     PushThePlayer(2.5f, 5f);
-                    //Debug.Log("state1 @ " + enemyHealthScr.enemyHealth);
                     CancelInvoke();
-                    Invoke("FrontWeaponReset", 1f);
+                    Invoke(nameof(FrontWeaponReset), 1f);
 
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
-                        //InvokeRepeating("Shooting2", 3f, 0.5f);
-                        //InvokeRepeating("InvokeShootSound", 3f, 0.5f);
-
                        
                         Shooting2();
                         transform.DOShakePosition(3f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
                             enemyHealthScr.canTakeDamage = true;
-                            bossHealthForeground.color = Color.white;
+                            bossUI.SetForgroundColor(Color.white);
                             
                         });
                     });
@@ -308,7 +282,7 @@ public class Boss02 : MonoBehaviour
                 {
                     bossChanceState.Play( );
                     enemyHealthScr.canTakeDamage = false;
-                    bossHealthForeground.color = Color.red;
+                    bossUI.SetForgroundColor(Color.red);
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
 
@@ -316,7 +290,7 @@ public class Boss02 : MonoBehaviour
 
                     //Debug.Log("state2 @ " + enemyHealthScr.enemyHealth);
                     CancelInvoke();
-                    Invoke("FrontWeaponReset", 1f);
+                    Invoke(nameof(FrontWeaponReset), 1f);
 
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
                     {
@@ -325,7 +299,7 @@ public class Boss02 : MonoBehaviour
                         transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
                             enemyHealthScr.canTakeDamage = true;
-                            bossHealthForeground.color = Color.white;
+                            bossUI.SetForgroundColor(Color.white);
 
                             upPhase2.ActivateMesh();
 
@@ -345,11 +319,11 @@ public class Boss02 : MonoBehaviour
 
     private void DieState()
     {
-        bossHudCg.DOFade(0f, 0.5f).OnComplete(()=> { bossHud.SetActive(false); });
+        bossUI.FadeOut();
         DestoryLaserWeapon();
         upPhase2.LaserStop();
 
-        InvokeRepeating("InvokeSpawnExplosion", 0.5f, 1f);
+        InvokeRepeating(nameof(InvokeSpawnExplosion), 0.5f, 1f);
         
         isDying = true;
 
@@ -385,7 +359,7 @@ public class Boss02 : MonoBehaviour
                 Instantiate(replacement, transform.position, replacement.transform.rotation);
                 
                 // destroy the object
-                Invoke("BossDelete",11f);
+                Invoke(nameof(BossDelete),11f);
 
                 // set tag for targeting weapons
                 gameObject.tag = "Untagged";
@@ -523,7 +497,7 @@ public class Boss02 : MonoBehaviour
         {
             if (frontWeaponCount == 0)
             {
-                Invoke("InvokeShoot", 1f);
+                Invoke(nameof(InvokeShoot), 1f);
                 frontWeaponCount = 1;
                 frontWeaponMaxCount = frontWeaponMaxCount_;
             }
@@ -543,11 +517,11 @@ public class Boss02 : MonoBehaviour
 
         if (frontWeaponCount <= frontWeaponMaxCount+1)
         {
-            Invoke("InvokeShoot", 0.6f);
+            Invoke(nameof(InvokeShoot), 0.6f);
         }
         else
         {
-            Invoke("FrontWeaponReset",3f);
+            Invoke(nameof(FrontWeaponReset),3f);
         }
 
     }
@@ -570,7 +544,7 @@ public class Boss02 : MonoBehaviour
         {
             if (frontWeaponCount2 == 0)
             {
-                Invoke("InvokeShoot2", 3f);
+                Invoke(nameof(InvokeShoot2), 3f);
                 frontWeaponCount2 = 1;
                 frontWeaponMaxCount2 = frontWeaponMaxCount_;
             }
@@ -589,11 +563,11 @@ public class Boss02 : MonoBehaviour
 
         if (frontWeaponCount2 <= frontWeaponMaxCount2 + 1)
         {
-            Invoke("InvokeShoot2", 2f);
+            Invoke(nameof(InvokeShoot2), 2f);
         }
         else
         {
-            Invoke("FrontWeaponReset2", 5f);
+            Invoke(nameof(FrontWeaponReset2), 5f);
         }
 
     }

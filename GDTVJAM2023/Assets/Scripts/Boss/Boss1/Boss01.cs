@@ -14,17 +14,6 @@ public class Boss01 : MonoBehaviour
     private float dieRotation = 0;
     private bool isMinimap = false;
 
-
-    [Header("Boss UI")]
-    public GameObject bossHud;
-    public CanvasGroup bossHudCg;
-    public Slider bossHealthSlider;
-    public Image bossHealthForeground;
-    public Image bossHealthFillarea;
-    public Sprite bossHealthForgroundSp;
-    public Sprite bossHealthFillareaSp;
-
-
     [Header("GameObjects")]
     public Material buildingMaterial;
     public Material emissivMaterial;
@@ -49,7 +38,7 @@ public class Boss01 : MonoBehaviour
     private GameManager gameManager;
     public PlayerData playerData;
     public BossParticle bossParticle;
-
+    private BossUI bossUI;
 
     /* **************************************************************************** */
     /* Lifecycle-Methoden---------------------------------------------------------- */
@@ -81,10 +70,8 @@ public class Boss01 : MonoBehaviour
         }
 
         // healthbar controll
-        bossHudCg.alpha = 0;
-        bossHealthForeground.sprite = bossHealthForgroundSp;
-        bossHealthFillarea.sprite = bossHealthFillareaSp;
-        bossHealthForeground.color = Color.red;
+        bossUI = gameManager.bossUI.GetComponent<BossUI>();
+        bossUI.InitHealthBar(enemyHealthScr.enemyHealth);
 
         // set tag for targeting weapons
         gameObject.tag = "Untagged";
@@ -140,15 +127,7 @@ public class Boss01 : MonoBehaviour
             AudioManager.Instance.PlaySFX("LiftUPBoss");
 
             // open bosshud
-            bossHud.SetActive(true);
-            bossHudCg.DOFade(1f, 0.2f);
-            bossHealthForeground.sprite = bossHealthForgroundSp;
-            bossHealthSlider.maxValue = enemyHealthScr.enemyHealth;
-            bossHealthSlider.value = 0;
-            bossHealthSlider.DOValue(enemyHealthScr.enemyHealth, 5.2f).OnComplete(() =>
-            {
-                bossHealthSlider.transform.DOPunchScale(new Vector3(0.05f, 0.05f, 0.05f), 1.5f, 10, 1f);
-            });
+            bossUI.OpenBossUI();
 
             // fly to y = 7
             transform.DOMoveY(6, 5f).SetEase(Ease.InOutSine).OnComplete(() =>
@@ -200,7 +179,7 @@ public class Boss01 : MonoBehaviour
 
         // go into fighting phase
         enemyHealthScr.canTakeDamage = true;
-        bossHealthForeground.color = Color.white;
+        bossUI.SetForgroundColor(Color.white);
         bossState = 2;
     }
 
@@ -209,7 +188,7 @@ public class Boss01 : MonoBehaviour
         int currentState = Mathf.CeilToInt(enemyHealthScr.enemyHealth / fightingStatesStepSize);
         currentState = numberOfFightingStates - currentState;
 
-        bossHealthSlider.value = enemyHealthScr.enemyHealth;
+        bossUI.UpdateSliderValue(enemyHealthScr.enemyHealth);
 
         switch (currentState)
         {
@@ -220,8 +199,8 @@ public class Boss01 : MonoBehaviour
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
                     //Debug.Log("state0 @ " + enemyHealthScr.enemyHealth);
-                    InvokeRepeating("Shooting1",0.5f,0.5f);
-                    InvokeRepeating("InvokeShootSound", 0.5f, 0.5f);
+                    InvokeRepeating(nameof(Shooting1),0.5f,0.5f);
+                    InvokeRepeating(nameof(InvokeShootSound), 0.5f, 0.5f);
                     isState[0] = true;
                 }
 
@@ -235,7 +214,7 @@ public class Boss01 : MonoBehaviour
                 {
                     bossChanceState.Play();
                     enemyHealthScr.canTakeDamage = false;
-                    bossHealthForeground.color = Color.red;
+                    bossUI.SetForgroundColor(Color.red);
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
                     //Debug.Log("state1 @ " + enemyHealthScr.enemyHealth);
@@ -243,12 +222,12 @@ public class Boss01 : MonoBehaviour
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
-                        InvokeRepeating("Shooting2", 3f, 0.5f);
-                        InvokeRepeating("InvokeShootSound", 3f, 0.5f);
+                        InvokeRepeating(nameof(Shooting2), 3f, 0.5f);
+                        InvokeRepeating(nameof(InvokeShootSound), 3f, 0.5f);
                         transform.DOShakePosition(3f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
                             enemyHealthScr.canTakeDamage = true;
-                            bossHealthForeground.color = Color.white;
+                            bossUI.SetForgroundColor(Color.white);
                         });
                     });
                     isState[1] = true;
@@ -264,7 +243,7 @@ public class Boss01 : MonoBehaviour
                 {
                     bossChanceState.Play( );
                     enemyHealthScr.canTakeDamage = false;
-                    bossHealthForeground.color = Color.red;
+                    bossUI.SetForgroundColor(Color.red);
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
 
@@ -273,13 +252,13 @@ public class Boss01 : MonoBehaviour
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
-                        InvokeRepeating("Shooting1", 4f, 0.5f);
-                        InvokeRepeating("Shooting2", 4f, 0.5f);
-                        InvokeRepeating("InvokeShootSound", 4f, 0.5f);
+                        InvokeRepeating(nameof(Shooting1), 4f, 0.5f);
+                        InvokeRepeating(nameof(Shooting2), 4f, 0.5f);
+                        InvokeRepeating(nameof(InvokeShootSound), 4f, 0.5f);
                         transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
                             enemyHealthScr.canTakeDamage = true;
-                            bossHealthForeground.color = Color.white;
+                            bossUI.SetForgroundColor(Color.white);
                         });
                     });
                     isState[2] = true;
@@ -293,9 +272,9 @@ public class Boss01 : MonoBehaviour
 
     private void DieState()
     {
-        bossHudCg.DOFade(0f, 0.5f).OnComplete(()=> { bossHud.SetActive(false); });
+        bossUI.FadeOut();
 
-        InvokeRepeating("InvokeSpawnExplosion", 0.5f, 1f);
+        InvokeRepeating(nameof(InvokeSpawnExplosion), 0.5f, 1f);
         transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
         {
             CancelInvoke();
@@ -327,7 +306,7 @@ public class Boss01 : MonoBehaviour
                 bossMeshRenderer.enabled = false;
                 
                 // destroy the object
-                Invoke("BossDelete",11f);
+                Invoke(nameof(BossDelete),11f);
 
                 // set tag for targeting weapons
                 gameObject.tag = "Untagged";
