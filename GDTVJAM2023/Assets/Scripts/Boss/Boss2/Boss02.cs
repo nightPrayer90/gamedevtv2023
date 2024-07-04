@@ -32,14 +32,12 @@ public class Boss02 : MonoBehaviour
     public GameObject shootingWeapon;
     public GameObject shootingWeapon2;
 
-    private int frontWeaponCount= 0;
+    private int frontWeaponCount = 0;
     private int frontWeaponMaxCount = 5;
     private int frontWeaponCount2 = 0;
     private int frontWeaponMaxCount2 = 3;
 
     public GameObject explosionObject;
-    public GameObject minimapIcon;
-    public SpriteRenderer minimapSpR;
     public GameObject damageArea;
     public GameObject replacement;
     public Collider baseCollider;
@@ -52,18 +50,21 @@ public class Boss02 : MonoBehaviour
     private Rigidbody playerRb;
     public Rigidbody rb;
     private GameManager gameManager;
-    public BossParticle bossParticle;
 
     public Boss2upPhase upPhase;
     public Boss2upPhase2 upPhase2;
     public Boss2DownPhase downPhase;
-    
+
     private Quaternion targetRotation;
     private BossUI bossUI;
+    public BossMinimapIcon bossMinimapIcon;
+    public BossParticle bossParticle;
+
 
     /* **************************************************************************** */
-    /* Lifecycle-Methoden---------------------------------------------------------- */
+    /* LIFECYCLE ------------------------------------------------------------------ */
     /* **************************************************************************** */
+    #region LIFECYCLE
     private void Start()
     {
         // hash components
@@ -96,7 +97,6 @@ public class Boss02 : MonoBehaviour
 
         // set tag for targeting weapons
         gameObject.tag = "Untagged";
-
     }
 
     private void EnemyHealthScr_DieEvent(object sender, System.EventArgs e)
@@ -130,12 +130,13 @@ public class Boss02 : MonoBehaviour
             }
         }
     }
-
+    #endregion
 
 
     /* **************************************************************************** */
-    /* BOSS STATE ----------------------------------------------------------------- */
+    /* STATES ----------------------------------------------------------------- */
     /* **************************************************************************** */
+    #region STATES
     private void SleepState()
     {
         float distanceToPlayer = DistanceToPlayer();
@@ -154,9 +155,7 @@ public class Boss02 : MonoBehaviour
             transform.DOMoveY(6, 5f).SetEase(Ease.InOutSine).OnComplete(() =>
             {
                 // set minimap to a red color
-                minimapIcon.transform.DOComplete();
-                minimapIcon.transform.DOKill();
-                minimapSpR.DOColor(Color.red, 1f);
+                bossMinimapIcon.SetIconToRed();
 
                 rb.constraints = RigidbodyConstraints.FreezePositionX |
                              RigidbodyConstraints.FreezePositionY |
@@ -166,32 +165,22 @@ public class Boss02 : MonoBehaviour
 
                 // go to the activate State
                 AudioManager.Instance.PlaySFX("WarningBoss");
-                transform.DOShakePosition(0.2f, 0.1f, 10, 90, false, true).OnComplete(() => 
-                { 
+                transform.DOShakePosition(0.2f, 0.1f, 10, 90, false, true).OnComplete(() =>
+                {
                     ActivateState();
                     damageArea.GetComponent<DamageArea>().FadeOut();
                 });
             });
-            
         }
         else
         {
             if (isMinimap == false && gameManager.districtNumber == bossIndex)
             {
-                minimapIcon.SetActive(true);
                 bossParticle.ParticleStart();
-
-                minimapSpR.DOFade(1f, 2f).SetDelay(1f);
-                minimapIcon.transform.DOScale(new Vector3(15f, 15f, 15f), 2f).SetDelay(1f).OnComplete(() =>
-                {
-                    minimapIcon.transform.DOPunchScale(new Vector3(7f, 7f, 7f), 2f, 1, 0.4f).SetDelay(2f).SetLoops(-1, LoopType.Restart);
-                });
-
-
+                bossMinimapIcon.InitMinimapIcon();
                 isMinimap = true;
             }
         }
-
     }
 
     private void ActivateState()
@@ -230,10 +219,9 @@ public class Boss02 : MonoBehaviour
                     downPhase.GoOnPosition();
 
                     InvokeRepeating(nameof(SpawnShield), 10f, 7.5f);
-                  
+
                     isState[0] = true;
                 }
-
                 RotateBoss(9f);
                 MoveToPlayer(6f);
                 RotateWeaponToPlayer(12);
@@ -244,6 +232,7 @@ public class Boss02 : MonoBehaviour
                 if (isState[1] == false)
                 {
                     CancelInvoke(nameof(SpawnShield));
+                    bossChanceState.volume = Mathf.Min(AudioManager.Instance.sfxVolume, 0.7f);
                     bossChanceState.Play();
                     enemyHealthScr.canTakeDamage = false;
                     bossUI.SetForgroundColor(Color.red);
@@ -255,21 +244,20 @@ public class Boss02 : MonoBehaviour
                     CancelInvoke();
                     Invoke(nameof(FrontWeaponReset), 1f);
 
-                    transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
+                    transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() =>
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
-                       
+
                         Shooting2();
                         transform.DOShakePosition(3f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
                             enemyHealthScr.canTakeDamage = true;
                             bossUI.SetForgroundColor(Color.white);
-                            
+
                         });
                     });
                     isState[1] = true;
                 }
-
                 RotateBoss(9f);
                 RotateWeaponToPlayer(12);
                 RotateWeaponToPlayer2(2);
@@ -280,7 +268,8 @@ public class Boss02 : MonoBehaviour
                 // turns only one time per state
                 if (isState[2] == false)
                 {
-                    bossChanceState.Play( );
+                    bossChanceState.volume = Mathf.Min(AudioManager.Instance.sfxVolume, 0.7f);
+                    bossChanceState.Play();
                     enemyHealthScr.canTakeDamage = false;
                     bossUI.SetForgroundColor(Color.red);
                     rippleParticle.Play();
@@ -292,10 +281,10 @@ public class Boss02 : MonoBehaviour
                     CancelInvoke();
                     Invoke(nameof(FrontWeaponReset), 1f);
 
-                    transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
+                    transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() =>
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
-                        
+
                         transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
                             enemyHealthScr.canTakeDamage = true;
@@ -308,7 +297,6 @@ public class Boss02 : MonoBehaviour
                     });
                     isState[2] = true;
                 }
-
                 RotateWeaponToPlayer(6);
                 RotateWeaponToPlayer2(3);
                 RotateBoss(12f);
@@ -324,7 +312,7 @@ public class Boss02 : MonoBehaviour
         upPhase2.LaserStop();
 
         InvokeRepeating(nameof(InvokeSpawnExplosion), 0.5f, 1f);
-        
+
         isDying = true;
 
         transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
@@ -332,6 +320,7 @@ public class Boss02 : MonoBehaviour
             CancelInvoke();
             rippleParticle.Play();
             PushThePlayer(2.5f, 5f);
+            bossChanceState.volume = Mathf.Min(AudioManager.Instance.sfxVolume, 0.7f);
             bossChanceState.Play();
 
             downPhase.ShieldDie();
@@ -352,20 +341,19 @@ public class Boss02 : MonoBehaviour
                 ObjectPoolManager.SpawnObject(itemDrop, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
 
                 // replace
-                minimapIcon.SetActive(false);            
+                bossMinimapIcon.HideMinimapIcon();
                 gameObject.tag = "Untagged";
                 bossMeshRenderer.enabled = false;
 
                 Instantiate(replacement, transform.position, replacement.transform.rotation);
-                
+
                 // destroy the object
-                Invoke(nameof(BossDelete),11f);
+                Invoke(nameof(BossDelete), 11f);
 
                 // set tag for targeting weapons
                 gameObject.tag = "Untagged";
             });
         });
-
         bossState = 4;
     }
 
@@ -374,13 +362,13 @@ public class Boss02 : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-
+    #endregion
 
 
     /* **************************************************************************** */
     /* HELP FUNCTIONS ------------------------------------------------------------- */
     /* **************************************************************************** */
+    #region HELP FUNCTIONS
     // calculate the distance to the Player
     float DistanceToPlayer()
     {
@@ -404,7 +392,7 @@ public class Boss02 : MonoBehaviour
     // rotate the boss
     private void RotateBoss(float rotationSpeed)
     {
-        transform.rotation = transform.rotation * Quaternion.Euler( 0f , rotationSpeed * Time.deltaTime, 0f);
+        transform.rotation = transform.rotation * Quaternion.Euler(0f, rotationSpeed * Time.deltaTime, 0f);
     }
 
     // push the player away from the boss
@@ -418,8 +406,6 @@ public class Boss02 : MonoBehaviour
             playerRb.AddForce(pushForceVector, ForceMode.Impulse);
         }
     }
-
-
 
     // invoke - shoot attack 1
     private void Shooting1()
@@ -454,7 +440,7 @@ public class Boss02 : MonoBehaviour
             delay += 4;
         }
 
-        if (shieldObjects == maxShieldObjects) { CancelInvoke("SpawnShield");  }
+        if (shieldObjects == maxShieldObjects) { CancelInvoke("SpawnShield"); }
     }
 
     // stops and destroy all laser
@@ -484,13 +470,12 @@ public class Boss02 : MonoBehaviour
         ObjectPoolManager.SpawnObject(explosionObject, transform.position, Quaternion.Euler(0f, dieRotation, 0f), ObjectPoolManager.PoolType.ParticleSystem);
     }
 
-    // control the frontweapon
+    // control frontweapon
     private void RotateWeaponToPlayer(int frontWeaponMaxCount_)
     {
         Vector3 directionToPlayer = playerTr.position - shootingWeapon.transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer, Vector3.up);
 
-        // Verzögere die Ausrichtung des Objekts mit einer Rotationsgeschwindigkeit
         targetRotation = Quaternion.Slerp(targetRotation, lookRotation, 2 * Time.deltaTime);
 
         if (Quaternion.Angle(shootingWeapon.transform.rotation, targetRotation) < 10)
@@ -501,38 +486,36 @@ public class Boss02 : MonoBehaviour
                 frontWeaponCount = 1;
                 frontWeaponMaxCount = frontWeaponMaxCount_;
             }
-            return; // Beende die Aktualisierung der Ausrichtung
+            return;
         }
-
-        // Wende die Zielrotation auf das Objekt an
         shootingWeapon.transform.rotation = targetRotation;
     }
 
     // invoke - shoot
     private void InvokeShoot()
     {
+        shootSound.volume = AudioManager.Instance.sfxVolume;
         shootSound.Play();
         frontWeapon.Emit(1);
         frontWeaponCount += 1;
 
-        if (frontWeaponCount <= frontWeaponMaxCount+1)
+        if (frontWeaponCount <= frontWeaponMaxCount + 1)
         {
             Invoke(nameof(InvokeShoot), 0.6f);
         }
         else
         {
-            Invoke(nameof(FrontWeaponReset),3f);
+            Invoke(nameof(FrontWeaponReset), 3f);
         }
-
     }
-    
+
     // invoke - reset the frontweapon 
     private void FrontWeaponReset()
     {
         frontWeaponCount = 0;
     }
 
-    // control the frontweapon
+    // control frontweapon
     private void RotateWeaponToPlayer2(int frontWeaponMaxCount_)
     {
         Vector3 directionToPlayer = playerTr.position - shootingWeapon2.transform.position;
@@ -548,15 +531,15 @@ public class Boss02 : MonoBehaviour
                 frontWeaponCount2 = 1;
                 frontWeaponMaxCount2 = frontWeaponMaxCount_;
             }
-            return; 
+            return;
         }
-
         shootingWeapon2.transform.rotation = targetRotation;
     }
 
     // invoke - shoot
     private void InvokeShoot2()
     {
+        shootSound.volume = AudioManager.Instance.sfxVolume;
         shootSound.Play();
         frontWeapon2.Emit(1);
         frontWeaponCount2 += 1;
@@ -577,4 +560,5 @@ public class Boss02 : MonoBehaviour
     {
         frontWeaponCount2 = 0;
     }
+    #endregion
 }

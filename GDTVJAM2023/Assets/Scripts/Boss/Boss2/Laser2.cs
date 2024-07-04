@@ -40,26 +40,26 @@ public class Laser2 : MonoBehaviour
             player = playerOb.GetComponent<NewPlayerController>();
         }
 
-        muzzleParticle.Play();
-
         if (isShootOnEnable == true)
         {
             LaserActivate();
         }
+        else
+        {
+            muzzleParticle.Stop();
+        }
     }
 
-    private void Update()
+    public void LaserActivate()
     {
         if (player == null)
         {
             player = GameObject.FindWithTag("Player").GetComponent<NewPlayerController>();
             Debug.Log("playerget");
         }
-    }
 
+        muzzleParticle.Play();
 
-    public void LaserActivate()
-    {
         tagStr = "Enemy";
         if (gameManager.dimensionShift == true) { tagStr = "secondDimensionEnemy"; }
         layerMask = (1 << 6) | (1 << 7) | (1<< 8) | (1 << 9);
@@ -71,7 +71,8 @@ public class Laser2 : MonoBehaviour
     public void LaserStop()
     {
         CancelInvoke("InvokeShoot");
-        gameObject.SetActive(false);
+        lr.enabled = false;
+        //gameObject.SetActive(false);
         muzzleParticle.Stop();
         hitParticle.Stop();
     }
@@ -88,6 +89,7 @@ public class Laser2 : MonoBehaviour
         float remainingLaserDistance = laserDistance;
 
         lr.SetPosition(0, transform.position);
+        lr.enabled = true;
 
         for (int i = 0; i< maxBounces; i++)
         {

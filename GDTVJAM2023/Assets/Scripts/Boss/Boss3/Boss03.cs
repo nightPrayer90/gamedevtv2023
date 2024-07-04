@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class Boss03 : MonoBehaviour
 {
@@ -26,8 +27,6 @@ public class Boss03 : MonoBehaviour
     public List<ParticleSystem> particleWeapons = new List<ParticleSystem>();
     public List<ParticleSystem> particleWeapons2 = new List<ParticleSystem>();
     public GameObject explosionObject;
-    public GameObject minimapIcon;
-    public SpriteRenderer minimapSpR;
     public GameObject damageArea;
     public GameObject replacement;
     public Collider baseCollider;
@@ -45,11 +44,13 @@ public class Boss03 : MonoBehaviour
     public List<GameObject> horizontalRocketSpawner2 = new List<GameObject>();
     public BossParticle bossParticle;
     private BossUI bossUI;
+    public BossMinimapIcon bossMinimapIcon;
 
 
     /* **************************************************************************** */
-    /* Lifecycle-Methoden---------------------------------------------------------- */
+    /* LIFECYCLE ------------------------------------------------------------------ */
     /* **************************************************************************** */
+    #region LIFECYCLE
     private void Start()
     {
         // hash components
@@ -73,7 +74,6 @@ public class Boss03 : MonoBehaviour
         for (int i = 0; i < numberOfFightingStates; i++)
         {
             isState[i] = false;
-
         }
 
         // healthbar controll
@@ -82,7 +82,6 @@ public class Boss03 : MonoBehaviour
 
         // set tag for targeting weapons
         gameObject.tag = "Untagged";
-
     }
 
     private void EnemyHealthScr_DieEvent(object sender, System.EventArgs e)
@@ -116,12 +115,13 @@ public class Boss03 : MonoBehaviour
             }
         }
     }
-
+    #endregion
 
 
     /* **************************************************************************** */
-    /* BOSS STATE ----------------------------------------------------------------- */
+    /* STATES --------------------------------------------------------------------- */
     /* **************************************************************************** */
+    #region STATES
     private void SleepState()
     {
         float distanceToPlayer = DistanceToPlayer();
@@ -140,9 +140,7 @@ public class Boss03 : MonoBehaviour
             transform.DOMoveY(6, 5f).SetEase(Ease.InOutSine).OnComplete(() =>
             {
                 // set minimap to a red color
-                minimapIcon.transform.DOComplete();
-                minimapIcon.transform.DOKill();
-                minimapSpR.DOColor(Color.red, 1f);
+                bossMinimapIcon.SetIconToRed();
 
                 // go to the activate State
                 AudioManager.Instance.PlaySFX("WarningBoss");
@@ -152,26 +150,16 @@ public class Boss03 : MonoBehaviour
                     damageArea.GetComponent<DamageArea>().FadeOut();
                 });
             });
-            
         }
         else
         {
             if (isMinimap == false && gameManager.districtNumber == bossIndex)
             {
-                minimapIcon.SetActive(true);
                 bossParticle.ParticleStart();
-
-                minimapSpR.DOFade(1f, 2f).SetDelay(1f);
-                minimapIcon.transform.DOScale(new Vector3(15f, 15f, 15f), 2f).SetDelay(1f).OnComplete(() =>
-                {
-                    minimapIcon.transform.DOPunchScale(new Vector3(7f, 7f, 7f), 2f, 1, 0.4f).SetDelay(2f).SetLoops(-1, LoopType.Restart);
-                });
-
-
+                bossMinimapIcon.SetIconToRed();
                 isMinimap = true;
             }
         }
-
     }
 
     private void ActivateState()
@@ -191,12 +179,10 @@ public class Boss03 : MonoBehaviour
 
     private void FightingState()
     {
-        //Debug.Log(fightingStatesSteps[currentState]);
         if(enemyHealthScr.enemyHealth < fightingStatesSteps[currentState] * enemyHealthScr.enemyStartHealth)
         {
             currentState++;
         }
-
         bossUI.UpdateSliderValue(enemyHealthScr.enemyHealth);
 
         switch (currentState)
@@ -221,6 +207,7 @@ public class Boss03 : MonoBehaviour
                 if (isState[1] == false)
                 {
                     CancelInvoke();
+                    bossChanceState.volume = Mathf.Min(AudioManager.Instance.sfxVolume, 0.7f);
                     bossChanceState.Play();
                     verticalRocketSpawner[currentState-1].SetActive(false);
                     
@@ -262,14 +249,14 @@ public class Boss03 : MonoBehaviour
                 if (isState[2] == false)
                 {
                     CancelInvoke();
-                    bossChanceState.Play( );
+                    bossChanceState.volume = Mathf.Min(AudioManager.Instance.sfxVolume, 0.7f);
+                    bossChanceState.Play();
                     enemyHealthScr.canTakeDamage = false;
                     verticalRocketSpawner[currentState-1].SetActive(false);
 
                     horizontalRocketSpawner[0].SetActive(true);
                     horizontalRocketSpawner[1].SetActive(true);
                     horizontalRocketSpawner[2].SetActive(true);
-                    //Invoke("HorizontalRocketsOff", 5f);
 
                     bossUI.SetForgroundColor(Color.red);
                     rippleParticle.Play();
@@ -308,11 +295,8 @@ public class Boss03 : MonoBehaviour
         horizontalRocketSpawner2[1].SetActive(false);
         horizontalRocketSpawner2[2].SetActive(false);
 
-
-
         bossUI.FadeOut();
 
-        //InvokeRepeating("InvokeSpawnExplosion", 0.5f, 1f);
         verticalRocketSpawner2[0].SetActive(true);
         transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
         {
@@ -320,6 +304,7 @@ public class Boss03 : MonoBehaviour
             CancelInvoke();
             rippleParticle.Play();
             PushThePlayer(2.5f, 5f);
+            bossChanceState.volume = Mathf.Min(AudioManager.Instance.sfxVolume, 0.7f);
             bossChanceState.Play();
 
             // set activate material
@@ -339,8 +324,7 @@ public class Boss03 : MonoBehaviour
                 ObjectPoolManager.SpawnObject(itemDrop, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
 
                 // replace
-                //mainCamera.RippleEffect(transform.position.x, transform.position.y, 15f, 0.5f);
-                minimapIcon.SetActive(false);
+                bossMinimapIcon.HideMinimapIcon();
                 baseCollider.enabled = false;
                 Instantiate(replacement, transform.position, transform.rotation);
                 bossMeshRenderer.enabled = false;
@@ -352,7 +336,6 @@ public class Boss03 : MonoBehaviour
                 gameObject.tag = "Untagged";
             });
         });
-
         bossState = 4;
     }
 
@@ -361,13 +344,13 @@ public class Boss03 : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-
+    #endregion
 
 
     /* **************************************************************************** */
     /* HELP FUNCTIONS ------------------------------------------------------------- */
     /* **************************************************************************** */
+    #region HELP FUNCTIONS
     // calculate the distance to the Player
     float DistanceToPlayer()
     {
@@ -412,8 +395,8 @@ public class Boss03 : MonoBehaviour
         foreach (ParticleSystem weapon in particleWeapons)
         {
             weapon.Emit(1);
-
         }
+        shootSound.volume = AudioManager.Instance.sfxVolume;
         shootSound.Play();
     }
 
@@ -425,7 +408,6 @@ public class Boss03 : MonoBehaviour
         PushThePlayer(2.5f, 5f);
         transform.DOShakeScale(0.2f, 0.2f, 10, 90, true);
         dieRotation = dieRotation + 15;
-        // instanstiate explosion
         ObjectPoolManager.SpawnObject(explosionObject, transform.position, Quaternion.Euler(0f, dieRotation, 0f), ObjectPoolManager.PoolType.ParticleSystem);
     }
 
@@ -435,4 +417,5 @@ public class Boss03 : MonoBehaviour
         horizontalRocketSpawner[1].SetActive(false);
         horizontalRocketSpawner[2].SetActive(false);
     }
+    #endregion
 }
