@@ -97858,6 +97858,7 @@ MonoBehaviour:
   - {fileID: 377957612854996781}
   bossParticle: {fileID: 123507646}
   bossMinimapIcon: {fileID: 1272073165}
+  bossUIForgroundSprite: {fileID: 21300000, guid: 1b9c1a895aa1ddd42bb77bc24920336a, type: 3}
 --- !u!114 &6735085528290213397
 MonoBehaviour:
   m_ObjectHideFlags: 0

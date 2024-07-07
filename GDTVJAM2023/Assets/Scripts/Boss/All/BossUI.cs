@@ -9,15 +9,14 @@ public class BossUI : MonoBehaviour
     public CanvasGroup bossHudCg;
     public Slider bossHealthSlider;
     public Image bossHealthForeground;
-    public Sprite[] bossHealthForgroundSp;
     public GameManager gameManager;
 
 
-    public void InitHealthBar(float bosshealth_)
+    public void InitHealthBar(float bosshealth_, Sprite forgroundSprite)
     {
         // healthbar control
         bossHudCg.alpha = 0;
-        bossHealthForeground.sprite = bossHealthForgroundSp[gameManager.districtNumber];
+        bossHealthForeground.sprite = forgroundSprite;
         bossHealthForeground.color = Color.red;
         bossHealthSlider.maxValue = bosshealth_;
     }

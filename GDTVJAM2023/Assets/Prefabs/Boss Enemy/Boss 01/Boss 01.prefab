@@ -34083,6 +34083,7 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: da5dd1c0a9707c24cb1ebd411780bd6b, type: 2}
   bossParticle: {fileID: 1327467822}
   bossMinimapIcon: {fileID: 1745247306}
+  bossUIForgroundSprite: {fileID: 21300000, guid: 05337d5848feaeb49918d53e68131122, type: 3}
 --- !u!114 &2861572413740522644
 MonoBehaviour:
   m_ObjectHideFlags: 0

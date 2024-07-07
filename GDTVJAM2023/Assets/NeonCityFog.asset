@@ -22,7 +22,7 @@ MonoBehaviour:
   distance: 0
   distanceFallOff: 0
   maxFogLength: 1000
-  maxFogLengthFallOff: 0.86
+  maxFogLengthFallOff: 0.841
   baselineRelativeToCamera: 1
   baselineRelativeToCameraDelay: 0
   noiseScale: 1

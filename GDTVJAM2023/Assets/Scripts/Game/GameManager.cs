@@ -208,22 +208,25 @@ public class GameManager : MonoBehaviour
     // Open break UI
     private void HandleBreakeUI()
     {
-        AudioManager.Instance.PlaySFX("MouseKlick");
+        if (gameOver == false)
+        {
+            AudioManager.Instance.PlaySFX("MouseKlick");
 
-        inputHandler.OnOpenUIChanged -= HandleBreakeUI;
+            inputHandler.OnOpenUIChanged -= HandleBreakeUI;
 
-        inputHandler.DisableGameControls();
-        inputHandler.EnableUIControls();
-        PauseMenue();
+            inputHandler.DisableGameControls();
+            inputHandler.EnableUIControls();
+            PauseMenue();
 
-        inputHandler.OnCloseUIChanged += HandleCloseBreakUI;
-        inputHandler.OnClickInputChanged += HandleClickUI;
+            inputHandler.OnCloseUIChanged += HandleCloseBreakUI;
+            inputHandler.OnClickInputChanged += HandleClickUI;
+        }
     }
 
     // Open Close UI
     public void HandleCloseBreakUI()
     {
-        Debug.Log("break");
+       
         inputHandler.OnCloseUIChanged -= HandleCloseBreakUI;
         inputHandler.OnClickInputChanged -= HandleClickUI;
 
@@ -714,9 +717,9 @@ public class GameManager : MonoBehaviour
         {
             case 1:
                 if (cinemachineSwitcher.topCamera_flag == true)
-                    topShake.ShakeCamera(1f, 0.3f);
+                    topShake.ShakeCamera(2f, 0.4f);
                 else
-                    backShake.ShakeCamera(0.3f, 0.3f);
+                    backShake.ShakeCamera(0.3f, 0.4f);
                 break;
 
             case 2:

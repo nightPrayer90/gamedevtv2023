@@ -26,12 +26,14 @@ public class Boss04DamageZone : MonoBehaviour
 
     public void DestroyObject()
     {
+        gameObject.transform.DOKill();
+        damageZone.transform.DOKill();
         gameObject.transform.DOScale(new Vector3(1.5f, 1.5f, 1.5f), 0.2f);
         damageZone.DOFade(0.0f, 0.2f);
         Invoke(nameof(Destroy), 0.3f);
     }
 
-    private void Destroy()
+    public void Destroy()
     {
         Destroy(gameObject);
     }

@@ -60,6 +60,7 @@ public class NewPlayerController : MonoBehaviour
     public List<ParticleCollisionEvent> collisionEvents;
     private UpgradeChooseList upgradeChooseList;
     private PlayerWeaponController playerWeaponController;
+    public ParticleSystem damageParticle;
 
 
     [Header("Outside Border")]
@@ -80,7 +81,8 @@ public class NewPlayerController : MonoBehaviour
     public event Action OnIntroOver;
     public event Action<float> OnUpdateRotateSpeed;
 
-
+    // Debuffs
+    private int moveControlChange = 1;
 
     /* **************************************************************************** */
     /* Lifecycle-Methoden---------------------------------------------------------- */
@@ -405,16 +407,19 @@ public class NewPlayerController : MonoBehaviour
     
     void HandleInput()
     {
-        strafeInput = intputHandler.MoveInput.x;
-        verticalInput = intputHandler.MoveInput.y;
-        rotateInput = intputHandler.RotateInput;
+        strafeInput = intputHandler.MoveInput.x * moveControlChange;
+        verticalInput = intputHandler.MoveInput.y * moveControlChange;
+        rotateInput = intputHandler.RotateInput * moveControlChange;
         boostInput = intputHandler.BoostInput;
         abilityInput = intputHandler.AbilityInput;
         ShipEngineSound();
     }
 
-
-  
+    // Boss 4
+    public void SetMoveControlDebuff()
+    {
+        moveControlChange = moveControlChange * (-1);
+    }
 
     void CalculateFlySpeed()
     {
@@ -522,6 +527,15 @@ public class NewPlayerController : MonoBehaviour
     // update player life after get damage, heal or level up
     public void UpdatePlayerHealth(int decHealth)
     {
+        
+        if (decHealth > 0)
+        {
+            if (!damageParticle.isPlaying)
+            {
+                damageParticle.Play();
+            }
+        }
+
         // calculate the player health value
         playerCurrentHealth = Mathf.Min(Mathf.Max(0, playerCurrentHealth - decHealth), playerMaxHealth);
 

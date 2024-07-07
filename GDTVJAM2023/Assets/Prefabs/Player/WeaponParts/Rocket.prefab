@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7340316633593488057}
   - component: {fileID: 4995706187326938098}
   - component: {fileID: 5180897813035817104}
-  - component: {fileID: -373542195782584023}
+  - component: {fileID: -2623270129111190686}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Rocket
@@ -66,7 +66,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0550884, y: 0.060250163, z: 0.13719821}
   m_Center: {x: 0.00083333254, y: -0.0017128587, z: 0}
---- !u!114 &-373542195782584023
+--- !u!114 &-2623270129111190686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,7 +88,7 @@ MonoBehaviour:
   isMainWeapon: 0
   explosionRadius: 0
   explosionForce: 300
-  trail: {fileID: 4328560397251660117}
+  trail: {fileID: 4328560397251660117, guid: 0db8372d90341b4449ae53d01e48fd1e, type: 3}
 --- !u!1 &3734951383641388780
 GameObject:
   m_ObjectHideFlags: 0

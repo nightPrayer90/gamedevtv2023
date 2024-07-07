@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UI;
-using TMPro;
+using System;
 
 public class Boss04 : MonoBehaviour
 {
@@ -41,12 +39,15 @@ public class Boss04 : MonoBehaviour
     private Boss04DamageZone damageZone;
     public BossModulMainengine engineParticle;
     public BossModulMainengine attack2EngineParticle;
+    public Boss04DropAttack dropAttack;
+    public Sprite bossUIForgroundSprite;
 
     private bool targetSet = true;
     private bool resetSet = true;
     private bool attackFlag = false;
     private int attackType = 0;
     private Vector3 targetPosition;
+    private int lastAttack = 0;
 
     [Header("Weapon")]
     public Laser2[] lasers;
@@ -85,7 +86,6 @@ public class Boss04 : MonoBehaviour
 
         // healthbar controll
         bossUI = gameManager.bossUI.GetComponent<BossUI>();
-        bossUI.InitHealthBar(enemyHealthScr.enemyHealth);
 
         // set tag for targeting weapons
         gameObject.tag = "Untagged";
@@ -142,6 +142,7 @@ public class Boss04 : MonoBehaviour
             engineParticle.EngineActivate();
 
             // open bosshud
+            bossUI.InitHealthBar(enemyHealthScr.enemyHealth, bossUIForgroundSprite);
             bossUI.OpenBossUI();
 
             // fly to y = 7
@@ -204,53 +205,40 @@ public class Boss04 : MonoBehaviour
                     isState[0] = true;
                 }
 
-                ControllAttackMovment();
+                ControllAttackMovment(3);
                 break;
 
             case 1:
                 // turns only one time per state
                 if (isState[1] == false)
                 {
+                    if (damageZone != null) { damageZone.Destroy(); damageZone = null; }
+
                     bossChanceState.volume = Mathf.Min(AudioManager.Instance.sfxVolume, 0.7f);
                     bossChanceState.Play();
                     enemyHealthScr.canTakeDamage = false;
+
                     bossUI.SetForgroundColor(Color.red);
                     PushThePlayer(2.5f, 5f, rippleParticle);
                     CancelInvoke();
-                    transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() =>
+
+                    InvokeRepeating(nameof(FireBullets), 4f, 0.1f);
+
+                    transform.DORotate(new Vector3(0f, 1000f, 0f), 3f, RotateMode.FastBeyond360).SetDelay(4f).OnComplete(() =>
                     {
+                        CancelInvoke();
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
                         transform.DOShakePosition(3f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
+                            Invoke(nameof(ResetrargetSetFlag), 3f);
                             enemyHealthScr.canTakeDamage = true;
                             bossUI.SetForgroundColor(Color.white);
                         });
                     });
                     isState[1] = true;
                 }
-                break;
 
-            case 2:
-                // turns only one time per state
-                if (isState[2] == false)
-                {
-                    bossChanceState.volume = Mathf.Min(AudioManager.Instance.sfxVolume, 0.7f);
-                    bossChanceState.Play();
-                    enemyHealthScr.canTakeDamage = false;
-                    bossUI.SetForgroundColor(Color.red);
-                    PushThePlayer(2.5f, 5f, rippleParticle);
-                    CancelInvoke();
-                    transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() =>
-                    {
-                        AudioManager.Instance.PlaySFX("ShieldGetHit");
-                        transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
-                        {
-                            enemyHealthScr.canTakeDamage = true;
-                            bossUI.SetForgroundColor(Color.white);
-                        });
-                    });
-                    isState[2] = true;
-                }
+                ControllAttackMovment(6);
                 break;
         }
     }
@@ -259,14 +247,22 @@ public class Boss04 : MonoBehaviour
     {
         bossUI.FadeOut();
         engineParticle.EngineStop();
+        attack2EngineParticle.EngineStop();
+        if (damageZone != null) { damageZone.DestroyObject(); damageZone = null; }
 
-        InvokeRepeating(nameof(InvokeSpawnExplosion), 0.5f, 1f);
-        transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
+
+        transform.DOShakePosition(1f, 0.2f, 10, 90, false, true);
+
+        InvokeRepeating(nameof(FireBullets), 2.5f, 0.1f);
+        dropAttack.SpawnFallingObjects(35);
+
+        transform.DORotate(new Vector3(0f, 1000f, 0f), 3f, RotateMode.FastBeyond360).SetDelay(2.5f).OnComplete(() =>
         {
             CancelInvoke();
             PushThePlayer(2.5f, 5f, rippleParticle);
             bossChanceState.volume = Mathf.Min(AudioManager.Instance.sfxVolume, 0.7f);
             bossChanceState.Play();
+
 
             // set activate material
             /*materialList[1] = buildingMaterial;
@@ -286,7 +282,7 @@ public class Boss04 : MonoBehaviour
                 bossMinimapIcon.HideMinimapIcon();
                 baseCollider.enabled = false;
                 Instantiate(replacement, transform.position, transform.rotation);
-                bossMeshRenderer.enabled = false;
+                bossMeshRenderer.gameObject.SetActive(false);
 
                 // destroy the object
                 Invoke(nameof(BossDelete), 11f);
@@ -343,42 +339,61 @@ public class Boss04 : MonoBehaviour
     }
 
     // Attack State - MovmentStuff
-    private void ControllAttackMovment()
+    private void ControllAttackMovment(int attacktype)
     {
         if (attackFlag == false)
         {
             attackFlag = true;
-            attackType = Random.Range(0, 4);
+
+            int starttype = 0;
+            if (attacktype == 6) starttype = 1;
+
+            while (attackType == lastAttack)
+            {
+                attackType = UnityEngine.Random.Range(starttype, attacktype);
+            }
 
             float distance = DistanceToPlayer();
-            
+
+            lastAttack = attackType;
+
             if (distance > 12) attackType = 0;
         }
 
-
         switch (attackType)
         {
-            // move to player position
+            // move to near random position
             case 0:
-                MoveTowardsTarget(6f, 0);
+                MoveTowardsTarget(4.5f, 1);
                 break;
 
-            // follow player and rotate
+            // move to player position
             case 1:
-                FollowPlayer(2f);
+                MoveTowardsTarget(5f, 0);
                 break;
 
             // rotate and fire bullets
             case 2:
-                RotateBulletAttack();
+                RotateBulletAttack(25f);
                 break;
 
-            // move to near random position
+
+            // follow player and rotate
             case 3:
-                MoveTowardsTarget(4.5f, 1);
+                FollowPlayer(2f);
                 break;
-        }
 
+            // rotate fast and fire bullets
+            case 4:
+                RotateBulletAttack(70f);
+                break;
+
+            // move to near random position and fire Drop Rockets
+            case 5:
+                MoveTowardsTarget(4f, 2);
+                break;
+
+        }
 
         // Faceing the boss in Player direction
         if (targetSet == true && resetSet == true)
@@ -400,9 +415,9 @@ public class Boss04 : MonoBehaviour
             targetSet = true;
             resetSet = true;
         }
-        else if (type == 1)
+        else
         {
-            targetPosition = transform.position + new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
+            targetPosition = transform.position + new Vector3(UnityEngine.Random.Range(-5f, 5f), 0, UnityEngine.Random.Range(-5f, 5f));
             targetSet = true;
             resetSet = false;
         }
@@ -433,13 +448,30 @@ public class Boss04 : MonoBehaviour
 
             if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
             {
-                if (damageZone != null) damageZone.DestroyObject();
-                if (type == 1) FireBullets();
-                transform.DOComplete();
-                transform.DOShakePosition(0.5f, 0.4f, 10, 90, false, true);
-                PushThePlayer(3f, 5f, rippleParticle);
-                resetSet = true;
-                Invoke(nameof(ResetrargetSetFlag), 3f);
+                if (type == 0 || type == 1)
+                {
+                    if (damageZone != null) { damageZone.DestroyObject(); damageZone = null; }
+                    if (type == 1)
+                    {
+                        FireBullets();
+                    }
+                    dropAttack.SpawnFallingObjects(10);
+                    transform.DOComplete();
+                    transform.DOShakePosition(0.5f, 0.4f, 10, 90, false, true);
+                    PushThePlayer(3f, 5f, rippleParticle);
+                    resetSet = true;
+                    Invoke(nameof(ResetrargetSetFlag), 3f);
+                }
+                else if (type == 2)
+                {
+                    if (damageZone != null) { damageZone.DestroyObject(); damageZone = null; }
+                    transform.DOComplete();
+                    dropAttack.SpawnFallingObjects(25);
+                    transform.DORotate(new Vector3(01f,1300f,0f),4f,RotateMode.FastBeyond360);
+                    PushThePlayer(3f, 5f, rippleParticle);
+                    resetSet = true;
+                    Invoke(nameof(ResetrargetSetFlag), 6f);
+                }
             }
         }
     }
@@ -519,13 +551,14 @@ public class Boss04 : MonoBehaviour
     }
     // ---------
     // Attack 3 - Rotate and FireBullets
-    private void RotateBulletAttack()
+    private void RotateBulletAttack(float rotateSpeed)
     {
         if (targetSet == false)
         {
             laserIndex = 0;
             InvokeRepeating(nameof(FireBullets), 0.3f, 0.3f);
             Invoke(nameof(ResetSetFlagA3), 8f);
+            attack2EngineParticle.EngineActivate();
 
             targetSet = true;
         }
@@ -533,7 +566,7 @@ public class Boss04 : MonoBehaviour
         if (resetSet == false)
         {
             // Rotate around Y-Axis
-            transform.Rotate(Vector3.up, 70f * Time.deltaTime);
+            transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
         }
 
     }
@@ -548,6 +581,7 @@ public class Boss04 : MonoBehaviour
 
     private void ResetSetFlagA3()
     {
+        attack2EngineParticle.EngineStop();
         resetSet = true;
         CancelInvoke(nameof(FireBullets));
         Invoke(nameof(ResetrargetSetFlag), 4f);

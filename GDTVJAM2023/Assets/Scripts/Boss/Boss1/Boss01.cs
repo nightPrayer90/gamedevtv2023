@@ -38,6 +38,7 @@ public class Boss01 : MonoBehaviour
     public BossParticle bossParticle;
     public BossMinimapIcon bossMinimapIcon;
     private BossUI bossUI;
+    public Sprite bossUIForgroundSprite;
 
     /* **************************************************************************** */
     /* LIFECYCLE ------------------------------------------------------------------ */
@@ -71,7 +72,6 @@ public class Boss01 : MonoBehaviour
 
         // healthbar controll
         bossUI = gameManager.bossUI.GetComponent<BossUI>();
-        bossUI.InitHealthBar(enemyHealthScr.enemyHealth);
 
         // set tag for targeting weapons
         gameObject.tag = "Untagged";
@@ -127,6 +127,7 @@ public class Boss01 : MonoBehaviour
             AudioManager.Instance.PlaySFX("LiftUPBoss");
 
             // open bosshud
+            bossUI.InitHealthBar(enemyHealthScr.enemyHealth, bossUIForgroundSprite);
             bossUI.OpenBossUI();
 
             // fly to y = 7
