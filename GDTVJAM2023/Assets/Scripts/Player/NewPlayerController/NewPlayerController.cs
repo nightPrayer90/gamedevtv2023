@@ -83,6 +83,7 @@ public class NewPlayerController : MonoBehaviour
 
     // Debuffs
     private int moveControlChange = 1;
+    public bool isDebuff = false;
 
     /* **************************************************************************** */
     /* Lifecycle-Methoden---------------------------------------------------------- */

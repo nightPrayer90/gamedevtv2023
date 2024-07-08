@@ -13,8 +13,6 @@ public class Boss04 : MonoBehaviour
     private bool isMinimap = false;
 
     [Header("GameObjects")]
-    //public Material buildingMaterial;
-    //public Material emissivMaterial;
     public MeshRenderer bossMeshRenderer;
     public ParticleSystem rippleParticle;
     public ParticleSystem rippleParticleDie;
@@ -47,7 +45,7 @@ public class Boss04 : MonoBehaviour
     private bool attackFlag = false;
     private int attackType = 0;
     private Vector3 targetPosition;
-    private int lastAttack = 0;
+    private int lastAttack = -1;
 
     [Header("Weapon")]
     public Laser2[] lasers;
@@ -72,11 +70,6 @@ public class Boss04 : MonoBehaviour
         enemyHealthScr.canTakeDamage = false;
 
         // update materials
-        /*materialList = bossMeshRenderer.materials;
-        materialList[0] = buildingMaterial;
-        materialList[1] = buildingMaterial;
-        bossMeshRenderer.materials = materialList;*/
-        // fighting steps
         fightingStatesStepSize = enemyHealthScr.enemyHealth / numberOfFightingStates;
         isState = new bool[numberOfFightingStates];
         for (int i = 0; i < numberOfFightingStates; i++)
@@ -176,10 +169,6 @@ public class Boss04 : MonoBehaviour
         // set tag for targeting weapons
         gameObject.tag = "secondDimensionEnemy";
 
-        // set activate material
-        /*materialList[1] = emissivMaterial;
-        bossMeshRenderer.materials = materialList;*/
-
         // go into fighting phase
         enemyHealthScr.canTakeDamage = true;
         bossUI.SetForgroundColor(Color.white);
@@ -263,11 +252,6 @@ public class Boss04 : MonoBehaviour
             bossChanceState.volume = Mathf.Min(AudioManager.Instance.sfxVolume, 0.7f);
             bossChanceState.Play();
 
-
-            // set activate material
-            /*materialList[1] = buildingMaterial;
-            bossMeshRenderer.materials = materialList;*/
-
             transform.DOScale(new Vector3(0.7f, 0.7f, 0.7f), 2f).SetDelay(2f);
             transform.DOShakePosition(4f, 0.3f, 20, 90, false, true).OnComplete(() =>
             {
@@ -316,7 +300,7 @@ public class Boss04 : MonoBehaviour
     // push the player away from the boss
     private void PushThePlayer(float distence, float forcepower, ParticleSystem rippleParticle)
     {
-        rippleParticle.Play();
+        if (!rippleParticle.isPlaying) { rippleParticle.Play(); AudioManager.Instance.PlaySFX("ShieldGetHit"); }
         if (DistanceToPlayer() <= distence)
         {
             // push the player
@@ -330,7 +314,6 @@ public class Boss04 : MonoBehaviour
     private void InvokeSpawnExplosion()
     {
         AudioManager.Instance.PlaySFX("ShieldGetHit");
-        rippleParticle.Play();
         PushThePlayer(2.5f, 5f, rippleParticle);
         transform.DOShakeScale(0.2f, 0.2f, 10, 90, true);
         dieRotation = dieRotation + 15;
@@ -343,10 +326,15 @@ public class Boss04 : MonoBehaviour
     {
         if (attackFlag == false)
         {
+            if (lastAttack != -1)
+            {
+                if (UnityEngine.Random.Range(0, 20) > 10) AudioManager.Instance.PlaySFX("Boss4Speak1");
+                else AudioManager.Instance.PlaySFX("Boss4Speak2");
+            }
             attackFlag = true;
 
             int starttype = 0;
-            if (attacktype == 6) starttype = 1;
+            if (attacktype == 6) starttype = 2;
 
             while (attackType == lastAttack)
             {
@@ -367,14 +355,14 @@ public class Boss04 : MonoBehaviour
                 MoveTowardsTarget(4.5f, 1);
                 break;
 
-            // move to player position
+            // rotate and fire bullets
             case 1:
-                MoveTowardsTarget(5f, 0);
+                RotateBulletAttack(25f);
                 break;
 
-            // rotate and fire bullets
+            // move to player position
             case 2:
-                RotateBulletAttack(25f);
+                MoveTowardsTarget(5f, 0);
                 break;
 
 
@@ -467,11 +455,13 @@ public class Boss04 : MonoBehaviour
                     if (damageZone != null) { damageZone.DestroyObject(); damageZone = null; }
                     transform.DOComplete();
                     dropAttack.SpawnFallingObjects(25);
-                    transform.DORotate(new Vector3(01f,1300f,0f),4f,RotateMode.FastBeyond360);
+                    transform.DORotate(new Vector3(01f, 1300f, 0f), 4f, RotateMode.FastBeyond360);
                     PushThePlayer(3f, 5f, rippleParticle);
                     resetSet = true;
                     Invoke(nameof(ResetrargetSetFlag), 6f);
                 }
+                bossChanceState.volume = Mathf.Min(AudioManager.Instance.sfxVolume, 0.7f);
+                bossChanceState.Play();
             }
         }
     }
@@ -500,11 +490,12 @@ public class Boss04 : MonoBehaviour
         if (targetSet == false)
         {
             laserIndex = 0;
-            Invoke(nameof(ResetSetFlagA2), 6f);
+            Invoke(nameof(ResetSetFlagA2), 5.5f);
             Invoke(nameof(ActivateLaser), 0.3f);
-            Invoke(nameof(DeactivateLaser), 5f);
+            Invoke(nameof(DeactivateLaser), 4.5f);
             attack2EngineParticle.EngineActivate();
             targetSet = true;
+            AudioManager.Instance.PlaySFX("Boss4LaserAttack");
         }
 
         if (resetSet == false)
@@ -514,6 +505,11 @@ public class Boss04 : MonoBehaviour
 
             // Rotate around Y-Axis
             transform.Rotate(Vector3.up, 210f * Time.deltaTime);
+
+            if (DistanceToPlayer() < 1.7)
+            {
+                PushThePlayer(1.8f, 5f, rippleParticle);
+            }
         }
     }
 
@@ -521,6 +517,7 @@ public class Boss04 : MonoBehaviour
     {
         if (laserIndex < lasers.Length)
         {
+            //AudioManager.Instance.PlaySFX("PlayerMineDetect");
             lasers[laserIndex].LaserActivate();
             laserIndex += 1;
             Invoke(nameof(ActivateLaser), 0.2f);
@@ -535,6 +532,7 @@ public class Boss04 : MonoBehaviour
     {
         if (laserIndex < lasers.Length)
         {
+            AudioManager.Instance.PlaySFX("Playernova");
             lasers[laserIndex].LaserStop();
             laserIndex += 1;
             Invoke(nameof(DeactivateLaser), 0.2f);
@@ -573,6 +571,8 @@ public class Boss04 : MonoBehaviour
 
     private void FireBullets()
     {
+        shootSound.volume = AudioManager.Instance.sfxVolume;
+        shootSound.Play();
         foreach (ParticleSystem shooter in bulletshooters)
         {
             shooter.Emit(1);

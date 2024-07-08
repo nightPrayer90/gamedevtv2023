@@ -21,14 +21,24 @@ public class Boss04MovementDebuff : MonoBehaviour
             playerRB = GameObject.Find("NewPlayer").GetComponent<Rigidbody>();
             playerController = playerRB.gameObject.GetComponent<NewPlayerController>();
         }
-        playerController.SetMoveControlDebuff();
 
-        Invoke(nameof(DestroyObject), lifeTime);
+        if (playerController.isDebuff == false)
+        {
+            playerController.SetMoveControlDebuff();
+            playerController.isDebuff = true;
+            Invoke(nameof(DestroyObject), lifeTime);
+        }
+        else
+        {
+            Destroy();
+        }
     }
         
     public void DestroyObject()
     {
+        AudioManager.Instance.PlaySFX("DropBompPlayerDebuffEnd");
         playerController.SetMoveControlDebuff();
+        playerController.isDebuff = false;
         gameObject.transform.DOScale(new Vector3(1.5f, 1.5f, 1.5f), 0.2f);
         Invoke(nameof(Destroy), 0.5f);
         debuffPS.Stop();

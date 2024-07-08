@@ -10,6 +10,15 @@ public class DropBombController : MonoBehaviour
     public Collider sphereCollider;
     private bool activateFlag = false;
     public float debuffTime = 10f;
+    public AudioSource spawnSound;
+    public AudioSource dieSound;
+
+
+    private void Start()
+    {
+        spawnSound.volume = AudioManager.Instance.sfxVolume*0.3f;
+        spawnSound.Play();
+    }
 
     private void Update()
     {
@@ -17,7 +26,10 @@ public class DropBombController : MonoBehaviour
         {
             statusFlag = true;
             damageArea.DestroyDamageArea();
-            
+            dieSound.volume = AudioManager.Instance.sfxVolume + Random.Range(-0.2f, 0f); ;
+            dieSound.pitch = Random.Range(0.8f, 1.2f);
+            dieSound.Play();
+
             Invoke(nameof(Explode), 1f);
             bodyPS.transform.DOScale(0.8f, 0.3f).OnComplete(() =>
             {
@@ -37,6 +49,7 @@ public class DropBombController : MonoBehaviour
             MD.ActivateEffect(debuffTime);
             sphereCollider.enabled = false;
             activateFlag = true;
+            AudioManager.Instance.PlaySFX("DropBompPlayerHit");
         }
     }
 
