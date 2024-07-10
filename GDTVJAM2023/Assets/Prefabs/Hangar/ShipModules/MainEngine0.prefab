@@ -24338,7 +24338,7 @@ MonoBehaviour:
     laserClass: 0
     supportClass: 0
   moduleIndex: -1
-  ps_engine: {fileID: 0}
+  ps_engine: {fileID: 5593386540622038281}
   ps_boostEngine: {fileID: 6234797105447130074}
   ps_boostParticle: {fileID: 6234797106759847629}
   thrustForce: 4
