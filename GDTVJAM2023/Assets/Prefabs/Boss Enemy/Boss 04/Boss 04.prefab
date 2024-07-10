@@ -34010,6 +34010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05bd25cac2b3c1444aee130f4132e6db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossIndex: 4
   bossMeshRenderer: {fileID: 4586566576772711438}
   rippleParticle: {fileID: 5330433125513193159}
   rippleParticleDie: {fileID: 1623591692105120308}
@@ -171181,7 +171182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6413094514752553256, guid: 3c3c96f92151f134cbde992b1ea2fd2f, type: 3}
       propertyPath: laserDamage
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6413094514752553256, guid: 3c3c96f92151f134cbde992b1ea2fd2f, type: 3}
       propertyPath: laserDistance
@@ -171294,7 +171295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6413094514752553256, guid: 3c3c96f92151f134cbde992b1ea2fd2f, type: 3}
       propertyPath: laserDamage
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6413094514752553256, guid: 3c3c96f92151f134cbde992b1ea2fd2f, type: 3}
       propertyPath: laserDistance
@@ -171485,7 +171486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6413094514752553256, guid: 3c3c96f92151f134cbde992b1ea2fd2f, type: 3}
       propertyPath: laserDamage
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6413094514752553256, guid: 3c3c96f92151f134cbde992b1ea2fd2f, type: 3}
       propertyPath: laserDistance
@@ -171598,7 +171599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6413094514752553256, guid: 3c3c96f92151f134cbde992b1ea2fd2f, type: 3}
       propertyPath: laserDamage
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6413094514752553256, guid: 3c3c96f92151f134cbde992b1ea2fd2f, type: 3}
       propertyPath: laserDistance
