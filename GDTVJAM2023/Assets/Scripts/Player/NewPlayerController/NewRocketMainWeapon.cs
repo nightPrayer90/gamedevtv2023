@@ -12,7 +12,8 @@ public class NewRocketMainWeapon : BaseModule
     public GameObject spawnPoint;
     private bool enemyDetected = false;
     public Color hitColor = new Color(1f, 0.6f, 0.0f, 1f);
-    
+    public ParticleSystem spawnParticle;
+
     //private Objects
     private GameManager gameManager;
     private PlayerWeaponController playerWeaponController;
@@ -129,6 +130,8 @@ public class NewRocketMainWeapon : BaseModule
         // if an anemy detected
         if (enemyDetected == true)
         {
+            if (spawnParticle != null) spawnParticle.Play();
+
             GameObject go = ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint.transform.position, spawnPoint.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
             RocketController rocket = go.GetComponent<RocketController>();
             rocket.damage = EnergieDamageDebuff(rockedResultDamage);

@@ -16,7 +16,7 @@ public class NewBulletMainWeapon : BaseModule
     public ParticleBullet particelBullet;
     private NewPlayerController playerController;
     private PlayerWeaponController playerWeaponController;
-
+    public ParticleSystem flashParticle;
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -112,6 +112,7 @@ public class NewBulletMainWeapon : BaseModule
 
         // emit 1 particle of each mainweapon
         bulletParticalSystem.Emit(1);
+        if (flashParticle != null) flashParticle.Emit(1);
 
         // trigger sound
         playerWeaponController.BulletShootingSoundEngine();
