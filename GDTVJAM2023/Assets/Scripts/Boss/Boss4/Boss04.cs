@@ -5,6 +5,7 @@ using System;
 public class Boss04 : MonoBehaviour
 {
     [Header("Boss Settings")]
+    public int bossIndex = 4;
     private int bossState = 0;
     private int numberOfFightingStates = 2;
     private float fightingStatesStepSize = 0;
@@ -155,7 +156,7 @@ public class Boss04 : MonoBehaviour
         }
         else
         {
-            if (isMinimap == false)
+            if (isMinimap == false && gameManager.districtNumber == bossIndex)
             {
                 bossParticle.ParticleStart();
                 bossMinimapIcon.InitMinimapIcon();
@@ -343,9 +344,8 @@ public class Boss04 : MonoBehaviour
 
             float distance = DistanceToPlayer();
 
+            if (distance > 10) attackType = 0;
             lastAttack = attackType;
-
-            if (distance > 12) attackType = 0;
         }
 
         switch (attackType)
