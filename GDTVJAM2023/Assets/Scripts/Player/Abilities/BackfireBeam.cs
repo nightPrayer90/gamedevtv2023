@@ -14,11 +14,12 @@ public class BackfireBeam : MonoBehaviour
     public float realoadTime = 3f;
     public int damage = 4;
     public int killProjectileCount = 2;
+    private UpgradeChooseList upgradeChooseList;
 
     private void Start()
     {
         StartFire(realoadTime);
-        //gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
     }
 
     public void StartFire(float reloadTime_)
@@ -78,7 +79,8 @@ public class BackfireBeam : MonoBehaviour
 
     public void NovaTrigger()
     {
-        novaTriggerCounter++;
+        if (upgradeChooseList.upgrades[85].upgradeIndexInstalled > 0)
+            novaTriggerCounter++;
 
     }
 

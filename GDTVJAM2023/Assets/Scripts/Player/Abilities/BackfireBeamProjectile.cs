@@ -83,7 +83,10 @@ public class BackfireBeamProjectile : MonoBehaviour
 
             if (Vector3.Distance(playerTransform.position, transform.position) <= 1f)
             {
-                if (backfireBeam != null && destroyFlag == false) backfireBeam.NovaTrigger();
+                if (backfireBeam != null && destroyFlag == false)
+                {
+                    backfireBeam.NovaTrigger();
+                }
                 DestroyProjectile();
             }
         }

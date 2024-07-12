@@ -348,21 +348,22 @@ MonoBehaviour:
     reqAbility: 
     UpgradeCount: 4
     upgradeStartCount: 4
-  - headerStr: _
+  - headerStr: Backfire Beam
     upgradeIndex: 22
     passivUpgradeString: 
-    descriptionStr: Increases your swarm class level by 1.
-    iconPanel: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
-    mainClass: 8
-    upgradeTyp: 3
-    colorIndex: 4
+    descriptionStr: 'Fires a laser shuriken in front of you that pierces enemies
+      and splits on kill. '
+    iconPanel: {fileID: 21300000, guid: a38232652c3e8f4418bfd273bcb0a4af, type: 3}
+    mainClass: 2
+    upgradeTyp: 0
+    colorIndex: 10
     reqBullet: 0
     reqRocket: 0
-    reqLaser: 0
+    reqLaser: 1
     reqSupport: 0
     reqAbility: 
-    UpgradeCount: 0
-    upgradeStartCount: 0
+    UpgradeCount: 1
+    upgradeStartCount: 1
   - headerStr: _
     upgradeIndex: 23
     passivUpgradeString: 
@@ -1266,4 +1267,50 @@ MonoBehaviour:
     reqSupport: 1
     reqAbility: 
     UpgradeCount: 3
+    upgradeStartCount: 0
+  - headerStr: Bloodlust Shurikens
+    upgradeIndex: 83
+    passivUpgradeString: 
+    descriptionStr: Increases the amount of shurikens split on kill by 1.
+    iconPanel: {fileID: 21300000, guid: a38232652c3e8f4418bfd273bcb0a4af, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 2
+    reqSupport: 0
+    reqAbility: Backfire Beam
+    UpgradeCount: 2
+    upgradeStartCount: 0
+  - headerStr: Dancing Blades
+    upgradeIndex: 84
+    passivUpgradeString: 
+    descriptionStr: Increases the amount of shooting shurikens by 1.
+    iconPanel: {fileID: 21300000, guid: a38232652c3e8f4418bfd273bcb0a4af, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 3
+    reqSupport: 0
+    reqAbility: Backfire Beam
+    UpgradeCount: 2
+    upgradeStartCount: 0
+  - headerStr: Blade Nova
+    upgradeIndex: 85
+    passivUpgradeString: 
+    descriptionStr: After collecting 100 shurikens, a shuriken nova is triggered
+      around your ship.
+    iconPanel: {fileID: 21300000, guid: a38232652c3e8f4418bfd273bcb0a4af, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 4
+    reqSupport: 0
+    reqAbility: Backfire Beam
+    UpgradeCount: 1
     upgradeStartCount: 0

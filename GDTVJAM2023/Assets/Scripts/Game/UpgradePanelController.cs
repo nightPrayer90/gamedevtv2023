@@ -32,7 +32,7 @@ public class UpgradePanelController : MonoBehaviour
     private UpgradeChooseList upgradeChooseList;
 
     public int selectetPanel;
-    private bool isButtonPressed = false;
+    public bool isButtonPressed = false;
     public bool isTweening = true;
 
     public PlayerInputHandler inputHandler;
@@ -362,17 +362,25 @@ public class UpgradePanelController : MonoBehaviour
             case 21: //support class
                 UpdateClass(number, 1);
                 break;
-            case 22: //spwarm class - useless
+            case 22: //weapon: Backfire Beam
+                playerWeaponController.isBackfireBeam = true;
+                playerWeaponController.WeaponChoose();
                 UpdateClass(number, 1);
+                GoBackToDimension();
+                weaponCount++;
+
+                upgradeChooseList.upgrades[83].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[83].UpgradeCount;
+                upgradeChooseList.upgrades[84].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[84].UpgradeCount;
+                upgradeChooseList.upgrades[85].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[85].UpgradeCount;
                 break;
-            case 23: //Defense class - useless
-                UpdateClass(number, 1);
+            case 23: //-
+                
                 break;
-            case 24: //Targeting class - useless
-                UpdateClass(number, 1);
+            case 24: //-
+                
                 break;
-            case 25: //Backwards class - useless
-                UpdateClass(number, 1);
+            case 25: //-
+                
                 break;
 
             case 26: // crit damage
@@ -647,6 +655,15 @@ public class UpgradePanelController : MonoBehaviour
                 weaponCount++;
                 break;
             case 82: // Burning Spheres
+                
+                break;
+            case 83: // Bloodlust Shurikens
+                playerWeaponController.bbKillBeams += 1;
+                break;
+            case 84: // Dancing Blades
+                playerWeaponController.bbMainBeams += 1;
+                break;
+            case 85: // Blade Nova
 
                 break;
         }

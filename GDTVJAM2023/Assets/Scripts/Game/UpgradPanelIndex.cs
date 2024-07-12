@@ -224,7 +224,7 @@ public class UpgradPanelIndex : MonoBehaviour
 
     public void OnMouseDown_()
     {
-        if (isTweening == false)
+        if (isTweening == false && upgradePanelController.isButtonPressed == false)
         {
             if (upgradePanelController.selectetPanel == index)
             {
