@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.XR;
 
 
 public class GameManager : MonoBehaviour
@@ -100,6 +101,7 @@ public class GameManager : MonoBehaviour
     private bool isIntro = true;
     private bool canSpawnNextDimention = true;
     public MenuButtonController menuButtonController;
+    public Postprocessing ppController;
 
     // Events
     public event Action<bool> OnDimensionSwap;
@@ -578,6 +580,7 @@ public class GameManager : MonoBehaviour
     {
         // play boss bgm
         AudioManager.Instance.PlayMusic("BossMusic");
+        ppController.GoToDimension();
 
         // swap materials
         buildingMaterial.SetTexture("_MainTex", secondDimenionTexture2);

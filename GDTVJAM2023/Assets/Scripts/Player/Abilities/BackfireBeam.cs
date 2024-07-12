@@ -81,7 +81,6 @@ public class BackfireBeam : MonoBehaviour
     {
         if (upgradeChooseList.upgrades[85].upgradeIndexInstalled > 0)
             novaTriggerCounter++;
-
     }
 
 
