@@ -9,12 +9,6 @@ public class PlayerWeaponController : MonoBehaviour
     [Header("Ship Data")]
     public ShipData shipData;
 
-    /*[Header("Weapon buffs")]
-    public int bulletCritChance = 0;
-    public int bulletCritDamage = 0;
-    public int burnDamageChance = 0;
-    public float rocketAOERadius = 0;*/
-
     [Header("Passiv abilitys")]
     public bool isHeadCannon = false;
     public bool isRocketLauncher = false;
@@ -30,6 +24,7 @@ public class PlayerWeaponController : MonoBehaviour
     public bool isOrbitalLaser = false;
     public bool isThermalSpheres = false;
     public bool isMineLayer = false;
+    public bool isBackfireBeam = false;
 
     private HeadCannon isHeadCannonInstalled;
     private PeriodSpawner isRocketLauncherInstalled;
@@ -45,7 +40,7 @@ public class PlayerWeaponController : MonoBehaviour
     private OrbitalLaser isOrbitalLaserInstalled;
     private ThermalSpheres isThermalSpheresInstalled;
     private MineLayer isMineLayerInstalled;
-
+    private BackfireBeam isBackfireBeamInstalled;
 
 
     [Header("Shields")]
@@ -166,11 +161,21 @@ public class PlayerWeaponController : MonoBehaviour
     [HideInInspector] public float mlLifetime_;
     [HideInInspector] public float mlRelaodTime_;
 
+    [Header("Backfire Beam")]
+    public int bbDamage = 10;
+    public float bbReloadTime = 3f;
+    public int bbMainBeams = 1;
+    public int bbKillBeams = 2;
+    public GameObject backfireBeam;
+    [HideInInspector] public int bbDamage_;
+    [HideInInspector] public float bbReloadTime_;
+
+
     [Header("Container")]
     public Transform passivParentContainer;
 
 
-    [Header("Shield Controll")]
+    [Header("Shield Control")]
     public float fsSpawnTime = 10f;
     public int fsShieldLife = 3;
     public float bsSpawnTime = 6f;
@@ -183,6 +188,7 @@ public class PlayerWeaponController : MonoBehaviour
     [HideInInspector] public float bsSpawnTime_;
     [HideInInspector] public int bsShildLife_;
 
+   
 
     // Events
     public event Action<int> OnMWDamage;
@@ -295,6 +301,11 @@ public class PlayerWeaponController : MonoBehaviour
         {
             go = Instantiate(mineLayer, passivParentContainer);
             isMineLayerInstalled = go.GetComponent<MineLayer>();
+        }
+        if (isBackfireBeam == true && isBackfireBeamInstalled == null)
+        {
+            go = Instantiate(backfireBeam, passivParentContainer);
+            isBackfireBeamInstalled = go.GetComponent<BackfireBeam>();
         }
 
         Invoke("UpdateWeaponValues", 0.1f);
@@ -466,6 +477,17 @@ public class PlayerWeaponController : MonoBehaviour
             isMineLayerInstalled.spawnInterval = mlRelaodTime_;
             isMineLayerInstalled.lifeTime = mlLifetime_;
             isMineLayerInstalled.UpdateInvoke();
+        }
+
+        // Backfire Beam - laser
+        bbDamage_ = Mathf.CeilToInt((bbDamage) * (1 + shipData.percLaserDamage / 100));
+        bbReloadTime_ = Mathf.Max(0.1f, (bbReloadTime * supportReloadTime_));
+        if (isBackfireBeamInstalled != null)
+        {
+            isBackfireBeamInstalled.damage = mlDamage_;
+            isBackfireBeamInstalled.StartFire(mlRelaodTime_);
+            isBackfireBeamInstalled.projectileCount = bbMainBeams;
+            isBackfireBeamInstalled.killProjectileCount = bbKillBeams;
         }
     }
     #endregion

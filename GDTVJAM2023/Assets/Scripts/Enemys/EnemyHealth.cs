@@ -35,7 +35,7 @@ public class EnemyHealth : MonoBehaviour
 
     private bool isBurning = false;
     private int burnTickCount = 0;
-    [HideInInspector] public bool[] canTakeLaserDamage = new bool[] { true, true, true, true, true };
+    [HideInInspector] public bool[] canTakeLaserDamage;
 
     // Color Management
     [HideInInspector] public Color hitColor = new Color();
@@ -64,6 +64,7 @@ public class EnemyHealth : MonoBehaviour
 
         collisionMultiplier += UnityEngine.Random.Range(-16, 128);
         enemyStartHealth = enemyHealth;
+        canTakeLaserDamage = new bool[7];
     }
 
     private void OnEnable()
@@ -84,7 +85,9 @@ public class EnemyHealth : MonoBehaviour
         canTakeLaserDamage[2] = true; // MW Laser 2
         canTakeLaserDamage[3] = true; // front Laser
         canTakeLaserDamage[4] = true; // Orbital Laser
-
+        canTakeLaserDamage[5] = true; // Backfire Beam
+        canTakeLaserDamage[6] = true; // Backfire Beam Split
+        
         gameManager.OnDimensionSwap += HandleDimensionSwap;
     }
 
