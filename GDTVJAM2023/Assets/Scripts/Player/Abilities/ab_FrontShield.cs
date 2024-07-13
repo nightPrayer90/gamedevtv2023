@@ -44,6 +44,7 @@ public class ab_FrontShield : MonoBehaviour
 
         if (enabledShieldController != null)
         {
+            gameManager.ScreenShake(5);
             enabledShieldController.ShieldEnable(3);
             gameManager.SetAbilityUItoZero();
         }

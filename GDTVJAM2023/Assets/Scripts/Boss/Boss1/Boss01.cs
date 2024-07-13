@@ -15,9 +15,9 @@ public class Boss01 : MonoBehaviour
     private bool isMinimap = false;
 
     [Header("GameObjects")]
-    public Material buildingMaterial;
-    public Material emissivMaterial;
-    public MeshRenderer bossMeshRenderer;
+    //public Material buildingMaterial;
+    //public Material emissivMaterial;
+    public MeshRenderer[] bossMeshRenderers;
     public ParticleSystem rippleParticle;
     public ParticleSystem rippleParticleDie;
     public List<ParticleSystem> particleWeapons = new List<ParticleSystem>();
@@ -57,10 +57,10 @@ public class Boss01 : MonoBehaviour
         enemyHealthScr.canTakeDamage = false;
 
         // update materials
-        materialList = bossMeshRenderer.materials;
+        /*materialList = bossMeshRenderer.materials;
         materialList[0] = buildingMaterial;
         materialList[1] = buildingMaterial;
-        bossMeshRenderer.materials = materialList;
+        bossMeshRenderer.materials = materialList;*/
 
         // fighting steps
         fightingStatesStepSize = enemyHealthScr.enemyHealth / numberOfFightingStates;
@@ -162,8 +162,8 @@ public class Boss01 : MonoBehaviour
         gameObject.tag = "secondDimensionEnemy";
 
         // set activate material
-        materialList[1] = emissivMaterial;
-        bossMeshRenderer.materials = materialList;
+        /*materialList[1] = emissivMaterial;
+        bossMeshRenderer.materials = materialList;*/
 
         // go into fighting phase
         enemyHealthScr.canTakeDamage = true;
@@ -271,8 +271,8 @@ public class Boss01 : MonoBehaviour
             bossChanceState.Play();
 
             // set activate material
-            materialList[1] = buildingMaterial;
-            bossMeshRenderer.materials = materialList;
+            /*materialList[1] = buildingMaterial;
+            bossMeshRenderer.materials = materialList;*/
 
             transform.DOScale(new Vector3(0.7f, 0.7f, 0.7f), 2f).SetDelay(2f);
             transform.DOShakePosition(4f, 0.3f, 20, 90, false, true).OnComplete(() =>
@@ -289,7 +289,9 @@ public class Boss01 : MonoBehaviour
                 bossMinimapIcon.HideMinimapIcon();
                 baseCollider.enabled = false;
                 Instantiate(replacement, transform.position, transform.rotation);
-                bossMeshRenderer.enabled = false;
+                bossMeshRenderers[0].enabled = false;
+                bossMeshRenderers[1].enabled = false;
+                bossMeshRenderers[2].enabled = false;
 
                 // destroy the object
                 Invoke(nameof(BossDelete), 11f);

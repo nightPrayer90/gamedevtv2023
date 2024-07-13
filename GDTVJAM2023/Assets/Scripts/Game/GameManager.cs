@@ -609,7 +609,7 @@ public class GameManager : MonoBehaviour
 
     public void SetAbilityValue(float relaodTime)
     {
-        abImage.DOKill();
+        abImage.DOComplete();
         abTween = abImage.DOFillAmount(1, relaodTime).SetEase(Ease.Linear);
     }
 
@@ -792,8 +792,8 @@ public class GameManager : MonoBehaviour
             case 5:
                 if (cinemachineSwitcher.topCamera_flag == true)
                     topShake.ShakeCamera(0.3f, 0.2f);
-                else
-                    backShake.ShakeCamera(0.1f, 0.2f);
+                //else
+                    //backShake.ShakeCamera(0, 0.0f);
                 break;
         }
     }

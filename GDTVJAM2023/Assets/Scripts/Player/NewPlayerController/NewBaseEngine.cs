@@ -6,21 +6,22 @@ public class NewBaseEngine : BaseModule
     private NewPlayerController playerController;
     private Rigidbody playerRigidbody;
     private GameManager gameManager;
-    private bool useBoost = false;
-    private bool powerBoostResetFlag = true;
+    [HideInInspector] public bool useBoost = false;
+    //private bool powerBoostResetFlag = true;
 
     [Header("Forward Engine")]
     [SerializeField] private ParticleSystem ps_engine;
-    [SerializeField] private ParticleSystem ps_boostEngine;
-    [SerializeField] private ParticleSystem ps_boostParticle;
+    public ParticleSystem ps_boostEngine;
+    public ParticleSystem ps_boostParticle;
     public float thrustForce = 1f;
-    private float totalThrustForce = 0;
-    public bool hasPowerBoost = true;
+    public float totalThrustForce = 0;
+    //public bool hasPowerBoost = true;
     public bool hasFontBoost = true;
     public float frontBoostPower;
     public float frontBoostCost = 0.1f;
-    public float powerBoostDowntime = 3f;
-    public float powerBoostCost = 0.3f;
+    //public float powerBoostDowntime = 3f;
+    //public float powerBoostCost = 0.3f;
+    public ParticleSystem powerBoosParticle;
 
     [Header("Backwards Engine")]
     [SerializeField] private ParticleSystem[] ps_backEngines;
@@ -58,10 +59,10 @@ public class NewBaseEngine : BaseModule
 
         UpgradeChooseList upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
 
-        if (hasPowerBoost == true)
+        /*if (hasPowerBoost == true)
         {
             upgradeChooseList.upgrades[31].upgradeStartCount = 3;
-        }
+        }*/
     }
 
     // Update is called once per frame
@@ -90,7 +91,7 @@ public class NewBaseEngine : BaseModule
                 }
 
                 // power boost
-                if (hasPowerBoost == true && playerController.abilityInput && playerController.energieCurrent >= playerController.energieMax * powerBoostCost && powerBoostResetFlag)
+                /*if (hasPowerBoost == true && playerController.abilityInput && playerController.energieCurrent >= playerController.energieMax * powerBoostCost && powerBoostResetFlag)
                 {
                     gameManager.ScreenShake(5);
                     AudioManager.Instance.PlaySFX("PlayerBoostKick");
@@ -107,7 +108,7 @@ public class NewBaseEngine : BaseModule
                     powerBoostResetFlag = false;
                     Invoke(nameof(InvokeResetPowerBoost), powerBoostDowntime);
 
-                }
+                }*/
 
                 if (playerController.energieCurrent < frontBoostCost) useBoost = false;
             }
@@ -221,9 +222,9 @@ public class NewBaseEngine : BaseModule
         }
     }
 
-    private void InvokeResetPowerBoost()
+    /*private void InvokeResetPowerBoost()
     {
         powerBoostResetFlag = true;
         ps_boostParticle.Emit(100);
-    }
+    }*/
 }

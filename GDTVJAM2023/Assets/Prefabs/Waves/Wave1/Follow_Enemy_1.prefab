@@ -80,6 +80,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
+  _AOEreplacement: {fileID: 1380446238132243176, guid: 1889541fec859cb41bcfbf836cdd7fd4, type: 3}
+  _burnReplacement: {fileID: 3161139216598759944, guid: cd7e2ae33aa90d64ba9fabdedf60f220, type: 3}
   dropObject: {fileID: 5693635298845190373, guid: 5ca91630af6a61c4f99d7279b939e976, type: 3}
   miniMapIcon: {fileID: 8087742276739236362}
   novaOnDie: {fileID: 4303235208557751318, guid: c01ac0e458a23da41aaf1c60e7ee97a7, type: 3}
@@ -94,8 +96,6 @@ MonoBehaviour:
   canPoolObject: 1
   isBoss: 0
   isGround: 0
-  _AOEreplacement: {fileID: 1380446238132243176, guid: 1889541fec859cb41bcfbf836cdd7fd4, type: 3}
-  _burnReplacement: {fileID: 3161139216598759944, guid: cd7e2ae33aa90d64ba9fabdedf60f220, type: 3}
   canTakeLaserDamage: 0000000000
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
   critColor: {r: 1, g: 0, b: 1, a: 1}
@@ -115,6 +115,7 @@ MonoBehaviour:
   playerRb: {fileID: 0}
   attackDistance: 7
   distanceScatter: 1
+  updateTime: 0.25
 --- !u!114 &3161139216598759946
 MonoBehaviour:
   m_ObjectHideFlags: 0
