@@ -139,8 +139,8 @@ public class Laser2 : MonoBehaviour
 
                     if (hit.transform.tag == "Shield")
                     {
-                        ShieldController shield = hit.transform.GetComponent<ShieldController>();
-
+                       
+                        ab_ShieldController shield = hit.transform.GetComponent<ab_ShieldController>();
                         hitParticle.transform.position = hit.point;
                         hitParticle.Emit(2);
                         shield.UpdateShieldHealth(1);

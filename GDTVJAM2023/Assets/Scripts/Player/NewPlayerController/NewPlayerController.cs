@@ -413,6 +413,7 @@ public class NewPlayerController : MonoBehaviour
         rotateInput = intputHandler.RotateInput * moveControlChange;
         boostInput = intputHandler.BoostInput;
         abilityInput = intputHandler.AbilityInput;
+
         ShipEngineSound();
     }
 

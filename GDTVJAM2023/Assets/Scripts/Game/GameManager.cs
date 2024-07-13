@@ -57,6 +57,11 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI upgradeText;
     public TextMeshProUGUI expGameOverText;
     public TextMeshProUGUI expGameVictoryText;
+    public Image abBKImage;
+    public Image abImage;
+    private float abValueBuffer = 0f;
+    private float abTimeBuffer = 0f;
+    private Tween abTween = null;
 
 
     [Header("Dimension Shift")]
@@ -95,7 +100,7 @@ public class GameManager : MonoBehaviour
     public CameraShake backShake;
     public CinemachineSwitcher cinemachineSwitcher;
     public NewPlayerController player;
-   // private PlayerWeaponController weaponController;
+    // private PlayerWeaponController weaponController;
     private Light directionalLight;
     private GameObject currentSpawnManager;
     private bool isIntro = true;
@@ -193,7 +198,7 @@ public class GameManager : MonoBehaviour
         if (bigMapisOpen == false)
         {
             minimapCG.alpha = 0;
-            minimapBigCG.DOFade(1f,0.2f);
+            minimapBigCG.DOFade(1f, 0.2f);
             minimapCameraBig.enabled = true;
         }
         else
@@ -228,7 +233,7 @@ public class GameManager : MonoBehaviour
     // Open Close UI
     public void HandleCloseBreakUI()
     {
-       
+
         inputHandler.OnCloseUIChanged -= HandleCloseBreakUI;
         inputHandler.OnClickInputChanged -= HandleClickUI;
 
@@ -393,7 +398,8 @@ public class GameManager : MonoBehaviour
         panelUI.SetActive(false);
 
         experienceSlider.DOValue(0, 0.4f, false);
-        experienceSlider.transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0.5f), 0.5f, 5, 0.5f).SetUpdate(true).OnComplete(() => {
+        experienceSlider.transform.DOPunchScale(new Vector3(0.5f, 0.5f, 0.5f), 0.5f, 5, 0.5f).SetUpdate(true).OnComplete(() =>
+        {
             experienceSlider.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
         });
     }
@@ -434,11 +440,31 @@ public class GameManager : MonoBehaviour
     {
         experienceSlider.maxValue = playerExperienceToLevelUp;
         expCollected += experienceGet;
-        
+
         // Levelup
         if (isLevelUp)
         {
-            DOTween.CompleteAll();
+            // CompleteAllDestroy the Ability status - buffer the Value and set the tweener new after levelup 
+            if (abTween != null)
+            {
+                abValueBuffer = abImage.fillAmount;
+                abTimeBuffer = abTween.Duration() - abTween.Elapsed();
+
+                DOTween.CompleteAll();
+
+                if (abValueBuffer != 0)
+                {
+                    abImage.fillAmount = abValueBuffer;
+                    SetAbilityValue(abTimeBuffer);
+                }
+            }
+            else
+            {
+                DOTween.CompleteAll();
+            }
+            
+
+
 
             experienceSlider.value = experienceSlider.maxValue;
             CreateRandomNumbers(playerLevel);
@@ -464,7 +490,7 @@ public class GameManager : MonoBehaviour
     }
 
     // trigger if the player collect an Upgrade Pickup
-    public void PlayerWeaponUpdatePickup() 
+    public void PlayerWeaponUpdatePickup()
     {
         DOTween.CompleteAll();
 
@@ -569,6 +595,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void InitAbilityUI(Sprite abSprite)
+    {
+        abBKImage.sprite = abSprite;
+        abImage.sprite = abSprite;
+    }
+
+    public void SetAbilityUItoZero()
+    {
+        abImage.DOKill();
+        abImage.DOFillAmount(0, 0.3f);
+    }
+
+    public void SetAbilityValue(float relaodTime)
+    {
+        abImage.DOKill();
+        abTween = abImage.DOFillAmount(1, relaodTime).SetEase(Ease.Linear);
+    }
 
 
 
@@ -642,7 +685,7 @@ public class GameManager : MonoBehaviour
 
         // chance the bgm to the level bgm
         AudioManager.Instance.PlayMusic("Dystrict" + districtNumber.ToString());
-        
+
         spawnDistrictList.districtList[districtNumber - 1].GrowUP();
         foreach (GroundBaseUp district in spawnDistrictList.districtList)
         {
@@ -693,7 +736,7 @@ public class GameManager : MonoBehaviour
 
         // create temporary list from weapons or normal upgrades - depends on the player level
         if (playerLevel == -1) // new weapon
-            valueList.AddRange(upgradeChooseList.BuildUpgradeList(Upgrade.UpgradeTyp.WeaponUpgrade)); 
+            valueList.AddRange(upgradeChooseList.BuildUpgradeList(Upgrade.UpgradeTyp.WeaponUpgrade));
         else if ((playerLevel % 5) == 0) // class update
             valueList.AddRange(upgradeChooseList.BuildUpgradeList(Upgrade.UpgradeTyp.ClassUpgrade));
         else
@@ -706,7 +749,7 @@ public class GameManager : MonoBehaviour
             selectedNumbers.Add(valueList[randomIndex]);            // save the number in a list
             valueList.RemoveAt(randomIndex);                        // remove the value from the temp list
         }
-        
+
         selectedNumbers_ = selectedNumbers.ToArray();
 
         //reset 
@@ -716,7 +759,7 @@ public class GameManager : MonoBehaviour
     // camera screenshake control
     public void ScreenShake(int shakeIndex)
     {
-        switch(shakeIndex)
+        switch (shakeIndex)
         {
             case 1:
                 if (cinemachineSwitcher.topCamera_flag == true)
@@ -763,7 +806,7 @@ public class GameManager : MonoBehaviour
         // You can call this from anywhere by calling gameManager.DoFloatingText(position, text, c);
         floatingText.GetComponent<DamagePopup>().SetText(text);
     }
-    
+
     public void PlayerUIIntroTween()
     {
         healthText.text = "";
@@ -777,24 +820,24 @@ public class GameManager : MonoBehaviour
         float miniX = miniMapTr.position.x;
 
         // set textmesh outsinde from view
-        timerTr.position = new Vector3(timerTr.position.x, timerTr.position.y+100f, timerTr.position.z);
+        timerTr.position = new Vector3(timerTr.position.x, timerTr.position.y + 100f, timerTr.position.z);
         districtTr.position = new Vector3(districtTr.position.x, districtTr.position.y + 100f, districtTr.position.z);
         killTextTr.position = new Vector3(killTextTr.position.x, killTextTr.position.y + 100f, killTextTr.position.z);
-        miniMapTr.position = new Vector3(miniMapTr.position.x+500, miniMapTr.position.y, miniMapTr.position.z);
+        miniMapTr.position = new Vector3(miniMapTr.position.x + 500, miniMapTr.position.y, miniMapTr.position.z);
 
         //AudioManager.Instance.PlaySFX("WindowOpen");
         experienceSlider.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 0.4f, 5, 1).SetDelay(0.2f).OnComplete(() =>
         {
-           AudioManager.Instance.PlaySFX("PlayerLaserDie");
+            AudioManager.Instance.PlaySFX("PlayerLaserDie");
 
-           healthBar.maxValue = player.playerMaxHealth;
-           energieSlider.maxValue = player.energieMax;
-           healthBar.DOValue(healthBar.maxValue, 0.6f, false).SetEase(Ease.InExpo).OnComplete(() => 
-            { 
-                healthText.text = player.playerCurrentHealth + "/" + player.playerMaxHealth;
-            });
+            healthBar.maxValue = player.playerMaxHealth;
+            energieSlider.maxValue = player.energieMax;
+            healthBar.DOValue(healthBar.maxValue, 0.6f, false).SetEase(Ease.InExpo).OnComplete(() =>
+             {
+                 healthText.text = player.playerCurrentHealth + "/" + player.playerMaxHealth;
+             });
             healthBar.transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1).SetDelay(0.55f);
-        }); 
+        });
 
 
         // doTween elements
@@ -812,7 +855,7 @@ public class GameManager : MonoBehaviour
         {
             killTextTr.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.25f, 5, 1);
             AudioManager.Instance.PlaySFX("MouseKlick");
-            
+
             miniMapTr.DOMoveX(miniX, .25f, true).SetUpdate(UpdateType.Normal, true).SetDelay(0.2f).OnComplete(() =>
             {
                 AudioManager.Instance.PlaySFX("MouseKlick");

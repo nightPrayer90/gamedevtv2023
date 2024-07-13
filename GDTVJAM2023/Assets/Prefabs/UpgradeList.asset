@@ -176,8 +176,8 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 2
     reqAbility: 
-    UpgradeCount: 1
-    upgradeStartCount: 1
+    UpgradeCount: 0
+    upgradeStartCount: 0
   - headerStr: Spread Gun
     upgradeIndex: 11
     passivUpgradeString: 
@@ -206,8 +206,8 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 0
     reqAbility: 
-    UpgradeCount: 1
-    upgradeStartCount: 1
+    UpgradeCount: 0
+    upgradeStartCount: 0
   - headerStr: Back Shield
     upgradeIndex: 13
     passivUpgradeString: 
@@ -221,8 +221,8 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 99
     reqAbility: F. Shield
-    UpgradeCount: 1
-    upgradeStartCount: 1
+    UpgradeCount: 0
+    upgradeStartCount: 0
   - headerStr: Shock Nova
     upgradeIndex: 14
     passivUpgradeString: 
