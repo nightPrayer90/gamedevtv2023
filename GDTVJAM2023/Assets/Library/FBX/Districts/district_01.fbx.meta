@@ -18,7 +18,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: windows
-    second: {fileID: 2100000, guid: 076f221eea110b342910ef1132e23142, type: 2}
+    second: {fileID: 2100000, guid: 446a19414a92de3498b0d593074a9c7b, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -82,6 +82,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

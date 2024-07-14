@@ -14,40 +14,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightingModel: 0
   sunCopyColor: 1
-  density: 0.112
-  noiseStrength: 0.6
-  height: 6
-  heightFallOff: 0.6
-  baselineHeight: 3.43
+  density: 0.288
+  noiseStrength: 0.751
+  height: 0
+  heightFallOff: 0.286
+  baselineHeight: -3
   distance: 0
-  distanceFallOff: 0
+  distanceFallOff: 2.03
   maxFogLength: 5000
   maxFogLengthFallOff: 0.5
   baselineRelativeToCamera: 0
   baselineRelativeToCameraDelay: 0
-  noiseScale: 1
+  noiseScale: 2.18
   noiseSparse: 0
   noiseFinalMultiplier: 1
   alpha: 1
-  color: {r: 1, g: 0.5749664, b: 0.3443396, a: 1}
+  color: {r: 1, g: 0.36250496, b: 0.1745283, a: 1}
   deepObscurance: 1
-  specularColor: {r: 1, g: 0.3160377, b: 0.32325387, a: 1}
-  specularThreshold: 0.6
-  specularIntensity: 0.1
+  specularColor: {r: 1, g: 0, b: 0.020421028, a: 1}
+  specularThreshold: 0.418
+  specularIntensity: 0.611
   lightDirection: {x: 1, y: 0, z: -1}
   lightIntensity: 0.12
-  lightColor: {r: 0.75240594, g: 0.2027857, b: 0.8773585, a: 1}
-  speed: 0.01
+  lightColor: {r: 0.40386382, g: 0.065815255, b: 0.4811321, a: 1}
+  speed: 0.11
   useRealTime: 0
   windDirection: {x: -1, y: 0, z: 0}
-  turbulenceStrength: 0
+  turbulenceStrength: 1.92
   useXYPlane: 0
-  skyColor: {r: 0.81, g: 0.81, b: 0.81, a: 0.8}
+  skyColor: {r: 1, g: 0.3112264, b: 0.2971698, a: 0.8}
   skyHaze: 15
   skySpeed: 0.3
   skyNoiseStrength: 0.1
   skyNoiseScale: 1
-  skyAlpha: 0.8
+  skyAlpha: 0.256
   skyDepth: 0.999
   stepping: 8
   steppingNear: 0
@@ -58,9 +58,9 @@ MonoBehaviour:
   forceComposition: 0
   edgeImprove: 0
   edgeThreshold: 0.0005
-  lightScatteringOverride: 0
-  lightScatteringEnabled: 0
-  lightScatteringDiffusion: 0.7
+  lightScatteringOverride: 1
+  lightScatteringEnabled: 1
+  lightScatteringDiffusion: 0.132
   lightDiffusionSpread: 8
   lightScatteringSpread: 0.686
   lightScatteringSamples: 16
@@ -68,7 +68,7 @@ MonoBehaviour:
   lightScatteringIllumination: 18
   lightScatteringDecay: 0.986
   lightScatteringExposure: 0
-  lightScatteringTint: {r: 1, g: 1, b: 1, a: 0}
+  lightScatteringTint: {r: 1, g: 0.40654913, b: 0.39999998, a: 0}
   lightScatteringJittering: 0.5
   lightScatteringBlurDownscale: 1
   fogVoidOverride: 0
