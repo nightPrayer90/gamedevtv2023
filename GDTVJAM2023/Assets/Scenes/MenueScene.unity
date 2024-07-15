@@ -13775,18 +13775,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8729333854598001049, guid: 41f9176063e40cb4e9c11fcb62faf618, type: 3}
-      propertyPath: sfxSounds.Array.size
-      value: 65
-      objectReference: {fileID: 0}
-    - target: {fileID: 8729333854598001049, guid: 41f9176063e40cb4e9c11fcb62faf618, type: 3}
-      propertyPath: sfxSounds.Array.data[64].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 4644da636780f9d4ead15a611a14d9b6, type: 3}
-    - target: {fileID: 8729333854598001049, guid: 41f9176063e40cb4e9c11fcb62faf618, type: 3}
-      propertyPath: sfxSounds.Array.data[64].name
-      value: AbilityIsReady
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41f9176063e40cb4e9c11fcb62faf618, type: 3}
 --- !u!1 &1873228477
