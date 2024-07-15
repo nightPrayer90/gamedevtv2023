@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 402b5b37641054d2aa7fd46be6c9bc67, type: 3}
   m_Name: NeonCityFog
   m_EditorClassIdentifier: 
-  lightingModel: 1
+  lightingModel: 0
   sunCopyColor: 1
   density: 0.458
   noiseStrength: 1
   height: 29
   heightFallOff: 0.845
   baselineHeight: 3.43
-  distance: 0
-  distanceFallOff: 0
+  distance: 1000
+  distanceFallOff: 1.14
   maxFogLength: 1000
   maxFogLengthFallOff: 0.841
   baselineRelativeToCamera: 1
@@ -35,7 +35,7 @@ MonoBehaviour:
   specularThreshold: 0.6
   specularIntensity: 0.735
   lightDirection: {x: -1, y: 0, z: -1}
-  lightIntensity: -1
+  lightIntensity: 0.39
   lightColor: {r: 0.8490566, g: 0.45256317, b: 0.79752165, a: 1}
   speed: 0.121
   useRealTime: 0
