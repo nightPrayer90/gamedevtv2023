@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
         emissionMaterialReverse.SetTexture("_MainTex", secondDimenionTexture2);
         emissionMaterialReverse.SetTexture("_EmissionMap", secondDimenionTexture2);
 
-        districtBaseShader.SetFloat("_DimensionControll", 1f);
+        districtBaseShader.SetFloat("_DimensionControl", 1f);
 
 
         // Reset directional ligth color
@@ -296,7 +296,7 @@ public class GameManager : MonoBehaviour
         emissionMaterialReverse.SetTexture("_MainTex", secondDimenionTexture2);
         emissionMaterialReverse.SetTexture("_EmissionMap", secondDimenionTexture2);
 
-        districtBaseShader.SetFloat("_DimensionControll", 1f);
+        districtBaseShader.SetFloat("_DimensionControl", 1f);
     }
 
     /* **************************************************************************** */
@@ -634,7 +634,7 @@ public class GameManager : MonoBehaviour
         emissionMaterialReverse.SetTexture("_MainTex", firstDimensionTexture1);
         emissionMaterialReverse.SetTexture("_EmissionMap", firstDimensionTexture1);
 
-        districtBaseShader.SetFloat("_DimensionControll", 0f);
+        districtBaseShader.SetFloat("_DimensionControl", 0f);
 
         // set a new light color
         directionalLight.color = secondDimenionColor;
@@ -670,7 +670,7 @@ public class GameManager : MonoBehaviour
         emissionMaterialReverse.SetTexture("_MainTex", secondDimenionTexture2);
         emissionMaterialReverse.SetTexture("_EmissionMap", secondDimenionTexture2);
 
-        districtBaseShader.SetFloat("_DimensionControll", 1f);
+        districtBaseShader.SetFloat("_DimensionControl", 1f);
 
         // set a new light color
         directionalLight.color = firstDimensionColor;
