@@ -19,8 +19,8 @@ MonoBehaviour:
   height: 29
   heightFallOff: 0.845
   baselineHeight: 3.43
-  distance: 0
-  distanceFallOff: 0
+  distance: 1000
+  distanceFallOff: 1.14
   maxFogLength: 1000
   maxFogLengthFallOff: 0.841
   baselineRelativeToCamera: 1
