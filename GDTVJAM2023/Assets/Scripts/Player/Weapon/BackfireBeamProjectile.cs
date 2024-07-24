@@ -9,7 +9,7 @@ public class BackfireBeamProjectile : MonoBehaviour
     public Rigidbody rb;
     public int damage = 4;
     public int laserDamageChannel = 4;
-    public int killProjectileCount = 2;
+    public int killProjectileCount = 0;
 
     public ParticleSystem hitParticle;
     public ParticleSystem dieParticle;
@@ -31,7 +31,6 @@ public class BackfireBeamProjectile : MonoBehaviour
     {
         playerTransform = GameObject.Find("NewPlayer").GetComponent<Transform>();
         backfireBeam = playerTransform.gameObject.GetComponentInChildren<BackfireBeam>();
-        damage = backfireBeam.damage;
     }
 
     private void OnEnable()
@@ -43,8 +42,11 @@ public class BackfireBeamProjectile : MonoBehaviour
         isStarted = false;
         destroyFlag = false;
         returnSpeed_ = returnSpeed;
+        damage = backfireBeam.damage;
+        killProjectileCount = backfireBeam.killProjectileCount;
 
-        Invoke(nameof(CanDoDamage), 0.05f);
+
+    Invoke(nameof(CanDoDamage), 0.05f);
     }
 
     private void OnDisable()
@@ -134,12 +136,14 @@ public class BackfireBeamProjectile : MonoBehaviour
 
         for (int i = 0; i < killProjectileCount; i++)
         {
-            float angle = i * (360f / killProjectileCount);
-            Quaternion rotation = Quaternion.Euler(0, angle, 0);
-            GameObject go = ObjectPoolManager.SpawnObject(splitPrefab, transform.position, rotation, ObjectPoolManager.PoolType.Gameobject);
-            BackfireBeamProjectile bfB = go.GetComponent<BackfireBeamProjectile>();
-            bfB.damage = Mathf.RoundToInt((float)damage / 2);
-            bfB.killProjectileCount = 0;
+            if (splitPrefab != null)
+            {
+                float angle = i * (360f / killProjectileCount);
+                Quaternion rotation = Quaternion.Euler(0, angle, 0);
+                GameObject go = ObjectPoolManager.SpawnObject(splitPrefab, transform.position, rotation, ObjectPoolManager.PoolType.Gameobject);
+                BackfireBeamProjectile bfB = go.GetComponent<BackfireBeamProjectile>();
+                bfB.damage = Mathf.RoundToInt((float)damage / 2);
+            }
         }
         DestroyProjectile();
 

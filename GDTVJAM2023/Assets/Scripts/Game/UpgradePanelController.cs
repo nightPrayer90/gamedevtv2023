@@ -659,9 +659,11 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 83: // Bloodlust Shurikens
                 playerWeaponController.bbKillBeams += 1;
+                playerWeaponController.UpdateWeaponValues();
                 break;
             case 84: // Dancing Blades
                 playerWeaponController.bbMainBeams += 1;
+                playerWeaponController.UpdateWeaponValues();
                 break;
             case 85: // Blade Nova
 

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -41,7 +42,7 @@ public class BackfireBeam : MonoBehaviour
             int projectileCount = 10;
             for (int i = 0; i < projectileCount; i++)
             {
-                ObjectPoolManager.SpawnObject(BackfireBeamPrefab, transform.position, Quaternion.Euler(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y - ((360 / projectileCount) * i), transform.eulerAngles.z)), ObjectPoolManager.PoolType.Gameobject);
+               ObjectPoolManager.SpawnObject(BackfireBeamPrefab, transform.position, Quaternion.Euler(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y - ((360 / projectileCount) * i), transform.eulerAngles.z)), ObjectPoolManager.PoolType.Gameobject);
             }
 
             novaTriggerCounter = 0;

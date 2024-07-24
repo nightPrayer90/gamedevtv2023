@@ -488,6 +488,7 @@ public class PlayerWeaponController : MonoBehaviour
             isBackfireBeamInstalled.StartFire(mlRelaodTime_);
             isBackfireBeamInstalled.projectileCount = bbMainBeams;
             isBackfireBeamInstalled.killProjectileCount = bbKillBeams;
+            Debug.Log("bbKillBeams " + isBackfireBeamInstalled.killProjectileCount);
         }
     }
     #endregion
