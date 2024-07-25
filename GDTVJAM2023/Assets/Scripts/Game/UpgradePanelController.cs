@@ -19,7 +19,7 @@ public class UpgradePanelController : MonoBehaviour
 
     [Header("Value Panel")]
     public Image bkImage;
-    //public List<Color> classColors;
+    //public List<Color> cl lc assColors;
     public List<Image> classPanels = new List<Image>();
 
     public List<Image> selectedUpgradePanelList = new List<Image>();
@@ -255,7 +255,7 @@ public class UpgradePanelController : MonoBehaviour
                 weaponCount++;
                 break;
             case 10: //weapon: supoort Modul
-                playerWeaponController.shipData.chanceToGetTwoExp += 15;
+                /*playerWeaponController.shipData.chanceToGetTwoExp += 15;
                 playerWeaponController.shipData.chanceToGetFullEnergy += 2;
                 playerWeaponController.isLifeModul = true;
                 playerWeaponController.WeaponChoose();
@@ -271,7 +271,7 @@ public class UpgradePanelController : MonoBehaviour
                 //upgradeChooseList.weaponUpgrades[63].reqSupport = 2; // Natural Energy
                 //upgradeChooseList.weaponUpgrades[32].reqSupport = 2; // Expansion Fortuity
                 //upgradeChooseList.weaponUpgrades[33].reqSupport = 3; // Vitality Infusion
-
+                */
                 break;
             case 11: //weapon: spread gun
                 playerWeaponController.isSpreadGun = true;
@@ -286,7 +286,7 @@ public class UpgradePanelController : MonoBehaviour
                 weaponCount++;
                 break;
             case 12: //weapon: front shield
-                playerWeaponController.isFrontShield = true;
+                /*playerWeaponController.isFrontShield = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
 
@@ -298,15 +298,15 @@ public class UpgradePanelController : MonoBehaviour
                 //upgradeChooseList.weaponUpgrades[41].reqSupport = 1; // Shielded Strike
                 //upgradeChooseList.weaponUpgrades[13].reqSupport = 2; // Back Shield
                 GoBackToDimension();
-                weaponCount++;
+                weaponCount++;*/
                 break;
             case 13: //weapon: back shield
-                playerWeaponController.isBackShield = true;
+                /*playerWeaponController.isBackShield = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
 
                 GoBackToDimension();
-                weaponCount++;
+                weaponCount++;*/
                 break;
             case 14: //weapon: schock nova
                 playerWeaponController.isNovaExplosion = true;
@@ -437,16 +437,19 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 40: // Fortified Defense
                 playerWeaponController.shipData.shieldHealth += 1;
+                playerWeaponController.UpdateWeaponValues();
 
-                upgradeChooseList.upgrades[41].upgradeStartCount = 0;
-                upgradeChooseList.upgrades[42].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[42].UpgradeCount; 
+                //upgradeChooseList.upgrades[41].upgradeStartCount = 0;
+                //upgradeChooseList.upgrades[42].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[42].UpgradeCount; 
                 //upgradeChooseList.weaponUpgrades[41].reqSupport = 99; // Shielded Strike
                 //upgradeChooseList.weaponUpgrades[42].reqSupport = 2; // Lifeflow Shields
                 break;
             case 41: // Shielded Strike
                 playerWeaponController.shipData.shieldDamage += 5;
-                upgradeChooseList.upgrades[40].upgradeStartCount = 0;
-                upgradeChooseList.upgrades[61].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[61].UpgradeCount; 
+                playerWeaponController.UpdateWeaponValues();
+
+                //upgradeChooseList.upgrades[40].upgradeStartCount = 0;
+                //upgradeChooseList.upgrades[61].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[61].UpgradeCount; 
                 //upgradeChooseList.weaponUpgrades[40].reqSupport = 99; // Fortified Defense
                 //upgradeChooseList.weaponUpgrades[61].reqSupport = 2; // Shieldbreaker's Might
                 break;
@@ -455,13 +458,16 @@ public class UpgradePanelController : MonoBehaviour
                 //upgradeChooseList.weaponUpgrades[43].reqSupport = 3; // Ignition Shield
                 break;
             case 43: // Ignition Shield
-
+                upgradeChooseList.upgrades[44].upgradeStartCount = 0;
+                upgradeChooseList.upgrades[45].upgradeStartCount = 0;
                 break;
             case 44: // Shield Nova
-
+                upgradeChooseList.upgrades[43].upgradeStartCount = 0;
+                upgradeChooseList.upgrades[45].upgradeStartCount = 0;
                 break;
             case 45: // Shieldbreaker's Might
-
+                upgradeChooseList.upgrades[43].upgradeStartCount = 0;
+                upgradeChooseList.upgrades[44].upgradeStartCount = 0;
                 break;
             case 46: // Ballistic Boost
                 playerWeaponController.shipData.percBulletDamage += 12;
@@ -483,7 +489,7 @@ public class UpgradePanelController : MonoBehaviour
 
                 break;
             case 50: // Wide Spray Expansion
-                upgradeChooseList.upgrades[68].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[68].UpgradeCount; ;
+                upgradeChooseList.upgrades[68].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[68].UpgradeCount;
                 //upgradeChooseList.weaponUpgrades[68].reqBullet = 3;  // fast Spread gun
                 playerWeaponController.sgBulletCount += 2;
                 break;
@@ -524,12 +530,13 @@ public class UpgradePanelController : MonoBehaviour
                 playerController.energieProduction = playerController.energieProduction * (1 + (0.6f));
                 break;
             case 61: // Continuous shield 
-                upgradeChooseList.upgrades[62].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[62].UpgradeCount; ;
+                upgradeChooseList.upgrades[62].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[62].UpgradeCount;
                 //upgradeChooseList.weaponUpgrades[62].reqSupport = 3; // Explosiv Shild
                 break;
             case 62: // Explosiv Shield 
-                upgradeChooseList.upgrades[44].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[44].UpgradeCount; ;
-                upgradeChooseList.upgrades[45].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[45].UpgradeCount; ;
+                upgradeChooseList.upgrades[43].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[43].UpgradeCount; ;
+                upgradeChooseList.upgrades[44].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[44].UpgradeCount;
+                upgradeChooseList.upgrades[45].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[45].UpgradeCount;
                 //upgradeChooseList.weaponUpgrades[44].reqSupport = 4; // Shield Nova
                 //upgradeChooseList.weaponUpgrades[45].reqSupport = 4; // Shieldbreaker's Might
                 break;

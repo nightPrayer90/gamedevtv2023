@@ -57,7 +57,7 @@ public class NewBaseEngine : BaseModule
         playerRigidbody = playerController.GetComponent<Rigidbody>();
         playerController.hasMainEngine = true;
 
-        UpgradeChooseList upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
+        //UpgradeChooseList upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
 
         /*if (hasPowerBoost == true)
         {

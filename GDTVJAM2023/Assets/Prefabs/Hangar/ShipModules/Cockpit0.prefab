@@ -4857,7 +4857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldprefab: {fileID: 135186969060692196, guid: 4b83e83bff887d84c9ce2019df9afe4e, type: 3}
-  realoadTime: 30
+  realoadTime: 40
   shieldFlag: 1
   abSprite: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
 --- !u!1 &4793914127919896581

@@ -211,7 +211,7 @@ MonoBehaviour:
   - {fileID: 8545795574343205192}
   reqText:
   - {fileID: 9116993269160092888}
-  - {fileID: 7133370155788954645}
+  - {fileID: 8096232060530524277}
   - {fileID: 7133370155788954645}
   reqImage:
   - {fileID: 1593659565168160123}
@@ -1036,6 +1036,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0

@@ -193,7 +193,7 @@ MonoBehaviour:
     reqAbility: 
     UpgradeCount: 1
     upgradeStartCount: 1
-  - headerStr: Front Shield
+  - headerStr: '-'
     upgradeIndex: 12
     passivUpgradeString: 
     descriptionStr: Regenerating shield at the front of the ship.
@@ -208,7 +208,7 @@ MonoBehaviour:
     reqAbility: 
     UpgradeCount: 0
     upgradeStartCount: 0
-  - headerStr: Back Shield
+  - headerStr: '-'
     upgradeIndex: 13
     passivUpgradeString: 
     descriptionStr: Regenerating shield at the back of the ship.
@@ -336,7 +336,7 @@ MonoBehaviour:
   - headerStr: Support Class
     upgradeIndex: 21
     passivUpgradeString: 
-    descriptionStr: Improves reload time of all weapon systems by 10%.
+    descriptionStr: Improves reload time of all weapons and abilitys by 10%.
     iconPanel: {fileID: 21300000, guid: d77731612a405b64eb61fe076a3f4fb2, type: 3}
     mainClass: 3
     upgradeTyp: 2
@@ -526,10 +526,10 @@ MonoBehaviour:
     reqBullet: 0
     reqRocket: 0
     reqLaser: 0
-    reqSupport: 3
-    reqAbility: Sup. Modul
-    UpgradeCount: 3
-    upgradeStartCount: 0
+    reqSupport: 4
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
   - headerStr: Rocket Mastery
     upgradeIndex: 34
     passivUpgradeString: 
@@ -631,11 +631,11 @@ MonoBehaviour:
     reqBullet: 0
     reqRocket: 0
     reqLaser: 0
-    reqSupport: 1
-    reqAbility: F. Shield
+    reqSupport: 0
+    reqAbility: Cockpit 0
     UpgradeCount: 2
     upgradeStartCount: 0
-  - headerStr: Shielded Strike
+  - headerStr: Shield Strike
     upgradeIndex: 41
     passivUpgradeString: 
     descriptionStr: Shields deal +5 damage on collision.
@@ -646,8 +646,8 @@ MonoBehaviour:
     reqBullet: 0
     reqRocket: 0
     reqLaser: 0
-    reqSupport: 2
-    reqAbility: F. Shield
+    reqSupport: 1
+    reqAbility: Cockpit 0
     UpgradeCount: 2
     upgradeStartCount: 0
   - headerStr: Lifeflow Shields
@@ -662,7 +662,7 @@ MonoBehaviour:
     reqRocket: 0
     reqLaser: 0
     reqSupport: 2
-    reqAbility: F. Shield
+    reqAbility: Cockpit 0
     UpgradeCount: 1
     upgradeStartCount: 0
   - headerStr: Ignition Shield
@@ -676,8 +676,8 @@ MonoBehaviour:
     reqBullet: 0
     reqRocket: 0
     reqLaser: 3
-    reqSupport: 3
-    reqAbility: F. Shield
+    reqSupport: 4
+    reqAbility: Cockpit 0
     UpgradeCount: 1
     upgradeStartCount: 0
   - headerStr: Shieldbreaker's Honor
@@ -693,7 +693,7 @@ MonoBehaviour:
     reqRocket: 3
     reqLaser: 0
     reqSupport: 4
-    reqAbility: F. Shield
+    reqAbility: Cockpit 0
     UpgradeCount: 1
     upgradeStartCount: 0
   - headerStr: Shieldbreaker's Might
@@ -708,7 +708,7 @@ MonoBehaviour:
     reqRocket: 0
     reqLaser: 0
     reqSupport: 4
-    reqAbility: F. Shield
+    reqAbility: Cockpit 0
     UpgradeCount: 1
     upgradeStartCount: 0
   - headerStr: Ballistic Boost
@@ -937,7 +937,7 @@ MonoBehaviour:
     reqAbility: 
     UpgradeCount: 1
     upgradeStartCount: 1
-  - headerStr: Continuous Shield
+  - headerStr: '-'
     upgradeIndex: 61
     passivUpgradeString: 
     descriptionStr: Halves the time the shield needs to regenerate.
@@ -964,7 +964,7 @@ MonoBehaviour:
     reqRocket: 0
     reqLaser: 0
     reqSupport: 3
-    reqAbility: F. Shield
+    reqAbility: Cockpit 0
     UpgradeCount: 1
     upgradeStartCount: 0
   - headerStr: Natural Energy
@@ -979,9 +979,9 @@ MonoBehaviour:
     reqRocket: 0
     reqLaser: 0
     reqSupport: 2
-    reqAbility: Sup. Modul
-    UpgradeCount: 2
-    upgradeStartCount: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
   - headerStr: Fast Head Cannon
     upgradeIndex: 64
     passivUpgradeString: 

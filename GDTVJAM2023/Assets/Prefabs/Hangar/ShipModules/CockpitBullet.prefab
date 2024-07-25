@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b46f6e8918cd74d94c52d69f9cd943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  realoadTime: 8
+  realoadTime: 10
   reloadFlag: 1
   abSprite: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
   baseEngines: []

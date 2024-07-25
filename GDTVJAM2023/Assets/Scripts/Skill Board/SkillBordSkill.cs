@@ -96,6 +96,13 @@ public class SkillBordSkill : MonoBehaviour
             reqImage[index].color = controller.ccPrefab.classColor[2];
             index++;
         }
+        if (controller.ulPrefab.upgradeList[skillIndex].reqSupport != 0)
+        {
+            regContainer[index].SetActive(true);
+            reqText[index].text = controller.ulPrefab.upgradeList[skillIndex].reqSupport.ToString();
+            reqImage[index].color = controller.ccPrefab.classColor[3];
+            index++;
+        }
         if (controller.ulPrefab.upgradeList[skillIndex].reqAbility != "")
         {
             regContainer[2].SetActive(true);
