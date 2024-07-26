@@ -993,12 +993,12 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""ClickUI"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""3491fb3f-261c-4b61-9db4-917022c6e642"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [

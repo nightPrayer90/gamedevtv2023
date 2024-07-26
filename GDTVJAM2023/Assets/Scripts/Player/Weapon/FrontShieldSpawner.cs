@@ -9,7 +9,7 @@ public class FrontShieldSpawner : MonoBehaviour
     public float spawnInterval = 10f;
     //public int shieldLife = 1;
 
-    private void Start()
+    /*private void Start()
     {
         playerWaeponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         UpgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
@@ -43,5 +43,5 @@ public class FrontShieldSpawner : MonoBehaviour
                 enabledShieldController.ShieldEnable(playerWaeponController.fsShieldLife);
         }
     }
-
+    */
 }

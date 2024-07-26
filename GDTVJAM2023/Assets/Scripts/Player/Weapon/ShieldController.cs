@@ -34,7 +34,7 @@ public class ShieldController : MonoBehaviour
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
     /* **************************************************************************** */
-    private void Awake()
+   /* private void Awake()
     {
         // get player Components
         var player = GameObject.FindWithTag("Player");
@@ -113,13 +113,13 @@ public class ShieldController : MonoBehaviour
 
         if (ps != null)
             UpdateShieldHealth(1);
-    }
+    }*/
 
     /* **************************************************************************** */
     /* SHIELD MANAGEMENT----------------------------------------------------------- */
     /* **************************************************************************** */
     // manuel OnEnable Event for the shield object
-    public void ShieldEnable( int shildLife)
+    /*public void ShieldEnable( int shildLife)
     {
         AudioManager.Instance.PlaySFX("ShieldActivate");
         shieldMesh.transform.DOPunchScale(new Vector3(1f, 1f, 1f), 1f, 5, 0.5f).SetUpdate(true);
@@ -367,5 +367,5 @@ public class ShieldController : MonoBehaviour
         GameObject go = ObjectPoolManager.SpawnObject(novaOnDeath, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
         go.GetComponent<ParticleSystemDestroy>().rippleParicleSize = explosionRadius;
 
-    }
+    }*/
 }

@@ -153,7 +153,7 @@ public class DropRocketController : MonoBehaviour
             playerRigidBody.AddExplosionForce(explosionForce, pos, explosionRadius);
 
             // calculate shield damage
-            bool soundFlag = false;
+            /*bool soundFlag = false;
             if (playerWeaponController.isFrontShieldEnabled == true)
             {
                 playerWeaponController.frontShield_.GetComponent<ShieldController>().UpdateShieldHealth(2);
@@ -172,7 +172,7 @@ public class DropRocketController : MonoBehaviour
             if (soundFlag == true)
             {
                 AudioManager.Instance.PlaySFX("ShieldGetHit");
-            }
+            }*/
         }
 
         // spawn the explosion object

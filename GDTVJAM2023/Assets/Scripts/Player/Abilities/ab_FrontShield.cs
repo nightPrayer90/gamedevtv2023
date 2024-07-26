@@ -24,7 +24,6 @@ public class ab_FrontShield : MonoBehaviour
         UpgradeChooseList uCl = gameManager.GetComponent<UpgradeChooseList>();
         uCl.upgrades[40].upgradeStartCount = uCl.uLObject.upgradeList[40].UpgradeCount; // Fortified Defense
         uCl.upgrades[41].upgradeStartCount = uCl.uLObject.upgradeList[41].UpgradeCount; // Shield Strike
-        uCl.upgrades[42].upgradeStartCount = uCl.uLObject.upgradeList[42].UpgradeCount; // Lifeflow Shields
         uCl.upgrades[62].upgradeStartCount = uCl.uLObject.upgradeList[62].UpgradeCount; // Explosive Shield
     }
 
@@ -52,7 +51,7 @@ public class ab_FrontShield : MonoBehaviour
         if (enabledShieldController != null)
         {
             gameManager.ScreenShake(5);
-            enabledShieldController.ShieldEnable(3);
+            enabledShieldController.ShieldEnable();
             gameManager.SetAbilityUItoZero();
         }
     }

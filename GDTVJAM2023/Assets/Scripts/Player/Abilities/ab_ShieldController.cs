@@ -8,6 +8,8 @@ public class ab_ShieldController : MonoBehaviour
     private UpgradeChooseList upgradeChooseList;
     private Rigidbody playerRb;
     private Transform playerTr;
+    private PlayerWeaponController playerWeaponController;
+    private NewPlayerController playerController;
     private ab_FrontShield frontShieldSpawner;
 
     public Material targetMaterial;
@@ -25,6 +27,7 @@ public class ab_ShieldController : MonoBehaviour
     private bool canGetDamage = true;
 
 
+
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
     /* **************************************************************************** */
@@ -34,7 +37,8 @@ public class ab_ShieldController : MonoBehaviour
         var player = GameObject.FindWithTag("Player");
         playerRb = player.GetComponent<Rigidbody>();
         playerTr = player.GetComponent<Transform>();
-        //playerController = player.GetComponent<NewPlayerController>();
+        playerWeaponController = player.GetComponent<PlayerWeaponController>();
+        playerController = player.GetComponent<NewPlayerController>();
         frontShieldSpawner = player.GetComponentInChildren<ab_FrontShield>();
 
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -111,25 +115,20 @@ public class ab_ShieldController : MonoBehaviour
     /* SHIELD MANAGEMENT----------------------------------------------------------- */
     /* **************************************************************************** */
     // OnEnable Event for the shield object
-    public void ShieldEnable(int shildLife)
+    public void ShieldEnable( )
     {
         AudioManager.Instance.PlaySFX("ShieldActivate");
         shieldMesh.transform.DOPunchScale(new Vector3(1f, 1f, 1f), 1f, 5, 0.5f).SetUpdate(true);
-        shieldLife_ = shildLife;
+        shieldLife_ = playerWeaponController.shipData.shieldHealth;
 
         // reset shild life
         canGetDamage = true;
-
-        // set shield status
-        //playerWeaponController.isFrontShieldEnabled = true;
-        //frontShieldSpawner = GameObject.Find("front Shield").GetComponent<FrontShieldSpawner>();
 
         // set material Color
         shieldCollider.enabled = true;
         shieldMesh.SetActive(true);
 
         UpdateShieldColor();
-        //targetMaterial.DOFade(0.8f, 1f);
     }
 
     // the shield get an hit from a bullet!
@@ -172,16 +171,10 @@ public class ab_ShieldController : MonoBehaviour
     // Update the weapon and shieldcontroller if the ShildObject die
     private void ShieldTypeDieControl()
     {
-        // update all Controller
-        // front shild
-        //playerWeaponController.isFrontShieldEnabled = false;
-        //frontShieldSpawner.SpawnFrondShieldControl();
-
-
         // update crit damage
-        /*if (upgradeChooseList.upgrades[45].upgradeIndexInstalled > 0)
+        if (upgradeChooseList.upgrades[45].upgradeIndexInstalled > 0)
         {
-            //playerWeaponController.shipData.critDamage += 2;
+            playerWeaponController.shipData.critDamage += 2;
             burnEffect.Emit(5);
         }
 
@@ -190,13 +183,13 @@ public class ab_ShieldController : MonoBehaviour
         {
             playerWeaponController.shipData.rocketAOERadius += 2;
             burnEffect.Emit(5);
-        }*/
+        }
 
         // trigger Nova
-        /*if (upgradeChooseList.upgrades[62].upgradeIndexInstalled > 0)
+        if (upgradeChooseList.upgrades[62].upgradeIndexInstalled > 0)
         {
             NovaOnDeath(5, 10);
-        }*/
+        }
 
         // set the shild die Effect
         dieEffect.Play();
@@ -222,7 +215,7 @@ public class ab_ShieldController : MonoBehaviour
     {
         EnemyHealth enH = null;
 
-        /*if (playerWeaponController.shipData.shieldDamage > 0)
+        if (playerWeaponController.shipData.shieldDamage > 0)
         {
             enH = collsion.GetComponent<EnemyHealth>();
 
@@ -232,7 +225,7 @@ public class ab_ShieldController : MonoBehaviour
                 enH.ShowDamageFromObjects(playerWeaponController.shipData.shieldDamage);
                 hitEffect.Emit(30);
             }
-        }*/
+        }
         if (upgradeChooseList.upgrades[43].upgradeIndexInstalled > 0)
         {
             if (enH == null)
@@ -248,26 +241,8 @@ public class ab_ShieldController : MonoBehaviour
         }
     }
 
-    // shield regenerate life
-    /*private void Shieldregenerate()
-    {
-        CancelInvoke("Shieldregenerate");
-        if (upgradeChooseList.upgrades[42].upgradeIndexInstalled > 0)
-        {
-            if (shieldLife_ < shieldLife)
-            {
-                AudioManager.Instance.PlaySFX("ShieldRegenerate");
-                shieldLife_ += 1;
-                UpdateShieldColor();
-                Invoke("Shieldregenerate", 8f);
-                hitEffect.Emit(30);
-            }
-        }
-
-    }*/
-
-    // trigger a nova on Hit
-    /*public void NovaOnDeath(float explosionRadius, int NovaDamage)
+    // trigger a nova on Death
+    public void NovaOnDeath(float explosionRadius, int NovaDamage)
     {
         // Audio
         AudioManager.Instance.PlaySFX("Playernova");
@@ -329,5 +304,5 @@ public class ab_ShieldController : MonoBehaviour
         GameObject go = ObjectPoolManager.SpawnObject(novaOnDeath, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
         go.GetComponent<ParticleSystemDestroy>().rippleParicleSize = explosionRadius;
 
-    }*/
+    }
 }

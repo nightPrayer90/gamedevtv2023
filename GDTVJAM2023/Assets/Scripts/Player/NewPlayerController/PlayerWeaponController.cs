@@ -16,8 +16,8 @@ public class PlayerWeaponController : MonoBehaviour
     public bool isBulletWings = false;
     public bool isLifeModul = false;
     public bool isSpreadGun = false;
-    public bool isFrontShield = false;
-    public bool isBackShield = false;
+    //public bool isFrontShield = false;
+    //public bool isBackShield = false;
     public bool isNovaExplosion = false;
     public bool isRockedWings = false;
     public bool isFrontLaser = false;
@@ -32,8 +32,8 @@ public class PlayerWeaponController : MonoBehaviour
     private BulletWings isBulletWingsInstalled;
     private LifeModul isLifeModulInstalled;
     private SpreadGun isSpreadGunInstalled;
-    private FrontShieldSpawner isFrontShieldInstalled;
-    private BackShieldSpawner isBackShieldInstalled;
+    //private FrontShieldSpawner isFrontShieldInstalled;
+    //private BackShieldSpawner isBackShieldInstalled;
     private NovaExplosion isNovaExplosionInstalled;
     private RocketWings isRockedWingsInstalled;
     private FrontLaser isFrontLaserInstalled;
@@ -44,11 +44,11 @@ public class PlayerWeaponController : MonoBehaviour
 
 
     [Header("Shields")]
-    public GameObject frontShield;
-    public GameObject backShield;
-    [HideInInspector] public GameObject frontShield_;
-    [HideInInspector] public GameObject backShieldLeft_;
-    [HideInInspector] public GameObject backShieldRight_;
+    //public GameObject frontShield;
+    //public GameObject backShield;
+    //[HideInInspector] public GameObject frontShield_;
+    //[HideInInspector] public GameObject backShieldLeft_;
+    //[HideInInspector] public GameObject backShieldRight_;
 
 
     [Header("Head Cannon")]
@@ -89,12 +89,12 @@ public class PlayerWeaponController : MonoBehaviour
     [HideInInspector] public float bwRealoadTime_;
     [HideInInspector] public int bwSalveCount_;
 
-    [Header("Support Modul")]
+    /*[Header("Support Modul")]
     public int lmLifePerTick = 1;
     public float lmReloadTime = 10;
     public GameObject lifeModul;
     [HideInInspector] public int lmLifePerTick_;
-    [HideInInspector] public float lmReloadTime_;
+    [HideInInspector] public float lmReloadTime_;*/
 
 
     [Header("Spread Gun")]
@@ -250,17 +250,17 @@ public class PlayerWeaponController : MonoBehaviour
             go = Instantiate(bulletWings, passivParentContainer);
             isBulletWingsInstalled = go.GetComponent<BulletWings>();
         }
-        if (isLifeModul == true && isLifeModulInstalled == null)
+        /*if (isLifeModul == true && isLifeModulInstalled == null)
         {
             go = Instantiate(lifeModul, passivParentContainer);
             isLifeModulInstalled = go.GetComponent<LifeModul>();
-        }
+        }*/
         if (isSpreadGun == true && isSpreadGunInstalled == null)
         {
             go = Instantiate(spreadGun, passivParentContainer);
             isSpreadGunInstalled = go.GetComponent<SpreadGun>();
         }
-        if (isFrontShield == true && isFrontShieldInstalled == null)
+        /*if (isFrontShield == true && isFrontShieldInstalled == null)
         {
             var shild = Instantiate(frontShield, passivParentContainer);
             shild.name = frontShield.name;
@@ -271,7 +271,7 @@ public class PlayerWeaponController : MonoBehaviour
             var shild = Instantiate(backShield, passivParentContainer);
             shild.name = backShield.name;
             isBackShieldInstalled = shild.GetComponent<BackShieldSpawner>();
-        }
+        }*/
         if (isNovaExplosion == true && isNovaExplosionInstalled == null)
         {
             go = Instantiate(novaExplosion, passivParentContainer);
@@ -369,13 +369,13 @@ public class PlayerWeaponController : MonoBehaviour
 
 
         // Life Modul - support
-        lmReloadTime_ = Mathf.Max(0.1f, (lmReloadTime * supportReloadTime_));
+        /*lmReloadTime_ = Mathf.Max(0.1f, (lmReloadTime * supportReloadTime_));
         lmLifePerTick_ = lmLifePerTick;
         if (isLifeModulInstalled != null)
         {
             isLifeModulInstalled.nextHealTick = lmReloadTime_;
             isLifeModulInstalled.healthPerTick = lmLifePerTick_;
-        }
+        }*/
 
 
         // Spread Gun - bullet - swarm
@@ -390,23 +390,23 @@ public class PlayerWeaponController : MonoBehaviour
         }
 
         // Front Shield - support - defence
-        fsSpawnTime_ = Mathf.Max(0.1f, (fsSpawnTime * supportReloadTime_));
+        /*fsSpawnTime_ = Mathf.Max(0.1f, (fsSpawnTime * supportReloadTime_));
         fsShieldLife_ = fsShieldLife + shipData.shieldHealth;
         if (isFrontShieldInstalled != null)
         {
             isFrontShieldInstalled.spawnInterval = fsSpawnTime_;
             fsShieldLife = fsShieldLife_;
-        }
+        }*/
 
 
-        // Back Shield - support - defence
-        bsSpawnTime_ = Mathf.Max(0.1f, (bsSpawnTime * supportReloadTime_));
+        // Back Shield - support - defense
+        /*bsSpawnTime_ = Mathf.Max(0.1f, (bsSpawnTime * supportReloadTime_));
         bsShildLife_ = bsShildLife + shipData.shieldHealth;
         if (isBackShieldInstalled != null)
         {
             isBackShieldInstalled.spawnInterval = bsSpawnTime_;
             bsShildLife = bsShildLife_;
-        }
+        }*/
 
 
         // Nova Explosion - explosion - defence
@@ -544,7 +544,7 @@ public class PlayerWeaponController : MonoBehaviour
         shipData.chanceToGetHealth = 0;
         shipData.chanceToGetFullEnergy = 0;
         shipData.rocketLifeTime = 0;
-        shipData.shieldHealth = 0;
+        shipData.shieldHealth = 3;
         shipData.shieldDamage = 0;
         shipData.bossBonusDamage = 0;
         shipData.supportReloadTime = 0;

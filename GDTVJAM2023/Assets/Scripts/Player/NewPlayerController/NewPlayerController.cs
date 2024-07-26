@@ -56,7 +56,7 @@ public class NewPlayerController : MonoBehaviour
     [SerializeField] private GameObject centerOfMass;
     [SerializeField] private Rigidbody playerRigidbody;
     [SerializeField] private GameManager gameManager;
-    [SerializeField] private GameObject powerBoostMarker;
+    //[SerializeField] private GameObject powerBoostMarker;
     public List<ParticleCollisionEvent> collisionEvents;
     private UpgradeChooseList upgradeChooseList;
     private PlayerWeaponController playerWeaponController;
@@ -100,11 +100,11 @@ public class NewPlayerController : MonoBehaviour
         AudioManager.Instance.PlaySFX("LiftUPBoss");
 
         // starting Energie System
-        InvokeRepeating("EnergieRegen", 2f, 0.1f);
+        InvokeRepeating(nameof(EnergieRegen), 2f, 0.1f);
 
         // TODO Update protection after loading
-        Invoke("UpdateProtection", 1f);
-        Invoke("SetModuleIndex", 1f);
+        Invoke(nameof(UpdateProtection), 1f);
+        Invoke(nameof(SetModuleIndex), 1f);
     }
 
     private void UpdateProtection()
@@ -237,8 +237,8 @@ public class NewPlayerController : MonoBehaviour
                 if (isOutsideBorder == true)
                 {
                     gameManager.outsideBorderText.text = "";
-                    CancelInvoke("PlayerIsOutsideBorder");
-                    CancelInvoke("PlayerIsOutsideBorderWarning");
+                    CancelInvoke(nameof(PlayerIsOutsideBorder));
+                    CancelInvoke(nameof(PlayerIsOutsideBorderWarning));
                     isOutsideBorder = false;
                 }
                 break;
@@ -265,8 +265,8 @@ public class NewPlayerController : MonoBehaviour
         {
             if (isOutsideBorder == true)
             {
-                CancelInvoke("PlayerIsOutsideBorder");
-                CancelInvoke("PlayerIsOutsideBorderWarning");
+                CancelInvoke(nameof(PlayerIsOutsideBorder));
+                CancelInvoke(nameof(PlayerIsOutsideBorderWarning));
                 gameManager.outsideBorderText.text = "";
                 isOutsideBorder = false;
             }
@@ -280,8 +280,8 @@ public class NewPlayerController : MonoBehaviour
         {
             if (isOutsideBorder == false && isIntro == false)
             {
-                InvokeRepeating("PlayerIsOutsideBorder", 2.2f, 1f);// damageInterval);
-                Invoke("PlayerIsOutsideBorderWarning", 0.1f);
+                InvokeRepeating(nameof(PlayerIsOutsideBorder), 2.2f, 1f);// damageInterval);
+                Invoke(nameof(PlayerIsOutsideBorderWarning), 0.1f);
 
                 gameManager.outsideBorderText.text = "outside border!";
                 gameManager.outsideBorderTextTweenTarget.DOPunchScale(new Vector3(0.15f, 0.15f, 0.15f), 0.8f, 10, 0.5f);
@@ -388,7 +388,7 @@ public class NewPlayerController : MonoBehaviour
             UpdatePlayerHealth(damage);
             gameManager.DoFloatingText(transform.position, damage.ToString(), hitColor);
 
-            Invoke("InvokeLaserDamage", 1f);
+            Invoke(nameof(InvokeLaserDamage), 1f);
 
             canGetLaserDamage = false;
         }
@@ -686,21 +686,21 @@ public class NewPlayerController : MonoBehaviour
     private void Invulnerability()
     {
         canTakeDamge = true;
-        powerBoostMarker.SetActive(false);
+        //powerBoostMarker.SetActive(false);
     }
 
     public void GetInvulnerabilityAfterUpdate()
     {
         canTakeDamge = false;
-        Invoke("Invulnerability", 0.5f);
+        Invoke(nameof(Invulnerability), 0.5f);
     }
 
     // player can take damage
     public void GetInvulnerability()
     {
         canTakeDamge = false;
-        powerBoostMarker.SetActive(true);
-        Invoke("Invulnerability", playerWeaponController.shipData.boostInvulnerability);
+        //powerBoostMarker.SetActive(true);
+        Invoke(nameof(Invulnerability), playerWeaponController.shipData.boostInvulnerability);
     }
 
     public void UpdateAgility(float updateSpeed)

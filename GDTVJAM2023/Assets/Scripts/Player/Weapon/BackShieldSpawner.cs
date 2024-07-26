@@ -15,7 +15,7 @@ public class BackShieldSpawner : MonoBehaviour
     //public int shieldLife;
     private float randomSpawntime;
 
-    private void Start()
+    /*private void Start()
     {
         playerWaeponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
 
@@ -72,5 +72,5 @@ public class BackShieldSpawner : MonoBehaviour
                 rightShieldContoller.ShieldEnable(playerWaeponController.bsShildLife);
             }
         }
-    }
+    }*/
 }

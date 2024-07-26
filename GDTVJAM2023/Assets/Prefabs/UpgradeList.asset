@@ -493,11 +493,11 @@ MonoBehaviour:
     mainClass: 8
     upgradeTyp: 1
     colorIndex: 3
-    reqBullet: 0
+    reqBullet: 1
     reqRocket: 0
     reqLaser: 0
-    reqSupport: 2
-    reqAbility: 
+    reqSupport: 0
+    reqAbility: Bullet Cockpit
     UpgradeCount: 3
     upgradeStartCount: 0
   - headerStr: Expansion Fortuity
@@ -650,7 +650,7 @@ MonoBehaviour:
     reqAbility: Cockpit 0
     UpgradeCount: 2
     upgradeStartCount: 0
-  - headerStr: Lifeflow Shields
+  - headerStr: '-'
     upgradeIndex: 42
     passivUpgradeString: 
     descriptionStr: Shields regenerate life over time.
@@ -676,7 +676,7 @@ MonoBehaviour:
     reqBullet: 0
     reqRocket: 0
     reqLaser: 3
-    reqSupport: 4
+    reqSupport: 3
     reqAbility: Cockpit 0
     UpgradeCount: 1
     upgradeStartCount: 0
@@ -692,7 +692,7 @@ MonoBehaviour:
     reqBullet: 0
     reqRocket: 3
     reqLaser: 0
-    reqSupport: 4
+    reqSupport: 3
     reqAbility: Cockpit 0
     UpgradeCount: 1
     upgradeStartCount: 0
@@ -707,7 +707,7 @@ MonoBehaviour:
     reqBullet: 3
     reqRocket: 0
     reqLaser: 0
-    reqSupport: 4
+    reqSupport: 3
     reqAbility: Cockpit 0
     UpgradeCount: 1
     upgradeStartCount: 0
@@ -963,7 +963,7 @@ MonoBehaviour:
     reqBullet: 0
     reqRocket: 0
     reqLaser: 0
-    reqSupport: 3
+    reqSupport: 2
     reqAbility: Cockpit 0
     UpgradeCount: 1
     upgradeStartCount: 0

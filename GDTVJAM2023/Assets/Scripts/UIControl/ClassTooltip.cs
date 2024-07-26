@@ -157,12 +157,12 @@ public class ClassTooltip : MonoBehaviour
                 content_ = content_.Replace("AAA", playerWeaponController.shipData.bulletCritChance.ToString() + "%/ " + playerWeaponController.shipData.bulletCritDamage.ToString() + "% (" + Mathf.CeilToInt(((float)playerWeaponController.shipData.bulletCritDamage/100) * playerWeaponController.bwDamage_).ToString() + ")");
                 break;
             case 10: // Life Modul
-                headerField.text = tooltipContent[9].header;
+                /*headerField.text = tooltipContent[9].header;
                 headerField.color = gameManager.cCPrefab.classColor[3];
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[9].content;
                 content_ = content_.Replace("XXX", playerWeaponController.lmLifePerTick_.ToString());
-                content_ = content_.Replace("YYY", playerWeaponController.lmReloadTime_.ToString());
+                content_ = content_.Replace("YYY", playerWeaponController.lmReloadTime_.ToString());*/
                 break;
             case 11: // Spread Gun
                 headerField.text = tooltipContent[10].header;
@@ -175,22 +175,22 @@ public class ClassTooltip : MonoBehaviour
                 content_ = content_.Replace("AAA", playerWeaponController.shipData.bulletCritChance.ToString() + "%/ " + playerWeaponController.shipData.bulletCritDamage.ToString() + "% (" + Mathf.CeilToInt(((float)playerWeaponController.shipData.bulletCritDamage/100) * playerWeaponController.sgDamage_).ToString() + ")");
                 break;
             case 12: // Front Shield
-                headerField.text = tooltipContent[11].header;
+                /*headerField.text = tooltipContent[11].header;
                 headerField.color = gameManager.cCPrefab.classColor[3];
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[11].content;
                 content_ = content_.Replace("XXX", (playerWeaponController.fsShieldLife_ + playerWeaponController.shipData.shieldHealth).ToString());
                 content_ = content_.Replace("YYY", (playerWeaponController.fsSpawnTime_).ToString());
-                content_ = content_.Replace("ZZZ", (playerWeaponController.shipData.shieldDamage).ToString());
+                content_ = content_.Replace("ZZZ", (playerWeaponController.shipData.shieldDamage).ToString());*/
                 break;
             case 13: // Back Schield
-                headerField.text = tooltipContent[12].header;
+                /*headerField.text = tooltipContent[12].header;
                 headerField.color = gameManager.cCPrefab.classColor[3]; 
                 content_ = upgradeChooseList.uLObject.upgradeList[contentType].descriptionStr + " " + upgradeChooseList.uLObject.upgradeList[contentType].passivUpgradeString + Environment.NewLine;
                 content_ += tooltipContent[12].content;
                 content_ = content_.Replace("XXX", (playerWeaponController.bsShildLife_ + playerWeaponController.shipData.shieldHealth).ToString());
                 content_ = content_.Replace("YYY", (playerWeaponController.bsSpawnTime_).ToString());
-                content_ = content_.Replace("ZZZ", (playerWeaponController.shipData.shieldDamage).ToString());
+                content_ = content_.Replace("ZZZ", (playerWeaponController.shipData.shieldDamage).ToString());*/
                 break;
             case 14: // Shock Nova
                 headerField.text = tooltipContent[13].header;

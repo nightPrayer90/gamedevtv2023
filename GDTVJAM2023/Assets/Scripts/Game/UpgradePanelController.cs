@@ -125,7 +125,6 @@ public class UpgradePanelController : MonoBehaviour
 
     private void HandleSubmitInput()
     {
-        Debug.Log("test");
         if (selectetPanel != -1 && isButtonPressed == false)
         {
             panelList[selectetPanel].OnMouseDown_();
@@ -437,7 +436,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 40: // Fortified Defense
                 playerWeaponController.shipData.shieldHealth += 1;
-                playerWeaponController.UpdateWeaponValues();
+                //playerWeaponController.UpdateWeaponValues();
 
                 //upgradeChooseList.upgrades[41].upgradeStartCount = 0;
                 //upgradeChooseList.upgrades[42].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[42].UpgradeCount; 
@@ -446,7 +445,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 41: // Shielded Strike
                 playerWeaponController.shipData.shieldDamage += 5;
-                playerWeaponController.UpdateWeaponValues();
+                //playerWeaponController.UpdateWeaponValues();
 
                 //upgradeChooseList.upgrades[40].upgradeStartCount = 0;
                 //upgradeChooseList.upgrades[61].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[61].UpgradeCount; 

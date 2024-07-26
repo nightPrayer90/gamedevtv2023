@@ -27,7 +27,7 @@ MonoBehaviour:
   chanceToGetHealth: 0
   chanceToGetFullEnergy: 0
   rocketLifeTime: 0
-  shieldHealth: 0
+  shieldHealth: 3
   shieldDamage: 0
   bossBonusDamage: 0
   supportReloadTime: 0

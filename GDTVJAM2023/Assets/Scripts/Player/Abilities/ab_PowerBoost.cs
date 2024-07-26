@@ -9,10 +9,13 @@ public class ab_PowerBoost : MonoBehaviour
     public Sprite abSprite; // gameManager use this for UI
 
     private NewPlayerController playerController;
+    private PlayerWeaponController playerWeaponController;
     private GameManager gameManager;
     private Rigidbody playerRb;
     [SerializeField] private List<NewBaseEngine> baseEngines;
 
+    public Collider hitCollider;
+    public GameObject hitMarker;
 
 
     private void Awake()
@@ -20,6 +23,8 @@ public class ab_PowerBoost : MonoBehaviour
         //playerWaeponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerController = gameObject.GetComponentInParent<NewPlayerController>();
+        playerWeaponController = gameObject.GetComponentInParent<PlayerWeaponController>();
+
         playerRb = playerController.gameObject.GetComponent<Rigidbody>();
 
         gameManager.InitAbilityUI(abSprite);
@@ -43,6 +48,8 @@ public class ab_PowerBoost : MonoBehaviour
             baseEngines = new List<NewBaseEngine>(playerController.gameObject.GetComponentsInChildren<NewBaseEngine>());
         }
 
+        SetBoostShield(true);
+
         gameManager.ScreenShake(5);
         AudioManager.Instance.PlaySFX("PlayerBoostKick");
 
@@ -57,14 +64,36 @@ public class ab_PowerBoost : MonoBehaviour
         else playerRb.AddForce(-transform.right * baseEngines[0].totalThrustForce * 100, ForceMode.Force);
 
         playerController.GetInvulnerability();
-
         gameManager.SetAbilityUItoZero();
-        Invoke(nameof(SetReloadFlag),0.5f);
+
+        Invoke(nameof(SetReloadFlag), playerWeaponController.shipData.boostInvulnerability);
+
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        string tagStr = "Enemy";
+        if (gameManager.dimensionShift == true)
+        {
+            tagStr = "secondDimensionEnemy";
+        }
+
+        if (other.gameObject.CompareTag(tagStr))
+        {
+            other.gameObject.GetComponent<Rigidbody>().AddExplosionForce(800f, transform.position, 1);
+            EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+
+            enemyHealth.TakeDamage(20);
+            enemyHealth.ShowDamageFromObjects(20);
+        }
 
     }
 
     public void SetReloadFlag()
     {
+        SetBoostShield(false);
+
         foreach (NewBaseEngine engine in baseEngines)
         {
             engine.powerBoosParticle.Stop();
@@ -81,6 +110,20 @@ public class ab_PowerBoost : MonoBehaviour
         foreach (NewBaseEngine engine in baseEngines)
         {
             engine.ps_boostParticle.Emit(100);
+        }
+    }
+
+    private void SetBoostShield(bool status)
+    {
+        if (status == true)
+        {
+            hitCollider.enabled = true;
+            hitMarker.SetActive(true);
+        }
+        else
+        {
+            hitCollider.enabled = false;
+            hitMarker.SetActive(false);
         }
     }
 }

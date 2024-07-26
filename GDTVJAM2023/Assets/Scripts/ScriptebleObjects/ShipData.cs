@@ -31,7 +31,7 @@ public class ShipData : ScriptableObject
     public float rocketLifeTime = 0;
 
     public int shieldHealth = 0;
-    public int shieldDamage = 0;
+    public int shieldDamage = 3;
     public int bossBonusDamage = 0;
 
     public float supportReloadTime = 0;
