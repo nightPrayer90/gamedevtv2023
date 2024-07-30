@@ -15,7 +15,7 @@ public class ab_PowerBoost : MonoBehaviour
     [SerializeField] private List<NewBaseEngine> baseEngines;
 
     public Collider hitCollider;
-    public GameObject hitMarker;
+    public ParticleSystem hitMarker;
 
 
     private void Awake()
@@ -118,12 +118,12 @@ public class ab_PowerBoost : MonoBehaviour
         if (status == true)
         {
             hitCollider.enabled = true;
-            hitMarker.SetActive(true);
+            hitMarker.Play();
         }
         else
         {
             hitCollider.enabled = false;
-            hitMarker.SetActive(false);
+            hitMarker.Stop();
         }
     }
 }
