@@ -75,7 +75,7 @@ public class UpgradePanelController : MonoBehaviour
         inputHandler.OnNavigateUIInputChanged -= HandleNavigateInput;
         inputHandler.OnClickInputChanged -= HandleSubmitInput;
         inputHandler.DisableUIControls();
-        inputHandler.EnableGameConrtols();
+        inputHandler.EnableGameControls();
     }
 
     private void HandleNavigateInput(Vector2 inputVector2)

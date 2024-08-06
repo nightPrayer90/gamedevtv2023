@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public class HangarModul : MonoBehaviour
@@ -11,8 +13,8 @@ public class HangarModul : MonoBehaviour
     public List<Sphere> spheres;
     private HangarSelection selectionController;
     private ModuleStorage moduleStorage;
-    private MeshRenderer childMeshRenderer;
-    public Material highlightMaterial;
+    [HideInInspector] public MeshRenderer childMeshRenderer;
+    [FormerlySerializedAs("highlightMaterial")] public Material unconnectedMaterial;
     private Material shipMaterial;
 
     [Header("Module Data")]
@@ -80,15 +82,23 @@ public class HangarModul : MonoBehaviour
     {
         Material[] materials = childMeshRenderer.materials;
 
-       if (moduleData.bestCost == ushort.MaxValue && moduleValues.moduleType != ModuleType.StrafeEngine)
+        if (moduleData.bestCost == ushort.MaxValue && moduleValues.moduleType != ModuleType.StrafeEngine)
         {
-            materials[0] = highlightMaterial;
+            materials[0] = unconnectedMaterial;
             moduleStorage.isAllConnected = false;
             moduleStorage.ControllUnconnectedModules();
         }
         else
         {
-            materials[0] = shipMaterial;
+            if (moduleValues.moduleType == ModuleType.Cockpit)
+            {
+                selectionController.SelectModuleAtPosition(0, 0); // this is me
+                return;
+            }
+            else
+            {
+                materials[0] = shipMaterial;
+            }
         }
         childMeshRenderer.materials = materials;
     }

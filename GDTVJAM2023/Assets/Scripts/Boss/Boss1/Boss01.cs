@@ -17,11 +17,12 @@ public class Boss01 : MonoBehaviour
     [Header("GameObjects")]
     //public Material buildingMaterial;
     //public Material emissivMaterial;
+    public GameObject bossMesh01;
+    public GameObject bossMesh02;
     public MeshRenderer[] bossMeshRenderers;
     public ParticleSystem rippleParticle;
     public ParticleSystem rippleParticleDie;
     public List<ParticleSystem> particleWeapons = new List<ParticleSystem>();
-    public List<ParticleSystem> particleWeapons2 = new List<ParticleSystem>();
     public GameObject explosionObject;
     public GameObject damageArea;
     public GameObject replacement;
@@ -39,6 +40,8 @@ public class Boss01 : MonoBehaviour
     public BossMinimapIcon bossMinimapIcon;
     private BossUI bossUI;
     public Sprite bossUIForgroundSprite;
+    public Boss01Ring bossRingController
+        ;
 
     /* **************************************************************************** */
     /* LIFECYCLE ------------------------------------------------------------------ */
@@ -96,6 +99,8 @@ public class Boss01 : MonoBehaviour
 
                 case 1: // activate - fly to the fight start position
                     // triggered by dotween
+                    RotateBoss(10f);
+                    bossRingController.RotateRing(50f);
                     break;
 
                 case 2: // fight!
@@ -169,6 +174,8 @@ public class Boss01 : MonoBehaviour
         enemyHealthScr.canTakeDamage = true;
         bossUI.SetForgroundColor(Color.white);
         bossState = 2;
+
+        
     }
 
     private void FightingState()
@@ -180,22 +187,24 @@ public class Boss01 : MonoBehaviour
 
         switch (currentState)
         {
-            case 0:
+            case 0: // Attacke Phase 01
                 // turns only one time per state
                 if (isState[0] == false)
                 {
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
                     //Debug.Log("state0 @ " + enemyHealthScr.enemyHealth);
-                    InvokeRepeating(nameof(Shooting1), 0.5f, 0.5f);
-                    InvokeRepeating(nameof(InvokeShootSound), 0.5f, 0.5f);
+
+                    bossRingController.ShootingAttack01();
+                    //InvokeRepeating(nameof(InvokeShootSound), 0.5f, 0.5f);
                     isState[0] = true;
                 }
                 RotateBoss(10f);
+                bossRingController.RotateRing(20f);
                 MoveToPlayer(6f);
                 break;
 
-            case 1:
+            case 1: // Attacke Phase 02
                 // turns only one time per state
                 if (isState[1] == false)
                 {
@@ -205,46 +214,56 @@ public class Boss01 : MonoBehaviour
                     bossUI.SetForgroundColor(Color.red);
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
+
                     //Debug.Log("state1 @ " + enemyHealthScr.enemyHealth);
+                    bossRingController.StopShooting01();
+
                     CancelInvoke();
-                    transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() =>
+                    transform.DOShakePosition(1f, 0.1f, 10, 90, false, true).OnComplete(() =>
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
-                        InvokeRepeating(nameof(Shooting2), 3f, 0.5f);
-                        InvokeRepeating(nameof(InvokeShootSound), 3f, 0.5f);
+
                         transform.DOShakePosition(3f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
                             enemyHealthScr.canTakeDamage = true;
                             bossUI.SetForgroundColor(Color.white);
+                            bossRingController.ShootingAttack02();
                         });
                     });
                     isState[1] = true;
                 }
-                RotateBoss(-13f);
+                RotateBoss(-12f);
+                bossRingController.RotateRing(-25f);
                 MoveToPlayer(6f);
                 break;
 
-            case 2:
+            case 2: // Attacke Phase 03
                 // turns only one time per state
                 if (isState[2] == false)
                 {
+                    rippleParticle.Play();
+                    transform.DOShakePosition(1f, 0.1f, 10, 90, false, true);
                     bossChanceState.volume = Mathf.Min(AudioManager.Instance.sfxVolume, 0.7f);
                     bossChanceState.Play();
+
+
+                    PushThePlayer(2.5f, 5f);
+                    CancelInvoke();
+
+                    bossRingController.Explode(); //1sek = Explode
+                    Invoke(nameof(BossOpenPhase3),1.5f); //Boss open after Explode
+
                     enemyHealthScr.canTakeDamage = false;
                     bossUI.SetForgroundColor(Color.red);
-                    rippleParticle.Play();
-                    PushThePlayer(2.5f, 5f);
-
-                    //Debug.Log("state2 @ " + enemyHealthScr.enemyHealth);
-                    CancelInvoke();
-                    transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() =>
+                    
+                    transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).SetDelay(2f).OnComplete(() =>
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
-                        InvokeRepeating(nameof(Shooting1), 4f, 0.5f);
-                        InvokeRepeating(nameof(Shooting2), 4f, 0.5f);
-                        InvokeRepeating(nameof(InvokeShootSound), 4f, 0.5f);
-                        transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
+                       
+                        transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
+                            InvokeRepeating(nameof(Shooting), 4f, 0.5f);
+                            InvokeRepeating(nameof(InvokeShootSound), 4f, 0.5f);
                             enemyHealthScr.canTakeDamage = true;
                             bossUI.SetForgroundColor(Color.white);
                         });
@@ -354,18 +373,9 @@ public class Boss01 : MonoBehaviour
     }
 
     // invoke - shoot attack 1
-    private void Shooting1()
+    private void Shooting()
     {
         foreach (ParticleSystem weapon in particleWeapons)
-        {
-            weapon.Emit(1);
-        }
-    }
-
-    // invoke - shoot attack 2
-    private void Shooting2()
-    {
-        foreach (ParticleSystem weapon in particleWeapons2)
         {
             weapon.Emit(1);
         }
@@ -388,6 +398,12 @@ public class Boss01 : MonoBehaviour
         dieRotation = dieRotation + 15;
         // instanstiate explosion
         ObjectPoolManager.SpawnObject(explosionObject, transform.position, Quaternion.Euler(0f, dieRotation, 0f), ObjectPoolManager.PoolType.ParticleSystem);
+    }
+
+    public void BossOpenPhase3()
+    {
+        bossMesh01.transform.DOLocalMoveY(0.1f, 1f);
+        bossMesh02.transform.DOLocalMoveY(-0.1f, 1f);
     }
     #endregion
 }

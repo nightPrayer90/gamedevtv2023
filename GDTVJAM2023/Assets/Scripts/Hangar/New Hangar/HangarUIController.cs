@@ -152,7 +152,7 @@ public class HangarUIController : MonoBehaviour
         // Handle Panel UI
         removePanel.DOKill();
         selectionContentPanel.DOKill();
-        if (removePanel.alpha != 1 && selectedModul.moduleValues.moduleType != ModuleType.Cockpit) //TODO hasNoParentControll - cant delete Cockpit or StrafeEngine
+        if (removePanel.alpha != 1 && selectedModul.moduleValues.moduleType != ModuleType.Cockpit) //TODO hasNoParentControl - cant delete Cockpit or StrafeEngine
         {
             removePanel.blocksRaycasts = true;
             removePanel.DOFade(1, 0.2f);

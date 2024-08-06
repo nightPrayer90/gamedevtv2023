@@ -119,48 +119,44 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
                 if (hangarRotateShips.rotationState != 0)
                 {
                     hangarRotateShips.RotateShip(1, true);
-                    moduleStorage.SetShipToPlayerData();
-                    moduleStorage.RemoveAllModule();
-                    moduleStorage.playerData.ActiveShip = 0;
+                    ChangeShip(0);
                     AudioManager.Instance.PlaySFX("HangarBuild1");
-                    moduleStorage.LoadShipFromPreset();
                 }
                 break;
             case 5: // preset 2
                 if (hangarRotateShips.rotationState != 90)
                 {
                     hangarRotateShips.RotateShip(2, true);
-                    moduleStorage.SetShipToPlayerData();
-                    moduleStorage.RemoveAllModule();
-                    moduleStorage.playerData.ActiveShip = 1;
+                    ChangeShip(1);
                     AudioManager.Instance.PlaySFX("HangarBuild2");
-                    moduleStorage.LoadShipFromPreset();
                 }
                 break;
             case 6: // preset 3
                 if (hangarRotateShips.rotationState != 180)
                 {
                     hangarRotateShips.RotateShip(3, true);
-                    moduleStorage.SetShipToPlayerData();
-                    moduleStorage.RemoveAllModule();
-                    moduleStorage.playerData.ActiveShip = 2;
+                    ChangeShip(2);
                     AudioManager.Instance.PlaySFX("HangarBuild3");
-                    moduleStorage.LoadShipFromPreset();
                 }
                 break;
             case 7: // preset 4
                 if (hangarRotateShips.rotationState != 270)
                 {
                     hangarRotateShips.RotateShip(4, true);
-                    moduleStorage.SetShipToPlayerData();
-                    moduleStorage.RemoveAllModule();
-                    moduleStorage.playerData.ActiveShip = 3;
+                    ChangeShip(3);
                     AudioManager.Instance.PlaySFX("HangarBuild4");
-                    moduleStorage.LoadShipFromPreset();
                 }
                 break;
         }
 
+    }
+
+    public void ChangeShip(int activShip)
+    {
+        moduleStorage.SetShipToPlayerData();
+        moduleStorage.RemoveAllModule();
+        moduleStorage.playerData.ActiveShip = activShip;
+        moduleStorage.LoadShipFromPreset();
     }
 
     public void ChangeBtnColor()

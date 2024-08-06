@@ -19,14 +19,25 @@ public class HangarSelection : MonoBehaviour
     private HangarUIController hangarUIController;
     private Transform lastSelection;
     private ModuleStorage moduleStorage;
+    private HangarInputHandler hangarInputHandler;
 
     public event Action OnDeselect;
+
+    private int curX;
+    private int curZ;
     
 
-    private void Start()
+    private void Awake()
     {
-        hangarUIController = gameObject.GetComponent<HangarUIController>();
+        hangarInputHandler = GetComponent<HangarInputHandler>();
+        hangarInputHandler.OnNavigatePress += HangarInputHandler_OnNavigatePress;
+        hangarUIController = GetComponent<HangarUIController>();
         moduleStorage = GameObject.Find("Ship").GetComponent<ModuleStorage>();
+    }
+
+    private void HangarInputHandler_OnNavigatePress(Vector2 v)
+    {
+        SelectModuleAtPosition((int)v.x + curX, (int)v.y + curZ);
     }
 
     private void Update()
@@ -82,37 +93,13 @@ public class HangarSelection : MonoBehaviour
                     // select a part of a ship
                     if (selection.CompareTag("Selectable"))
                     {
-                        // deselect the old Object
-                        ObjectDeselect();
-
-                        // select the new Object
-                        originalMaterialSelectet = originalMaterial;
-                        selection.GetComponent<MeshRenderer>().material = selectionMaterial;
-                        HangarModul hm = selection.GetComponentInParent<HangarModul>();
-                        
-                        moduleStorage.CreateReplacementList(hm);
-                        hm.SetActive();
-
-                        hangarUIController.HandleModulSelect(hm);
-                        lastSelection = selection;
+                        SelectModule();
                     }
 
                     // select a part modul sphere
                     else if (selection.CompareTag("Sphere"))
                     {
-                        // deselect the old Object
-                        ObjectDeselect();
-
-                        // select the new Object
-                        originalMaterialSelectet = originalMaterial;
-                        selection.GetComponent<MeshRenderer>().material = selectionSphereMaterial;
-                        Sphere sph = selection.GetComponentInParent<Sphere>();
-                        
-                        moduleStorage.CreateModuleLists(sph.sphereSide);
-                        sph.SetActive();
-
-                        hangarUIController.HandleShpereSelect(sph); // TODO selection maybe = sph?
-                        lastSelection = selection;
+                        SelectSphere();
                     }
 
                     // klick at a free space
@@ -125,6 +112,74 @@ public class HangarSelection : MonoBehaviour
 
 
         }
+    }
+
+    public void SelectModuleAtPosition(int x, int z)
+    {
+        foreach (HangarModul hm in moduleStorage.installedHangarModules)
+        {
+            if(hm.moduleData.x == x && hm.moduleData.z == z)
+            {
+                foreach(Transform t in hm.gameObject.GetComponentsInChildren<Transform>())
+                {
+                    if(t.CompareTag("Selectable"))
+                    {
+                        selection = t;
+                        SelectModule();
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    private void SelectModule()
+    {
+        // deselect the old Object
+        ObjectDeselect();
+
+        // select the new Object
+        if (highlight == selection)
+        {
+            originalMaterialSelectet = originalMaterial;
+        }
+        else
+        {
+            originalMaterialSelectet = selection.GetComponent<MeshRenderer>().material;
+        }
+        selection.GetComponent<MeshRenderer>().material = selectionMaterial;
+        HangarModul hm = selection.GetComponentInParent<HangarModul>();
+        moduleStorage.CreateReplacementList(hm);
+        hm.SetActive();
+        curX = (int)hm.moduleData.x;
+        curZ = (int)hm.moduleData.z;
+
+        hangarUIController.HandleModulSelect(hm);
+        lastSelection = selection;
+    }
+
+    private void SelectSphere()
+    {
+        // deselect the old Object
+        ObjectDeselect();
+
+        // select the new Object
+        if (highlight == selection)
+        {
+            originalMaterialSelectet = originalMaterial;
+        }
+        else
+        {
+            originalMaterialSelectet = selection.GetComponent<MeshRenderer>().material;
+        }
+        selection.GetComponent<MeshRenderer>().material = selectionSphereMaterial;
+        Sphere sph = selection.GetComponentInParent<Sphere>();
+
+        moduleStorage.CreateModuleLists(sph.sphereSide);
+        sph.SetActive();
+
+        hangarUIController.HandleShpereSelect(sph); // TODO selection maybe = sph?
+        lastSelection = selection;
     }
 
     public void DeselectAll()

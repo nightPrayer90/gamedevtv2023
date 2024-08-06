@@ -227,7 +227,7 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""143bb1cd-cc10-4eca-a2f0-a3664166fe91"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
@@ -249,7 +249,7 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0fcf5a99-6ae3-43fb-b7c6-3895012dfbb4"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -1344,6 +1344,304 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Hangar"",
+            ""id"": ""57f1f4d8-cf03-4b80-902e-ee130ee8aeff"",
+            ""actions"": [
+                {
+                    ""name"": ""GameStart"",
+                    ""type"": ""Button"",
+                    ""id"": ""868a7e7d-243a-41b8-8d66-33bbf92b60b6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""b4e20ed7-e7d4-4279-97ea-156abc5cd1de"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Preset"",
+                    ""type"": ""Button"",
+                    ""id"": ""1e76b03b-a2ca-4258-acab-3081124263ff"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Navigate"",
+                    ""type"": ""Value"",
+                    ""id"": ""457a9949-0224-4539-94f8-2a48927b6f4f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""b76f8cd3-c2bf-4a8d-9a84-991c9bcd781a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Abort"",
+                    ""type"": ""Button"",
+                    ""id"": ""623e752f-08c1-4806-8a8c-f6b15f5f22bc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchArea"",
+                    ""type"": ""Button"",
+                    ""id"": ""47d17053-5a39-4d54-9491-738b34bb260f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Remove"",
+                    ""type"": ""Button"",
+                    ""id"": ""68e9753a-1c6e-47a8-99dd-956e8cc1fa2d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RemoveUnconnected"",
+                    ""type"": ""Button"",
+                    ""id"": ""f3666f63-314d-4508-8854-f47a5da025ee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""0f3d8a8b-1d42-425f-b398-9d8661d94cb6"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GameStart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0c2aca9-9148-4f1b-99b8-c67da9ec9987"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""PresetKeyboard"",
+                    ""id"": ""1bbcd031-5672-4cf4-b732-3ec7df7d892e"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Preset"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""bac70666-1568-45e2-9453-cd120413536d"",
+                    ""path"": ""<Keyboard>/numpad8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Preset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""a764415d-2705-4531-bfd1-7fee35a28497"",
+                    ""path"": ""<Keyboard>/numpad2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Preset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""PresetGamepad"",
+                    ""id"": ""bef797e4-b8c0-494a-a2e8-60aac3d727a0"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Preset"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""8440a3d8-f328-46f1-9ed9-008e3b088c32"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Preset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""cd3a4675-21e7-4e67-8ad7-822b4c79e90d"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Preset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bc9a33b1-b7d3-41ab-b883-3af26805395e"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Keyboard arrow keys"",
+                    ""id"": ""232dd555-93b9-4efd-9386-e48881420fab"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""df194146-7d63-4ebb-9a37-0dc14e9b2769"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""11d4b6e0-58a0-4950-8055-4f06be0399c7"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""0174d199-7e53-4b85-8706-53d553e65459"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""07463769-b1b1-4a3a-b07d-5632e356a4d4"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f5aba017-e63a-4757-9314-8588f5dda9fe"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""630a929f-71c4-4491-a0ab-050cbf7a649f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Abort"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bcce977a-78ff-44c0-8093-eaaf2c52ada2"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchArea"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""90384e1d-21a6-4e2f-bebd-67d090a39bf6"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Remove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7b1b554-bc65-4d91-bf2b-5fe4249b1880"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": ""Hold(duration=1)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RemoveUnconnected"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1437,6 +1735,17 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
         m_InGameUI_Navigate = m_InGameUI.FindAction("Navigate", throwIfNotFound: true);
         m_InGameUI_CloseUI = m_InGameUI.FindAction("CloseUI", throwIfNotFound: true);
         m_InGameUI_ClickUI = m_InGameUI.FindAction("ClickUI", throwIfNotFound: true);
+        // Hangar
+        m_Hangar = asset.FindActionMap("Hangar", throwIfNotFound: true);
+        m_Hangar_GameStart = m_Hangar.FindAction("GameStart", throwIfNotFound: true);
+        m_Hangar_Menu = m_Hangar.FindAction("Menu", throwIfNotFound: true);
+        m_Hangar_Preset = m_Hangar.FindAction("Preset", throwIfNotFound: true);
+        m_Hangar_Navigate = m_Hangar.FindAction("Navigate", throwIfNotFound: true);
+        m_Hangar_Select = m_Hangar.FindAction("Select", throwIfNotFound: true);
+        m_Hangar_Abort = m_Hangar.FindAction("Abort", throwIfNotFound: true);
+        m_Hangar_SwitchArea = m_Hangar.FindAction("SwitchArea", throwIfNotFound: true);
+        m_Hangar_Remove = m_Hangar.FindAction("Remove", throwIfNotFound: true);
+        m_Hangar_RemoveUnconnected = m_Hangar.FindAction("RemoveUnconnected", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1784,6 +2093,116 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
         }
     }
     public InGameUIActions @InGameUI => new InGameUIActions(this);
+
+    // Hangar
+    private readonly InputActionMap m_Hangar;
+    private List<IHangarActions> m_HangarActionsCallbackInterfaces = new List<IHangarActions>();
+    private readonly InputAction m_Hangar_GameStart;
+    private readonly InputAction m_Hangar_Menu;
+    private readonly InputAction m_Hangar_Preset;
+    private readonly InputAction m_Hangar_Navigate;
+    private readonly InputAction m_Hangar_Select;
+    private readonly InputAction m_Hangar_Abort;
+    private readonly InputAction m_Hangar_SwitchArea;
+    private readonly InputAction m_Hangar_Remove;
+    private readonly InputAction m_Hangar_RemoveUnconnected;
+    public struct HangarActions
+    {
+        private @_9Dystricts m_Wrapper;
+        public HangarActions(@_9Dystricts wrapper) { m_Wrapper = wrapper; }
+        public InputAction @GameStart => m_Wrapper.m_Hangar_GameStart;
+        public InputAction @Menu => m_Wrapper.m_Hangar_Menu;
+        public InputAction @Preset => m_Wrapper.m_Hangar_Preset;
+        public InputAction @Navigate => m_Wrapper.m_Hangar_Navigate;
+        public InputAction @Select => m_Wrapper.m_Hangar_Select;
+        public InputAction @Abort => m_Wrapper.m_Hangar_Abort;
+        public InputAction @SwitchArea => m_Wrapper.m_Hangar_SwitchArea;
+        public InputAction @Remove => m_Wrapper.m_Hangar_Remove;
+        public InputAction @RemoveUnconnected => m_Wrapper.m_Hangar_RemoveUnconnected;
+        public InputActionMap Get() { return m_Wrapper.m_Hangar; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(HangarActions set) { return set.Get(); }
+        public void AddCallbacks(IHangarActions instance)
+        {
+            if (instance == null || m_Wrapper.m_HangarActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_HangarActionsCallbackInterfaces.Add(instance);
+            @GameStart.started += instance.OnGameStart;
+            @GameStart.performed += instance.OnGameStart;
+            @GameStart.canceled += instance.OnGameStart;
+            @Menu.started += instance.OnMenu;
+            @Menu.performed += instance.OnMenu;
+            @Menu.canceled += instance.OnMenu;
+            @Preset.started += instance.OnPreset;
+            @Preset.performed += instance.OnPreset;
+            @Preset.canceled += instance.OnPreset;
+            @Navigate.started += instance.OnNavigate;
+            @Navigate.performed += instance.OnNavigate;
+            @Navigate.canceled += instance.OnNavigate;
+            @Select.started += instance.OnSelect;
+            @Select.performed += instance.OnSelect;
+            @Select.canceled += instance.OnSelect;
+            @Abort.started += instance.OnAbort;
+            @Abort.performed += instance.OnAbort;
+            @Abort.canceled += instance.OnAbort;
+            @SwitchArea.started += instance.OnSwitchArea;
+            @SwitchArea.performed += instance.OnSwitchArea;
+            @SwitchArea.canceled += instance.OnSwitchArea;
+            @Remove.started += instance.OnRemove;
+            @Remove.performed += instance.OnRemove;
+            @Remove.canceled += instance.OnRemove;
+            @RemoveUnconnected.started += instance.OnRemoveUnconnected;
+            @RemoveUnconnected.performed += instance.OnRemoveUnconnected;
+            @RemoveUnconnected.canceled += instance.OnRemoveUnconnected;
+        }
+
+        private void UnregisterCallbacks(IHangarActions instance)
+        {
+            @GameStart.started -= instance.OnGameStart;
+            @GameStart.performed -= instance.OnGameStart;
+            @GameStart.canceled -= instance.OnGameStart;
+            @Menu.started -= instance.OnMenu;
+            @Menu.performed -= instance.OnMenu;
+            @Menu.canceled -= instance.OnMenu;
+            @Preset.started -= instance.OnPreset;
+            @Preset.performed -= instance.OnPreset;
+            @Preset.canceled -= instance.OnPreset;
+            @Navigate.started -= instance.OnNavigate;
+            @Navigate.performed -= instance.OnNavigate;
+            @Navigate.canceled -= instance.OnNavigate;
+            @Select.started -= instance.OnSelect;
+            @Select.performed -= instance.OnSelect;
+            @Select.canceled -= instance.OnSelect;
+            @Abort.started -= instance.OnAbort;
+            @Abort.performed -= instance.OnAbort;
+            @Abort.canceled -= instance.OnAbort;
+            @SwitchArea.started -= instance.OnSwitchArea;
+            @SwitchArea.performed -= instance.OnSwitchArea;
+            @SwitchArea.canceled -= instance.OnSwitchArea;
+            @Remove.started -= instance.OnRemove;
+            @Remove.performed -= instance.OnRemove;
+            @Remove.canceled -= instance.OnRemove;
+            @RemoveUnconnected.started -= instance.OnRemoveUnconnected;
+            @RemoveUnconnected.performed -= instance.OnRemoveUnconnected;
+            @RemoveUnconnected.canceled -= instance.OnRemoveUnconnected;
+        }
+
+        public void RemoveCallbacks(IHangarActions instance)
+        {
+            if (m_Wrapper.m_HangarActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IHangarActions instance)
+        {
+            foreach (var item in m_Wrapper.m_HangarActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_HangarActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public HangarActions @Hangar => new HangarActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1859,5 +2278,17 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
         void OnNavigate(InputAction.CallbackContext context);
         void OnCloseUI(InputAction.CallbackContext context);
         void OnClickUI(InputAction.CallbackContext context);
+    }
+    public interface IHangarActions
+    {
+        void OnGameStart(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
+        void OnPreset(InputAction.CallbackContext context);
+        void OnNavigate(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
+        void OnAbort(InputAction.CallbackContext context);
+        void OnSwitchArea(InputAction.CallbackContext context);
+        void OnRemove(InputAction.CallbackContext context);
+        void OnRemoveUnconnected(InputAction.CallbackContext context);
     }
 }

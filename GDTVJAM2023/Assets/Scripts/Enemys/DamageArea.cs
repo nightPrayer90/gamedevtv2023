@@ -5,11 +5,14 @@ using DG.Tweening;
 public class DamageArea : MonoBehaviour
 {
     public SpriteRenderer spR;
+    public ParticleSystem damageParticle;
+    public ParticleSystem waveParticle;
 
     private void OnEnable()
     {
         // FadeIn
-        spR.DOFade(0.03f, 4f);
+        damageParticle.Play();
+        spR.DOFade(0.2f, 4f);
         gameObject.transform.DOScale(new Vector3(2, 2, 2), 4f);
     }
 
@@ -21,6 +24,9 @@ public class DamageArea : MonoBehaviour
 
     public void FadeOut()
     {
-        gameObject.transform.DOScale(new Vector3(0, 0, 0), 0.5f).OnComplete(() => { gameObject.SetActive(false); });
+        damageParticle.Stop();
+        waveParticle.Play();
+        gameObject.transform.DOScale(new Vector3(0, 0, 0), 0.6f).OnComplete(() => { gameObject.SetActive(false); });
+        
     }
 }

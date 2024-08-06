@@ -2621,6 +2621,7 @@ GameObject:
   - component: {fileID: 388692328}
   - component: {fileID: 388692330}
   - component: {fileID: 388692332}
+  - component: {fileID: 388692333}
   m_Layer: 0
   m_Name: SelectionController
   m_TagString: Untagged
@@ -2744,6 +2745,18 @@ MonoBehaviour:
   connecktorBtn: {fileID: 1923615974}
   weaponBtn: {fileID: 1800891721}
   wingBtn: {fileID: 1012640367}
+--- !u!114 &388692333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388692327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d66ac138e43c6a4884ea4d500c0608f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &406551327
 GameObject:
   m_ObjectHideFlags: 0
@@ -6210,6 +6223,8 @@ MonoBehaviour:
   btn3: {fileID: 1565650487}
   btn4: {fileID: 1682842741}
   shipTransform: {fileID: 1761201648}
+  hangarInputHandler: {fileID: 388692333}
+  moduleStorage: {fileID: 1761201646}
 --- !u!4 &996751331
 Transform:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
-using static UnityEditor.PlayerSettings;
+
 
 public class BackfireBeamProjectile : MonoBehaviour
 {

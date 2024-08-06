@@ -80,7 +80,9 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
 
     private void OnDestroy()
     {
-        hangarUIController.MouseExitModulePanel(0f);
+        //TODO!!!
+        if (hangarUIController != null)
+            hangarUIController.MouseExitModulePanel(0f);
         gameObject.transform.DOComplete();
     }
     #endregion

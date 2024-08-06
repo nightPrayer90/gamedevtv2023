@@ -159,6 +159,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Awake()
     {
+        
         // Game Controls
         moveAction = playerControls.FindActionMap(actionMapName).FindAction(move);
         rotateAction = playerControls.FindActionMap(actionMapName).FindAction(rotate);
@@ -212,7 +213,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        EnableGameConrtols();
+        EnableGameControls();
     }
     private void OnDisable()
     {
@@ -220,9 +221,9 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
 
-    public void EnableGameConrtols()
+    public void EnableGameControls()
     {
-        Debug.Log("1-EnableGameConrtols");
+        Debug.Log("1-EnableGameControls");
         moveAction.Enable();
         rotateAction.Enable();
         boostAction.Enable();

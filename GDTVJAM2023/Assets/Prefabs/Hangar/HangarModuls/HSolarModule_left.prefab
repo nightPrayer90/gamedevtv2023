@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8099496030707116036}
   m_Layer: 7
   m_Name: HSolarModule_left
-  m_TagString: Selectable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSelected: 0
   spheres: []
-  highlightMaterial: {fileID: 2100000, guid: 8ae23242e9d9e0f40bab0fcf05be5ecb, type: 2}
+  childMeshRenderer: {fileID: 0}
+  unconnectedMaterial: {fileID: 2100000, guid: 8ae23242e9d9e0f40bab0fcf05be5ecb, type: 2}
   moduleData:
     x: 0
     z: 0

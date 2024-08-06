@@ -84,6 +84,8 @@ public class ModuleStorage : MonoBehaviour
     //PlayerData
     public PlayerData playerData;
 
+    private HangarInputHandler hangarInputHandler;
+
 
     /* **************************************************************************** */
     /* LIFECYCLE------------------------------------------------------------------- */
@@ -107,6 +109,9 @@ public class ModuleStorage : MonoBehaviour
         rotateHangarObject.RotateShip(playerData.ActiveShip+1, false);
 
         LoadShip();
+
+        hangarInputHandler = selectionManager.gameObject.GetComponent<HangarInputHandler>();
+        hangarInputHandler.OnModuleRemove += HangarRemoveModule;
     }
 
     public void LoadShip()
@@ -181,7 +186,8 @@ public class ModuleStorage : MonoBehaviour
         for (int i = 0; i < installedHangarModules.Count; i++)
         {
             HangarModul hgm = installedHangarModules[i];
-            if (hgm.isSelected == true)
+
+            if (hgm.isSelected == true && hgm.moduleValues.moduleType != ModuleType.Cockpit)
             {
                 // delete from playerData
                 playerData.moduleCounts[hgm.moduleData.moduleTypeIndex] += 1;
@@ -341,7 +347,6 @@ public class ModuleStorage : MonoBehaviour
     public void RefreshModulSpheres()
     {
         // TODO - if any Modul with no parent - the HangarModul script set canGameStart to false;
-        isAllConnected = true;
 
         // Refresh all other Moduls
         for (int i = 0; i < installedHangarModules.Count; i++)

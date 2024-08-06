@@ -536,7 +536,7 @@ GameObject:
   - component: {fileID: -5058857993275173830}
   m_Layer: 7
   m_Name: HCockpit0
-  m_TagString: Selectable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -578,8 +578,8 @@ MonoBehaviour:
   - {fileID: 3509476493671714399}
   - {fileID: 7332740674630181823}
   - {fileID: 8030305223953988058}
-  possibleReplacements: 
-  highlightMaterial: {fileID: 2100000, guid: 8ae23242e9d9e0f40bab0fcf05be5ecb, type: 2}
+  childMeshRenderer: {fileID: 0}
+  unconnectedMaterial: {fileID: 2100000, guid: 8ae23242e9d9e0f40bab0fcf05be5ecb, type: 2}
   moduleData:
     x: 0
     z: 0

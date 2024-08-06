@@ -11,6 +11,40 @@ public class HangarRotateShips : MonoBehaviour
 
     public HangarShipTransform shipTransform;
 
+    public HangarInputHandler hangarInputHandler;
+    public ModuleStorage moduleStorage;
+
+    private void Start()
+    {
+        hangarInputHandler.OnPresetChange += HangarInputHandler_OnPresetChange;
+    }
+
+    private void HangarInputHandler_OnPresetChange(float value)
+    {
+        Debug.Log(value);
+        int index = rotationState / 90 + 1;
+        index += (int)value;
+        if (index > 4) index = 1;
+        if (index < 1) index = 4;
+        RotateShip(index, true);
+
+        switch (index)
+        {
+            case 1:
+                btn1.ChangeShip(0);
+                break;
+            case 2:
+                btn2.ChangeShip(1); 
+                break;
+            case 3:
+                btn3.ChangeShip(2); 
+                break;
+            case 4:
+                btn4.ChangeShip(3); 
+                break;
+        }
+    }
+
     public void RotateShip( int rotateIndex, bool isSmooth)
     {
 
@@ -52,6 +86,7 @@ public class HangarRotateShips : MonoBehaviour
         if (isSmooth == true)
         {
             // Drehe das Objekt zur entsprechenden Rotation mit DOTween
+            transform.DOKill();
             transform.DORotate(new Vector3(0f, rotationState, 0f), 1f)
                 .SetEase(Ease.InOutQuad);
         }

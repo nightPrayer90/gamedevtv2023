@@ -239,7 +239,7 @@ public class GameManager : MonoBehaviour
 
         AudioManager.Instance.PlaySFX("MouseKlick");
         inputHandler.DisableUIControls();
-        inputHandler.EnableGameConrtols();
+        inputHandler.EnableGameControls();
 
         inputHandler.OnOpenUIChanged += HandleBreakeUI;
 
@@ -258,7 +258,7 @@ public class GameManager : MonoBehaviour
             case "Restart Button":
                 AudioManager.Instance.PlaySFX("MouseKlick");
                 inputHandler.DisableUIControls();
-                inputHandler.EnableGameConrtols();
+                inputHandler.EnableGameControls();
                 menuButtonController.LevelRestart();
                 break;
             case "BackToHangar Button":

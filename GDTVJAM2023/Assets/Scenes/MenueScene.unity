@@ -867,7 +867,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 165038526}
   m_Enabled: 1
-  m_Alpha: 0.91
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -11638,7 +11638,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 4686458fe4c446b478555a5e6c02c2d8, type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 4686458fe4c446b478555a5e6c02c2d8, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: d11d1f46b7fa7d3418225a8d5aa81c1f, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 4686458fe4c446b478555a5e6c02c2d8, type: 3}
     m_DisabledSprite: {fileID: 21300000, guid: d11d1f46b7fa7d3418225a8d5aa81c1f, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -14209,7 +14209,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 5ee76fb8c477c954cb93742abf725fb3, type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 5ee76fb8c477c954cb93742abf725fb3, type: 3}
-    m_SelectedSprite: {fileID: 21300000, guid: c2a818b8aa5832646bf2a0204e406670, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 5ee76fb8c477c954cb93742abf725fb3, type: 3}
     m_DisabledSprite: {fileID: 21300000, guid: c2a818b8aa5832646bf2a0204e406670, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
