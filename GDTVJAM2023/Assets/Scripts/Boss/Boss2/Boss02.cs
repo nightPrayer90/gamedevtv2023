@@ -20,8 +20,8 @@ public class Boss02 : MonoBehaviour
 
 
     [Header("GameObjects")]
-    public Material buildingMaterial;
-    public Material emissivMaterial;
+    //public Material buildingMaterial;
+    //public Material emissivMaterial;
     public MeshRenderer bossMeshRenderer;
     public ParticleSystem rippleParticle;
     public ParticleSystem rippleParticleDie;
@@ -79,10 +79,10 @@ public class Boss02 : MonoBehaviour
         enemyHealthScr.canTakeDamage = false;
 
         // update materials
-        materialList = bossMeshRenderer.materials;
+        /*materialList = bossMeshRenderer.materials;
         materialList[0] = buildingMaterial;
         materialList[1] = buildingMaterial;
-        bossMeshRenderer.materials = materialList;
+        bossMeshRenderer.materials = materialList;*/
 
         // fighting steps
         fightingStatesStepSize = enemyHealthScr.enemyHealth / numberOfFightingStates;
@@ -190,8 +190,8 @@ public class Boss02 : MonoBehaviour
         gameObject.tag = "secondDimensionEnemy";
 
         // set activate material
-        materialList[1] = emissivMaterial;
-        bossMeshRenderer.materials = materialList;
+        //materialList[1] = emissivMaterial;
+        //bossMeshRenderer.materials = materialList;
         downPhase.ActivateMesh();
 
         // go into fighting phase
@@ -327,8 +327,8 @@ public class Boss02 : MonoBehaviour
             downPhase.ShieldDie();
 
             // set activate material
-            materialList[1] = buildingMaterial;
-            bossMeshRenderer.materials = materialList;
+            //materialList[1] = buildingMaterial;
+            //bossMeshRenderer.materials = materialList;
             baseCollider.enabled = false;
 
             transform.DOScale(new Vector3(0.7f, 0.7f, 0.7f), 2f).SetDelay(2f);
