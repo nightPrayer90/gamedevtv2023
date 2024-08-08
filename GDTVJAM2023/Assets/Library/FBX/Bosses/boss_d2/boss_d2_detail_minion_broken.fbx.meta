@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: emissive
     second: {fileID: 2100000, guid: 5d9505ac08c5d1145abbaa10997f8a43, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: windows
+    second: {fileID: 2100000, guid: 076f221eea110b342910ef1132e23142, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
