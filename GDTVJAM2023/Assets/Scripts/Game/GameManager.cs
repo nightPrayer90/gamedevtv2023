@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.XR;
+
 
 
 public class GameManager : MonoBehaviour
@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     public CanvasGroup upgradeTextCG;
     public CanvasGroup minimapCG;
     public CanvasGroup minimapBigCG;
+    public CanvasGroup playerUICG;
     public Camera minimapCameraBig;
     private bool bigMapisOpen = false;
     public TextMeshProUGUI upgradeText;
@@ -191,6 +192,16 @@ public class GameManager : MonoBehaviour
         // events
         inputHandler.OnOpenUIChanged += HandleBreakeUI;
         inputHandler.OnOpenMapInputChanged += BigMinimapControl;
+        inputHandler.OnHideUI += HideUI;
+    }
+
+    // only for us
+    private void HideUI()
+    {
+        if (playerUICG.alpha == 1)
+            playerUICG.alpha = 0.0f;
+        else
+            playerUICG.alpha = 1f;
     }
 
     private void BigMinimapControl()

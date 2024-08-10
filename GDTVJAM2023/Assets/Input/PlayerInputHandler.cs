@@ -20,6 +20,7 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private string cameraSwitch = "Camera";
     [SerializeField] private string openUI = "OpenUI";
     [SerializeField] private string openMap = "OpenMap";
+    [SerializeField] private string hideUI = "HideUI";
 
     private InputAction moveAction;
     private InputAction rotateAction;
@@ -28,6 +29,7 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction cameraSwitchAction;
     private InputAction openUIAction;
     private InputAction openMapAction;
+    private InputAction hideUIAction;
 
     [Header("Action Name References UI")]
     [SerializeField] private string navigate = "Navigate";
@@ -102,6 +104,25 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
 
+    public event Action OnHideUI;
+    private bool _hideUI;
+    public bool HideUI
+    {
+        get { return _hideUI; }
+        private set
+        {
+            _hideUI = value;
+            if (_hideUI)
+            {
+                OnHideUI?.Invoke();
+            }
+        }
+    }
+
+
+
+
+
     // UI Stuff
     public event Action<Vector2> OnNavigateUIInputChanged;
     private Vector2 _navigateUIInput;
@@ -168,6 +189,7 @@ public class PlayerInputHandler : MonoBehaviour
         cameraSwitchAction = playerControls.FindActionMap(actionMapName).FindAction(cameraSwitch);
         openUIAction = playerControls.FindActionMap(actionMapName).FindAction(openUI);
         openMapAction = playerControls.FindActionMap(actionMapName).FindAction(openMap);
+        hideUIAction = playerControls.FindActionMap(actionMapName).FindAction(hideUI);
 
         // UI Controls
         navigateUIAction = playerControls.FindActionMap(actionMapNameUI).FindAction(navigate);
@@ -200,6 +222,10 @@ public class PlayerInputHandler : MonoBehaviour
         openMapAction.performed += context => OpenMapInput = true;
         openMapAction.canceled += context => OpenMapInput = false;
 
+        hideUIAction.performed += context => HideUI = true;
+        hideUIAction.canceled += context => HideUI = false;
+
+
         // UI Controls
         navigateUIAction.performed += context => NavigateUIInput = context.ReadValue<Vector2>();
         navigateUIAction.canceled += context => NavigateUIInput = Vector2.zero;
@@ -231,6 +257,7 @@ public class PlayerInputHandler : MonoBehaviour
         cameraSwitchAction.Enable();
         openUIAction.Enable();
         openMapAction.Enable();
+        hideUIAction.Enable();
     }
 
     public void DisableGameControls()
@@ -243,6 +270,7 @@ public class PlayerInputHandler : MonoBehaviour
         cameraSwitchAction.Disable();
         openUIAction.Disable();
         openMapAction.Disable();
+        hideUIAction.Disable();
     }
 
     public void EnableUIControls()

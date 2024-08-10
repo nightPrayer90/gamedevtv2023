@@ -89,6 +89,15 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""HideUI"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c6f2c12-d2f6-4b22-9367-b5b6fc1b9260"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -331,6 +340,17 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""OpenMap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4298ea7-d05d-4299-9f28-fe78bb382833"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""HideUI"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1716,6 +1736,7 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
         m_Player_Camera = m_Player.FindAction("Camera", throwIfNotFound: true);
         m_Player_OpenUI = m_Player.FindAction("OpenUI", throwIfNotFound: true);
         m_Player_OpenMap = m_Player.FindAction("OpenMap", throwIfNotFound: true);
+        m_Player_HideUI = m_Player.FindAction("HideUI", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1814,6 +1835,7 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Camera;
     private readonly InputAction m_Player_OpenUI;
     private readonly InputAction m_Player_OpenMap;
+    private readonly InputAction m_Player_HideUI;
     public struct PlayerActions
     {
         private @_9Dystricts m_Wrapper;
@@ -1825,6 +1847,7 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
         public InputAction @Camera => m_Wrapper.m_Player_Camera;
         public InputAction @OpenUI => m_Wrapper.m_Player_OpenUI;
         public InputAction @OpenMap => m_Wrapper.m_Player_OpenMap;
+        public InputAction @HideUI => m_Wrapper.m_Player_HideUI;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1855,6 +1878,9 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
             @OpenMap.started += instance.OnOpenMap;
             @OpenMap.performed += instance.OnOpenMap;
             @OpenMap.canceled += instance.OnOpenMap;
+            @HideUI.started += instance.OnHideUI;
+            @HideUI.performed += instance.OnHideUI;
+            @HideUI.canceled += instance.OnHideUI;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1880,6 +1906,9 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
             @OpenMap.started -= instance.OnOpenMap;
             @OpenMap.performed -= instance.OnOpenMap;
             @OpenMap.canceled -= instance.OnOpenMap;
+            @HideUI.started -= instance.OnHideUI;
+            @HideUI.performed -= instance.OnHideUI;
+            @HideUI.canceled -= instance.OnHideUI;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -2257,6 +2286,7 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
         void OnCamera(InputAction.CallbackContext context);
         void OnOpenUI(InputAction.CallbackContext context);
         void OnOpenMap(InputAction.CallbackContext context);
+        void OnHideUI(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
