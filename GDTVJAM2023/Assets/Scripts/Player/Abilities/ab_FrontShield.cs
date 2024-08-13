@@ -12,7 +12,7 @@ public class ab_FrontShield : MonoBehaviour
     private ab_ShieldController enabledShieldController;
     private PlayerWeaponController playerWeaponController;
 
-    private void Awake()
+    private void Start()
     {
         //playerWaeponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();

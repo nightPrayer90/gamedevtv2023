@@ -16,7 +16,7 @@ public class ab_PowerBoost : MonoBehaviour
     public Collider hitCollider;
     public ParticleSystem hitMarker;
 
-    private void Awake()
+    private void Start()
     {
         //playerWaeponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -28,14 +28,15 @@ public class ab_PowerBoost : MonoBehaviour
         gameManager.InitAbilityUI(abSprite);
         SetReloadFlag();
 
+        
         // activate shield upgrades
-        UpgradeChooseList uCl = gameManager.GetComponent<UpgradeChooseList>();
+        UpgradeChooseList uCl = gameManager.gameObject.GetComponent<UpgradeChooseList>();
         uCl.upgrades[31].upgradeStartCount = uCl.uLObject.upgradeList[31].UpgradeCount; // Fortified Overdrive
         uCl.upgrades[23].upgradeStartCount = uCl.uLObject.upgradeList[23].UpgradeCount; // Guardian Drive
         uCl.upgrades[24].upgradeStartCount = uCl.uLObject.upgradeList[24].UpgradeCount; // Force Multiplier
     }
 
-
+    
     private void Update()
     {
         if (reloadFlag == false && playerController.abilityInput == true)

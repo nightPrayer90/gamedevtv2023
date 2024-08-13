@@ -18,7 +18,7 @@ public class ab_Laser : MonoBehaviour
 
     public ParticleSystem loadParticle;
 
-    private void Awake()
+    private void Start()
     {
         //playerWaeponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();

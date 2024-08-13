@@ -52,6 +52,7 @@ MonoBehaviour:
   baseEngines: []
   hitCollider: {fileID: 6649781178588730084}
   hitMarker: {fileID: 3367338092715288113}
+  debugSystem: {fileID: 0}
 --- !u!65 &6649781178588730084
 BoxCollider:
   m_ObjectHideFlags: 0

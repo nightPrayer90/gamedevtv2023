@@ -414,6 +414,7 @@ public class NewPlayerController : MonoBehaviour
         boostInput = intputHandler.BoostInput;
         abilityInput = intputHandler.AbilityInput;
 
+
         ShipEngineSound();
     }
 
