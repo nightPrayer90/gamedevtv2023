@@ -19,7 +19,6 @@ MonoBehaviour:
   baseLaserTicks: 4
   baseLaserTickDamage: 5
   laserBurningTickDamangePercent: 100
-  boostInvulnerability: 0.5
   percBulletDamage: 0
   percRocketDamage: 0
   percLaserDamage: 0
@@ -27,8 +26,6 @@ MonoBehaviour:
   chanceToGetHealth: 0
   chanceToGetFullEnergy: 0
   rocketLifeTime: 0
-  shieldHealth: 3
-  shieldDamage: 0
   bossBonusDamage: 0
   supportReloadTime: 0
   bulletCritChance: 0
@@ -40,3 +37,8 @@ MonoBehaviour:
   aoeRange: 20
   burningChance: 2
   realodTime: 10
+  shieldHealth: 3
+  shieldDamage: 0
+  boostInvulnerability: 0.5
+  boostSize: 1
+  boostDamage: 20

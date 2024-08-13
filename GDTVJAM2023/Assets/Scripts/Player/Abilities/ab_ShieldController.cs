@@ -235,6 +235,7 @@ public class ab_ShieldController : MonoBehaviour
             if (enH != null)
             {
                 enH.InvokeBurningDamage();
+                enH.burnTickCount = 0;
                 burnEffect.Emit(10);
             }
 

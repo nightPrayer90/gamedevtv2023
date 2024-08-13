@@ -372,14 +372,19 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.upgrades[84].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[84].UpgradeCount;
                 upgradeChooseList.upgrades[85].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[85].UpgradeCount;
                 break;
-            case 23: //-
-                
+            case 23: // Guardian Drive
+                playerWeaponController.shipData.boostSize = playerWeaponController.shipData.boostSize * 0.6f;
                 break;
-            case 24: //-
-                
+            case 24: // Force Multiplier
+                playerWeaponController.shipData.boostDamage = playerWeaponController.shipData.boostDamage * 2;
+
+                upgradeChooseList.upgrades[25].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[25].UpgradeCount;
+                upgradeChooseList.upgrades[42].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[42].UpgradeCount;
+                upgradeChooseList.upgrades[61].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[61].UpgradeCount;
                 break;
-            case 25: //-
-                
+            case 25: // Nova Overdrive
+                upgradeChooseList.upgrades[42].upgradeStartCount = 0;
+                upgradeChooseList.upgrades[61].upgradeStartCount = 0;
                 break;
 
             case 26: // crit damage
@@ -452,9 +457,9 @@ public class UpgradePanelController : MonoBehaviour
                 //upgradeChooseList.weaponUpgrades[40].reqSupport = 99; // Fortified Defense
                 //upgradeChooseList.weaponUpgrades[61].reqSupport = 2; // Shieldbreaker's Might
                 break;
-            case 42: // Lifeflow Shields
-                upgradeChooseList.upgrades[43].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[43].UpgradeCount;
-                //upgradeChooseList.weaponUpgrades[43].reqSupport = 3; // Ignition Shield
+            case 42: // Critical Impact Drive
+                upgradeChooseList.upgrades[25].upgradeStartCount = 0;
+                upgradeChooseList.upgrades[61].upgradeStartCount = 0;
                 break;
             case 43: // Ignition Shield
                 upgradeChooseList.upgrades[44].upgradeStartCount = 0;
@@ -528,9 +533,9 @@ public class UpgradePanelController : MonoBehaviour
             case 60: // Engine Overload
                 playerController.energieProduction = playerController.energieProduction * (1 + (0.6f));
                 break;
-            case 61: // Continuous shield 
-                upgradeChooseList.upgrades[62].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[62].UpgradeCount;
-                //upgradeChooseList.weaponUpgrades[62].reqSupport = 3; // Explosiv Shild
+            case 61: // Torchshield Drive
+                upgradeChooseList.upgrades[25].upgradeStartCount = 0;
+                upgradeChooseList.upgrades[42].upgradeStartCount = 0;
                 break;
             case 62: // Explosiv Shield 
                 upgradeChooseList.upgrades[43].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[43].UpgradeCount; ;

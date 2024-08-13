@@ -34,7 +34,7 @@ public class EnemyHealth : MonoBehaviour
 
 
     private bool isBurning = false;
-    private int burnTickCount = 0;
+    [HideInInspector] public int burnTickCount = 0;
     [HideInInspector] public bool[] canTakeLaserDamage;
 
     // Color Management

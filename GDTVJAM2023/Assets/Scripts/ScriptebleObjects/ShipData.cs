@@ -18,7 +18,6 @@ public class ShipData : ScriptableObject
     public int baseLaserTicks = 4;
     public int baseLaserTickDamage = 5;
     public int laserBurningTickDamangePercent = 100;
-    public float boostInvulnerability = 0.5f;
 
     [Header("Basic Ability Values")]
     public float percBulletDamage = 0;
@@ -30,8 +29,7 @@ public class ShipData : ScriptableObject
     public float chanceToGetFullEnergy = 0;
     public float rocketLifeTime = 0;
 
-    public int shieldHealth = 0;
-    public int shieldDamage = 3;
+
     public int bossBonusDamage = 0;
 
     public float supportReloadTime = 0;
@@ -52,11 +50,13 @@ public class ShipData : ScriptableObject
     public int burningChance = 2;
     public int realodTime = 10;
 
+    [Header("Shield")]
+    public int shieldHealth = 0;
+    public int shieldDamage = 3;
 
-    //public int baseBulletCritChance = 0;
-    //public int baseBulletCritDamage = 100;
-    //public int baseLaserBurnDamageChance = 0;
-    //public float baseRocketAOERadius = 0;
-    //public int baseSupportRealoadTime = 0;
+    [Header("Power Boost")]
+    public float boostInvulnerability = 0.5f;
+    public float boostSize = 1.2f;
+    public int boostDamage = 20;
 
 }

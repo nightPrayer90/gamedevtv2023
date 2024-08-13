@@ -1,4 +1,3 @@
-using DG.Tweening.Core.Easing;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +16,6 @@ public class ab_PowerBoost : MonoBehaviour
     public Collider hitCollider;
     public ParticleSystem hitMarker;
 
-
     private void Awake()
     {
         //playerWaeponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
@@ -29,6 +27,12 @@ public class ab_PowerBoost : MonoBehaviour
 
         gameManager.InitAbilityUI(abSprite);
         SetReloadFlag();
+
+        // activate shield upgrades
+        UpgradeChooseList uCl = gameManager.GetComponent<UpgradeChooseList>();
+        uCl.upgrades[31].upgradeStartCount = uCl.uLObject.upgradeList[31].UpgradeCount; // Fortified Overdrive
+        uCl.upgrades[23].upgradeStartCount = uCl.uLObject.upgradeList[23].UpgradeCount; // Guardian Drive
+        uCl.upgrades[24].upgradeStartCount = uCl.uLObject.upgradeList[24].UpgradeCount; // Force Multiplier
     }
 
 
@@ -46,6 +50,11 @@ public class ab_PowerBoost : MonoBehaviour
         if (baseEngines.Count == 0)
         {
             baseEngines = new List<NewBaseEngine>(playerController.gameObject.GetComponentsInChildren<NewBaseEngine>());
+        }
+
+        if (gameManager.upgradeChooseList.upgrades[27].upgradeIndexInstalled == 1)
+        {
+            playerController.NovaOnHit(2.5f, playerWeaponController.shipData.boostDamage);
         }
 
         SetBoostShield(true);
@@ -84,8 +93,24 @@ public class ab_PowerBoost : MonoBehaviour
             other.gameObject.GetComponent<Rigidbody>().AddExplosionForce(800f, transform.position, 1);
             EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
 
-            enemyHealth.TakeDamage(20);
-            enemyHealth.ShowDamageFromObjects(20);
+
+            if (gameManager.upgradeChooseList.upgrades[42].upgradeIndexInstalled == 1)
+            {
+                int damage = enemyHealth.CritDamage(playerWeaponController.shipData.boostDamage);
+                enemyHealth.TakeDamage(damage);
+                enemyHealth.ShowDamageFromObjectsColor(damage, enemyHealth.critColor);
+            }
+            else
+            {
+                int damage = playerWeaponController.shipData.boostDamage;
+                enemyHealth.TakeDamage(damage);
+                enemyHealth.ShowDamageFromObjects(damage);
+            }
+            if (gameManager.upgradeChooseList.upgrades[61].upgradeIndexInstalled == 1)
+            {
+                enemyHealth.InvokeBurningDamage();
+                enemyHealth.burnTickCount = 0;
+            }
         }
 
     }
@@ -117,6 +142,7 @@ public class ab_PowerBoost : MonoBehaviour
     {
         if (status == true)
         {
+            gameObject.transform.localScale = new Vector3(1f, 1f, playerWeaponController.shipData.boostSize);
             hitCollider.enabled = true;
             hitMarker.Play();
         }
