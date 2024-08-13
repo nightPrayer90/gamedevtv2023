@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class ab_InfernoRockets : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class ab_InfernoRockets : MonoBehaviour
     private int rocketSpawnCount_;
 
     private NewPlayerController playerController;
+    private PlayerWeaponController playerWeaponController;
     public Transform rocketSpawner;
     private GameManager gameManager;
 
@@ -22,6 +24,7 @@ public class ab_InfernoRockets : MonoBehaviour
         //playerWaeponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerController = gameObject.GetComponentInParent<NewPlayerController>();
+        playerWeaponController = gameObject.GetComponentInParent<PlayerWeaponController>();
 
         gameManager.InitAbilityUI(abSprite);
         SetReloadFlag();
@@ -73,8 +76,10 @@ public class ab_InfernoRockets : MonoBehaviour
 
     public void SetReloadFlag()
     {
-        Invoke(nameof(InvokeReloadFlag), realoadTime);
-        gameManager.SetAbilityValue(realoadTime);
+        float realoadTime_ = realoadTime * (1 - playerWeaponController.shipData.mcSupportLvl * 0.1f);
+
+        Invoke(nameof(InvokeReloadFlag), realoadTime_);
+        gameManager.SetAbilityValue(realoadTime_);
     }
 
     private void InvokeReloadFlag()

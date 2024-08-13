@@ -14,6 +14,7 @@ public class ab_Laser : MonoBehaviour
     public Transform projectilespawner;
     private GameManager gameManager;
     private Rigidbody playerRB;
+    private PlayerWeaponController playerWeaponController;
 
     public ParticleSystem loadParticle;
 
@@ -22,6 +23,7 @@ public class ab_Laser : MonoBehaviour
         //playerWaeponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerController = gameObject.GetComponentInParent<NewPlayerController>();
+        playerWeaponController = gameObject.GetComponentInParent<PlayerWeaponController>();
         playerRB = gameObject.GetComponentInParent<Rigidbody>();
 
         gameManager.InitAbilityUI(abSprite);
@@ -63,8 +65,10 @@ public class ab_Laser : MonoBehaviour
 
     public void SetReloadFlag()
     {
-        Invoke(nameof(InvokeReloadFlag), realoadTime);
-        gameManager.SetAbilityValue(realoadTime);
+        float realoadTime_ = realoadTime * (1- playerWeaponController.shipData.mcSupportLvl * 0.1f);
+
+        Invoke(nameof(InvokeReloadFlag), realoadTime_);
+        gameManager.SetAbilityValue(realoadTime_);
     }
 
     private void InvokeReloadFlag()

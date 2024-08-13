@@ -123,8 +123,11 @@ public class ab_PowerBoost : MonoBehaviour
         {
             engine.powerBoosParticle.Stop();
         }
-        Invoke(nameof(InvokePowerBoostFlag), realoadTime);
-        gameManager.SetAbilityValue(realoadTime);
+
+        float realoadTime_ = realoadTime * (1 - playerWeaponController.shipData.mcSupportLvl * 0.1f);
+
+        Invoke(nameof(InvokePowerBoostFlag), realoadTime_);
+        gameManager.SetAbilityValue(realoadTime_);
     }
 
     private void InvokePowerBoostFlag()

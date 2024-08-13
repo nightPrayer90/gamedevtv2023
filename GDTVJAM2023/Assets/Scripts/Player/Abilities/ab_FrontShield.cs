@@ -10,12 +10,14 @@ public class ab_FrontShield : MonoBehaviour
     private NewPlayerController playerController;
     private GameManager gameManager;
     private ab_ShieldController enabledShieldController;
+    private PlayerWeaponController playerWeaponController;
 
     private void Awake()
     {
         //playerWaeponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         playerController = gameObject.GetComponentInParent<NewPlayerController>();
+        playerWeaponController = gameObject.GetComponentInParent<PlayerWeaponController>();
 
         gameManager.InitAbilityUI(abSprite);
         SetShieldFlag();
@@ -58,8 +60,9 @@ public class ab_FrontShield : MonoBehaviour
 
     public void SetShieldFlag()
     {
-        Invoke(nameof(InvokeShieldFlag), realoadTime);
-        gameManager.SetAbilityValue(realoadTime);
+        float realoadTime_ = (1 - playerWeaponController.shipData.mcSupportLvl * 0.1f) * realoadTime;
+        Invoke(nameof(InvokeShieldFlag), realoadTime_);
+        gameManager.SetAbilityValue(realoadTime_);
     }
 
     private void InvokeShieldFlag()
