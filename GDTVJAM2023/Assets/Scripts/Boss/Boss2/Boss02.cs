@@ -16,7 +16,7 @@ public class Boss02 : MonoBehaviour
     private bool isMinimap = false;
     [HideInInspector] public bool isDying = false;
     private int shieldObjects;
-    private int maxShieldObjects = 8;
+    private int maxShieldObjects = 5;
 
 
     [Header("GameObjects")]

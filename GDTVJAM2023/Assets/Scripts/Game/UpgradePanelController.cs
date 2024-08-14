@@ -373,7 +373,7 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.upgrades[85].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[85].UpgradeCount;
                 break;
             case 23: // Guardian Drive
-                playerWeaponController.shipData.boostSize = playerWeaponController.shipData.boostSize * 0.6f;
+                playerWeaponController.shipData.boostSize = playerWeaponController.shipData.boostSize * 1.6f;
                 break;
             case 24: // Force Multiplier
                 playerWeaponController.shipData.boostDamage = playerWeaponController.shipData.boostDamage * 2;

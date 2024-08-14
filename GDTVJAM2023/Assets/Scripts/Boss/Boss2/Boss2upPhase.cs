@@ -41,7 +41,7 @@ public class Boss2upPhase : MonoBehaviour
     public void PhaseUP()
     {
         AudioManager.Instance.PlaySFX("Boss2ShieldSpawn");
-        transform.DOMoveY(6.7f, 2f).SetDelay(2f).OnComplete(() => 
+        transform.DOMoveY(6.9f, 2f).SetDelay(2f).OnComplete(() => 
         {
             isShieldActive = true;
             downPhase.ActivateShield();
@@ -59,7 +59,7 @@ public class Boss2upPhase : MonoBehaviour
             laserPointer4.gameObject.SetActive(true);
 
             isRotate = true;
-            transform.DOMoveY(8.1f, 7f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+            transform.DOMoveY(7.9f, 7f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
         });
     }
 

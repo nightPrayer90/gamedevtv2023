@@ -7,7 +7,7 @@ using DG.Tweening;
 public class Boss2DownPhase : MonoBehaviour
 {
     public GameObject replacement;
-    public MeshRenderer shieldMesh;
+    public GameObject shieldMesh;
     public MeshRenderer objMesh;
 
     private bool isRotate = false;
@@ -39,7 +39,7 @@ public class Boss2DownPhase : MonoBehaviour
         
         shieldCollider1.enabled = true;
         isRotate = true;
-        shieldMesh.enabled = true;
+        shieldMesh.SetActive(true);
         shieldMesh.transform.DOScale(new Vector3(100, 100, 100), 0.5f);
         transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 2f, 10, 1);
     }
