@@ -83,7 +83,7 @@ MonoBehaviour:
   speed: 2.2
   rotationSpeed: 7.5
   startTime: 0.5
-  exposionHitObject: {fileID: 4303235208557751318, guid: eb9d00288658133488952b36c49aca32, type: 3}
+  exposionHitObject: {fileID: 4303235208557751318, guid: d844d25c4ee71024db1e26bfeec0e2ad, type: 3}
   iniLifeTime: 2.2
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
   isMainWeapon: 0

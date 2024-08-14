@@ -8,12 +8,13 @@ public class DamageAreaMarkerRockets : MonoBehaviour
     private Vector3 rocketTransform;
     public DropRocketController rocketController;
 
+
     private void OnEnable()
     {
         // FadeIn
         float diameter = rocketController.explosionRadius * 2;
-        spR.DOFade(0.1f, .1f);
-        gameObject.transform.DOScale(new Vector3(diameter, diameter, diameter), 0.1f);
+        spR.DOFade(0.1f, .005f);
+        gameObject.transform.DOScale(new Vector3(diameter, diameter, diameter), 0.25f);
         rocketTransform = transform.position;
 
     }

@@ -57,6 +57,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeSpeed: 0.8
+  canExplode: 0
 --- !u!1 &2049366947246863658
 GameObject:
   m_ObjectHideFlags: 0

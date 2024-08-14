@@ -114,6 +114,7 @@ public class ModuleStorage : MonoBehaviour
         hangarInputHandler.OnModuleRemove += HangarRemoveModule;
     }
 
+
     public void LoadShip()
     {
         // load active ship
@@ -147,12 +148,16 @@ public class ModuleStorage : MonoBehaviour
         BuildModuleGrid();
 
         hangarUIController.SetShipPanel();
+        hangarInputHandler.OnModuleRemove -= HangarRemoveModule;
     }
+    
+    
 
-    /// <summary>
-    /// Called when exiting the Hangar scene. Copies runtime module lists to savable data
-    /// </summary>
-    private void OnDestroy()
+
+/// <summary>
+/// Called when exiting the Hangar scene. Copies runtime module lists to savable data
+/// </summary>
+private void OnDestroy()
     {
         List<ModuleData> ship = new();
         foreach (ModuleDataRuntime item in installedModuleData)

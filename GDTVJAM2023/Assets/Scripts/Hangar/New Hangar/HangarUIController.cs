@@ -111,6 +111,11 @@ public class HangarUIController : MonoBehaviour
         }*/
     }
 
+    private void OnDestroy()
+    {
+        selectionController.OnDeselect -= HandleDeselect;
+    }
+
     // handle Sphere selection
     public void HandleShpereSelect(Sphere selection)
     {

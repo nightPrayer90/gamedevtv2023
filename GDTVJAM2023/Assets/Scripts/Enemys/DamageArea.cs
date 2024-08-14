@@ -13,7 +13,7 @@ public class DamageArea : MonoBehaviour
         // FadeIn
         damageParticle.Play();
         spR.DOFade(0.2f, 4f);
-        gameObject.transform.DOScale(new Vector3(2, 2, 2), 4f);
+        gameObject.transform.DOScale(new Vector3(2.2f, 2.2f, 2.2f), 4f);
     }
 
     // Update is called once per frame

@@ -19,6 +19,12 @@ public class HangarInputHandler : MonoBehaviour, _9Dystricts.IHangarActions
         inputWrapper.Enable();
     }
 
+    private void OnDestroy()
+    {
+        inputWrapper.Hangar.RemoveCallbacks(this);
+        inputWrapper.Disable();
+    }
+
     public void OnAbort(InputAction.CallbackContext context)
     {
         throw new System.NotImplementedException();

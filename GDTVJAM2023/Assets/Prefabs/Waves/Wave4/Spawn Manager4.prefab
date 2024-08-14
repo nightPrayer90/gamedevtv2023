@@ -49,7 +49,7 @@ MonoBehaviour:
   - enemyToSpawn: {fileID: 3161139216598759944, guid: 0a5326b87779c0846b560d35ceaaa6fa, type: 3}
     spawnProbabilities: 50
     isGroundEnemy: 0
-  - enemyToSpawn: {fileID: 3161139216598759944, guid: 5d41a5c55aac8f9408cb0cd47d6c73cc, type: 3}
+  - enemyToSpawn: {fileID: 3161139216598759944, guid: 6072e4145da2f9949b626e0c58f9a586, type: 3}
     spawnProbabilities: 20
     isGroundEnemy: 0
   - enemyToSpawn: {fileID: 3161139216598759944, guid: 7c0f92518bb379d4fbb238b46803d5a9, type: 3}

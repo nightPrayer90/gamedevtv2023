@@ -10003,6 +10003,7 @@ MonoBehaviour:
   canPoolObject: 1
   isBoss: 0
   isGround: 1
+  burnTickCount: 0
   canTakeLaserDamage: 0000000000
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
   critColor: {r: 1, g: 0, b: 0.98039216, a: 1}

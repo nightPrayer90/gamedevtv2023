@@ -20,6 +20,7 @@ public class FadeOut : MonoBehaviour
 
         // Ziel-Farben-Array initialisieren
         targetColors = new Color[childRenderers.Length];
+
         for (int i = 0; i < childRenderers.Length; i++)
         {
             Material[] materials = childRenderers[i].materials;

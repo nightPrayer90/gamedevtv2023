@@ -35,6 +35,11 @@ public class HangarSelection : MonoBehaviour
         moduleStorage = GameObject.Find("Ship").GetComponent<ModuleStorage>();
     }
 
+    private void OnDestroy()
+    {
+        hangarInputHandler.OnNavigatePress -= HangarInputHandler_OnNavigatePress;
+    }
+
     private void HangarInputHandler_OnNavigatePress(Vector2 v)
     {
         SelectModuleAtPosition((int)v.x + curX, (int)v.y + curZ);

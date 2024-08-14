@@ -535,7 +535,6 @@ public class PlayerWeaponController : MonoBehaviour
         shipData.baseLaserTickDamage = 5;
         //shipData.baseAttackSpeed = 0;
         shipData.laserBurningTickDamangePercent = 100;
-        shipData.boostInvulnerability = 0.5f;
 
         shipData.percBulletDamage = 0;
         shipData.percRocketDamage = 0;
@@ -544,8 +543,6 @@ public class PlayerWeaponController : MonoBehaviour
         shipData.chanceToGetHealth = 0;
         shipData.chanceToGetFullEnergy = 0;
         shipData.rocketLifeTime = 0;
-        shipData.shieldHealth = 3;
-        shipData.shieldDamage = 0;
         shipData.bossBonusDamage = 0;
         shipData.supportReloadTime = 0;
 
@@ -553,7 +550,14 @@ public class PlayerWeaponController : MonoBehaviour
         shipData.bulletCritDamage = 0;
         shipData.burnDamageChance = 0;
         shipData.rocketAOERadius = 0;
-    }
+
+        shipData.shieldHealth = 6;
+        shipData.shieldDamage = 0;
+
+        shipData.boostInvulnerability = 0.5f;
+        shipData.boostSize = 1.2f;
+        shipData.boostDamage = 20;
+}
 
     /* **************************************************************************** */
     /* Shootsound ----------------------------------------------------------------- */

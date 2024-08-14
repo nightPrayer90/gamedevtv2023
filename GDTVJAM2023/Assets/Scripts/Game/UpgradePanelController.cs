@@ -315,7 +315,7 @@ public class UpgradePanelController : MonoBehaviour
 
                 upgradeChooseList.upgrades[77].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[77].UpgradeCount;
                 upgradeChooseList.upgrades[78].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[78].UpgradeCount;
-                upgradeChooseList.upgrades[36].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[36].UpgradeCount;
+                //upgradeChooseList.upgrades[36].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[36].UpgradeCount;
                 upgradeChooseList.upgrades[79].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[79].UpgradeCount;
 
                 //upgradeChooseList.weaponUpgrades[77].reqRocket = 2; // Fury Nova
@@ -644,7 +644,7 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 78: // Nuclear Novas
-                upgradeChooseList.upgrades[77].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[77].UpgradeCount; 
+                upgradeChooseList.upgrades[77].upgradeStartCount = 0; 
                 //upgradeChooseList.weaponUpgrades[77].reqRocket = 99; // Fury Nova
                 playerWeaponController.neRadius += 0.12f;
                 playerWeaponController.neReloadTime += 0.3f;

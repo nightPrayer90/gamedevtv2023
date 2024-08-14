@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UI;
-using UnityEditor;
 
 public class Boss03 : MonoBehaviour
 {
@@ -19,8 +17,8 @@ public class Boss03 : MonoBehaviour
 
 
     [Header("GameObjects")]
-    public Material buildingMaterial;
-    public Material emissivMaterial;
+    //public Material buildingMaterial;
+    //public Material emissivMaterial;
     public MeshRenderer bossMeshRenderer;
     public ParticleSystem rippleParticle;
     public ParticleSystem rippleParticleDie;
@@ -45,6 +43,7 @@ public class Boss03 : MonoBehaviour
     public BossParticle bossParticle;
     private BossUI bossUI;
     public BossMinimapIcon bossMinimapIcon;
+    public BossModulMainengine engineParticle;
     public Sprite bossUIForgroundSprite;
 
 
@@ -65,10 +64,10 @@ public class Boss03 : MonoBehaviour
         enemyHealthScr.canTakeDamage = false;
 
         // update materials
-        materialList = bossMeshRenderer.materials;
+        /*materialList = bossMeshRenderer.materials;
         materialList[0] = buildingMaterial;
         materialList[1] = buildingMaterial;
-        bossMeshRenderer.materials = materialList;
+        bossMeshRenderer.materials = materialList;*/
 
         // fighting steps
         isState = new bool[numberOfFightingStates];
@@ -132,6 +131,7 @@ public class Boss03 : MonoBehaviour
             damageArea.SetActive(true);
             gameManager.ScreenShake(3);
             AudioManager.Instance.PlaySFX("LiftUPBoss");
+            engineParticle.EngineActivate();
 
             // open bosshud
             bossUI.InitHealthBar(enemyHealthScr.enemyHealth, bossUIForgroundSprite);
@@ -169,8 +169,8 @@ public class Boss03 : MonoBehaviour
         gameObject.tag = "secondDimensionEnemy";
 
         // set activate material
-        materialList[1] = emissivMaterial;
-        bossMeshRenderer.materials = materialList;
+        //materialList[1] = emissivMaterial;
+        //bossMeshRenderer.materials = materialList;
 
         // go into fighting phase
         enemyHealthScr.canTakeDamage = true;
@@ -286,6 +286,8 @@ public class Boss03 : MonoBehaviour
 
     private void DieState()
     {
+        engineParticle.EngineStop();
+
         verticalRocketSpawner[0].SetActive(false);
         verticalRocketSpawner[1].SetActive(false);
         verticalRocketSpawner[2].SetActive(false);
@@ -309,8 +311,8 @@ public class Boss03 : MonoBehaviour
             bossChanceState.Play();
 
             // set activate material
-            materialList[1] = buildingMaterial;
-            bossMeshRenderer.materials = materialList;
+            //materialList[1] = buildingMaterial;
+            //bossMeshRenderer.materials = materialList;
 
             transform.DOScale(new Vector3(0.7f, 0.7f, 0.7f), 2f).SetDelay(2f);
             transform.DOShakePosition(4f, 0.3f, 20, 90, false, true).OnComplete(() =>

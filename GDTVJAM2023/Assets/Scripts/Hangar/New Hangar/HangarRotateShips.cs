@@ -45,6 +45,10 @@ public class HangarRotateShips : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        hangarInputHandler.OnPresetChange -= HangarInputHandler_OnPresetChange;
+    }
     public void RotateShip( int rotateIndex, bool isSmooth)
     {
 

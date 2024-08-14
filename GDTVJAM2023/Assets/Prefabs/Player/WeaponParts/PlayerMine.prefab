@@ -88,7 +88,7 @@ MonoBehaviour:
   explosionForce: 0
   isMainWeapon: 0
   hitColor: {r: 0, g: 0, b: 0, a: 0}
-  exposionHitObject: {fileID: 4303235208557751318, guid: eb9d00288658133488952b36c49aca32, type: 3}
+  exposionHitObject: {fileID: 4303235208557751318, guid: d844d25c4ee71024db1e26bfeec0e2ad, type: 3}
 --- !u!1 &6972622968166032681
 GameObject:
   m_ObjectHideFlags: 0

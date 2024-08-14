@@ -53,6 +53,12 @@ public class MineController : MonoBehaviour
             transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
         }
     }
+
+    private void OnDisable()
+    {
+        isActive = false;
+        isDetected = false;
+    }
     #endregion
 
 

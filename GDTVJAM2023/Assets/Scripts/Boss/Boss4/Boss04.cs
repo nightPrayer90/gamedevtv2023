@@ -344,7 +344,7 @@ public class Boss04 : MonoBehaviour
 
             float distance = DistanceToPlayer();
 
-            if (distance > 10) attackType = 0;
+            if (distance > 10) attackType = 2;
             lastAttack = attackType;
         }
 

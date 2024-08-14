@@ -560,7 +560,7 @@ MonoBehaviour:
     reqAbility: 
     UpgradeCount: 1
     upgradeStartCount: 0
-  - headerStr: Boosted Nova Impact
+  - headerStr: '-'
     upgradeIndex: 36
     passivUpgradeString: 
     descriptionStr: Triggers a nova when you hit an enemy with your power boost.
@@ -573,7 +573,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 1
     reqAbility: Shock Nova
-    UpgradeCount: 1
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Deadly Focus
     upgradeIndex: 37

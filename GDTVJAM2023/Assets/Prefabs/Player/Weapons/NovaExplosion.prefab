@@ -49,7 +49,7 @@ MonoBehaviour:
   spawnInterval: 4
   explosionRadius: 2
   explosionForce: 450
-  explosionFX: {fileID: 4303235208557751318, guid: c01ac0e458a23da41aaf1c60e7ee97a7, type: 3}
+  explosionFX: {fileID: 4303235208557751318, guid: 42d850b72e53f8c44947d5b640255c6a, type: 3}
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
   loadParticle: {fileID: 3373119549730042108}
 --- !u!1 &8649756269304721783
