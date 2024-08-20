@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rocketPrefab: {fileID: 667735904795272308, guid: 6f4535895f36db448ae74e94071716f8, type: 3}
-  rocketSpawnCount: 20
+  rocketSpawnCount: 13
   realoadTime: 45
   reloadFlag: 1
   abSprite: {fileID: 21300000, guid: 9d6a3bfdf73489748967838ab10b4010, type: 3}

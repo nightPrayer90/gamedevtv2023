@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4995706187326938098}
   - component: {fileID: 5180897813035817104}
   - component: {fileID: -2623270129111190686}
+  - component: {fileID: 6489212486407357813}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Rocket
@@ -90,6 +91,19 @@ MonoBehaviour:
   explosionRadius: 0
   explosionForce: 300
   trail: {fileID: 4328560397251660117}
+--- !u!114 &6489212486407357813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667735904795272308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b297518689a81f4b9e215bc0db0ccbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 4303235208557751318, guid: d844d25c4ee71024db1e26bfeec0e2ad, type: 3}
 --- !u!1 &3158021872524687179
 GameObject:
   m_ObjectHideFlags: 0

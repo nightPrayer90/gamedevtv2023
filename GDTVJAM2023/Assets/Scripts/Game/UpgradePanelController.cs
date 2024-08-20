@@ -48,10 +48,10 @@ public class UpgradePanelController : MonoBehaviour
 
     void OnEnable()
     {
-        upgradeIndex = new int[3] {0,0,0};
-        upgradeValue = new float[3] {0,0,0};
-        upgradeCount = new int[3] {0,0,0};
-        iconPanel = new Sprite[3] {null,null,null};
+        upgradeIndex = new int[3] { 0, 0, 0 };
+        upgradeValue = new float[3] { 0, 0, 0 };
+        upgradeCount = new int[3] { 0, 0, 0 };
+        iconPanel = new Sprite[3] { null, null, null };
 
         selectetPanel = -1;
         isTweening = true;
@@ -136,7 +136,7 @@ public class UpgradePanelController : MonoBehaviour
     public void StringLibrary()
     {
         for (int i = 0; i < 3; i++)
-        {          
+        {
             upgradeIndex[i] = gameManager.selectedNumbers_[i];
             Upgrade upgrade = upgradeChooseList.uLObject.upgradeList[upgradeIndex[i]];
 
@@ -165,7 +165,7 @@ public class UpgradePanelController : MonoBehaviour
             // weapon Upgrades
             if ((number > 5 && number <= 17) || number == 69)
             {
-//                selectedUpgradePanelList[weaponCount].sprite = iconPanel[index];
+                //                selectedUpgradePanelList[weaponCount].sprite = iconPanel[index];
                 selectedUpgradePanelList[weaponCount].gameObject.GetComponent<ClassTooltipTrigger>().contentType = number;
             }
 
@@ -199,10 +199,10 @@ public class UpgradePanelController : MonoBehaviour
                 float normalizedLvl = Mathf.InverseLerp(0, 10, playerController.protectionLvl + 1);
                 float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
                 playerController.protectionPerc = targetPercentage;
-                playerController.protectionLvl ++;
+                playerController.protectionLvl++;
                 break;
             case 3: //upgrade: boost
-                
+
                 playerController.energieMax = playerController.energieMax * (1.15f);
                 gameManager.energieSlider.maxValue = playerController.energieMax;
                 gameManager.energieSlider.value = playerController.energieMax;
@@ -216,7 +216,7 @@ public class UpgradePanelController : MonoBehaviour
             case 6: //weapon: headgun
                 playerWeaponController.isHeadCannon = true;
                 playerWeaponController.WeaponChoose();
-                UpdateClass(number,1);
+                UpdateClass(number, 1);
                 GoBackToDimension();
                 weaponCount++;
 
@@ -229,7 +229,7 @@ public class UpgradePanelController : MonoBehaviour
             case 7: //weapon: rocket launcher
                 playerWeaponController.isRocketLauncher = true;
                 playerWeaponController.WeaponChoose();
-                UpdateClass(number,1);
+                UpdateClass(number, 1);
                 GoBackToDimension();
                 upgradeChooseList.upgrades[57].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[57].UpgradeCount;
                 //upgradeChooseList.weaponUpgrades[57].reqRocket = 3; // Explosive Impact
@@ -239,7 +239,7 @@ public class UpgradePanelController : MonoBehaviour
             case 8: //weapon: fire flys
                 playerWeaponController.isFireFlies = true;
                 playerWeaponController.WeaponChoose();
-                UpdateClass(number,1);
+                UpdateClass(number, 1);
                 GoBackToDimension();
                 upgradeChooseList.upgrades[58].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[58].UpgradeCount;
                 //upgradeChooseList.weaponUpgrades[58].reqBullet = 4; // Explosive Impact
@@ -249,7 +249,7 @@ public class UpgradePanelController : MonoBehaviour
             case 9: //weapon: bullet wings
                 playerWeaponController.isBulletWings = true;
                 playerWeaponController.WeaponChoose();
-                UpdateClass(number,1);
+                UpdateClass(number, 1);
                 GoBackToDimension();
                 weaponCount++;
                 break;
@@ -275,7 +275,7 @@ public class UpgradePanelController : MonoBehaviour
             case 11: //weapon: spread gun
                 playerWeaponController.isSpreadGun = true;
                 playerWeaponController.WeaponChoose();
-                UpdateClass(number,1);
+                UpdateClass(number, 1);
                 GoBackToDimension();
 
                 upgradeChooseList.upgrades[50].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[50].UpgradeCount;
@@ -310,7 +310,7 @@ public class UpgradePanelController : MonoBehaviour
             case 14: //weapon: schock nova
                 playerWeaponController.isNovaExplosion = true;
                 playerWeaponController.WeaponChoose();
-                UpdateClass(number,1);
+                UpdateClass(number, 1);
                 GoBackToDimension();
 
                 upgradeChooseList.upgrades[77].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[77].UpgradeCount;
@@ -327,21 +327,21 @@ public class UpgradePanelController : MonoBehaviour
             case 15: //weapon: rocket wings
                 playerWeaponController.isRockedWings = true;
                 playerWeaponController.WeaponChoose();
-                UpdateClass(number,1);
+                UpdateClass(number, 1);
                 GoBackToDimension();
                 weaponCount++;
                 break;
             case 16: //weapon: front laser
                 playerWeaponController.isFrontLaser = true;
                 playerWeaponController.WeaponChoose();
-                UpdateClass(number,1);
+                UpdateClass(number, 1);
                 GoBackToDimension();
                 weaponCount++;
                 break;
             case 17: //weapon: orbital laser
                 playerWeaponController.isOrbitalLaser = true;
                 playerWeaponController.WeaponChoose();
-                UpdateClass(number,1);
+                UpdateClass(number, 1);
                 GoBackToDimension();
 
                 upgradeChooseList.upgrades[56].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[56].UpgradeCount;
@@ -423,11 +423,10 @@ public class UpgradePanelController : MonoBehaviour
             case 35: // Chance to trigger a Nova if u get hit
                      // upgradeChooseList.weaponIndexInstalled[number] += 1;
                 break;
-            case 36: // Chance to trigger a Nova if u dash Enemys
-
+            case 36: // Rocket Overdrive
+                playerWeaponController.shipData.extraRockets += 4;
                 break;
             case 37: // Bullet crit chance +10%
-
                 playerWeaponController.shipData.bulletCritChance += 10;
                 playerWeaponController.WeaponChoose();
                 break;
@@ -501,13 +500,13 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.UpdateMWBulletFireRate(0.93f);
                 break;
             case 52: // Kaboomed Targets
-               
+
                 break;
             case 53: // Critical Explosion
-          
+
                 break;
             case 54: // Detonation Crits
-                
+
                 break;
             case 55: // Titan Slayer
 
@@ -553,9 +552,9 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.hcReloadTime = 1f;
                 playerWeaponController.UpdateWeaponValues();
 
-                upgradeChooseList.upgrades[65].upgradeStartCount = 0 ;
-                upgradeChooseList.upgrades[67].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[67].UpgradeCount; 
-                upgradeChooseList.upgrades[76].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[76].UpgradeCount; 
+                upgradeChooseList.upgrades[65].upgradeStartCount = 0;
+                upgradeChooseList.upgrades[67].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[67].UpgradeCount;
+                upgradeChooseList.upgrades[76].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[76].UpgradeCount;
                 //upgradeChooseList.weaponUpgrades[65].reqBullet = 99; // Big Head Cannon
                 //upgradeChooseList.weaponUpgrades[67].reqBullet = 3; // Gatlin Head Cannon
                 //upgradeChooseList.weaponUpgrades[76].reqBullet = 4; // Cannon Power
@@ -567,7 +566,7 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.UpdateWeaponValues();
 
                 upgradeChooseList.upgrades[64].upgradeStartCount = 0;
-                upgradeChooseList.upgrades[66].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[66].UpgradeCount; 
+                upgradeChooseList.upgrades[66].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[66].UpgradeCount;
                 //upgradeChooseList.weaponUpgrades[64].reqBullet = 99; // Fast Head Cannon
                 //upgradeChooseList.weaponUpgrades[66].reqBullet = 3; // Sniper Head Cannon
                 break;
@@ -621,7 +620,7 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 74: // Enhanced Plasma  Spheres
                 upgradeChooseList.upgrades[70].upgradeStartCount = 0;
-                upgradeChooseList.upgrades[75].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[75].UpgradeCount; 
+                upgradeChooseList.upgrades[75].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[75].UpgradeCount;
                 //upgradeChooseList.weaponUpgrades[70].reqLaser = 99; // Chaotic Shperes
                 //upgradeChooseList.weaponUpgrades[75].reqLaser = 4; // Big Photon Sphere
                 playerWeaponController.tsLifetime += 1;
@@ -637,14 +636,14 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 77: // Fury Novas
-                upgradeChooseList.upgrades[78].upgradeStartCount = 0; 
+                upgradeChooseList.upgrades[78].upgradeStartCount = 0;
                 //upgradeChooseList.weaponUpgrades[78].reqRocket = 99; // Nuclear Nova
                 playerWeaponController.neRadius -= 0.15f;
                 playerWeaponController.neReloadTime -= 0.8f;
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 78: // Nuclear Novas
-                upgradeChooseList.upgrades[77].upgradeStartCount = 0; 
+                upgradeChooseList.upgrades[77].upgradeStartCount = 0;
                 //upgradeChooseList.weaponUpgrades[77].reqRocket = 99; // Fury Nova
                 playerWeaponController.neRadius += 0.12f;
                 playerWeaponController.neReloadTime += 0.3f;
@@ -666,7 +665,7 @@ public class UpgradePanelController : MonoBehaviour
                 weaponCount++;
                 break;
             case 82: // Burning Spheres
-                
+
                 break;
             case 83: // Bloodlust Shurikens
                 playerWeaponController.bbKillBeams += 1;
@@ -677,6 +676,12 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 85: // Blade Nova
+
+                break;
+            case 86: // Overheating Rockets
+                playerWeaponController.shipData.extraDamage += 1;
+                break;
+            case 87: // Corpse explosion
 
                 break;
         }
@@ -744,7 +749,7 @@ public class UpgradePanelController : MonoBehaviour
         playerWeaponController.UpdateWeaponValues();
     }
 
-     private void GoBackToDimension()
+    private void GoBackToDimension()
     {
         gameManager.GoBackDimension();
         AudioManager.Instance.PlaySFX("DimensionSwap");

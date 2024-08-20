@@ -48,10 +48,8 @@ MonoBehaviour:
   baseDamage: 5
   lifeTime: 10
   spawnInterval: 2
-  MineToLaunch:
-  - {fileID: 6972622967973928741, guid: dd996c63902ee704ab3a981989316a9e, type: 3}
+  MineToLaunch: {fileID: 6972622967973928741, guid: dd996c63902ee704ab3a981989316a9e, type: 3}
   spawnPoint: {fileID: 7608659783266222577}
-  hitColor: {r: 1, g: 0.6, b: 0, a: 1}
 --- !u!1 &7608659783266222577
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static NewEnemyMovement;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class EnemyHealth : MonoBehaviour
     public GameObject _burnReplacement;
     public GameObject dropObject;
     public GameObject miniMapIcon;
-    public GameObject novaOnDie;
+    public GameObject novaExplosionPrefab;
+
     public ParticleSystem burnParticleSystem;
     public Collider enemyCollider;
 
@@ -27,6 +29,10 @@ public class EnemyHealth : MonoBehaviour
     public event EventHandler DieEvent;
     public bool isBoss = false;
     public bool isGround = false;
+    [HideInInspector] public int novaOnDieTriggerType = -1; 
+    // comes from other Objects - if the Object dies 
+    //   -1 => dont trigger anything
+
 
     [Header("Collision Control")]
     public List<ParticleCollisionEvent> collisionEvents;
@@ -87,8 +93,10 @@ public class EnemyHealth : MonoBehaviour
         canTakeLaserDamage[4] = true; // Orbital Laser
         canTakeLaserDamage[5] = true; // Backfire Beam
         canTakeLaserDamage[6] = true; // Backfire Beam Split
-        
+
         gameManager.OnDimensionSwap += HandleDimensionSwap;
+
+        novaOnDieTriggerType = -1;
     }
 
     private void Start()
@@ -148,7 +156,10 @@ public class EnemyHealth : MonoBehaviour
                 {
                     damage = CritDamage(damage);
                     resultColor = critColor;
-                    NovaOnDie(1);
+
+
+                    if (upgradeChooseList.upgrades[52].upgradeIndexInstalled == 1)
+                        NovaOnDie(1);
                 }
 
                 // calculate Enemy Health
@@ -210,6 +221,11 @@ public class EnemyHealth : MonoBehaviour
                 }
                 Die();
             }
+            else
+            {
+                // reset novaOnDieTriggerType
+                novaOnDieTriggerType = -1;
+            }
         }
     }
 
@@ -265,7 +281,10 @@ public class EnemyHealth : MonoBehaviour
     {
         if (burnParticleSystem != null)
             burnParticleSystem.Play();
-        InvokeRepeating("TakeBurningDamage", .2f, 1f);
+
+        burnTickCount = 0;
+        CancelInvoke(nameof(TakeBurningDamage));
+        InvokeRepeating(nameof(TakeBurningDamage), .2f, 1f);
     }
 
     public void TakeBurningDamage()
@@ -279,7 +298,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (burnTickCount > playerWeaponController.shipData.baseLaserTicks)
         {
-            CancelInvoke("TakeBurningDamage");
+            CancelInvoke(nameof(TakeBurningDamage));
             burnTickCount = 0;
             isBurning = false;
             if (burnParticleSystem != null)
@@ -305,7 +324,7 @@ public class EnemyHealth : MonoBehaviour
         UpdatePlayerUI();
 
         // calculate chance of explosion
-        NovaOnDie(0);
+        NovaOnDie(novaOnDieTriggerType);
 
         canTakeDamage = false;
         isdied = true;
@@ -372,97 +391,59 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+
     private void NovaOnDie(int novaTyp) //0=die 1=crit
     {
-        if (novaOnDie != null && (upgradeChooseList.upgrades[52].upgradeIndexInstalled == 1 || upgradeChooseList.upgrades[23].upgradeIndexInstalled == 1))
+        if (novaExplosionPrefab != null && novaTyp != -1)
         {
-            Vector3 pos = new Vector3(0, 0, 0);
             float explosionRadius = 0;
             int novaDamage = 0;
+            int explosionForce = 0;
+            int novaOnDieTriggerType = -1;
 
             switch (novaTyp)
             {
-                case 0: // Nova triggert from die
-                    if (UnityEngine.Random.Range(0, 100) > 10)
-                    {
-                        return;
-                    }
-                    pos = transform.position;
+                case 0: // Nova triggert from die (not in Use)
+                    if (UnityEngine.Random.Range(0, 100) > 0) return;
 
-                    explosionRadius = 1.5f * (1 + playerWeaponController.shipData.rocketAOERadius/100);
+                    explosionRadius = 0.5f * (1 + playerWeaponController.shipData.rocketAOERadius / 100);
                     novaDamage = 10;
+                    explosionForce = 200;
 
                     break;
 
                 case 1: // Nova triggert from crit
-                    if (UnityEngine.Random.Range(0, 100) > 5)
+                    if (UnityEngine.Random.Range(0, 100) > 5) return;
+
+                    AudioManager.Instance.PlaySFX("Playernova");
+                    explosionRadius = 0.3f * (1 + playerWeaponController.shipData.rocketAOERadius / 100);
+                    novaDamage = 3;
+                    explosionForce = 150;
+
+                    break;
+
+                case 2: // Rockets from Cockpit ability
+                    if (upgradeChooseList.upgrades[87].upgradeIndexInstalled > 0)
+                    {
+                        if (UnityEngine.Random.Range(0, 100) > 25) return;
+                        explosionRadius = 1.3f * (1 + playerWeaponController.shipData.rocketAOERadius / 100);
+                        novaDamage = 15;
+                        explosionForce = 150;
+                        novaOnDieTriggerType = 2; //can trigger a chainReaction
+                    }
+                    else
                     {
                         return;
                     }
-                    pos = transform.position;
-
-                    explosionRadius = 0.5f * (1+playerWeaponController.shipData.rocketAOERadius/100);
-                    novaDamage = 6;
-
                     break;
             }
 
-            LayerMask layerMask = (1 << 6);
-            if (gameManager.dimensionShift == true)
-            {
-                layerMask = (1 << 9);
-            }
-
-            // Audio
-            AudioManager.Instance.PlaySFX("Playernova");
-
-
-            // array of all Objects in the explosionRadius
-            var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius, layerMask);
-
-            foreach (var obj in surroundingObjects)
-            {
-                // get rigidbodys from all objects in range
-                var rb = obj.GetComponent<Rigidbody>();
-                if (rb == null) continue;
-
-                // calculate distance between explosioncenter and objects in Range
-                float distance = Vector3.Distance(pos, rb.transform.position);
-
-                if (distance < explosionRadius)
-                {
-                    resultColor = hitColor;
-                    float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius), 1f);
-                    int adjustedDamage = Mathf.CeilToInt(novaDamage * scaleFactor);
-
-                    if (upgradeChooseList.upgrades[54].upgradeIndexInstalled > 0)
-                    {
-                        int ran = UnityEngine.Random.Range(0, 100);
-                        if (ran < playerWeaponController.shipData.bulletCritChance)
-                        {
-                            adjustedDamage = CritDamage(adjustedDamage);
-                            resultColor = critColor;
-                        }
-                    }
-
-                    // get EnemyHealthscript
-                    EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
-
-                    if (eHC != null)
-                    {
-                        // show floating text
-                        if (eHC.canTakeDamage == true)
-                            gameManager.DoFloatingText(rb.transform.position, adjustedDamage.ToString(), resultColor);
-
-                        // calculate enemy damage
-                        eHC.TakeExplosionDamage(adjustedDamage);
-                    }
-                }
-                rb.AddExplosionForce(400, pos, explosionRadius);
-            }
-
-            GameObject go = ObjectPoolManager.SpawnObject(novaOnDie, transform.position, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
-            go.GetComponent<ParticleSystemDestroy>().rippleParicleSize = explosionRadius;
+            GameObject go = ObjectPoolManager.SpawnObject(novaExplosionPrefab, transform.position, transform.rotation, ObjectPoolManager.PoolType.Gameobject);
+            DamageExplosionController exC = go.GetComponent<DamageExplosionController>();
+            exC.damage = novaDamage;
+            exC.force = explosionForce;
+            exC.radius = explosionRadius;
+            exC.novaOnDieTriggerType = novaOnDieTriggerType;
         }
     }
     #endregion

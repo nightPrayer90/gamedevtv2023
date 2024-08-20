@@ -32,8 +32,6 @@ public class ShipData : ScriptableObject
 
     public float supportReloadTime = 0;
 
-    
-
     [Header("Weapon buffs")]
     public int bulletCritChance = 0;
     public int bulletCritDamage = 0;
@@ -57,4 +55,7 @@ public class ShipData : ScriptableObject
     public float boostSize = 1.2f;
     public int boostDamage = 20;
 
+    [Header("Rocket Rain")]
+    public int extraRockets = 0;
+    public int extraDamage = 0;
 }

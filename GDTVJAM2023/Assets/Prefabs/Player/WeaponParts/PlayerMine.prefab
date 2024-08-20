@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6972622967973928742}
   - component: {fileID: 6972622967973928743}
   - component: {fileID: 6972622967973928761}
+  - component: {fileID: -5571060404291402799}
   m_Layer: 0
   m_Name: PlayerMine
   m_TagString: Untagged
@@ -81,14 +82,25 @@ MonoBehaviour:
   floatHeight: 0.05
   floatSpeed: 1
   maxLifeTime: 10
-  damage: 8
   originalMaterial: {fileID: 2100000, guid: 8df1d89c54d6873449f4b49d4160f9bb, type: 2}
   detectedMaterial: {fileID: 2100000, guid: edb287f7c39d8c9429a10b296debcf15, type: 2}
+  damage: 8
   explosionRadius: 2
-  explosionForce: 0
+  explosionForce: 150
   isMainWeapon: 0
-  hitColor: {r: 0, g: 0, b: 0, a: 0}
-  exposionHitObject: {fileID: 4303235208557751318, guid: d844d25c4ee71024db1e26bfeec0e2ad, type: 3}
+--- !u!114 &-5571060404291402799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6972622967973928741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b297518689a81f4b9e215bc0db0ccbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 4303235208557751318, guid: d844d25c4ee71024db1e26bfeec0e2ad, type: 3}
 --- !u!1 &6972622968166032681
 GameObject:
   m_ObjectHideFlags: 0

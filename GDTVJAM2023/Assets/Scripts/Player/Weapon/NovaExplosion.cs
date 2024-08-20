@@ -6,14 +6,12 @@ public class NovaExplosion : MonoBehaviour
 {
     private GameManager gameManager;
     
-    [Header("Explosion Controll")]
+    [Header("Explosion Control")]
     public int novaDamage = 5;
     public float spawnInterval = 4f;
     public float explosionRadius = 5f;
     public float explosionForce = 400f;
     public GameObject explosionFX;
-    private LayerMask layerMask;
-    public Color hitColor = new Color(1f, 0.6f, 0.0f, 1f);
     private PlayerWeaponController weaponController;
     public ParticleSystem loadParticle;
     private UpgradeChooseList upgradeChooseList;
@@ -28,8 +26,6 @@ public class NovaExplosion : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
     }
-
-
 
 
     /* **************************************************************************** */
@@ -55,7 +51,7 @@ public class NovaExplosion : MonoBehaviour
         Vector3 pos = transform.position;
 
         // Layermask
-        layerMask = (1 << 6);
+        LayerMask layerMask = (1 << 6);
         if (gameManager.dimensionShift == true)
         {
             layerMask = (1 << 9);
@@ -81,13 +77,14 @@ public class NovaExplosion : MonoBehaviour
 
                 // get EnemyHealthscript
                 EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
-                Color resultColor = hitColor;
+                
 
                 if (eHC != null)
                 {
+                    Color resultColor = eHC.hitColor;
                     if (upgradeChooseList.upgrades[54].upgradeIndexInstalled > 0)
                     {
-                        int ran = UnityEngine.Random.Range(0, 100);
+                        int ran = Random.Range(0, 100);
                         if (ran < weaponController.shipData.bulletCritChance)
                         {
                             adjustedDamage = eHC.CritDamage(adjustedDamage);
@@ -117,11 +114,5 @@ public class NovaExplosion : MonoBehaviour
     {
         Invoke("SpawnNova", 1.5f);
         loadParticle.Play();
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }

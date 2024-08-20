@@ -135,7 +135,6 @@ public class NewRocketMainWeapon : BaseModule
             GameObject go = ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint.transform.position, spawnPoint.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
             RocketController rocket = go.GetComponent<RocketController>();
             rocket.damage = EnergieDamageDebuff(rockedResultDamage);
-            rocket.hitColor = hitColor;
             rocket.SetDestroyTimer();
             rocket.isMainWeapon = true;
 

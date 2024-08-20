@@ -54,6 +54,7 @@ MonoBehaviour:
   rb: {fileID: 8012587728195296573}
   damage: 4
   laserDamageChannel: 5
+  lifeTime: 3
   hitParticle: {fileID: 9166936555426604056}
   bladeParticle: {fileID: 7980838946804997665}
   projectileSize: {x: 2, y: 2, z: 2}

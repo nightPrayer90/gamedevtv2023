@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Explosion))]
 public class RocketController : MonoBehaviour
 {
     [Header("Rocket Settings")]
@@ -8,26 +9,23 @@ public class RocketController : MonoBehaviour
     public float rotationSpeed = 5f; // rotation speed
     public float startTime = 0.5f; // time until the rocked flys to a target
     protected float rotationSpeedtmp = 0;
-    public GameObject exposionHitObject;
     public float iniLifeTime;
     private float maxLifeTime;   // time before the rocked get destroyed
-    [HideInInspector] public Color hitColor;
-    public bool isMainWeapon = false;
-
+     
     [Header("Explosion Control")]
     public float explosionRadius = 5f;
-    public float explosionForce = 500f;
-    private LayerMask layerMask;
-
+    public int explosionForce = 500;
+    public int novaOnDieTriggerType = -1;
+    private Explosion explosion;
+    [HideInInspector]public bool isMainWeapon = false;
 
     [Header("Game Objects")]
     public GameObject trail;
     private GameObject target;
-    // private Rigidbody rbRocket;
-    protected GameManager gameManager;
+    private GameManager gameManager;
     private UpgradeChooseList upgradeChooseList;
-    protected PlayerWeaponController playerWeaponController;
-
+    private PlayerWeaponController playerWeaponController;
+    
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -39,16 +37,10 @@ public class RocketController : MonoBehaviour
         // set Game Objects
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
-
         playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
-        // reset Target
-        target = null;
+        explosion = gameObject.GetComponent<Explosion>();
 
-        // is main weapon flag=
-        isMainWeapon = false; // flag set from mwController
-
-        // Layermask
-        layerMask = (1 << 6);
+        target = null; // reset Target
     }
 
     protected void InitRocket()
@@ -93,6 +85,7 @@ public class RocketController : MonoBehaviour
     {
         // enemy target tag set
         string tagStr = "Enemy";
+        LayerMask layerMask = (1 << 6);
         if (gameManager.dimensionShift == true)
         {
             layerMask = (1 << 9);
@@ -102,7 +95,8 @@ public class RocketController : MonoBehaviour
         // enemy target tag compare only than destroy the rocked
         if (other.CompareTag(tagStr))
         {
-            Explode(other.gameObject);
+            CancelInvoke(nameof(DestroyObject));
+            explosion.InitExplosion(damage,explosionForce,explosionRadius,isMainWeapon,other.gameObject, novaOnDieTriggerType);
         }
     }
 
@@ -156,105 +150,14 @@ public class RocketController : MonoBehaviour
     }
 
 
-
-
     /* **************************************************************************** */
     /* FUNCTIONS TO RUN------------------------------------------------------------ */
     /* **************************************************************************** */
     // destroy function 
     private void DestroyObject()
     {
-        // enemy target tag set
-        if (gameManager.dimensionShift == true)
-        {
-            layerMask = (1 << 9);
-        }
-
-        Explode();
-    }
-
-    private void Explode(GameObject collisionTarget = null)
-    {
-        // postion of explosion Object
-        Vector3 pos = transform.position;
-
-        // cancle invoke
-        CancelInvoke("DestroyObject");
-
-        // array of all Objects in explosionRadius
-        float explosionRadius_ = explosionRadius * (1+playerWeaponController.shipData.rocketAOERadius/100);
-        var surroundingObjects = Physics.OverlapSphere(transform.position, explosionRadius_, layerMask);
-
-        foreach (var obj in surroundingObjects)
-        {
-            // control is shield;
-            EnemyShield eSh = obj.GetComponent<EnemyShield>();
-            if (eSh != null)
-            {
-                int shieldDamage = 1;
-                eSh.ShieldGetDamage(shieldDamage);
-                gameManager.DoFloatingText(transform.position, shieldDamage.ToString(), eSh.hitColor);
-                continue;
-            }
-
-            // get rigidbodys from all objects in range
-            var rb = obj.GetComponent<Rigidbody>();
-            if (rb == null) continue;
-
-           
-            // calculate distance between explosioncenter and objects in Range
-            float distance = Vector3.Distance(pos, rb.transform.position);
-
-
-            // get EnemyHealthscript
-            EnemyHealth eHC = obj.GetComponent<EnemyHealth>();
-            Color resultColor = hitColor;
-            int adjustedDamage = damage;
-
-            if (eHC.isBoss == true && isMainWeapon == true)
-            {
-                adjustedDamage = Mathf.CeilToInt((float)damage * (1+(float)playerWeaponController.shipData.bossBonusDamage / 100));
-            }
-
-            if (eHC != null)
-            {
-                if (obj.gameObject != collisionTarget)
-                {
-                    if (distance < explosionRadius_)
-                    {
-                        float scaleFactor = Mathf.Min(1.4f - (distance / explosionRadius_), 1f);
-                        adjustedDamage = Mathf.CeilToInt(adjustedDamage * scaleFactor); 
-                    }
-                }
-            
-                if (upgradeChooseList.upgrades[54].upgradeIndexInstalled > 0)
-                {
-                    int ran = UnityEngine.Random.Range(0, 100);
-                    if (ran < playerWeaponController.shipData.bulletCritChance)
-                    {
-                        adjustedDamage = eHC.CritDamage(adjustedDamage);
-                        resultColor = eHC.critColor;
-                    }
-                }
-
-                // show floating text
-                if (eHC.canTakeDamage == true)
-                    gameManager.DoFloatingText(obj.transform.position, adjustedDamage.ToString(), resultColor);
-
-                // calculate enemy damage
-                eHC.TakeExplosionDamage(adjustedDamage);
-            }
-            rb.AddExplosionForce(explosionForce, pos, explosionRadius_);
-        }
-
-
-        // spawn the explosion object
-        GameObject go = ObjectPoolManager.SpawnObject(exposionHitObject, pos, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);
-
-        go.GetComponent<ParticleSystemDestroy>().rippleParicleSize = explosionRadius_;
-
-        // object goes back to the pool
-        ObjectPoolManager.ReturnObjectToPool(gameObject);
+        CancelInvoke(nameof(DestroyObject));
+        explosion.InitExplosion(damage, explosionForce, explosionRadius, isMainWeapon, null, novaOnDieTriggerType);
     }
 
     private void ActivateTrail()

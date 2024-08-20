@@ -28,6 +28,12 @@ public class ab_InfernoRockets : MonoBehaviour
 
         gameManager.InitAbilityUI(abSprite);
         SetReloadFlag();
+
+        // activate shield upgrades
+        UpgradeChooseList uCl = gameManager.gameObject.GetComponent<UpgradeChooseList>();
+        uCl.upgrades[36].upgradeStartCount = uCl.uLObject.upgradeList[36].UpgradeCount; // Rocket Overdrive
+        uCl.upgrades[86].upgradeStartCount = uCl.uLObject.upgradeList[86].UpgradeCount; // Overheating Rockets
+        uCl.upgrades[87].upgradeStartCount = uCl.uLObject.upgradeList[87].UpgradeCount; // Corpse explosion
     }
 
 
@@ -57,13 +63,13 @@ public class ab_InfernoRockets : MonoBehaviour
    
         GameObject go = ObjectPoolManager.SpawnObject(rocketPrefab, rocketSpawner.position, rocketSpawner.rotation, ObjectPoolManager.PoolType.Gameobject);
         RocketController rocket = go.GetComponent<RocketController>();
-        rocket.damage = rocketDamage;
+        rocket.damage = rocketDamage + playerWeaponController.shipData.extraDamage;
         rocket.SetDestroyTimer();
         rocket.isMainWeapon = false;
 
         rocketSpawnCount_++;
 
-        if (rocketSpawnCount_ == rocketSpawnCount)
+        if (rocketSpawnCount_ == (rocketSpawnCount+ playerWeaponController.shipData.extraRockets))
         {
             Invoke(nameof(SetReloadFlag), 2f);
             rocketSpawnCount_ = 0;

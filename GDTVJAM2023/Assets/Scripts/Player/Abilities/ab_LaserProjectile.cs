@@ -7,6 +7,7 @@ public class ab_LaserProjectile : MonoBehaviour
     public Rigidbody rb;
     public int damage = 5;
     public int laserDamageChannel = 4;
+    public float lifeTime = 2f;
 
     public ParticleSystem hitParticle;
     public ParticleSystem bladeParticle;
@@ -37,7 +38,7 @@ public class ab_LaserProjectile : MonoBehaviour
         destroyFlag = false;
 
         Invoke(nameof(CanDoDamage), 0.05f);
-        Invoke(nameof(DestroyProjectile), 2f);
+        Invoke(nameof(DestroyProjectile), lifeTime);
         sizefactor = 1f;
     }
 
@@ -50,7 +51,7 @@ public class ab_LaserProjectile : MonoBehaviour
     {
         isStarted = true;
     }
-  
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -64,7 +65,7 @@ public class ab_LaserProjectile : MonoBehaviour
                     if (eH.canTakeLaserDamage[laserDamageChannel] == true && eH.canTakeDamage == true)
                     {
                         eH.TakeLaserDamage(damage, laserDamageChannel);
-                        eH.TakeBurningDamage();
+                        eH.InvokeBurningDamage();
                         eH.ShowDamageFromPosition(other.transform.position, damage);
                         hitParticle.transform.position = other.ClosestPointOnBounds(other.transform.position);
                         hitParticle.Emit(20);

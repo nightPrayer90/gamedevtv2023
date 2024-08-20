@@ -8,34 +8,32 @@ public class PlayerMineController : MonoBehaviour
     public float floatHeight = 0.2f;
     public float floatSpeed = 1f;
     public float maxLifeTime = 10f;
-    public int damage = 8;
     private float iniLifeTime = 0;
+    private bool detected = false;
 
     private Vector3 startPosition;
     public Material originalMaterial;
     public Material detectedMaterial;
     private Renderer mineRenderer;
     private PlayerWeaponController playerWeaponController;
-    private bool detected = false;
     private GameManager gameManager;
-    private LayerMask layerMask;
     private UpgradeChooseList upgradeChooseList;
+    private Explosion explosion;
 
     [Header("Explosion Control")]
+    public int damage = 8;
     public float explosionRadius = 2f;
-    public float explosionForce;
-   
-    public bool isMainWeapon = false;
-    [HideInInspector] public Color hitColor;
-    public GameObject exposionHitObject;
+    public int explosionForce;
+    [HideInInspector] public bool isMainWeapon = false;
+
 
     private void Awake()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
-
         playerWeaponController = GameObject.Find("NewPlayer").GetComponent<PlayerWeaponController>();
         mineRenderer = GetComponentInChildren<Renderer>();
+        explosion = gameObject.GetComponent<Explosion>();
 
         iniLifeTime = maxLifeTime;
     }
@@ -49,9 +47,6 @@ public class PlayerMineController : MonoBehaviour
 
         detected = false;
 
-        // Layermask
-        layerMask = (1 << 6);
-
         SetDestroyTimer();
     }
 
@@ -59,6 +54,7 @@ public class PlayerMineController : MonoBehaviour
     {
         // enemy target tag set
         string tagStr = "Enemy";
+        LayerMask layerMask = (1 << 6);
         if (gameManager.dimensionShift == true)
         {
             layerMask = (1 << 9);
@@ -82,7 +78,7 @@ public class PlayerMineController : MonoBehaviour
         }
     }
 
-    private void Explode()
+    /*private void Explode()
     {
         // postion of explosion Object
         Vector3 pos = transform.position;
@@ -161,12 +157,17 @@ public class PlayerMineController : MonoBehaviour
 
         // object goes back to the pool
         ObjectPoolManager.ReturnObjectToPool(gameObject);
-    }
+    }*/
 
     public void SetDestroyTimer()
     {
         // destroytime
         maxLifeTime = Random.Range(iniLifeTime - 0.05f, iniLifeTime + 0.05f) ;
         Invoke(nameof(Explode), maxLifeTime); 
+    }
+
+    private void Explode()
+    {
+        explosion.InitExplosion(damage, explosionForce, explosionRadius, isMainWeapon);
     }
 }

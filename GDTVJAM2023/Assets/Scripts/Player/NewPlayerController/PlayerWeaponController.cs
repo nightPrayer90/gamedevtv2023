@@ -557,6 +557,9 @@ public class PlayerWeaponController : MonoBehaviour
         shipData.boostInvulnerability = 0.5f;
         shipData.boostSize = 1.2f;
         shipData.boostDamage = 20;
+
+        shipData.extraRockets = 0;
+        shipData.extraDamage = 0;
 }
 
     /* **************************************************************************** */

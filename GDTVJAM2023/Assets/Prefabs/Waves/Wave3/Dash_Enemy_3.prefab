@@ -9933,7 +9933,7 @@ MonoBehaviour:
   _burnReplacement: {fileID: 3161139216598759944, guid: d859b0033dbcef64d9a005e90429e0ef, type: 3}
   dropObject: {fileID: 5693635298845190373, guid: 8e3f78fb04e545a4c918a6cb8835ac0a, type: 3}
   miniMapIcon: {fileID: 4148413571251648357}
-  novaOnDie: {fileID: 4303235208557751318, guid: c01ac0e458a23da41aaf1c60e7ee97a7, type: 3}
+  novaExplosionPrefab: {fileID: 63306021479946841, guid: 5aeba8bb395cdae4098bb4692bef95da, type: 3}
   burnParticleSystem: {fileID: 6368039430469557503}
   enemyCollider: {fileID: 3161139216598759945}
   enemyHealth: 6
@@ -9945,6 +9945,7 @@ MonoBehaviour:
   canPoolObject: 1
   isBoss: 0
   isGround: 0
+  burnTickCount: 0
   canTakeLaserDamage: 0000000000
   hitColor: {r: 1, g: 0.5998216, b: 0, a: 1}
   critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
@@ -9985,6 +9986,7 @@ MonoBehaviour:
   tiltBoarder: 10
   dashForce: 10
   dashDistance: 3.5
+  dashLoadTime: 1.5
   dashParticle: {fileID: 2991605057228018913}
   dashMarker: {fileID: 5429909960556702023}
   damageField: {fileID: 2762963376799148784}

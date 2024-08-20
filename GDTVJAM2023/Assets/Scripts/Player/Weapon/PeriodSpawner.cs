@@ -14,7 +14,6 @@ public class PeriodSpawner : MonoBehaviour
     public GameObject spawnPoint2;
     private bool enemyDetected = false;
     private GameManager gameManager;
-    public Color hitColor = new Color(1f, 0.6f, 0.0f, 1f);
     public float explosionRadius = 1.1f;
 
 
@@ -83,7 +82,6 @@ public class PeriodSpawner : MonoBehaviour
             GameObject go = ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
             RocketController rocket = go.GetComponent<RocketController>();
             rocket.damage = rocketDamage;
-            rocket.hitColor = hitColor;
             rocket.explosionRadius = explosionRadius;
             rocket.SetDestroyTimer();
 
@@ -91,7 +89,6 @@ public class PeriodSpawner : MonoBehaviour
             go = ObjectPoolManager.SpawnObject(rockedToLaunch, spawnPoint2.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
             rocket = go.GetComponent<RocketController>();
             rocket.damage = rocketDamage;
-            rocket.hitColor = hitColor;
             rocket.explosionRadius = explosionRadius;
             rocket.SetDestroyTimer();
 

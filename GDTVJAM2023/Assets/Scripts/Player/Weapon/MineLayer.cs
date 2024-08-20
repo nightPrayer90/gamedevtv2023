@@ -8,11 +8,10 @@ public class MineLayer : MonoBehaviour
     public int baseDamage = 5;
     public float lifeTime = 3f;
     public float spawnInterval = 1f;
-    public GameObject[] MineToLaunch;
+    public GameObject MineToLaunch;
     public GameObject spawnPoint;
-    public Color hitColor = new Color(1f, 0.6f, 0.0f, 1f);
     private UpgradeChooseList upgradeChooseList;
-
+    private bool isMainWeapon = false;
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -49,11 +48,11 @@ public class MineLayer : MonoBehaviour
     // Invoke, spawns a rocked after spawnInterval sec
     private void SpawnMine()
     {
-        GameObject go = ObjectPoolManager.SpawnObject(MineToLaunch[0], spawnPoint.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
+        GameObject go = ObjectPoolManager.SpawnObject(MineToLaunch, spawnPoint.transform.position, Quaternion.Euler(0f, 180f, 0f) * gameObject.transform.rotation, ObjectPoolManager.PoolType.Gameobject);
         Rigidbody rb = go.GetComponent<Rigidbody>();
         PlayerMineController mine = go.GetComponent<PlayerMineController>();
         mine.damage = baseDamage;
-        mine.hitColor = hitColor;
+        mine.isMainWeapon = false;
 
         AudioManager.Instance.PlaySFX("PlayerFireFlies");
         if (rb != null)
