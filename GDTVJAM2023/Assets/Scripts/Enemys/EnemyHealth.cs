@@ -26,7 +26,9 @@ public class EnemyHealth : MonoBehaviour
     public bool secondDimensionEnemy = false;
     [HideInInspector] public bool canTakeDamage = true;
     public bool canPoolObject = true;
+
     public event EventHandler DieEvent;
+
     public bool isBoss = false;
     public bool isGround = false;
     [HideInInspector] public int novaOnDieTriggerType = -1; 
@@ -315,6 +317,7 @@ public class EnemyHealth : MonoBehaviour
     #region DIE STATE
     private void Die()
     {
+        Debug.Log("dieEvent");
         if (enemyCollider != null) enemyCollider.enabled = false;
 
         // cancle all Invokes
@@ -347,9 +350,12 @@ public class EnemyHealth : MonoBehaviour
 
     public void DestroyEnemy()
     {
+        Debug.Log("destroyEvent");
         // pool (destroy) enemy object
         if (canPoolObject == true)
+        {
             ObjectPoolManager.ReturnObjectToPool(gameObject);
+        }
         else
         {
             Destroy(gameObject);

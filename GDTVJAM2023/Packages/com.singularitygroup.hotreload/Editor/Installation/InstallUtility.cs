@@ -20,12 +20,11 @@ namespace SingularityGroup.HotReload.Editor {
 
         // HandleEditorStart is only called on editor start, not on domain reload
         public static void HandleEditorStart(string updatedFromVersion) {
-            var showOnStartup = HotReloadPrefs.GetShowOnStartupEnum();
+            var showOnStartup = HotReloadPrefs.ShowOnStartup;
             if (showOnStartup == ShowOnStartupEnum.Always || (showOnStartup == ShowOnStartupEnum.OnNewVersion && !String.IsNullOrEmpty(updatedFromVersion))) {
                 HotReloadWindow.Open();
             }
             if (HotReloadPrefs.LaunchOnEditorStart) {
-                HotReloadWindow.Open();
                 EditorCodePatcher.DownloadAndRun().Forget();
             }
             
@@ -50,6 +49,7 @@ namespace SingularityGroup.HotReload.Editor {
             HotReloadPrefs.AllowDisableUnityAutoRefresh = true;
             HotReloadPrefs.AllAssetChanges = true;
             HotReloadPrefs.AutoRecompileUnsupportedChanges = true;
+            HotReloadPrefs.AutoRecompileUnsupportedChangesOnExitPlayMode = true;
             if (HotReloadCli.CanOpenInBackground) {
                 HotReloadPrefs.DisableConsoleWindow = true;
             }

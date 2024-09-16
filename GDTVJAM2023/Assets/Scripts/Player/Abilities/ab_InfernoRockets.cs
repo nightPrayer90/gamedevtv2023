@@ -92,5 +92,6 @@ public class ab_InfernoRockets : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("AbilityIsReady");
         reloadFlag = false;
+        gameManager.SetAbilityGlow(true);
     }
 }

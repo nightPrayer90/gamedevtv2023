@@ -87,7 +87,7 @@ MonoBehaviour:
   novaExplosionPrefab: {fileID: 63306021479946841, guid: 5aeba8bb395cdae4098bb4692bef95da, type: 3}
   burnParticleSystem: {fileID: 3848154008130576996}
   enemyCollider: {fileID: 3161139216598759945}
-  enemyHealth: 15
+  enemyHealth: 20
   enemyStartHealth: 0
   collisonDamage: 2
   explosionForce: 5
@@ -96,6 +96,7 @@ MonoBehaviour:
   canPoolObject: 1
   isBoss: 0
   isGround: 0
+  novaOnDieTriggerType: -1
   burnTickCount: 0
   canTakeLaserDamage: 0000000000
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}

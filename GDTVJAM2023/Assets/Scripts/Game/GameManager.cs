@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System;
 using UnityEngine.EventSystems;
+using UnityEditor.Experimental.GraphView;
 
 
 
@@ -17,7 +18,7 @@ public class GameManager : MonoBehaviour
     public int districtNumber = 1;
     private int enemysToKill;
     private int killCounter;
-    private int expCollected;
+    private int scrapCollected = 0;
 
 
     [Header("Time for one Round")]
@@ -58,8 +59,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI upgradeText;
     public TextMeshProUGUI expGameOverText;
     public TextMeshProUGUI expGameVictoryText;
+    public TextMeshProUGUI scrapText;
     public Image abBKImage;
     public Image abImage;
+    public GameObject abGlow;
     private float abValueBuffer = 0f;
     private float abTimeBuffer = 0f;
     private Tween abTween = null;
@@ -208,12 +211,14 @@ public class GameManager : MonoBehaviour
     {
         if (bigMapisOpen == false)
         {
+            minimapCG.DOKill();
             minimapCG.alpha = 0;
             minimapBigCG.DOFade(1f, 0.2f);
             minimapCameraBig.enabled = true;
         }
         else
         {
+            minimapBigCG.DOComplete();
             minimapCG.DOFade(1, 0.2f);
             minimapBigCG.DOKill();
             minimapBigCG.alpha = 0;
@@ -327,7 +332,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         gameIsPlayed = false;
 
-        expGameOverText.text = CalculateGlobalPlayerExp(1f, false);
+        expGameOverText.text = CalculatePlayerEarnings(1f, false);
 
         gameOverUI.SetActive(true);
         playerUI.SetActive(false);
@@ -349,7 +354,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         gameIsPlayed = false;
 
-        expGameVictoryText.text = CalculateGlobalPlayerExp(1f, true);
+        expGameVictoryText.text = CalculatePlayerEarnings(1f, true);
 
         gameOverUI.SetActive(false);
         playerUI.SetActive(false);
@@ -450,7 +455,6 @@ public class GameManager : MonoBehaviour
     public void UpdateUIPlayerExperience(bool isLevelUp, int playerLevel, int playerExperienceToLevelUp, int playerCurrentExperience, int experienceGet)
     {
         experienceSlider.maxValue = playerExperienceToLevelUp;
-        expCollected += experienceGet;
 
         // Levelup
         if (isLevelUp)
@@ -589,6 +593,13 @@ public class GameManager : MonoBehaviour
         enemyCounterText.text = curretEnemyCounter.ToString();
     }
 
+    public void UpdateTimer(float currentTime)
+    {
+        this.currentTime += currentTime;
+        UpdateTimerText();
+    }
+
+
     // Update timer text - Invoke
     private void UpdateTimerText()
     {
@@ -615,7 +626,13 @@ public class GameManager : MonoBehaviour
     public void SetAbilityUItoZero()
     {
         abImage.DOKill();
-        abImage.DOFillAmount(0, 0.3f);
+        abImage.DOFillAmount(0, 0.1f);
+        SetAbilityGlow(false);
+    }
+
+    public void SetAbilityGlow(bool isGlow)
+    {
+        abGlow.SetActive(isGlow);
     }
 
     public void SetAbilityValue(float relaodTime)
@@ -624,7 +641,15 @@ public class GameManager : MonoBehaviour
         abTween = abImage.DOFillAmount(1, relaodTime).SetEase(Ease.Linear);
     }
 
-
+    public void AddScrap(int scrap)
+    {
+        scrapCollected += scrap;
+        AddScrapUI();
+    }
+    public void AddScrapUI()
+    {
+        scrapText.text = scrapCollected.ToString();
+    }
 
     /* **************************************************************************** */
     /* Dimension swap ------------------------------------------------------------- */
@@ -669,9 +694,18 @@ public class GameManager : MonoBehaviour
         OnDimensionSwap?.Invoke(dimensionShift);
     }
 
+    // need short deelay for ppControllerEffekt
+    public void GoBackDimensionInvoke()
+    {
+        Invoke(nameof(GoBackDimension), 0.1f);
+    }
+
+
     // player goes back into the first dimension
     public void GoBackDimension()
     {
+        ppController.GoToDimension();
+
         // swap materials
         buildingMaterial.SetTexture("_MainTex", firstDimensionTexture1);
         emissionMaterial.SetTexture("_MainTex", firstDimensionTexture1);
@@ -732,7 +766,6 @@ public class GameManager : MonoBehaviour
             Destroy(prefab);
         }
     }
-
 
 
 
@@ -878,11 +911,9 @@ public class GameManager : MonoBehaviour
     }
 
     // write earned exp in playerData
-    private string CalculateGlobalPlayerExp(float percent, bool isVictory = false)
+    private string CalculatePlayerEarnings(float percent, bool isVictory = false)
     {
-        expCollected = Mathf.RoundToInt((float)expCollected * percent);
-
-        string resultString = $"you earned {expCollected} Credits";
+        string resultString = $"you collected {scrapCollected} Scrap";
 
         if (playerData.bossLevel < (districtNumber - 1)) //-1 because it starts with 1
         {
@@ -890,7 +921,7 @@ public class GameManager : MonoBehaviour
             playerData.bossLevel = districtNumber - 1;
         }
 
-        playerData.credits += expCollected;
+        playerData.credits += scrapCollected;
 
         AudioManager.Instance.SavePlayerData();
 

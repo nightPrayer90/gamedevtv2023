@@ -43,7 +43,7 @@ public class ShopCameraController : MonoBehaviour
         {
             Vector3 dragCurrentPosition = mousePosition;
             Vector3 translation = (mainCamera.ScreenToWorldPoint(new Vector3(dragStartPosition.x, dragStartPosition.y, mainCamera.nearClipPlane)) -
-                                  mainCamera.ScreenToWorldPoint(new Vector3(dragCurrentPosition.x, dragCurrentPosition.y, mainCamera.nearClipPlane))) * dragSpeed;
+                                  mainCamera.ScreenToWorldPoint(new Vector3(dragCurrentPosition.x, dragCurrentPosition.y, mainCamera.nearClipPlane))) * (dragSpeed + transform.position.y);
             translation.y = 0; // Maintain horizontal plane movement only
             Vector3 newPosition = transform.position + translation;
 

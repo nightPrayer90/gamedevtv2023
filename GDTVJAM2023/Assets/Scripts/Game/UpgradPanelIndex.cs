@@ -34,6 +34,7 @@ public class UpgradPanelIndex : MonoBehaviour
     public TextMeshProUGUI uniqueText;
     private GameManager gameManager;
     private NewPlayerController playerController;
+    public Transform panelTransform;
 
 
     private void Awake()
@@ -57,7 +58,7 @@ public class UpgradPanelIndex : MonoBehaviour
         panelImage.sprite = spPanelDeselcet;
         transform.DOLocalMoveY(55f, .22f, true).SetUpdate(UpdateType.Normal, true).OnComplete(() =>
         {
-            transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1).SetUpdate(true).OnComplete(() =>
+            panelTransform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1).SetUpdate(true).OnComplete(() =>
             {
                 upgradePanelController.isTweening = false;
                 AudioManager.Instance.PlaySFX("MouseKlick");
@@ -200,9 +201,8 @@ public class UpgradPanelIndex : MonoBehaviour
 
         if (isTweening == false)
         {
-            transform.DOComplete();
-            transform.DOKill();
-            transform.DOPunchScale(new Vector3(0.08f, 0.08f, 0.08f), 0.08f, 5, 1).SetUpdate(true);
+            panelTransform.DOComplete();
+            panelTransform.DOPunchScale(new Vector3(0.08f, 0.08f, 0.08f), 0.08f, 5, 1).SetUpdate(true);
         }
     }
 
@@ -233,7 +233,7 @@ public class UpgradPanelIndex : MonoBehaviour
                 upgradePanelController.ChooseAValue(index);
                 AudioManager.Instance.PlaySFX("WindowOpen");
 
-                transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), .2f, 5, 1).SetUpdate(true).OnComplete(() => { upgradePanelController.TriggerPanel(index); });
+                panelTransform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), .2f, 5, 1).SetUpdate(true).OnComplete(() => { upgradePanelController.TriggerPanel(index); });
 
                 isTweening = true;
             }

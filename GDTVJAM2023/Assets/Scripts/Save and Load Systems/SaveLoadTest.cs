@@ -75,7 +75,7 @@ public class SaveLoadTest : MonoBehaviour
             shipPane01.sprite = sprShipPanels[playerStats01.shipPanelIndex];
             isLoad1 = true;
         }
-        catch (Exception e)
+        catch (Exception)
         {
             Debug.Log($"Could not read file 01!");
             playerName01Text.gameObject.SetActive(false);
@@ -98,7 +98,7 @@ public class SaveLoadTest : MonoBehaviour
             shipPane02.sprite = sprShipPanels[playerStats02.shipPanelIndex];
             isLoad2 = true;
         }
-        catch (Exception e)
+        catch (Exception)
         {
             Debug.Log($"Could not read file 02!");
             playerName02Text.gameObject.SetActive(false);
@@ -121,7 +121,7 @@ public class SaveLoadTest : MonoBehaviour
             shipPane03.sprite = sprShipPanels[playerStats03.shipPanelIndex];
             isLoad3 = true;
         }
-        catch (Exception e)
+        catch (Exception)
         {
             Debug.Log($"Could not read file 03!");
             playerName03Text.gameObject.SetActive(false);

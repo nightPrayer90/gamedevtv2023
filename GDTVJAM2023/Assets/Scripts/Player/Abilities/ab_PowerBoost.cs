@@ -135,6 +135,7 @@ public class ab_PowerBoost : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("AbilityIsReady");
         reloadFlag = false;
+        gameManager.SetAbilityGlow(true);
 
         foreach (NewBaseEngine engine in baseEngines)
         {

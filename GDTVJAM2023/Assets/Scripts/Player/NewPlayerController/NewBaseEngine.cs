@@ -57,12 +57,6 @@ public class NewBaseEngine : BaseModule
         playerRigidbody = playerController.GetComponent<Rigidbody>();
         playerController.hasMainEngine = true;
 
-        //UpgradeChooseList upgradeChooseList = gameManager.gameObject.GetComponent<UpgradeChooseList>();
-
-        /*if (hasPowerBoost == true)
-        {
-            upgradeChooseList.upgrades[31].upgradeStartCount = 3;
-        }*/
     }
 
     // Update is called once per frame
@@ -90,26 +84,6 @@ public class NewBaseEngine : BaseModule
                     playerController.useBoost = true;
                 }
 
-                // power boost
-                /*if (hasPowerBoost == true && playerController.abilityInput && playerController.energieCurrent >= playerController.energieMax * powerBoostCost && powerBoostResetFlag)
-                {
-                    gameManager.ScreenShake(5);
-                    AudioManager.Instance.PlaySFX("PlayerBoostKick");
-                    ps_boostParticle.Emit(80);
-                    ps_boostEngine.Emit(30);
-
-                    Debug.Log(useBoost);
-
-                    if (useBoost == true) playerRigidbody.AddForce(-transform.right * totalThrustForce * 20, ForceMode.Force);
-                    else playerRigidbody.AddForce(-transform.right * totalThrustForce * 70, ForceMode.Force);
-
-                    playerController.GetInvulnerability();
-                    playerController.energieCurrent -= playerController.energieMax * powerBoostCost;
-                    powerBoostResetFlag = false;
-                    Invoke(nameof(InvokeResetPowerBoost), powerBoostDowntime);
-
-                }*/
-
                 if (playerController.energieCurrent < frontBoostCost) useBoost = false;
             }
 
@@ -117,7 +91,7 @@ public class NewBaseEngine : BaseModule
             else
             {
                 totalThrustForce = thrustForce;
-               
+
                 useBoost = false;
                 playerController.useBoost = false;
             }
@@ -221,10 +195,4 @@ public class NewBaseEngine : BaseModule
             }
         }
     }
-
-    /*private void InvokeResetPowerBoost()
-    {
-        powerBoostResetFlag = true;
-        ps_boostParticle.Emit(100);
-    }*/
 }

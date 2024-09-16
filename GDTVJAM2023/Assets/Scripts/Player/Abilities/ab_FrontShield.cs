@@ -68,6 +68,7 @@ public class ab_FrontShield : MonoBehaviour
     private void InvokeShieldFlag()
     {
         AudioManager.Instance.PlaySFX("AbilityIsReady");
+        gameManager.SetAbilityGlow(true);
         shieldFlag = false;
     }
 }

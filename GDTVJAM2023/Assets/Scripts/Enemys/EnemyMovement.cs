@@ -52,20 +52,17 @@ public class EnemyMovement : MonoBehaviour
         DeactivateBaseEngine();
     }
 
+    private void OnDestroy()
+    {
+        playerDetector.OnSwapState -= HandleStateSwap;
+        gameManager.OnDimensionSwap -= HandleDimensionSwap;
+    }
+
     protected virtual void Update()
     {
         if (!gameManager.dimensionShift)
         {
             FollowPlayer();
-            // set state
-            /*if (attackState == false)
-            {
-                FollowPlayer();
-            }
-            else
-            {
-                FollowPlayer();
-            }*/
         }
     }
 

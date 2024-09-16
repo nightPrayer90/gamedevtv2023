@@ -75,5 +75,6 @@ public class ab_Laser : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("AbilityIsReady");
         reloadFlag = false;
+        gameManager.SetAbilityGlow(true);
     }
 }

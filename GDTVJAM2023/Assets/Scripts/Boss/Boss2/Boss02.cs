@@ -130,6 +130,11 @@ public class Boss02 : MonoBehaviour
             }
         }
     }
+
+    private void OnDestroy()
+    {
+        enemyHealthScr.DieEvent -= EnemyHealthScr_DieEvent;
+    }
     #endregion
 
 

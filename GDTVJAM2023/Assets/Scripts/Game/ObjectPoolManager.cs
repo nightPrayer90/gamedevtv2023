@@ -37,6 +37,10 @@ public class ObjectPoolManager : MonoBehaviour
     private static GameObject _objectWave8Empty;
     private static GameObject _objectWave9Empty;
 
+
+    //Debug
+    [SerializeField] private List<PooledObjectInfo> objectPoolsDebug;
+
     public enum PoolType
     {
         FloatingText,
@@ -61,6 +65,13 @@ public class ObjectPoolManager : MonoBehaviour
         
         SetupEmpties();
     }
+
+    // Debug
+    private void Update()
+    {
+        objectPoolsDebug = ObjectPools;
+    }
+
 
     private void SetupEmpties()
     {
@@ -110,7 +121,6 @@ public class ObjectPoolManager : MonoBehaviour
     public static GameObject SpawnObject(GameObject objectToSpawn, Vector3 spawnPosition, Quaternion spawnRotation, PoolType poolType = PoolType.None)
     {
         PooledObjectInfo pool = ObjectPools.Find(p => p.LookupString == objectToSpawn.name);
-        //Debug.Log("Pool " + objectToSpawn.name);
 
         // If the pool dosn't exist, create it
         if (pool == null)
@@ -252,6 +262,7 @@ public class ObjectPoolManager : MonoBehaviour
     }
 }
 
+[System.Serializable]
 public class PooledObjectInfo
 {
     public string LookupString;

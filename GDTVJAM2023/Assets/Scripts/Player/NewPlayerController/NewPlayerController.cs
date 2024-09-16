@@ -209,9 +209,9 @@ public class NewPlayerController : MonoBehaviour
         switch (tag)
         {
             case "Exp":
-                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
-                int expValue = other.GetComponent<EnemyExp>().expValue;
-                UpdatePlayerExperience(expValue);
+                
+                /*int expValue = other.GetComponent<EnemyExp>().expValue;
+                UpdatePlayerExperience(expValue);*/
                 break;
 
             case "UpgradePickup":
@@ -456,7 +456,7 @@ public class NewPlayerController : MonoBehaviour
     #region health and experience
 
     // update the player experience
-    private void UpdatePlayerExperience(int expValue)
+    public void UpdatePlayerExperience(int expValue)
     {
         int exp = expValue;
 

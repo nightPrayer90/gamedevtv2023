@@ -684,6 +684,18 @@ public class UpgradePanelController : MonoBehaviour
             case 87: // Corpse explosion
 
                 break;
+            case 88: // Life Orb Boost
+
+                break;
+            case 89: // EXP Orb Boost
+
+                break;
+            case 90: // Time Orb Boost
+
+                break;
+            case 91: // Orb Jackpot
+
+                break;
         }
     }
 
@@ -751,7 +763,8 @@ public class UpgradePanelController : MonoBehaviour
 
     private void GoBackToDimension()
     {
-        gameManager.GoBackDimension();
+        gameManager.GoBackDimensionInvoke();
+        //gameManager.GoBackDimension();
         AudioManager.Instance.PlaySFX("DimensionSwap");
     }
 }

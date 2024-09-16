@@ -1345,48 +1345,63 @@ MonoBehaviour:
     reqAbility: Rocket Cockpit
     UpgradeCount: 1
     upgradeStartCount: 0
-  - headerStr: '-'
+  - headerStr: Life Orb Boost
     upgradeIndex: 88
     passivUpgradeString: 
-    descriptionStr: 
-    iconPanel: {fileID: 21300000, guid: a38232652c3e8f4418bfd273bcb0a4af, type: 3}
+    descriptionStr: Each loot box drops additional big life orb
+    iconPanel: {fileID: 21300000, guid: 1f1dc46d83e2615448eba029fa7683b3, type: 3}
     mainClass: 8
     upgradeTyp: 1
-    colorIndex: 3
-    reqBullet: 0
+    colorIndex: 0
+    reqBullet: 3
     reqRocket: 0
     reqLaser: 0
     reqSupport: 0
     reqAbility: 
     UpgradeCount: 1
-    upgradeStartCount: 0
-  - headerStr: '-'
+    upgradeStartCount: 1
+  - headerStr: EXP Orb Boost
     upgradeIndex: 89
     passivUpgradeString: 
-    descriptionStr: 
-    iconPanel: {fileID: 21300000, guid: a38232652c3e8f4418bfd273bcb0a4af, type: 3}
+    descriptionStr: Each loot box drops two additional big EXP orbs
+    iconPanel: {fileID: 21300000, guid: 1f1dc46d83e2615448eba029fa7683b3, type: 3}
     mainClass: 8
     upgradeTyp: 1
-    colorIndex: 3
+    colorIndex: 1
     reqBullet: 0
-    reqRocket: 0
+    reqRocket: 3
     reqLaser: 0
     reqSupport: 0
     reqAbility: 
     UpgradeCount: 1
-    upgradeStartCount: 0
-  - headerStr: '-'
+    upgradeStartCount: 1
+  - headerStr: Time Orb Boost
     upgradeIndex: 90
     passivUpgradeString: 
-    descriptionStr: 
-    iconPanel: {fileID: 21300000, guid: a38232652c3e8f4418bfd273bcb0a4af, type: 3}
+    descriptionStr: Each loot box drops additional time orb
+    iconPanel: {fileID: 21300000, guid: 1f1dc46d83e2615448eba029fa7683b3, type: 3}
+    mainClass: 8
+    upgradeTyp: 1
+    colorIndex: 2
+    reqBullet: 0
+    reqRocket: 0
+    reqLaser: 3
+    reqSupport: 0
+    reqAbility: 
+    UpgradeCount: 1
+    upgradeStartCount: 1
+  - headerStr: Orb Jackpot
+    upgradeIndex: 91
+    passivUpgradeString: 
+    descriptionStr: Each loot box drops two random additional orbs.
+    iconPanel: {fileID: 21300000, guid: 1f1dc46d83e2615448eba029fa7683b3, type: 3}
     mainClass: 8
     upgradeTyp: 1
     colorIndex: 3
     reqBullet: 0
     reqRocket: 0
     reqLaser: 0
-    reqSupport: 0
+    reqSupport: 3
     reqAbility: 
     UpgradeCount: 1
-    upgradeStartCount: 0
+    upgradeStartCount: 1

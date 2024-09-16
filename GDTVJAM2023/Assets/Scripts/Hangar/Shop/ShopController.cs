@@ -237,7 +237,7 @@ public class ShopController : MonoBehaviour
     public void UpdateCredits(int credits_)
     {
         credits += credits_;
-        creditsText.text = "Credits: " + credits.ToString() + " CD";
+        creditsText.text = "Scrap: " + credits.ToString() + " CD";
 
         creditsText.gameObject.transform.DOKill();
         creditsText.gameObject.transform.DOShakePosition(0.5f, 5, 25, 90);

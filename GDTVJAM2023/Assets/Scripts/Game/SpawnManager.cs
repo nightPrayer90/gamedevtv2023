@@ -96,7 +96,7 @@ public class SpawnManager : MonoBehaviour
                 i = UnityEngine.Random.Range(0, gameManager.districtNumber);
 
                 // Spawn in District X
-                spawnPosition = GetRandomSpawnPointOverDistrict(spawnDistrictList.districtList[i].transform, 14f);
+                spawnPosition = GetRandomSpawnPointOverDistrict(spawnDistrictList.districtList[i].transform, 12f);
             }
 
 
