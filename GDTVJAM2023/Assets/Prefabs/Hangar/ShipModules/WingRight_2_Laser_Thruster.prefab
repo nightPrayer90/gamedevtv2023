@@ -10147,7 +10147,7 @@ MonoBehaviour:
   moduleIndex: -1
   laserBaseDamage: 4
   fireRate: 2
-  laserRange: 2
+  laserRange: 2.5
   laserShootTime: 3
   audioClip: PlayerLaser
   soundCastInterval: 0.25

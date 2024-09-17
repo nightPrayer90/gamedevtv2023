@@ -14715,7 +14715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e81fb1d47ab1b9e419e63783ebce8ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 30
+  time: 15
   pickUp: {fileID: -1799887651408106166}
   textColor: {r: 1, g: 0, b: 0.73142433, a: 1}
 --- !u!54 &-7128748744484675967

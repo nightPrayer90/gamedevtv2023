@@ -24,6 +24,12 @@ public class DamagePopup : MonoBehaviour
             ObjectPoolManager.ReturnObjectToPool(gameObject);
         });
     }
+
+    private void Update()
+    {
+        Quaternion.LookRotation(Camera.main.transform.forward);
+    }
+
     public void SetText(string text_)
     {
         tmp_text.text = text_;

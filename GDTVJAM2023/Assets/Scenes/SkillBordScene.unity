@@ -73239,9 +73239,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoomSpeed: 8
   zoomDamping: 1000
-  minZoomDistance: -34
+  minZoomDistance: -30
   maxZoomDistance: 91
-  dragSpeed: 120
+  dragSpeed: 100
   horizontalLimits: {x: -30, y: 95}
   verticalLimits: {x: -10, y: 100}
   hasMoveKeys: 1

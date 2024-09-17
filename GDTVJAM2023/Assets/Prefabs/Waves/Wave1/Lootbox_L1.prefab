@@ -287,7 +287,7 @@ MonoBehaviour:
   lootCount: 5
   lootObjects:
   - lootprefab: {fileID: 5693635298845190373, guid: a1db5ca78d5788f43ae0640c21efb00a, type: 3}
-    quanitiy: 10
+    quanitiy: 15
   - lootprefab: {fileID: 5693635298845190373, guid: e6900df67bcb982469cdae386db63869, type: 3}
     quanitiy: 7
   - lootprefab: {fileID: 5693635298845190373, guid: 6342dec8388976d49a4da8a06877f931, type: 3}

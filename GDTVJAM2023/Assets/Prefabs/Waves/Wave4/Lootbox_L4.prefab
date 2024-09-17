@@ -287,13 +287,13 @@ MonoBehaviour:
   lootCount: 8
   lootObjects:
   - lootprefab: {fileID: 5693635298845190373, guid: a1db5ca78d5788f43ae0640c21efb00a, type: 3}
-    quanitiy: 10
+    quanitiy: 15
   - lootprefab: {fileID: 5693635298845190373, guid: e6900df67bcb982469cdae386db63869, type: 3}
-    quanitiy: 7
+    quanitiy: 15
   - lootprefab: {fileID: 5693635298845190373, guid: 6342dec8388976d49a4da8a06877f931, type: 3}
-    quanitiy: 18
+    quanitiy: 10
   - lootprefab: {fileID: 5693635298845190373, guid: d9ee30b57dac9c242b2dd3088f8b91a2, type: 3}
-    quanitiy: 45
+    quanitiy: 40
   - lootprefab: {fileID: 5693635298845190373, guid: a7167deb24e3c894aa97b48178bdfba4, type: 3}
     quanitiy: 20
   explosionDelay: 0
