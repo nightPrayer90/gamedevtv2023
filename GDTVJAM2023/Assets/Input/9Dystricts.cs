@@ -335,7 +335,7 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""76896a29-6292-4299-b776-dc743a90559b"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",

@@ -47,15 +47,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wave: 0
   waveData:
+  - enemyToSpawn: {fileID: 5129708613027793389, guid: 084fec440753108419418483bcdf70e8, type: 3}
+    spawnProbabilities: 2
+    isGroundEnemy: 1
   - enemyToSpawn: {fileID: 3161139216598759944, guid: c934e9c3aace7884a81c292b8b67bf10, type: 3}
     spawnProbabilities: 79
     isGroundEnemy: 0
   - enemyToSpawn: {fileID: 3161139216598759944, guid: 05743354650a53749947a9f90a0f738f, type: 3}
     spawnProbabilities: 19
     isGroundEnemy: 0
-  - enemyToSpawn: {fileID: 5129708613027793389, guid: 084fec440753108419418483bcdf70e8, type: 3}
-    spawnProbabilities: 2
-    isGroundEnemy: 1
   maxWaveEnemys: 8
   minSpawnDistance: 12
   maxSpawnDistance: 16

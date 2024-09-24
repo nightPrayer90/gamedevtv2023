@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private int enemysToKill;
     private int killCounter;
     private int scrapCollected = 0;
+    [HideInInspector] public int lootboxContainer = 0;
 
 
     [Header("Time for one Round")]

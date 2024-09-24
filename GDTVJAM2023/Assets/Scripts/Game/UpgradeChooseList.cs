@@ -33,6 +33,7 @@ public class UpgradeChooseList : MonoBehaviour
             UpgradeQuanityObserver aUpdate = new();
             aUpdate.upgradeIndexInstalled = 0;
             aUpdate.upgradeStartCount = uLObject.upgradeList[i].upgradeStartCount;
+
             upgrades.Add(aUpdate);
         }
         

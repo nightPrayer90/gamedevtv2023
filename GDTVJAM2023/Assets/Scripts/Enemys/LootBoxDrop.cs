@@ -41,11 +41,13 @@ public class LootBoxDrop : MonoBehaviour
     private void OnEnable()
     {
         enemyHealth.DieEvent += OnDie;
+        gameManager.lootboxContainer++;
     }
 
     private void OnDisable()
     {
         enemyHealth.DieEvent -= OnDie;
+        gameManager.lootboxContainer--;
     }
 
     private void OnDie(object sender, EventArgs e)

@@ -80,9 +80,22 @@ public class SpawnManager : MonoBehaviour
         {
             // Randomly select an object to spawn based on probabilities
             int randomIndex = GetRandomWeightedIndex();
+
+            if (randomIndex == 0) //-> Lootbox
+            {
+                // 5 is the max Value of activ Lootboxes
+                if (gameManager.lootboxContainer >= 5)
+                {
+                    // choose the next enemy Index to Spawn
+                    randomIndex += 1;
+                }
+            }
+
+
             GameObject objectToSpawn = waveData[randomIndex].enemyToSpawn;
             Vector3 spawnPosition = new Vector3(0, 0, 0);
 
+            
             // Generate a random position outside the camera's view
             if (waveData[randomIndex].isGroundEnemy == false)
             {
