@@ -126,10 +126,10 @@ public class NewBulletMainWeapon : BaseModule
     // Debuff is EnergieProduction < 0
     private void EnergieDamageDebuff()
     {
-        if (playerController.energieProduction < 0) {
+       /* if (playerController.energieProduction < 0) {
             bulletResouldDamage = bulletBaseDamage + Mathf.CeilToInt((float)bulletBaseDamage * (playerWeaponController.shipData.percBulletDamage / 100) * 0.5f);
             particelBullet.BulletSetDamage(bulletResouldDamage);
 
-        }
+        }*/
     }
 }

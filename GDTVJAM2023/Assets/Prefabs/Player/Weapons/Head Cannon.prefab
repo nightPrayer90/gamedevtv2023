@@ -9790,7 +9790,7 @@ MonoBehaviour:
   reloadSalveInterval: 2
   reloadShotInterval: 0.1
   rotationSpeed: 100
-  detectionRange: 6
+  detectionRange: 5
   bulletParticleSystem:
   - {fileID: 6259656976950594170}
   - {fileID: 4641733388972495444}

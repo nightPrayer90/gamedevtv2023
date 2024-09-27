@@ -30,16 +30,6 @@ public class ShopModule : MonoBehaviour
             floatingObject.SetInActive(shopModuleContainer.isActive);
     }
 
-    /*public void SetActive()
-    {
-        Debug.Log("isSelected");
-    }
-
-    private void HandleSetDeselect()
-    {
-        Debug.Log("isDeSelected");
-    }*/
-
     public void BuyModule(int flag)
     {
         if (meshHud != null)

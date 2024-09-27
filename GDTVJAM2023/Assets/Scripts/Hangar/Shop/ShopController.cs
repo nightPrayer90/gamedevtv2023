@@ -29,9 +29,6 @@ public class ShopController : MonoBehaviour
 
     // UI Management
     public TextMeshProUGUI creditsText;
-    public CanvasGroup buyPanel;
-    public TextMeshProUGUI buyBtnText;
-    public GameObject buyButton;
 
     // Events
     public event Action onBuyModule;
@@ -71,10 +68,6 @@ public class ShopController : MonoBehaviour
         // Level
         activeLevel = playerData.bossLevel;
 
-        // reset
-        buyPanel.alpha = 0;
-        buyPanel.blocksRaycasts = false;
-
         // TODO activeLevel LoadFrom SaveData----
         foreach (ShopModuleContainer container in moduleContainers)
         {
@@ -88,6 +81,7 @@ public class ShopController : MonoBehaviour
     private void Start()
     {
         onBuyModule?.Invoke();
+
     }
 
     private void Update()
@@ -146,15 +140,9 @@ public class ShopController : MonoBehaviour
 
                         lastSelection = selection;
 
-                        // buy Panel ----
-                        buyBtnText.text = "Buy for " + selectedShopModule.itemCost.ToString() + " CD";
-                        // buy btn
-                        buyButton.SetActive(true);
-
                         int inUse = playerData.moduleCounts[selectedShopModule.itemIndex] + shipModulesPlayerBuyed[selectedShopModule.itemIndex];
                         if (inUse >= selectedShopModule.itemMaxCount && selectedShopModule.itemMaxCount != -1)
                         {
-                            buyButton.SetActive(false);
                             AudioManager.Instance.PlaySFX("HangarCantLoadSelect");
                         }
                         else
@@ -162,14 +150,6 @@ public class ShopController : MonoBehaviour
                             AudioManager.Instance.PlaySFX("HangarSelectPart");
                         }
 
-
-                        buyPanel.DOKill();
-                        if (buyPanel.alpha < 1)
-                        {
-                            buyPanel.DOFade(1, 0.2f);
-                            
-                        }
-                        buyPanel.blocksRaycasts = true;
                     }
                     // klick at a free space
                     else
@@ -211,27 +191,12 @@ public class ShopController : MonoBehaviour
         lastSelection = null;
         //OnDeselect?.Invoke();
 
-        // buy Panel
-        buyPanel.DOKill();
-        if (buyPanel.alpha > 0)
-        {
-            buyPanel.blocksRaycasts = false;
-            buyPanel.DOFade(0, 0.2f);
-        }
     }
 
     public void ObjectDeselect()
     {
         if (lastSelection != null)
             lastSelection.GetComponentInChildren<MeshRenderer>().material = originalMaterialSelectet;
-
-        // buy Panel
-        buyPanel.DOKill();
-        if (buyPanel.alpha > 0)
-        {
-            buyPanel.blocksRaycasts = false;
-            buyPanel.DOFade(0, 0.2f);
-        }
     }
 
     public void UpdateCredits(int credits_)
@@ -280,15 +245,20 @@ public class ShopController : MonoBehaviour
         DeselectAll();
     }
 
-    public void SellModule()
+    public void BuyModuleFromHud(ShopModule selectedShopModule)
     {
-        if (selectedShopModule != null)
+        if (credits >= selectedShopModule.itemCost)
         {
-            AudioManager.Instance.PlaySFX("ShopSell");
-            UpdateCredits(selectedShopModule.itemSellPrice);
-            playerData.moduleCounts[selectedShopModule.itemIndex] -= 1;
+            UpdateCredits(-selectedShopModule.itemCost);
+            playerData.moduleCounts[selectedShopModule.itemIndex] += 1;
 
-            selectedShopModule.BuyModule(1);
+            selectedShopModule.BuyModule(0);
+            AudioManager.Instance.PlaySFX("ShopBuy");
+        }
+        else
+        {
+            // ToDo what happents if we have not enough credits
+            AudioManager.Instance.PlaySFX("ShopCantBuyModules");
         }
 
         onBuyModule?.Invoke();

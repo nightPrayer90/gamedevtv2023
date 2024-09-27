@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-//using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections.Generic;
 
 public class HangarUIController : MonoBehaviour
 {
@@ -36,7 +36,6 @@ public class HangarUIController : MonoBehaviour
     [Header("Ship Panel")]
     public TextMeshProUGUI spMassValue;
     public TextMeshProUGUI spEnergieProduction;
-    public TextMeshProUGUI spEnergieInUse;
     public TextMeshProUGUI spEnergieRegen;
     public TextMeshProUGUI spEnergieStorage;
     public TextMeshProUGUI spHealth;
@@ -44,6 +43,11 @@ public class HangarUIController : MonoBehaviour
     public TextMeshProUGUI spMainEngine;
     public TextMeshProUGUI spDirectionEngine;
     public TextMeshProUGUI spStrafeEngine;
+
+    [Header("Nion Panel")]
+    public GameObject nionPrefab;
+    public Transform nionPanel;
+    private List<Image> nionImages = new(); 
 
     [Header("Class Panel")]
     public Image cpBulletImage;
@@ -100,15 +104,6 @@ public class HangarUIController : MonoBehaviour
         {
             newModuleNotification.alpha = 0;
         }
-    }
-
-    public void Update()
-    {
-
-        /*if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            BackToMenue();
-        }*/
     }
 
     private void OnDestroy()
@@ -179,7 +174,7 @@ public class HangarUIController : MonoBehaviour
         scpHeader.text = selectedModul.moduleValues.moduleName;
         scpDescription.text = selectedModul.moduleValues.modulDescription_multiLineText;
         scpCostMassValue.text = selectedModul.moduleValues.costMass.ToString() + " t";
-        scpCostEnergieValue.text = selectedModul.moduleValues.costEnergie.ToString() + " TJ/s";
+        scpCostEnergieValue.text = selectedModul.moduleValues.costEnergie.ToString() + " Nion";
 
 
         // open Module Panel
@@ -246,7 +241,7 @@ public class HangarUIController : MonoBehaviour
         mopHeader.text = moduleStorage.moduleList.moduls[modulIndex].moduleName;
         mopDescription.text = moduleStorage.moduleList.moduls[modulIndex].moduleValues.modulDescription_multiLineText;
         mopCostMassValue.text = moduleStorage.moduleList.moduls[modulIndex].moduleValues.costMass.ToString() + " t";
-        mopCostEnergieValue.text = moduleStorage.moduleList.moduls[modulIndex].moduleValues.costEnergie.ToString() + " TJ/s";
+        mopCostEnergieValue.text = moduleStorage.moduleList.moduls[modulIndex].moduleValues.costEnergie.ToString() + " Nion";
     }
 
     public void MouseExitModulePanel(float delay)
@@ -269,9 +264,10 @@ public class HangarUIController : MonoBehaviour
     #region Ship Panel
     public void SetShipPanel()
     {
+        int nion = 0;
         float massResult = 0f;
-        float energieProductionResult = 0f;
-        float energieRegenResult = 0f;
+        float energieProduction = 0f;
+        float nionCost = 0f;
         int energieStorage = 0;
         int health = 0;
         float protection = 0;
@@ -288,10 +284,14 @@ public class HangarUIController : MonoBehaviour
         // get Data
         foreach (HangarModul modul in moduleStorage.installedHangarModules)
         {
-            massResult += modul.moduleValues.costMass;
-            energieProductionResult += modul.moduleValues.energieProduction;
-            energieRegenResult += modul.moduleValues.costEnergie;
+            
+            nion += modul.moduleValues.nion;     //-> Nion
+            
+            nionCost += modul.moduleValues.costEnergie;              //-> kosten Nion
             energieStorage += modul.moduleValues.energieStorage;
+            energieProduction += modul.moduleValues.energieProduction;
+
+            massResult += modul.moduleValues.costMass;
             health += modul.moduleValues.health;
             protection += modul.moduleValues.protection;
             mainEngine += modul.moduleValues.mainEngine;
@@ -305,17 +305,36 @@ public class HangarUIController : MonoBehaviour
             supportClass += modul.moduleValues.supportClass;
         }
 
+        // Nion Panel
+        // Delete all NionPrefabs
+        foreach (Transform child in nionPanel)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
+
+        moduleStorage.isEnergiePositiv = nionCost > nion ? false : true;
+
+        for (int i=0; i < nion; i++)
+        {
+            GameObject go = Instantiate(nionPrefab, nionPanel);
+
+            if (i < nionCost)
+            {
+                if (moduleStorage.isEnergiePositiv)
+                    go.GetComponent<Image>().color = Color.white;
+                else
+                    go.GetComponent<Image>().color = Color.red;
+            }
+        }
+
+
         // Ship Panel
-        spMassValue.text = massResult.ToString() + " t";
-        spEnergieProduction.text = energieProductionResult.ToString() + " TJ/s";
-        spEnergieInUse.text = energieRegenResult.ToString() + " TJ/s";
-
-        spEnergieInUse.color = energieProductionResult < energieRegenResult ? Color.red : Color.white;
-        moduleStorage.isEnergiePositiv = energieProductionResult < energieRegenResult ? false : true;
-
-        energieRegenResult = Mathf.Round((energieProductionResult - energieRegenResult) * 100) / 100;
-        spEnergieRegen.text = (energieRegenResult).ToString() + " TJ/s"; // TODO: do it red if it is smaller than 0
+        spEnergieProduction.text = nion.ToString();
+        spEnergieRegen.text = energieProduction.ToString() + " TJ/s"; ; // -> Value that comes from oduleValues
         spEnergieStorage.text = energieStorage.ToString() + " TJ";
+
+        spMassValue.text = massResult.ToString() + " t";
         spMainEngine.text = mainEngine.ToString() + " /<color=#00FFFF>" + boostEngine.ToString() + "</color> TN";
         directionEngine = Mathf.Round((directionEngine / 2) * 100) / 100;
         spDirectionEngine.text = directionEngine.ToString() + " TNm";
@@ -352,6 +371,8 @@ public class HangarUIController : MonoBehaviour
     #region Button Controls
     public void GameStart()
     {
+        Debug.Log($"Game can Start? {moduleStorage.isEnergiePositiv}");
+
         if (moduleStorage.isAllConnected == true && moduleStorage.isEnergiePositiv == true)
         {
             AudioManager.Instance.PlaySFX("MouseKlick");
@@ -362,7 +383,7 @@ public class HangarUIController : MonoBehaviour
         {
             if (moduleStorage.isEnergiePositiv == false)
             {
-                notificationText.text = "Your ship needs more energy than it produces!";
+                notificationText.text = "Your ship needs more Nion power to start!";
                 AudioManager.Instance.PlaySFX("CantStartGame1");
             }
 

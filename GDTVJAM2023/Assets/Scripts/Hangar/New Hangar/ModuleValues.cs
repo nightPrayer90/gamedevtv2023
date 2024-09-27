@@ -15,10 +15,14 @@ public class ModuleValues
     public string modulDescription_multiLineText;
 
     [Header("Hangar and GamePlay")]
+    public int nion;
     public float costMass;
     public float costEnergie;
+
     public float energieProduction;
     public int energieStorage;
+
+
     public int health;
     public float protection;
     public float mainEngine;

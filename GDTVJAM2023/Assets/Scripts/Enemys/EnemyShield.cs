@@ -152,7 +152,7 @@ public class EnemyShield : MonoBehaviour
             shieldCollider.enabled = false;
             backCollider.enabled = false;
             rippleParticle.Play();
-            PushThePlayer(3f, 10f);
+            PushThePlayer(2f, 6f);
             hitParticle.transform.position = gameObject.transform.position;
             hitParticle.Emit(80);
             AudioManager.Instance.PlaySFX("Boss2ShieldBounce");

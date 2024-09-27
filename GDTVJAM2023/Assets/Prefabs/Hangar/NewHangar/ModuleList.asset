@@ -42,9 +42,10 @@ MonoBehaviour:
         Health: 5 HP
 
         Strafe engine: 3 / 4 TN'
+      nion: 10
       costMass: 0.6
       costEnergie: 0
-      energieProduction: 1.9
+      energieProduction: 0.5
       energieStorage: 7
       health: 5
       protection: 0
@@ -87,8 +88,9 @@ MonoBehaviour:
         / s
 
         Health: +1 HP'
+      nion: 0
       costMass: 0.35
-      costEnergie: 0.2
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 1
@@ -132,8 +134,9 @@ MonoBehaviour:
         / s
 
         Health: +1 HP'
+      nion: 0
       costMass: 0.35
-      costEnergie: 0.2
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 1
@@ -171,8 +174,9 @@ MonoBehaviour:
       modulDescription_multiLineText: "<color=#FFBF00>You need one main engine to
         fly \nforwards or backwards.</color>\nThrust force: 5 TN\nBoost force: 13
         TN"
+      nion: 0
       costMass: 0.2
-      costEnergie: 0.6
+      costEnergie: 2
       energieProduction: 0
       energieStorage: 0
       health: 0
@@ -209,8 +213,9 @@ MonoBehaviour:
       canBack: 1
       modulDescription_multiLineText: "<color=#FFBF00>You need two direction engines
         to \nbe able to turn your ship in space.</color>\nTorque force: 0.27 TNm"
+      nion: 0
       costMass: 0.05
-      costEnergie: 0.1
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 0
@@ -247,8 +252,9 @@ MonoBehaviour:
       canBack: 0
       modulDescription_multiLineText: "<color=#FFBF00>The Strafe Engine allows you
         \nto strafe left and right.</color>\nStrafe force: 4 TN\nBoost force: 6 TN"
+      nion: 0
       costMass: 0.1
-      costEnergie: 0.1
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 0
@@ -289,8 +295,9 @@ MonoBehaviour:
 
         <color=#AC00FF>Support
         class + 1</color>'
+      nion: 0
       costMass: 0.2
-      costEnergie: 0.3
+      costEnergie: 2
       energieProduction: 0
       energieStorage: 2
       health: 2
@@ -319,7 +326,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 1
     moduleValues:
-      moduleName: Bullet Shooter front
+      moduleName: D1 Bullet Shooter F
       moduleType: 5
       canLeft: 0
       canRight: 0
@@ -331,8 +338,9 @@ MonoBehaviour:
         3 HP / hit
 
         Fire rate: 2,5 bullets / s'
+      nion: 0
       costMass: 0.05
-      costEnergie: 0.3
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 0
@@ -374,8 +382,9 @@ MonoBehaviour:
 
         Fire
         rate: 1 rocket / s'
+      nion: 0
       costMass: 0.15
-      costEnergie: 0.2
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 0
@@ -417,8 +426,9 @@ MonoBehaviour:
 
         Fire
         rate: 1 rocket / s'
+      nion: 0
       costMass: 0.15
-      costEnergie: 0.2
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 0
@@ -455,8 +465,9 @@ MonoBehaviour:
       canBack: 0
       modulDescription_multiLineText: "<color=#FFBF00>Short range laser attack.</color>\nDamage:
         4 HP / hit\nShoot time: 3 s \nDown time: 2 s"
+      nion: 0
       costMass: 0.1
-      costEnergie: 0.35
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 0
@@ -494,8 +505,9 @@ MonoBehaviour:
       modulDescription_multiLineText: 'Energy storage +1 TJ
 
         Health +1 HP'
+      nion: 0
       costMass: 0.1
-      costEnergie: 0.05
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 1
       health: 1
@@ -533,8 +545,9 @@ MonoBehaviour:
       modulDescription_multiLineText: 'Energy storage +1 TJ
 
         Health +1 HP'
+      nion: 0
       costMass: 0.1
-      costEnergie: 0.05
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 1
       health: 1
@@ -572,8 +585,9 @@ MonoBehaviour:
       modulDescription_multiLineText: 'Protection level +1
 
         Health +1 HP'
+      nion: 0
       costMass: 0.1
-      costEnergie: 0.1
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 1
@@ -611,8 +625,9 @@ MonoBehaviour:
       modulDescription_multiLineText: 'Protection level +1
 
         Health +1 HP'
+      nion: 0
       costMass: 0.1
-      costEnergie: 0.1
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 1
@@ -656,9 +671,10 @@ MonoBehaviour:
 
         <color=#FF0000>Bullet Class:
         +1 </color>'
+      nion: 15
       costMass: 0.9
       costEnergie: 0
-      energieProduction: 3
+      energieProduction: 0.8
       energieStorage: 10
       health: 10
       protection: 0
@@ -701,9 +717,10 @@ MonoBehaviour:
 
         <color=#F57000>Explosion Class:
         +1 </color>'
+      nion: 15
       costMass: 1
       costEnergie: 0
-      energieProduction: 2.7
+      energieProduction: 0.8
       energieStorage: 12
       health: 12
       protection: 0
@@ -746,9 +763,10 @@ MonoBehaviour:
 
         <color=#5F9AFF>Laser class:
         +1 </color>'
+      nion: 15
       costMass: 0.8
       costEnergie: 0
-      energieProduction: 3.2
+      energieProduction: 0.8
       energieStorage: 8
       health: 8
       protection: 0
@@ -776,9 +794,9 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: 
-      moduleType: 0
-      canLeft: 0
+      moduleName: D2 Aero Jet L
+      moduleType: 6
+      canLeft: 1
       canRight: 0
       canFront: 0
       canBack: 0
@@ -786,8 +804,9 @@ MonoBehaviour:
 
         Torque force: 0.30
         TNm'
+      nion: 0
       costMass: 0.2
-      costEnergie: 0.2
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 1
@@ -816,8 +835,8 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Wing Typ 03 right (DE)
-      moduleType: 3
+      moduleName: D2 Aero Jet R
+      moduleType: 6
       canLeft: 0
       canRight: 1
       canFront: 0
@@ -826,8 +845,9 @@ MonoBehaviour:
 
         Torque force: 0.30
         TNm'
+      nion: 0
       costMass: 0.2
-      costEnergie: 0.2
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 1
@@ -865,8 +885,9 @@ MonoBehaviour:
       modulDescription_multiLineText: "<color=#FFBF00>Wing with bullet shooter and
         direction engine</color>\nDamage: 5 HP / hit \nHealth': +2 HP\nTorque force:
         0.30 TNm"
+      nion: 0
       costMass: 0.25
-      costEnergie: 0.45
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 2
@@ -904,8 +925,9 @@ MonoBehaviour:
       modulDescription_multiLineText: "<color=#FFBF00>Wing with bullet shooter and
         direction engine</color>\nDamage: 3 HP / hit \nHealth: +2 HP\nTorque force:
         0.30 TNm"
+      nion: 0
       costMass: 0.25
-      costEnergie: 0.45
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 2
@@ -942,8 +964,9 @@ MonoBehaviour:
       canBack: 0
       modulDescription_multiLineText: "<color=#FFBF00>Mid range bullet attack</color>
         \nDamage: 5 HP / hit \nFire rate: 2 bullets / s"
+      nion: 0
       costMass: 0.1
-      costEnergie: 0.3
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 0
@@ -980,8 +1003,9 @@ MonoBehaviour:
       canBack: 0
       modulDescription_multiLineText: "<color=#FFBF00>Mid range bullet attack</color>
         \nDamage: 5 HP / hit \nFire rate: 2 bullets / s"
+      nion: 0
       costMass: 0.1
-      costEnergie: 0.3
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 0
@@ -1020,8 +1044,9 @@ MonoBehaviour:
 
         Connectors: front,
         back, left, right'
+      nion: 0
       costMass: 0.15
-      costEnergie: 0.15
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 2
       health: 1
@@ -1063,8 +1088,9 @@ MonoBehaviour:
 
         You get the ability: <color=#00FFFF>Boost needs less
         energy / s</color>'
+      nion: 0
       costMass: 0.2
-      costEnergie: 0.8
+      costEnergie: 2
       energieProduction: 0
       energieStorage: 0
       health: 0
@@ -1106,8 +1132,9 @@ MonoBehaviour:
 
         You get the ability: <color=#00FFFF>Power
         Boost</color>'
+      nion: 0
       costMass: 0.2
-      costEnergie: 0.75
+      costEnergie: 2
       energieProduction: 0
       energieStorage: 0
       health: 0
@@ -1136,7 +1163,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 1
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Connector 3 Ways 1
+      moduleName: D1 Connector 3S1
       moduleType: 0
       canLeft: 1
       canRight: 1
@@ -1146,8 +1173,9 @@ MonoBehaviour:
 
         Connectors: front,
         left, right'
+      nion: 0
       costMass: 0.1
-      costEnergie: 0.1
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 1
@@ -1176,7 +1204,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 1
     canHaveBackNeighbor: 1
     moduleValues:
-      moduleName: Connector 3 Ways 2
+      moduleName: D1 Connector 3S2
       moduleType: 0
       canLeft: 1
       canRight: 0
@@ -1186,8 +1214,9 @@ MonoBehaviour:
 
         Connectors: front,
         back, right'
+      nion: 0
       costMass: 0.1
-      costEnergie: 0.1
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 1
@@ -1216,7 +1245,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 1
     canHaveBackNeighbor: 1
     moduleValues:
-      moduleName: Connector 3 Ways 3
+      moduleName: D1 Connector 3S3
       moduleType: 0
       canLeft: 0
       canRight: 1
@@ -1226,8 +1255,9 @@ MonoBehaviour:
 
         Connectors: front,
         back, left'
+      nion: 0
       costMass: 0.1
-      costEnergie: 0.1
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 1
@@ -1256,7 +1286,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 1
     moduleValues:
-      moduleName: Connector 3 Ways 4
+      moduleName: D1 Connector 3S4
       moduleType: 0
       canLeft: 1
       canRight: 1
@@ -1266,8 +1296,9 @@ MonoBehaviour:
 
         Connectors:  back,
         left, right'
+      nion: 0
       costMass: 0.1
-      costEnergie: 0.1
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 1
@@ -1303,8 +1334,9 @@ MonoBehaviour:
       canFront: 0
       canBack: 1
       modulDescription_multiLineText: 'Torque force: 0.31 TN'
+      nion: 0
       costMass: 0.05
-      costEnergie: 0.15
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 0
@@ -1341,8 +1373,9 @@ MonoBehaviour:
       canBack: 0
       modulDescription_multiLineText: "<color=#FFBF00>Wing with rocket shooter</color>\nDamage:
         6 HP / hit \nHealth: +2 HP"
+      nion: 0
       costMass: 0.3
-      costEnergie: 0.25
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 2
@@ -1379,8 +1412,9 @@ MonoBehaviour:
       canBack: 0
       modulDescription_multiLineText: "<color=#FFBF00>Wing with rocket shooter</color>\nDamage:
         6 HP / hit \nHealth: +2 HP"
+      nion: 0
       costMass: 0.3
-      costEnergie: 0.15
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 2
@@ -1418,8 +1452,9 @@ MonoBehaviour:
       modulDescription_multiLineText: "<color=#FFBF00>Wing with rocket shooter and
         direction engine</color>\nDamage: 6 HP / hit \nHealth: +2 HP\nTorque force:
         0.30 TNm"
+      nion: 0
       costMass: 0.35
-      costEnergie: 0.4
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 2
@@ -1457,8 +1492,9 @@ MonoBehaviour:
       modulDescription_multiLineText: "<color=#FFBF00>Wing with rocket shooter and
         direction engine</color>\nDamage: 6 HP / hit \nHealth + 2 HP\nTorque force:
         0.30 TNm"
+      nion: 0
       costMass: 0.35
-      costEnergie: 0.4
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 2
@@ -1495,8 +1531,9 @@ MonoBehaviour:
       canBack: 0
       modulDescription_multiLineText: "<color=#FFBF00>Wing with laser shooter</color>\nDamage:
         4 HP / hit\nShoot time: 3 s \nDown time: 2 s\nHealth: +2 HP"
+      nion: 0
       costMass: 0.25
-      costEnergie: 0.3
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 2
@@ -1542,8 +1579,9 @@ MonoBehaviour:
 
         Health:
         +2 HP'
+      nion: 0
       costMass: 0.25
-      costEnergie: 0.3
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 2
@@ -1590,8 +1628,9 @@ MonoBehaviour:
 
         Health: +2
         HP"'
+      nion: 0
       costMass: 0.3
-      costEnergie: 0.45
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 2
@@ -1638,8 +1677,9 @@ MonoBehaviour:
 
         Health: +2
         HP"'
+      nion: 0
       costMass: 0.3
-      costEnergie: 0.45
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 0
@@ -1668,7 +1708,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Solar Module left
+      moduleName: D3 Solar Module L
       moduleType: 0
       canLeft: 1
       canRight: 0
@@ -1677,11 +1717,12 @@ MonoBehaviour:
       modulDescription_multiLineText: 'Energy: +0.5 TJ/s
 
         Health: +1 HP'
+      nion: 2
       costMass: 0.1
       costEnergie: 0
       energieProduction: 0.5
       energieStorage: 0
-      health: 1
+      health: 0
       protection: 0
       mainEngine: 0
       directionEngine: 0
@@ -1707,7 +1748,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Solar Module right
+      moduleName: D3 Solar Module R
       moduleType: 0
       canLeft: 0
       canRight: 1
@@ -1716,11 +1757,12 @@ MonoBehaviour:
       modulDescription_multiLineText: 'Energy: +0.5 TJ/s
 
         Health: +1 HP'
+      nion: 2
       costMass: 0.1
       costEnergie: 0
       energieProduction: 0.5
       energieStorage: 0
-      health: 1
+      health: 0
       protection: 0
       mainEngine: 0
       directionEngine: 0
@@ -1761,8 +1803,9 @@ MonoBehaviour:
         3 s
 
         Quantity: ~2'
+      nion: 0
       costMass: 0.1
-      costEnergie: 0.3
+      costEnergie: 1
       energieProduction: 0
       energieStorage: 0
       health: 0

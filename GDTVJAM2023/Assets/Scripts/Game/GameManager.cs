@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System;
 using UnityEngine.EventSystems;
-using UnityEditor.Experimental.GraphView;
+
 
 
 
@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI enemyToKillText;
     public TextMeshProUGUI enemyCounterText;
     public TextMeshProUGUI outsideBorderText;
+
     //public List<Color> globalClassColor;
     public ClassColor cCPrefab;
     public Transform outsideBorderTextTweenTarget;
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
     public CanvasGroup minimapCG;
     public CanvasGroup minimapBigCG;
     public CanvasGroup playerUICG;
+    public CanvasGroup controlsCG;
     public Camera minimapCameraBig;
     private bool bigMapisOpen = false;
     public TextMeshProUGUI upgradeText;
@@ -67,6 +69,7 @@ public class GameManager : MonoBehaviour
     private float abValueBuffer = 0f;
     private float abTimeBuffer = 0f;
     private Tween abTween = null;
+
 
 
     [Header("Dimension Shift")]
@@ -150,6 +153,9 @@ public class GameManager : MonoBehaviour
         UpdateEnemyCounter(0);
 
         PlayerUIIntroTween();
+
+        // Controlls - FadeIN and Out
+        controlsCG.DOFade(1, 1f).SetDelay(0.5f).OnComplete(() => controlsCG.DOFade(0, 2f).SetDelay(6)); 
     }
 
     // sets start values that must be the same for every run

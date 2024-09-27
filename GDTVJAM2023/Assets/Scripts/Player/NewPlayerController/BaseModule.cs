@@ -18,7 +18,6 @@ public class BaseModule : MonoBehaviour
             playerRigidbody.mass += moduleValues.costMass;
 
             playerController.energieProduction += moduleValues.energieProduction;
-            playerController.energieProduction -= moduleValues.costEnergie;
             playerController.energieMax += moduleValues.energieStorage;
 
             playerController.playerMaxHealth += moduleValues.health;
