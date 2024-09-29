@@ -1,9 +1,17 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 [Serializable]
 public class ModuleValues
 {
+    [Serializable]
+    public struct ModuleUpgrade
+    {
+        public int moduleUpgradeIndex;
+        public int moduleUpgradeQuantity;
+    }
+
     [HideInInspector] public string moduleName; // set from other objects (create)
     [HideInInspector] public ModuleType moduleType;
     [HideInInspector] public bool canLeft = false;
@@ -34,4 +42,6 @@ public class ModuleValues
     public int rocketClass;
     public int laserClass;
     public int supportClass;
+
+    public List<ModuleUpgrade> moduleUpgrades = new();
 }

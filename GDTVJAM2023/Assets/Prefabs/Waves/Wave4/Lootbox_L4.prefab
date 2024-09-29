@@ -298,7 +298,7 @@ MonoBehaviour:
     quanitiy: 17
   explosionDelay: 0
   isBoss: 0
-  bigHealthOrb: {fileID: 5693635298845190373, guid: e6900df67bcb982469cdae386db63869, type: 3}
+  bigHealthOrb: {fileID: 5693635298845190373, guid: ea1e9f08a3542e2498ff084e4ae16fe9, type: 3}
   bigEXPOrb: {fileID: 5693635298845190373, guid: a7167deb24e3c894aa97b48178bdfba4, type: 3}
   bigTimerOrb: {fileID: 5693635298845190373, guid: 6342dec8388976d49a4da8a06877f931, type: 3}
 --- !u!82 &7442621568476400086

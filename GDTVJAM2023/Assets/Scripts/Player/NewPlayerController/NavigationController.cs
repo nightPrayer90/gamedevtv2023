@@ -2,16 +2,11 @@ using UnityEngine;
 
 public class NavigationController : MonoBehaviour
 {
-    private GameManager gameManager;
-    private SpawnDistrictList spawnDoistrictList;
+    public GameManager gameManager;
+    public SpawnDistrictList spawnDoistrictList;
     public GameObject navigatorPivot;
     public Vector3 targetPosition;
 
-    private void Start()
-    {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        spawnDoistrictList = GameObject.Find("Game Manager").GetComponent<SpawnDistrictList>();
-    }
 
     public void SetTargetPosition()
     {

@@ -89,14 +89,14 @@ public class GameManager : MonoBehaviour
 
     //Listen für Abilitys und UpgradeSystem
     [Header("Upgrade Lists")]
-    [HideInInspector] public UpgradeChooseList upgradeChooseList;
-    [HideInInspector] public SpawnDistrictList spawnDistrictList;
-    [HideInInspector] public List<int> valueList;
-    [HideInInspector] public int[] selectedNumbers_ = new int[3];
-
+    public UpgradePanelController upgradePanelController;
+    public UpgradeChooseList upgradeChooseList;
+    public SpawnDistrictList spawnDistrictList;
+    
 
     [Header("Floating Damage")]
     public GameObject textPrefab;
+
 
     [Header("Player Ship")]
     public PlayerData playerData;
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
     public CinemachineSwitcher cinemachineSwitcher;
     public NewPlayerController player;
     // private PlayerWeaponController weaponController;
-    private Light directionalLight;
+    public Light directionalLight;
     private GameObject currentSpawnManager;
     private bool isIntro = true;
     private bool canSpawnNextDimention = true;
@@ -131,10 +131,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        directionalLight = GameObject.Find("Directional Light").GetComponent<Light>();
-        upgradeChooseList = GetComponent<UpgradeChooseList>();
-        spawnDistrictList = GetComponent<SpawnDistrictList>();
-
         // Initialize timer
         currentTime = totalTime + 1;
         InvokeRepeating("UpdateTimerText", 3f, 1f);
@@ -485,11 +481,8 @@ public class GameManager : MonoBehaviour
                 DOTween.CompleteAll();
             }
             
-
-
-
             experienceSlider.value = experienceSlider.maxValue;
-            CreateRandomNumbers(playerLevel);
+            upgradePanelController.CreateRandomNumbers(playerLevel);
 
             gameIsPlayed = false;
 
@@ -516,7 +509,7 @@ public class GameManager : MonoBehaviour
     {
         DOTween.CompleteAll();
 
-        CreateRandomNumbers(-1);
+        upgradePanelController.CreateRandomNumbers(-1);
 
         gameIsPlayed = false;
 
@@ -779,33 +772,6 @@ public class GameManager : MonoBehaviour
     /* **************************************************************************** */
     /* MISC---------- ------------------------------------------------------------- */
     /* **************************************************************************** */
-
-    // (help function) create 3 random numbers für the upgrade/ ability panel - trigger by levelup
-    public void CreateRandomNumbers(int playerLevel)
-    {
-        List<int> selectedNumbers = new List<int>();
-
-        // create temporary list from weapons or normal upgrades - depends on the player level
-        if (playerLevel == -1) // new weapon
-            valueList.AddRange(upgradeChooseList.BuildUpgradeList(Upgrade.UpgradeTyp.WeaponUpgrade));
-        else if ((playerLevel % 5) == 0) // class update
-            valueList.AddRange(upgradeChooseList.BuildUpgradeList(Upgrade.UpgradeTyp.ClassUpgrade));
-        else
-            valueList.AddRange((upgradeChooseList.BuildUpgradeList(Upgrade.UpgradeTyp.NormalUpgrade)));
-
-        // create 3 random possible numbers that do not duplicate each other
-        for (int i = 0; i < 3; i++)
-        {
-            int randomIndex = UnityEngine.Random.Range(0, valueList.Count);     // generate a random number
-            selectedNumbers.Add(valueList[randomIndex]);            // save the number in a list
-            valueList.RemoveAt(randomIndex);                        // remove the value from the temp list
-        }
-
-        selectedNumbers_ = selectedNumbers.ToArray();
-
-        //reset 
-        valueList.Clear();
-    }
 
     // camera screenshake control
     public void ScreenShake(int shakeIndex)

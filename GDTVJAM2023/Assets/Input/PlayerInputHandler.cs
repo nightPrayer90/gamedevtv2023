@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,11 +31,13 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction openUIAction;
     private InputAction openMapAction;
     private InputAction hideUIAction;
+    private InputAction rerollAction;
 
     [Header("Action Name References UI")]
     [SerializeField] private string navigate = "Navigate";
     [SerializeField] private string click = "Click";
     [SerializeField] private string closeUI = "CloseUI";
+    [SerializeField] private string reroll = "Reroll";
 
     private InputAction navigateUIAction;
     private InputAction clickUIAction;
@@ -176,7 +179,23 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-
+    public event Action OnReroll;
+    private bool _rerollInput;
+    public bool RerollInput
+    {
+        get { return _rerollInput; }
+        private set
+        {
+            if (_rerollInput != value)
+            {
+                _rerollInput = value;
+                if (_rerollInput)
+                {
+                    OnReroll?.Invoke();
+                }
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -195,6 +214,7 @@ public class PlayerInputHandler : MonoBehaviour
         navigateUIAction = playerControls.FindActionMap(actionMapNameUI).FindAction(navigate);
         clickUIAction = playerControls.FindActionMap(actionMapNameUI).FindAction(click);
         closeUIAction = playerControls.FindActionMap(actionMapNameUI).FindAction(closeUI);
+        rerollAction = playerControls.FindActionMap(actionMapNameUI).FindAction(reroll);
         RegisterInputActions();
     }
 
@@ -235,6 +255,9 @@ public class PlayerInputHandler : MonoBehaviour
 
         closeUIAction.performed += context => CloseUIInput = true;
         closeUIAction.canceled += context => CloseUIInput = false;
+
+        rerollAction.performed += context => RerollInput = true;
+        rerollAction.canceled += context => RerollInput = false;
     }
 
     private void OnEnable()
@@ -279,6 +302,7 @@ public class PlayerInputHandler : MonoBehaviour
         navigateUIAction.Enable();
         clickUIAction.Enable();
         closeUIAction.Enable();
+        rerollAction.Enable();
     }
 
     public void DisableUIControls()
@@ -287,5 +311,6 @@ public class PlayerInputHandler : MonoBehaviour
         navigateUIAction.Disable();
         clickUIAction.Disable();
         closeUIAction.Disable();
+        rerollAction.Disable();
     }
 }

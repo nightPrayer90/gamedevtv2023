@@ -287,15 +287,15 @@ MonoBehaviour:
   lootCount: 5
   lootObjects:
   - lootprefab: {fileID: 5693635298845190373, guid: a1db5ca78d5788f43ae0640c21efb00a, type: 3}
-    quanitiy: 25
+    quanitiy: 15
   - lootprefab: {fileID: 5693635298845190373, guid: e6900df67bcb982469cdae386db63869, type: 3}
-    quanitiy: 6
+    quanitiy: 8
   - lootprefab: {fileID: 5693635298845190373, guid: 6342dec8388976d49a4da8a06877f931, type: 3}
     quanitiy: 12
   - lootprefab: {fileID: 5693635298845190373, guid: d9ee30b57dac9c242b2dd3088f8b91a2, type: 3}
     quanitiy: 40
   - lootprefab: {fileID: 5693635298845190373, guid: 8225d8f670b1e9847abc45895700be33, type: 3}
-    quanitiy: 17
+    quanitiy: 25
   explosionDelay: 0
   isBoss: 0
   bigHealthOrb: {fileID: 5693635298845190373, guid: ea1e9f08a3542e2498ff084e4ae16fe9, type: 3}

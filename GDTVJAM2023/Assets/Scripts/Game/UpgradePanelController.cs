@@ -8,28 +8,32 @@ using DG.Tweening;
 public class UpgradePanelController : MonoBehaviour
 {
     [Header("Main Panel")]
-    //public UpgradeContainer[] upgradeIndex;
     public List<UpgradPanelIndex> panelList;
     public UpgradeShipPanelController shipPanalController;
+    private int rerolls = 2;
+    private int upgradeType;
+    public TMP_Text rerollText;
+    public GameObject rerollImage;
     [HideInInspector] public int[] upgradeIndex;
-    [HideInInspector] public float[] upgradeValue;
     [HideInInspector] public int[] upgradeCount;
     [HideInInspector] public Sprite[] iconPanel;
 
+    [Header("Upgrade Control")]
+    [HideInInspector] public List<int> valueList;
+    [HideInInspector] public int[] selectedNumbers_ = new int[3];
 
     [Header("Value Panel")]
     public Image bkImage;
     //public List<Color> cl lc assColors;
     public List<Image> classPanels = new List<Image>();
-
     public List<Image> selectedUpgradePanelList = new List<Image>();
     private int weaponCount = 0;
 
     // Objects
-    private GameManager gameManager;
-    private NewPlayerController playerController;
-    private PlayerWeaponController playerWeaponController;
-    private UpgradeChooseList upgradeChooseList;
+    public GameManager gameManager;
+    public NewPlayerController playerController;
+    public PlayerWeaponController playerWeaponController;
+    public UpgradeChooseList upgradeChooseList;
 
     public int selectetPanel;
     public bool isButtonPressed = false;
@@ -38,28 +42,21 @@ public class UpgradePanelController : MonoBehaviour
     public PlayerInputHandler inputHandler;
 
 
-    private void Awake()
-    {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
-        playerController = GameObject.FindWithTag("Player").GetComponent<NewPlayerController>();
-        playerWeaponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
-    }
+
+    /* **************************************************************************** */
+    /* Lifecycle-Methoden---------------------------------------------------------- */
+    /* **************************************************************************** */
+    #region lifecycle
+
 
     void OnEnable()
     {
-        upgradeIndex = new int[3] { 0, 0, 0 };
-        upgradeValue = new float[3] { 0, 0, 0 };
-        upgradeCount = new int[3] { 0, 0, 0 };
-        iconPanel = new Sprite[3] { null, null, null };
-
         selectetPanel = -1;
         isTweening = true;
         isButtonPressed = false;
 
-        StringLibrary();
-
         bkImage.DOFade(1f, 0.2f).SetUpdate(true);
+
 
         // events
         inputHandler.DisableGameControls();
@@ -67,6 +64,7 @@ public class UpgradePanelController : MonoBehaviour
 
         inputHandler.OnNavigateUIInputChanged += HandleNavigateInput;
         inputHandler.OnClickInputChanged += HandleSubmitInput;
+        inputHandler.OnReroll += HandleRerollInput;
     }
 
     private void OnDisable()
@@ -74,9 +72,12 @@ public class UpgradePanelController : MonoBehaviour
         // events
         inputHandler.OnNavigateUIInputChanged -= HandleNavigateInput;
         inputHandler.OnClickInputChanged -= HandleSubmitInput;
+        inputHandler.OnReroll -= HandleRerollInput;
+
         inputHandler.DisableUIControls();
         inputHandler.EnableGameControls();
     }
+
 
     private void HandleNavigateInput(Vector2 inputVector2)
     {
@@ -132,27 +133,87 @@ public class UpgradePanelController : MonoBehaviour
         }
     }
 
+    private void HandleRerollInput()
+    {
+        if (rerolls > 0)
+        {
+            rerolls--;
+            CreateRandomNumbers(upgradeType);
+            AudioManager.Instance.PlaySFX("Reroll");
+        }
+    }
+    #endregion
+
+    /* **************************************************************************** */
+    /* Upgrade Prepare ------------------------------------------------------------ */
+    /* **************************************************************************** */
+    #region upgrade prepare
+
+
+    // (help function) create 3 random numbers für the upgrade/ ability panel - trigger by levelup
+    public void CreateRandomNumbers(int playerLevel)
+    {
+        List<int> selectedNumbers = new List<int>();
+        List<int> valueList = new List<int>();
+
+        upgradeType = playerLevel;
+
+        // create temporary list from weapons or normal upgrades - depends on the player level
+        if (playerLevel == -1) // new weapon
+            valueList.AddRange(upgradeChooseList.BuildUpgradeList(Upgrade.UpgradeTyp.WeaponUpgrade));
+        else if ((playerLevel % 5) == 0) // class update
+            valueList.AddRange(upgradeChooseList.BuildUpgradeList(Upgrade.UpgradeTyp.ClassUpgrade));
+        else
+            valueList.AddRange((upgradeChooseList.BuildUpgradeList(Upgrade.UpgradeTyp.NormalUpgrade)));
+
+        // create 3 random possible numbers that do not duplicate each other
+        for (int i = 0; i < 3; i++)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, valueList.Count);     // generate a random number
+            selectedNumbers.Add(valueList[randomIndex]);            // save the number in a list
+            valueList.RemoveAt(randomIndex);                        // remove the value from the temp list
+        }
+
+        selectedNumbers_ = selectedNumbers.ToArray();
+
+        SetRerollText();
+        StringLibrary();
+    }
 
     public void StringLibrary()
     {
+        upgradeIndex = new int[3] { 0, 0, 0 };
+        iconPanel = new Sprite[3] { null, null, null };
+        upgradeCount = new int[3] { 0, 0, 0 };
+
         for (int i = 0; i < 3; i++)
         {
-            upgradeIndex[i] = gameManager.selectedNumbers_[i];
+            upgradeIndex[i] = selectedNumbers_[i];
             Upgrade upgrade = upgradeChooseList.uLObject.upgradeList[upgradeIndex[i]];
 
             gameManager.playerData.skillsSpotted[upgradeIndex[i]] = true;
 
             // set text descriptions
             iconPanel[i] = upgrade.iconPanel;
+            panelList[i].EnablePanel();
         }
     }
+    #endregion
+
+
+
+
+    /* **************************************************************************** */
+    /* Input Control * ------------------------------------------------------------ */
+    /* **************************************************************************** */
+    #region input control
 
     // Part of the Mouse HoverEvent
     public void UpdateValuePanelOnMouseEnter(int index)
     {
         if (isTweening == false)
         {
-            int number = gameManager.selectedNumbers_[index];
+            int number = selectedNumbers_[index];
 
             panelList[0].DeselectPanel();
             panelList[1].DeselectPanel();
@@ -180,7 +241,7 @@ public class UpgradePanelController : MonoBehaviour
     // Click Event - Choose an Ability
     public void ChooseAValue(int index)
     {
-        int number = gameManager.selectedNumbers_[index];
+        int number = selectedNumbers_[index];
         isTweening = true;
         upgradeChooseList.upgrades[number].upgradeIndexInstalled += 1;
 
@@ -253,7 +314,7 @@ public class UpgradePanelController : MonoBehaviour
                 GoBackToDimension();
                 weaponCount++;
                 break;
-            case 10: //weapon: supoort Modul
+            case 10: //weapon: support Modul
                 /*playerWeaponController.shipData.chanceToGetTwoExp += 15;
                 playerWeaponController.shipData.chanceToGetFullEnergy += 2;
                 playerWeaponController.isLifeModul = true;
@@ -761,10 +822,26 @@ public class UpgradePanelController : MonoBehaviour
         playerWeaponController.UpdateWeaponValues();
     }
 
+    #endregion
+
     private void GoBackToDimension()
     {
         gameManager.GoBackDimensionInvoke();
         //gameManager.GoBackDimension();
         AudioManager.Instance.PlaySFX("DimensionSwap");
+    }
+
+    private void SetRerollText()
+    {
+        if (rerolls > 0)
+        {
+            rerollText.text = $"press R to reroll ({rerolls})";
+            rerollImage.SetActive(true);
+        }
+        else
+        {
+            rerollText.text = "";
+            rerollImage.SetActive(false);
+        }
     }
 }

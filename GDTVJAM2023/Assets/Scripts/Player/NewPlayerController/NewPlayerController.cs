@@ -53,12 +53,12 @@ public class NewPlayerController : MonoBehaviour
     [SerializeField] private AudioSource engineSound;
     [SerializeField] private NavigationController navigationController;
     [SerializeField] private GameObject centerOfMass;
-    [SerializeField] private Rigidbody playerRigidbody;
+    public Rigidbody playerRigidbody;
     [SerializeField] private GameManager gameManager;
     //[SerializeField] private GameObject powerBoostMarker;
     public List<ParticleCollisionEvent> collisionEvents;
-    private UpgradeChooseList upgradeChooseList;
-    private PlayerWeaponController playerWeaponController;
+    public UpgradeChooseList upgradeChooseList;
+    public PlayerWeaponController playerWeaponController;
     public ParticleSystem damageParticle;
 
 
@@ -92,8 +92,6 @@ public class NewPlayerController : MonoBehaviour
     {
         playerRigidbody.centerOfMass = new Vector3(0f, 0f, 0f);
         hitColorTemp = hitColor;
-        upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
-        playerWeaponController = GetComponent<PlayerWeaponController>();
 
         // intro starting sound
         AudioManager.Instance.PlaySFX("LiftUPBoss");

@@ -87,7 +87,6 @@ public class PickUps : MonoBehaviour
 
     private void GoBackToPool()
     {
-        Debug.Log("GoBackTOPOOL");
         ObjectPoolManager.ReturnObjectToPool(gameObject);
     }
 }

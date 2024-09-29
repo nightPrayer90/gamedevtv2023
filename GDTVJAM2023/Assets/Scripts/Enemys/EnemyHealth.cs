@@ -317,7 +317,6 @@ public class EnemyHealth : MonoBehaviour
     #region DIE STATE
     private void Die()
     {
-        Debug.Log("dieEvent");
         if (enemyCollider != null) enemyCollider.enabled = false;
 
         // cancle all Invokes
@@ -350,7 +349,6 @@ public class EnemyHealth : MonoBehaviour
 
     public void DestroyEnemy()
     {
-        Debug.Log("destroyEvent");
         // pool (destroy) enemy object
         if (canPoolObject == true)
         {
@@ -359,7 +357,6 @@ public class EnemyHealth : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            Debug.Log("destroy");
         }
     }
     #endregion

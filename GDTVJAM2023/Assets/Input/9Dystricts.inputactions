@@ -1008,6 +1008,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Reroll",
+                    "type": "Button",
+                    "id": "ceeb4538-4cf4-4126-b104-41195b9c8759",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1349,6 +1358,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "ClickUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "81a621f4-d0d3-4eb2-ae92-76df46c7218c",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Reroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a3cddc98-10dc-4a01-aa5a-7a7f85a96a65",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Reroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

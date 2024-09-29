@@ -1,4 +1,5 @@
 using UnityEngine;
+using static ModuleValues;
 
 public class BaseModule : MonoBehaviour
 {
@@ -12,8 +13,8 @@ public class BaseModule : MonoBehaviour
         if (go != null)
         {
             NewPlayerController playerController = go.GetComponent<NewPlayerController>();
-            PlayerWeaponController playerWeaponController = go.GetComponent<PlayerWeaponController>();
-            Rigidbody playerRigidbody = playerController.GetComponent<Rigidbody>();
+            PlayerWeaponController playerWeaponController = playerController.playerWeaponController;
+            Rigidbody playerRigidbody = playerController.playerRigidbody;
 
             playerRigidbody.mass += moduleValues.costMass;
 
@@ -32,6 +33,16 @@ public class BaseModule : MonoBehaviour
             playerWeaponController.shipData.mcExplosionLvl += moduleValues.rocketClass;
             playerWeaponController.shipData.mcLaserLvl += moduleValues.laserClass;
             playerWeaponController.shipData.mcSupportLvl += moduleValues.supportClass;
+
+            if (moduleValues.moduleUpgrades.Count > 0)
+            {
+                UpgradeChooseList upgradeChooseList = playerController.upgradeChooseList;
+
+                foreach (ModuleUpgrade item in moduleValues.moduleUpgrades)
+                {
+                    upgradeChooseList.upgrades[item.moduleUpgradeIndex].upgradeStartCount += item.moduleUpgradeQuantity;
+                }
+            }
         }
     }
 }

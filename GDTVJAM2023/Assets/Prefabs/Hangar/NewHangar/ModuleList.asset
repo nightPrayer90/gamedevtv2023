@@ -58,6 +58,11 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades:
+      - moduleUpgradeIndex: 5
+        moduleUpgradeQuantity: 2
+      - moduleUpgradeIndex: 4
+        moduleUpgradeQuantity: 7
   - moduleName: D0 Skyfire Link L
     modulePrefabs: {fileID: 3509744163337706340, guid: e38bd7d21b4432047a7efda185661a17, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 9d5ae236a5ded114caea9a3e7fe46e64, type: 3}
@@ -104,6 +109,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D0 Skyfire Link R
     modulePrefabs: {fileID: 3509744163337706340, guid: d54ff805a3ee8de448d71ca6f33226c2, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: e020c86d2ad8a8347b7bec3e70dfa593, type: 3}
@@ -150,6 +156,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D0 Main Engine
     modulePrefabs: {fileID: 6234797105683024306, guid: db1dafc08107f8e40b58d894a7a4fa5b, type: 3}
     hangarPrefab: {fileID: 6234797105683024306, guid: bca6781ce9bcc264a9282a2f6034c3fa, type: 3}
@@ -190,6 +197,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D0 Direction Engine
     modulePrefabs: {fileID: 3538126319694765833, guid: 432ae4b429e793a459cf133cde93e210, type: 3}
     hangarPrefab: {fileID: 3538126319694765833, guid: 4cbd91a62b37e7e4e935da2973e04073, type: 3}
@@ -229,6 +237,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D1 Strafe Engine
     modulePrefabs: {fileID: 7337684759434239658, guid: 9c7457030927679498ecc18f972067c3, type: 3}
     hangarPrefab: {fileID: 7337684759434239658, guid: 80edf329a6db7f340a4a6457885cc012, type: 3}
@@ -268,6 +277,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D3 Support Connector 4S
     modulePrefabs: {fileID: 3509744163337706340, guid: ba0aaec002e01f940907b4f1f3314ad8, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: df5162d8499e99841b16e16369eb2382, type: 3}
@@ -311,6 +321,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 1
+      moduleUpgrades: []
   - moduleName: D1 Bullet Shooter F
     modulePrefabs: {fileID: 5320222491944983181, guid: e8568299a8cef5b459f2152b7e17b8bb, type: 3}
     hangarPrefab: {fileID: 5320222491944983181, guid: 421154c17452542499d6be8edd596b14, type: 3}
@@ -354,6 +365,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D1 Rocket Shooter L
     modulePrefabs: {fileID: 8822405608560347169, guid: 2162f41ade93f1e499eca5ee53e6140b, type: 3}
     hangarPrefab: {fileID: 8822405608560347169, guid: 5472a73a34a548b4cac2162482de8d0e, type: 3}
@@ -398,6 +410,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D1 Rocket Shooter R
     modulePrefabs: {fileID: 8822405608560347169, guid: 6ae7da83b0521134d8a0008ba76c4971, type: 3}
     hangarPrefab: {fileID: 8822405608560347169, guid: 921cab49f21656a4893a7648d9179b06, type: 3}
@@ -442,6 +455,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D3 Laser Pointer F
     modulePrefabs: {fileID: 5320222491944983181, guid: f2be17b9e3abdd94cbc42b64c6d9f233, type: 3}
     hangarPrefab: {fileID: 5320222491944983181, guid: 1fc9195d60e1a8c46b3ac5ade991874e, type: 3}
@@ -481,6 +495,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D1 Aero Glide L
     modulePrefabs: {fileID: 3509744163337706340, guid: 77c508665db59114b870912fa86b52df, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 3074fa7045d4bc3438ec839f3782fb40, type: 3}
@@ -521,6 +536,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D1 Aero Glide R
     modulePrefabs: {fileID: 3509744163337706340, guid: dae7987f8c9aba84f815972cbbdf6040, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 47520f6c06f5e5946870f84e6f0352b3, type: 3}
@@ -561,6 +577,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D1 Apex Glide L
     modulePrefabs: {fileID: 3509744163337706340, guid: c14afca5e8d6684489f23deb60aef15d, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: fb747d04ec6c3fb44b36eba8cd5cd7e8, type: 3}
@@ -601,6 +618,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D1 Apex Glide R
     modulePrefabs: {fileID: 3509744163337706340, guid: 76463148984ee21499406210fbcbb439, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 62c1da1d42d45204384e5b28b06a5b83, type: 3}
@@ -641,6 +659,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D1 Cockpit Bullet
     modulePrefabs: {fileID: 8919917907132705989, guid: bf45f026dcfb8fe48be46de0f2a1a408, type: 3}
     hangarPrefab: {fileID: 8919917907132705989, guid: 5073fba1e0babe74b91895200a7e6fbc, type: 3}
@@ -687,6 +706,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D2 Cockpit Rocket
     modulePrefabs: {fileID: 8919917907132705989, guid: 5c854dcaded65be4aadbffce1fa6925a, type: 3}
     hangarPrefab: {fileID: 8919917907132705989, guid: b8966957bf8324842b678ccb122a6c75, type: 3}
@@ -733,6 +753,7 @@ MonoBehaviour:
       rocketClass: 1
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D3 Cockpit Laser
     modulePrefabs: {fileID: 8919917907132705989, guid: 1cd9fb2984961994eb5dc6524501ef17, type: 3}
     hangarPrefab: {fileID: 8919917907132705989, guid: 75a31e48dfcce32499637b23cf8a4a52, type: 3}
@@ -779,6 +800,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 1
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D2 Aero Jet L
     modulePrefabs: {fileID: 3509744163337706340, guid: bfe9dc78404ea09429b20d74537b8cef, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 087bd023c96b2c54989b84bcbb83e87d, type: 3}
@@ -820,6 +842,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D2 Aero Jet R
     modulePrefabs: {fileID: 3509744163337706340, guid: c426916aa9fba3842a700562e29a9516, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 43f88ece3a5e4614f936d5b2f953bb8a, type: 3}
@@ -861,6 +884,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D2 Skyfire Jet L
     modulePrefabs: {fileID: 3509744163337706340, guid: 519c684cacfaabd43855806ce9809b24, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: cce53aeb1cd73964488e1c24d606ae0e, type: 3}
@@ -901,6 +925,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D2 Skyfire Jet R
     modulePrefabs: {fileID: 3509744163337706340, guid: 2279e4db908f61b45aee375f336ce73c, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 19a56be42afea084b8ce0487f48e8d37, type: 3}
@@ -941,6 +966,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D2 Bullet Shooter L
     modulePrefabs: {fileID: 3509744163337706340, guid: 9d9f3b45db154eb4ca7bad4f0040fe46, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: b5e28a5a499713a44bade23d9967fc42, type: 3}
@@ -980,6 +1006,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D2 Bullet Shooter R
     modulePrefabs: {fileID: 3509744163337706340, guid: e0166ad0d5deaa1458d4dc3bc20dd96f, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 1d4dc11a969b65c4081cfb002a02028c, type: 3}
@@ -1019,6 +1046,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D2 Connector 4S
     modulePrefabs: {fileID: 3509744163337706340, guid: 681051b394a49f24ba44b700b3bb67d9, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: b79d9bc81f24f144796376ace6a8b643, type: 3}
@@ -1060,6 +1088,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D1 Main Engine
     modulePrefabs: {fileID: 6234797105683024306, guid: 099b49f0b86e6974d94e4ec1737b0050, type: 3}
     hangarPrefab: {fileID: 6234797105683024306, guid: 88102583e6e20c441be281345000646d, type: 3}
@@ -1104,6 +1133,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D3 Main Engine
     modulePrefabs: {fileID: 6234797105683024306, guid: 876dffb67d2047b4eafd82dc8ae9e53f, type: 3}
     hangarPrefab: {fileID: 6234797105683024306, guid: 82de99e4bc77b494594519e581e19a76, type: 3}
@@ -1148,6 +1178,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D1 Connector 3S1
     modulePrefabs: {fileID: 3509744163337706340, guid: 266ce1da77f2a53499a1d40066b6188f, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: e496a06ca78a2b643b503b2dd2ab58f7, type: 3}
@@ -1189,6 +1220,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D1 Connector 3S2
     modulePrefabs: {fileID: 3509744163337706340, guid: fe33c587fe6526e40a280770553799b2, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 5c5cfc486bff9774fa608dbb94b18e8c, type: 3}
@@ -1230,6 +1262,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D1 Connector 3S3
     modulePrefabs: {fileID: 3509744163337706340, guid: 7e616b25ed580794298e606446099fa3, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 6082b6c1fa301484c8bf00e3a55fa325, type: 3}
@@ -1271,6 +1304,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D1 Connector 3S4
     modulePrefabs: {fileID: 3509744163337706340, guid: b90e8c5e25ee85c4aa276ed865ef45ce, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: b54332d122e2a5e48ab388a0e82a4d0d, type: 3}
@@ -1312,6 +1346,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D2 Direction Engine
     modulePrefabs: {fileID: 3538126319694765833, guid: 4c6965f6d36ff4c4c8e311b01f4b9219, type: 3}
     hangarPrefab: {fileID: 3538126319694765833, guid: 588ba2873ad4cc94b812c73905307f98, type: 3}
@@ -1350,6 +1385,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D3 Titan Glide L
     modulePrefabs: {fileID: 3509744163337706340, guid: fa677aea90d06564cb04019792d2179b, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: bdef76c78c670af4d859ed7e5d8cffdb, type: 3}
@@ -1389,6 +1425,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D3 Titan Glide R
     modulePrefabs: {fileID: 3509744163337706340, guid: f0a1560267c7ef94494a5c4fce0f742d, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 6a8f1c1b77978054fabdaf2f9801889b, type: 3}
@@ -1428,6 +1465,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D3 Titan Jet L
     modulePrefabs: {fileID: 3509744163337706340, guid: 0994be2ca2d576e49adae59f39e8ddb5, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 270102ccb1f9bb844b61b208e94fb7f7, type: 3}
@@ -1468,6 +1506,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D3 Titan Jet R
     modulePrefabs: {fileID: 3509744163337706340, guid: 13c1de4380628bd40bf9760cb85f8098, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: c3bf2b3ab74443d4ea8271a3148d80e3, type: 3}
@@ -1508,6 +1547,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D3 Luminex Glide L
     modulePrefabs: {fileID: 3509744163337706340, guid: 9956ac020e8a68e4eb0d68bdbc411bf8, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: f4b93831085b1e74089c73d443626866, type: 3}
@@ -1547,6 +1587,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D3 Luminex Glide R
     modulePrefabs: {fileID: 3509744163337706340, guid: ae4047cade5081940a5954fff60c643c, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 96305d1014424fe4185cb90f353bb4c0, type: 3}
@@ -1595,6 +1636,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D4 Luminex Jet L
     modulePrefabs: {fileID: 3509744163337706340, guid: ef71c2eadf16bcd43942c34a958fab88, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 3be239aefa652e841813872898c8c522, type: 3}
@@ -1644,6 +1686,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D4 Luminex Jet R
     modulePrefabs: {fileID: 3509744163337706340, guid: a7293b6e95a0f714ab6aa015088a346c, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: a69ef9f63bab91341b771fb2ed586c90, type: 3}
@@ -1693,6 +1736,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D3 Solar Module L
     modulePrefabs: {fileID: 3509744163337706340, guid: ab080c26b6dce47498a61e5de92e9b1e, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 3c28e4de16c7a984fa16ba29077d3bfd, type: 3}
@@ -1733,6 +1777,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D3 Solar Module R
     modulePrefabs: {fileID: 3509744163337706340, guid: d4890933a02f2d54b8fdb773305ced6a, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 76209ab9f4ab9464185364cf87bed6bd, type: 3}
@@ -1773,6 +1818,7 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []
   - moduleName: D3 Sphere Thrower F
     modulePrefabs: {fileID: 5320222491944983181, guid: acd2a2b180e08aa44b733edd1bdeb8c0, type: 3}
     hangarPrefab: {fileID: 5320222491944983181, guid: 73feaa912995ff2449bbc50a9e19cb62, type: 3}
@@ -1819,3 +1865,4 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
+      moduleUpgrades: []

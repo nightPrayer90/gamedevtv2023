@@ -9872,14 +9872,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 698318851, guid: 41f9176063e40cb4e9c11fcb62faf618, type: 3}
-      propertyPath: m_Color.b
-      value: 0.06666667
-      objectReference: {fileID: 0}
-    - target: {fileID: 698318851, guid: 41f9176063e40cb4e9c11fcb62faf618, type: 3}
-      propertyPath: m_Color.g
-      value: 0.007843138
-      objectReference: {fileID: 0}
     - target: {fileID: 2990096989072374331, guid: 41f9176063e40cb4e9c11fcb62faf618, type: 3}
       propertyPath: m_Name
       value: Audio Manager

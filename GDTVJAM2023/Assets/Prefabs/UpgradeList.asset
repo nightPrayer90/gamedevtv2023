@@ -86,8 +86,8 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 0
     reqAbility: 
-    UpgradeCount: 3
-    upgradeStartCount: 3
+    UpgradeCount: 2
+    upgradeStartCount: 2
   - headerStr: Pickup Range
     upgradeIndex: 5
     passivUpgradeString: 
@@ -101,8 +101,8 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 0
     reqAbility: 
-    UpgradeCount: 3
-    upgradeStartCount: 3
+    UpgradeCount: 2
+    upgradeStartCount: 2
   - headerStr: Head Cannon
     upgradeIndex: 6
     passivUpgradeString: 

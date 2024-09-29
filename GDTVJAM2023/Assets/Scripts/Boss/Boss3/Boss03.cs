@@ -129,7 +129,7 @@ public class Boss03 : MonoBehaviour
     private void SleepState()
     {
         float distanceToPlayer = DistanceToPlayer();
-        if (distanceToPlayer <= 9f) // TODO FIX ME
+        if (distanceToPlayer <= 6f) // TODO FIX ME
         {
             bossState = 1;
             bossParticle.ParticleStop();

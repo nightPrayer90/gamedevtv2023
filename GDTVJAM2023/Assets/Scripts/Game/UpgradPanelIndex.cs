@@ -20,7 +20,7 @@ public class UpgradPanelIndex : MonoBehaviour
     public TextMeshProUGUI mainClass;
     private bool isTweening = true;
     public bool isSelected = false;
-    private UpgradeChooseList upgradeChooseList;
+   
     private int upgradeIndex = -1;
 
     [Header("Requirement System")]
@@ -32,26 +32,20 @@ public class UpgradPanelIndex : MonoBehaviour
     public TextMeshProUGUI req3Text;
     public GameObject unique;
     public TextMeshProUGUI uniqueText;
-    private GameManager gameManager;
-    private NewPlayerController playerController;
+    public GameManager gameManager;
+    public UpgradeChooseList upgradeChooseList;
+    public NewPlayerController playerController;
     public Transform panelTransform;
 
 
-    private void Awake()
-    {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        upgradeChooseList = gameManager.GetComponent<UpgradeChooseList>();
-        playerController = GameObject.Find("NewPlayer").GetComponent<NewPlayerController>();
-    }
-
-    private void OnEnable()
+    public void EnablePanel()
     {
         isTweening = true;
         isSelected = false;
         transform.position = new Vector3(transform.position.x, transform.position.y + 400f, transform.position.z);
 
         // Get upgradeIndex number
-        upgradeIndex = gameManager.selectedNumbers_[index];
+        upgradeIndex = upgradePanelController.selectedNumbers_[index];
         SetDescription();
 
         // fade in
@@ -76,14 +70,8 @@ public class UpgradPanelIndex : MonoBehaviour
     }
 
 
-
-
     public void SetDescription()
     {
-        if (upgradeChooseList == null)
-        {
-            upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
-        }
 
         Upgrade upgrade = upgradeChooseList.uLObject.upgradeList[upgradeIndex];
 
@@ -172,7 +160,7 @@ public class UpgradPanelIndex : MonoBehaviour
         if (upgrade.UpgradeCount != 999)
         {
             unique.SetActive(true);
-            int upgradeQuanitiy = upgrade.UpgradeCount - upgradeChooseList.upgrades[upgradeIndex].upgradeIndexInstalled;
+            int upgradeQuanitiy = upgradeChooseList.upgrades[upgradeIndex].upgradeStartCount - upgradeChooseList.upgrades[upgradeIndex].upgradeIndexInstalled;
             uniqueText.text = (upgradeQuanitiy).ToString();
         }
         else
