@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 using System.Collections.Generic;
+using static UnityEditor.Progress;
 
 public class HangarUIController : MonoBehaviour
 {
@@ -47,7 +48,12 @@ public class HangarUIController : MonoBehaviour
     [Header("Nion Panel")]
     public GameObject nionPrefab;
     public Transform nionPanel;
-    private List<Image> nionImages = new(); 
+    private List<Image> nionImages = new();
+
+    [Header("Upgrade Panel")]
+    public GameObject iconPrefab;
+    public Transform layoutParent;
+    public UpgradeList upgradeList;
 
     [Header("Class Panel")]
     public Image cpBulletImage;
@@ -125,7 +131,7 @@ public class HangarUIController : MonoBehaviour
             if (modules > 0)
             {
                 AudioManager.Instance.PlaySFX("HangarSelectSphere");
-                
+
                 // open Panel
                 modulePanel.DOKill();
                 if (modulePanel.alpha != 1)
@@ -137,7 +143,7 @@ public class HangarUIController : MonoBehaviour
                 // duplicate Content Moduls
                 hangarFilterBtn.moduleParentTransform = selection.parentTransform;
                 hangarFilterBtn.BuildLists();
-                hangarFilterBtn.CreateFromHangarUIController(contentParent, mRSph);      
+                hangarFilterBtn.CreateFromHangarUIController(contentParent, mRSph);
             }
             else
             {
@@ -281,12 +287,16 @@ public class HangarUIController : MonoBehaviour
         int laserClass = 0;
         int supportClass = 0;
 
+
+        int[] iconUpgradArr = new int[upgradeList.upgradeList.Count];
+
+        Debug.Log(iconUpgradArr.Length);
+
         // get Data
         foreach (HangarModul modul in moduleStorage.installedHangarModules)
         {
-            
             nion += modul.moduleValues.nion;     //-> Nion
-            
+
             nionCost += modul.moduleValues.costEnergie;              //-> kosten Nion
             energieStorage += modul.moduleValues.energieStorage;
             energieProduction += modul.moduleValues.energieProduction;
@@ -303,6 +313,12 @@ public class HangarUIController : MonoBehaviour
             rocketClass += modul.moduleValues.rocketClass;
             laserClass += modul.moduleValues.laserClass;
             supportClass += modul.moduleValues.supportClass;
+
+
+            foreach (var item in modul.moduleValues.moduleUpgrades)
+            {
+                iconUpgradArr[item.moduleUpgradeIndex] += item.moduleUpgradeQuantity;
+            }
         }
 
         // Nion Panel
@@ -315,7 +331,7 @@ public class HangarUIController : MonoBehaviour
 
         moduleStorage.isEnergiePositiv = nionCost > nion ? false : true;
 
-        for (int i=0; i < nion; i++)
+        for (int i = 0; i < nion; i++)
         {
             GameObject go = Instantiate(nionPrefab, nionPanel);
 
@@ -349,7 +365,7 @@ public class HangarUIController : MonoBehaviour
         spProtection.text = protection.ToString() + " %";
 
 
-        //Class Panel
+        // Class Panel
         cpBulletImage.enabled = (bulletClass > 0) ? true : false;
         cpBulletText.text = bulletClass.ToString();
         cpRocketImage.enabled = (rocketClass > 0) ? true : false;
@@ -359,7 +375,22 @@ public class HangarUIController : MonoBehaviour
         cpSupportImage.enabled = (supportClass > 0) ? true : false;
         cpSupportText.text = supportClass.ToString();
 
+        // Icon Panel
+        foreach (Transform child in layoutParent)
+        {
+            Destroy(child.gameObject);
+        }
+        for (int i = 0; i < iconUpgradArr.Length; i++)
+        {
+            if (iconUpgradArr[i] > 0)
+            {
+                GameObject go = Instantiate(iconPrefab, layoutParent);
+                IconPrefab iPf = go.GetComponent<IconPrefab>();
+                iPf.SetIcon(iconUpgradArr[i], upgradeList.upgradeList[i].iconPanel, Color.white, false);
+            }
+        }
     }
+
 
     #endregion
 
@@ -403,7 +434,7 @@ public class HangarUIController : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
         //SceneManager.LoadScene(menueScene);
-        AudioManager.Instance.SceneTransition(menueScene,1);
+        AudioManager.Instance.SceneTransition(menueScene, 1);
     }
 
     public void GoToShop()

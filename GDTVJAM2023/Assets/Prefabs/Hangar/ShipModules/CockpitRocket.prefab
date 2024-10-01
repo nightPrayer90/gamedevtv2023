@@ -80,7 +80,7 @@ MonoBehaviour:
   rocketSpawnCount: 13
   realoadTime: 45
   reloadFlag: 1
-  abSprite: {fileID: 21300000, guid: 9d6a3bfdf73489748967838ab10b4010, type: 3}
+  abSprite: {fileID: 21300000, guid: 9116535195bc2f24c8eea9d0bf1ed772, type: 3}
   rocketDamage: 2
   rocketSpawner: {fileID: 1578858412099680281}
 --- !u!1 &7057816587558836830
@@ -235,6 +235,7 @@ MonoBehaviour:
     canFront: 0
     canBack: 0
     modulDescription_multiLineText: 
+    nion: 0
     costMass: 0
     costEnergie: 0
     energieProduction: 0
@@ -250,4 +251,5 @@ MonoBehaviour:
     rocketClass: 0
     laserClass: 0
     supportClass: 0
+    moduleUpgrades: []
   moduleIndex: -1

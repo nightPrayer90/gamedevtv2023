@@ -4979,6 +4979,7 @@ MonoBehaviour:
   _AOEreplacement: {fileID: 8290549404585911764, guid: 879076efe0ef8a94b8cf1508e4b1d2db, type: 3}
   _burnReplacement: {fileID: 3161139216598759944, guid: f99d7d19b56abf3458dae03a23bbe866, type: 3}
   dropObject: {fileID: 5693635298845190373, guid: 8e3f78fb04e545a4c918a6cb8835ac0a, type: 3}
+  scrapObject: {fileID: 5693635298845190373, guid: d9ee30b57dac9c242b2dd3088f8b91a2, type: 3}
   miniMapIcon: {fileID: 276777249927020237}
   novaExplosionPrefab: {fileID: 63306021479946841, guid: 5aeba8bb395cdae4098bb4692bef95da, type: 3}
   burnParticleSystem: {fileID: 7667239047712296287}
@@ -4992,6 +4993,7 @@ MonoBehaviour:
   canPoolObject: 1
   isBoss: 0
   isGround: 0
+  novaOnDieTriggerType: -1
   burnTickCount: 0
   canTakeLaserDamage: 0000000000
   hitColor: {r: 1, g: 0.5998216, b: 0, a: 1}

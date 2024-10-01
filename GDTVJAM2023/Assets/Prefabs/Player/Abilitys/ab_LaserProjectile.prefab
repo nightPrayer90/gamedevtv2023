@@ -53,12 +53,15 @@ MonoBehaviour:
   initialForce: 20
   rb: {fileID: 8012587728195296573}
   damage: 4
+  hitCounter: 0
   laserDamageChannel: 5
   lifeTime: 3
   hitParticle: {fileID: 9166936555426604056}
   bladeParticle: {fileID: 7980838946804997665}
   projectileSize: {x: 2, y: 2, z: 2}
   audioSource: {fileID: 3890823640259329064}
+  burningFildPrefab: {fileID: 9130956216624873031, guid: fa620b1f194c395499fb5877b91d3840, type: 3}
+  novaExplosion: {fileID: 6657238910372299626, guid: 0d06f40441b68064ca360d9d06f99da6, type: 3}
 --- !u!54 &8012587728195296573
 Rigidbody:
   m_ObjectHideFlags: 0

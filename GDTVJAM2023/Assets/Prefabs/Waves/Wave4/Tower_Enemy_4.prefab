@@ -83,6 +83,7 @@ MonoBehaviour:
   _AOEreplacement: {fileID: 3472188482371739261, guid: b3eafe6174e2bc04aa661ae4d7281970, type: 3}
   _burnReplacement: {fileID: 3161139216598759944, guid: 7f66d7d795bc5b845aee2eb02da2b8ba, type: 3}
   dropObject: {fileID: 5693635298845190373, guid: a7167deb24e3c894aa97b48178bdfba4, type: 3}
+  scrapObject: {fileID: 5693635298845190373, guid: d9ee30b57dac9c242b2dd3088f8b91a2, type: 3}
   miniMapIcon: {fileID: 8087742276739236362}
   novaExplosionPrefab: {fileID: 63306021479946841, guid: 5aeba8bb395cdae4098bb4692bef95da, type: 3}
   burnParticleSystem: {fileID: 3848154008130576996}

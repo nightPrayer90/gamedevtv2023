@@ -48,11 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   realoadTime: 10
   reloadFlag: 1
-  abSprite: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
+  abSprite: {fileID: 21300000, guid: 79dae5ee3f384f641b591eb47411178f, type: 3}
   baseEngines: []
   hitCollider: {fileID: 6649781178588730084}
   hitMarker: {fileID: 3367338092715288113}
-  debugSystem: {fileID: 0}
 --- !u!65 &6649781178588730084
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -218,6 +217,7 @@ MonoBehaviour:
     canFront: 0
     canBack: 0
     modulDescription_multiLineText: 
+    nion: 0
     costMass: 0
     costEnergie: 0
     energieProduction: 0
@@ -233,6 +233,7 @@ MonoBehaviour:
     rocketClass: 0
     laserClass: 0
     supportClass: 0
+    moduleUpgrades: []
   moduleIndex: -1
 --- !u!1001 &3843521742544168566
 PrefabInstance:

@@ -10,11 +10,14 @@ public class ShopController : MonoBehaviour
 {
     // Module Management
     public ModuleList moduleList;
+    public UpgradeList upgradeList;
+    public ClassColor classColor;
     public int credits = 0;
     public int activeLevel = 0;
     public List<ShopModuleContainer> moduleContainers;
     public PlayerData playerData;
     public List<int> shipModulesPlayerBuyed;
+
 
     // Selection
     public Material highligtMaterial;

@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
     private float collisionMultiplier = 128;
     public GameObject _burnReplacement;
     public GameObject dropObject;
+    public GameObject scrapObject;
     public GameObject miniMapIcon;
     public GameObject novaExplosionPrefab;
 
@@ -341,8 +342,24 @@ public class EnemyHealth : MonoBehaviour
 
         // drop an Item
         if (dropObject != null)
-            ObjectPoolManager.SpawnObject(dropObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
-
+        {
+            if (scrapObject != null)
+            {
+                int ran = UnityEngine.Random.Range(0, 100);
+                if (ran < (upgradeChooseList.upgrades[98].upgradeIndexInstalled*2))
+                {
+                    ObjectPoolManager.SpawnObject(scrapObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
+                }
+                else
+                {
+                    ObjectPoolManager.SpawnObject(dropObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
+                }
+            }
+            else
+            {
+                ObjectPoolManager.SpawnObject(dropObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
+            }
+        }
         // pool (destroy) enemy object
         DestroyEnemy();
     }

@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static ModuleValues;
 
 public class ShopModuleMeshHud : MonoBehaviour
 {
@@ -16,7 +17,10 @@ public class ShopModuleMeshHud : MonoBehaviour
     [SerializeField] private GameObject buyShpere;
     [SerializeField] private ParticleSystem buyParticle;
     [SerializeField] private CanvasGroup btnGroup;
+    [SerializeField] private CanvasGroup upgradeGroup;
     [SerializeField] private Image btnImage;
+    [SerializeField] private Transform upgradeIconParent;
+    [SerializeField] private GameObject upgradeIconPrefab;
 
     private void Awake()
     {
@@ -40,11 +44,8 @@ public class ShopModuleMeshHud : MonoBehaviour
             colorstrStorage = "<color=#2EFEF7>";
         }
 
-        Debug.Log(shopController.shipModulesPlayerBuyed[shopModule.itemIndex].ToString());
-        //countText.text = colorstrStorage + "<b>in storage: " + shopController.shipModulesPlayerBuyed[shopModule.itemIndex].ToString() + "</b></color>";
         countText.text = colorstrStorage + "<b>in storage: " + shopController.playerData.moduleCounts[shopModule.itemIndex].ToString() + "</b></color>";
 
-        
 
         if (shopModule.itemMaxCount == -1)
             maxCountText.text = "Unlimited modules available";
@@ -77,10 +78,10 @@ public class ShopModuleMeshHud : MonoBehaviour
 
     public void UpdateCreditsColor()
     {
-        if (shopController.credits < shopModule.itemCost)
+        if (shopController.credits < shopModule.itemCost || creditsText.text == "sold out")
         {
             btnImage.enabled = false;
-            creditsText.color = new Color32(140, 27, 102, 100);
+            creditsText.color = new Color32(140, 27, 102, 255);
         }
         else
         {
@@ -108,6 +109,28 @@ public class ShopModuleMeshHud : MonoBehaviour
             UpdateItemCount();
             btnGroup.alpha = 1;
             btnGroup.blocksRaycasts = true;
+
+
+            // upgrades
+            if (shopController.moduleList.moduls[shopModule.itemIndex].moduleValues.moduleUpgrades.Count > 0)
+            {
+                upgradeGroup.alpha = 1;
+                foreach (ModuleUpgrade item in shopController.moduleList.moduls[shopModule.itemIndex].moduleValues.moduleUpgrades)
+                {
+                    GameObject go =  Instantiate(upgradeIconPrefab, upgradeIconParent);
+                    IconPrefab iconPrefab = go.GetComponent<IconPrefab>();
+                    Color bkColor = shopController.classColor.classColor[shopController.upgradeList.upgradeList[item.moduleUpgradeIndex].colorIndex];
+                    bool gray = false;
+                    if (creditsText.text == "sold out") gray = true;
+                    iconPrefab.SetIcon(item.moduleUpgradeQuantity, shopController.upgradeList.upgradeList[item.moduleUpgradeIndex].iconPanel, bkColor, gray);
+                }
+
+            }
+            else
+            {
+                upgradeGroup.alpha = 0;
+            }
+
         }
         else
         {

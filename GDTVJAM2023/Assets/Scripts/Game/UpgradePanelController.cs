@@ -757,6 +757,29 @@ public class UpgradePanelController : MonoBehaviour
             case 91: // Orb Jackpot
 
                 break;
+            case 92: // Recoil Reducer
+
+                break;
+            case 93: // Growth Impulse
+
+                break;
+            case 94: // Infernal Zone
+                upgradeChooseList.upgrades[95].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[95].UpgradeCount;
+                upgradeChooseList.upgrades[96].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[96].UpgradeCount;
+                upgradeChooseList.upgrades[97].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[97].UpgradeCount;
+                break;
+            case 95: // Astral Shockwave
+                upgradeChooseList.upgrades[96].upgradeStartCount = 0;
+                upgradeChooseList.upgrades[97].upgradeStartCount = 0;
+                break;
+            case 96: // Rising Force
+                upgradeChooseList.upgrades[95].upgradeStartCount = 0;
+                upgradeChooseList.upgrades[97].upgradeStartCount = 0;
+                break;
+            case 97: // Enduring Inferno
+                upgradeChooseList.upgrades[95].upgradeStartCount = 0;
+                upgradeChooseList.upgrades[96].upgradeStartCount = 0;
+                break;
         }
     }
 

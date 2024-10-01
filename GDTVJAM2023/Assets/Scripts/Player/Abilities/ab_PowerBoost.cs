@@ -29,7 +29,7 @@ public class ab_PowerBoost : MonoBehaviour
         SetReloadFlag();
 
         
-        // activate shield upgrades
+        // activate boost upgrades
         UpgradeChooseList uCl = gameManager.gameObject.GetComponent<UpgradeChooseList>();
         uCl.upgrades[31].upgradeStartCount = uCl.uLObject.upgradeList[31].UpgradeCount; // Fortified Overdrive
         uCl.upgrades[23].upgradeStartCount = uCl.uLObject.upgradeList[23].UpgradeCount; // Guardian Drive
