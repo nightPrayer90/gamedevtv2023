@@ -551,7 +551,7 @@ public class PlayerWeaponController : MonoBehaviour
         shipData.burnDamageChance = 0;
         shipData.rocketAOERadius = 0;
 
-        shipData.shieldHealth = 6;
+        shipData.shieldHealth = 4;
         shipData.shieldDamage = 0;
 
         shipData.boostInvulnerability = 0.5f;

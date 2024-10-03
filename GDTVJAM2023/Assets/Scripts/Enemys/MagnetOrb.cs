@@ -16,6 +16,8 @@ public class MagnetOrb : MonoBehaviour
 
     private void PickUp()
     {
+        AudioManager.Instance.PlaySFX("ExperienceOrb");
+
         GameObject[] expObjects = GameObject.FindGameObjectsWithTag("Exp");
 
         foreach (GameObject obj in expObjects)

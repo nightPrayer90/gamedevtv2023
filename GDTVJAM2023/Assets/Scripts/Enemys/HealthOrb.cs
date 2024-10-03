@@ -20,6 +20,8 @@ public class HealthOrb : MonoBehaviour
         var floatingString = $" +{health} hp";
         pickUp.gameManager.DoFloatingText(transform.position, floatingString, textColor);
 
+        AudioManager.Instance.PlaySFX("ExperienceOrb");
+
         pickUp.OnCollect -= PickUp;
     }
 }

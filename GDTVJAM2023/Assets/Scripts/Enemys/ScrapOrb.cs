@@ -13,6 +13,8 @@ public class ScrapOrb : MonoBehaviour
 
     private void PickUp()
     {
+        AudioManager.Instance.PlaySFX("ExperienceOrb");
+
         pickUp.gameManager.AddScrap(scrap);
 
         var floatingString = $" +{scrap} scrap";

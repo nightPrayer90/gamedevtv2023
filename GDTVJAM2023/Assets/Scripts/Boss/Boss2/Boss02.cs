@@ -446,7 +446,7 @@ public class Boss02 : MonoBehaviour
             delay += 4;
         }
 
-        if (shieldObjects == maxShieldObjects) { CancelInvoke("SpawnShield"); }
+        if (shieldObjects >= maxShieldObjects) { CancelInvoke("SpawnShield"); }
     }
 
     // stops and destroy all laser

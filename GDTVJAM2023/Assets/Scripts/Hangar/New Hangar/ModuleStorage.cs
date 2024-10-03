@@ -129,6 +129,7 @@ public class ModuleStorage : MonoBehaviour
 
         BuildModuleGrid();
 
+        selectionManager.SelectModuleAtPosition(0, 0);
         hangarUIController.SetShipPanel();
     }
 
@@ -222,6 +223,8 @@ private void OnDestroy()
             }
         }
 
+        selectionManager.SelectModuleAtPosition(0, 0);
+
         // Refresh all Shperes
         RefreshModulSpheres();
     }
@@ -293,6 +296,8 @@ private void OnDestroy()
         // HideButton
         isAllConnected = true;
         ControllUnconnectedModules();
+
+        selectionManager.SelectModuleAtPosition(0, 0);
 
         AudioManager.Instance.PlaySFX("HangarDeleteAll");
 
@@ -439,7 +444,6 @@ private void OnDestroy()
             installedModuleData.Add(new ModuleDataRuntime(item));
             playerData.moduleCounts[item.moduleTypeIndex] -= 1;
         }
-        Debug.Log("LoadPreset");
     }
 
     /// <summary>

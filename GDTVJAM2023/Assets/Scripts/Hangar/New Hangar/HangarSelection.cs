@@ -98,7 +98,7 @@ public class HangarSelection : MonoBehaviour
                     // select a part of a ship
                     if (selection.CompareTag("Selectable"))
                     {
-                        SelectModule();
+                        SelectModule(true);
                     }
 
                     // select a part modul sphere
@@ -130,7 +130,7 @@ public class HangarSelection : MonoBehaviour
                     if(t.CompareTag("Selectable"))
                     {
                         selection = t;
-                        SelectModule();
+                        SelectModule(false);
                         return;
                     }
                 }
@@ -138,7 +138,7 @@ public class HangarSelection : MonoBehaviour
         }
     }
 
-    private void SelectModule()
+    private void SelectModule(bool selectsound = true)
     {
         // deselect the old Object
         ObjectDeselect();
@@ -159,7 +159,7 @@ public class HangarSelection : MonoBehaviour
         curX = (int)hm.moduleData.x;
         curZ = (int)hm.moduleData.z;
 
-        hangarUIController.HandleModulSelect(hm);
+        hangarUIController.HandleModulSelect(hm, selectsound);
         lastSelection = selection;
     }
 

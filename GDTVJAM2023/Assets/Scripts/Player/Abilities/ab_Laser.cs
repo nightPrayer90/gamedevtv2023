@@ -34,10 +34,10 @@ public class ab_Laser : MonoBehaviour
         SetReloadFlag();
 
         // Shpere upgrades
-        UpgradeChooseList uCl = gameManager.gameObject.GetComponent<UpgradeChooseList>();
-        uCl.upgrades[92].upgradeStartCount = uCl.uLObject.upgradeList[92].UpgradeCount; // Fortified Overdrive
-        uCl.upgrades[93].upgradeStartCount = uCl.uLObject.upgradeList[93].UpgradeCount; // Guardian Drive
-        uCl.upgrades[94].upgradeStartCount = uCl.uLObject.upgradeList[94].UpgradeCount; // Force Multiplier
+        //UpgradeChooseList uCl = gameManager.gameObject.GetComponent<UpgradeChooseList>();
+        //uCl.upgrades[92].upgradeStartCount = uCl.uLObject.upgradeList[92].UpgradeCount; // Fortified Overdrive
+        //uCl.upgrades[93].upgradeStartCount = uCl.uLObject.upgradeList[93].UpgradeCount; // Guardian Drive
+        //uCl.upgrades[94].upgradeStartCount = uCl.uLObject.upgradeList[94].UpgradeCount; // Force Multiplier
     }
 
 

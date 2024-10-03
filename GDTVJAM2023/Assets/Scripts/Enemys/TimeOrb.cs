@@ -13,7 +13,9 @@ public class TimeOrb : MonoBehaviour
     }
 
     private void PickUp()
-    {
+    { 
+        AudioManager.Instance.PlaySFX("ExperienceOrb");
+
         pickUp. gameManager.UpdateTimer(time);
 
         var floatingString = $" +{time} sec";

@@ -454,6 +454,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void TakeDamageEffekt()
+    {
+        ppController.TakeDamage();
+    }
+
     // update the player experience bar - PlayerUI
     public void UpdateUIPlayerExperience(bool isLevelUp, int playerLevel, int playerExperienceToLevelUp, int playerCurrentExperience, int experienceGet)
     {

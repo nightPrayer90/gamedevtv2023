@@ -23,10 +23,10 @@ public class ab_FrontShield : MonoBehaviour
         SetShieldFlag();
 
         // activate shield upgrades
-        UpgradeChooseList uCl = gameManager.GetComponent<UpgradeChooseList>();
-        uCl.upgrades[40].upgradeStartCount = uCl.uLObject.upgradeList[40].UpgradeCount; // Fortified Defense
-        uCl.upgrades[41].upgradeStartCount = uCl.uLObject.upgradeList[41].UpgradeCount; // Shield Strike
-        uCl.upgrades[62].upgradeStartCount = uCl.uLObject.upgradeList[62].UpgradeCount; // Explosive Shield
+        //UpgradeChooseList uCl = gameManager.GetComponent<UpgradeChooseList>();
+        //uCl.upgrades[40].upgradeStartCount = uCl.uLObject.upgradeList[40].UpgradeCount; // Fortified Defense
+        //uCl.upgrades[41].upgradeStartCount = uCl.uLObject.upgradeList[41].UpgradeCount; // Shield Strike
+        //uCl.upgrades[62].upgradeStartCount = uCl.uLObject.upgradeList[62].UpgradeCount; // Explosive Shield
     }
 
 

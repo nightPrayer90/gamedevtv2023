@@ -18,6 +18,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 8919917907132705989, guid: 9fc27daa8cfaa6749b5b953c7f2e163a, type: 3}
     hangarGhost: {fileID: 8919917907132705989, guid: cab0990bc8e4e3e42924b0c9ae6d9587, type: 3}
     modulSprite: {fileID: 21300000, guid: 9689a6e207a49ab4eac8dbb4698edb25, type: 3}
+    abilitySprite: {fileID: 21300000, guid: fd826e5525c3c64458a678bc024b2a27, type: 3}
     moduleType: 4
     canLeft: 0
     canRight: 0
@@ -59,21 +60,30 @@ MonoBehaviour:
       laserClass: 0
       supportClass: 0
       moduleUpgrades:
-      - moduleUpgradeIndex: 3
-        moduleUpgradeQuantity: 2
       - moduleUpgradeIndex: 2
         moduleUpgradeQuantity: 2
       - moduleUpgradeIndex: 5
         moduleUpgradeQuantity: 3
       - moduleUpgradeIndex: 4
         moduleUpgradeQuantity: 2
-      - moduleUpgradeIndex: 98
-        moduleUpgradeQuantity: 3
+      - moduleUpgradeIndex: 40
+        moduleUpgradeQuantity: 2
+      - moduleUpgradeIndex: 41
+        moduleUpgradeQuantity: 2
+      - moduleUpgradeIndex: 62
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 44
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 45
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 43
+        moduleUpgradeQuantity: 1
   - moduleName: D0 Skyfire Link L
     modulePrefabs: {fileID: 3509744163337706340, guid: e38bd7d21b4432047a7efda185661a17, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 9d5ae236a5ded114caea9a3e7fe46e64, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: e0dd02f65e042e7428d78cd3471fb176, type: 3}
     modulSprite: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 1
     canRight: 0
@@ -115,12 +125,17 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
-      moduleUpgrades: []
+      moduleUpgrades:
+      - moduleUpgradeIndex: 4
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 98
+        moduleUpgradeQuantity: 2
   - moduleName: D0 Skyfire Link R
     modulePrefabs: {fileID: 3509744163337706340, guid: d54ff805a3ee8de448d71ca6f33226c2, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: e020c86d2ad8a8347b7bec3e70dfa593, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: cbf983cc1f3c12a4f9705804227e6dd1, type: 3}
     modulSprite: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 0
     canRight: 1
@@ -162,12 +177,17 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
-      moduleUpgrades: []
+      moduleUpgrades:
+      - moduleUpgradeIndex: 4
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 98
+        moduleUpgradeQuantity: 2
   - moduleName: D0 Main Engine
     modulePrefabs: {fileID: 6234797105683024306, guid: db1dafc08107f8e40b58d894a7a4fa5b, type: 3}
     hangarPrefab: {fileID: 6234797105683024306, guid: bca6781ce9bcc264a9282a2f6034c3fa, type: 3}
     hangarGhost: {fileID: 6234797105683024306, guid: 49379c38c26f84a438034cda76f9ac49, type: 3}
     modulSprite: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 1
     canLeft: 0
     canRight: 0
@@ -185,7 +205,7 @@ MonoBehaviour:
       canFront: 0
       canBack: 1
       modulDescription_multiLineText: "<color=#FFBF00>You need one main engine to
-        fly \nforwards or backwards.</color>\nThrust force: 5 TN\nBoost force: 13
+        fly \nforwards or backwards.</color>\nThrust force: 6 TN\nBoost force: 13
         TN"
       nion: 0
       costMass: 0.2
@@ -194,7 +214,7 @@ MonoBehaviour:
       energieStorage: 0
       health: 0
       protection: 0
-      mainEngine: 5
+      mainEngine: 6
       directionEngine: 0
       strafeEngine: 0
       boostEngine: 13
@@ -203,12 +223,15 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
-      moduleUpgrades: []
+      moduleUpgrades:
+      - moduleUpgradeIndex: 59
+        moduleUpgradeQuantity: 2
   - moduleName: D0 Direction Engine
     modulePrefabs: {fileID: 3538126319694765833, guid: 432ae4b429e793a459cf133cde93e210, type: 3}
     hangarPrefab: {fileID: 3538126319694765833, guid: 4cbd91a62b37e7e4e935da2973e04073, type: 3}
     hangarGhost: {fileID: 3538126319694765833, guid: 0841abb377fb3e04aa926e985faf7144, type: 3}
     modulSprite: {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 3
     canLeft: 0
     canRight: 0
@@ -243,12 +266,15 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
-      moduleUpgrades: []
+      moduleUpgrades:
+      - moduleUpgradeIndex: 3
+        moduleUpgradeQuantity: 1
   - moduleName: D1 Strafe Engine
     modulePrefabs: {fileID: 7337684759434239658, guid: 9c7457030927679498ecc18f972067c3, type: 3}
     hangarPrefab: {fileID: 7337684759434239658, guid: 80edf329a6db7f340a4a6457885cc012, type: 3}
     hangarGhost: {fileID: 7337684759434239658, guid: 4d65836e62aa5124e845556c39f82b8f, type: 3}
     modulSprite: {fileID: 21300000, guid: f2a3444a22688804a856c2dbc72a0f88, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 2
     canLeft: 0
     canRight: 0
@@ -289,6 +315,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: df5162d8499e99841b16e16369eb2382, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 1c065bdeb7beeb04490b6d561f9ebbcf, type: 3}
     modulSprite: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 0
     canLeft: 1
     canRight: 1
@@ -337,6 +364,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 5320222491944983181, guid: 421154c17452542499d6be8edd596b14, type: 3}
     hangarGhost: {fileID: 5320222491944983181, guid: 6f74fe78bc7a75543a0f16c901d97560, type: 3}
     modulSprite: {fileID: 21300000, guid: bee824d5ddc2f1648a320438bc9c6b7d, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 5
     canLeft: 0
     canRight: 0
@@ -383,6 +411,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 8822405608560347169, guid: 5472a73a34a548b4cac2162482de8d0e, type: 3}
     hangarGhost: {fileID: 8822405608560347169, guid: d57b6537e0e6e294d857e5ac6ae3fa89, type: 3}
     modulSprite: {fileID: 21300000, guid: 1cdaf286f8e1ff047879fc7c76debb9a, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 5
     canLeft: 1
     canRight: 0
@@ -430,6 +459,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 8822405608560347169, guid: 921cab49f21656a4893a7648d9179b06, type: 3}
     hangarGhost: {fileID: 8822405608560347169, guid: 149a67f96f3b41949b01a579dad7086c, type: 3}
     modulSprite: {fileID: 21300000, guid: 1cdaf286f8e1ff047879fc7c76debb9a, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 5
     canLeft: 0
     canRight: 1
@@ -477,6 +507,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 5320222491944983181, guid: 1fc9195d60e1a8c46b3ac5ade991874e, type: 3}
     hangarGhost: {fileID: 5320222491944983181, guid: b3d1ec5e7fc82484b97cd6ea1728e1b2, type: 3}
     modulSprite: {fileID: 21300000, guid: 6dc4799b581d432469bebeed9e1a48e0, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 5
     canLeft: 0
     canRight: 0
@@ -521,6 +552,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 3074fa7045d4bc3438ec839f3782fb40, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: a860039c419ef4b4484955622ba66036, type: 3}
     modulSprite: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 1
     canRight: 0
@@ -564,6 +596,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 47520f6c06f5e5946870f84e6f0352b3, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 423dd5f0308f5f74085528bf6eec76d5, type: 3}
     modulSprite: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 0
     canRight: 1
@@ -607,6 +640,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: fb747d04ec6c3fb44b36eba8cd5cd7e8, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 97110d38b34151e41bb0c2a9ae4aeaee, type: 3}
     modulSprite: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 1
     canRight: 0
@@ -650,6 +684,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 62c1da1d42d45204384e5b28b06a5b83, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: f51dd2da054c7b24287bd87060ed0dc5, type: 3}
     modulSprite: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 0
     canRight: 1
@@ -693,6 +728,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 8919917907132705989, guid: 5073fba1e0babe74b91895200a7e6fbc, type: 3}
     hangarGhost: {fileID: 8919917907132705989, guid: 0a980ba7d519be447a70d8e84edda49d, type: 3}
     modulSprite: {fileID: 21300000, guid: a234fb4dc61c9c44da3e6ae32922551f, type: 3}
+    abilitySprite: {fileID: 21300000, guid: 79dae5ee3f384f641b591eb47411178f, type: 3}
     moduleType: 4
     canLeft: 0
     canRight: 0
@@ -714,16 +750,16 @@ MonoBehaviour:
         Energy
         storage: 10 TJ
 
-        Health: 12 HP
+        Health: 11 HP
 
         <color=#FF0000>Bullet Class:
         +1 </color>'
       nion: 15
-      costMass: 0.9
+      costMass: 0.7
       costEnergie: 0
       energieProduction: 0.8
       energieStorage: 10
-      health: 12
+      health: 11
       protection: 0
       mainEngine: 0
       directionEngine: 0
@@ -735,21 +771,30 @@ MonoBehaviour:
       laserClass: 0
       supportClass: 0
       moduleUpgrades:
-      - moduleUpgradeIndex: 3
-        moduleUpgradeQuantity: 3
       - moduleUpgradeIndex: 2
         moduleUpgradeQuantity: 2
       - moduleUpgradeIndex: 5
         moduleUpgradeQuantity: 2
       - moduleUpgradeIndex: 4
         moduleUpgradeQuantity: 4
-      - moduleUpgradeIndex: 98
+      - moduleUpgradeIndex: 31
         moduleUpgradeQuantity: 2
+      - moduleUpgradeIndex: 23
+        moduleUpgradeQuantity: 2
+      - moduleUpgradeIndex: 24
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 25
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 42
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 61
+        moduleUpgradeQuantity: 1
   - moduleName: D2 Cockpit Rocket
     modulePrefabs: {fileID: 8919917907132705989, guid: 5c854dcaded65be4aadbffce1fa6925a, type: 3}
     hangarPrefab: {fileID: 8919917907132705989, guid: b8966957bf8324842b678ccb122a6c75, type: 3}
     hangarGhost: {fileID: 8919917907132705989, guid: 074e89fd47f865e43b58ce7688fa0a12, type: 3}
     modulSprite: {fileID: 21300000, guid: a234fb4dc61c9c44da3e6ae32922551f, type: 3}
+    abilitySprite: {fileID: 21300000, guid: 9116535195bc2f24c8eea9d0bf1ed772, type: 3}
     moduleType: 4
     canLeft: 0
     canRight: 0
@@ -792,21 +837,24 @@ MonoBehaviour:
       laserClass: 0
       supportClass: 0
       moduleUpgrades:
-      - moduleUpgradeIndex: 3
-        moduleUpgradeQuantity: 2
       - moduleUpgradeIndex: 2
-        moduleUpgradeQuantity: 4
+        moduleUpgradeQuantity: 3
       - moduleUpgradeIndex: 5
         moduleUpgradeQuantity: 3
       - moduleUpgradeIndex: 4
         moduleUpgradeQuantity: 2
-      - moduleUpgradeIndex: 98
+      - moduleUpgradeIndex: 36
+        moduleUpgradeQuantity: 3
+      - moduleUpgradeIndex: 86
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 87
         moduleUpgradeQuantity: 2
   - moduleName: D3 Cockpit Laser
     modulePrefabs: {fileID: 8919917907132705989, guid: 1cd9fb2984961994eb5dc6524501ef17, type: 3}
     hangarPrefab: {fileID: 8919917907132705989, guid: 75a31e48dfcce32499637b23cf8a4a52, type: 3}
     hangarGhost: {fileID: 8919917907132705989, guid: a7f08b576863e83479a48e36a639988c, type: 3}
     modulSprite: {fileID: 21300000, guid: a234fb4dc61c9c44da3e6ae32922551f, type: 3}
+    abilitySprite: {fileID: 21300000, guid: 1766091a6535c614db7cc3976fcf98c8, type: 3}
     moduleType: 4
     canLeft: 0
     canRight: 0
@@ -849,21 +897,30 @@ MonoBehaviour:
       laserClass: 1
       supportClass: 0
       moduleUpgrades:
-      - moduleUpgradeIndex: 3
-        moduleUpgradeQuantity: 3
       - moduleUpgradeIndex: 2
         moduleUpgradeQuantity: 3
       - moduleUpgradeIndex: 5
         moduleUpgradeQuantity: 3
       - moduleUpgradeIndex: 4
         moduleUpgradeQuantity: 2
-      - moduleUpgradeIndex: 98
+      - moduleUpgradeIndex: 92
         moduleUpgradeQuantity: 2
+      - moduleUpgradeIndex: 93
+        moduleUpgradeQuantity: 2
+      - moduleUpgradeIndex: 94
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 95
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 96
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 97
+        moduleUpgradeQuantity: 1
   - moduleName: D2 Aero Jet L
     modulePrefabs: {fileID: 3509744163337706340, guid: bfe9dc78404ea09429b20d74537b8cef, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 087bd023c96b2c54989b84bcbb83e87d, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 901ff16e09993254093fa5d704f51967, type: 3}
     modulSprite: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 1
     canRight: 0
@@ -903,11 +960,14 @@ MonoBehaviour:
       moduleUpgrades:
       - moduleUpgradeIndex: 4
         moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 3
+        moduleUpgradeQuantity: 1
   - moduleName: D2 Aero Jet R
     modulePrefabs: {fileID: 3509744163337706340, guid: c426916aa9fba3842a700562e29a9516, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 43f88ece3a5e4614f936d5b2f953bb8a, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: d6bd91d662e91ef42932358cf3a1665d, type: 3}
     modulSprite: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 0
     canRight: 1
@@ -945,13 +1005,14 @@ MonoBehaviour:
       laserClass: 0
       supportClass: 0
       moduleUpgrades:
-      - moduleUpgradeIndex: 4
+      - moduleUpgradeIndex: 3
         moduleUpgradeQuantity: 1
   - moduleName: D2 Skyfire Jet L
     modulePrefabs: {fileID: 3509744163337706340, guid: 519c684cacfaabd43855806ce9809b24, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: cce53aeb1cd73964488e1c24d606ae0e, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 114c7878752ec4243b30de0ccb8ce1f5, type: 3}
     modulSprite: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 1
     canRight: 0
@@ -962,8 +1023,8 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Wing 04 left (DE+BS)
-      moduleType: 0
+      moduleName: D2 Skyfire Jet L
+      moduleType: 6
       canLeft: 1
       canRight: 0
       canFront: 0
@@ -990,6 +1051,10 @@ MonoBehaviour:
       moduleUpgrades:
       - moduleUpgradeIndex: 4
         moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 3
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 98
+        moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 46
         moduleUpgradeQuantity: 1
   - moduleName: D2 Skyfire Jet R
@@ -997,6 +1062,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 19a56be42afea084b8ce0487f48e8d37, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 627446d265b7d7147b2d395625cc2b3c, type: 3}
     modulSprite: {fileID: 21300000, guid: 8e446813336c1884d9d87caab801b031, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 0
     canRight: 1
@@ -1007,8 +1073,8 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Wing 04 right (DE+BS)
-      moduleType: 0
+      moduleName: D2 Skyfire Jet R
+      moduleType: 6
       canLeft: 0
       canRight: 1
       canFront: 0
@@ -1035,6 +1101,10 @@ MonoBehaviour:
       moduleUpgrades:
       - moduleUpgradeIndex: 4
         moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 3
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 98
+        moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 46
         moduleUpgradeQuantity: 1
   - moduleName: D2 Bullet Shooter L
@@ -1042,6 +1112,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: b5e28a5a499713a44bade23d9967fc42, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: c1ceaee0c6b2fdd4393ec9d390dd4bc3, type: 3}
     modulSprite: {fileID: 21300000, guid: bee824d5ddc2f1648a320438bc9c6b7d, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 5
     canLeft: 1
     canRight: 0
@@ -1084,6 +1155,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 1d4dc11a969b65c4081cfb002a02028c, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: ec5dd3f26fdd1fd43bd92af5a3757798, type: 3}
     modulSprite: {fileID: 21300000, guid: bee824d5ddc2f1648a320438bc9c6b7d, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 5
     canLeft: 0
     canRight: 1
@@ -1126,6 +1198,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: b79d9bc81f24f144796376ace6a8b643, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 747e3b8dd183f24458712faf401e7f7b, type: 3}
     modulSprite: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 0
     canLeft: 1
     canRight: 1
@@ -1172,6 +1245,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 6234797105683024306, guid: 88102583e6e20c441be281345000646d, type: 3}
     hangarGhost: {fileID: 6234797105683024306, guid: ce55959b36418ce46b8fefe35eefbf32, type: 3}
     modulSprite: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 1
     canLeft: 0
     canRight: 0
@@ -1191,7 +1265,7 @@ MonoBehaviour:
       modulDescription_multiLineText: 'Thrust force: 7.5 TN
 
         Boost force:
-        <color=#00FFFF>16 TN </color>'
+        <color=#00FFFF>14 TN </color>'
       nion: 0
       costMass: 0.2
       costEnergie: 2
@@ -1202,18 +1276,21 @@ MonoBehaviour:
       mainEngine: 7.5
       directionEngine: 0
       strafeEngine: 0
-      boostEngine: 16
+      boostEngine: 14
       boostStrafeEngine: 0
       bulletClass: 0
       rocketClass: 0
       laserClass: 0
       supportClass: 0
-      moduleUpgrades: []
+      moduleUpgrades:
+      - moduleUpgradeIndex: 59
+        moduleUpgradeQuantity: 3
   - moduleName: D3 Main Engine
     modulePrefabs: {fileID: 6234797105683024306, guid: 876dffb67d2047b4eafd82dc8ae9e53f, type: 3}
     hangarPrefab: {fileID: 6234797105683024306, guid: 82de99e4bc77b494594519e581e19a76, type: 3}
     hangarGhost: {fileID: 6234797105683024306, guid: 40f36654946a24741bb42079c7f8cf92, type: 3}
     modulSprite: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 1
     canLeft: 0
     canRight: 0
@@ -1230,10 +1307,10 @@ MonoBehaviour:
       canRight: 0
       canFront: 0
       canBack: 1
-      modulDescription_multiLineText: 'Thrust force: 8 TN
+      modulDescription_multiLineText: 'Thrust force: 8.5 TN
 
-        Boost force: <color=#00FFFF>13
-        TN </color>'
+        Boost force:
+        <color=#00FFFF>15 TN </color>'
       nion: 0
       costMass: 0.2
       costEnergie: 2
@@ -1241,21 +1318,24 @@ MonoBehaviour:
       energieStorage: 0
       health: 0
       protection: 0
-      mainEngine: 8
+      mainEngine: 8.5
       directionEngine: 0
       strafeEngine: 0
-      boostEngine: 13
+      boostEngine: 15
       boostStrafeEngine: 0
       bulletClass: 0
       rocketClass: 0
       laserClass: 0
       supportClass: 0
-      moduleUpgrades: []
+      moduleUpgrades:
+      - moduleUpgradeIndex: 59
+        moduleUpgradeQuantity: 3
   - moduleName: D1 Connector 3S1
     modulePrefabs: {fileID: 3509744163337706340, guid: 266ce1da77f2a53499a1d40066b6188f, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: e496a06ca78a2b643b503b2dd2ab58f7, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: ab6e1e1064f1d7e41b22ec46e84c1bf6, type: 3}
     modulSprite: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 0
     canLeft: 1
     canRight: 1
@@ -1300,6 +1380,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 5c5cfc486bff9774fa608dbb94b18e8c, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 29ff42016579a084695dd17e5805c20d, type: 3}
     modulSprite: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 0
     canLeft: 1
     canRight: 0
@@ -1344,6 +1425,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 6082b6c1fa301484c8bf00e3a55fa325, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: c1f75d87523e4304e997663b9b1aeffe, type: 3}
     modulSprite: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 0
     canLeft: 0
     canRight: 1
@@ -1388,6 +1470,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: b54332d122e2a5e48ab388a0e82a4d0d, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 833092bf435d6694593af56e08cdc8bb, type: 3}
     modulSprite: {fileID: 21300000, guid: 94f3183dcb82e8943815328295a08a73, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 0
     canLeft: 1
     canRight: 1
@@ -1432,6 +1515,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3538126319694765833, guid: 588ba2873ad4cc94b812c73905307f98, type: 3}
     hangarGhost: {fileID: 3538126319694765833, guid: d305d3e9d4aba234794ea18ad150a99d, type: 3}
     modulSprite: {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 3
     canLeft: 0
     canRight: 0
@@ -1465,12 +1549,15 @@ MonoBehaviour:
       rocketClass: 0
       laserClass: 0
       supportClass: 0
-      moduleUpgrades: []
+      moduleUpgrades:
+      - moduleUpgradeIndex: 3
+        moduleUpgradeQuantity: 1
   - moduleName: D3 Titan Glide L
     modulePrefabs: {fileID: 3509744163337706340, guid: fa677aea90d06564cb04019792d2179b, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: bdef76c78c670af4d859ed7e5d8cffdb, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 3101290d9a30d1c478d914b6d57e831a, type: 3}
     modulSprite: {fileID: 21300000, guid: 88f631d3dd40cd24585c3384e7bedd70, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 1
     canRight: 0
@@ -1517,6 +1604,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 6a8f1c1b77978054fabdaf2f9801889b, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 8e92c5b16cc25854f991180e994140e8, type: 3}
     modulSprite: {fileID: 21300000, guid: 88f631d3dd40cd24585c3384e7bedd70, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 0
     canRight: 1
@@ -1563,6 +1651,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 270102ccb1f9bb844b61b208e94fb7f7, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: de1df170f71020540abf93ec063e47be, type: 3}
     modulSprite: {fileID: 21300000, guid: 88f631d3dd40cd24585c3384e7bedd70, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 1
     canRight: 0
@@ -1599,6 +1688,8 @@ MonoBehaviour:
       laserClass: 0
       supportClass: 0
       moduleUpgrades:
+      - moduleUpgradeIndex: 3
+        moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 2
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 47
@@ -1608,6 +1699,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: c3bf2b3ab74443d4ea8271a3148d80e3, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: ddfc32ebeb62a7d4b95b4c06f0a7d08c, type: 3}
     modulSprite: {fileID: 21300000, guid: 88f631d3dd40cd24585c3384e7bedd70, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 0
     canRight: 1
@@ -1644,6 +1736,8 @@ MonoBehaviour:
       laserClass: 0
       supportClass: 0
       moduleUpgrades:
+      - moduleUpgradeIndex: 3
+        moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 2
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 47
@@ -1653,6 +1747,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: f4b93831085b1e74089c73d443626866, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: d0fda318baf120941b408c88f8170d40, type: 3}
     modulSprite: {fileID: 21300000, guid: f5d755c4e84aedd4fb98bf20aad157d3, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 1
     canRight: 0
@@ -1699,6 +1794,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 96305d1014424fe4185cb90f353bb4c0, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 1e525fb6fea9e4a4da3e6d734556f925, type: 3}
     modulSprite: {fileID: 21300000, guid: f5d755c4e84aedd4fb98bf20aad157d3, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 0
     canRight: 1
@@ -1754,6 +1850,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 3be239aefa652e841813872898c8c522, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: aa41fc8d9dd4e734abb7fb40c1b8f70a, type: 3}
     modulSprite: {fileID: 21300000, guid: f5d755c4e84aedd4fb98bf20aad157d3, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 1
     canRight: 0
@@ -1796,6 +1893,8 @@ MonoBehaviour:
       laserClass: 0
       supportClass: 0
       moduleUpgrades:
+      - moduleUpgradeIndex: 3
+        moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 2
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 48
@@ -1805,6 +1904,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: a69ef9f63bab91341b771fb2ed586c90, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 0736b7f12b38e9d45bd28fdad70e13e7, type: 3}
     modulSprite: {fileID: 21300000, guid: f5d755c4e84aedd4fb98bf20aad157d3, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 6
     canLeft: 0
     canRight: 1
@@ -1847,6 +1947,8 @@ MonoBehaviour:
       laserClass: 0
       supportClass: 0
       moduleUpgrades:
+      - moduleUpgradeIndex: 3
+        moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 2
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 48
@@ -1856,6 +1958,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 3c28e4de16c7a984fa16ba29077d3bfd, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 7225831e39aac904faa358483f0903bd, type: 3}
     modulSprite: {fileID: 21300000, guid: 0ed2cb74a7f3ebb479bdc536ce9e1422, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 0
     canLeft: 1
     canRight: 0
@@ -1899,6 +2002,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 3509744163337706340, guid: 76209ab9f4ab9464185364cf87bed6bd, type: 3}
     hangarGhost: {fileID: 3509744163337706340, guid: 383472670fe6e7f438101f47caf08355, type: 3}
     modulSprite: {fileID: 21300000, guid: 0ed2cb74a7f3ebb479bdc536ce9e1422, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 0
     canLeft: 0
     canRight: 1
@@ -1942,6 +2046,7 @@ MonoBehaviour:
     hangarPrefab: {fileID: 5320222491944983181, guid: 73feaa912995ff2449bbc50a9e19cb62, type: 3}
     hangarGhost: {fileID: 5320222491944983181, guid: 992b8f844bb862c429e4a7c084bf135a, type: 3}
     modulSprite: {fileID: 21300000, guid: dfb698914e313f5498d8a5bdb417753c, type: 3}
+    abilitySprite: {fileID: 0}
     moduleType: 5
     canLeft: 0
     canRight: 0

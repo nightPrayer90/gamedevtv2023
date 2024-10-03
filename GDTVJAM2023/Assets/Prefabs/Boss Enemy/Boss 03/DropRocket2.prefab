@@ -10253,6 +10253,8 @@ MonoBehaviour:
   trail: {fileID: 5808729678433142212}
   rocketScattering: 3.5
   damageMarkerRadius: {fileID: 6093917587019990308}
+  damageZoneChance: 30
+  dropPrefab: {fileID: 0}
 --- !u!1 &8964105834401849483
 GameObject:
   m_ObjectHideFlags: 0

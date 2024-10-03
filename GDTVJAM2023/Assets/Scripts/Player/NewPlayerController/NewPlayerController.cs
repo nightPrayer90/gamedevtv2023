@@ -23,7 +23,7 @@ public class NewPlayerController : MonoBehaviour
     [HideInInspector] public bool boostInput;
     [HideInInspector] public bool abilityInput;
     [HideInInspector] public bool isboostSoundFlag = false;
-    
+
 
     [Header("Player Stats")]
     [SerializeField] private bool canTakeDamge = true;
@@ -132,7 +132,8 @@ public class NewPlayerController : MonoBehaviour
 
         for (int i = 0; i < foundRockets.Length; i++)
         {
-            foundRockets[i].moduleIndex = i; }
+            foundRockets[i].moduleIndex = i;
+        }
 
         for (int i = 0; i < foundSphereThrowers.Length; i++)
         { foundSphereThrowers[i].moduleIndex = i; }
@@ -207,7 +208,7 @@ public class NewPlayerController : MonoBehaviour
         switch (tag)
         {
             case "Exp":
-                
+
                 /*int expValue = other.GetComponent<EnemyExp>().expValue;
                 UpdatePlayerExperience(expValue);*/
                 break;
@@ -402,7 +403,7 @@ public class NewPlayerController : MonoBehaviour
     /* Movement Stuff-------------------------------------------------------------- */
     /* **************************************************************************** */
     #region movement stuff
-    
+
     void HandleInput()
     {
         strafeInput = intputHandler.MoveInput.x * moveControlChange;
@@ -527,7 +528,7 @@ public class NewPlayerController : MonoBehaviour
     // update player life after get damage, heal or level up
     public void UpdatePlayerHealth(int decHealth)
     {
-        
+
         if (decHealth > 0)
         {
             if (!damageParticle.isPlaying)
@@ -535,6 +536,8 @@ public class NewPlayerController : MonoBehaviour
                 damageParticle.Play();
             }
         }
+
+        gameManager.TakeDamageEffekt();
 
         // calculate the player health value
         playerCurrentHealth = Mathf.Min(Mathf.Max(0, playerCurrentHealth - decHealth), playerMaxHealth);
@@ -622,7 +625,7 @@ public class NewPlayerController : MonoBehaviour
 
         Vector3 pos = transform.position;
         LayerMask layerMask = (1 << 6);
-        explosionRadius = explosionRadius * (1+ playerWeaponController.shipData.rocketAOERadius/100);
+        explosionRadius = explosionRadius * (1 + playerWeaponController.shipData.rocketAOERadius / 100);
         NovaDamage = 6;
 
         if (gameManager.dimensionShift == true)
@@ -687,11 +690,22 @@ public class NewPlayerController : MonoBehaviour
         //powerBoostMarker.SetActive(false);
     }
 
+    public void GetInvulnerability(float time)
+    {
+        if (canTakeDamge == true)
+        {
+            canTakeDamge = false;
+            Invoke(nameof(Invulnerability), time);
+        }
+    }
+
+
     public void GetInvulnerabilityAfterUpdate()
     {
         canTakeDamge = false;
         Invoke(nameof(Invulnerability), 0.5f);
     }
+
 
     // player can take damage
     public void GetInvulnerability()

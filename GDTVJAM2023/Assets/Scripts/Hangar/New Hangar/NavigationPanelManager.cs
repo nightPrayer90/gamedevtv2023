@@ -97,6 +97,7 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
                 moduleStorage.BuildModuleGrid();
                 moduleStorage.RefreshModulSpheres();
                 hangarUIController.SetShipPanel();
+                selectionManager.SelectModuleAtPosition(0, 0);
                 AudioManager.Instance.PlaySFX("HangarNewShip");
                 break;
 
@@ -157,6 +158,8 @@ public class NavigationPanelManager : MonoBehaviour, IPointerEnterHandler, IPoin
         moduleStorage.RemoveAllModule();
         moduleStorage.playerData.ActiveShip = activShip;
         moduleStorage.LoadShipFromPreset();
+
+        selectionManager.SelectModuleAtPosition(0, 0);
     }
 
     public void ChangeBtnColor()

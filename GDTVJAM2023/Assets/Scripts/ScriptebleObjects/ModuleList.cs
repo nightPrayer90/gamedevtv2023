@@ -22,6 +22,7 @@ public class Modules
     public GameObject hangarPrefab;
     public GameObject hangarGhost;
     public Sprite modulSprite;
+    public Sprite abilitySprite;
     public ModuleType moduleType;
     public bool canLeft = false;
     public bool canRight = false;

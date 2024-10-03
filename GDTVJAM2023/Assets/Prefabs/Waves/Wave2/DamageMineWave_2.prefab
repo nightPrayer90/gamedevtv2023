@@ -9919,6 +9919,7 @@ GameObject:
   - component: {fileID: 9189703439316727559}
   - component: {fileID: 2238036311601892615}
   - component: {fileID: 7442621568476400086}
+  - component: {fileID: 8045092453038268583}
   m_Layer: 6
   m_Name: DamageMineWave_2
   m_TagString: Enemy
@@ -10105,6 +10106,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8045092453038268583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5129708613027793389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf35b52ef3ba37946a121bf65d662181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootCount: 6
+  lootObjects:
+  - lootprefab: {fileID: 9130956216624873031, guid: 3fb815d438afddc44b78711a0206324f, type: 3}
+    quanitiy: 0
+  explosionDelay: 0
+  isBoss: 0
+  bigHealthOrb: {fileID: 0}
+  bigEXPOrb: {fileID: 0}
+  bigTimerOrb: {fileID: 0}
 --- !u!1 &7290729250425368827
 GameObject:
   m_ObjectHideFlags: 0

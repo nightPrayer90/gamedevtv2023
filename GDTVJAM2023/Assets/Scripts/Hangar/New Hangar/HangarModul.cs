@@ -40,6 +40,18 @@ public class HangarModul : MonoBehaviour
         ControllOwnMaterial();
     }
 
+    public void SelectafterBuild()
+    {
+        
+        Invoke(nameof(SelectInvoke), 0.01f);
+    }
+    public void SelectInvoke()
+    {
+        selectionController.SelectModuleAtPosition((int)moduleData.x, (int)moduleData.z);
+    }
+
+
+
     public void HandleSetDeselect()
     {
         if (isSelected == true)
@@ -92,7 +104,7 @@ public class HangarModul : MonoBehaviour
         {
             if (moduleValues.moduleType == ModuleType.Cockpit)
             {
-                selectionController.SelectModuleAtPosition(0, 0); // this is me
+                //selectionController.SelectModuleAtPosition(0, 0); // this is me
                 return;
             }
             else

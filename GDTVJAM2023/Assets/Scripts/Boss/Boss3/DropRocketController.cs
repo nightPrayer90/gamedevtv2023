@@ -37,7 +37,8 @@ public class DropRocketController : MonoBehaviour
     private NewPlayerController playerController;
     private Rigidbody playerRigidBody;
 
-    
+    public int damageZoneChance = 30;
+    public GameObject dropPrefab;
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -174,6 +175,13 @@ public class DropRocketController : MonoBehaviour
                 AudioManager.Instance.PlaySFX("ShieldGetHit");
             }*/
         }
+
+        // spawn drop Object
+        if (dropPrefab != null && Random.Range(0,100) < damageZoneChance)
+        {
+            Instantiate(dropPrefab, pos, exposionHitObject.transform.rotation);
+        }
+
 
         // spawn the explosion object
         GameObject go = ObjectPoolManager.SpawnObject(exposionHitObject, pos, transform.rotation, ObjectPoolManager.PoolType.ParticleSystem);

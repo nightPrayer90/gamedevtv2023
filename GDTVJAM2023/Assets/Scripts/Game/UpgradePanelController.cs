@@ -244,6 +244,7 @@ public class UpgradePanelController : MonoBehaviour
         int number = selectedNumbers_[index];
         isTweening = true;
         upgradeChooseList.upgrades[number].upgradeIndexInstalled += 1;
+        isButtonPressed = true;
 
         switch (number)
         {

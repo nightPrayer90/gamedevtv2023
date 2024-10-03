@@ -122,7 +122,7 @@ public class ShopModuleMeshHud : MonoBehaviour
                     Color bkColor = shopController.classColor.classColor[shopController.upgradeList.upgradeList[item.moduleUpgradeIndex].colorIndex];
                     bool gray = false;
                     if (creditsText.text == "sold out") gray = true;
-                    iconPrefab.SetIcon(item.moduleUpgradeQuantity, shopController.upgradeList.upgradeList[item.moduleUpgradeIndex].iconPanel, bkColor, gray);
+                    iconPrefab.SetIcon(item.moduleUpgradeQuantity, shopController.upgradeList.upgradeList[item.moduleUpgradeIndex].iconPanel, bkColor, item.moduleUpgradeIndex, gray);
                 }
 
             }

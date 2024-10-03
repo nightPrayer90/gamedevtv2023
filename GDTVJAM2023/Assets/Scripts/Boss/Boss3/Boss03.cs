@@ -129,7 +129,7 @@ public class Boss03 : MonoBehaviour
     private void SleepState()
     {
         float distanceToPlayer = DistanceToPlayer();
-        if (distanceToPlayer <= 6f) // TODO FIX ME
+        if (distanceToPlayer <= 5.8f) // TODO FIX ME
         {
             bossState = 1;
             bossParticle.ParticleStop();
@@ -221,7 +221,7 @@ public class Boss03 : MonoBehaviour
                     horizontalRocketSpawner[1].SetActive(true);
                     horizontalRocketSpawner[2].SetActive(true);
                     Invoke(nameof(HorizontalRocketsOff), 5f);
-
+                    
                     horizontalRocketSpawner2[0].SetActive(true);
                     horizontalRocketSpawner2[1].SetActive(true);
                     horizontalRocketSpawner2[2].SetActive(true);

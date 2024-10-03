@@ -7,7 +7,7 @@ public class BackfireBeamProjectile : MonoBehaviour
     public float initialForce = 20f;
     public float returnThreshold = 1f; // Threshold speed at which the projectile starts returning
     public Rigidbody rb;
-    public int damage = 4;
+    public int damage = 8;
     public int laserDamageChannel = 4;
     public int killProjectileCount = 0;
 
@@ -19,7 +19,7 @@ public class BackfireBeamProjectile : MonoBehaviour
     private bool returning = false;
     private bool isStarted = false;
     private bool destroyFlag = false;
-    private float returnSpeed = 2;
+    private float returnSpeed = 1.5f;
     private float returnSpeed_;
 
     public GameObject splitPrefab;

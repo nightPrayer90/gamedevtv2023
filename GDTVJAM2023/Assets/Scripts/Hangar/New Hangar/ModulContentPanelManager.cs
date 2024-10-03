@@ -229,6 +229,7 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
             go.transform.SetParent(shipParent);
 
         }
+
         newModuleData.x = go.transform.position.x;
         newModuleData.z = go.transform.position.z;
         newModuleData.moduleTypeIndex = moduleIndex;
@@ -252,8 +253,9 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         moduleStorage.installedHangarModules.Add(newHangarModule);
         moduleStorage.BuildModuleGrid();
         moduleStorage.RefreshModulSpheres();
+        hangarUIController.MouseExitModulePanel(0);
 
-        hangarUIController.SetShipPanel();
+       hangarUIController.SetShipPanel();
 
         moduleStorage.playerData.moduleCounts[moduleIndex] -= 1;
 
@@ -267,6 +269,9 @@ public class ModulContentPanelManager : MonoBehaviour, IPointerEnterHandler, IPo
         }
 
         selectionManager.DeselectAll();
+        newHangarModule.SelectafterBuild();
+
+
     }
     #endregion
 }

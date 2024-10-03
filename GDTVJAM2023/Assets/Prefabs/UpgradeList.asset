@@ -62,7 +62,7 @@ MonoBehaviour:
     upgradeIndex: 3
     passivUpgradeString: 
     descriptionStr: Increases the maximum energy storage by 15%.
-    iconPanel: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
+    iconPanel: {fileID: 21300000, guid: 1f1dc46d83e2615448eba029fa7683b3, type: 3}
     mainClass: 8
     upgradeTyp: 1
     colorIndex: 9
@@ -377,7 +377,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 1
     reqAbility: Bullet Cockpit
-    UpgradeCount: 2
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Force Multiplier
     upgradeIndex: 24
@@ -392,7 +392,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 2
     reqAbility: Bullet Cockpit
-    UpgradeCount: 1
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Nova Overdrive
     upgradeIndex: 25
@@ -407,7 +407,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 3
     reqAbility: Bullet Cockpit
-    UpgradeCount: 1
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Critical Impact
     upgradeIndex: 26
@@ -498,7 +498,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 0
     reqAbility: Bullet Cockpit
-    UpgradeCount: 2
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Expansion Fortuity
     upgradeIndex: 32
@@ -573,7 +573,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 0
     reqAbility: Rocket Cockpit
-    UpgradeCount: 3
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Deadly Focus
     upgradeIndex: 37
@@ -633,7 +633,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 0
     reqAbility: Cockpit 0
-    UpgradeCount: 2
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Shield Strike
     upgradeIndex: 41
@@ -648,7 +648,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 1
     reqAbility: Cockpit 0
-    UpgradeCount: 2
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Critical Impact Drive
     upgradeIndex: 42
@@ -663,13 +663,13 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 3
     reqAbility: Bullet Cockpit
-    UpgradeCount: 1
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Ignition Shield
     upgradeIndex: 43
     passivUpgradeString: 
     descriptionStr: Shields inflict colliding enemies with burning damage.
-    iconPanel: {fileID: 21300000, guid: 1766091a6535c614db7cc3976fcf98c8, type: 3}
+    iconPanel: {fileID: 21300000, guid: fd826e5525c3c64458a678bc024b2a27, type: 3}
     mainClass: 8
     upgradeTyp: 1
     colorIndex: 10
@@ -678,7 +678,7 @@ MonoBehaviour:
     reqLaser: 3
     reqSupport: 3
     reqAbility: Cockpit 0
-    UpgradeCount: 1
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Shieldbreaker's Honor
     upgradeIndex: 44
@@ -694,7 +694,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 3
     reqAbility: Cockpit 0
-    UpgradeCount: 1
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Shieldbreaker's Might
     upgradeIndex: 45
@@ -709,7 +709,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 3
     reqAbility: Cockpit 0
-    UpgradeCount: 1
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Ballistic Boost
     upgradeIndex: 46
@@ -920,8 +920,8 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 1
     reqAbility: 
-    UpgradeCount: 3
-    upgradeStartCount: 3
+    UpgradeCount: 0
+    upgradeStartCount: 0
   - headerStr: Engine Overload
     upgradeIndex: 60
     passivUpgradeString: 
@@ -950,7 +950,7 @@ MonoBehaviour:
     reqLaser: 3
     reqSupport: 3
     reqAbility: Bullet Cockpit
-    UpgradeCount: 1
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Explosive Shield
     upgradeIndex: 62
@@ -965,7 +965,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 2
     reqAbility: Cockpit 0
-    UpgradeCount: 1
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Natural Energy
     upgradeIndex: 63
@@ -1327,7 +1327,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 1
     reqAbility: Rocket Cockpit
-    UpgradeCount: 1
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Corpse explosion
     upgradeIndex: 87
@@ -1343,7 +1343,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 2
     reqAbility: Rocket Cockpit
-    UpgradeCount: 1
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Life Orb Boost
     upgradeIndex: 88
@@ -1418,7 +1418,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 0
     reqAbility: Laser Cockpit
-    UpgradeCount: 2
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Growth Impulse
     upgradeIndex: 93
@@ -1433,7 +1433,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 1
     reqAbility: Laser Cockpit
-    UpgradeCount: 2
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Infernal Zone
     upgradeIndex: 94
@@ -1448,7 +1448,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 2
     reqAbility: Laser Cockpit
-    UpgradeCount: 1
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Astral Shockwave
     upgradeIndex: 95
@@ -1464,7 +1464,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 3
     reqAbility: Laser Cockpit
-    UpgradeCount: 1
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Rising Force
     upgradeIndex: 96
@@ -1479,7 +1479,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 3
     reqAbility: Laser Cockpit
-    UpgradeCount: 1
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Enduring Inferno
     upgradeIndex: 97
@@ -1495,7 +1495,7 @@ MonoBehaviour:
     reqLaser: 3
     reqSupport: 0
     reqAbility: Laser Cockpit
-    UpgradeCount: 1
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Collector
     upgradeIndex: 98
@@ -1512,11 +1512,10 @@ MonoBehaviour:
     reqAbility: 
     UpgradeCount: 0
     upgradeStartCount: 0
-  - headerStr: Energy Rebound
+  - headerStr: 
     upgradeIndex: 99
     passivUpgradeString: 
-    descriptionStr: 2% chance to recharge your ability directly when you collect
-      an Exp Orb
+    descriptionStr: 
     iconPanel: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
     mainClass: 8
     upgradeTyp: 1

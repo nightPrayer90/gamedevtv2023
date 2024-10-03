@@ -13,7 +13,7 @@ public class BackfireBeam : MonoBehaviour
     private int novaTriggerCounter = 0;
     public int projectileCount = 1;
     public float realoadTime = 3f;
-    public int damage = 4;
+    public int damage = 8;
     public int killProjectileCount = 2;
     private UpgradeChooseList upgradeChooseList;
 
@@ -80,6 +80,7 @@ public class BackfireBeam : MonoBehaviour
 
     public void NovaTrigger()
     {
+        Debug.Log(novaTriggerCounter);
         if (upgradeChooseList.upgrades[85].upgradeIndexInstalled > 0)
             novaTriggerCounter++;
     }

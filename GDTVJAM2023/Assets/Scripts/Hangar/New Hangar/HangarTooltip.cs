@@ -24,6 +24,7 @@ public class HangarTooltip : MonoBehaviour
     public CanvasGroup cg;
 
     public ClassTooltipC[] tooltipContent;
+    public HangarUIController hangarUIController;
 
 
     void OnEnable()
@@ -34,7 +35,7 @@ public class HangarTooltip : MonoBehaviour
         }
         // FadeIn
         cg.alpha = 0;
-        cg.DOFade(1f, 0.1f).SetUpdate(true);
+        cg.DOFade(1f, 0.05f).SetUpdate(true);
     }
 
 
@@ -54,18 +55,20 @@ public class HangarTooltip : MonoBehaviour
             case 1: // explosion Class
             case 2: // laser Class
             case 3: // Support Class
-            case 4: // Ship Energie Production
+            case 4: // Ability
             case 5: // Energie Regen
             case 6: // Energie Storage
             case 7: // Ship mass
             case 8: // Protection
-            case 9: // Energie in use
+            case 9: // mainEngine
             case 10:// no Filter
             case 11:// Cockpits
             case 12:// Thruster
             case 13:// Connectors
             case 14:// Weapons
             case 15:// Wings
+            case 16:// Direction Engine
+            case 17:// Strafe Engine
                 header_ = tooltipContent[contentType].header;
                 content_ = tooltipContent[contentType].content;
                 break;
@@ -77,6 +80,21 @@ public class HangarTooltip : MonoBehaviour
         headerField.text = header_;
         contentField.text = content_;
 
+
+        // layout Element
+        int headerLength = headerField.text.Length;
+        int contentLength = contentField.text.Length;
+
+        layoutElement.enabled = (headerLength > characterWarpLimit || contentLength > characterWarpLimit) ? true : false;
+    }
+
+    public void ShowFromAbility(Vector2 triggerPosition, int upgradeindex)
+    {
+        // set tooltip positon
+        triggerPosition_ = triggerPosition;
+  
+        headerField.text = hangarUIController.upgradeList.upgradeList[upgradeindex].headerStr;
+        contentField.text = hangarUIController.upgradeList.upgradeList[upgradeindex].descriptionStr;
 
         // layout Element
         int headerLength = headerField.text.Length;

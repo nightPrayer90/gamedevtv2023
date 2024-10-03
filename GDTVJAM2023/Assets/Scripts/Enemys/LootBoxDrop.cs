@@ -86,12 +86,12 @@ public class LootBoxDrop : MonoBehaviour
 
     private void SpawnAdditionalObjects()
     {
-        if (gameManager.upgradeChooseList.upgrades[88].upgradeIndexInstalled > 0) // Life Orb Boost
+        if (gameManager.upgradeChooseList.upgrades[88].upgradeIndexInstalled > 0 && bigHealthOrb != null) // Life Orb Boost
         {
             SpawnLoot(bigHealthOrb);
         }
 
-        if (gameManager.upgradeChooseList.upgrades[89].upgradeIndexInstalled > 0) // EXP Orb Boost
+        if (gameManager.upgradeChooseList.upgrades[89].upgradeIndexInstalled > 0 && bigEXPOrb != null) // EXP Orb Boost
         {
             for (int i = 0; i < 2; i++)
             {
@@ -99,7 +99,7 @@ public class LootBoxDrop : MonoBehaviour
             }
         }
 
-        if (gameManager.upgradeChooseList.upgrades[90].upgradeIndexInstalled > 0) // Time Orb Boost
+        if (gameManager.upgradeChooseList.upgrades[90].upgradeIndexInstalled > 0 && bigTimerOrb != null) // Time Orb Boost
         {
             SpawnLoot(bigTimerOrb);
         }

@@ -30,10 +30,10 @@ public class ab_InfernoRockets : MonoBehaviour
         SetReloadFlag();
 
         // activate shield upgrades
-        UpgradeChooseList uCl = gameManager.gameObject.GetComponent<UpgradeChooseList>();
-        uCl.upgrades[36].upgradeStartCount = uCl.uLObject.upgradeList[36].UpgradeCount; // Rocket Overdrive
-        uCl.upgrades[86].upgradeStartCount = uCl.uLObject.upgradeList[86].UpgradeCount; // Overheating Rockets
-        uCl.upgrades[87].upgradeStartCount = uCl.uLObject.upgradeList[87].UpgradeCount; // Corpse explosion
+        //UpgradeChooseList uCl = gameManager.gameObject.GetComponent<UpgradeChooseList>();
+        //uCl.upgrades[36].upgradeStartCount = uCl.uLObject.upgradeList[36].UpgradeCount; // Rocket Overdrive
+        //uCl.upgrades[86].upgradeStartCount = uCl.uLObject.upgradeList[86].UpgradeCount; // Overheating Rockets
+        //uCl.upgrades[87].upgradeStartCount = uCl.uLObject.upgradeList[87].UpgradeCount; // Corpse explosion
     }
 
 

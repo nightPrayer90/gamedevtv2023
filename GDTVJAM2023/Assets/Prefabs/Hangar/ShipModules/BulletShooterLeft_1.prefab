@@ -4943,6 +4943,7 @@ MonoBehaviour:
     canFront: 0
     canBack: 0
     modulDescription_multiLineText: 
+    nion: 0
     costMass: 0
     costEnergie: 0
     energieProduction: 0
@@ -4958,9 +4959,10 @@ MonoBehaviour:
     rocketClass: 0
     laserClass: 0
     supportClass: 0
+    moduleUpgrades: []
   moduleIndex: -1
   bulletBaseDamage: 3
-  fireRate: 0.4
+  fireRate: 0.3
   WeaponSound: {fileID: 0}
   bulletParticalSystem: {fileID: 526782963062468940}
   particelBullet: {fileID: 434734563991644116}

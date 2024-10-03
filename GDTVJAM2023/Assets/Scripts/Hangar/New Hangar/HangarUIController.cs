@@ -4,6 +4,7 @@ using DG.Tweening;
 using TMPro;
 using System.Collections.Generic;
 using static UnityEditor.Progress;
+using UnityEditor.XR;
 
 public class HangarUIController : MonoBehaviour
 {
@@ -27,12 +28,16 @@ public class HangarUIController : MonoBehaviour
     public TextMeshProUGUI scpDescription;
     public TextMeshProUGUI scpCostMassValue;
     public TextMeshProUGUI scpCostEnergieValue;
+    public Transform contentIconParent;
 
     [Header("Mouse Over Panal")]
     public TextMeshProUGUI mopHeader;
     public TextMeshProUGUI mopDescription;
     public TextMeshProUGUI mopCostMassValue;
     public TextMeshProUGUI mopCostEnergieValue;
+    public Transform mouseOverIconParent;
+    public Image mopAbilitsSprite;
+    public GameObject mopAbilitsPanel;
 
     [Header("Ship Panel")]
     public TextMeshProUGUI spMassValue;
@@ -44,6 +49,9 @@ public class HangarUIController : MonoBehaviour
     public TextMeshProUGUI spMainEngine;
     public TextMeshProUGUI spDirectionEngine;
     public TextMeshProUGUI spStrafeEngine;
+    public Image spMainEngineImage;
+    public Image spDirectionEngineImage;
+    public Image spStrafeEngineImage;
 
     [Header("Nion Panel")]
     public GameObject nionPrefab;
@@ -54,6 +62,7 @@ public class HangarUIController : MonoBehaviour
     public GameObject iconPrefab;
     public Transform layoutParent;
     public UpgradeList upgradeList;
+    public ClassColor classColor;
 
     [Header("Class Panel")]
     public Image cpBulletImage;
@@ -73,6 +82,7 @@ public class HangarUIController : MonoBehaviour
     public Transform contentParent;
     private HangarSelection selectionController;
     public HangarFilterBtn hangarFilterBtn;
+    public Image abilityPanel;
 
 
     private void Awake()
@@ -153,7 +163,7 @@ public class HangarUIController : MonoBehaviour
     }
 
     // handle Module selection
-    public void HandleModulSelect(HangarModul selectedModul)
+    public void HandleModulSelect(HangarModul selectedModul, bool selectSound = true)
     {
         // Handle Panel UI
         removePanel.DOKill();
@@ -183,12 +193,36 @@ public class HangarUIController : MonoBehaviour
         scpCostEnergieValue.text = selectedModul.moduleValues.costEnergie.ToString() + " Nion";
 
 
+        int iconUpgradArr = selectedModul.moduleValues.moduleUpgrades.Count;
+
+        // Icon Panel
+        foreach (Transform child in contentIconParent)
+        {
+            Destroy(child.gameObject);
+        }
+        for (int i = 0; i < iconUpgradArr; i++)
+        {
+            int upgradeIndex = selectedModul.moduleValues.moduleUpgrades[i].moduleUpgradeIndex;
+            int upgradequantity = selectedModul.moduleValues.moduleUpgrades[i].moduleUpgradeQuantity;
+
+            if (upgradequantity > 0)
+            {
+                GameObject go = Instantiate(iconPrefab, contentIconParent);
+                IconPrefab iPf = go.GetComponent<IconPrefab>();
+                iPf.SetIcon(upgradequantity, upgradeList.upgradeList[upgradeIndex].iconPanel, classColor.classColor[upgradeList.upgradeList[upgradeIndex].colorIndex], upgradeIndex, false);
+            }
+        }
+
+
+
         // open Module Panel
         int modules = moduleStorage.possibleModules.Count;
 
+        if (selectSound == true) AudioManager.Instance.PlaySFX("HangarSelectPart");
+
         if (modules > 0)
         {
-            AudioManager.Instance.PlaySFX("HangarSelectPart");
+            Debug.Log(scpHeader.text = selectedModul.moduleValues.moduleName);
             modulePanel.DOKill();
             if (modulePanel.alpha != 1)
             {
@@ -200,10 +234,6 @@ public class HangarUIController : MonoBehaviour
             hangarFilterBtn.moduleParentTransform = selectedModul.transform;
             hangarFilterBtn.BuildLists();
             hangarFilterBtn.CreateFromHangarUIController(contentParent);
-        }
-        else
-        {
-            AudioManager.Instance.PlaySFX("HangarCantLoadSelect");
         }
     }
 
@@ -248,6 +278,37 @@ public class HangarUIController : MonoBehaviour
         mopDescription.text = moduleStorage.moduleList.moduls[modulIndex].moduleValues.modulDescription_multiLineText;
         mopCostMassValue.text = moduleStorage.moduleList.moduls[modulIndex].moduleValues.costMass.ToString() + " t";
         mopCostEnergieValue.text = moduleStorage.moduleList.moduls[modulIndex].moduleValues.costEnergie.ToString() + " Nion";
+        
+        int iconUpgradArr = moduleStorage.moduleList.moduls[modulIndex].moduleValues.moduleUpgrades.Count;
+
+        // Icon Panel
+        foreach (Transform child in mouseOverIconParent)
+        {
+            Destroy(child.gameObject);
+        }
+        for (int i = 0; i < iconUpgradArr; i++)
+        {
+            int upgradeIndex = moduleStorage.moduleList.moduls[modulIndex].moduleValues.moduleUpgrades[i].moduleUpgradeIndex;
+            int upgradequantity = moduleStorage.moduleList.moduls[modulIndex].moduleValues.moduleUpgrades[i].moduleUpgradeQuantity;
+
+            if (upgradequantity > 0)
+            {
+                GameObject go = Instantiate(iconPrefab, mouseOverIconParent);
+                IconPrefab iPf = go.GetComponent<IconPrefab>();
+                iPf.SetIcon(upgradequantity, upgradeList.upgradeList[upgradeIndex].iconPanel,  classColor.classColor[upgradeList.upgradeList[upgradeIndex].colorIndex] , upgradeIndex, false);
+            }
+        }
+
+        // ability Panel
+        if (moduleStorage.moduleList.moduls[modulIndex].abilitySprite != null)
+        {
+            mopAbilitsPanel.SetActive(true);
+            mopAbilitsSprite.sprite = moduleStorage.moduleList.moduls[modulIndex].abilitySprite;
+        }
+        else
+        {
+            mopAbilitsPanel.SetActive(false) ;
+        }
     }
 
     public void MouseExitModulePanel(float delay)
@@ -289,9 +350,6 @@ public class HangarUIController : MonoBehaviour
 
 
         int[] iconUpgradArr = new int[upgradeList.upgradeList.Count];
-
-        Debug.Log(iconUpgradArr.Length);
-
         // get Data
         foreach (HangarModul modul in moduleStorage.installedHangarModules)
         {
@@ -356,6 +414,15 @@ public class HangarUIController : MonoBehaviour
         spDirectionEngine.text = directionEngine.ToString() + " TNm";
         spStrafeEngine.text = strafeEngine.ToString() + " /<color=#00FFFF>" + boostStrafe.ToString() + "</color> TN";
 
+        if (mainEngine <= 0) spMainEngineImage.color = Color.red;
+        else spMainEngineImage.color = Color.white;
+
+        Debug.Log(directionEngine);
+        if (directionEngine <= 0) spDirectionEngineImage.color = Color.red;
+        else spDirectionEngineImage.color = Color.white;
+
+        if (strafeEngine <= 0) spStrafeEngineImage.color = Color.red;
+        else spStrafeEngineImage.color = Color.white;
 
         spHealth.text = health.ToString() + " HP";
 
@@ -386,7 +453,7 @@ public class HangarUIController : MonoBehaviour
             {
                 GameObject go = Instantiate(iconPrefab, layoutParent);
                 IconPrefab iPf = go.GetComponent<IconPrefab>();
-                iPf.SetIcon(iconUpgradArr[i], upgradeList.upgradeList[i].iconPanel, Color.white, false);
+                iPf.SetIcon(iconUpgradArr[i], upgradeList.upgradeList[i].iconPanel, classColor.classColor[upgradeList.upgradeList[i].colorIndex], i, false);
             }
         }
     }

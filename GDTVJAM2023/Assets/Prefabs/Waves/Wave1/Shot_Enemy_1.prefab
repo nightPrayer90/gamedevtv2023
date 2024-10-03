@@ -14712,7 +14712,7 @@ MonoBehaviour:
   tiltObject: {fileID: 7618259170617831176}
   engineParticle: {fileID: 1230618957683797442}
   speed: 1.4
-  rotationSpeed: 10
+  rotationSpeed: 5
   canTilt: 0
   tiltBoarder: 0
   radius: 7
