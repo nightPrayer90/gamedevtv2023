@@ -24,7 +24,7 @@ public class HangarTooltip : MonoBehaviour
     public CanvasGroup cg;
 
     public ClassTooltipC[] tooltipContent;
-    public HangarUIController hangarUIController;
+    public UpgradeList upgradeList;
 
 
     void OnEnable()
@@ -93,8 +93,8 @@ public class HangarTooltip : MonoBehaviour
         // set tooltip positon
         triggerPosition_ = triggerPosition;
   
-        headerField.text = hangarUIController.upgradeList.upgradeList[upgradeindex].headerStr;
-        contentField.text = hangarUIController.upgradeList.upgradeList[upgradeindex].descriptionStr;
+        headerField.text = upgradeList.upgradeList[upgradeindex].headerStr;
+        contentField.text = upgradeList.upgradeList[upgradeindex].descriptionStr;
 
         // layout Element
         int headerLength = headerField.text.Length;

@@ -51,9 +51,6 @@ public class HangarRotateShips : MonoBehaviour
     }
     public void RotateShip( int rotateIndex, bool isSmooth)
     {
-
-        Debug.Log("rotate index " + rotateIndex);
-
         // TODO: make it smarter
         btn1.nameText.color = Color.white;
         btn2.nameText.color = Color.white;

@@ -16,6 +16,7 @@ public class ShipData : ScriptableObject
     public int baseLaserTicks = 4;
     public int baseLaserTickDamage = 5;
     public int laserBurningTickDamangePercent = 100;
+    public int chanceToGetScrap = 5;
 
     [Header("Basic Ability Values")]
     public float percBulletDamage = 0;
@@ -26,6 +27,9 @@ public class ShipData : ScriptableObject
     public float chanceToGetHealth = 0;
     public float chanceToGetFullEnergy = 0;
     public float rocketLifeTime = 0;
+    public float percMainAttackSpeedBullet = 0;
+    public float percMainAttackSpeedRocket = 0;
+    public float percMainDownTimeLaser = 0;
 
 
     public int bossBonusDamage = 0;

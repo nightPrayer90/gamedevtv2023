@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2733207147764284880}
   - component: {fileID: 7484443328899123203}
   - component: {fileID: 2246544298839665188}
+  - component: {fileID: 9205430134501268607}
+  - component: {fileID: -702002849545852221}
   m_Layer: 0
   m_Name: IconPrefab
   m_TagString: Untagged
@@ -93,6 +95,68 @@ MonoBehaviour:
   bk_image: {fileID: 7484443328899123203}
   iconImage: {fileID: 466719205070479021}
   quantityText: {fileID: 8310351541282133331}
+  upgradeindex: 0
+--- !u!114 &9205430134501268607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122097444614101154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf49c0ddca98ca84d88798ccba7c19fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltip: {fileID: 0}
+  goTooltip: {fileID: 0}
+  contentType: 0
+  toolTipOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &-702002849545852221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122097444614101154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 9205430134501268607}
+          m_TargetAssemblyTypeName: ShopTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipShowAbility
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 9205430134501268607}
+          m_TargetAssemblyTypeName: ShopTooltipTrigger, Assembly-CSharp
+          m_MethodName: TooltipHide
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3450635619520264338
 GameObject:
   m_ObjectHideFlags: 0

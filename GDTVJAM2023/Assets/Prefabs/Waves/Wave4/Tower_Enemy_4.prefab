@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3958546974285713878}
   - component: {fileID: -1457242072271026635}
   - component: {fileID: 9080195727734876967}
+  - component: {fileID: -1114480555520904392}
   m_Layer: 6
   m_Name: Tower_Enemy_4
   m_TagString: Enemy
@@ -65,8 +66,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.45
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.47463998
+  m_Center: {x: 0, y: 0.13, z: 0}
 --- !u!114 &3958546974285713878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,7 +89,7 @@ MonoBehaviour:
   novaExplosionPrefab: {fileID: 63306021479946841, guid: 5aeba8bb395cdae4098bb4692bef95da, type: 3}
   burnParticleSystem: {fileID: 3848154008130576996}
   enemyCollider: {fileID: 6851786858615139874}
-  enemyHealth: 100
+  enemyHealth: 120
   enemyStartHealth: 0
   collisonDamage: 4
   explosionForce: 5
@@ -103,6 +104,7 @@ MonoBehaviour:
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
   critColor: {r: 1, g: 0, b: 0.97981787, a: 1}
   burningColor: {r: 1, g: 0, b: 0.01, a: 1}
+  gameManager: {fileID: 0}
 --- !u!114 &-1457242072271026635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +139,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   torque: 0.7
+--- !u!114 &-1114480555520904392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3161139216598759944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 707dca324a8513a4cab7c47aebb1f862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4376487591180457681
 GameObject:
   m_ObjectHideFlags: 0

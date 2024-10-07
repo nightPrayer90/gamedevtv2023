@@ -17,7 +17,7 @@ public class ScrapOrb : MonoBehaviour
 
         pickUp.gameManager.AddScrap(scrap);
 
-        var floatingString = $" +{scrap} scrap";
+        var floatingString = $" +{scrap} Scraps";
         pickUp.gameManager.DoFloatingText(transform.position, floatingString, textColor);
 
         pickUp.OnCollect -= PickUp;

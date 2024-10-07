@@ -10,7 +10,7 @@ public class UpgradePanelController : MonoBehaviour
     [Header("Main Panel")]
     public List<UpgradPanelIndex> panelList;
     public UpgradeShipPanelController shipPanalController;
-    private int rerolls = 2;
+    private int rerolls = 3;
     private int upgradeType;
     public TMP_Text rerollText;
     public GameObject rerollImage;
@@ -273,7 +273,8 @@ public class UpgradePanelController : MonoBehaviour
                 playerController.UpdateAgility(10);
                 break;
             case 5: //upgrade: pickup Range
-                playerController.pickupRange = playerController.pickupRange + 0.8f;
+                playerController.UpdatePickUpRange(0.8f);
+
                 break;
             case 6: //weapon: headgun
                 playerWeaponController.isHeadCannon = true;
@@ -315,7 +316,7 @@ public class UpgradePanelController : MonoBehaviour
                 GoBackToDimension();
                 weaponCount++;
                 break;
-            case 10: //weapon: support Modul
+            case 10: //weapon: -
                 /*playerWeaponController.shipData.chanceToGetTwoExp += 15;
                 playerWeaponController.shipData.chanceToGetFullEnergy += 2;
                 playerWeaponController.isLifeModul = true;
@@ -346,7 +347,7 @@ public class UpgradePanelController : MonoBehaviour
 
                 weaponCount++;
                 break;
-            case 12: //weapon: front shield
+            case 12: //-
                 /*playerWeaponController.isFrontShield = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
@@ -361,7 +362,7 @@ public class UpgradePanelController : MonoBehaviour
                 GoBackToDimension();
                 weaponCount++;*/
                 break;
-            case 13: //weapon: back shield
+            case 13: //-
                 /*playerWeaponController.isBackShield = true;
                 playerWeaponController.WeaponChoose();
                 UpdateClass(number,1);
@@ -440,9 +441,12 @@ public class UpgradePanelController : MonoBehaviour
             case 24: // Force Multiplier
                 playerWeaponController.shipData.boostDamage = playerWeaponController.shipData.boostDamage * 2;
 
-                upgradeChooseList.upgrades[25].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[25].UpgradeCount;
-                upgradeChooseList.upgrades[42].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[42].UpgradeCount;
-                upgradeChooseList.upgrades[61].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[61].UpgradeCount;
+                if (upgradeChooseList.upgrades[24].upgradeIndexInstalled == 0)
+                {
+                    upgradeChooseList.upgrades[25].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[25].UpgradeCount;
+                    upgradeChooseList.upgrades[42].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[42].UpgradeCount;
+                    upgradeChooseList.upgrades[61].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[61].UpgradeCount;
+                }
                 break;
             case 25: // Nova Overdrive
                 upgradeChooseList.upgrades[42].upgradeStartCount = 0;
@@ -540,18 +544,18 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.UpdateMWDamage(0);
                 break;
             case 47: // Boom Boom Boost
-                playerWeaponController.shipData.percRocketDamage += 15;
+                playerWeaponController.shipData.percRocketDamage += 12;
                 playerWeaponController.UpdateWeaponValues();
                 playerWeaponController.UpdateMWDamage(0);
                 break;
             case 48: // Beam Boost
-                playerWeaponController.shipData.percLaserDamage += 15;
+                playerWeaponController.shipData.percLaserDamage += 12;
                 playerWeaponController.UpdateWeaponValues();
                 playerWeaponController.UpdateMWDamage(0);
                 break;
             case 49: // Rapid Laser Reload
+                playerWeaponController.shipData.percMainDownTimeLaser += 10;
                 playerWeaponController.UpdateMWLaserReloadTime(0.9f);
-
                 break;
             case 50: // Wide Spray Expansion
                 upgradeChooseList.upgrades[68].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[68].UpgradeCount;
@@ -559,6 +563,7 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.sgBulletCount += 2;
                 break;
             case 51: // Lightning Reload
+                playerWeaponController.shipData.percMainAttackSpeedBullet += 7;
                 playerWeaponController.UpdateMWBulletFireRate(0.93f);
                 break;
             case 52: // Kaboomed Targets
@@ -572,11 +577,11 @@ public class UpgradePanelController : MonoBehaviour
                 break;
             case 55: // Titan Slayer
 
-                playerWeaponController.shipData.bossBonusDamage = 35;
+                playerWeaponController.shipData.bossBonusDamage = 25;
                 break;
             case 56: // Laser Orbit Accelerator
                 playerWeaponController.olRotationSpeed = Mathf.Round(playerWeaponController.olRotationSpeed * 1.25f);
-                playerWeaponController.olDamage += 1;
+                playerWeaponController.olDamage += 2;
                 upgradeChooseList.upgrades[80].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[80].UpgradeCount; ;
                 //upgradeChooseList.weaponUpgrades[80].reqLaser = 3; // Orbital Laser Array
                 playerWeaponController.UpdateWeaponValues();
@@ -589,10 +594,10 @@ public class UpgradePanelController : MonoBehaviour
                 playerWeaponController.UpdateWeaponValues();
                 break;
             case 59: // Engine boost
-                playerController.energieProduction = playerController.energieProduction * (1 + (0.2f));
+                playerController.energieProduction = playerController.energieProduction * (1.2f);
                 break;
             case 60: // Engine Overload
-                playerController.energieProduction = playerController.energieProduction * (1 + (0.6f));
+                playerController.energieProduction = playerController.energieProduction * (1.6f);
                 break;
             case 61: // Torchshield Drive
                 upgradeChooseList.upgrades[25].upgradeStartCount = 0;
@@ -660,7 +665,7 @@ public class UpgradePanelController : MonoBehaviour
                 GoBackToDimension();
                 weaponCount++;
                 break;
-            case 70: // therminal Spheres
+            case 70: // Chaotic Sunfire Spheres
                 upgradeChooseList.upgrades[71].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[71].UpgradeCount;
                 upgradeChooseList.upgrades[74].upgradeStartCount = 0;
                 upgradeChooseList.upgrades[72].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[72].UpgradeCount;
@@ -765,6 +770,7 @@ public class UpgradePanelController : MonoBehaviour
 
                 break;
             case 94: // Infernal Zone
+
                 upgradeChooseList.upgrades[95].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[95].UpgradeCount;
                 upgradeChooseList.upgrades[96].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[96].UpgradeCount;
                 upgradeChooseList.upgrades[97].upgradeStartCount = upgradeChooseList.uLObject.upgradeList[97].UpgradeCount;
@@ -781,6 +787,13 @@ public class UpgradePanelController : MonoBehaviour
                 upgradeChooseList.upgrades[95].upgradeStartCount = 0;
                 upgradeChooseList.upgrades[96].upgradeStartCount = 0;
                 break;
+            case 98: // Collector
+                playerWeaponController.shipData.chanceToGetScrap += 3;
+                break;
+            case 99: // Lasting Shield
+                playerController.timeGetInvulnerability += 0.2f;
+                break;
+
         }
     }
 

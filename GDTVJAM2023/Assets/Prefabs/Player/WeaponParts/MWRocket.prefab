@@ -85,7 +85,7 @@ MonoBehaviour:
   rotationSpeed: 10
   startTime: 0.4
   iniLifeTime: 0.8
-  explosionRadius: 0.7
+  explosionRadius: 0.2
   explosionForce: 80
   novaOnDieTriggerType: -1
   isMainWeapon: 0

@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093666908526024454}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.178}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalPosition: {x: 0, y: 0.05, z: -0.178}
+  m_LocalScale: {x: 6.5, y: 6.5, z: 6.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 754271038345459840}
@@ -201,7 +201,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1656400083239568324}
   - {fileID: 8011820659267199456}
@@ -235,8 +235,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.36964875, y: 0.41364193, z: 0.3827412}
-  m_Center: {x: -0.0010824203, y: -0.006371498, z: 0.0036464036}
+  m_Size: {x: 0.36964875, y: 0.8962846, z: 0.3827412}
+  m_Center: {x: -0.0010824203, y: -0.0053584576, z: 0.0036464036}
 --- !u!114 &2238036311601892615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +253,7 @@ MonoBehaviour:
   _AOEreplacement: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   _burnReplacement: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   dropObject: {fileID: 0}
+  scrapObject: {fileID: 0}
   miniMapIcon: {fileID: 3959564700535016474}
   novaExplosionPrefab: {fileID: 63306021479946841, guid: 5aeba8bb395cdae4098bb4692bef95da, type: 3}
   burnParticleSystem: {fileID: 4620743204047709007}
@@ -272,6 +273,7 @@ MonoBehaviour:
   hitColor: {r: 1, g: 0.6, b: 0, a: 1}
   critColor: {r: 1, g: 0, b: 0.98039216, a: 1}
   burningColor: {r: 1, g: 0, b: 0.01, a: 1}
+  gameManager: {fileID: 0}
 --- !u!114 &-608510430290955592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,13 +296,14 @@ MonoBehaviour:
     quanitiy: 8
   - lootprefab: {fileID: 5693635298845190373, guid: d9ee30b57dac9c242b2dd3088f8b91a2, type: 3}
     quanitiy: 37
-  - lootprefab: {fileID: 5693635298845190373, guid: a7167deb24e3c894aa97b48178bdfba4, type: 3}
+  - lootprefab: {fileID: 5693635298845190373, guid: 8225d8f670b1e9847abc45895700be33, type: 3}
     quanitiy: 17
   explosionDelay: 0
   isBoss: 0
   bigHealthOrb: {fileID: 5693635298845190373, guid: ea1e9f08a3542e2498ff084e4ae16fe9, type: 3}
   bigEXPOrb: {fileID: 5693635298845190373, guid: a7167deb24e3c894aa97b48178bdfba4, type: 3}
   bigTimerOrb: {fileID: 5693635298845190373, guid: 6342dec8388976d49a4da8a06877f931, type: 3}
+  isLootbox: 1
 --- !u!82 &7442621568476400086
 AudioSource:
   m_ObjectHideFlags: 0

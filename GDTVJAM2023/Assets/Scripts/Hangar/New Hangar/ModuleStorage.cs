@@ -102,7 +102,6 @@ public class ModuleStorage : MonoBehaviour
 
         installedModuleGrid = new ModuleDataRuntime[101, 101]; // allow coordinates from -50 to 50
 
-
         Debug.Log("ModuleStorage GetActiveShip : " + playerData.GetActiveShip());
 
         // Set Hangar Rotation to loaded position

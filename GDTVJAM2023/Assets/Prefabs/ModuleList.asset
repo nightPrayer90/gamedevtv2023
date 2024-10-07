@@ -130,6 +130,8 @@ MonoBehaviour:
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 98
         moduleUpgradeQuantity: 2
+      - moduleUpgradeIndex: 51
+        moduleUpgradeQuantity: 1
   - moduleName: D0 Skyfire Link R
     modulePrefabs: {fileID: 3509744163337706340, guid: d54ff805a3ee8de448d71ca6f33226c2, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: e020c86d2ad8a8347b7bec3e70dfa593, type: 3}
@@ -182,6 +184,8 @@ MonoBehaviour:
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 98
         moduleUpgradeQuantity: 2
+      - moduleUpgradeIndex: 51
+        moduleUpgradeQuantity: 1
   - moduleName: D0 Main Engine
     modulePrefabs: {fileID: 6234797105683024306, guid: db1dafc08107f8e40b58d894a7a4fa5b, type: 3}
     hangarPrefab: {fileID: 6234797105683024306, guid: bca6781ce9bcc264a9282a2f6034c3fa, type: 3}
@@ -406,6 +410,8 @@ MonoBehaviour:
       moduleUpgrades:
       - moduleUpgradeIndex: 46
         moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 51
+        moduleUpgradeQuantity: 1
   - moduleName: D1 Rocket Shooter L
     modulePrefabs: {fileID: 8822405608560347169, guid: 2162f41ade93f1e499eca5ee53e6140b, type: 3}
     hangarPrefab: {fileID: 8822405608560347169, guid: 5472a73a34a548b4cac2162482de8d0e, type: 3}
@@ -453,6 +459,8 @@ MonoBehaviour:
       supportClass: 0
       moduleUpgrades:
       - moduleUpgradeIndex: 47
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 55
         moduleUpgradeQuantity: 1
   - moduleName: D1 Rocket Shooter R
     modulePrefabs: {fileID: 8822405608560347169, guid: 6ae7da83b0521134d8a0008ba76c4971, type: 3}
@@ -502,6 +510,8 @@ MonoBehaviour:
       moduleUpgrades:
       - moduleUpgradeIndex: 47
         moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 55
+        moduleUpgradeQuantity: 1
   - moduleName: D3 Laser Pointer F
     modulePrefabs: {fileID: 5320222491944983181, guid: f2be17b9e3abdd94cbc42b64c6d9f233, type: 3}
     hangarPrefab: {fileID: 5320222491944983181, guid: 1fc9195d60e1a8c46b3ac5ade991874e, type: 3}
@@ -525,7 +535,7 @@ MonoBehaviour:
       canFront: 1
       canBack: 0
       modulDescription_multiLineText: "<color=#FFBF00>Short range laser attack.</color>\nDamage:
-        4 HP / hit\nShoot time: 3 s \nDown time: 2 s"
+        5 HP / hit\nShoot time: 3 s \nDown time: 2 s"
       nion: 0
       costMass: 0.1
       costEnergie: 1
@@ -546,6 +556,8 @@ MonoBehaviour:
       - moduleUpgradeIndex: 48
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 30
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 49
         moduleUpgradeQuantity: 1
   - moduleName: D1 Aero Glide L
     modulePrefabs: {fileID: 3509744163337706340, guid: 77c508665db59114b870912fa86b52df, type: 3}
@@ -782,7 +794,7 @@ MonoBehaviour:
       - moduleUpgradeIndex: 23
         moduleUpgradeQuantity: 2
       - moduleUpgradeIndex: 24
-        moduleUpgradeQuantity: 1
+        moduleUpgradeQuantity: 2
       - moduleUpgradeIndex: 25
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 42
@@ -1005,6 +1017,8 @@ MonoBehaviour:
       laserClass: 0
       supportClass: 0
       moduleUpgrades:
+      - moduleUpgradeIndex: 4
+        moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 3
         moduleUpgradeQuantity: 1
   - moduleName: D2 Skyfire Jet L
@@ -1030,7 +1044,7 @@ MonoBehaviour:
       canFront: 0
       canBack: 0
       modulDescription_multiLineText: "<color=#FFBF00>Wing with bullet shooter and
-        direction engine</color>\nDamage: 5 HP / hit \nHealth': +2 HP\nTorque force:
+        direction engine</color>\nDamage: 3 HP / hit \nHealth: +2 HP\nTorque force:
         0.30 TNm"
       nion: 0
       costMass: 0.25
@@ -1056,6 +1070,8 @@ MonoBehaviour:
       - moduleUpgradeIndex: 98
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 46
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 51
         moduleUpgradeQuantity: 1
   - moduleName: D2 Skyfire Jet R
     modulePrefabs: {fileID: 3509744163337706340, guid: 2279e4db908f61b45aee375f336ce73c, type: 3}
@@ -1107,6 +1123,8 @@ MonoBehaviour:
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 46
         moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 51
+        moduleUpgradeQuantity: 1
   - moduleName: D2 Bullet Shooter L
     modulePrefabs: {fileID: 3509744163337706340, guid: 9d9f3b45db154eb4ca7bad4f0040fe46, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: b5e28a5a499713a44bade23d9967fc42, type: 3}
@@ -1150,6 +1168,8 @@ MonoBehaviour:
       moduleUpgrades:
       - moduleUpgradeIndex: 46
         moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 51
+        moduleUpgradeQuantity: 1
   - moduleName: D2 Bullet Shooter R
     modulePrefabs: {fileID: 3509744163337706340, guid: e0166ad0d5deaa1458d4dc3bc20dd96f, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 1d4dc11a969b65c4081cfb002a02028c, type: 3}
@@ -1192,6 +1212,8 @@ MonoBehaviour:
       supportClass: 0
       moduleUpgrades:
       - moduleUpgradeIndex: 46
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 51
         moduleUpgradeQuantity: 1
   - moduleName: D2 Connector 4S
     modulePrefabs: {fileID: 3509744163337706340, guid: 681051b394a49f24ba44b700b3bb67d9, type: 3}
@@ -1599,6 +1621,8 @@ MonoBehaviour:
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 38
         moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 55
+        moduleUpgradeQuantity: 1
   - moduleName: D3 Titan Glide R
     modulePrefabs: {fileID: 3509744163337706340, guid: f0a1560267c7ef94494a5c4fce0f742d, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 6a8f1c1b77978054fabdaf2f9801889b, type: 3}
@@ -1645,6 +1669,8 @@ MonoBehaviour:
       - moduleUpgradeIndex: 47
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 38
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 55
         moduleUpgradeQuantity: 1
   - moduleName: D3 Titan Jet L
     modulePrefabs: {fileID: 3509744163337706340, guid: 0994be2ca2d576e49adae59f39e8ddb5, type: 3}
@@ -1694,6 +1720,8 @@ MonoBehaviour:
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 47
         moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 55
+        moduleUpgradeQuantity: 1
   - moduleName: D3 Titan Jet R
     modulePrefabs: {fileID: 3509744163337706340, guid: 13c1de4380628bd40bf9760cb85f8098, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: c3bf2b3ab74443d4ea8271a3148d80e3, type: 3}
@@ -1742,6 +1770,8 @@ MonoBehaviour:
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 47
         moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 55
+        moduleUpgradeQuantity: 1
   - moduleName: D3 Luminex Glide L
     modulePrefabs: {fileID: 3509744163337706340, guid: 9956ac020e8a68e4eb0d68bdbc411bf8, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: f4b93831085b1e74089c73d443626866, type: 3}
@@ -1765,7 +1795,7 @@ MonoBehaviour:
       canFront: 0
       canBack: 0
       modulDescription_multiLineText: "<color=#FFBF00>Wing with laser shooter</color>\nDamage:
-        4 HP / hit\nShoot time: 3 s \nDown time: 2 s\nHealth: +2 HP"
+        5 HP / hit\nShoot time: 3 s \nDown time: 2 s\nHealth: +2 HP"
       nion: 0
       costMass: 0.25
       costEnergie: 1
@@ -1788,6 +1818,8 @@ MonoBehaviour:
       - moduleUpgradeIndex: 48
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 30
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 49
         moduleUpgradeQuantity: 1
   - moduleName: D3 Luminex Glide R
     modulePrefabs: {fileID: 3509744163337706340, guid: ae4047cade5081940a5954fff60c643c, type: 3}
@@ -1814,7 +1846,7 @@ MonoBehaviour:
       modulDescription_multiLineText: '<color=#FFBF00>Wing with laser shooter</color>
 
         Damage:
-        4 HP / hit
+        5 HP / hit
 
         Shoot time: 3 s
 
@@ -1845,6 +1877,8 @@ MonoBehaviour:
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 30
         moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 49
+        moduleUpgradeQuantity: 1
   - moduleName: D4 Luminex Jet L
     modulePrefabs: {fileID: 3509744163337706340, guid: ef71c2eadf16bcd43942c34a958fab88, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: 3be239aefa652e841813872898c8c522, type: 3}
@@ -1870,7 +1904,7 @@ MonoBehaviour:
       modulDescription_multiLineText: '<color=#FFBF00>Wing with laser shooter and
         direction engine</color>
 
-        Damage: 4 HP / hit
+        Damage: 5 HP / hit
 
         Torque force:
         0.30 TNm
@@ -1899,6 +1933,8 @@ MonoBehaviour:
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 48
         moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 49
+        moduleUpgradeQuantity: 1
   - moduleName: D4 Luminex Jet R
     modulePrefabs: {fileID: 3509744163337706340, guid: a7293b6e95a0f714ab6aa015088a346c, type: 3}
     hangarPrefab: {fileID: 3509744163337706340, guid: a69ef9f63bab91341b771fb2ed586c90, type: 3}
@@ -1924,7 +1960,7 @@ MonoBehaviour:
       modulDescription_multiLineText: '<color=#FFBF00>Wing with laser shooter and
         direction engine</color>
 
-        Damage: 4 HP / hit
+        Damage: 5 HP / hit
 
         Torque force:
         0.30 TNm
@@ -1952,6 +1988,8 @@ MonoBehaviour:
       - moduleUpgradeIndex: 2
         moduleUpgradeQuantity: 1
       - moduleUpgradeIndex: 48
+        moduleUpgradeQuantity: 1
+      - moduleUpgradeIndex: 49
         moduleUpgradeQuantity: 1
   - moduleName: D3 Solar Module L
     modulePrefabs: {fileID: 3509744163337706340, guid: ab080c26b6dce47498a61e5de92e9b1e, type: 3}
@@ -2090,6 +2128,6 @@ MonoBehaviour:
       supportClass: 0
       moduleUpgrades:
       - moduleUpgradeIndex: 82
-        moduleUpgradeQuantity: 1
+        moduleUpgradeQuantity: 2
       - moduleUpgradeIndex: 48
         moduleUpgradeQuantity: 1

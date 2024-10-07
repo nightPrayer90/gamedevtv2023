@@ -55,6 +55,7 @@ MonoBehaviour:
     canFront: 0
     canBack: 0
     modulDescription_multiLineText: 
+    nion: 0
     costMass: 0
     costEnergie: 0
     energieProduction: 0
@@ -70,6 +71,7 @@ MonoBehaviour:
     rocketClass: 0
     laserClass: 0
     supportClass: 0
+    moduleUpgrades: []
   moduleIndex: -1
   ps_engine: {fileID: 5172111136767094056}
   torqueForce: 0.27
@@ -177,7 +179,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7379776, y: 0.565735, z: 0.16189808}
+  m_Size: {x: -0.7379776, y: 0.565735, z: 0.16189808}
   m_Center: {x: -0.110027984, y: 0.086309135, z: 0.17457446}
 --- !u!1 &5843353458268274578
 GameObject:

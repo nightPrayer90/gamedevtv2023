@@ -1,12 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
 using UnityEngine.EventSystems;
-
-
 
 
 public class GameManager : MonoBehaviour
@@ -19,8 +16,10 @@ public class GameManager : MonoBehaviour
     private int enemysToKill;
     private int killCounter;
     private int scrapCollected = 0;
-    [HideInInspector] public int lootboxContainer = 0;
 
+    [Header("Spawn Status Control")]
+    public int lootboxContainer;
+    public int[] districtGroundEnemyControls = new int[9];
 
     [Header("Time for one Round")]
     public float totalTime = 1800f;
@@ -46,6 +45,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI enemyToKillText;
     public TextMeshProUGUI enemyCounterText;
     public TextMeshProUGUI outsideBorderText;
+    public TextMeshProUGUI bossText;
 
     //public List<Color> globalClassColor;
     public ClassColor cCPrefab;
@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
     {
         // Initialize timer
         currentTime = totalTime + 1;
-        InvokeRepeating("UpdateTimerText", 3f, 1f);
+        InvokeRepeating(nameof(UpdateTimerText), 3f, 1f);
 
         // Initialize Bgm
         AudioManager.Instance.PlayMusic("Dystrict1");
@@ -151,7 +151,9 @@ public class GameManager : MonoBehaviour
         PlayerUIIntroTween();
 
         // Controlls - FadeIN and Out
-        controlsCG.DOFade(1, 1f).SetDelay(0.5f).OnComplete(() => controlsCG.DOFade(0, 2f).SetDelay(6)); 
+        controlsCG.DOFade(1, 1f).SetDelay(0.5f).OnComplete(() => controlsCG.DOFade(0, 2f).SetDelay(12));
+
+        lootboxContainer = 0;
     }
 
     // sets start values that must be the same for every run
@@ -197,7 +199,7 @@ public class GameManager : MonoBehaviour
     {
         // events
         inputHandler.OnOpenUIChanged += HandleBreakeUI;
-        inputHandler.OnOpenMapInputChanged += BigMinimapControl;
+        inputHandler.OnOpenMapInputChanged += HandleBigMinimapControl;
         inputHandler.OnHideUI += HideUI;
     }
 
@@ -210,7 +212,7 @@ public class GameManager : MonoBehaviour
             playerUICG.alpha = 1f;
     }
 
-    private void BigMinimapControl()
+    private void HandleBigMinimapControl()
     {
         if (bigMapisOpen == false)
         {
@@ -301,7 +303,7 @@ public class GameManager : MonoBehaviour
         inputHandler.OnOpenUIChanged -= HandleBreakeUI;
         inputHandler.OnCloseUIChanged -= HandleCloseBreakUI;
         inputHandler.OnClickInputChanged -= HandleClickUI;
-        inputHandler.OnOpenMapInputChanged -= BigMinimapControl;
+        inputHandler.OnOpenMapInputChanged -= HandleBigMinimapControl;
 
         // Set game speed
         Time.timeScale = 1;
@@ -409,7 +411,7 @@ public class GameManager : MonoBehaviour
         upgradeTextCG.DOFade(1, 0.5f);
 
         // Fade Text out
-        Invoke("InvokeupgradeText", 2f);
+        Invoke(nameof(InvokeupgradeText), 2f);
 
         gameIsPlayed = true;
 
@@ -570,6 +572,16 @@ public class GameManager : MonoBehaviour
                 spawnDistrictList.goToDimensionPickup[districtNumber - 1].SetActive(true);
                 canSpawnNextDimention = false;
 
+                bossText.transform.localScale = new Vector3(1f, 1f, 1f);
+                bossText.transform.DOPunchScale(new Vector3(0.15f, 0.15f, 0.15f), 0.8f, 10, 0.5f).OnComplete(() =>
+                {
+                    bossText.transform.DOScale(new Vector3(0f, 0f, 0f), 0.15f).SetDelay(1.5f).OnPlay(() => AudioManager.Instance.PlaySFX("BossTextWoosh"));
+
+                 });
+                bossText.text = $"Boss District {districtNumber} is rising";
+                AudioManager.Instance.PlaySFX("ShortAlert");
+                
+
                 // activate the navigation controler
                 player.SetNavigationController();
 
@@ -585,6 +597,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
 
     private void InvokeCanSpawnNext()
     {
@@ -618,7 +631,7 @@ public class GameManager : MonoBehaviour
         if (currentTime <= 0)
         {
             GameIsOver();
-            CancelInvoke("UpdateTimerText");
+            CancelInvoke(nameof(UpdateTimerText));
         }
     }
 
@@ -731,7 +744,7 @@ public class GameManager : MonoBehaviour
         // activate the next district 
         districtNumber++;
         Debug.Log(districtNumber);
-        Invoke("UpdateDistrictText", 0.5f);
+        Invoke(nameof(UpdateDistrictText), 0.5f);
 
         // chance the bgm to the level bgm
         AudioManager.Instance.PlayMusic("Dystrict" + districtNumber.ToString());
@@ -743,6 +756,14 @@ public class GameManager : MonoBehaviour
         }
 
         AudioManager.Instance.PlaySFX("LiftUP");
+
+        bossText.transform.localScale = new Vector3(1f, 1f, 1f);
+        bossText.text = "A new District rises! \n Enemies get stronger.";
+        bossText.transform.DOPunchScale(new Vector3(0.15f, 0.15f, 0.15f), 0.8f, 10, 0.5f).SetDelay(1f).OnPlay(()=> AudioManager.Instance.PlaySFX("ShortAlert")).OnComplete(() =>
+        {
+            bossText.transform.DOScale(new Vector3(0f, 0f, 0f), 0.15f).SetDelay(2f).OnPlay(() => AudioManager.Instance.PlaySFX("BossTextWoosh"));
+
+        });
 
         // screen shake
         ScreenShake(4);
@@ -758,7 +779,7 @@ public class GameManager : MonoBehaviour
         dimensionShift = false;
         OnDimensionSwap?.Invoke(dimensionShift);
 
-        Invoke("InvokeCanSpawnNext", 2f);
+        Invoke(nameof(InvokeCanSpawnNext), 2f);
     }
 
     // (help function) destroy alle expOrbs if the player goes into the secound dimension
@@ -891,7 +912,7 @@ public class GameManager : MonoBehaviour
     // write earned exp in playerData
     private string CalculatePlayerEarnings(float percent, bool isVictory = false)
     {
-        string resultString = $"you collected {scrapCollected} Scrap";
+        string resultString = $"you collected {scrapCollected} Scraps";
 
         if (playerData.bossLevel < (districtNumber - 1)) //-1 because it starts with 1
         {

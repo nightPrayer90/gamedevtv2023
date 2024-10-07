@@ -4938,13 +4938,14 @@ MonoBehaviour:
   rb: {fileID: 8012587728195296573}
   damage: 4
   laserDamageChannel: 5
-  splitCount: 10
+  killProjectileCount: 0
   hitParticle: {fileID: 9166936555426604056}
   dieParticle: {fileID: 9091181560903126096}
   bladeParticle: {fileID: 8762647033881424193}
   splitPrefab: {fileID: 193254930330531719, guid: 0d730e46121cac74ba0b9c434c34e771, type: 3}
   projectileSize: {x: 1.3, y: 1.3, z: 1.3}
   backfireBeam: {fileID: 0}
+  backfireCollider: {fileID: 4207138320269320656}
 --- !u!54 &8012587728195296573
 Rigidbody:
   m_ObjectHideFlags: 0

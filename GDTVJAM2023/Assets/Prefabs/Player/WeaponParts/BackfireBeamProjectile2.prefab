@@ -4945,6 +4945,7 @@ MonoBehaviour:
   splitPrefab: {fileID: 0}
   projectileSize: {x: 0.8, y: 0.8, z: 0.8}
   backfireBeam: {fileID: 0}
+  backfireCollider: {fileID: 4207138320269320656}
 --- !u!54 &8012587728195296573
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -57,6 +57,17 @@ public class NewBaseEngine : BaseModule
         playerRigidbody = playerController.GetComponent<Rigidbody>();
         playerController.hasMainEngine = true;
 
+        // Only for display in upgrades
+        playerController.thrustForce = Mathf.Max(playerController.thrustForce, thrustForce);
+        playerController.backForce = Mathf.Max(playerController.backForce, backForce);
+
+
+    }
+
+    private void OnDestroy()
+    {
+        playerController.OnIntroOver -= HandleStartBoost;
+        playerController.OnUpdateRotateSpeed -= HandleSpeedUpdate;
     }
 
     // Update is called once per frame
@@ -155,6 +166,10 @@ public class NewBaseEngine : BaseModule
     {
         thrustForce = thrustForce * (1 + (flyspeed / 100));
         backForce = backForce * (1 + (flyspeed / 100));
+
+        // Only for display in upgrades
+        playerController.thrustForce = Mathf.Max(playerController.thrustForce,thrustForce);
+        playerController.backForce = Mathf.Max(playerController.backForce, backForce); 
     }
 
     private void ShowEnergie()

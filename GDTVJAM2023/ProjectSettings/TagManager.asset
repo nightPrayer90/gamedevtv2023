@@ -15,19 +15,12 @@ TagManager:
   - secondDimensionEnemy
   - scrap
   - Playerlaser
-  - BulletPickup
-  - LaserPickup
-  - SupportPickup
-  - SwarmPickup
-  - DefensePickup
-  - TargetingPickup
-  - DirectionPickup
-  - ExplosionPickup
-  - UpgradePickup
   - PlayerLaser
   - Sphere
   - Selectable
   - Player_BurningGround
+  - MeshHud
+  - PickUpCollider
   layers:
   - Default
   - TransparentFX

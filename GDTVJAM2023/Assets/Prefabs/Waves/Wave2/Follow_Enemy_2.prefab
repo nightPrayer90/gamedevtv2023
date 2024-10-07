@@ -82,7 +82,7 @@ MonoBehaviour:
   explosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   _AOEreplacement: {fileID: 1380446238132243176, guid: 1889541fec859cb41bcfbf836cdd7fd4, type: 3}
   _burnReplacement: {fileID: 3161139216598759944, guid: cd7e2ae33aa90d64ba9fabdedf60f220, type: 3}
-  dropObject: {fileID: 5693635298845190373, guid: 5ca91630af6a61c4f99d7279b939e976, type: 3}
+  dropObject: {fileID: 5693635298845190373, guid: 8e3f78fb04e545a4c918a6cb8835ac0a, type: 3}
   scrapObject: {fileID: 5693635298845190373, guid: d9ee30b57dac9c242b2dd3088f8b91a2, type: 3}
   miniMapIcon: {fileID: 8087742276739236362}
   novaExplosionPrefab: {fileID: 63306021479946841, guid: 5aeba8bb395cdae4098bb4692bef95da, type: 3}
@@ -5362,15 +5362,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.53
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.53
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.53
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5382,7 +5382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.0053
       objectReference: {fileID: 0}
     - target: {fileID: 7662572503997696832, guid: ed3b3b12bb409034999f0d7cdfd5c905, type: 3}
       propertyPath: m_LocalRotation.w

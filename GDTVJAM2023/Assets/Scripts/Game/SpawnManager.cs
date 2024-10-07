@@ -36,6 +36,7 @@ public class SpawnManager : MonoBehaviour
     public float minSpawnDistance = 8f;
     public float maxSpawnDistance = 10f;
     public float spawnInterval = 2f;
+    public int maxGroundUnits = 5;
 
     private GameManager gameManager;
     private Transform playerTransform;
@@ -43,6 +44,8 @@ public class SpawnManager : MonoBehaviour
     private ParticleSystem spawnParticle;
 
     private int spawncount = 0;
+    private int totalWeight = 0;
+    private int waveIndex = 0;
 
     /* **************************************************************************** */
     /* LIFECYCLE METHODEN---------------------------------------------------------- */
@@ -60,6 +63,26 @@ public class SpawnManager : MonoBehaviour
 
         // start spawning
         InvokeRepeating("SpawnObject", 3f, spawnInterval);
+
+        // Calculate the total weight of all probabilities
+        for (int i = 0; i < waveData.Length; i++)
+        {
+            totalWeight += waveData[i].spawnProbabilities;
+        }
+
+        switch (wave)
+        {
+            case Wave.Wave1: waveIndex = 0; break;
+            case Wave.Wave2: waveIndex = 1; break;
+            case Wave.Wave3: waveIndex = 2; break;
+            case Wave.Wave4: waveIndex = 3; break;
+            case Wave.Wave5: waveIndex = 4; break;
+            case Wave.Wave6: waveIndex = 5; break;
+            case Wave.Wave7: waveIndex = 6; break;
+            case Wave.Wave8: waveIndex = 7; break;
+            case Wave.Wave9: waveIndex = 8; break;
+
+        }
     }
 
     private void OnDestroy()
@@ -81,21 +104,12 @@ public class SpawnManager : MonoBehaviour
             // Randomly select an object to spawn based on probabilities
             int randomIndex = GetRandomWeightedIndex();
 
-            if (randomIndex == 0) //-> Lootbox
-            {
-                // 5 is the max Value of activ Lootboxes
-                if (gameManager.lootboxContainer >= 5)
-                {
-                    // choose the next enemy Index to Spawn
-                    randomIndex += 1;
-                }
-            }
 
 
             GameObject objectToSpawn = waveData[randomIndex].enemyToSpawn;
             Vector3 spawnPosition = new Vector3(0, 0, 0);
 
-            
+
             // Generate a random position outside the camera's view
             if (waveData[randomIndex].isGroundEnemy == false)
             {
@@ -156,13 +170,7 @@ public class SpawnManager : MonoBehaviour
 
     private int GetRandomWeightedIndex()
     {
-        // Calculate the total weight of all probabilities
-        int totalWeight = 0;
-
-        for (int i = 0; i < waveData.Length; i++)
-        {
-            totalWeight += waveData[i].spawnProbabilities;
-        }
+        int value = 0;
 
         // Generate a random value between 0 and the total weight
         float randomValue = UnityEngine.Random.Range(0f, totalWeight);
@@ -174,12 +182,35 @@ public class SpawnManager : MonoBehaviour
             cumulativeWeight += waveData[i].spawnProbabilities;
             if (randomValue <= cumulativeWeight)
             {
-                return i;
+                value = i;
+                break;
             }
         }
 
+        // Control Values
+        // Lootbox: 3 is the max Value of activ 
+        if (value == 0)
+        {
+            if (gameManager.lootboxContainer >= 3)
+            {
+                value = -1;
+            }
+        }
+        // Ground Enemys
+        if (waveData[value].isGroundEnemy == true)
+        {
+            if (gameManager.districtGroundEnemyControls[waveIndex] >= 5 + (waveIndex * 2))
+            {
+                value = -1;
+            }
+        }
+
+        if (value < 0)
+        {
+            return GetRandomWeightedIndex();
+        }
         // Default to the last index if no valid index is found
-        return 0;
+        return value;
     }
 
     private Vector3 GetRandomSpawnPositionFromPlayer()

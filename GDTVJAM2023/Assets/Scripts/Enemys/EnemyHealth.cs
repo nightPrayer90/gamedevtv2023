@@ -54,7 +54,7 @@ public class EnemyHealth : MonoBehaviour
 
 
     // gameObjects to find
-    private GameManager gameManager;
+    [HideInInspector] public GameManager gameManager;
     private UpgradeChooseList upgradeChooseList;
     private PlayerWeaponController playerWeaponController;
 
@@ -346,7 +346,7 @@ public class EnemyHealth : MonoBehaviour
             if (scrapObject != null)
             {
                 int ran = UnityEngine.Random.Range(0, 100);
-                if (ran < (upgradeChooseList.upgrades[98].upgradeIndexInstalled*2))
+                if (ran < playerWeaponController.shipData.chanceToGetScrap)
                 {
                     ObjectPoolManager.SpawnObject(scrapObject, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);
                 }

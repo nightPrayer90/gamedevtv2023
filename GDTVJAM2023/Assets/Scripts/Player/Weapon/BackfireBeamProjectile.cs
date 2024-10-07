@@ -26,6 +26,7 @@ public class BackfireBeamProjectile : MonoBehaviour
     public Vector3 projectileSize = new Vector3(1f, 1f, 1f);
 
     public BackfireBeam backfireBeam = null;
+    public Collider backfireCollider;
 
     void Awake()
     {
@@ -44,9 +45,9 @@ public class BackfireBeamProjectile : MonoBehaviour
         returnSpeed_ = returnSpeed;
         damage = backfireBeam.damage;
         killProjectileCount = backfireBeam.killProjectileCount;
+        backfireCollider.enabled = true;
 
-
-    Invoke(nameof(CanDoDamage), 0.05f);
+        Invoke(nameof(CanDoDamage), 0.1f);
     }
 
     private void OnDisable()
@@ -96,38 +97,37 @@ public class BackfireBeamProjectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (isStarted == true)
-            if (other.CompareTag("Enemy") || other.CompareTag("secondDimensionEnemy"))
+
+        if (other.CompareTag("Enemy") || other.CompareTag("secondDimensionEnemy"))
+        {
+            EnemyHealth eH = other.gameObject.GetComponent<EnemyHealth>();
+
+            if (eH != null)
             {
-                EnemyHealth eH = other.gameObject.GetComponent<EnemyHealth>();
-
-                if (eH != null)
+                if (eH.canTakeLaserDamage[laserDamageChannel] == true && eH.canTakeDamage == true)
                 {
-                    if (eH.canTakeLaserDamage[laserDamageChannel] == true && eH.canTakeDamage == true)
+                    if (eH.enemyHealth - damage <= 0 && killProjectileCount > 0)
                     {
-
-                        if (eH.enemyHealth - damage <= 0 && killProjectileCount > 0)
-                        {
-                            SplitProjectile();
-                        }
-                        eH.TakeLaserDamage(damage, laserDamageChannel);
-                        eH.ShowDamageFromPosition(other.transform.position, damage);
-                        hitParticle.transform.position = other.ClosestPointOnBounds(other.transform.position);
-                        hitParticle.Emit(20);
+                        SplitProjectile();
                     }
+                    eH.TakeLaserDamage(damage, laserDamageChannel);
+                    eH.ShowDamageFromPosition(other.transform.position, damage);
+                    hitParticle.transform.position = other.ClosestPointOnBounds(other.transform.position);
+                    hitParticle.Emit(20);
                 }
-                else
-                {
-                    EnemyShield es = other.transform.GetComponentInParent<EnemyShield>();
-
-                    if (es != null)
-                    {
-                        es.ShieldGetDamage();
-                        es.ShowDamageFromPosition(other.ClosestPointOnBounds(other.transform.position));
-                    }
-                }
-
             }
+            else
+            {
+                EnemyShield es = other.transform.GetComponentInParent<EnemyShield>();
+
+                if (es != null)
+                {
+                    es.ShieldGetDamage();
+                    es.ShowDamageFromPosition(other.ClosestPointOnBounds(other.transform.position));
+                }
+            }
+
+        }
     }
 
     private void SplitProjectile()
@@ -145,14 +145,13 @@ public class BackfireBeamProjectile : MonoBehaviour
                 bfB.damage = Mathf.RoundToInt((float)damage / 2);
             }
         }
-        DestroyProjectile();
-
     }
 
     private void DestroyProjectile()
     {
         if (destroyFlag == false)
         {
+            backfireCollider.enabled = false;
             dieParticle.transform.position = playerTransform.position;
             dieParticle.Emit(10);
             bladeParticle.Stop();

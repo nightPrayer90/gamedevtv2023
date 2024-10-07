@@ -32,6 +32,7 @@ public class BossModulMainengine : MonoBehaviour
     {
         foreach (ParticleSystem engine in enginePSs)
         {
+            if (engine.isPlaying == true)
             engine.Stop();
         }
         controlflag = false;

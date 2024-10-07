@@ -450,6 +450,16 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7635c223dc9701c4597ff4b31918aa25, type: 3}
   - name: Reroll
     clip: {fileID: 8300000, guid: 2d181c8f97436ea478dd450562b3bd9e, type: 3}
+  - name: Backfiregunfire
+    clip: {fileID: 8300000, guid: fd43cca840f6e3c4c914db956efdb6bd, type: 3}
+  - name: BackfiregunCollect
+    clip: {fileID: 8300000, guid: 1a5c3982636635943b299d34277ee2e9, type: 3}
+  - name: DamageFieldSpawn
+    clip: {fileID: 8300000, guid: bad5b191b8d797047b23659217bb4e02, type: 3}
+  - name: DamageFieldHitSound
+    clip: {fileID: 8300000, guid: 8b2831522c4aeaa4cb889def526c7b33, type: 3}
+  - name: BossTextWoosh
+    clip: {fileID: 8300000, guid: 52316c31a89c2294c8058ff7b16db39c, type: 3}
   musicSource: {fileID: 5360521062723552136}
   sfxSource: {fileID: 6929376283259157201}
   musicVolume: 0.1

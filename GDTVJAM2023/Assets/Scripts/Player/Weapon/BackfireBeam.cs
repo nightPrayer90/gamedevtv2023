@@ -37,6 +37,8 @@ public class BackfireBeam : MonoBehaviour
 
     private void ShootPrefab()
     {
+        AudioManager.Instance.PlaySFX("Backfiregunfire");
+
         if (novaTriggerCounter >= 100)
         {
             int projectileCount = 10;
@@ -80,7 +82,7 @@ public class BackfireBeam : MonoBehaviour
 
     public void NovaTrigger()
     {
-        Debug.Log(novaTriggerCounter);
+        AudioManager.Instance.PlaySFX("BackfiregunCollect");
         if (upgradeChooseList.upgrades[85].upgradeIndexInstalled > 0)
             novaTriggerCounter++;
     }

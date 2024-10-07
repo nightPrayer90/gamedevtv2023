@@ -4924,7 +4924,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2398786912182480697}
   serializedVersion: 8
-  lengthInSec: 0.1
+  lengthInSec: 0.2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -5168,8 +5168,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.2
+      scalar: 0.6
+      minScalar: 0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5911,7 +5911,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
       cycleCount: 1
-      repeatInterval: 0.01
+      repeatInterval: 0.1
       probability: 1
   SizeModule:
     enabled: 1
@@ -9702,7 +9702,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9765,6 +9765,7 @@ GameObject:
   - component: {fileID: -1799887651408106166}
   - component: {fileID: 3421873758916535664}
   - component: {fileID: -2557570465515719207}
+  - component: {fileID: 4593622743086952446}
   m_Layer: 0
   m_Name: ScrapOrb
   m_TagString: Exp
@@ -9801,12 +9802,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfeebe39c91f25b40ac0e27f12af4b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 1
   detectionRange: 0.5
-  gameManager: {fileID: 0}
-  playerController: {fileID: 0}
   pickUpParticle: {fileID: 5250447756623338277}
   OrbParticle: {fileID: 2703714390178733929}
+  playerController: {fileID: 0}
+  gameManager: {fileID: 0}
+  collectCollider: {fileID: 4593622743086952446}
 --- !u!114 &3421873758916535664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9838,6 +9840,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!135 &4593622743086952446
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693635298845190373}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.15
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7037615300081015607
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,9 +41,6 @@ public class NewDirectionControlEngine : BaseModule
         playerRigidbody = playerController.GetComponent<Rigidbody>();
         engineUPPos = transform.up;
 
-        // Change the center of Mass
-        //playerRigidbody.centerOfMass = playerRigidbody.centerOfMass + new Vector3(transform.localPosition.x / 2, 0f, 0f);// transform.localPosition.z/2);
-
         float z_Position = Mathf.Sign(playerRigidbody.centerOfMass.z + transform.localPosition.z);
         float x_Position = Mathf.Sign(playerRigidbody.centerOfMass.x + transform.localPosition.x);
 
@@ -52,38 +49,6 @@ public class NewDirectionControlEngine : BaseModule
 
         switch (engineRotation)
         {
-            /*case 90:
-                if (x_Position == -1)
-                {
-                    engineUPPos = -transform.up;
-                }
-                if (x_Position == 1)
-                {
-                    engineUPPos = transform.up;
-                }
-                break;
-
-            case 180:
-                if (z_Position == 1)
-                {
-                    engineUPPos = transform.up;
-                }
-                if (z_Position == -1)
-                {
-                    engineUPPos = -transform.up;
-                }
-                break;
-
-            case 270:
-                if (x_Position == -1)
-                {
-                    engineUPPos = transform.up;
-                }
-                if (x_Position == 1)
-                {
-                    engineUPPos = -transform.up;
-                }
-                break;*/
             case 0:
                 if (z_Position == 1)
                 {
@@ -96,8 +61,14 @@ public class NewDirectionControlEngine : BaseModule
                 break;
         }
 
+        // Only for display in upgrades
+        playerController.torqueForce = Mathf.Max(playerController.torqueForce, torqueForce);
     }
 
+    private void OnDestroy()
+    {
+        playerController.OnUpdateRotateSpeed -= HandleRotateSpeed;
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -132,6 +103,9 @@ public class NewDirectionControlEngine : BaseModule
     private void HandleRotateSpeed(float RotateSpeed)
     {
         torqueForce = torqueForce * (1 + (RotateSpeed / 100));
+
+        // Only for display in upgrades
+        playerController.torqueForce = Mathf.Max(playerController.torqueForce, torqueForce);
     }
 
     private void ShowEnergie()

@@ -809,7 +809,7 @@ GameObject:
   - component: {fileID: 4497224447054353902}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: MeshHud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

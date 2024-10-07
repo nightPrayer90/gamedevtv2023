@@ -9,7 +9,7 @@ public class NewPlayerController : MonoBehaviour
     //public float startImpulse = 100;
     private bool isIntro = true;
     //private bool isStartSound = false;
-    private float introTargetY = 6f;
+    private float introTargetY = 5.95f;
 
     // engine stuff
     [HideInInspector] public bool hasMainEngine = false;
@@ -33,11 +33,10 @@ public class NewPlayerController : MonoBehaviour
     public float energieProduction = 1f;
     public float energieMax = 10f;
     public float energieCurrent = 0f;
-    /*[HideInInspector]*/
     public float protectionPerc = 0;
-    /*[HideInInspector]*/
     public int protectionLvl = 0;
     private bool canGetLaserDamage = true;
+    public float timeGetInvulnerability = 0.1f;
 
     [Header("Movement Input")]
     public PlayerInputHandler intputHandler;
@@ -60,6 +59,7 @@ public class NewPlayerController : MonoBehaviour
     public UpgradeChooseList upgradeChooseList;
     public PlayerWeaponController playerWeaponController;
     public ParticleSystem damageParticle;
+    public SphereCollider pickupCollider;
 
 
     [Header("Outside Border")]
@@ -72,6 +72,11 @@ public class NewPlayerController : MonoBehaviour
     private Color hitColorTemp;
     public Color enemyHitColor = new Color(1f, 0.0f, 0.0f, 1f);
     public Color enemyHitColorProtected = new Color(1f, 0.0f, 0.0f, 1f);
+
+    [Header("Only for Player display")]
+    [HideInInspector] public float thrustForce = 0f;
+    [HideInInspector] public float backForce = 0;
+    [HideInInspector] public float torqueForce = 0;
 
     [Header("Debug")]
     [SerializeField] private float flySpeed;
@@ -101,7 +106,7 @@ public class NewPlayerController : MonoBehaviour
 
         // TODO Update protection after loading
         Invoke(nameof(UpdateProtection), 1f);
-        Invoke(nameof(SetModuleIndex), 1f);
+        Invoke(nameof(SetModuleIndex), 1.1f);
     }
 
     private void UpdateProtection()
@@ -110,6 +115,14 @@ public class NewPlayerController : MonoBehaviour
         float normalizedLvl = Mathf.InverseLerp(0, 10, protectionLvl);
         float targetPercentage = Mathf.RoundToInt(Mathf.Sqrt(normalizedLvl) * 60);
         protectionPerc = targetPercentage;
+
+        UpdatePickUpRange(0);
+    }
+
+    public void UpdatePickUpRange(float rangeUpdate)
+    {
+        pickupRange += rangeUpdate;
+        pickupCollider.radius = pickupRange*2f;
     }
 
     private void SetModuleIndex()
@@ -137,11 +150,6 @@ public class NewPlayerController : MonoBehaviour
 
         for (int i = 0; i < foundSphereThrowers.Length; i++)
         { foundSphereThrowers[i].moduleIndex = i; }
-
-        if (foundLasers.Length > 0) upgradeChooseList.upgrades[49].upgradeStartCount = 3;
-        if (foundBullets.Length > 0) upgradeChooseList.upgrades[51].upgradeStartCount = 999;
-        if (foundRockets.Length > 0) upgradeChooseList.upgrades[55].upgradeStartCount = 1;
-        if (foundSphereThrowers.Length > 0) upgradeChooseList.upgrades[82].upgradeStartCount = 3;
     }
 
     void Update()
@@ -164,6 +172,7 @@ public class NewPlayerController : MonoBehaviour
                 if (hasMainEngine == true)
                 {
                     playerRigidbody.AddForce(transform.forward * 1200, ForceMode.Force);
+                    transform.position = new Vector3(transform.position.x, 6f, transform.position.z);
                 }
                 isIntro = false;
             }
@@ -207,30 +216,6 @@ public class NewPlayerController : MonoBehaviour
         string tag = other.gameObject.tag;
         switch (tag)
         {
-            case "Exp":
-
-                /*int expValue = other.GetComponent<EnemyExp>().expValue;
-                UpdatePlayerExperience(expValue);*/
-                break;
-
-            case "UpgradePickup":
-                ObjectPoolManager.ReturnObjectToPool(other.gameObject);
-                PlayerWeaponUpdatePickup();
-                break;
-
-            case "DimensionPickUp":
-                other.gameObject.SetActive(false);
-                navigationController.DeactivateNavigatorMesh();
-                gameManager.GoToDimension();
-                AudioManager.Instance.PlaySFX("DimensionSwap");
-                break;
-
-            case "VictoryPickup":
-                other.gameObject.SetActive(false);
-                gameManager.Victory();
-                AudioManager.Instance.PlaySFX("VictorySound");
-                break;
-
             case "BorderCollider":
                 if (isOutsideBorder == true)
                 {
@@ -242,6 +227,29 @@ public class NewPlayerController : MonoBehaviour
                 break;
         }
     }
+
+    // trigger from Pickup2
+    public void CollectUpdatePickup(int typ)
+    {
+        switch (typ)
+        {
+            case 0:
+                PlayerWeaponUpdatePickup();
+                pickupCollider.enabled = true;
+                break;
+            case 1:
+                navigationController.DeactivateNavigatorMesh();
+                pickupCollider.enabled = false;
+                gameManager.GoToDimension();
+                AudioManager.Instance.PlaySFX("DimensionSwap");
+                break;
+            case 2:
+                gameManager.Victory();
+                AudioManager.Instance.PlaySFX("VictorySound");
+                break;
+        }
+    }
+
 
     public void PlayerWeaponUpdatePickup()
     {
@@ -535,22 +543,22 @@ public class NewPlayerController : MonoBehaviour
             {
                 damageParticle.Play();
             }
-        }
+            if (canTakeDamge == true)
+            {
+                GetInvulnerability(timeGetInvulnerability);
+            }
 
-        gameManager.TakeDamageEffekt();
+            // get damage but dont die
+            gameManager.ScreenShake(1);
+            AudioManager.Instance.PlaySFX("PlayerGetDamage");
+            gameManager.TakeDamageEffekt();
+        }
 
         // calculate the player health value
         playerCurrentHealth = Mathf.Min(Mathf.Max(0, playerCurrentHealth - decHealth), playerMaxHealth);
 
         // update playerUI
         gameManager.UpdateUIPlayerHealth(playerCurrentHealth, playerMaxHealth);
-
-        // get damage but dont die
-        if (decHealth > 0)
-        {
-            gameManager.ScreenShake(1);
-            AudioManager.Instance.PlaySFX("PlayerGetDamage");
-        }
 
         // player die
         if (playerCurrentHealth <= 0)
@@ -703,7 +711,7 @@ public class NewPlayerController : MonoBehaviour
     public void GetInvulnerabilityAfterUpdate()
     {
         canTakeDamge = false;
-        Invoke(nameof(Invulnerability), 0.5f);
+        Invoke(nameof(Invulnerability), 1f);
     }
 
 

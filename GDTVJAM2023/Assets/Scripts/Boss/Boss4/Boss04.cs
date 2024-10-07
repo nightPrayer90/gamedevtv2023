@@ -245,6 +245,7 @@ public class Boss04 : MonoBehaviour
         attack2EngineParticle.EngineStop();
         if (damageZone != null) { damageZone.DestroyObject(); damageZone = null; }
 
+        DeactivateLaser();
 
         transform.DOShakePosition(1f, 0.2f, 10, 90, false, true);
 

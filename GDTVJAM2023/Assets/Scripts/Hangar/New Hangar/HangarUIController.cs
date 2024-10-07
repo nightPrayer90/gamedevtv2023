@@ -3,8 +3,6 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 using System.Collections.Generic;
-using static UnityEditor.Progress;
-using UnityEditor.XR;
 
 public class HangarUIController : MonoBehaviour
 {
@@ -417,7 +415,6 @@ public class HangarUIController : MonoBehaviour
         if (mainEngine <= 0) spMainEngineImage.color = Color.red;
         else spMainEngineImage.color = Color.white;
 
-        Debug.Log(directionEngine);
         if (directionEngine <= 0) spDirectionEngineImage.color = Color.red;
         else spDirectionEngineImage.color = Color.white;
 

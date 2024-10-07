@@ -100,7 +100,7 @@ public class ShopModuleMeshHud : MonoBehaviour
 
             if (shopController.moduleList.moduls[shopModule.itemIndex].moduleValues.nion > 0)
             {
-                costText.text = $"Nion capacity: {shopController.moduleList.moduls[shopModule.itemIndex].moduleValues.costEnergie}    Mass: {shopController.moduleList.moduls[shopModule.itemIndex].moduleValues.costMass} t";
+                costText.text = $"Nion capacity: {shopController.moduleList.moduls[shopModule.itemIndex].moduleValues.nion}    Mass: {shopController.moduleList.moduls[shopModule.itemIndex].moduleValues.costMass} t";
             }
             else
             {

@@ -14660,7 +14660,7 @@ MonoBehaviour:
   explosionObject: {fileID: 4303235208557751318, guid: 625ef42b50a06c74a8b23cb4f699c3bb, type: 3}
   _AOEreplacement: {fileID: 498661947742941087, guid: 8d5cc7aa9ad4e694581a3a575508f21d, type: 3}
   _burnReplacement: {fileID: 3161139216598759944, guid: 3ca646b75815fa14f9c5b18f60aed900, type: 3}
-  dropObject: {fileID: 5693635298845190373, guid: 5ca91630af6a61c4f99d7279b939e976, type: 3}
+  dropObject: {fileID: 5693635298845190373, guid: 8225d8f670b1e9847abc45895700be33, type: 3}
   scrapObject: {fileID: 5693635298845190373, guid: d9ee30b57dac9c242b2dd3088f8b91a2, type: 3}
   miniMapIcon: {fileID: 7827593057637113056}
   novaExplosionPrefab: {fileID: 63306021479946841, guid: 5aeba8bb395cdae4098bb4692bef95da, type: 3}

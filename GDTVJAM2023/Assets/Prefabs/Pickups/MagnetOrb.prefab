@@ -14634,6 +14634,7 @@ GameObject:
   - component: {fileID: -1799887651408106166}
   - component: {fileID: -959012179391437751}
   - component: {fileID: -3098820058048417185}
+  - component: {fileID: -7526114565286757069}
   m_Layer: 0
   m_Name: MagnetOrb
   m_TagString: Exp
@@ -14670,11 +14671,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfeebe39c91f25b40ac0e27f12af4b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 1
   detectionRange: 0.5
-  playerController: {fileID: 0}
   pickUpParticle: {fileID: 5250447756623338277}
   OrbParticle: {fileID: 2703714390178733929}
+  playerController: {fileID: 0}
+  gameManager: {fileID: 0}
+  collectCollider: {fileID: -7526114565286757069}
 --- !u!114 &-959012179391437751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14704,6 +14707,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!135 &-7526114565286757069
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693635298845190373}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.15
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6050095052062840359
 GameObject:
   m_ObjectHideFlags: 0

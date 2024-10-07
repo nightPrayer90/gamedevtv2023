@@ -48533,6 +48533,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2838224130425440340}
   - component: {fileID: 6375197501394095286}
+  - component: {fileID: 6639245244482465654}
   m_Layer: 0
   m_Name: GoToDimensionSwap
   m_TagString: DimensionPickUp
@@ -48569,8 +48570,25 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6639245244482465654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693635298845190373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4983c1f201b65e94aa4e69bb9d860048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectRange: 0.8
+  pickupTyp: 1
+  OrbParticle: {fileID: 3526106266034361480}
+  playerController: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!1 &6874895119391064414
 GameObject:
   m_ObjectHideFlags: 0

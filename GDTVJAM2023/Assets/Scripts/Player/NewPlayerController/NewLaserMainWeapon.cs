@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System;
 using UnityEngine;
 
 public class NewLaserMainWeapon : BaseModule
@@ -135,7 +134,7 @@ public class NewLaserMainWeapon : BaseModule
 
     private void LaserRaycast()
     {
-        float raycastDistance = laserRange;
+        float raycastDistance = laserRange+0.1f;
         int layerMask = (1 << 6) | (1 << 9);
 
         // laser 1
@@ -146,6 +145,7 @@ public class NewLaserMainWeapon : BaseModule
 
             if (collidedObject != null)
             {
+                Debug.Log(moduleIndex);
 
                 if (collidedObject.canTakeLaserDamage[Mathf.Min(5, moduleIndex)] == true && collidedObject.canTakeDamage == true)
                 {

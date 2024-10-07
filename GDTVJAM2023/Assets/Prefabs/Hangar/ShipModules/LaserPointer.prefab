@@ -14811,6 +14811,7 @@ MonoBehaviour:
     canFront: 0
     canBack: 0
     modulDescription_multiLineText: 
+    nion: 0
     costMass: 0
     costEnergie: 0
     energieProduction: 0
@@ -14826,8 +14827,9 @@ MonoBehaviour:
     rocketClass: 0
     laserClass: 0
     supportClass: 0
+    moduleUpgrades: []
   moduleIndex: -1
-  laserBaseDamage: 4
+  laserBaseDamage: 5
   fireRate: 2
   laserRange: 2.5
   laserShootTime: 3

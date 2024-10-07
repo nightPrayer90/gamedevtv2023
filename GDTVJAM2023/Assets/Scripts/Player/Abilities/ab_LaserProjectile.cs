@@ -84,7 +84,7 @@ public class ab_LaserProjectile : MonoBehaviour
                         eH.InvokeBurningDamage();
                         hitParticle.transform.position = other.ClosestPointOnBounds(other.transform.position);
                         hitParticle.Emit(20);
-                        sizefactor += (0.1f) * (1 + (0.15f * upgradeChooseList.upgrades[93].upgradeIndexInstalled));
+                        sizefactor += (0.15f) * (1 + (0.15f * upgradeChooseList.upgrades[93].upgradeIndexInstalled));
 
                         transform.DOComplete();
                         transform.DOScale(projectileSize * sizefactor, 0.1f);
@@ -118,10 +118,10 @@ public class ab_LaserProjectile : MonoBehaviour
             destroyFlag = true;
             Invoke(nameof(DestroyObject), 1f);
 
-            if (upgradeChooseList.upgrades[94].upgradeIndexInstalled > 1)
+            if (upgradeChooseList.upgrades[94].upgradeIndexInstalled > 0)
             {
                 // Nova
-                if (upgradeChooseList.upgrades[95].upgradeIndexInstalled > 1)
+                if (upgradeChooseList.upgrades[95].upgradeIndexInstalled > 0)
                 {
                     GameObject explosionObject = Instantiate(novaExplosion, transform.position, transform.rotation);
                     Explosion explosion = explosionObject.GetComponent<Explosion>();
@@ -138,7 +138,7 @@ public class ab_LaserProjectile : MonoBehaviour
                     }
 
                     PlayerBurningGroundController bgC = burningShpere.GetComponent<PlayerBurningGroundController>();
-                    bgC.scaleFactor = 1 + sizefactor;
+                    bgC.scaleFactor = 2.3f + sizefactor;
                     bgC.lifetime = lifeTimeField;
                 }
             }

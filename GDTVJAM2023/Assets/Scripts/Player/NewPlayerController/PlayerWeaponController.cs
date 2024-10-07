@@ -16,8 +16,6 @@ public class PlayerWeaponController : MonoBehaviour
     public bool isBulletWings = false;
     public bool isLifeModul = false;
     public bool isSpreadGun = false;
-    //public bool isFrontShield = false;
-    //public bool isBackShield = false;
     public bool isNovaExplosion = false;
     public bool isRockedWings = false;
     public bool isFrontLaser = false;
@@ -32,8 +30,6 @@ public class PlayerWeaponController : MonoBehaviour
     private BulletWings isBulletWingsInstalled;
     private LifeModul isLifeModulInstalled;
     private SpreadGun isSpreadGunInstalled;
-    //private FrontShieldSpawner isFrontShieldInstalled;
-    //private BackShieldSpawner isBackShieldInstalled;
     private NovaExplosion isNovaExplosionInstalled;
     private RocketWings isRockedWingsInstalled;
     private FrontLaser isFrontLaserInstalled;
@@ -41,14 +37,6 @@ public class PlayerWeaponController : MonoBehaviour
     private ThermalSpheres isThermalSpheresInstalled;
     private MineLayer isMineLayerInstalled;
     private BackfireBeam isBackfireBeamInstalled;
-
-
-    [Header("Shields")]
-    //public GameObject frontShield;
-    //public GameObject backShield;
-    //[HideInInspector] public GameObject frontShield_;
-    //[HideInInspector] public GameObject backShieldLeft_;
-    //[HideInInspector] public GameObject backShieldRight_;
 
 
     [Header("Head Cannon")]
@@ -88,14 +76,6 @@ public class PlayerWeaponController : MonoBehaviour
     [HideInInspector] public int bwDamage_;
     [HideInInspector] public float bwRealoadTime_;
     [HideInInspector] public int bwSalveCount_;
-
-    /*[Header("Support Modul")]
-    public int lmLifePerTick = 1;
-    public float lmReloadTime = 10;
-    public GameObject lifeModul;
-    [HideInInspector] public int lmLifePerTick_;
-    [HideInInspector] public float lmReloadTime_;*/
-
 
     [Header("Spread Gun")]
     public int sgDamage = 8;
@@ -188,7 +168,7 @@ public class PlayerWeaponController : MonoBehaviour
     [HideInInspector] public float bsSpawnTime_;
     [HideInInspector] public int bsShildLife_;
 
-   
+
 
     // Events
     public event Action<int> OnMWDamage;
@@ -250,28 +230,11 @@ public class PlayerWeaponController : MonoBehaviour
             go = Instantiate(bulletWings, passivParentContainer);
             isBulletWingsInstalled = go.GetComponent<BulletWings>();
         }
-        /*if (isLifeModul == true && isLifeModulInstalled == null)
-        {
-            go = Instantiate(lifeModul, passivParentContainer);
-            isLifeModulInstalled = go.GetComponent<LifeModul>();
-        }*/
         if (isSpreadGun == true && isSpreadGunInstalled == null)
         {
             go = Instantiate(spreadGun, passivParentContainer);
             isSpreadGunInstalled = go.GetComponent<SpreadGun>();
         }
-        /*if (isFrontShield == true && isFrontShieldInstalled == null)
-        {
-            var shild = Instantiate(frontShield, passivParentContainer);
-            shild.name = frontShield.name;
-            isFrontShieldInstalled = shild.GetComponent<FrontShieldSpawner>();
-        }
-        if (isBackShield == true && isBackShieldInstalled == null)
-        {
-            var shild = Instantiate(backShield, passivParentContainer);
-            shild.name = backShield.name;
-            isBackShieldInstalled = shild.GetComponent<BackShieldSpawner>();
-        }*/
         if (isNovaExplosion == true && isNovaExplosionInstalled == null)
         {
             go = Instantiate(novaExplosion, passivParentContainer);
@@ -330,7 +293,6 @@ public class PlayerWeaponController : MonoBehaviour
             isHeadCannonInstalled.reloadSalveInterval = hcReloadTime_;
         }
 
-
         // Rocket Launcher - rocket - target
         rlDamage_ = Mathf.CeilToInt((rlDamage) * (1 + shipData.percRocketDamage / 100));
         rlAOERange_ = rlAOERange;
@@ -341,7 +303,6 @@ public class PlayerWeaponController : MonoBehaviour
             isRocketLauncherInstalled.explosionRadius = rlAOERange_;
             isRocketLauncherInstalled.spawnInterval = rlReloadTime_;
         }
-
 
         // Fireflies - bullet - backwards
         ffDamage_ = Mathf.CeilToInt((ffDamage) * (1 + shipData.percBulletDamage / 100));
@@ -355,7 +316,6 @@ public class PlayerWeaponController : MonoBehaviour
             isFireFliesInstalled.ChangeParticleSystem();
         }
 
-
         // Bullet Wings - bullet - swarm
         bwDamage_ = Mathf.CeilToInt((bwDamage) * (1 + shipData.percBulletDamage / 100));
         bwRealoadTime_ = Mathf.Max(0.1f, (bwRealoadTime * supportReloadTime_));
@@ -366,17 +326,6 @@ public class PlayerWeaponController : MonoBehaviour
             isBulletWingsInstalled.realodInterval = bwRealoadTime_;
             isBulletWingsInstalled.salveMaxCount = bwSalveCount_;
         }
-
-
-        // Life Modul - support
-        /*lmReloadTime_ = Mathf.Max(0.1f, (lmReloadTime * supportReloadTime_));
-        lmLifePerTick_ = lmLifePerTick;
-        if (isLifeModulInstalled != null)
-        {
-            isLifeModulInstalled.nextHealTick = lmReloadTime_;
-            isLifeModulInstalled.healthPerTick = lmLifePerTick_;
-        }*/
-
 
         // Spread Gun - bullet - swarm
         sgDamage_ = Mathf.CeilToInt((sgDamage) * (1 + shipData.percBulletDamage / 100));
@@ -389,30 +338,10 @@ public class PlayerWeaponController : MonoBehaviour
             isSpreadGunInstalled.bulletMaxCount = sgBulletCount_;
         }
 
-        // Front Shield - support - defence
-        /*fsSpawnTime_ = Mathf.Max(0.1f, (fsSpawnTime * supportReloadTime_));
-        fsShieldLife_ = fsShieldLife + shipData.shieldHealth;
-        if (isFrontShieldInstalled != null)
-        {
-            isFrontShieldInstalled.spawnInterval = fsSpawnTime_;
-            fsShieldLife = fsShieldLife_;
-        }*/
-
-
-        // Back Shield - support - defense
-        /*bsSpawnTime_ = Mathf.Max(0.1f, (bsSpawnTime * supportReloadTime_));
-        bsShildLife_ = bsShildLife + shipData.shieldHealth;
-        if (isBackShieldInstalled != null)
-        {
-            isBackShieldInstalled.spawnInterval = bsSpawnTime_;
-            bsShildLife = bsShildLife_;
-        }*/
-
-
         // Nova Explosion - explosion - defence
         neDamage_ = Mathf.CeilToInt((neDamage) * (1 + shipData.percRocketDamage / 100));
         neReloadTime_ = Mathf.Max(0.1f, (neReloadTime * supportReloadTime_));
-        neRadius_ = neRadius * (1+shipData.rocketAOERadius/100);
+        neRadius_ = neRadius * (1 + shipData.rocketAOERadius / 100);
         if (isNovaExplosionInstalled != null)
         {
             isNovaExplosionInstalled.novaDamage = neDamage_;
@@ -484,8 +413,8 @@ public class PlayerWeaponController : MonoBehaviour
         bbReloadTime_ = Mathf.Max(0.1f, (bbReloadTime * supportReloadTime_));
         if (isBackfireBeamInstalled != null)
         {
-            isBackfireBeamInstalled.damage = mlDamage_;
-            isBackfireBeamInstalled.StartFire(mlRelaodTime_);
+            isBackfireBeamInstalled.damage = bbDamage_;
+            isBackfireBeamInstalled.StartFire(bbReloadTime_);
             isBackfireBeamInstalled.projectileCount = bbMainBeams;
             isBackfireBeamInstalled.killProjectileCount = bbKillBeams;
             Debug.Log("bbKillBeams " + isBackfireBeamInstalled.killProjectileCount);
@@ -533,7 +462,6 @@ public class PlayerWeaponController : MonoBehaviour
 
         shipData.baseLaserTicks = 4;
         shipData.baseLaserTickDamage = 5;
-        //shipData.baseAttackSpeed = 0;
         shipData.laserBurningTickDamangePercent = 100;
 
         shipData.percBulletDamage = 0;
@@ -545,6 +473,9 @@ public class PlayerWeaponController : MonoBehaviour
         shipData.rocketLifeTime = 0;
         shipData.bossBonusDamage = 0;
         shipData.supportReloadTime = 0;
+        shipData.percMainAttackSpeedBullet = 0;
+        shipData.percMainAttackSpeedRocket = 0;
+        shipData.percMainDownTimeLaser = 0;
 
         shipData.bulletCritChance = 0;
         shipData.bulletCritDamage = 0;
@@ -560,7 +491,7 @@ public class PlayerWeaponController : MonoBehaviour
 
         shipData.extraRockets = 0;
         shipData.extraDamage = 0;
-}
+    }
 
     /* **************************************************************************** */
     /* Shootsound ----------------------------------------------------------------- */

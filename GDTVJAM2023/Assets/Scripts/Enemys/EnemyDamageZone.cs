@@ -7,14 +7,20 @@ public class EnemyDamageZone : MonoBehaviour
     public ParticleSystem burningFieldParticle;
     public float scaleFactor = 1f;
     public int damage = 1;
-    private bool doDamage = true;
+    private bool doDamage = false;
+    public ParticleSystem hitParticle;
+    public Transform hitParticleTransform;
 
     private void Start()
     {
         burningFieldParticle.Play();
         Invoke(nameof(InvokeDestroy), lifetime);
-        gameObject.transform.DOScale(new Vector3(1f * scaleFactor, 1f * scaleFactor, 1f * scaleFactor),0.3f);
+        gameObject.transform.DOScale(new Vector3(1f * scaleFactor, 1f * scaleFactor, 1f * scaleFactor),0.5f);
         gameObject.transform.position = new Vector3(transform.position.x, 5.9f, transform.position.z);
+
+        AudioManager.Instance.PlaySFX("DamageFieldSpawn");
+
+        Invoke(nameof(SetDamageBool), 1f);
     }
 
     private void OnTriggerStay(Collider other)
@@ -27,9 +33,13 @@ public class EnemyDamageZone : MonoBehaviour
             {
                 if (doDamage == true)
                 {
-                    playerController.UpdatePlayerHealth(damage);
-                    Invoke(nameof(SetDamageBool), 1f);
+                    AudioManager.Instance.PlaySFX("DamageFieldHitSound");
+                    playerController.GetLaserDamage(damage);
+                    Invoke(nameof(SetDamageBool), 1.5f);
                     doDamage = false;
+
+                    hitParticleTransform.position = playerController.gameObject.transform.position;
+                    hitParticle.Play();
                 }
            
             }

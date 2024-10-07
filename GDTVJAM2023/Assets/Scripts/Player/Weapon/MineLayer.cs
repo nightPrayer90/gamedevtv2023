@@ -52,7 +52,7 @@ public class MineLayer : MonoBehaviour
         Rigidbody rb = go.GetComponent<Rigidbody>();
         PlayerMineController mine = go.GetComponent<PlayerMineController>();
         mine.damage = baseDamage;
-        mine.isMainWeapon = false;
+        mine.isMainWeapon = isMainWeapon;
 
         AudioManager.Instance.PlaySFX("PlayerFireFlies");
         if (rb != null)

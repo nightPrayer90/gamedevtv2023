@@ -4,10 +4,7 @@ using System;
 public class PickUps : MonoBehaviour
 {
     public float moveSpeed = 1f;
-    public float detectionRange = 0.5f;
-    [HideInInspector] public GameManager gameManager;
 
-    [HideInInspector] public NewPlayerController playerController;
     private Transform playerTransform;
     private bool ifcollect = false;
 
@@ -17,69 +14,79 @@ public class PickUps : MonoBehaviour
     public event Action OnCollect;
     private float moveSpeedUp;
 
+    [HideInInspector] public NewPlayerController playerController;
+    [HideInInspector] public GameManager gameManager;
+    public SphereCollider collectCollider;
+
     private void Awake()
     {
         var player = GameObject.FindWithTag("Player");
 
         if (player != null)
         {
-            playerController = player.GetComponent<NewPlayerController>();
             playerTransform = player.GetComponent<Transform>();
+            playerController = player.GetComponent<NewPlayerController>();
         }
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
     }
 
     void OnEnable()
     {
-        InvokeRepeating("DistanceToPlayer", 0, 0.2f);
+        //InvokeRepeating("DistanceToPlayer", 0, 0.2f);
         ifcollect = false;
         moveSpeedUp = 0;
         OrbParticle.gameObject.SetActive(true);
+        collectCollider.enabled = false;
+        Invoke(nameof(InvokeActivateCollider), 0.3f);
     }
 
     void Update()
     {
-        if (ifcollect == true)
+        if (ifcollect == true &&  moveSpeed > 0)
         {
-            Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
-            Vector3 newPosition = transform.position + directionToPlayer * (moveSpeed+ moveSpeedUp) * Time.deltaTime;
-            transform.position = newPosition;
+            MoveToPlayer();
         }
     }
 
-    private void DistanceToPlayer()
+    private void OnTriggerEnter(Collider other)
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
-        detectionRange = playerController.pickupRange;
-
-        if (distanceToPlayer < detectionRange)
+        if (other.CompareTag("PickUpCollider"))
         {
-            ifcollect = true;
+            if (ifcollect == false)
+                SetCollect();
         }
-
-        if (ifcollect == true)
+        if (other.CompareTag("Player"))
         {
-            moveSpeedUp += 0.1f;
+            if (ifcollect == true)
+                PickUpFX();
         }
+    }
 
-        if (distanceToPlayer < 0.5f)
-        {
-            PickUpFX();
-        }
+    private void InvokeActivateCollider()
+    {
+        collectCollider.enabled = true;
+    }
+
+    private void MoveToPlayer()
+    {
+        Vector3 directionToPlayer = (playerTransform.position - transform.position).normalized;
+        Vector3 newPosition = transform.position + directionToPlayer * (moveSpeed + moveSpeedUp) * Time.deltaTime;
+        transform.position = newPosition;
+        moveSpeedUp += 0.1f;
     }
 
     public void SetCollect()
     {
-        moveSpeedUp = 4;
         ifcollect = true;
     }
 
     public void PickUpFX()
     {
+        ifcollect = false;
         OnCollect?.Invoke();
         OrbParticle.gameObject.SetActive(false);
-        pickUpParticle.Play();
-        CancelInvoke("DistanceToPlayer");
+        if (pickUpParticle != null) pickUpParticle.Play();
 
         Invoke(nameof(GoBackToPool), 2.5f);
     }

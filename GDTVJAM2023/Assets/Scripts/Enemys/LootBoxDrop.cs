@@ -25,7 +25,7 @@ public class LootBoxDrop : MonoBehaviour
     public GameObject bigHealthOrb;
     public GameObject bigEXPOrb;
     public GameObject bigTimerOrb;
-
+    public bool isLootbox = false;
 
     private void Awake()
     {
@@ -41,13 +41,15 @@ public class LootBoxDrop : MonoBehaviour
     private void OnEnable()
     {
         enemyHealth.DieEvent += OnDie;
-        gameManager.lootboxContainer++;
+        if (isLootbox == true)
+            gameManager.lootboxContainer++;
     }
 
     private void OnDisable()
     {
         enemyHealth.DieEvent -= OnDie;
-        gameManager.lootboxContainer--;
+        if (isLootbox == true)
+            gameManager.lootboxContainer--;
     }
 
     private void OnDie(object sender, EventArgs e)

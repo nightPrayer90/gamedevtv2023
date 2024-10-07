@@ -64,6 +64,7 @@ MonoBehaviour:
     canFront: 0
     canBack: 0
     modulDescription_multiLineText: 
+    nion: 0
     costMass: 0
     costEnergie: 0
     energieProduction: 0
@@ -79,6 +80,7 @@ MonoBehaviour:
     rocketClass: 0
     laserClass: 0
     supportClass: 0
+    moduleUpgrades: []
 --- !u!1 &3509744164497189554
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +179,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.81230414, y: 0.85456747, z: 0.16189808}
+  m_Size: {x: -0.8123041, y: 0.85456747, z: 0.16189808}
   m_Center: {x: -0.13135046, y: 0.077008635, z: 0.17457446}
 --- !u!1001 &9000619723857362351
 PrefabInstance:

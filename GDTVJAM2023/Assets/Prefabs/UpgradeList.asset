@@ -46,7 +46,7 @@ MonoBehaviour:
   - headerStr: Protection
     upgradeIndex: 2
     passivUpgradeString: 
-    descriptionStr: +XX% chance of halving the incoming damage. Total YY% > ZZ%
+    descriptionStr: +XX% chance of halving the incoming damage.
     iconPanel: {fileID: 21300000, guid: 0ed2cb74a7f3ebb479bdc536ce9e1422, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -163,7 +163,7 @@ MonoBehaviour:
     reqAbility: 
     UpgradeCount: 1
     upgradeStartCount: 1
-  - headerStr: Support Module
+  - headerStr: '-'
     upgradeIndex: 10
     passivUpgradeString: 
     descriptionStr: Regenerates life over time. You get 15 % chance for double exp.
@@ -397,7 +397,7 @@ MonoBehaviour:
   - headerStr: Nova Overdrive
     upgradeIndex: 25
     passivUpgradeString: 
-    descriptionStr: Power boost triggers a nova when it is used
+    descriptionStr: Power boost triggers a nova when it is used.
     iconPanel: {fileID: 21300000, guid: 79dae5ee3f384f641b591eb47411178f, type: 3}
     mainClass: 8
     upgradeTyp: 3
@@ -729,7 +729,7 @@ MonoBehaviour:
   - headerStr: Boom Boom Boost
     upgradeIndex: 47
     passivUpgradeString: 
-    descriptionStr: Increases all explosion damage by +15%.
+    descriptionStr: Increases all explosion damage by +12%.
     iconPanel: {fileID: 21300000, guid: 4d51efc3c4162c0438f55dc3cb3190ba, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -744,7 +744,7 @@ MonoBehaviour:
   - headerStr: Beam Boost
     upgradeIndex: 48
     passivUpgradeString: 
-    descriptionStr: Increases all laser damage by +15%.
+    descriptionStr: Increases all laser damage by +12%.
     iconPanel: {fileID: 21300000, guid: 4d51efc3c4162c0438f55dc3cb3190ba, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -769,7 +769,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 0
     reqAbility: 
-    UpgradeCount: 3
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Wide Spray Expansion
     upgradeIndex: 50
@@ -799,7 +799,7 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 0
     reqAbility: 
-    UpgradeCount: 999
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Kaboomed Targets
     upgradeIndex: 52
@@ -849,7 +849,7 @@ MonoBehaviour:
   - headerStr: Titan Slayer
     upgradeIndex: 55
     passivUpgradeString: 
-    descriptionStr: Increases main weapon damage against bosses by 35%.
+    descriptionStr: Increases main weapon damage against bosses by 25%.
     iconPanel: {fileID: 21300000, guid: 9f4cd08ec7f9ec840b89978f1fced188, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -859,13 +859,13 @@ MonoBehaviour:
     reqLaser: 0
     reqSupport: 0
     reqAbility: 
-    UpgradeCount: 1
+    UpgradeCount: 0
     upgradeStartCount: 0
   - headerStr: Laser Orbit Accelerator
     upgradeIndex: 56
     passivUpgradeString: 
     descriptionStr: Increases Orbital Laser rotation speed by 25% and base damage
-      by 1.
+      by 2.
     iconPanel: {fileID: 21300000, guid: eb4257d784bcf9341903fc1efd7fbefa, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -955,7 +955,7 @@ MonoBehaviour:
   - headerStr: Explosive Shield
     upgradeIndex: 62
     passivUpgradeString: 
-    descriptionStr: Shields trigger a nova when they die
+    descriptionStr: Shields trigger a nova when they die.
     iconPanel: {fileID: 21300000, guid: fd826e5525c3c64458a678bc024b2a27, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1045,7 +1045,7 @@ MonoBehaviour:
   - headerStr: Fast Spray gun
     upgradeIndex: 68
     passivUpgradeString: 
-    descriptionStr: Decreases spray gun reaload time by 0.5s.
+    descriptionStr: Decreases Spread gun reaload time by 0.5s.
     iconPanel: {fileID: 21300000, guid: cfa1d4ae5cbde234c855a1d8c18577e9, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1348,7 +1348,7 @@ MonoBehaviour:
   - headerStr: Life Orb Boost
     upgradeIndex: 88
     passivUpgradeString: 
-    descriptionStr: Each loot box drops additional big life orb
+    descriptionStr: Each loot box drops additional big life orb.
     iconPanel: {fileID: 21300000, guid: 1f1dc46d83e2615448eba029fa7683b3, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1363,7 +1363,7 @@ MonoBehaviour:
   - headerStr: EXP Orb Boost
     upgradeIndex: 89
     passivUpgradeString: 
-    descriptionStr: Each loot box drops two additional big EXP orbs
+    descriptionStr: Each loot box drops two additional big EXP orbs.
     iconPanel: {fileID: 21300000, guid: 1f1dc46d83e2615448eba029fa7683b3, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1378,7 +1378,7 @@ MonoBehaviour:
   - headerStr: Time Orb Boost
     upgradeIndex: 90
     passivUpgradeString: 
-    descriptionStr: Each loot box drops additional time orb
+    descriptionStr: Each loot box drops additional time orb.
     iconPanel: {fileID: 21300000, guid: 1f1dc46d83e2615448eba029fa7683b3, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1423,7 +1423,7 @@ MonoBehaviour:
   - headerStr: Growth Impulse
     upgradeIndex: 93
     passivUpgradeString: 
-    descriptionStr: The spear grows +15% faster when it hits an opponent.
+    descriptionStr: The sphere grows +15% faster when it hits an opponent.
     iconPanel: {fileID: 21300000, guid: 1766091a6535c614db7cc3976fcf98c8, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1469,7 +1469,7 @@ MonoBehaviour:
   - headerStr: Rising Force
     upgradeIndex: 96
     passivUpgradeString: 
-    descriptionStr: The sphere does more damage with each hit
+    descriptionStr: The sphere does more damage with each hit.
     iconPanel: {fileID: 21300000, guid: 1766091a6535c614db7cc3976fcf98c8, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1485,7 +1485,7 @@ MonoBehaviour:
     upgradeIndex: 97
     passivUpgradeString: 
     descriptionStr: The lifetime of the burning field increases by 1s each time the
-      sphere hits an enemy
+      sphere hits an enemy.
     iconPanel: {fileID: 21300000, guid: 1766091a6535c614db7cc3976fcf98c8, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1500,7 +1500,7 @@ MonoBehaviour:
   - headerStr: Collector
     upgradeIndex: 98
     passivUpgradeString: 
-    descriptionStr: +5% chance to get 1 additional scrap when you kill an opponent
+    descriptionStr: +3% chance to get 1 additional scrap when you kill an opponent.
     iconPanel: {fileID: 21300000, guid: 02f7c2e79b932a9449ccfc1047d77288, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1512,18 +1512,18 @@ MonoBehaviour:
     reqAbility: 
     UpgradeCount: 0
     upgradeStartCount: 0
-  - headerStr: 
+  - headerStr: Lasting Shield
     upgradeIndex: 99
     passivUpgradeString: 
-    descriptionStr: 
+    descriptionStr: 0.2s Increased invulnerability duration after a hit.
     iconPanel: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
     mainClass: 8
-    upgradeTyp: 1
+    upgradeTyp: 4
     colorIndex: 9
     reqBullet: 0
     reqRocket: 0
     reqLaser: 0
     reqSupport: 0
     reqAbility: 
-    UpgradeCount: 0
-    upgradeStartCount: 0
+    UpgradeCount: 999
+    upgradeStartCount: 999
