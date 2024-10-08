@@ -8,6 +8,7 @@ public class HangarInputHandler : MonoBehaviour, _9Dystricts.IHangarActions
     public event Action OnModuleRemove;
     public event Action<Vector2> OnNavigatePress;
     public event Action<float> OnPresetChange;
+    public event Action OnGameStartPress;
     private _9Dystricts inputWrapper;
     private bool isNavigating;
     private Vector2 naviDirection;
@@ -32,7 +33,10 @@ public class HangarInputHandler : MonoBehaviour, _9Dystricts.IHangarActions
 
     public void OnGameStart(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        if (context.performed)
+        {
+            OnGameStartPress?.Invoke();
+        }
     }
 
     public void OnMenu(InputAction.CallbackContext context)

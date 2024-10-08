@@ -44,7 +44,7 @@ public class ShopModuleMeshHud : MonoBehaviour
             colorstrStorage = "<color=#2EFEF7>";
         }
 
-        countText.text = colorstrStorage + "<b>in storage: " + shopController.playerData.moduleCounts[shopModule.itemIndex].ToString() + "</b></color>";
+        countText.text = colorstrStorage + "<b>purchased: " + shopController.playerData.moduleCounts[shopModule.itemIndex].ToString() + "</b></color>";
 
 
         if (shopModule.itemMaxCount == -1)

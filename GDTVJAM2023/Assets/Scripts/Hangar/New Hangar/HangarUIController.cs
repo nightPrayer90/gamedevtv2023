@@ -80,6 +80,7 @@ public class HangarUIController : MonoBehaviour
     public Transform contentParent;
     private HangarSelection selectionController;
     public HangarFilterBtn hangarFilterBtn;
+    public HangarInputHandler inputHandler;
     public Image abilityPanel;
 
 
@@ -93,6 +94,8 @@ public class HangarUIController : MonoBehaviour
     {
         selectionController = gameObject.GetComponent<HangarSelection>();
         selectionController.OnDeselect += HandleDeselect;
+        inputHandler.OnGameStartPress += GameStart;
+
         modulePanel.alpha = 0;
         modulePanel.blocksRaycasts = false;
         removePanel.alpha = 0;
@@ -123,6 +126,7 @@ public class HangarUIController : MonoBehaviour
     private void OnDestroy()
     {
         selectionController.OnDeselect -= HandleDeselect;
+        inputHandler.OnGameStartPress -= GameStart;
     }
 
     // handle Sphere selection
@@ -220,7 +224,7 @@ public class HangarUIController : MonoBehaviour
 
         if (modules > 0)
         {
-            Debug.Log(scpHeader.text = selectedModul.moduleValues.moduleName);
+            //Debug.Log(scpHeader.text = selectedModul.moduleValues.moduleName);
             modulePanel.DOKill();
             if (modulePanel.alpha != 1)
             {
@@ -466,7 +470,7 @@ public class HangarUIController : MonoBehaviour
     #region Button Controls
     public void GameStart()
     {
-        Debug.Log($"Game can Start? {moduleStorage.isEnergiePositiv}");
+        //Debug.Log($"Game can Start? {moduleStorage.isEnergiePositiv}");
 
         if (moduleStorage.isAllConnected == true && moduleStorage.isEnergiePositiv == true)
         {

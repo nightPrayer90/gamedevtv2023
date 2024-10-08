@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1641933428773747507}
   - component: {fileID: 7932739415210876818}
   - component: {fileID: 2880437228975424969}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Borders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4893,7 +4893,7 @@ GameObject:
   - component: {fileID: 3735055066966513926}
   - component: {fileID: 934449861533842354}
   - component: {fileID: 2796616144786930087}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Trails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9775,7 +9775,7 @@ GameObject:
   - component: {fileID: 6020841307813967471}
   - component: {fileID: 2703714390178733929}
   - component: {fileID: 5016187342422243187}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EXPOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14662,7 +14662,7 @@ GameObject:
   - component: {fileID: 1133977906913831892}
   - component: {fileID: -7128748744484675967}
   - component: {fileID: 2921423319788192112}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TimeOrb
   m_TagString: Exp
   m_Icon: {fileID: 0}
@@ -14699,7 +14699,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  detectionRange: 0.5
   pickUpParticle: {fileID: 5250447756623338277}
   OrbParticle: {fileID: 2703714390178733929}
   playerController: {fileID: 0}
@@ -14760,7 +14759,7 @@ GameObject:
   - component: {fileID: 7411838905324792886}
   - component: {fileID: 5250447756623338277}
   - component: {fileID: 2467310894640714242}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HITParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19630,7 +19629,7 @@ GameObject:
   - component: {fileID: 2505522049362240505}
   - component: {fileID: 2759568960229122850}
   - component: {fileID: 4526688885797863750}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -4889,6 +4889,7 @@ MonoBehaviour:
     canFront: 0
     canBack: 0
     modulDescription_multiLineText: 
+    nion: 0
     costMass: 0
     costEnergie: 0
     energieProduction: 0
@@ -4904,6 +4905,7 @@ MonoBehaviour:
     rocketClass: 0
     laserClass: 0
     supportClass: 0
+    moduleUpgrades: []
   moduleIndex: -1
   fireRate: 1
   rockedBaseDamage: 6
@@ -5009,8 +5011,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7379776, y: 0.565735, z: 0.16189808}
-  m_Center: {x: -0.110027984, y: 0.086309135, z: 0.17457446}
+  m_Size: {x: 0.7379776, y: 0.565735, z: 1}
+  m_Center: {x: -0.110027984, y: 0.086309135, z: 0}
 --- !u!1 &3650217307863227962
 GameObject:
   m_ObjectHideFlags: 0

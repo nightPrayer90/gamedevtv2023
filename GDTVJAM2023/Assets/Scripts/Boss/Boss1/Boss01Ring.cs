@@ -12,6 +12,7 @@ public class Boss01Ring : MonoBehaviour
     public List<ParticleSystem> channelWeapons2 = new List<ParticleSystem>();
 
     public ParticleSystem diePartcle;
+    public ParticleSystem windParticle;
 
     public GameObject dieObject;
     public MeshRenderer mesh;
@@ -47,6 +48,7 @@ public class Boss01Ring : MonoBehaviour
     public void StopShooting01()
     {
         CancelInvoke(nameof(Shoot01));
+        windParticle.Stop();
         foreach (ParticleSystem weapon in channelWeapons1)
         {
             weapon.Stop();
@@ -55,6 +57,7 @@ public class Boss01Ring : MonoBehaviour
 
     private void ChannelShooting01FX()
     {
+        windParticle.Play();
         AudioManager.Instance.PlaySFX("ShieldRegenerate");
         foreach (ParticleSystem weapon in channelWeapons1)
         {
@@ -81,6 +84,7 @@ public class Boss01Ring : MonoBehaviour
 
     public void StopShooting02()
     {
+        windParticle.Stop();
         CancelInvoke(nameof(Shoot02));
         foreach (ParticleSystem weapon in channelWeapons2)
         {
@@ -90,6 +94,7 @@ public class Boss01Ring : MonoBehaviour
 
     private void ChannelShooting02FX()
     {
+        windParticle.Play();
         AudioManager.Instance.PlaySFX("ShieldRegenerate");
         foreach (ParticleSystem weapon in channelWeapons2)
         {

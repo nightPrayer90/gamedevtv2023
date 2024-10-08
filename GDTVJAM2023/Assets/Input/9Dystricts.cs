@@ -1497,7 +1497,7 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0f3d8a8b-1d42-425f-b398-9d8661d94cb6"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

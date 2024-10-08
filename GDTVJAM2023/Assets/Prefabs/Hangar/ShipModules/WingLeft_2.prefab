@@ -46,8 +46,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27dabd0820b5d6f42af1e6e3240c80ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mass: 0.1
-  playerHealth: 1
+  moduleValues:
+    moduleName: 
+    moduleType: 0
+    canLeft: 0
+    canRight: 0
+    canFront: 0
+    canBack: 0
+    modulDescription_multiLineText: 
+    nion: 0
+    costMass: 0
+    costEnergie: 0
+    energieProduction: 0
+    energieStorage: 0
+    health: 0
+    protection: 0
+    mainEngine: 0
+    directionEngine: 0
+    strafeEngine: 0
+    boostEngine: 0
+    boostStrafeEngine: 0
+    bulletClass: 0
+    rocketClass: 0
+    laserClass: 0
+    supportClass: 0
+    moduleUpgrades: []
+  moduleIndex: -1
 --- !u!1 &3509744164497189554
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,8 +167,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7379776, y: 0.565735, z: 0.16189808}
-  m_Center: {x: -0.110027984, y: 0.086309135, z: 0.17457446}
+  m_Size: {x: 0.7379776, y: 0.565735, z: 1}
+  m_Center: {x: -0.110027984, y: 0.086309135, z: 0}
 --- !u!1 &9097266284672401259
 GameObject:
   m_ObjectHideFlags: 0

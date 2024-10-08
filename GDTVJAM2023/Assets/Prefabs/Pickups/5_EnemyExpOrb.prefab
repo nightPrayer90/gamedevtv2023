@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6020841307813967471}
   - component: {fileID: 2703714390178733929}
   - component: {fileID: 5016187342422243187}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EXPOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4882,7 +4882,7 @@ GameObject:
   - component: {fileID: 5391018592059806817}
   - component: {fileID: 8742554975658390184}
   - component: {fileID: 7356752178184510686}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HITParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9754,7 +9754,7 @@ GameObject:
   - component: {fileID: 3795609926525565510}
   - component: {fileID: -1113451974385601627}
   - component: {fileID: 2516003061546654483}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 5_EnemyExpOrb
   m_TagString: Exp
   m_Icon: {fileID: 0}
@@ -9791,7 +9791,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  detectionRange: 0.5
   pickUpParticle: {fileID: 8742554975658390184}
   OrbParticle: {fileID: 2703714390178733929}
   playerController: {fileID: 0}
@@ -9851,7 +9850,7 @@ GameObject:
   - component: {fileID: 4517598902349943700}
   - component: {fileID: 2077271699878329182}
   - component: {fileID: 6834468764359708317}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Borders
   m_TagString: Untagged
   m_Icon: {fileID: 0}

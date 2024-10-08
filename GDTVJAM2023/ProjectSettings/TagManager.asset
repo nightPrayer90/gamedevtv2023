@@ -21,11 +21,12 @@ TagManager:
   - Player_BurningGround
   - MeshHud
   - PickUpCollider
+  - UpgradePickup
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PickUps
   - Water
   - UI
   - Enemy

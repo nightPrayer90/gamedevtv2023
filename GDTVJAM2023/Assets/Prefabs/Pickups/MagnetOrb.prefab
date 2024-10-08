@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6020841307813967471}
   - component: {fileID: 2703714390178733929}
   - component: {fileID: 5016187342422243187}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EXPOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4890,7 +4890,7 @@ GameObject:
   - component: {fileID: 2149806952275964270}
   - component: {fileID: 9122274179594650230}
   - component: {fileID: 7070682023513296765}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: shield_add
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9799,7 +9799,7 @@ GameObject:
   - component: {fileID: 6752707542770569186}
   - component: {fileID: 1439890558151290013}
   - component: {fileID: 2066763895404612984}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: wind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14635,7 +14635,7 @@ GameObject:
   - component: {fileID: -959012179391437751}
   - component: {fileID: -3098820058048417185}
   - component: {fileID: -7526114565286757069}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MagnetOrb
   m_TagString: Exp
   m_Icon: {fileID: 0}
@@ -14672,7 +14672,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  detectionRange: 0.5
   pickUpParticle: {fileID: 5250447756623338277}
   OrbParticle: {fileID: 2703714390178733929}
   playerController: {fileID: 0}
@@ -14731,7 +14730,7 @@ GameObject:
   - component: {fileID: 3128608972221028919}
   - component: {fileID: 6866047630086553809}
   - component: {fileID: 7046601333068805311}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19564,7 +19563,7 @@ GameObject:
   - component: {fileID: 7411838905324792886}
   - component: {fileID: 5250447756623338277}
   - component: {fileID: 2467310894640714242}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HITParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24435,7 +24434,7 @@ GameObject:
   - component: {fileID: 4773290168785384455}
   - component: {fileID: 1464326737716834971}
   - component: {fileID: 8010238809093104943}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: shield_AB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29344,7 +29343,7 @@ GameObject:
   - component: {fileID: 372946877739949283}
   - component: {fileID: 1903460451387841852}
   - component: {fileID: 8285967212396958015}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: electric
   m_TagString: Untagged
   m_Icon: {fileID: 0}

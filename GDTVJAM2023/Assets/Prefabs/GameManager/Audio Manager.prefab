@@ -460,6 +460,12 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 8b2831522c4aeaa4cb889def526c7b33, type: 3}
   - name: BossTextWoosh
     clip: {fileID: 8300000, guid: 52316c31a89c2294c8058ff7b16db39c, type: 3}
+  - name: Boss01Angry
+    clip: {fileID: 8300000, guid: 5600f162e4aabdf4bb4b677605d49c6c, type: 3}
+  - name: Boss01open
+    clip: {fileID: 8300000, guid: ee7438fabe1e83142b063998eec4524f, type: 3}
+  - name: Boss01close
+    clip: {fileID: 8300000, guid: 9496d3c33ea0d5f4fa1510c5e8dc596b, type: 3}
   musicSource: {fileID: 5360521062723552136}
   sfxSource: {fileID: 6929376283259157201}
   musicVolume: 0.1

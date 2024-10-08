@@ -19,6 +19,7 @@ public class Boss01 : MonoBehaviour
     //public Material emissivMaterial;
     public GameObject bossMesh01;
     public GameObject bossMesh02;
+    public Transform bossMeshTransform;
     public MeshRenderer[] bossMeshRenderers;
     public ParticleSystem rippleParticle;
     public ParticleSystem rippleParticleDie;
@@ -40,8 +41,8 @@ public class Boss01 : MonoBehaviour
     public BossMinimapIcon bossMinimapIcon;
     private BossUI bossUI;
     public Sprite bossUIForgroundSprite;
-    public Boss01Ring bossRingController
-        ;
+    public Boss01Ring bossRingController;
+    public ParticleSystem windParticle;
 
     /* **************************************************************************** */
     /* LIFECYCLE ------------------------------------------------------------------ */
@@ -99,6 +100,7 @@ public class Boss01 : MonoBehaviour
 
                 case 1: // activate - fly to the fight start position
                     // triggered by dotween
+                    RotateBossMesh(20f);
                     RotateBoss(10f);
                     bossRingController.RotateRing(50f);
                     break;
@@ -128,7 +130,7 @@ public class Boss01 : MonoBehaviour
     private void SleepState()
     {
         float distanceToPlayer = DistanceToPlayer();
-        if (distanceToPlayer <= 6f)
+        if (distanceToPlayer <= 5.8f)
         {
             bossState = 1;
             bossParticle.ParticleStop();
@@ -148,10 +150,12 @@ public class Boss01 : MonoBehaviour
 
                 // go to the activate State
                 AudioManager.Instance.PlaySFX("WarningBoss");
-                transform.DOShakePosition(0.2f, 0.1f, 10, 90, false, true).OnComplete(() =>
+                bossMeshTransform.DOShakePosition(0.4f, 0.1f, 25, 90, false, true).SetDelay(0.2f).OnComplete(() =>
                 {
-                    ActivateState();
                     damageArea.GetComponent<DamageArea>().FadeOut();
+                    ActivateState();
+
+                    bossRingController.transform.DOShakePosition(1f, 0.08f, 17, 180, false, true);
                 });
             });
         }
@@ -224,11 +228,12 @@ public class Boss01 : MonoBehaviour
                     bossRingController.StopShooting01();
 
                     CancelInvoke();
-                    transform.DOShakePosition(1f, 0.1f, 10, 90, false, true).OnComplete(() =>
+                    bossRingController.transform.DOShakePosition(0.5f, 0.1f, 10, 180, false, true);
+                    bossMeshTransform.DOShakePosition(1f, 0.1f, 25, 90, false, true).OnComplete(() =>
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
 
-                        transform.DOShakePosition(3f, 0.1f, 10, 90, false, true).OnComplete(() =>
+                        bossMeshTransform.DOShakePosition(3f, 0.1f, 10, 90, false, true).OnComplete(() =>
                         {
                             enemyHealthScr.canTakeDamage = true;
                             bossUI.SetForgroundColor(Color.white);
@@ -247,34 +252,39 @@ public class Boss01 : MonoBehaviour
                 if (isState[2] == false)
                 {
                     rippleParticle.Play();
-                    transform.DOShakePosition(1f, 0.1f, 10, 90, false, true);
+                    bossMeshTransform.DOShakePosition(1f, 0.1f, 25, 90, false, true);
                     bossChanceState.volume = Mathf.Min(AudioManager.Instance.sfxVolume, 0.7f);
                     bossChanceState.Play();
-
+                    windParticle.Stop();
 
                     PushThePlayer(2.5f, 5f);
                     CancelInvoke();
 
+                    bossRingController.transform.DOShakePosition(1f, 0.06f, 30, 90, false, false);
                     bossRingController.Explode(); //1sek = Explode
+
                     Invoke(nameof(BossOpenPhase3),1.5f); //Boss open after Explode
 
                     enemyHealthScr.canTakeDamage = false;
                     bossUI.SetForgroundColor(Color.red);
-                    
-                    transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).SetDelay(2f).OnComplete(() =>
+
+                    bossMeshTransform.DOShakePosition(1f, 0.1f, 25, 90, false, true).SetDelay(2f).OnComplete(() =>
                     {
-                        AudioManager.Instance.PlaySFX("ShieldGetHit");
-                       
-                        transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() =>
+                        
+
+                        bossMeshTransform.DOShakePosition(0.5f, 0.1f, 25, 90, false, true).OnComplete(() =>
                         {
-                            InvokeRepeating(nameof(Shooting), 4f, 0.5f);
-                            InvokeRepeating(nameof(InvokeShootSound), 4f, 0.5f);
+                            AudioManager.Instance.PlaySFX("Boss01Angry");
+                            bossMeshTransform.DOShakePosition(0.4f, 0.08f, 20, 90, false, true).SetDelay(1.8f).OnComplete(()=>AudioManager.Instance.PlaySFX("ShortAlert"));
+                            InvokeRepeating(nameof(Shooting), 2f, 0.5f);
+                            InvokeRepeating(nameof(InvokeShootSound), 2f, 0.5f);
                             enemyHealthScr.canTakeDamage = true;
                             bossUI.SetForgroundColor(Color.white);
                         });
                     });
                     isState[2] = true;
                 }
+                RotateBossMesh(50f);
                 RotateBoss(10f);
                 MoveToPlayer(6f);
                 break;
@@ -283,10 +293,15 @@ public class Boss01 : MonoBehaviour
 
     private void DieState()
     {
+        AudioManager.Instance.PlaySFX("ShortAlert");
+
         bossUI.FadeOut();
 
         InvokeRepeating(nameof(InvokeSpawnExplosion), 0.5f, 1f);
-        transform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
+
+        Invoke(nameof(BossCloseBeforeExplode), 3);
+
+        bossMeshTransform.DOShakePosition(4f, 0.1f, 10, 90, false, true).OnComplete(() =>
         {
             CancelInvoke();
             rippleParticle.Play();
@@ -294,12 +309,14 @@ public class Boss01 : MonoBehaviour
             bossChanceState.volume = Mathf.Min(AudioManager.Instance.sfxVolume, 0.7f);
             bossChanceState.Play();
 
+            AudioManager.Instance.PlaySFX("ShieldGetHit");
+
             // set activate material
             /*materialList[1] = buildingMaterial;
             bossMeshRenderer.materials = materialList;*/
 
-            transform.DOScale(new Vector3(0.7f, 0.7f, 0.7f), 2f).SetDelay(2f);
-            transform.DOShakePosition(4f, 0.3f, 20, 90, false, true).OnComplete(() =>
+            bossMeshTransform.DOScale(new Vector3(0.7f, 0.7f, 0.7f), 2f).SetDelay(2f);
+            bossMeshTransform.DOShakePosition(4f, 0.3f, 20, 90, false, true).OnComplete(() =>
             {
                 AudioManager.Instance.PlaySFX("BossExplode");
                 rippleParticleDie.Play();
@@ -365,6 +382,11 @@ public class Boss01 : MonoBehaviour
         transform.rotation = transform.rotation * Quaternion.Euler(0f, rotationSpeed * Time.deltaTime, 0f);
     }
 
+    private void RotateBossMesh(float rotationSpeed)
+    {
+        bossMeshTransform.rotation = bossMeshTransform.rotation * Quaternion.Euler(0f, rotationSpeed * Time.deltaTime, 0f);
+    }
+
     // push the player away from the boss
     private void PushThePlayer(float distence, float forcepower)
     {
@@ -407,8 +429,18 @@ public class Boss01 : MonoBehaviour
 
     public void BossOpenPhase3()
     {
-        bossMesh01.transform.DOLocalMoveY(0.1f, 1f);
-        bossMesh02.transform.DOLocalMoveY(-0.1f, 1f);
+        AudioManager.Instance.PlaySFX("Boss01open");
+        
+        bossMesh01.transform.DOLocalMoveY(0.06f, 2.2f).SetDelay(0.4f);
+        bossMesh02.transform.DOLocalMoveY(-0.06f, 2.2f).SetDelay(0.2f).OnComplete(()=> windParticle.Play());
+    }
+
+    public void BossCloseBeforeExplode()
+    {
+        AudioManager.Instance.PlaySFX("Boss01close");
+        windParticle.Stop();
+        bossMesh01.transform.DOLocalMoveY(0f, 3.2f).SetDelay(0.2f);
+        bossMesh02.transform.DOLocalMoveY(0f, 3.2f).SetDelay(0.3f);
     }
     #endregion
 }

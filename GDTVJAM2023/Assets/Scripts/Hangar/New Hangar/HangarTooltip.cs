@@ -69,6 +69,7 @@ public class HangarTooltip : MonoBehaviour
             case 15:// Wings
             case 16:// Direction Engine
             case 17:// Strafe Engine
+            case 18:// Nion
                 header_ = tooltipContent[contentType].header;
                 content_ = tooltipContent[contentType].content;
                 break;

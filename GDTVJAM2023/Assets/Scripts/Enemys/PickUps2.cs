@@ -31,12 +31,19 @@ public class PickUps2 : MonoBehaviour
         ifcollect = false;
         OrbParticle.gameObject.SetActive(true);
 
-        InvokeRepeating(nameof(DetectPlayer), 5f, 0.3f);
+        //InvokeRepeating(nameof(DetectPlayer), 5f, 0.01f);
     }
 
-   private void DetectPlayer()
+    private void Update()
+    {
+        DetectPlayer();
+    }
+
+    private void DetectPlayer()
     {
         float distanceToPlayer = Vector3.Distance(playerTransform.position, gameObject.transform.position);
+    
+
 
         if (distanceToPlayer <= detectRange)
         {

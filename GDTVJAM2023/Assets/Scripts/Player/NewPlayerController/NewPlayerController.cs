@@ -235,11 +235,11 @@ public class NewPlayerController : MonoBehaviour
         {
             case 0:
                 PlayerWeaponUpdatePickup();
-                pickupCollider.enabled = true;
+                //pickupCollider.enabled = true;
                 break;
             case 1:
                 navigationController.DeactivateNavigatorMesh();
-                pickupCollider.enabled = false;
+                //pickupCollider.enabled = false;
                 gameManager.GoToDimension();
                 AudioManager.Instance.PlaySFX("DimensionSwap");
                 break;

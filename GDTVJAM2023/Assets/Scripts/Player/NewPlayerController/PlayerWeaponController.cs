@@ -23,6 +23,7 @@ public class PlayerWeaponController : MonoBehaviour
     public bool isThermalSpheres = false;
     public bool isMineLayer = false;
     public bool isBackfireBeam = false;
+    public bool isSidegun = false;
 
     private HeadCannon isHeadCannonInstalled;
     private PeriodSpawner isRocketLauncherInstalled;
@@ -37,6 +38,7 @@ public class PlayerWeaponController : MonoBehaviour
     private ThermalSpheres isThermalSpheresInstalled;
     private MineLayer isMineLayerInstalled;
     private BackfireBeam isBackfireBeamInstalled;
+    private SideGun isSideGunInstalled;
 
 
     [Header("Head Cannon")]
@@ -169,6 +171,15 @@ public class PlayerWeaponController : MonoBehaviour
     [HideInInspector] public int bsShildLife_;
 
 
+    [Header("Side Gun")]
+    public int sdgDamage = 8;
+    public float sdgReloadTime = 3f;
+    public int sdgBulletsPerShoot = 8;
+    public GameObject sideGun;
+    [HideInInspector] public int sdgDamage_;
+    [HideInInspector] public float sdgReloadTime_;
+    [HideInInspector] public int sdgBulletsPerShoot_;
+
 
     // Events
     public event Action<int> OnMWDamage;
@@ -269,6 +280,11 @@ public class PlayerWeaponController : MonoBehaviour
         {
             go = Instantiate(backfireBeam, passivParentContainer);
             isBackfireBeamInstalled = go.GetComponent<BackfireBeam>();
+        }
+        if (isSidegun == true && isSideGunInstalled == null)
+        {
+            go = Instantiate(sideGun, passivParentContainer);
+            isSideGunInstalled = go.GetComponent<SideGun>();
         }
 
         Invoke("UpdateWeaponValues", 0.1f);
@@ -417,7 +433,17 @@ public class PlayerWeaponController : MonoBehaviour
             isBackfireBeamInstalled.StartFire(bbReloadTime_);
             isBackfireBeamInstalled.projectileCount = bbMainBeams;
             isBackfireBeamInstalled.killProjectileCount = bbKillBeams;
-            Debug.Log("bbKillBeams " + isBackfireBeamInstalled.killProjectileCount);
+        }
+
+        // Spread Gun - bullet - swarm
+        sdgDamage_ = Mathf.CeilToInt((sdgDamage) * (1 + shipData.percBulletDamage / 100));
+        sdgReloadTime_ = Mathf.Max(0.1f, (sdgReloadTime * supportReloadTime_));
+        sdgBulletsPerShoot_ = sdgBulletsPerShoot;
+        if (isSideGunInstalled != null)
+        {
+            isSideGunInstalled.bulletDamage = sdgDamage_;
+            isSideGunInstalled.realodInterval = sdgReloadTime_;
+            isSideGunInstalled.bulltesPerShoot = sdgBulletsPerShoot_;
         }
     }
     #endregion

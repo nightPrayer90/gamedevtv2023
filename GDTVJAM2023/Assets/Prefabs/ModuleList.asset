@@ -35,12 +35,12 @@ MonoBehaviour:
       canRight: 0
       canFront: 0
       canBack: 0
-      modulDescription_multiLineText: 'Energy production: 1.9 TJ / s
+      modulDescription_multiLineText: 'Boost regen: 0.5 TJ / s
 
-        Energy
-        storage: 7 TJ
+        Energy storage:
+        7 TJ
 
-        Health: 5 HP
+        Health: 6 HP
 
         Strafe engine: 3 / 4 TN'
       nion: 10
@@ -48,7 +48,7 @@ MonoBehaviour:
       costEnergie: 0
       energieProduction: 0.5
       energieStorage: 7
-      health: 5
+      health: 6
       protection: 0
       mainEngine: 0
       directionEngine: 0
@@ -428,7 +428,7 @@ MonoBehaviour:
     canHaveFrontNeighbor: 0
     canHaveBackNeighbor: 0
     moduleValues:
-      moduleName: Rocket Shooter Left
+      moduleName: D1 Rocket Shooter L
       moduleType: 5
       canLeft: 1
       canRight: 0
@@ -757,15 +757,14 @@ MonoBehaviour:
       canRight: 0
       canFront: 0
       canBack: 0
-      modulDescription_multiLineText: 'Energy production: 3 TJ / s
+      modulDescription_multiLineText: 'Boost regen: 0.8 TJ / s
 
-        Energy
-        storage: 10 TJ
+        Boost storage:
+        10 TJ
 
         Health: 11 HP
 
-        <color=#FF0000>Bullet Class:
-        +1 </color>'
+        <color=#FF0000>Bullet Class: +1 </color>'
       nion: 15
       costMass: 0.7
       costEnergie: 0
@@ -823,15 +822,14 @@ MonoBehaviour:
       canRight: 0
       canFront: 0
       canBack: 0
-      modulDescription_multiLineText: 'Energy production: 2.7 TJ / s
+      modulDescription_multiLineText: 'Boost regen: 0.8 TJ / s
 
-        Energy
-        storage: 12 TJ
+        Boost storage:
+        12 TJ
 
         Health: 9 HP
 
-        <color=#F57000>Explosion Class:
-        +1 </color>'
+        <color=#F57000>Explosion Class: +1 </color>'
       nion: 15
       costMass: 1
       costEnergie: 0
@@ -883,15 +881,14 @@ MonoBehaviour:
       canRight: 0
       canFront: 0
       canBack: 0
-      modulDescription_multiLineText: 'Energy production: 3,2 TJ / s
+      modulDescription_multiLineText: 'Boost regen:0.8 TJ / s
 
-        Energy
-        storage: 8 TJ
+        Boost storage:
+        8 TJ
 
         Health: 11 HP
 
-        <color=#5F9AFF>Laser class:
-        +1 </color>'
+        <color=#5F9AFF>Laser class: +1 </color>'
       nion: 15
       costMass: 0.8
       costEnergie: 0
