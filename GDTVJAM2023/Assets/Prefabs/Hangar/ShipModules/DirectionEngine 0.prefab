@@ -4866,6 +4866,7 @@ MonoBehaviour:
     canFront: 0
     canBack: 0
     modulDescription_multiLineText: 
+    nion: 0
     costMass: 0
     costEnergie: 0
     energieProduction: 0
@@ -4881,7 +4882,12 @@ MonoBehaviour:
     rocketClass: 0
     laserClass: 0
     supportClass: 0
+    moduleUpgrades: []
   moduleIndex: -1
+  moduleListIndex: -1
+  modulecompareIndex: 4
+  moduleSprite: {fileID: 21300000, guid: 23797d152b1b10a4cb0f42b2b532bc51, type: 3}
+  moduleCategorie: Direction Engine
   ps_engine: {fileID: 3538126319362101603}
   torqueForce: 0
   engine_side: 0

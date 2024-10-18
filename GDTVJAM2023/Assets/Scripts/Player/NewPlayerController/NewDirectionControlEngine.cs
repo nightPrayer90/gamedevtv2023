@@ -8,7 +8,9 @@ public class NewDirectionControlEngine : BaseModule
         right
     }
 
+    
     private NewPlayerController playerController;
+    [Header("Direction Engine")]
     [SerializeField] private ParticleSystem ps_engine;
     private Rigidbody playerRigidbody;
     public float torqueForce = 1f;

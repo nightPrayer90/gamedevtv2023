@@ -9779,6 +9779,10 @@ MonoBehaviour:
     supportClass: 0
     moduleUpgrades: []
   moduleIndex: -1
+  moduleListIndex: -1
+  modulecompareIndex: 22
+  moduleSprite: {fileID: 21300000, guid: bee824d5ddc2f1648a320438bc9c6b7d, type: 3}
+  moduleCategorie: Bullet Shooter
   bulletBaseDamage: 3
   fireRate: 0.3
   WeaponSound: {fileID: 0}

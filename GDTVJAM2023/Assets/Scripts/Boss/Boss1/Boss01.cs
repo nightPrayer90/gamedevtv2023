@@ -153,6 +153,7 @@ public class Boss01 : MonoBehaviour
                 bossMeshTransform.DOShakePosition(0.4f, 0.1f, 25, 90, false, true).SetDelay(0.2f).OnComplete(() =>
                 {
                     damageArea.GetComponent<DamageArea>().FadeOut();
+                    gameManager.ScreenShake(2);
                     ActivateState();
 
                     bossRingController.transform.DOShakePosition(1f, 0.08f, 17, 180, false, true);
@@ -223,6 +224,7 @@ public class Boss01 : MonoBehaviour
                     bossUI.SetForgroundColor(Color.red);
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
+                    gameManager.ScreenShake(1);
 
                     //Debug.Log("state1 @ " + enemyHealthScr.enemyHealth);
                     bossRingController.StopShooting01();
@@ -258,6 +260,7 @@ public class Boss01 : MonoBehaviour
                     windParticle.Stop();
 
                     PushThePlayer(2.5f, 5f);
+                    gameManager.ScreenShake(1);
                     CancelInvoke();
 
                     bossRingController.transform.DOShakePosition(1f, 0.06f, 30, 90, false, false);
@@ -319,9 +322,11 @@ public class Boss01 : MonoBehaviour
             bossMeshTransform.DOShakePosition(4f, 0.3f, 20, 90, false, true).OnComplete(() =>
             {
                 AudioManager.Instance.PlaySFX("BossExplode");
+                gameManager.ScreenShake(6);
                 rippleParticleDie.Play();
                 gameObject.tag = "Untagged";
                 PushThePlayer(6f, 6f);
+
 
                 // drop
                 ObjectPoolManager.SpawnObject(itemDrop, transform.position, transform.rotation, ObjectPoolManager.PoolType.PickUps);

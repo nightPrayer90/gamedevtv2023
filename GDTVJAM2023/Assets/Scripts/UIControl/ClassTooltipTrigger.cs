@@ -9,10 +9,17 @@ public class ClassTooltipTrigger : MonoBehaviour
     public GameObject goTooltip;
     public int contentType = 0;
     public Vector3 toolTipOffset;
+    public IconPrefab iconPrefab;
 
     private void Start()
     {
         triggerPosition = gameObject.transform.position;
+
+        if (goTooltip == null)
+        {
+            tooltip = GameObject.FindObjectOfType<ClassTooltip>(true);
+            goTooltip = tooltip.gameObject;
+        }
     }
 
     public void TooltipShow()
@@ -24,6 +31,15 @@ public class ClassTooltipTrigger : MonoBehaviour
             goTooltip.SetActive(true);
             AudioManager.Instance.PlaySFX("MouseHover");
         }
+    }
+
+    public void AbilityTooltipShow()
+    {
+        triggerPosition = transform.position + toolTipOffset;
+        tooltip.ShowAbilityTooltip(triggerPosition, iconPrefab.upgradeindex);
+        goTooltip.SetActive(true);
+        AudioManager.Instance.PlaySFX("MouseHover");
+
     }
 
 

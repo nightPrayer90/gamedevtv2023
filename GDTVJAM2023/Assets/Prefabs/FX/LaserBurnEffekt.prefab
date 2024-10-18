@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8679570185618156573}
   m_Layer: 0
   m_Name: LaserBurnEffekt
-  m_TagString: Untagged
+  m_TagString: Player_BurningGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

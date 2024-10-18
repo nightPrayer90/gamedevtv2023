@@ -5078,6 +5078,10 @@ MonoBehaviour:
     supportClass: 0
     moduleUpgrades: []
   moduleIndex: -1
+  moduleListIndex: -1
+  modulecompareIndex: 32
+  moduleSprite: {fileID: 21300000, guid: 1cdaf286f8e1ff047879fc7c76debb9a, type: 3}
+  moduleCategorie: Rocket Launcher
   fireRate: 1
   rockedBaseDamage: 6
   detectionRange: 7

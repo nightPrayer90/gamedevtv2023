@@ -8,6 +8,7 @@ public class PlayerWeaponController : MonoBehaviour
 {
     [Header("Ship Data")]
     public ShipData shipData;
+    public UpgradePanelController upgradePanelController;
 
     [Header("Passiv abilitys")]
     public bool isHeadCannon = false;
@@ -202,7 +203,7 @@ public class PlayerWeaponController : MonoBehaviour
         upgradeChooseList = GameObject.Find("Game Manager").GetComponent<UpgradeChooseList>();
 
         // Start Values - Update Weaponcontroller after loading all modules
-        Invoke("UpdatePlayerWeaponController", 1f);
+        Invoke(nameof(UpdatePlayerWeaponController), 1f);
     }
 
 
@@ -470,11 +471,28 @@ public class PlayerWeaponController : MonoBehaviour
         shipData.bulletCritChance = shipData.critChance * shipData.mcBulletLvl;
         shipData.bulletCritDamage = 100 + shipData.critDamage * shipData.mcBulletLvl;
 
-        shipData.burnDamageChance = 1 + shipData.burningChance * shipData.mcLaserLvl;
-
         shipData.rocketAOERadius = shipData.aoeRange * shipData.mcExplosionLvl;
 
+        shipData.burnDamageChance = 1 + shipData.burningChance * shipData.mcLaserLvl;
+
         shipData.supportReloadTime = shipData.mcSupportLvl * shipData.realodTime;
+
+        for (int i = 0; i < shipData.mcBulletLvl; i++)
+        {
+            upgradePanelController.classUpgradeOrder.Add(0);
+        }
+        for (int i = 0; i < shipData.mcExplosionLvl; i++)
+        {
+            upgradePanelController.classUpgradeOrder.Add(1);
+        }
+        for (int i = 0; i < shipData.mcLaserLvl; i++)
+        {
+            upgradePanelController.classUpgradeOrder.Add(2);
+        }
+        for (int i = 0; i < shipData.mcSupportLvl; i++)
+        {
+            upgradePanelController.classUpgradeOrder.Add(3);
+        }
 
         WeaponChoose();
     }
@@ -489,6 +507,7 @@ public class PlayerWeaponController : MonoBehaviour
         shipData.baseLaserTicks = 4;
         shipData.baseLaserTickDamage = 5;
         shipData.laserBurningTickDamangePercent = 100;
+        shipData.chanceToGetScrap = 5;
 
         shipData.percBulletDamage = 0;
         shipData.percRocketDamage = 0;
@@ -497,6 +516,8 @@ public class PlayerWeaponController : MonoBehaviour
         shipData.chanceToGetHealth = 0;
         shipData.chanceToGetFullEnergy = 0;
         shipData.rocketLifeTime = 0;
+        shipData.percAgility = 0;
+
         shipData.bossBonusDamage = 0;
         shipData.supportReloadTime = 0;
         shipData.percMainAttackSpeedBullet = 0;

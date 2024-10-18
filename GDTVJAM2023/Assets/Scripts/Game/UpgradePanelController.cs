@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using DG.Tweening;
+using System;
 
 
 public class UpgradePanelController : MonoBehaviour
@@ -22,18 +23,71 @@ public class UpgradePanelController : MonoBehaviour
     [HideInInspector] public List<int> valueList;
     [HideInInspector] public int[] selectedNumbers_ = new int[3];
 
+    [Header("Stats Control")]
+    public CanvasGroup levelUpHudCG;
+    public CanvasGroup statsCG;
+    public RectTransform upgradeIconContainer;
+    public GameObject upgradeIconPrefab;
+    private bool isStatsWindowOpen = false;
+    private bool isStatsLoad = false;
+    public TMP_Text healthText;
+    public TMP_Text protectionText;
+    public TMP_Text boostStorageText;
+    public TMP_Text boostRegenText;
+    public TMP_Text pickupRange;
+    public TMP_Text reloadSpeedText;
+    public TMP_Text bulletDamageTextM;
+    public TMP_Text critChanceText;
+    public TMP_Text critDamageText;
+    public TMP_Text eplosionDamageText;
+    public TMP_Text AOEsizeText;
+    public TMP_Text rocketLifeTimeText;
+    public TMP_Text laserDamageText;
+    public TMP_Text burningChanceText;
+    public TMP_Text burningDamageText;
+    public TMP_Text totalBurningDamageText;
+    public TMP_Text doubledExpText;
+    public TMP_Text scrapsText;
+    public TMP_Text chanceToGetHPText;
+    public TMP_Text fullBoostText;
+
+    [Header("Ability Panel")]
+    public Image abilityImage;
+    public TMP_Text abilityName;
+    public TMP_Text abilityCoolDown;
+
+    [Serializable]
+    public struct AbilityDiscription
+    {
+        public TMP_Text disText;
+        public TMP_Text disValue;
+    }
+    public AbilityDiscription[] abilityDiscription;
+
+    [Header("Class Panel")]
+    public List<int> classUpgradeOrder = new();
+    public Image[] classImages;
+
     [Header("Value Panel")]
     public Image bkImage;
-    //public List<Color> cl lc assColors;
     public List<Image> classPanels = new List<Image>();
     public List<Image> selectedUpgradePanelList = new List<Image>();
     private int weaponCount = 0;
 
-    // Objects
+    [Header("Module Panel")]
+    public GameObject modulePrefab_1;
+    public GameObject modulePrefab_2;
+    public GameObject modulePrefab_3;
+    public GameObject modulePrefab_4;
+    public GameObject modulePrefab_5;
+    public RectTransform modulePrefabContainer;
+
+    [Header("Objects")]
     public GameManager gameManager;
     public NewPlayerController playerController;
     public PlayerWeaponController playerWeaponController;
     public UpgradeChooseList upgradeChooseList;
+
 
     public int selectetPanel;
     public bool isButtonPressed = false;
@@ -48,7 +102,6 @@ public class UpgradePanelController : MonoBehaviour
     /* **************************************************************************** */
     #region lifecycle
 
-
     void OnEnable()
     {
         selectetPanel = -1;
@@ -57,6 +110,12 @@ public class UpgradePanelController : MonoBehaviour
 
         bkImage.DOFade(1f, 0.2f).SetUpdate(true);
 
+        isStatsWindowOpen = false;
+        levelUpHudCG.alpha = 1;
+        levelUpHudCG.blocksRaycasts = true;
+        statsCG.alpha = 0;
+        statsCG.blocksRaycasts = false;
+        isStatsLoad = false;
 
         // events
         inputHandler.DisableGameControls();
@@ -65,6 +124,7 @@ public class UpgradePanelController : MonoBehaviour
         inputHandler.OnNavigateUIInputChanged += HandleNavigateInput;
         inputHandler.OnClickInputChanged += HandleSubmitInput;
         inputHandler.OnReroll += HandleRerollInput;
+        inputHandler.OnStats += HandleStatsWindow;
     }
 
     private void OnDisable()
@@ -73,6 +133,7 @@ public class UpgradePanelController : MonoBehaviour
         inputHandler.OnNavigateUIInputChanged -= HandleNavigateInput;
         inputHandler.OnClickInputChanged -= HandleSubmitInput;
         inputHandler.OnReroll -= HandleRerollInput;
+        inputHandler.OnStats -= HandleStatsWindow;
 
         inputHandler.DisableUIControls();
         inputHandler.EnableGameControls();
@@ -81,7 +142,7 @@ public class UpgradePanelController : MonoBehaviour
 
     private void HandleNavigateInput(Vector2 inputVector2)
     {
-        if (inputVector2 != Vector2.zero && isTweening == false && isButtonPressed == false)
+        if (inputVector2 != Vector2.zero && isTweening == false && isButtonPressed == false && isStatsWindowOpen == false)
         {
             if (inputVector2.x >= 0.5)
             {
@@ -126,7 +187,7 @@ public class UpgradePanelController : MonoBehaviour
 
     private void HandleSubmitInput()
     {
-        if (selectetPanel != -1 && isButtonPressed == false)
+        if (selectetPanel != -1 && isButtonPressed == false && isStatsWindowOpen == false)
         {
             panelList[selectetPanel].OnMouseDown_();
             isButtonPressed = true;
@@ -135,14 +196,517 @@ public class UpgradePanelController : MonoBehaviour
 
     private void HandleRerollInput()
     {
-        if (rerolls > 0)
+        if (rerolls > 0 && isStatsWindowOpen == false)
         {
             rerolls--;
             CreateRandomNumbers(upgradeType);
             AudioManager.Instance.PlaySFX("Reroll");
         }
     }
+
+    private void HandleStatsWindow()
+    {
+        // open StatsPanel
+        if (isStatsWindowOpen == false)
+        {
+            AudioManager.Instance.PlaySFX("MouseKlick");
+            levelUpHudCG.alpha = 0;
+            levelUpHudCG.blocksRaycasts = false;
+            statsCG.alpha = 1;
+            statsCG.blocksRaycasts = true;
+
+            if (isStatsLoad == false)
+                LoadStatsWindow();
+
+            isStatsWindowOpen = true;
+        }
+
+        // close StatsPanel
+        else
+        {
+            AudioManager.Instance.PlaySFX("MouseKlick");
+            levelUpHudCG.alpha = 1;
+            levelUpHudCG.blocksRaycasts = true;
+            statsCG.alpha = 0;
+            statsCG.blocksRaycasts = false;
+
+            isStatsWindowOpen = false;
+        }
+    }
     #endregion
+
+
+    /* **************************************************************************** */
+    /* Stats Panel ---------------------------------------------------------------- */
+    /* **************************************************************************** */
+    #region stats Panel
+    private void LoadStatsWindow()
+    {
+        // load only 1 times per Level Up
+        isStatsLoad = true;
+
+        // Ability Panel -----------------
+        // reset UpgradePanel
+        foreach (RectTransform upgradePrefab in upgradeIconContainer)
+        {
+            Destroy(upgradePrefab.gameObject);
+        }
+
+        // set all UpgradePrefabs
+        for (int i = 0; i < upgradeChooseList.upgrades.Count; i++)
+        {
+            if (upgradeChooseList.upgrades[i].upgradeIndexInstalled > 0)
+            {
+                GameObject go = Instantiate(upgradeIconPrefab, upgradeIconContainer);
+                IconPrefab iP = go.GetComponent<IconPrefab>();
+                iP.SetIcon(upgradeChooseList.upgrades[i].upgradeIndexInstalled, upgradeChooseList.uLObject.upgradeList[i].iconPanel, gameManager.cCPrefab.classColor[upgradeChooseList.uLObject.upgradeList[i].colorIndex], i);
+            }
+        }
+
+        // set StatsPanel --------------
+        healthText.text = $" {playerController.playerMaxHealth} HP";
+        protectionText.text = $" {playerController.protectionPerc} %";
+        boostStorageText.text = $" {Mathf.Round(playerController.energieMax * 100) / 100} TJ";
+        boostRegenText.text = $" {Mathf.Round(playerController.energieProduction * 100) / 100} TJ/s";
+        pickupRange.text = $" {Mathf.Round(playerController.pickupRange * 100) / 100} m";
+        reloadSpeedText.text = $" {playerWeaponController.shipData.supportReloadTime} %";
+        bulletDamageTextM.text = $" {playerWeaponController.shipData.percBulletDamage} %";
+        critChanceText.text = $" {playerWeaponController.shipData.bulletCritChance} %";
+        critDamageText.text = $" {playerWeaponController.shipData.bulletCritDamage} %";
+        eplosionDamageText.text = $" {playerWeaponController.shipData.percRocketDamage} %";
+        AOEsizeText.text = $" {playerWeaponController.shipData.rocketAOERadius} %";
+        rocketLifeTimeText.text = $" {Mathf.Round(playerWeaponController.shipData.rocketLifeTime * 100) / 100} s";
+        laserDamageText.text = $" {playerWeaponController.shipData.percLaserDamage} %";
+        burningChanceText.text = $" {playerWeaponController.shipData.burningChance} %";
+        burningDamageText.text = $" {playerWeaponController.shipData.laserBurningTickDamangePercent} %";
+        totalBurningDamageText.text = $" {playerWeaponController.shipData.baseLaserTicks}x {Mathf.CeilToInt(playerWeaponController.shipData.baseLaserTickDamage * (playerWeaponController.shipData.laserBurningTickDamangePercent) / 100)}";
+        doubledExpText.text = $" {playerWeaponController.shipData.chanceToGetTwoExp} %";
+        scrapsText.text = $" {playerWeaponController.shipData.chanceToGetScrap} %";
+        chanceToGetHPText.text = $" {playerWeaponController.shipData.chanceToGetHealth} %";
+        fullBoostText.text = $" {playerWeaponController.shipData.chanceToGetFullEnergy} %";
+
+        // set AbilityPanel --------------
+        abilityImage.sprite = gameManager.abImage.sprite;
+        abilityName.text = gameManager.abName;
+        abilityCoolDown.text = $"CD: {Mathf.Round(gameManager.abReloadTime * (1 - playerWeaponController.shipData.mcSupportLvl * 0.1f))} s";
+
+        for (int i = 0; i < abilityDiscription.Length; i++)
+        {
+            abilityDiscription[i].disText.text = "";
+            abilityDiscription[i].disValue.text = "";
+        }
+
+        int ii = 1;
+        switch (abilityName.text)
+        {
+            case "Front Shield":
+                abilityDiscription[0].disText.text = "Shield health";
+                abilityDiscription[0].disValue.text = $"{playerWeaponController.shipData.shieldHealth} HP";
+
+                ii = 1;
+
+                if (playerWeaponController.shipData.shieldDamage > 0)
+                {
+                    abilityDiscription[ii].disText.text = "Shield damage";
+                    abilityDiscription[ii].disValue.text = $"{playerWeaponController.shipData.shieldDamage}";
+                    ii++;
+                }
+                if (upgradeChooseList.upgrades[62].upgradeIndexInstalled > 0)
+                {
+                    abilityDiscription[ii].disText.text = "Shield triggers a nova when it dies";
+                    ii++;
+                }
+                if (upgradeChooseList.upgrades[44].upgradeIndexInstalled > 0)
+                {
+                    abilityDiscription[ii].disText.text = "Explosion AOE size +2% when it dies";
+                    ii++;
+                }
+                if (upgradeChooseList.upgrades[45].upgradeIndexInstalled > 0)
+                {
+                    abilityDiscription[ii].disText.text = "Critical Damage +2% when it dies";
+                    ii++;
+                }
+                if (upgradeChooseList.upgrades[43].upgradeIndexInstalled > 0)
+                {
+                    abilityDiscription[ii].disText.text = "Colliding enemies get burn";
+                }
+
+                break;
+            case "Power Boost":
+                abilityDiscription[0].disText.text = "Boost invulnerability";
+                abilityDiscription[0].disValue.text = $"{Mathf.Round(playerWeaponController.shipData.boostInvulnerability * 100) / 100} s";
+
+                abilityDiscription[1].disText.text = "Boost Shield size";
+                abilityDiscription[1].disValue.text = $"{Mathf.Round(playerWeaponController.shipData.boostSize * 100) / 100} m";
+
+                abilityDiscription[2].disText.text = "Boost damage";
+                abilityDiscription[2].disValue.text = $"{playerWeaponController.shipData.boostDamage}";
+                ii = 3;
+
+                if (upgradeChooseList.upgrades[25].upgradeIndexInstalled > 1)
+                {
+                    abilityDiscription[ii].disText.text = "Boost trigger a nova on activate";
+                    ii++;
+                }
+                if (upgradeChooseList.upgrades[42].upgradeIndexInstalled > 1)
+                {
+                    abilityDiscription[ii].disText.text = "Boost damage is always critical";
+                    ii++;
+                }
+                if (upgradeChooseList.upgrades[61].upgradeIndexInstalled > 1)
+                {
+                    abilityDiscription[ii].disText.text = "Boost Shield trigger burning damage";
+                    ii++;
+                }
+
+                break;
+            case "Rocket rain":
+                abilityDiscription[0].disText.text = "Amount of rockets";
+                abilityDiscription[0].disValue.text = $"{playerWeaponController.shipData.extraRockets + 13} st."; // TODO -> 13 as fixed value
+
+                abilityDiscription[1].disText.text = "Rocket damage";
+                abilityDiscription[1].disValue.text = $"{Mathf.Round(playerWeaponController.shipData.extraDamage + 2)*100 / 100} m"; // TODO -> 5 as fixed value
+
+                ii = 2;
+                if (upgradeChooseList.upgrades[87].upgradeIndexInstalled > 1)
+                {
+                    abilityDiscription[ii].disText.text = $"{upgradeChooseList.upgrades[87].upgradeIndexInstalled * 25} % that killed Enemies Explode on die";
+                    ii++;
+                }
+
+                break;
+            case "Infernal Sphere":
+                float preloadtime = 2;
+                abilityDiscription[0].disText.text = "Preload time";
+                if (upgradeChooseList.upgrades[92].upgradeIndexInstalled == 1) preloadtime = 1;
+                if (upgradeChooseList.upgrades[92].upgradeIndexInstalled == 2) preloadtime = 0.5f;
+                abilityDiscription[0].disValue.text = $"{preloadtime} s"; // TODO -> 13 as fixed value
+
+                abilityDiscription[1].disText.text = "Sphere growing rate";
+                abilityDiscription[1].disValue.text = $"{Mathf.Round((0.15f) * (1 + (0.50f * upgradeChooseList.upgrades[93].upgradeIndexInstalled)) * 100)} % per hit";
+                ii = 2;
+
+                if (upgradeChooseList.upgrades[94].upgradeIndexInstalled > 1)
+                {
+                    abilityDiscription[ii].disText.text = $"Sphere release a Burning Field";
+                    ii++;
+                }
+
+                if (upgradeChooseList.upgrades[95].upgradeIndexInstalled > 1)
+                {
+                    abilityDiscription[ii].disText.text = $"Sphere release a nova";
+                    ii++;
+                }
+
+                if (upgradeChooseList.upgrades[96].upgradeIndexInstalled > 1)
+                {
+                    abilityDiscription[ii].disText.text = $"Incresed damage for every hit";
+                    ii++;
+                }
+
+                if (upgradeChooseList.upgrades[97].upgradeIndexInstalled > 1)
+                {
+                    abilityDiscription[ii].disText.text = $"More burning Field lifetime per hit";
+                    ii++;
+                }
+                break;
+        }
+
+
+
+
+        // set class Panel ------------------
+        for (int i = 0; i < Mathf.Min(classImages.Length, classUpgradeOrder.Count); i++)
+        {
+            classImages[i].color = gameManager.cCPrefab.classColor[classUpgradeOrder[i]];
+        }
+
+
+        //set module Panel -----------------
+        foreach (RectTransform item in modulePrefabContainer)
+        {
+            Destroy(item.gameObject);
+        }
+
+        SetBulletModules();
+        SetRocketModules();
+        SetLaserModules();
+        SetSphereThrowersModules();
+        SetStrafeEngines();
+        SetDirectionEngines();
+        SetMainEngines();    
+    }
+
+
+    private void SetBulletModules()
+    {
+        List<int> moduleIndexList = new();
+        Dictionary<int, NewBulletMainWeapon> indexCounts = new Dictionary<int, NewBulletMainWeapon>();
+        Dictionary<int, int> quantityCounts = new Dictionary<int, int>();
+
+        // Create a new List with all module Indexes
+        for (int i = 0; i < playerController.foundBullets.Length; i++)
+        {
+            moduleIndexList.Add(playerController.foundBullets[i].modulecompareIndex);
+        }
+
+        // Create a Dictionary with int ModuleListIndex, Instance + a second Dictionary with ModuleListIndex and quantitys
+        for (int i = 0; i < moduleIndexList.Count; i++)
+        {
+            if (indexCounts.ContainsKey(moduleIndexList[i]))
+                quantityCounts[moduleIndexList[i]]++;
+            else
+            {
+                indexCounts.Add(moduleIndexList[i], playerController.foundBullets[i]);
+                quantityCounts.Add(moduleIndexList[i], 1);
+            }
+        }
+
+        foreach (KeyValuePair<int, NewBulletMainWeapon> moduleIndex in indexCounts)
+        {
+            NewBulletMainWeapon bullets = moduleIndex.Value;
+
+            GameObject go = Instantiate(modulePrefab_3, modulePrefabContainer);
+            GameStatsModulePrefab gSMP = go.GetComponent<GameStatsModulePrefab>();
+            gSMP.SetIconSprite(bullets.moduleSprite);
+            gSMP.SetHeaderText(bullets.moduleCategorie, gameManager.cCPrefab.classColor[0], quantityCounts[moduleIndex.Key]);
+            gSMP.SetDescription(0, "Damage", $"{(float)bullets.bulletBaseDamage + Mathf.CeilToInt((float)bullets.bulletBaseDamage * (playerWeaponController.shipData.percBulletDamage / 100))}");
+            gSMP.SetDescription(1, "Attackspeed", $"{playerWeaponController.shipData.percMainAttackSpeedBullet}%");
+            gSMP.SetDescription(2, "Fire rate", $"{Mathf.Round((float)bullets.fireRate*100)/100} bullets/s");
+        }
+    }
+
+    private void SetRocketModules()
+    {
+        List<int> moduleIndexList = new();
+        Dictionary<int, NewRocketMainWeapon> indexCounts = new Dictionary<int, NewRocketMainWeapon>();
+        Dictionary<int, int> quantityCounts = new Dictionary<int, int>();
+
+        // Create a new List with all module Indexes
+        for (int i = 0; i < playerController.foundRockets.Length; i++)
+        {
+            moduleIndexList.Add(playerController.foundRockets[i].modulecompareIndex);
+        }
+
+        // Create a Dictionary with int ModuleListIndex, Instance + a second Dictionary with ModuleListIndex and quantitys
+        for (int i = 0; i < moduleIndexList.Count; i++)
+        {
+            if (indexCounts.ContainsKey(moduleIndexList[i]))
+                quantityCounts[moduleIndexList[i]]++;
+            else
+            {
+                indexCounts.Add(moduleIndexList[i], playerController.foundRockets[i]);
+                quantityCounts.Add(moduleIndexList[i], 1);
+            }
+        }
+
+        foreach (KeyValuePair<int, NewRocketMainWeapon> moduleIndex in indexCounts)
+        {
+            NewRocketMainWeapon rockets = moduleIndex.Value;
+
+            GameObject go = Instantiate(modulePrefab_3, modulePrefabContainer);
+            GameStatsModulePrefab gSMP = go.GetComponent<GameStatsModulePrefab>();
+            gSMP.SetIconSprite(rockets.moduleSprite);
+            gSMP.SetHeaderText(rockets.moduleCategorie, gameManager.cCPrefab.classColor[1], quantityCounts[moduleIndex.Key]);
+            gSMP.SetDescription(0, "Damage", $"{Mathf.CeilToInt((float)rockets.rockedBaseDamage * (1 + (playerWeaponController.shipData.percRocketDamage / 100)))}");
+            gSMP.SetDescription(1, "Fire rate", $"{Mathf.Round(rockets.fireRate)} rockets/s");
+            gSMP.SetDescription(2, "Extra Boss Damage", $"{playerWeaponController.shipData.bossBonusDamage} %");
+        }
+    }
+
+    private void SetLaserModules()
+    {
+        List<int> moduleIndexList = new();
+        Dictionary<int, NewLaserMainWeapon> indexCounts = new Dictionary<int, NewLaserMainWeapon>();
+        Dictionary<int, int> quantityCounts = new Dictionary<int, int>();
+
+        // Create a new List with all module Indexes
+        for (int i = 0; i < playerController.foundLasers.Length; i++)
+        {
+            moduleIndexList.Add(playerController.foundLasers[i].modulecompareIndex);
+        }
+
+        // Create a Dictionary with int ModuleListIndex, Instance + a second Dictionary with ModuleListIndex and quantitys
+        for (int i = 0; i < moduleIndexList.Count; i++)
+        {
+            if (indexCounts.ContainsKey(moduleIndexList[i]))
+                quantityCounts[moduleIndexList[i]]++;
+            else
+            {
+                indexCounts.Add(moduleIndexList[i], playerController.foundLasers[i]);
+                quantityCounts.Add(moduleIndexList[i], 1);
+            }
+        }
+
+        foreach (KeyValuePair<int, NewLaserMainWeapon> moduleIndex in indexCounts)
+        {
+            NewLaserMainWeapon laser = moduleIndex.Value;
+
+            GameObject go = Instantiate(modulePrefab_4, modulePrefabContainer);
+            GameStatsModulePrefab gSMP = go.GetComponent<GameStatsModulePrefab>();
+            gSMP.SetIconSprite(laser.moduleSprite);
+            gSMP.SetHeaderText(laser.moduleCategorie, gameManager.cCPrefab.classColor[2], quantityCounts[moduleIndex.Key]);
+            gSMP.SetDescription(0, "Damage", $"{Mathf.CeilToInt((float)laser.laserBaseDamage * (1 + (playerWeaponController.shipData.percLaserDamage / 100)))}");
+            gSMP.SetDescription(1, "Shooting time", $"{laser.laserShootTime} s");
+            gSMP.SetDescription(2, "Downtime time", $"{laser.fireRate} s");
+            gSMP.SetDescription(3, "Laser range", $"{laser.laserRange} m");
+        }
+    }
+
+    private void SetSphereThrowersModules()
+    {
+        List<int> moduleIndexList = new();
+        Dictionary<int, NewSphereThrower> indexCounts = new Dictionary<int, NewSphereThrower>();
+        Dictionary<int, int> quantityCounts = new Dictionary<int, int>();
+
+        // Create a new List with all module Indexes
+        for (int i = 0; i < playerController.foundSphereThrowers.Length; i++)
+        {
+            moduleIndexList.Add(playerController.foundSphereThrowers[i].modulecompareIndex);
+        }
+
+        // Create a Dictionary with int ModuleListIndex, Instance + a second Dictionary with ModuleListIndex and quantitys
+        for (int i = 0; i < moduleIndexList.Count; i++)
+        {
+            if (indexCounts.ContainsKey(moduleIndexList[i]))
+                quantityCounts[moduleIndexList[i]]++;
+            else
+            {
+                indexCounts.Add(moduleIndexList[i], playerController.foundSphereThrowers[i]);
+                quantityCounts.Add(moduleIndexList[i], 1);
+            }
+        }
+
+        foreach (KeyValuePair<int, NewSphereThrower> moduleIndex in indexCounts)
+        {
+            NewSphereThrower sphereThrower = moduleIndex.Value;
+
+            GameObject go = Instantiate(modulePrefab_5, modulePrefabContainer);
+            GameStatsModulePrefab gSMP = go.GetComponent<GameStatsModulePrefab>();
+            gSMP.SetIconSprite(sphereThrower.moduleSprite);
+            gSMP.SetHeaderText(sphereThrower.moduleCategorie, gameManager.cCPrefab.classColor[2], quantityCounts[moduleIndex.Key]);
+            gSMP.SetDescription(0, "Burning Damage", $"{playerWeaponController.shipData.baseLaserTicks}x {Mathf.CeilToInt(playerWeaponController.shipData.baseLaserTickDamage * (playerWeaponController.shipData.laserBurningTickDamangePercent) / 100)}");
+            gSMP.SetDescription(1, "Burning chance", $"100 %");
+            gSMP.SetDescription(2, "Spawn interval", $"{sphereThrower.spawnInterval} s");
+            gSMP.SetDescription(3, "Spawn quanity up to", $"{sphereThrower.spawnQuantity + upgradeChooseList.upgrades[82].upgradeIndexInstalled} Spheres");
+            gSMP.SetDescription(4, "Spheres lifetime", $"{sphereThrower.lifeTime} s");
+        }
+    }
+
+    private void SetStrafeEngines()
+    {
+        List<int> moduleIndexList = new();
+        Dictionary<int, NewStrafeEngine> indexCounts = new Dictionary<int, NewStrafeEngine>();
+        Dictionary<int, int> quantityCounts = new Dictionary<int, int>();
+
+        // Create a new List with all module Indexes
+        for (int i = 0; i < playerController.foundStrafeEngine.Length; i++)
+        {
+            moduleIndexList.Add(playerController.foundStrafeEngine[i].modulecompareIndex);
+        }
+
+        // Create a Dictionary with int ModuleListIndex, Instance + a second Dictionary with ModuleListIndex and quantitys
+        for (int i = 0; i < moduleIndexList.Count; i++)
+        {
+            if (indexCounts.ContainsKey(moduleIndexList[i]))
+                quantityCounts[moduleIndexList[i]]++;
+            else
+            {
+                indexCounts.Add(moduleIndexList[i], playerController.foundStrafeEngine[i]);
+                quantityCounts.Add(moduleIndexList[i], 1);
+            }
+        }
+
+        foreach (KeyValuePair<int, NewStrafeEngine> moduleIndex in indexCounts)
+        {
+            NewStrafeEngine strafeEngine = moduleIndex.Value;
+
+            GameObject go = Instantiate(modulePrefab_2, modulePrefabContainer);
+            GameStatsModulePrefab gSMP = go.GetComponent<GameStatsModulePrefab>();
+            gSMP.SetIconSprite(strafeEngine.moduleSprite);
+            gSMP.SetHeaderText(strafeEngine.moduleCategorie, gameManager.cCPrefab.classColor[4], quantityCounts[moduleIndex.Key]);
+            gSMP.SetDescription(0, "Strafe force", $"{strafeEngine.strafeForce} TJ");
+            gSMP.SetDescription(1, "Boost force", $"{strafeEngine.strafeBoostforce} TJ");
+        }
+    }
+
+    private void SetDirectionEngines()
+    {
+        List<int> moduleIndexList = new();
+        Dictionary<int, NewDirectionControlEngine> indexCounts = new Dictionary<int, NewDirectionControlEngine>();
+        Dictionary<int, int> quantityCounts = new Dictionary<int, int>();
+
+        // Create a new List with all module Indexes
+        for (int i = 0; i < playerController.foundDirectionEngines.Length; i++)
+        {
+            moduleIndexList.Add(playerController.foundDirectionEngines[i].modulecompareIndex);
+        }
+
+        // Create a Dictionary with int ModuleListIndex, Instance + a second Dictionary with ModuleListIndex and quantitys
+        for (int i = 0; i < moduleIndexList.Count; i++)
+        {
+            if (indexCounts.ContainsKey(moduleIndexList[i]))
+                quantityCounts[moduleIndexList[i]]++;
+            else
+            {
+                indexCounts.Add(moduleIndexList[i], playerController.foundDirectionEngines[i]);
+                quantityCounts.Add(moduleIndexList[i], 1);
+            }
+        }
+
+        foreach (KeyValuePair<int, NewDirectionControlEngine> moduleIndex in indexCounts)
+        {
+            NewDirectionControlEngine directionEngine = moduleIndex.Value;
+
+            GameObject go = Instantiate(modulePrefab_1, modulePrefabContainer);
+            GameStatsModulePrefab gSMP = go.GetComponent<GameStatsModulePrefab>();
+            gSMP.SetIconSprite(directionEngine.moduleSprite);
+            gSMP.SetHeaderText(directionEngine.moduleCategorie, gameManager.cCPrefab.classColor[5], quantityCounts[moduleIndex.Key]);
+            gSMP.SetDescription(0, "Torque force", $"{directionEngine.torqueForce} TNm");
+        }
+    }
+
+    private void SetMainEngines()
+    {
+        List<int> moduleIndexList = new();
+        Dictionary<int, NewBaseEngine> indexCounts = new Dictionary<int, NewBaseEngine>();
+        Dictionary<int, int> quantityCounts = new Dictionary<int, int>();
+
+        // Create a new List with all module Indexes
+        for (int i = 0; i < playerController.foundMainEngines.Length; i++)
+        {
+            moduleIndexList.Add(playerController.foundMainEngines[i].modulecompareIndex);
+        }
+
+        // Create a Dictionary with int ModuleListIndex, Instance + a second Dictionary with ModuleListIndex and quantitys
+        for (int i = 0; i < moduleIndexList.Count; i++)
+        {
+            if (indexCounts.ContainsKey(moduleIndexList[i]))
+                quantityCounts[moduleIndexList[i]]++;
+            else
+            {
+                indexCounts.Add(moduleIndexList[i], playerController.foundMainEngines[i]);
+                quantityCounts.Add(moduleIndexList[i], 1);
+            }
+        }
+
+        foreach (KeyValuePair<int, NewBaseEngine> moduleIndex in indexCounts)
+        {
+            NewBaseEngine mainEngine = moduleIndex.Value;
+
+            GameObject go = Instantiate(modulePrefab_4, modulePrefabContainer);
+            GameStatsModulePrefab gSMP = go.GetComponent<GameStatsModulePrefab>();
+            gSMP.SetIconSprite(mainEngine.moduleSprite);
+            gSMP.SetHeaderText(mainEngine.moduleCategorie, gameManager.cCPrefab.classColor[6], quantityCounts[moduleIndex.Key]);
+            gSMP.SetDescription(0, "Thrust force", $"{mainEngine.thrustForce} TJ");
+            gSMP.SetDescription(1, "Boost force", $"{mainEngine.frontBoostPower} TJ");
+            gSMP.SetDescription(2, "Backwards force", $"{mainEngine.backForce} TJ");
+            gSMP.SetDescription(3, "Backwards boost force", $"{mainEngine.backBoostPower} TJ");
+        }
+    }
+
+    #endregion
+
 
     /* **************************************************************************** */
     /* Upgrade Prepare ------------------------------------------------------------ */
@@ -832,6 +1396,7 @@ public class UpgradePanelController : MonoBehaviour
                     playerWeaponController.shipData.mcBulletLvl += factor;
                     playerWeaponController.shipData.bulletCritChance += playerWeaponController.shipData.critChance;
                     playerWeaponController.shipData.bulletCritDamage += playerWeaponController.shipData.critDamage;
+                    classUpgradeOrder.Add(index);
                 }
                 break;
             case 1:
@@ -839,6 +1404,7 @@ public class UpgradePanelController : MonoBehaviour
                 {
                     playerWeaponController.shipData.mcExplosionLvl += factor;
                     playerWeaponController.shipData.rocketAOERadius += playerWeaponController.shipData.aoeRange;
+                    classUpgradeOrder.Add(index);
                 }
                 break;
             case 2:
@@ -846,6 +1412,7 @@ public class UpgradePanelController : MonoBehaviour
                 {
                     playerWeaponController.shipData.mcLaserLvl += factor;
                     playerWeaponController.shipData.burnDamageChance += playerWeaponController.shipData.burningChance;
+                    classUpgradeOrder.Add(index);
                 }
                 break;
             case 3:
@@ -853,6 +1420,7 @@ public class UpgradePanelController : MonoBehaviour
                 {
                     playerWeaponController.shipData.mcSupportLvl += factor;
                     playerWeaponController.shipData.supportReloadTime += playerWeaponController.shipData.realodTime;
+                    classUpgradeOrder.Add(index);
                 }
                 break;
         }

@@ -410,7 +410,7 @@ public class HangarUIController : MonoBehaviour
         spEnergieRegen.text = energieProduction.ToString() + " TJ/s"; ; // -> Value that comes from oduleValues
         spEnergieStorage.text = energieStorage.ToString() + " TJ";
 
-        spMassValue.text = massResult.ToString() + " t";
+        spMassValue.text = (Mathf.Round(massResult*100)/100).ToString() + " t";
         spMainEngine.text = mainEngine.ToString() + " /<color=#00FFFF>" + boostEngine.ToString() + "</color> TN";
         directionEngine = Mathf.Round((directionEngine / 2) * 100) / 100;
         spDirectionEngine.text = directionEngine.ToString() + " TNm";

@@ -43749,6 +43749,10 @@ MonoBehaviour:
     supportClass: 0
     moduleUpgrades: []
   moduleIndex: -1
+  moduleListIndex: -1
+  modulecompareIndex: 25
+  moduleSprite: {fileID: 21300000, guid: c4d3089fe85f01e41b3bd3d3437a81c3, type: 3}
+  moduleCategorie: Main Thruster
   useBoost: 0
   ps_engine: {fileID: 5593386540622038281}
   ps_boostEngine: {fileID: 6234797105447130074}

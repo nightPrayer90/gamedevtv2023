@@ -15,6 +15,7 @@ public class ab_PowerBoost : MonoBehaviour
 
     public Collider hitCollider;
     public ParticleSystem hitMarker;
+    public string abilityName = "";
 
     private void Start()
     {
@@ -25,7 +26,7 @@ public class ab_PowerBoost : MonoBehaviour
 
         playerRb = playerController.gameObject.GetComponent<Rigidbody>();
 
-        gameManager.InitAbilityUI(abSprite);
+        gameManager.InitAbilityUI(abSprite, "Power Boost", realoadTime);
         SetReloadFlag();
 
         

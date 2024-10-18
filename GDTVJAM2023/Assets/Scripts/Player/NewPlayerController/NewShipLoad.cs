@@ -49,6 +49,7 @@ public class NewShipLoad : MonoBehaviour
                     {
                         bm.moduleValues = moduleList.moduls[instance.moduleTypeIndex].moduleValues;
                     }
+                    bm.moduleListIndex = instance.moduleTypeIndex;
                 }
                 i++;
 

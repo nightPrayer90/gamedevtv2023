@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -20,6 +19,7 @@ public class ab_Laser : MonoBehaviour
     public ParticleSystem loadParticle;
     private float loadingtime = 2;
     private float recoilForce = 5f;
+    public string abilityName = "Infernal Sphere";
 
     private void Start()
     {
@@ -30,7 +30,7 @@ public class ab_Laser : MonoBehaviour
         playerWeaponController = playerController.playerWeaponController;
         playerRB = playerController.playerRigidbody;
 
-        gameManager.InitAbilityUI(abSprite);
+        gameManager.InitAbilityUI(abSprite, abilityName, realoadTime);
         SetReloadFlag();
 
         // Shpere upgrades

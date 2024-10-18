@@ -5110,6 +5110,10 @@ MonoBehaviour:
     supportClass: 0
     moduleUpgrades: []
   moduleIndex: -1
+  moduleListIndex: -1
+  modulecompareIndex: 38
+  moduleSprite: {fileID: 21300000, guid: 6dc4799b581d432469bebeed9e1a48e0, type: 3}
+  moduleCategorie: Direction Engine
   ps_engine: {fileID: 5172111136767094056}
   torqueForce: 0.28
   engine_side: 0
@@ -5157,6 +5161,10 @@ MonoBehaviour:
     supportClass: 0
     moduleUpgrades: []
   moduleIndex: -1
+  moduleListIndex: -1
+  modulecompareIndex: 38
+  moduleSprite: {fileID: 21300000, guid: d3137069e9e58f042aa289b4de30f4b9, type: 3}
+  moduleCategorie: Laser
   laserBaseDamage: 5
   fireRate: 2
   laserRange: 2.5

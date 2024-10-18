@@ -20,6 +20,8 @@ public class CameraRotate : MonoBehaviour
     public Camera mainCamera;
     private float targetFOV;
 
+    public ModulePanelMouseOver modulePanelMouseOver;
+
     void Start()
     {
         targetFOV = mainCamera.fieldOfView;
@@ -49,15 +51,18 @@ public class CameraRotate : MonoBehaviour
         }
 
 
-        float scroll = Mouse.current.scroll.ReadValue().y;
-        if (scroll != 0)
+        if (modulePanelMouseOver.isMouseOverModulePanel == false)
         {
-            targetFOV -= scroll * zoomSpeed * Time.deltaTime;
-            targetFOV = Mathf.Clamp(targetFOV, minZoom, maxZoom);
-        }
+            float scroll = Mouse.current.scroll.ReadValue().y;
+            if (scroll != 0)
+            {
+                targetFOV -= scroll * zoomSpeed * Time.deltaTime;
+                targetFOV = Mathf.Clamp(targetFOV, minZoom, maxZoom);
+            }
 
-        // Smoothly interpolate to the target FOV
-        mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, targetFOV, Time.deltaTime * zoomDamping);
+            // Smoothly interpolate to the target FOV
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, targetFOV, Time.deltaTime * zoomDamping);
+        }
 
         // Update last mouse position
         lastMousePosition = Mouse.current.position.ReadValue();

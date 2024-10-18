@@ -3,9 +3,16 @@ using static ModuleValues;
 
 public class BaseModule : MonoBehaviour
 {
+    [Header("Base Module")]
     public ModuleValues moduleValues;
     public int moduleIndex = -1;
-   
+    public int moduleListIndex = -1;
+
+    [Header("Base Module Stats handwritten")]
+    public int modulecompareIndex = -1;
+    public Sprite moduleSprite = null;
+    public string moduleCategorie = "";
+
     protected void UpdateModuleValues()
     {
         GameObject go = GameObject.FindGameObjectWithTag("Player");

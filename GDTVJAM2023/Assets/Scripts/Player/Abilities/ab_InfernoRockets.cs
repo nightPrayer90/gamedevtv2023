@@ -1,7 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
-using System;
 
 public class ab_InfernoRockets : MonoBehaviour
 {
@@ -17,6 +14,7 @@ public class ab_InfernoRockets : MonoBehaviour
     private PlayerWeaponController playerWeaponController;
     public Transform rocketSpawner;
     private GameManager gameManager;
+    public string abilityName = "Rocket rain";
 
 
     private void Start()
@@ -26,7 +24,7 @@ public class ab_InfernoRockets : MonoBehaviour
         playerController = gameObject.GetComponentInParent<NewPlayerController>();
         playerWeaponController = gameObject.GetComponentInParent<PlayerWeaponController>();
 
-        gameManager.InitAbilityUI(abSprite);
+        gameManager.InitAbilityUI(abSprite, abilityName, realoadTime);
         SetReloadFlag();
 
         // activate shield upgrades

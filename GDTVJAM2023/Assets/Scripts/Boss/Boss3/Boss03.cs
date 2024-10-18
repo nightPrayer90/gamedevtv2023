@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class Boss03 : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Boss03 : MonoBehaviour
     private bool[] isState;
     private float dieRotation = 0;
     private bool isMinimap = false;
+    private bool pushReaload = false;
 
 
     [Header("GameObjects")]
@@ -153,6 +155,7 @@ public class Boss03 : MonoBehaviour
                 transform.DOShakePosition(0.2f, 0.1f, 10, 90, false, true).OnComplete(() => 
                 { 
                     ActivateState();
+                    gameManager.ScreenShake(2);
                     damageArea.GetComponent<DamageArea>().FadeOut();
                 });
             });
@@ -199,6 +202,7 @@ public class Boss03 : MonoBehaviour
                 {
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
+                    gameManager.ScreenShake(2);
                     verticalRocketSpawner[currentState].SetActive(true);
                     InvokeRepeating(nameof(Shooting1), 0.5f, 4f);
                     isState[0] = true;
@@ -230,7 +234,8 @@ public class Boss03 : MonoBehaviour
                     bossUI.SetForgroundColor(Color.red);
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
-                    
+                    gameManager.ScreenShake(2);
+
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
@@ -267,7 +272,8 @@ public class Boss03 : MonoBehaviour
                     bossUI.SetForgroundColor(Color.red);
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
-                    
+                    gameManager.ScreenShake(2);
+
                     transform.DOShakePosition(0.5f, 0.1f, 10, 90, false, true).OnComplete(() => 
                     {
                         AudioManager.Instance.PlaySFX("ShieldGetHit");
@@ -323,7 +329,8 @@ public class Boss03 : MonoBehaviour
             transform.DOShakePosition(4f, 0.3f, 20, 90, false, true).OnComplete(() =>
             {
                 AudioManager.Instance.PlaySFX("BossExplode");
-                
+                gameManager.ScreenShake(6);
+
                 rippleParticleDie.Play();
                 gameObject.tag = "Untagged";
                 PushThePlayer(6f, 6f);
@@ -386,9 +393,9 @@ public class Boss03 : MonoBehaviour
     }
 
     // push the player away from the boss
-    private void PushThePlayer(float distence, float forcepower)
+    private void PushThePlayer(float distance, float forcepower)
     {
-        if (DistanceToPlayer() <= distence)
+        if (DistanceToPlayer() <= distance)
         {
             // push the player
             Vector3 pushDirection = playerTr.position - transform.position;
@@ -396,6 +403,27 @@ public class Boss03 : MonoBehaviour
             playerRb.AddForce(pushForceVector, ForceMode.Impulse);
         }
     }
+
+    // push the player away from the boss
+    private void PushThePlayer2(float distance, float forcepower)
+    {
+        if (pushReaload == false && DistanceToPlayer() <= distance)
+        { 
+            // push the player
+            Vector3 pushDirection = playerTr.position - transform.position;
+            Vector3 pushForceVector = pushDirection.normalized * forcepower;
+            playerRb.AddForce(pushForceVector, ForceMode.Impulse);
+
+            pushReaload = true;
+            Invoke(nameof(InvokePlayerPush),1f);
+        }
+    }
+
+    private void InvokePlayerPush()
+    {
+        pushReaload = false;
+    }
+
 
     // invoke - shoot attack 1
     private void Shooting1()

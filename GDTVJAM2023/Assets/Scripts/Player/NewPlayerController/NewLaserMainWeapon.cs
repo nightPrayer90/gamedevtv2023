@@ -145,8 +145,6 @@ public class NewLaserMainWeapon : BaseModule
 
             if (collidedObject != null)
             {
-                Debug.Log(moduleIndex);
-
                 if (collidedObject.canTakeLaserDamage[Mathf.Min(5, moduleIndex)] == true && collidedObject.canTakeDamage == true)
                 {
                     collidedObject.TakeLaserDamage(EnergieDamageDebuff(resultLaserDamage), Mathf.Min(5,moduleIndex));

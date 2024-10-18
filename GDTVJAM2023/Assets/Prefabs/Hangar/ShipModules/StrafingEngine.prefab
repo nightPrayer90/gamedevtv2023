@@ -19421,6 +19421,7 @@ MonoBehaviour:
     canFront: 0
     canBack: 0
     modulDescription_multiLineText: 
+    nion: 0
     costMass: 0
     costEnergie: 0
     energieProduction: 0
@@ -19436,6 +19437,12 @@ MonoBehaviour:
     rocketClass: 0
     laserClass: 0
     supportClass: 0
+    moduleUpgrades: []
+  moduleIndex: -1
+  moduleListIndex: -1
+  modulecompareIndex: 5
+  moduleSprite: {fileID: 21300000, guid: ad7386d3f95bae24a86172827c9ed89d, type: 3}
+  moduleCategorie: Strafe Engine
   ps_leftEngine: {fileID: 1274240112750412748}
   ps_rigtEngine: {fileID: 2618834663701493247}
   strafeForce: 2

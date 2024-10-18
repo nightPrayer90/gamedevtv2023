@@ -175,6 +175,7 @@ public class Boss02 : MonoBehaviour
                 {
                     ActivateState();
                     damageArea.GetComponent<DamageArea>().FadeOut();
+                    gameManager.ScreenShake(2);
                 });
             });
         }
@@ -220,6 +221,7 @@ public class Boss02 : MonoBehaviour
                 {
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
+                    gameManager.ScreenShake(2);
                     Shooting1();
 
                     downPhase.GoOnPosition();
@@ -247,6 +249,8 @@ public class Boss02 : MonoBehaviour
                     upPhase.PhaseUP();
 
                     PushThePlayer(2.5f, 5f);
+                    gameManager.ScreenShake(2);
+
                     CancelInvoke();
                     Invoke(nameof(FrontWeaponReset), 1f);
 
@@ -280,6 +284,7 @@ public class Boss02 : MonoBehaviour
                     bossUI.SetForgroundColor(Color.red);
                     rippleParticle.Play();
                     PushThePlayer(2.5f, 5f);
+                    gameManager.ScreenShake(2);
 
                     downPhase.ActivateShield();
 
@@ -340,6 +345,7 @@ public class Boss02 : MonoBehaviour
             transform.DOShakePosition(4f, 0.3f, 20, 90, false, true).OnComplete(() =>
             {
                 AudioManager.Instance.PlaySFX("BossExplode");
+                gameManager.ScreenShake(6);
                 rippleParticleDie.Play();
                 PushThePlayer(6f, 6f);
 

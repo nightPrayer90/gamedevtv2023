@@ -213,6 +213,10 @@ MonoBehaviour:
     supportClass: 0
     moduleUpgrades: []
   moduleIndex: -1
+  moduleListIndex: -1
+  modulecompareIndex: 18
+  moduleSprite: {fileID: 21300000, guid: 23797d152b1b10a4cb0f42b2b532bc51, type: 3}
+  moduleCategorie: Direction Engine
   ps_engine: {fileID: 9178511581905244593}
   torqueForce: 0.27
   engine_side: 1

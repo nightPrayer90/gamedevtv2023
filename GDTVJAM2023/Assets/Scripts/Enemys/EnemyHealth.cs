@@ -445,7 +445,7 @@ public class EnemyHealth : MonoBehaviour
                 case 2: // Rockets from Cockpit ability
                     if (upgradeChooseList.upgrades[87].upgradeIndexInstalled > 0)
                     {
-                        if (UnityEngine.Random.Range(0, 100) > 25) return;
+                        if (UnityEngine.Random.Range(0, 100) > (25* upgradeChooseList.upgrades[87].upgradeIndexInstalled) ) return;
                         explosionRadius = 1.3f * (1 + playerWeaponController.shipData.rocketAOERadius / 100);
                         novaDamage = 15;
                         explosionForce = 150;

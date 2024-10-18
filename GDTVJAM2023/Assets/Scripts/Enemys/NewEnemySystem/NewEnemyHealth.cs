@@ -189,7 +189,7 @@ public class NewEnemyHealth : MonoBehaviour
 
         burnTickCount++;
 
-        if (burnTickCount > enemy.playerWeaponController.shipData.baseLaserTicks)
+        if (burnTickCount >= enemy.playerWeaponController.shipData.baseLaserTicks)
         {
             CancelInvoke("TakeBurningDamage");
             burnTickCount = 0;

@@ -4860,6 +4860,7 @@ MonoBehaviour:
   realoadTime: 40
   shieldFlag: 1
   abSprite: {fileID: 21300000, guid: fd826e5525c3c64458a678bc024b2a27, type: 3}
+  abilityName: Front Shield
 --- !u!1 &4793914127919896581
 GameObject:
   m_ObjectHideFlags: 0
@@ -19671,6 +19672,10 @@ MonoBehaviour:
     supportClass: 0
     moduleUpgrades: []
   moduleIndex: -1
+  moduleListIndex: -1
+  modulecompareIndex: 0
+  moduleSprite: {fileID: 21300000, guid: ad7386d3f95bae24a86172827c9ed89d, type: 3}
+  moduleCategorie: Strafe Engine
   ps_leftEngine: {fileID: 1938124389918005534}
   ps_rigtEngine: {fileID: 4098010406350474670}
   strafeForce: 1

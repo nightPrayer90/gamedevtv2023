@@ -1039,6 +1039,15 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Stats"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e66f60e-047d-4755-b895-3dac4443f04f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1402,6 +1411,28 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Reroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""493b2f27-25c3-4612-8df2-1422a2dca432"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Stats"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db294756-fb05-40f5-ba6d-d573f7ef18d4"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Stats"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1799,6 +1830,7 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
         m_InGameUI_CloseUI = m_InGameUI.FindAction("CloseUI", throwIfNotFound: true);
         m_InGameUI_ClickUI = m_InGameUI.FindAction("ClickUI", throwIfNotFound: true);
         m_InGameUI_Reroll = m_InGameUI.FindAction("Reroll", throwIfNotFound: true);
+        m_InGameUI_Stats = m_InGameUI.FindAction("Stats", throwIfNotFound: true);
         // Hangar
         m_Hangar = asset.FindActionMap("Hangar", throwIfNotFound: true);
         m_Hangar_GameStart = m_Hangar.FindAction("GameStart", throwIfNotFound: true);
@@ -2111,6 +2143,7 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGameUI_CloseUI;
     private readonly InputAction m_InGameUI_ClickUI;
     private readonly InputAction m_InGameUI_Reroll;
+    private readonly InputAction m_InGameUI_Stats;
     public struct InGameUIActions
     {
         private @_9Dystricts m_Wrapper;
@@ -2119,6 +2152,7 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
         public InputAction @CloseUI => m_Wrapper.m_InGameUI_CloseUI;
         public InputAction @ClickUI => m_Wrapper.m_InGameUI_ClickUI;
         public InputAction @Reroll => m_Wrapper.m_InGameUI_Reroll;
+        public InputAction @Stats => m_Wrapper.m_InGameUI_Stats;
         public InputActionMap Get() { return m_Wrapper.m_InGameUI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -2140,6 +2174,9 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
             @Reroll.started += instance.OnReroll;
             @Reroll.performed += instance.OnReroll;
             @Reroll.canceled += instance.OnReroll;
+            @Stats.started += instance.OnStats;
+            @Stats.performed += instance.OnStats;
+            @Stats.canceled += instance.OnStats;
         }
 
         private void UnregisterCallbacks(IInGameUIActions instance)
@@ -2156,6 +2193,9 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
             @Reroll.started -= instance.OnReroll;
             @Reroll.performed -= instance.OnReroll;
             @Reroll.canceled -= instance.OnReroll;
+            @Stats.started -= instance.OnStats;
+            @Stats.performed -= instance.OnStats;
+            @Stats.canceled -= instance.OnStats;
         }
 
         public void RemoveCallbacks(IInGameUIActions instance)
@@ -2360,6 +2400,7 @@ public partial class @_9Dystricts: IInputActionCollection2, IDisposable
         void OnCloseUI(InputAction.CallbackContext context);
         void OnClickUI(InputAction.CallbackContext context);
         void OnReroll(InputAction.CallbackContext context);
+        void OnStats(InputAction.CallbackContext context);
     }
     public interface IHangarActions
     {

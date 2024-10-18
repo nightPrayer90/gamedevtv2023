@@ -155,6 +155,7 @@ public class Boss04 : MonoBehaviour
                 transform.DOShakePosition(0.2f, 0.1f, 10, 90, false, true).OnComplete(() =>
                 {
                     ActivateState();
+                    gameManager.ScreenShake(2);
                     damageArea.GetComponent<DamageArea>().FadeOut();
                 });
             });
@@ -197,6 +198,7 @@ public class Boss04 : MonoBehaviour
                 if (isState[0] == false)
                 {
                     PushThePlayer(2.5f, 5f, rippleParticle);
+                    gameManager.ScreenShake(2);
                     isState[0] = true;
                 }
 
@@ -215,6 +217,7 @@ public class Boss04 : MonoBehaviour
 
                     bossUI.SetForgroundColor(Color.red);
                     PushThePlayer(2.5f, 5f, rippleParticle);
+                    gameManager.ScreenShake(2);
                     CancelInvoke();
 
                     InvokeRepeating(nameof(FireBullets), 4f, 0.1f);
@@ -263,6 +266,7 @@ public class Boss04 : MonoBehaviour
             transform.DOShakePosition(4f, 0.3f, 20, 90, false, true).OnComplete(() =>
             {
                 AudioManager.Instance.PlaySFX("BossExplode");
+                gameManager.ScreenShake(6);
                 gameObject.tag = "Untagged";
                 PushThePlayer(6f, 6f, rippleParticleDie);
 

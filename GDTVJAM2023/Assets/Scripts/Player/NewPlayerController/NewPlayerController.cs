@@ -81,6 +81,15 @@ public class NewPlayerController : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private float flySpeed;
 
+    [Header("Modules for stats")]
+    [HideInInspector] public NewLaserMainWeapon[] foundLasers;
+    [HideInInspector] public NewBulletMainWeapon[] foundBullets;
+    [HideInInspector] public NewRocketMainWeapon[] foundRockets;
+    [HideInInspector] public NewSphereThrower[] foundSphereThrowers;
+    [HideInInspector] public NewStrafeEngine[] foundStrafeEngine;
+    [HideInInspector] public NewDirectionControlEngine[] foundDirectionEngines;
+    [HideInInspector] public NewBaseEngine[] foundMainEngines;
+
     // Events
     public event Action OnIntroOver;
     public event Action<float> OnUpdateRotateSpeed;
@@ -127,15 +136,14 @@ public class NewPlayerController : MonoBehaviour
 
     private void SetModuleIndex()
     {
-        NewLaserMainWeapon[] foundLasers;
-        NewBulletMainWeapon[] foundBullets;
-        NewRocketMainWeapon[] foundRockets;
-        NewSphereThrower[] foundSphereThrowers;
-
         foundLasers = gameObject.GetComponentsInChildren<NewLaserMainWeapon>();
         foundBullets = gameObject.GetComponentsInChildren<NewBulletMainWeapon>();
         foundRockets = gameObject.GetComponentsInChildren<NewRocketMainWeapon>();
         foundSphereThrowers = gameObject.GetComponentsInChildren<NewSphereThrower>();
+        foundStrafeEngine = gameObject.GetComponentsInChildren<NewStrafeEngine>();
+        foundDirectionEngines = gameObject.GetComponentsInChildren<NewDirectionControlEngine>();
+        foundMainEngines = gameObject.GetComponentsInChildren<NewBaseEngine>();
+
 
         for (int i = 0; i < foundLasers.Length; i++)
         { foundLasers[i].moduleIndex = i; }

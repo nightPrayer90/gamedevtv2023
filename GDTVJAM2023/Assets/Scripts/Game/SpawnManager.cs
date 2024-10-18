@@ -197,9 +197,9 @@ public class SpawnManager : MonoBehaviour
             }
         }
         // Ground Enemys
-        if (waveData[value].isGroundEnemy == true)
+        if (value >= 0 && waveData[value].isGroundEnemy == true )
         {
-            if (gameManager.districtGroundEnemyControls[waveIndex] >= 5 + (waveIndex * 2))
+            if (gameManager.districtGroundEnemyControls[waveIndex] >= 7 + (waveIndex * 3))
             {
                 value = -1;
             }

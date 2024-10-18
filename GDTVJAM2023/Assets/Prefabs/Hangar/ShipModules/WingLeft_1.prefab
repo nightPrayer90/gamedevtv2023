@@ -72,6 +72,10 @@ MonoBehaviour:
     supportClass: 0
     moduleUpgrades: []
   moduleIndex: -1
+  moduleListIndex: -1
+  modulecompareIndex: 11
+  moduleSprite: {fileID: 0}
+  moduleCategorie: 
 --- !u!1 &3509744164497189554
 GameObject:
   m_ObjectHideFlags: 0

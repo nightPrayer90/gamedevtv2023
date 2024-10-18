@@ -12,6 +12,8 @@ public class ab_FrontShield : MonoBehaviour
     private ab_ShieldController enabledShieldController;
     private PlayerWeaponController playerWeaponController;
 
+    public string abilityName = "Front Shield";
+
     private void Start()
     {
         //playerWaeponController = GameObject.FindWithTag("Player").GetComponent<PlayerWeaponController>();
@@ -19,7 +21,7 @@ public class ab_FrontShield : MonoBehaviour
         playerController = gameObject.GetComponentInParent<NewPlayerController>();
         playerWeaponController = gameObject.GetComponentInParent<PlayerWeaponController>();
 
-        gameManager.InitAbilityUI(abSprite);
+        gameManager.InitAbilityUI(abSprite, abilityName, realoadTime);
         SetShieldFlag();
 
         // activate shield upgrades

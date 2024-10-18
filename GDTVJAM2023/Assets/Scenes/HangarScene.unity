@@ -4311,7 +4311,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: aa0e9b20d87c1004893bb5a4cb4e4d22, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 23797d152b1b10a4cb0f42b2b532bc51, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5412,7 +5412,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f2a3444a22688804a856c2dbc72a0f88, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ad7386d3f95bae24a86172827c9ed89d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8821,6 +8821,7 @@ MonoBehaviour:
   minZoom: 20
   maxZoom: 30
   mainCamera: {fileID: 877381050}
+  modulePanelMouseOver: {fileID: 2038161173}
 --- !u!4 &1204264142
 Transform:
   m_ObjectHideFlags: 0
@@ -10511,7 +10512,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 37736417a0d9b2343be73123a4ad198f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c4d3089fe85f01e41b3bd3d3437a81c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13185,7 +13186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 1
+  m_ShowMaskGraphic: 0
 --- !u!114 &1742142287
 MonoBehaviour:
   m_ObjectHideFlags: 0

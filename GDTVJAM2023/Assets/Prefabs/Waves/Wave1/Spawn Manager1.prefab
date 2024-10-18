@@ -60,6 +60,7 @@ MonoBehaviour:
   minSpawnDistance: 12
   maxSpawnDistance: 16
   spawnInterval: 3
+  maxGroundUnits: 5
 --- !u!1 &7282052545705051866
 GameObject:
   m_ObjectHideFlags: 0

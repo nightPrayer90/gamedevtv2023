@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class NewStrafeEngine : BaseModule
 {
+   
     private NewPlayerController playerController;
+    private Rigidbody playerRigidbody;
+
+    [Header("Strafe Engine")]
     [SerializeField] private ParticleSystem ps_leftEngine;
     [SerializeField] private ParticleSystem ps_rigtEngine;
-    private Rigidbody playerRigidbody;
     public float strafeForce = 1f;
     public float strafeBoostforce = 1;
     private float totalStrafeForce;

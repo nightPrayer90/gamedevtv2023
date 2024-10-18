@@ -29222,9 +29222,10 @@ MonoBehaviour:
   realoadTime: 30
   reloadFlag: 1
   abSprite: {fileID: 21300000, guid: 1766091a6535c614db7cc3976fcf98c8, type: 3}
-  projectileDamage: 5
+  projectileDamage: 10
   projectilespawner: {fileID: 5248734523196545798}
   loadParticle: {fileID: 1320040134760328449}
+  abilityName: Infernal Sphere
 --- !u!1 &8919917907132705989
 GameObject:
   m_ObjectHideFlags: 0
@@ -29297,3 +29298,7 @@ MonoBehaviour:
     supportClass: 0
     moduleUpgrades: []
   moduleIndex: -1
+  moduleListIndex: -1
+  modulecompareIndex: 18
+  moduleSprite: {fileID: 0}
+  moduleCategorie: 

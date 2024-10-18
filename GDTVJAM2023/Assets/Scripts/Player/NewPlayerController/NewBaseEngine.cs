@@ -167,7 +167,7 @@ public class NewBaseEngine : BaseModule
         thrustForce = thrustForce * (1 + (flyspeed / 100));
         backForce = backForce * (1 + (flyspeed / 100));
 
-        // Only for display in upgrades
+        // Only for display in upgrades -> TODO: whats happend with more then one main engine
         playerController.thrustForce = Mathf.Max(playerController.thrustForce,thrustForce);
         playerController.backForce = Mathf.Max(playerController.backForce, backForce); 
     }

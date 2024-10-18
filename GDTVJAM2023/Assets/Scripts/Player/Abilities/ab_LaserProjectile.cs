@@ -1,6 +1,5 @@
 using UnityEngine;
 using DG.Tweening;
-using System;
 
 public class ab_LaserProjectile : MonoBehaviour
 {
@@ -84,7 +83,7 @@ public class ab_LaserProjectile : MonoBehaviour
                         eH.InvokeBurningDamage();
                         hitParticle.transform.position = other.ClosestPointOnBounds(other.transform.position);
                         hitParticle.Emit(20);
-                        sizefactor += (0.15f) * (1 + (0.15f * upgradeChooseList.upgrades[93].upgradeIndexInstalled));
+                        sizefactor += (0.15f) * (1 + (0.50f * upgradeChooseList.upgrades[93].upgradeIndexInstalled));
 
                         transform.DOComplete();
                         transform.DOScale(projectileSize * sizefactor, 0.1f);
@@ -138,7 +137,7 @@ public class ab_LaserProjectile : MonoBehaviour
                     }
 
                     PlayerBurningGroundController bgC = burningShpere.GetComponent<PlayerBurningGroundController>();
-                    bgC.scaleFactor = 2.3f + sizefactor;
+                    bgC.scaleFactor = 3f + sizefactor;
                     bgC.lifetime = lifeTimeField;
                 }
             }

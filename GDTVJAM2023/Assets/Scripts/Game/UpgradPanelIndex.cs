@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
-using Unity.VisualScripting;
+
 
 public class UpgradPanelIndex : MonoBehaviour
 {
@@ -52,8 +52,9 @@ public class UpgradPanelIndex : MonoBehaviour
         SetDescription();
 
         // fade in
+        float fadeinDelay = (index / 15f);
         panelImage.sprite = spPanelDeselcet;
-        transform.DOLocalMoveY(55f, .22f, true).SetUpdate(UpdateType.Normal, true).OnComplete(() =>
+        transform.DOLocalMoveY(33f, 0.22f, true).SetUpdate(UpdateType.Normal, true).SetDelay(fadeinDelay).OnComplete(() =>
         {
             panelTransform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f, 5, 1).SetUpdate(true).OnComplete(() =>
             {
@@ -90,9 +91,24 @@ public class UpgradPanelIndex : MonoBehaviour
 
         mainClass.text = upgrade.mainClass.ToString();
         if (mainClass.text == "Nothing") mainClass.text = "";
-        mainClass.color = gameManager.cCPrefab.classColor[upgrade.colorIndex];
 
 
+        switch (upgrade.mainClass)
+        {
+            case Upgrade.MainClass.Bullet:
+                mainClass.color = gameManager.cCPrefab.classColor[0];
+                break;
+            case Upgrade.MainClass.Explosion:
+                mainClass.color = gameManager.cCPrefab.classColor[1];
+                break;
+            case Upgrade.MainClass.Laser:
+                mainClass.color = gameManager.cCPrefab.classColor[2];
+                break;
+            case Upgrade.MainClass.Support:
+                mainClass.color = gameManager.cCPrefab.classColor[3];
+                break;
+        }
+       
 
         // requerments
         // reset
@@ -188,7 +204,7 @@ public class UpgradPanelIndex : MonoBehaviour
                 upgradString = $"{playerController.energieMax} TJ to " + $"<{upgradeColor}>{playerController.energieMax * (1.15f)} TJ</color>";
                 break;
             case 4: //upgrade: rotate speed
-                upgradString = $"{playerController.thrustForce} TN to " + $"<{upgradeColor}>{playerController.thrustForce * (1.1f)} TN</color> \n" + $"{Mathf.Round(playerController.torqueForce * 100) / 100} TNm to " + $"<{upgradeColor}>{Mathf.Round((playerController.torqueForce * (1.1f)) * 100) / 100} TNm</color>";
+                upgradString = $"{playerWeaponController.shipData.percAgility}% to " + $"<{upgradeColor}>{playerWeaponController.shipData.percAgility+10}%</color>";
                 break;
             case 5: //upgrade: pickup Ranged
                 upgradString = $"{Mathf.Round(playerController.pickupRange*10)/10} m to " + $"<{upgradeColor}>{ Mathf.Round( (playerController.pickupRange + 0.8f)*10)/10 } m</color>";
@@ -248,7 +264,7 @@ public class UpgradPanelIndex : MonoBehaviour
                 upgradString = $"{playerWeaponController.shipData.boostSize}% to " + $"<{upgradeColor}>{playerWeaponController.shipData.boostSize * 1.6f}%</color>";
                 break;
             case 24: // Force Multiplier
-                upgradString = $"{playerWeaponController.shipData.boostDamage}% to " + $"<{upgradeColor}>{playerWeaponController.shipData.boostDamage * 2}%</color>";
+                upgradString = $"{playerWeaponController.shipData.boostDamage} to " + $"<{upgradeColor}>{playerWeaponController.shipData.boostDamage * 2}</color>";
                 break;
             case 25: // Nova Overdrive
                 upgradString = "";
@@ -260,13 +276,13 @@ public class UpgradPanelIndex : MonoBehaviour
                 upgradString = $"{playerWeaponController.shipData.bulletCritChance}% to " + $"<{upgradeColor}>{playerWeaponController.shipData.bulletCritChance + 3}%</color>";
                 break;
             case 28: // explosion range
-                upgradString = $"{playerWeaponController.shipData.aoeRange}$ to " + $"<{upgradeColor}>{playerWeaponController.shipData.aoeRange + 8}%</color>";
+                upgradString = $"{playerWeaponController.shipData.aoeRange}% to " + $"<{upgradeColor}>{playerWeaponController.shipData.aoeRange + 8}%</color>";
                 break;
             case 29: // burning tick damage
-                upgradString = $"{playerWeaponController.shipData.laserBurningTickDamangePercent}$ to " + $"<{upgradeColor}>{playerWeaponController.shipData.laserBurningTickDamangePercent + 20}%</color>";
+                upgradString = $"{playerWeaponController.shipData.laserBurningTickDamangePercent}% to " + $"<{upgradeColor}>{playerWeaponController.shipData.laserBurningTickDamangePercent + 20}%</color>";
                 break;
             case 30: // burning chance
-                upgradString = $"{playerWeaponController.shipData.burnDamageChance}$ to " + $"<{upgradeColor}>{playerWeaponController.shipData.burnDamageChance + 1}%</color>";
+                upgradString = $"{playerWeaponController.shipData.burnDamageChance}% to " + $"<{upgradeColor}>{playerWeaponController.shipData.burnDamageChance + 1}%</color>";
                 break;
             case 31: // invulnerability
                 upgradString = $"{playerWeaponController.shipData.boostInvulnerability} s to " + $"<{upgradeColor}>{playerWeaponController.shipData.boostInvulnerability + 0.2} s</color>";
@@ -323,7 +339,7 @@ public class UpgradPanelIndex : MonoBehaviour
                 upgradString = $"{playerWeaponController.shipData.percLaserDamage}% to " + $"<{upgradeColor}>{playerWeaponController.shipData.percLaserDamage + 12}%</color>";
                 break;
             case 49: // Rapid Laser Reload
-                upgradString = $"{playerWeaponController.shipData.percMainDownTimeLaser}% to " + $"<{upgradeColor}>{100 - playerWeaponController.shipData.percMainDownTimeLaser + 10}%</color>";
+                upgradString = $"{playerWeaponController.shipData.percMainDownTimeLaser}% to " + $"<{upgradeColor}>{playerWeaponController.shipData.percMainDownTimeLaser + 10}%</color>";
                 break;
             case 50: // Wide Spray Expansion
                 upgradString = $"{playerWeaponController.sgBulletCount} to " + $"<{upgradeColor}>{playerWeaponController.sgBulletCount + 2}</color>";
@@ -341,10 +357,10 @@ public class UpgradPanelIndex : MonoBehaviour
 
                 break;
             case 55: // Titan Slayer
-                upgradString = $"{playerWeaponController.shipData.bossBonusDamage} to " + $"<{upgradeColor}>{playerWeaponController.shipData.bossBonusDamage + 25}%</color>";
+                upgradString = $"{playerWeaponController.shipData.bossBonusDamage}% to " + $"<{upgradeColor}>{playerWeaponController.shipData.bossBonusDamage + 25}%</color>";
                 break;
             case 56: // Laser Orbit Accelerator
-                upgradString = $"{playerWeaponController.olRotationSpeed} to " + $"<{upgradeColor}>{playerWeaponController.olRotationSpeed * 1.25}%</color> \n" +
+                upgradString = $"{playerWeaponController.olRotationSpeed}% to " + $"<{upgradeColor}>{playerWeaponController.olRotationSpeed * 1.25}%</color> \n" +
                     $"{playerWeaponController.olDamage} to " + $"<{upgradeColor}>{playerWeaponController.olDamage +2}</color>";
                 break;
             case 57: // Explosive Impact
@@ -399,7 +415,7 @@ public class UpgradPanelIndex : MonoBehaviour
 
                 break;
             case 74: // Enhanced Plasma  Spheres
-                upgradString = $"{playerWeaponController.tsLifetime} to " + $"<{upgradeColor}>{playerWeaponController.tsLifetime + 1}</color>";
+                upgradString = $"{playerWeaponController.tsLifetime} s to " + $"<{upgradeColor}>{playerWeaponController.tsLifetime + 1} s</color>";
                 break;
             case 75: // Enhanced Plasma  Spheres
 

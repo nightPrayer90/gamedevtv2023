@@ -32,9 +32,10 @@ public class ClassTooltip : MonoBehaviour
     public UpgradeChooseList upgradeChooseList;
     public GameManager gameManager;
 
-    private GameObject player;
-    private NewPlayerController playerController;
-    private PlayerWeaponController playerWeaponController;
+    public GameObject player;
+    public NewPlayerController playerController;
+    public PlayerWeaponController playerWeaponController;
+
 
     void OnEnable()
     {
@@ -50,15 +51,6 @@ public class ClassTooltip : MonoBehaviour
 
     public void Show(Vector2 triggerPosition, int contentType)
     {
-        //Debug.Log("contentType " + contentType);
-
-        if (player == null)
-        {
-            player = GameObject.FindWithTag("Player");
-            playerController = player.GetComponent<NewPlayerController>();
-            playerWeaponController = player.GetComponent<PlayerWeaponController>();
-        }
-
         // set tooltip positon
         triggerPosition_ = triggerPosition;
 
@@ -243,6 +235,21 @@ public class ClassTooltip : MonoBehaviour
 
         contentField.text = content_;
 
+
+        // layout Element
+        int headerLength = headerField.text.Length;
+        int contentLength = contentField.text.Length;
+
+        layoutElement.enabled = (headerLength > characterWarpLimit || contentLength > characterWarpLimit) ? true : false;
+    }
+
+    public void ShowAbilityTooltip(Vector2 triggerPosition, int upgradeIndex)
+    {
+        // set tooltip positon
+        triggerPosition_ = triggerPosition;
+
+        headerField.text = upgradeChooseList.uLObject.upgradeList[upgradeIndex].headerStr;
+        contentField.text = upgradeChooseList.uLObject.upgradeList[upgradeIndex].descriptionStr;
 
         // layout Element
         int headerLength = headerField.text.Length;

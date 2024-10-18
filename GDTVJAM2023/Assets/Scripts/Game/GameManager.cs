@@ -65,6 +65,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scrapText;
     public Image abBKImage;
     public Image abImage;
+    public string abName = "";
+    public float abReloadTime = 0;
     public GameObject abGlow;
     private float abValueBuffer = 0f;
     private float abTimeBuffer = 0f;
@@ -578,7 +580,7 @@ public class GameManager : MonoBehaviour
                     bossText.transform.DOScale(new Vector3(0f, 0f, 0f), 0.15f).SetDelay(1.5f).OnPlay(() => AudioManager.Instance.PlaySFX("BossTextWoosh"));
 
                  });
-                bossText.text = $"Boss District {districtNumber} is rising";
+                bossText.text = $"Boss District {districtNumber} is ready";
                 AudioManager.Instance.PlaySFX("ShortAlert");
                 
 
@@ -635,10 +637,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void InitAbilityUI(Sprite abSprite)
+    public void InitAbilityUI(Sprite abSprite, string abilityName, float reloadTime)
     {
         abBKImage.sprite = abSprite;
         abImage.sprite = abSprite;
+        abName = abilityName; // container for stats menu
+        abReloadTime = reloadTime; // container for stats menu
+
+        Debug.Log("abilityName");
     }
 
     public void SetAbilityUItoZero()
@@ -707,6 +713,7 @@ public class GameManager : MonoBehaviour
         // destroy stuff
         Destroy(currentSpawnManager);
         DestroyAllEXPOrbs();
+        DestroyAllDamageFields();
 
         dimensionShift = true;
         OnDimensionSwap?.Invoke(dimensionShift);
@@ -789,6 +796,16 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject prefab in prefabs)
         {
+            ObjectPoolManager.ReturnObjectToPool(prefab);
+        }
+    }
+
+    public void DestroyAllDamageFields()
+    {
+        GameObject[] prefabs = GameObject.FindGameObjectsWithTag("Player_BurningGround");
+
+        foreach (GameObject prefab in prefabs)
+        {
             Destroy(prefab);
         }
     }
@@ -837,6 +854,12 @@ public class GameManager : MonoBehaviour
                     topShake.ShakeCamera(0.3f, 0.2f);
                 //else
                     //backShake.ShakeCamera(0, 0.0f);
+                break;
+            case 6:
+                if (cinemachineSwitcher.topCamera_flag == true)
+                    topShake.ShakeCamera(2, 1f);
+                else
+                    backShake.ShakeCamera(0.3f, 1f);
                 break;
         }
     }

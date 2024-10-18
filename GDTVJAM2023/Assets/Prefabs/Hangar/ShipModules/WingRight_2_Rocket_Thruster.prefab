@@ -5129,6 +5129,10 @@ MonoBehaviour:
     supportClass: 0
     moduleUpgrades: []
   moduleIndex: -1
+  moduleListIndex: -1
+  modulecompareIndex: 34
+  moduleSprite: {fileID: 21300000, guid: 23797d152b1b10a4cb0f42b2b532bc51, type: 3}
+  moduleCategorie: Direction Engine
   ps_engine: {fileID: 9178511581905244593}
   torqueForce: 0.28
   engine_side: 1
@@ -5176,6 +5180,10 @@ MonoBehaviour:
     supportClass: 0
     moduleUpgrades: []
   moduleIndex: -1
+  moduleListIndex: -1
+  modulecompareIndex: 34
+  moduleSprite: {fileID: 21300000, guid: 1cdaf286f8e1ff047879fc7c76debb9a, type: 3}
+  moduleCategorie: Rocket Launcher
   fireRate: 1
   rockedBaseDamage: 6
   detectionRange: 7

@@ -38906,7 +38906,7 @@ MonoBehaviour:
   lifetime: 15
   burningFieldParticle: {fileID: 9130956218207549464}
   scaleFactor: 2.5
-  damage: 1
+  damage: 3
   hitParticle: {fileID: 1778965217709443445}
   hitParticleTransform: {fileID: 1527377552823136152}
 --- !u!1 &9130956217937802841

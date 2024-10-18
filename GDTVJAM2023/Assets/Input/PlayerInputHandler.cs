@@ -31,17 +31,20 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction openUIAction;
     private InputAction openMapAction;
     private InputAction hideUIAction;
-    private InputAction rerollAction;
+    
 
     [Header("Action Name References UI")]
     [SerializeField] private string navigate = "Navigate";
     [SerializeField] private string click = "Click";
     [SerializeField] private string closeUI = "CloseUI";
     [SerializeField] private string reroll = "Reroll";
+    [SerializeField] private string stats = "Stats";
 
     private InputAction navigateUIAction;
     private InputAction clickUIAction;
     private InputAction closeUIAction;
+    private InputAction rerollAction;
+    private InputAction statsAction;
 
     [Header("OtherObjects")]
     public CinemachineSwitcher viewSwitch;
@@ -126,7 +129,7 @@ public class PlayerInputHandler : MonoBehaviour
 
 
 
-    // UI Stuff
+    // UI Stuff ------------------------------------------------------------------
     public event Action<Vector2> OnNavigateUIInputChanged;
     private Vector2 _navigateUIInput;
     public Vector2 NavigateUIInput
@@ -197,6 +200,24 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public event Action OnStats;
+    private bool _statsInput;
+    public bool StatsInput
+    {
+        get { return _statsInput; }
+        private set
+        {
+            if (_statsInput != value)
+            {
+                _statsInput = value;
+                if (_statsInput)
+                {
+                    OnStats?.Invoke();
+                }
+            }
+        }
+    }
+
     private void Awake()
     {
         
@@ -215,6 +236,7 @@ public class PlayerInputHandler : MonoBehaviour
         clickUIAction = playerControls.FindActionMap(actionMapNameUI).FindAction(click);
         closeUIAction = playerControls.FindActionMap(actionMapNameUI).FindAction(closeUI);
         rerollAction = playerControls.FindActionMap(actionMapNameUI).FindAction(reroll);
+        statsAction = playerControls.FindActionMap(actionMapNameUI).FindAction(stats);
         RegisterInputActions();
     }
 
@@ -258,6 +280,9 @@ public class PlayerInputHandler : MonoBehaviour
 
         rerollAction.performed += context => RerollInput = true;
         rerollAction.canceled += context => RerollInput = false;
+
+        statsAction.performed += context => StatsInput = true;
+        statsAction.canceled += context => StatsInput = false;
     }
 
     private void OnEnable()
@@ -303,6 +328,7 @@ public class PlayerInputHandler : MonoBehaviour
         clickUIAction.Enable();
         closeUIAction.Enable();
         rerollAction.Enable();
+        statsAction.Enable();
     }
 
     public void DisableUIControls()
@@ -312,5 +338,6 @@ public class PlayerInputHandler : MonoBehaviour
         clickUIAction.Disable();
         closeUIAction.Disable();
         rerollAction.Disable();
+        statsAction.Disable();
     }
 }

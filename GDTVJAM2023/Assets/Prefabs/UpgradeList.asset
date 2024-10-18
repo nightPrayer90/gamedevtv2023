@@ -336,7 +336,8 @@ MonoBehaviour:
   - headerStr: Support Class
     upgradeIndex: 21
     passivUpgradeString: 
-    descriptionStr: Improves reload time of all weapons and abilitys by 10%.
+    descriptionStr: Improves reload time of all upgrade weapons and you ability by
+      10%.
     iconPanel: {fileID: 21300000, guid: d77731612a405b64eb61fe076a3f4fb2, type: 3}
     mainClass: 3
     upgradeTyp: 2
@@ -403,7 +404,7 @@ MonoBehaviour:
     upgradeTyp: 3
     colorIndex: 10
     reqBullet: 0
-    reqRocket: 3
+    reqRocket: 2
     reqLaser: 0
     reqSupport: 3
     reqAbility: Bullet Cockpit
@@ -947,7 +948,7 @@ MonoBehaviour:
     colorIndex: 10
     reqBullet: 0
     reqRocket: 0
-    reqLaser: 3
+    reqLaser: 2
     reqSupport: 3
     reqAbility: Bullet Cockpit
     UpgradeCount: 0
@@ -1423,7 +1424,7 @@ MonoBehaviour:
   - headerStr: Growth Impulse
     upgradeIndex: 93
     passivUpgradeString: 
-    descriptionStr: The sphere grows +15% faster when it hits an opponent.
+    descriptionStr: The sphere grows +50% faster when it hits an opponent.
     iconPanel: {fileID: 21300000, guid: 1766091a6535c614db7cc3976fcf98c8, type: 3}
     mainClass: 8
     upgradeTyp: 1
@@ -1460,7 +1461,7 @@ MonoBehaviour:
     upgradeTyp: 1
     colorIndex: 10
     reqBullet: 0
-    reqRocket: 3
+    reqRocket: 2
     reqLaser: 0
     reqSupport: 3
     reqAbility: Laser Cockpit
@@ -1474,7 +1475,7 @@ MonoBehaviour:
     mainClass: 8
     upgradeTyp: 1
     colorIndex: 10
-    reqBullet: 3
+    reqBullet: 2
     reqRocket: 0
     reqLaser: 0
     reqSupport: 3
@@ -1500,7 +1501,7 @@ MonoBehaviour:
   - headerStr: Collector
     upgradeIndex: 98
     passivUpgradeString: 
-    descriptionStr: +3% chance to get 1 additional scrap when you kill an opponent.
+    descriptionStr: +3% chance to get 1 additional scraps when you kill an opponent.
     iconPanel: {fileID: 21300000, guid: 02f7c2e79b932a9449ccfc1047d77288, type: 3}
     mainClass: 8
     upgradeTyp: 1

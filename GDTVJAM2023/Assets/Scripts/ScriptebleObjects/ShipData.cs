@@ -30,7 +30,7 @@ public class ShipData : ScriptableObject
     public float percMainAttackSpeedBullet = 0;
     public float percMainAttackSpeedRocket = 0;
     public float percMainDownTimeLaser = 0;
-
+    public float percAgility = 0;
 
     public int bossBonusDamage = 0;
 
