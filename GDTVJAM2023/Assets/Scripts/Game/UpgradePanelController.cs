@@ -14,7 +14,7 @@ public class UpgradePanelController : MonoBehaviour
     private int rerolls = 3;
     private int upgradeType;
     public TMP_Text rerollText;
-    public GameObject rerollImage;
+    public Image rerollImage;
     [HideInInspector] public int[] upgradeIndex;
     [HideInInspector] public int[] upgradeCount;
     [HideInInspector] public Sprite[] iconPanel;
@@ -1440,13 +1440,15 @@ public class UpgradePanelController : MonoBehaviour
     {
         if (rerolls > 0)
         {
-            rerollText.text = $"press R to reroll ({rerolls})";
-            rerollImage.SetActive(true);
+            rerollText.text = $"[R] to reroll ({rerolls})";
+            rerollText.color = Color.white;
+            rerollImage.color = Color.white;
         }
         else
         {
-            rerollText.text = "";
-            rerollImage.SetActive(false);
+            rerollText.text = $"[R] to reroll({ rerolls})";
+            rerollText.color = Color.gray;
+            rerollImage.color = Color.gray;
         }
     }
 }
