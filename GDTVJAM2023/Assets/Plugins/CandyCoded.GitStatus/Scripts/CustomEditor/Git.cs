@@ -121,6 +121,12 @@ namespace CandyCoded.GitStatus {
 
             return process?.StandardOutput.ReadToEnd();
         }
+
+        public static async Task<string> RefBase() {
+            Process process = await GenerateProcessAsync(GitPath, "merge-base @ @{u}");
+
+            return process?.StandardOutput.ReadToEnd();
+        }
     }
 }
 #endif
