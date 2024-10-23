@@ -256,7 +256,11 @@ public class StartGameController : MonoBehaviour
     public void GameQuit()
     {
         AudioManager.Instance.PlaySFX("MouseKlick");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 
     /* **************************************************************************** */
