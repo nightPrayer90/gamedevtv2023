@@ -83,6 +83,10 @@ namespace CandyCoded.GitStatus {
         public static async Task Init() {
             await GenerateProcessAsync(GitPath, "init");
         }
+        
+        public static async Task Fetch() {
+            await GenerateProcessAsync(GitPath, "fetch");
+        }
 
         public static async Task<string> Status() {
             Process process = await GenerateProcessAsync(GitPath, "status");
@@ -104,6 +108,18 @@ namespace CandyCoded.GitStatus {
             }
 
             return changes.ToArray();
+        }
+        
+        public static async Task<string> LatestRefLocal() {
+            Process process = await GenerateProcessAsync(GitPath, "rev-parse HEAD");
+
+            return process?.StandardOutput.ReadToEnd();
+        }
+        
+        public static async Task<string> LatestRefUpstream() {
+            Process process = await GenerateProcessAsync(GitPath, "rev-parse @{u}");
+
+            return process?.StandardOutput.ReadToEnd();
         }
     }
 }

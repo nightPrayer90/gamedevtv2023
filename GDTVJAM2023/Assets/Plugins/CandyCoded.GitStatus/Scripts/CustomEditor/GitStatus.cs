@@ -52,6 +52,13 @@ namespace CandyCoded.GitStatus {
 
             lastUpdated = DateTime.Now;
         }
+
+        public static async Task<bool> PullNeeded() {
+            UpdateAsync();
+            string localHash = await Git.LatestRefLocal();
+            string upstreamHash = await Git.LatestRefUpstream();
+            return localHash != upstreamHash;
+        }
     }
 }
 #endif
