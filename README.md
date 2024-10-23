@@ -1,7 +1,7 @@
 # GameDev.tv Game Jam 2023
 
 - Unity folder is GDTVJAM2023
-- Unity version is 2021.3.11f1 
+- Unity version is 2021.3.39f1 
 - Use Git LFS for assets
 - If you do not know what Git LFS is, ask the team
 
