@@ -1,9 +1,9 @@
+#if UNITY_EDITOR
 using UnityEditor;
 namespace KingdomOfNight
 {
     public partial class SceneLoader
     {
-#if UNITY_EDITOR
         [MenuItem("Scenes/Encarta")]
         public static void LoadEncarta() { OpenScene("Assets/scenes/Encarta.unity"); }
         [MenuItem("Scenes/GameScene")]
@@ -24,6 +24,6 @@ namespace KingdomOfNight
         public static void LoadSkillBordScene() { OpenScene("Assets/scenes/SkillBordScene.unity"); }
         [MenuItem("Scenes/TestScene")]
         public static void LoadTestScene() { OpenScene("Assets/scenes/TestScene.unity"); }
-#endif
     }
 }
+#endif
