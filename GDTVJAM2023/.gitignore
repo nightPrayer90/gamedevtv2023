@@ -92,3 +92,7 @@ crashlytics-build.properties
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
+
+# Local assets
+Assets/_Local\ User\ Stuff\ -\ NO\ USED\ ASSETS\ HERE/*
+!Assets/_Local\ User\ Stuff\ -\ NO\ USED\ ASSETS\ HERE/readme.txt

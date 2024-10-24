@@ -1,0 +1,1 @@
+Hier können Dateien hin, die dann nur auf dem jeweiligen PC sind. Das heißt: KEINE DATEIEN, DIE FÜR DAS SPIEL WICHTIG SIND. Assets, die hier drin sind, sind auf anderen PCs und bei anderen Personen nicht da, weil der Ordner über git nicht synchronisiert wird. Hier dürfen Martins Demoszenen rein.
